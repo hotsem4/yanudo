@@ -22,12 +22,12 @@
 - 서버가 계속 거절하는 기록은 버리지 않고 기기에 따로 보관하고 설정 화면에 표시, 앱을 켤 때마다 다시 보낸다.
 - 알림을 누르면 열린 앱을 새로 고치지 않고 화면만 바꾼다.
 
-## 2. 사용자가 할 일
-1. **Tailscale**: 이 노트북에서 아직 찾지 못했다(설치 폴더·서비스·설치 목록 없음, 2026-11-16 08시 확인). 공식 설치 파일(tailscale.com/download, npm 아님)을 실행해 권한 창에서 "예" → 작업 표시줄 아이콘에서 로그인.
-2. [관리 콘솔 DNS](https://login.tailscale.com/admin/dns)에서 MagicDNS 확인, **HTTPS Certificates → Enable**(마이크·알림·홈 화면 설치에 HTTPS 필요).
-3. 폰: Play 스토어 Tailscale → 같은 계정 로그인 → VPN 허용.
-4. 끝나면 알려 주면 Claude 가 `tailscale serve --bg 8080` 설정, 폰 주소 확인, 접속 확인을 한다(`run.bat`도 serve 를 실행하지만 출력을 숨긴다).
-5. 폰 Chrome 에서 `https://<pc>.<tailnet>.ts.net` 열기 → 홈 화면에 추가 → 마이크·알림 허용.
+## 2. 폰 연결 (2026-11-16 08:3x 완료)
+- Tailscale: 노트북·폰(z-fold8) 같은 tailnet, Serve(HTTPS) 활성화, `tailscale serve --bg 8080` → `https://<pc>.<tailnet>.ts.net/` 가 `http://127.0.0.1:8080` 으로 프록시. 주소는 `tailscale serve status`(`C:\Program Files\Tailscale	ailscale.exe`).
+- 확인: HTTPS 로 화면 200, 대시보드(Day 2), `check-login` → `OK`(장기 토큰), tailnet IP 로 8080 직접 접속은 거부(의도).
+- 서버는 터미널 탭에서 `run.bat` 으로 실행 중. serve 설정은 Tailscale 에 남아 재부팅 뒤에도 유지되지만, 서버는 `run.bat` 을 다시 켜야 한다.
+- 남은 사용자 단계: 폰 Chrome 에서 주소 열기 → 홈 화면에 추가(앱 설치) → 마이크 허용(모닝 락), 설정 시트에서 22시 알림 켜기.
+- 노트북을 덮으면(절전) 서버도 멈춘다. 폰은 캐시로 오프라인 학습은 되지만 동기화·22시 알림은 서버가 켜져 있어야 한다.
 
 ## 3. 남은 일 / 후속 과제
 - 실제 폴드8 기기 확인(지금까지는 브라우저 크기 흉내): 화면, 음성 인식, 기기 음성, 푸시.

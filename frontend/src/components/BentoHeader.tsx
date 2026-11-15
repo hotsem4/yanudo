@@ -106,6 +106,8 @@ function TimerCard({ view, timer }: { view: DayView | null; timer: FocusTimer })
   const over = timer.running && timer.remaining <= 0;
   const big = !timer.running ? mmss(FOCUS_SECONDS) : over ? `+${mmss(timer.overtime)}` : mmss(timer.remaining);
   const caption = !timer.running ? "탭해서 집중 시작" : armed ? "한 번 더 누르면 끝나요" : over ? "초과 집중 중" : "집중 중";
+  // 펼친 화면 폭이 600~699px이면 왼쪽 열이 최소폭(280px)이라 라벨 자리가 6글자 남짓이다. 그때만 짧게 쓴다.
+  const shortCaption = !timer.running ? "집중 시작" : armed ? "한 번 더 탭" : over ? "초과 집중" : "집중 중";
 
   const left = timer.running ? Math.max(0, timer.remaining) / FOCUS_SECONDS : 1;
 
@@ -126,7 +128,12 @@ function TimerCard({ view, timer }: { view: DayView | null; timer: FocusTimer })
       className={`press flex min-h-[132px] flex-col rounded-3xl bg-surface p-4 text-left shadow-card ${armed ? "ring-2 ring-royal/40" : ""}`}
     >
       <span className="flex h-6 items-center justify-between gap-2">
-        <span className="text-[12px] font-medium leading-tight text-muted">{caption}</span>
+        <span className="whitespace-nowrap text-[12px] font-medium leading-tight text-muted">
+          <span className="unfolded:max-[699px]:hidden">{caption}</span>
+          <span aria-hidden className="hidden unfolded:max-[699px]:inline">
+            {shortCaption}
+          </span>
+        </span>
         <Hourglass size={22} remaining={left} />
       </span>
       <span className={`mt-1 text-[26px] font-bold leading-tight tracking-tight tabular-nums ${over ? "text-royal" : "text-ink"}`}>{big}</span>

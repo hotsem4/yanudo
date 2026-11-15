@@ -186,7 +186,9 @@ function useMorningLock(view: DayView | null, open: (v: boolean) => void): void 
   const checkedFirst = useRef(false);
 
   useEffect(() => {
-    if (!view || checkedFirst.current) return;
+    // 아침에 처음 열면 먼저 전날 밤 캐시(논리 날짜가 지나 stale)로 그린다. 그걸로 첫 판단을 써 버리면
+    // 새 대시보드가 와도 다시 묻지 않아 락이 뜨지 않으므로, 오늘 것을 받을 때까지 기다린다.
+    if (!view || view.stale || checkedFirst.current) return;
     checkedFirst.current = true;
     if (shouldShowMorningLock(view, serverNow(), playback.launchedByAutoplay())) open(true);
   }, [view, open]);

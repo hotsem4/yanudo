@@ -72,8 +72,10 @@
    - 매니페스트 `shortcuts`에 세 모드의 자동 실행 URL을 등록한다(앱 아이콘 길게 누르기).
 2. **모닝 보이스 락**: 벽시계 `06:00 ~ 09:30`에 앱을 열었고(앱 시작·화면 복귀 때 판단), 오늘 열람 기록이 하나도 없고(서버 + 대기 이벤트), 오늘 락을 아직 처리하지 않았으면 표시한다. 시간 창은 서버가 epoch ms로 내려 주므로 오프라인에서도 판단한다. 판정은 클라이언트가 하고 결과만 `MORNING_LOCK` 이벤트로 보낸다.
    - 오늘 레슨에서 `core = true`인 문장 3개(모자라면 `seq` 순으로 채움).
-   - `SpeechRecognition`(en-US, interim 결과 사용)으로 인식. 정답 단어 중 인식된 단어 비율(소문자·구두점 제거·축약형 펼침, 중복 고려)이 **60% 이상**이면 그 문장 클리어. 3문장이면 잠금 해제(`CLEARED`).
-   - 마이크/인식 불가 환경은 안내 문구와 함께 작은 `긴급 건너뛰기` 링크(`SKIPPED`). 문장 듣기 버튼 제공.
+   - `SpeechRecognition`(en-US, interim 결과 사용)으로 인식. 정답 단어 중 **순서대로** 인식된 단어 비율(소문자·구두점 제거·축약형 펼침, 최장 공통 부분 수열)이 **60% 이상**이면 그 문장 클리어. 단어를 뒤섞어 말하면 통과하지 못한다. 발음·억양은 평가하지 않는다(브라우저 인식의 한계). 3문장이면 잠금 해제(`CLEARED`).
+   - **받아 적기**: 말하기가 어려우면 "받아 적기로" 바꿔 문장을 듣고 영어로 입력한다. 통과 전까지 영어 문장은 가리고(맞힌 단어만 드러냄) 같은 60% 규칙으로 채점한다. 마이크·인식을 쓸 수 없으면(미지원, 권한 거부, 마이크 없음, 네트워크) 자동으로 받아 적기가 된다.
+   - `긴급 건너뛰기`(`SKIPPED`)는 마이크·인식을 쓸 수 없을 때나 한 문장에서 3번 못 넘겼을 때만 보이고, 한 번 더 확인받는다. 문장 듣기 버튼 제공.
+   - 범위는 PWA 화면 안이다. 폰의 다른 앱을 막지는 못한다(웹 앱 권한 밖).
 3. **어제 복습 게이트**: `lesson_day`보다 작은 등록 일차가 있으면 그중 가장 큰 일차가 "어제 레슨"이다(보통 Day `lesson_day-1`, 일차가 건너뛰어졌으면 직전 등록 일차). 그 레슨 문장이 **오늘** `REVIEW` 세션에서 모두 열람(`AUDIO` 또는 `CARD`)될 때까지 `오늘의 10문장` 카드는 블러·잠금 상태다. 다 채우는 순간 즉시 풀린다. 어제 레슨이 없으면(Day 1) 게이트도 없다.
 4. **22:00 마감 리마인드**: `@Scheduled(cron = "0 0 22 * * *", zone = app.timezone)` + 22:30 재시도 + 서버 시작 시 22:00~03:00이면 보충. **서버에 도착한 기록 기준**으로 오늘 습관이 미달성이면 Web Push(VAPID) + 선택적으로 Telegram/Discord 웹훅 발송. 하루 한 번만 보내고(`reminder_log`), 모든 채널이 실패하면 하루 3회까지 다시 시도한다.
    - VAPID 키가 설정에 없으면 첫 실행 때 만들어 `data/vapid.json`에 저장한다.
@@ -160,6 +162,7 @@ term(id PK, term_key UNIQUE, text, meaning, nuance, examples_json, source 'CONTE
      status 'READY'|'PENDING'|'FAILED', attempts, created_at, updated_at)                -- vocab (내용 임포트도 이 표에 업서트)
 sentence_term(sentence_id FK, term_id FK, form, PRIMARY KEY(sentence_id, term_id))        -- content (form: 문장 속 실제 형태)
 vocab_entry(term_id PK FK, sentence_id FK NULL, note, mastered, mastered_at, added_at)    -- vocab (담긴 표현)
+vocab_event(id PK, applied_at)                                                           -- vocab (처리한 VOCAB_* 이벤트 id)
 ```
 
 ---
@@ -254,10 +257,11 @@ vocab_entry(term_id PK FK, sentence_id FK NULL, note, mastered, mastered_at, add
 - MARK는 `changed_at`(= `occurred_at`)이 같거나 더 새로울 때 바꾼다(같은 시각이면 나중에 온 것). FOCUS는 `started_at` 기준으로 큰 `seconds`만 남기고(1~21600초), 그 기록의 날짜는 `occurred_at`(끝낸 시각) 기준이다. MORNING_LOCK은 그날 첫 결정만 남는다.
 - 형식 오류·없는 문장은 그 이벤트만 `rejected`, 나머지는 한 트랜잭션으로 수용한다.
 - 단어장 이벤트(F-08):
-  - `{"type":"VOCAB_ADD", "text":"grab", "sentence_id":21, "meaning":null, "note":null}`: `text`의 `term_key`로 표현을 찾고, 없으면 `PENDING`으로 만들어 생성기에 맡긴다. 이미 담겨 있으면 무시(멱등). `meaning`·`note`를 주면 직접 입력으로 저장(`source: MANUAL`, 생성 안 함).
+  - `{"type":"VOCAB_ADD", "text":"grab", "sentence_id":21, "meaning":null, "note":null}`: `text`의 `term_key`로 표현을 찾고, 없으면 `PENDING`으로 만들어 생성기에 맡긴다. 이미 담겨 있으면 무시(멱등). `meaning`을 주면 직접 입력으로 저장(`source: MANUAL`, 생성 안 함). `note`는 메모로만 저장한다(생성은 그대로). `sentence_id`가 현재 콘텐츠에 없으면 거절하지 않고 문장 연결만 버린다(거절하면 담기가 아웃박스에서 사라진다).
   - `{"type":"VOCAB_REMOVE", "term_key":"grab"}`: 단어장에서 뺀다(표현 자체는 남는다).
   - `{"type":"VOCAB_MASTER", "term_key":"grab", "mastered":true}`: 외웠어요 표시. 같은 시각이면 나중 것.
   - `{"type":"VOCAB_EDIT", "term_key":"grab", "meaning":"…", "note":"…"}`: 직접 고친 뜻·메모.
+  - 단어장 이벤트는 순서에 따라 결과가 달라서(담기 → 빼기) 서버가 처리한 id를 기록하고, 같은 id가 다시 오면 적용하지 않고 `accepted`로 돌려준다.
 
 ### 4.5 히트맵
 

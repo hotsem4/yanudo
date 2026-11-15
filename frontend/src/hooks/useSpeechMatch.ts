@@ -8,6 +8,8 @@ export interface SpeechMatch {
   /** 일치율 계산용 후보 문장들. 대안마다 따로 채점해 가장 높은 값을 쓴다(이어 붙이면 점수가 부풀려진다). */
   alternatives: string[];
   error: string | null;
+  /** SpeechRecognition 오류 코드(not-allowed, audio-capture 등). 마이크를 아예 쓸 수 없는지 가릴 때 쓴다. */
+  errorCode: string | null;
   start: () => void;
   stop: () => void;
   reset: () => void;
@@ -29,6 +31,7 @@ export function useSpeechMatch(): SpeechMatch {
   const [transcript, setTranscript] = useState("");
   const [alternatives, setAlternatives] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [errorCode, setErrorCode] = useState<string | null>(null);
 
   const stop = useCallback(() => {
     recRef.current?.stop();
@@ -39,6 +42,7 @@ export function useSpeechMatch(): SpeechMatch {
     setTranscript("");
     setAlternatives([]);
     setError(null);
+    setErrorCode(null);
   }, []);
 
   const start = useCallback(() => {
@@ -66,11 +70,14 @@ export function useSpeechMatch(): SpeechMatch {
       setAlternatives(alts);
     };
     rec.onerror = (event) => {
-      if (event.error !== "aborted") setError(ERRORS[event.error] ?? "음성을 인식하지 못했어요. 다시 시도해 주세요.");
+      if (event.error === "aborted") return;
+      setError(ERRORS[event.error] ?? "음성을 인식하지 못했어요. 다시 시도해 주세요.");
+      setErrorCode(event.error);
     };
     rec.onend = () => setListening(false);
     recRef.current = rec;
     setError(null);
+    setErrorCode(null);
     setTranscript("");
     setAlternatives([]);
     try {
@@ -83,5 +90,5 @@ export function useSpeechMatch(): SpeechMatch {
 
   useEffect(() => () => recRef.current?.abort(), []);
 
-  return { supported: !!Ctor, listening, transcript, alternatives, error, start, stop, reset };
+  return { supported: !!Ctor, listening, transcript, alternatives, error, errorCode, start, stop, reset };
 }

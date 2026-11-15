@@ -1,4 +1,4 @@
-// 모닝 보이스 락 일치율(SPEC F-04-2): 정답 단어 중 인식된 단어의 비율. 중복은 개수만큼 센다.
+// 모닝 보이스 락 일치율(SPEC F-04-2): 정답 단어 중 순서대로 인식된 단어의 비율. 받아 적기 통과에도 같은 규칙을 쓴다.
 
 const CONTRACTIONS: [RegExp, string][] = [
   [/\bcan't\b/g, "can not"],
@@ -41,17 +41,36 @@ export interface MatchResult {
   hits: { word: string; hit: boolean }[];
 }
 
+/**
+ * 정답 순서를 지킨 단어만 센다(최장 공통 부분 수열). 단어를 뒤섞어 말하면 통과하지 못한다:
+ * "I need to go home"에 "home go to need I"는 20%다. 중간에 낀 군말("um")이나 빠진 단어는 그 단어만 손해를 본다.
+ */
 export function matchWords(target: string, spoken: string): MatchResult {
   const expected = normalizeWords(target);
-  const bag = new Map<string, number>();
-  for (const w of normalizeWords(spoken)) bag.set(w, (bag.get(w) ?? 0) + 1);
-  const hits = expected.map((word) => {
-    const left = bag.get(word) ?? 0;
-    if (left > 0) bag.set(word, left - 1);
-    return { word, hit: left > 0 };
-  });
-  const matched = hits.filter((h) => h.hit).length;
-  return { ratio: expected.length ? matched / expected.length : 0, hits };
+  const heard = normalizeWords(spoken);
+  const n = expected.length;
+  const m = heard.length;
+  // lcs[i][j] = expected[i..], heard[j..] 의 최장 공통 부분 수열 길이
+  const lcs: number[][] = Array.from({ length: n + 1 }, () => new Array<number>(m + 1).fill(0));
+  for (let i = n - 1; i >= 0; i--) {
+    for (let j = m - 1; j >= 0; j--) {
+      lcs[i][j] = expected[i] === heard[j] ? lcs[i + 1][j + 1] + 1 : Math.max(lcs[i + 1][j], lcs[i][j + 1]);
+    }
+  }
+  const hit = new Array<boolean>(n).fill(false);
+  for (let i = 0, j = 0; i < n && j < m; ) {
+    if (expected[i] === heard[j]) {
+      hit[i] = true;
+      i++;
+      j++;
+    } else if (lcs[i + 1][j] >= lcs[i][j + 1]) {
+      i++;
+    } else {
+      j++;
+    }
+  }
+  const hits = expected.map((word, i) => ({ word, hit: hit[i] }));
+  return { ratio: n ? lcs[0][0] / n : 0, hits };
 }
 
 export const PASS_RATIO = 0.6;

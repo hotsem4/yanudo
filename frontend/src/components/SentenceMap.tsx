@@ -57,7 +57,7 @@ export function SentenceMap({ view, tab }: Props) {
       </div>
 
       {!view ? (
-        <div aria-hidden className="mt-3 grid grid-cols-5 gap-2">
+        <div aria-hidden className="mt-3 grid grid-cols-5 gap-2 max-[699px]:grid-cols-4">
           {Array.from({ length: 10 }, (_, i) => (
             <span key={i} className="skeleton h-12 rounded-2xl bg-line" />
           ))}
@@ -65,7 +65,8 @@ export function SentenceMap({ view, tab }: Props) {
       ) : items.length === 0 ? (
         <p className="mt-3 px-1 text-pretty text-[13.5px] leading-relaxed text-muted">문장을 받으면 여기에 순서대로 놓여요.</p>
       ) : (
-        <ol className="thin-scroll -mr-2 mt-3 grid min-h-0 auto-rows-min grid-cols-5 content-start gap-2 overflow-y-auto overscroll-contain p-0.5 pr-2.5">
+        <ol className="thin-scroll -mr-2 mt-3 grid min-h-0 auto-rows-min grid-cols-5 content-start gap-2 overflow-y-auto overscroll-contain p-0.5 pr-2.5 max-[699px]:grid-cols-4">
+          {/* 폭 700px 미만의 펼친 화면은 왼쪽 열이 280px이라 5칸이면 칸이 44px보다 좁아진다. 간격(8px)은 지키고 4칸으로 줄인다. */}
           {items.map((s, i) => {
             const current = i === index;
             const done = s.status === "MEMORIZED";

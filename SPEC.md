@@ -58,7 +58,7 @@
 - **무음 대기 중 미디어 세션 유지**: 대기 동안 같은 `<audio>` 요소에 1초짜리 무음 WAV를 반복 재생해 잠금 화면 컨트롤과 버즈 버튼이 살아 있게 한다.
 - **Media Session API**: 메타데이터(영어 문장, `Day N · A/B`), `play` / `pause` / `previoustrack` / `nexttrack` 핸들러.
 - 배속: `0.85` / `1.0` / `1.15` 순환 토글. 무음 대기 시간은 배속과 무관하게 `duration_ms × 1.3`.
-- 오디오 파일이 아직 없거나 받아 두지 못한 문장(4초 안에 받지 못한 경우 포함)은 기기 `speechSynthesis`의 영어 음성으로 대신 읽는다. 음성 목록이 늦게 오면 잠깐 기다리고, 기기에 영어 음성이 없거나 읽기가 오류로 끝나면 다른 언어 음성으로 읽지 않고 재생을 멈춰 알린다(들음으로 기록하지 않는다). `duration_ms`는 서버가 늘 채운다(클립이 없으면 단어 수 × 380ms 추정, `duration_estimated: true`).
+- 오디오 파일이 아직 없거나 받아 두지 못한 문장(4초 안에 받지 못한 경우 포함)은 기기 `speechSynthesis`의 영어 음성으로 대신 읽는다. 음성 목록이 늦게 오면 잠깐 기다리고, 목록을 3초 안에 받지 못했거나 기기에 영어 음성이 없거나 읽기가 오류로 끝나면, 다른 언어 음성으로 읽지 않고 그 문장을 들음 기록 없이 건너뛴다. 3문장 연속이면 재생을 멈추고 알린다. `duration_ms`는 서버가 늘 채운다(클립이 없으면 단어 수 × 380ms 추정, `duration_estimated: true`).
 - 무음 대기와 문장 간격은 그 길이의 무음 WAV를 같은 `<audio>` 요소에서 재생하고 `ended`로 끝낸다(화면이 꺼져도 타이머가 밀리지 않고, 일시정지하면 남은 시간이 보존된다).
 - `AUDIO` 열람 보고 시점: full·shadowing·역할극 A는 발화가 끝날 때, 역할극 B는 대기가 끝날 때.
 - 프리로드 상태(`준비 n/m`)를 화면에 작게 보인다.
@@ -164,6 +164,7 @@ term(id PK, term_key UNIQUE, text, meaning, nuance, examples_json, source 'CONTE
      status 'READY'|'PENDING'|'FAILED', attempts, created_at, updated_at)                -- vocab (내용 임포트도 이 표에 업서트)
 sentence_term(sentence_id FK, term_id FK, form, PRIMARY KEY(sentence_id, term_id))        -- content (form: 문장 속 실제 형태)
 vocab_entry(term_id PK FK, sentence_id FK NULL, note, mastered, mastered_at, added_at)    -- vocab (담긴 표현)
+applied_event(id PK, applied_at)                                                         -- progress (처리한 VIEW·MORNING_LOCK 이벤트 id)
 vocab_event(id PK, applied_at)                                                           -- vocab (처리한 VOCAB_* 이벤트 id)
 ```
 
@@ -254,7 +255,7 @@ vocab_event(id PK, applied_at)                                                  
 
 - `id`: 1~64자 `[A-Za-z0-9:._-]`. 같은 id를 다시 보내도 결과가 같다. 한 요청 최대 500개. 시각 필드에 소수가 오면 서버가 소수부를 버린다(클라이언트는 정수로 보낸다).
 - `rejected[].reason`: `INVALID_ID` | `INVALID_TYPE` | `INVALID_FIELD` | `UNKNOWN_SENTENCE`.
-- `occurred_at`은 서버 시계 추정값(클라이언트가 `server_time`으로 보정). 서버는 수신 시각보다 10분 넘게 앞선 값만 수신 시각으로 자른 뒤 논리 날짜로 바꾼다(작은 오차까지 자르면 응답을 잃고 다시 보낸 같은 이벤트가 롤오버를 사이에 두고 다른 날짜가 된다). 같은 `VIEW` id는 한 번만 기록한다.
+- `occurred_at`은 서버 시계 추정값(클라이언트가 `server_time`으로 보정). 서버는 미래 값을 수신 시각으로 자른 뒤 논리 날짜로 바꾼다. 그래서 응답을 잃고 롤오버를 지나 다시 보낸 이벤트는 다른 날짜로 계산될 수 있으므로, 처리한 `VIEW`·`MORNING_LOCK` id를 `applied_event`에 남겨(자연 키로 무시된 것 포함) 한 번만 반영한다.
 - VIEW(TODAY)의 문장이 그 날짜의 오늘 레슨이 아니면 REVIEW로 바꿔 기록한다. 그 결과 오늘 레슨을 한 경로로 완주하면 `day_achievement`를 기록한다.
 - MARK는 `changed_at`(= `occurred_at`)이 같거나 더 새로울 때 바꾼다(같은 시각이면 나중에 온 것). FOCUS는 `started_at` 기준으로 큰 `seconds`만 남기고(1~21600초), 그 기록의 날짜는 `occurred_at`(끝낸 시각) 기준이다. MORNING_LOCK은 그날 첫 결정만 남는다.
 - 형식 오류·없는 문장은 그 이벤트만 `rejected`, 나머지는 한 트랜잭션으로 수용한다.

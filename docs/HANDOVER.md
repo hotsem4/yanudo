@@ -25,7 +25,9 @@
 ## 2. 폰 연결 (2026-11-16 08:3x 완료)
 - Tailscale: 노트북·폰(z-fold8) 같은 tailnet, Serve(HTTPS) 활성화, `tailscale serve --bg 8080` → `https://<pc>.<tailnet>.ts.net/` 가 `http://127.0.0.1:8080` 으로 프록시. 주소는 `tailscale serve status`(`C:\Program Files\Tailscale\tailscale.exe`).
 - 확인: HTTPS 로 화면 200, 대시보드(Day 2), `check-login` → `OK`(장기 토큰), tailnet IP 로 8080 직접 접속은 거부(의도).
-- 서버는 터미널 탭에서 `run.bat` 으로 실행 중. serve 설정은 Tailscale 에 남아 재부팅 뒤에도 유지되지만, 서버는 `run.bat` 을 다시 켜야 한다.
+- 서버는 작업 스케줄러 작업 `habit66 서버`로 부팅 1분 뒤 로그인 없이 자동 시작(로그 `data/server.log`), Tailscale 은 무인 실행 모드. 지금도 이 작업으로 실행 중(확인: HTTPS 200, check-login OK, TTS 660/660).
+- 이 PC 에 한 설정 전체와 되돌리는 방법(Oracle 로 옮길 때): [pc-local-setup.md](pc-local-setup.md).
+- 수동으로 `run.bat`을 함께 켜면 8080 이 이미 쓰여 그쪽은 바로 끝난다(해는 없음). 서버를 멈추려면 `Stop-ScheduledTask -TaskName "habit66 서버"`.
 - 남은 사용자 단계: 폰 Chrome 에서 주소 열기 → 홈 화면에 추가(앱 설치) → 마이크 허용(모닝 락), 설정 시트에서 22시 알림 켜기.
 - 노트북을 덮으면(절전) 서버도 멈춘다. 폰은 캐시로 오프라인 학습은 되지만 동기화·22시 알림은 서버가 켜져 있어야 한다.
 

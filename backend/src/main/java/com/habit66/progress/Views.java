@@ -3,6 +3,7 @@ package com.habit66.progress;
 import java.util.List;
 
 import com.habit66.progress.DaySnapshot.Streak;
+import com.habit66.vocab.TermStore.SentenceTerm;
 
 /** SPEC 4장의 응답 모양. 컴포넌트 이름이 snake_case 로 바뀌어 그대로 JSON 필드가 된다. */
 public final class Views {
@@ -12,7 +13,7 @@ public final class Views {
 
     public record SentenceDto(long id, int day, int seq, String speaker, String enText, String koWordOrder,
             String koNatural, boolean core, String status, Long statusChangedAt, String audioUrl, long durationMs,
-            boolean durationEstimated) {
+            boolean durationEstimated, List<SentenceTerm> terms) {
     }
 
     public record Dashboard(String today, long serverTime, long validFrom, long validUntil, int currentDay,

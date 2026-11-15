@@ -45,6 +45,7 @@ import com.habit66.tts.Mp3Samples;
 @SpringBootTest(properties = {
         "app.tts.auto-generate=false",
         "app.reminder.enabled=false",
+        "app.vocab.generator=none",
         "app.admin-token=",
         "app.push.public-key=",
         "app.push.private-key="
@@ -160,7 +161,7 @@ class ApiIntegrationTest {
         JsonNode first = today.path("sentences").get(0);
         assertThat(fieldNames(first)).containsExactly("id", "day", "seq", "speaker", "en_text", "ko_word_order",
                 "ko_natural", "core", "status", "status_changed_at", "audio_url", "duration_ms",
-                "duration_estimated");
+                "duration_estimated", "terms");
         assertThat(first.path("day").asInt()).isEqualTo(1);
         assertThat(first.path("seq").asInt()).isEqualTo(1);
         assertThat(first.path("speaker").asText()).isEqualTo("A");

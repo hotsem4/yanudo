@@ -97,6 +97,15 @@ public class TermStore {
                 });
     }
 
+    /** 단어장에 담겨 있고 아직 만들어지지 않은(PENDING·FAILED) 생성 대상 표현. 직접 적은 표현(MANUAL)은 빼고. */
+    public List<Long> generationTargets() {
+        return jdbc.queryForList("""
+                SELECT t.id FROM term t JOIN vocab_entry v ON v.term_id = t.id
+                WHERE t.status IN ('PENDING', 'FAILED') AND t.source <> 'MANUAL'
+                ORDER BY v.added_at
+                """, Long.class);
+    }
+
     /** 문장마다 미리 만든 표현(임포트한 순서). 표현이 없는 문장은 맵에 없다. */
     public Map<Long, List<SentenceTerm>> termsOf(Collection<Long> sentenceIds) {
         Map<Long, List<SentenceTerm>> bySentence = new HashMap<>();

@@ -1,6 +1,7 @@
 package com.habit66.progress;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,8 @@ import com.habit66.progress.Views.SentenceDto;
 import com.habit66.progress.Views.SessionView;
 import com.habit66.tts.TtsService;
 import com.habit66.tts.TtsService.Clip;
+import com.habit66.vocab.TermStore;
+import com.habit66.vocab.TermStore.SentenceTerm;
 
 /** {@link DaySnapshot}을 응답 모양으로 투영한다. 규칙은 없다. */
 @Component
@@ -23,9 +26,11 @@ public class ViewAssembler {
     private static final String PREVIEW_TITLE = "미리보기 복습";
 
     private final TtsService tts;
+    private final TermStore terms;
 
-    public ViewAssembler(TtsService tts) {
+    public ViewAssembler(TtsService tts, TermStore terms) {
         this.tts = tts;
+        this.terms = terms;
     }
 
     public Dashboard dashboard(DaySnapshot s) {
@@ -68,13 +73,16 @@ public class ViewAssembler {
     }
 
     private List<SentenceDto> sentences(List<SentenceView> views, DaySnapshot s) {
-        return views.stream().map(v -> sentence(v, s.marks().get(v.id()))).toList();
+        Map<Long, List<SentenceTerm>> termsById = terms.termsOf(views.stream().map(SentenceView::id).toList());
+        return views.stream()
+                .map(v -> sentence(v, s.marks().get(v.id()), termsById.getOrDefault(v.id(), List.of())))
+                .toList();
     }
 
-    private SentenceDto sentence(SentenceView v, Mark mark) {
+    private SentenceDto sentence(SentenceView v, Mark mark, List<SentenceTerm> sentenceTerms) {
         Clip clip = tts.clipOf(v);
         return new SentenceDto(v.id(), v.day(), v.seq(), v.speaker(), v.enText(), v.koWordOrder(), v.koNatural(),
                 v.core(), mark == null ? "NEW" : mark.status(), mark == null ? null : mark.changedAt(),
-                clip.audioUrl(), clip.durationMs(), clip.durationEstimated());
+                clip.audioUrl(), clip.durationMs(), clip.durationEstimated(), sentenceTerms);
     }
 }

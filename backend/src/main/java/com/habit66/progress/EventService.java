@@ -25,10 +25,12 @@ import com.habit66.progress.ClientEvent.Session;
 import com.habit66.progress.ClientEvent.Via;
 import com.habit66.progress.EventsRequest.Parsed;
 import com.habit66.progress.EventsRequest.Rejected;
+import com.habit66.vocab.VocabService;
 
 /**
  * 모든 학습 쓰기의 유일한 입구. sentence_view, sentence_mark, focus_session, morning_lock, day_achievement 의
- * 쓰기 소유자다. 각 표의 자연 키가 멱등을 보장하므로 같은 이벤트를 다시 보내도 결과가 같다.
+ * 쓰기 소유자이고, 단어장 이벤트는 같은 트랜잭션 안에서 {@link VocabService}에 넘긴다.
+ * 각 표의 자연 키가 멱등을 보장하므로 같은 이벤트를 다시 보내도 결과가 같다.
  */
 @Service
 public class EventService {
@@ -46,12 +48,14 @@ public class EventService {
     private final LogicalClock clock;
     private final ProgressFacts facts;
     private final WriteLock writes;
+    private final VocabService vocab;
     private final int totalDays;
 
     public EventService(JdbcTemplate jdbc, PlatformTransactionManager txManager, CatalogService catalog,
             SettingsStore settings, LogicalClock clock, ProgressFacts facts, WriteLock writes,
-            AppProperties props) {
+            VocabService vocab, AppProperties props) {
         this.writes = writes;
+        this.vocab = vocab;
         this.jdbc = jdbc;
         this.tx = new TransactionTemplate(txManager);
         this.catalog = catalog;
@@ -90,8 +94,10 @@ public class EventService {
                     ok = applyMark(mark, at, cat);
                 } else if (event instanceof ClientEvent.Focus focus) {
                     ok = applyFocus(focus, at, receivedAt);
+                } else if (event instanceof ClientEvent.MorningLock lock) {
+                    ok = applyMorningLock(lock, at);
                 } else {
-                    ok = applyMorningLock((ClientEvent.MorningLock) event, at);
+                    ok = applyVocab(event, at, receivedAt);
                 }
                 if (ok) {
                     accepted.add(event.id());
@@ -153,6 +159,20 @@ public class EventService {
     private boolean applyMorningLock(ClientEvent.MorningLock lock, long at) {
         jdbc.update("INSERT OR IGNORE INTO morning_lock (log_date, state, decided_at) VALUES (?, ?, ?)",
                 clock.dateOf(at).toString(), lock.result().name(), at);
+        return true;
+    }
+
+    /** 단어장 이벤트. 없는 문장·담기지 않은 표현을 가리켜도 거절하지 않는다(그 부분만 무시한다). */
+    private boolean applyVocab(ClientEvent event, long at, long receivedAt) {
+        if (event instanceof ClientEvent.VocabAdd add) {
+            vocab.add(add.text(), add.sentenceId(), add.meaning(), add.note(), at, receivedAt);
+        } else if (event instanceof ClientEvent.VocabRemove remove) {
+            vocab.remove(remove.termKey());
+        } else if (event instanceof ClientEvent.VocabMaster master) {
+            vocab.master(master.termKey(), master.mastered(), at);
+        } else if (event instanceof ClientEvent.VocabEdit edit) {
+            vocab.edit(edit.termKey(), edit.meaning(), edit.note(), receivedAt);
+        }
         return true;
     }
 

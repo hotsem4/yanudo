@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
@@ -50,6 +51,7 @@ public class ClaudeCliGenerator implements TermGenerator {
 
     private static final Logger log = LoggerFactory.getLogger(ClaudeCliGenerator.class);
     private static final ObjectMapper JSON = new ObjectMapper();
+    private static final boolean WINDOWS = System.getProperty("os.name", "").toLowerCase(Locale.ROOT).startsWith("windows");
 
     private final List<String> command;
     private final String model;
@@ -77,8 +79,9 @@ public class ClaudeCliGenerator implements TermGenerator {
             args.addAll(List.of("-p", "--setting-sources", "project", "--no-session-persistence",
                     "--model", model, "--tools", "", "--output-format", "json",
                     "--json-schema", SCHEMA, TermPrompt.of(request)));
-            ProcessBuilder builder = new ProcessBuilder(args);
+            ProcessBuilder builder = new ProcessBuilder(WINDOWS ? windowsArgs(args) : args);
             builder.directory(workDir.toFile());
+            stripInheritedSession(builder.environment());
             builder.redirectOutput(stdout.toFile());
             builder.redirectError(stderr.toFile());
             process = builder.start();
@@ -148,11 +151,60 @@ public class ClaudeCliGenerator implements TermGenerator {
                 .validated();
     }
 
-    /** CLI 결과에는 오류 코드가 없고 문장뿐이라 문구로 가려낸다(관찰된 예: "Failed to authenticate: OAuth session expired …"). */
-    private static boolean looksLikeLoginProblem(String message) {
+    /**
+     * CLI 결과에는 오류 코드가 없고 문장뿐이라 문구로 가려낸다(관찰된 예: "Failed to authenticate: OAuth session expired …").
+     * 안전장치가 요청을 거절한 응답(오탐 포함)은 로그인 문제가 아니다. 그 표현만 FAILED 로 두고 큐는 계속 돈다.
+     */
+    static boolean looksLikeLoginProblem(String message) {
         String lower = message.toLowerCase(Locale.ROOT);
+        if (Stream.of("usage policy", "unable to respond", "violate").anyMatch(lower::contains)) {
+            return false;
+        }
         return Stream.of("authenticate", "oauth", "/login", "log in", "logged in", "credential", "api key")
                 .anyMatch(lower::contains);
+    }
+
+    /**
+     * 서버가 Claude Code 안(데스크톱 앱, 터미널 세션)에서 시작되면 그 세션의 CLAUDE*·ANTHROPIC* 변수가 상속되고,
+     * 자식 claude 가 그 값을 따라 구독 로그인 대신 다른 인증을 시도해 실패한다(2026-11-15 실측). 모두 지우고 실행한다.
+     */
+    static void stripInheritedSession(Map<String, String> environment) {
+        environment.keySet().removeIf(name -> {
+            String upper = name.toUpperCase(Locale.ROOT);
+            return upper.startsWith("CLAUDE") || upper.startsWith("ANTHROPIC");
+        });
+    }
+
+    /**
+     * Windows 의 ProcessBuilder 는 인자 속 큰따옴표를 이스케이프하지 않아 자식에서 따옴표가 사라진다(JSON 스키마가 깨진다).
+     * 표준 C 런타임 규칙대로 직접 감싸 넘긴다. 이미 따옴표로 감싼 인자는 ProcessBuilder 가 그대로 둔다.
+     */
+    static List<String> windowsArgs(List<String> args) {
+        List<String> quoted = new ArrayList<>(args.size());
+        quoted.add(args.get(0));
+        for (String arg : args.subList(1, args.size())) {
+            quoted.add(quoteForWindows(arg));
+        }
+        return quoted;
+    }
+
+    static String quoteForWindows(String arg) {
+        StringBuilder out = new StringBuilder("\"");
+        int slashes = 0;
+        for (int i = 0; i < arg.length(); i++) {
+            char c = arg.charAt(i);
+            if (c == '\\') {
+                slashes++;
+                continue;
+            }
+            if (c == '"') {
+                out.append("\\".repeat(slashes * 2 + 1)).append('"');
+            } else {
+                out.append("\\".repeat(slashes)).append(c);
+            }
+            slashes = 0;
+        }
+        return out.append("\\".repeat(slashes * 2)).append('"').toString();
     }
 
     private static String lastLine(Path stderr) {

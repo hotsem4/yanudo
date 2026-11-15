@@ -27,4 +27,19 @@ public sealed interface ClientEvent {
 
     record MorningLock(String id, long occurredAt, LockResult result) implements ClientEvent {
     }
+
+    /** @param sentenceId 담을 때 보고 있던 문장(없으면 null) @param meaning 직접 적은 뜻(있으면 생성하지 않는다) */
+    record VocabAdd(String id, long occurredAt, String text, Long sentenceId, String meaning, String note)
+            implements ClientEvent {
+    }
+
+    record VocabRemove(String id, long occurredAt, String termKey) implements ClientEvent {
+    }
+
+    record VocabMaster(String id, long occurredAt, String termKey, boolean mastered) implements ClientEvent {
+    }
+
+    /** @param meaning null 이면 뜻은 그대로 둔다 @param note 메모(null 이면 지운다) */
+    record VocabEdit(String id, long occurredAt, String termKey, String meaning, String note) implements ClientEvent {
+    }
 }

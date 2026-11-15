@@ -5,7 +5,7 @@ import type { Sentence } from "../api/types";
 import { audioEngine } from "../audio/useEngine";
 import { useSpeechMatch } from "../hooks/useSpeechMatch";
 import type { MascotState } from "../lib/mascot";
-import { matchWords, PASS_RATIO, type MatchResult } from "../lib/wordMatch";
+import { displayHits, matchWords, PASS_RATIO, type MatchResult } from "../lib/wordMatch";
 import { studyStore } from "../state/store";
 import { showToast } from "../lib/toast";
 import { Mascot } from "./Mascot";
@@ -176,21 +176,22 @@ function LockBody({ sentences, onDone, mascot }: { sentences: Sentence[]; onDone
   // 받아 적기에서는 통과 전까지 영어 문장을 가린다(보고 베끼면 연습이 되지 않는다). 맞힌 단어만 드러낸다.
   let sentenceText: ReactNode;
   if (mode === "voice") {
+    // 원문 그대로 두고 밝기만 바꾼다(말하는 동안 글자 모양·줄바꿈이 바뀌지 않게).
     sentenceText = hasAttempt
-      ? match.hits.map((h, i) => (
+      ? displayHits(sentence.en_text, match).map((h, i) => (
           <span key={i} className={h.hit ? "text-surface" : "text-surface/45"}>
             {i > 0 ? " " : ""}
-            {h.word}
+            {h.text}
           </span>
         ))
       : sentence.en_text;
   } else if (cleared[index]) {
     sentenceText = sentence.en_text;
   } else if (typedResult) {
-    sentenceText = typedResult.hits.map((h, i) => (
+    sentenceText = displayHits(sentence.en_text, typedResult).map((h, i) => (
       <span key={i} className={h.hit ? "text-surface" : "text-surface/40"}>
         {i > 0 ? " " : ""}
-        {h.hit ? h.word : "·".repeat(Math.min(h.word.length, 6))}
+        {h.hit ? h.text : "·".repeat(Math.min(h.text.length, 6))}
       </span>
     ));
   } else {

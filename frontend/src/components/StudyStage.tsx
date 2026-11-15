@@ -71,6 +71,13 @@ interface CardProps {
 const REVEAL_MS = 2500;
 const SWIPE_DISTANCE = 80;
 const SWIPE_VELOCITY = 110; // px/s (= 0.11px/ms, emil-design-eng)
+/** 손으로 넘긴 카드가 빠져나가는 거리. 카드 폭의 절반쯤이면 fade 와 함께 화면 밖으로 나간 것처럼 보인다. */
+const FLING_PX = 200;
+
+interface SlideDir {
+  dir: number;
+  fling: number;
+}
 
 function StudyCard({ view, session, sentence, index, eng, filter, covered, online, onGoReview, onPickWords }: CardProps) {
   const reduce = useReducedMotion();
@@ -87,8 +94,12 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
 
   const prevIndex = useRef(index);
   const direction = index >= prevIndex.current ? 1 : -1;
+  // 손으로 넘겼을 때 카드가 손을 뗀 자리에서 그 방향 그대로 빠져나가게 할 거리. 0이면 버튼·키보드로 넘긴 것.
+  const flingX = useRef(0);
+  const motionDir: SlideDir = { dir: direction, fling: flingX.current };
   useEffect(() => {
     prevIndex.current = index;
+    flingX.current = 0;
   }, [index]);
 
   const engineHides = eng.hideEn && eng.item?.id === sentence.id;
@@ -112,8 +123,13 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
 
   const onDragEnd = (_: unknown, info: PanInfo) => {
     const { offset, velocity } = info;
-    if (offset.x < -SWIPE_DISTANCE || (velocity.x < -SWIPE_VELOCITY && offset.x < -24)) audioEngine.go("next");
-    else if (offset.x > SWIPE_DISTANCE || (velocity.x > SWIPE_VELOCITY && offset.x > 24)) audioEngine.go("prev");
+    if (offset.x < -SWIPE_DISTANCE || (velocity.x < -SWIPE_VELOCITY && offset.x < -24)) {
+      flingX.current = -FLING_PX;
+      audioEngine.go("next");
+    } else if (offset.x > SWIPE_DISTANCE || (velocity.x > SWIPE_VELOCITY && offset.x > 24)) {
+      flingX.current = FLING_PX;
+      audioEngine.go("prev");
+    }
   };
 
   const banner = bannerText(view, session);
@@ -142,14 +158,16 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
       {banner && <p aria-hidden={locked || undefined} className="mt-3 self-start rounded-full bg-tint px-3 py-1.5 text-[12px] font-medium text-royal">{banner}</p>}
 
       <div className={`relative flex flex-1 flex-col justify-center py-8 ${locked ? "opacity-30" : ""}`} aria-hidden={locked}>
-        <AnimatePresence initial={false} mode="popLayout" custom={direction}>
+        <AnimatePresence initial={false} mode="popLayout" custom={motionDir}>
           <motion.div
             key={sentence.id}
-            custom={direction}
+            custom={motionDir}
             variants={{
-              enter: (dir: number) => ({ x: reduce ? 0 : dir * 24, opacity: 0, filter: "blur(2px)" }),
+              // 손으로 넘겼으면 새 카드는 반대편에서 조금 더 멀리서 들어온다. 버튼·키보드는 짧게.
+              enter: (m: SlideDir) => ({ x: reduce ? 0 : m.fling ? -Math.sign(m.fling) * 56 : m.dir * 24, opacity: 0, filter: "blur(2px)" }),
               center: { x: 0, opacity: 1, filter: "blur(0px)" },
-              exit: (dir: number) => ({ x: reduce ? 0 : dir * -24, opacity: 0, filter: "blur(2px)" }),
+              // 손으로 넘겼으면 끌던 방향 그대로 밀려 나간다(가운데로 되돌아오며 사라지면 손을 뗄 때 반대로 튀어 보인다).
+              exit: (m: SlideDir) => ({ x: reduce ? 0 : m.fling ? m.fling : m.dir * -24, opacity: 0, filter: "blur(2px)" }),
             }}
             initial="enter"
             animate="center"

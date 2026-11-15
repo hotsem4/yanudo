@@ -74,3 +74,22 @@ export function matchWords(target: string, spoken: string): MatchResult {
 }
 
 export const PASS_RATIO = 0.6;
+
+/**
+ * 화면에 그릴 원문 단어별 일치 여부. 채점은 정규화한 단어(소문자, 문장부호 없음, 축약 풀기, 숫자→영어)로 하지만
+ * 화면에는 원문을 그대로 둔다(정규화한 단어를 그리면 대소문자·길이·줄바꿈이 바뀌어 글자가 달라 보인다).
+ * 원문 단어 하나가 정규화 단어 여럿이 되면("don't" → do not) 모두 맞았을 때만 맞은 것으로 본다.
+ * 문장부호만 있는 조각은 채점 대상이 아니므로 맞은 것으로 그린다.
+ */
+export function displayHits(target: string, result: MatchResult): { text: string; hit: boolean }[] {
+  let k = 0;
+  return target
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((text) => {
+      const count = normalizeWords(text).length;
+      const parts = result.hits.slice(k, k + count);
+      k += count;
+      return { text, hit: parts.every((p) => p.hit) };
+    });
+}

@@ -6,6 +6,14 @@ export type VocabFilter = "learning" | "mastered" | "all";
 
 export const VOCAB_FILTERS: readonly VocabFilter[] = ["learning", "mastered", "all"];
 
+/** 담은 뒤 이 시간 안이면 예문 MP3 를 서버가 아직 만드는 중으로 본다(보통 30초 안팎). 넘으면 만들지 못한 것으로 보고 기기 음성으로 읽는다. */
+export const EXAMPLE_AUDIO_WAIT_MS = 10 * 60_000;
+
+/** 예문 음성(MP3)을 서버가 아직 만드는 중인가. 시각은 서버가 준 added_at 과 서버 시계 추정값으로 비교한다. */
+export function examplesPreparing(entry: VocabEntry, now: number): boolean {
+  return entry.examples.some((x) => !x.audio_url) && now - entry.added_at < EXAMPLE_AUDIO_WAIT_MS;
+}
+
 export function filterVocab(entries: readonly VocabEntry[], filter: VocabFilter): VocabEntry[] {
   if (filter === "all") return [...entries];
   return entries.filter((v) => (filter === "mastered" ? v.mastered : !v.mastered));

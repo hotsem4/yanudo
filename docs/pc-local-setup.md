@@ -7,10 +7,17 @@
 
 | # | 무엇 | 언제 | 확인 | 되돌리기 |
 |---|---|---|---|---|
-| A1 | 작업 스케줄러 작업 **`habit66 서버`**: 부팅 1분 뒤 로그인 없이(S4U, 비밀번호 저장 안 함) `run.bat` 실행, 로그 `data\server.log`, 배터리에서도 계속, 시간 제한 없음, 죽으면 1분 간격 3회 재시작 | 2026-11-16 | `Get-ScheduledTask -TaskName "habit66 서버"` | `Stop-ScheduledTask -TaskName "habit66 서버"` 후 `Unregister-ScheduledTask -TaskName "habit66 서버" -Confirm:$false` |
+| A1 | 작업 스케줄러 작업 **`habit66 서버`**: 부팅 1분 뒤 로그인 없이(S4U, 비밀번호 저장 안 함) `run.bat` 실행, 로그 `data\server.log`, 배터리에서도 계속, 시간 제한 없음, 죽으면 1분 간격 3회 재시작 | 2026-11-16 | `Get-ScheduledTask -TaskName "habit66 서버"` | 서버 멈추기(아래) 후 `Unregister-ScheduledTask -TaskName "habit66 서버" -Confirm:$false` |
 | A2 | Tailscale **무인 실행 모드**(Windows 에서 로그아웃해도 연결 유지) | 2026-11-16 | `& "C:\Program Files\Tailscale\tailscale.exe" debug prefs` 의 `ForceDaemon: true` | `& "C:\Program Files\Tailscale\tailscale.exe" set --unattended=false` |
 | A3 | **Tailscale Serve**: `https://<pc>.<tailnet>.ts.net/` → `http://127.0.0.1:8080` (재부팅해도 유지. `run.bat` 도 켤 때마다 같은 설정을 다시 건다) | 2026-11-16 | `& "C:\Program Files\Tailscale\tailscale.exe" serve status` | `& "C:\Program Files\Tailscale\tailscale.exe" serve reset` |
 | A4 | `data\server.log`(자동 시작 서버의 로그 파일) | 2026-11-16 | 파일 존재 | A1 을 지운 뒤 파일 삭제 |
+
+**서버 멈추기**: `Stop-ScheduledTask`는 바깥 `cmd`만 끄고 그 안의 `java`(서버)는 남는다(2026-11-16 확인). 그래서 두 줄을 같이 쓴다.
+```powershell
+Stop-ScheduledTask -TaskName "habit66 서버"
+Get-NetTCPConnection -LocalPort 8080 -State Listen -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }
+```
+다시 켜기: `Start-ScheduledTask -TaskName "habit66 서버"`. 새로 빌드할 때도 이 순서로 멈춘 뒤 빌드한다(실행 중인 jar 는 덮어쓸 수 없다).
 
 ## B. 사용자가 한 설정 (계정·기기)
 

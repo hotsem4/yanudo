@@ -6,7 +6,8 @@ import { audioEngine } from "../audio/useEngine";
 import type { MascotState } from "../lib/mascot";
 import { startsInField } from "../lib/pointer";
 import { showToast } from "../lib/toast";
-import { exampleItemId, needsMeaning, vocabCounts, type VocabFilter } from "../lib/vocab";
+import { serverNow } from "../api/client";
+import { exampleItemId, examplesPreparing, needsMeaning, vocabCounts, type VocabFilter } from "../lib/vocab";
 import type { StudyState } from "../state/store";
 import { studyStore } from "../state/store";
 import { useStudy } from "../state/useStudy";
@@ -309,7 +310,13 @@ function Back({ entry, editing, onEdit, onFront }: { entry: VocabEntry; editing:
       {entry.examples.length > 0 && (
         <ol className="flex flex-col gap-1" aria-label="예문">
           {entry.examples.map((ex, i) => (
-            <Example key={i} example={ex} id={exampleItemId(entry.term_key, i)} day={entry.sentence?.day ?? 0} />
+            <Example
+              key={i}
+              example={ex}
+              id={exampleItemId(entry.term_key, i)}
+              day={entry.sentence?.day ?? 0}
+              preparing={!ex.audio_url && examplesPreparing(entry, serverNow())}
+            />
           ))}
         </ol>
       )}
@@ -327,15 +334,22 @@ function Back({ entry, editing, onEdit, onFront }: { entry: VocabEntry; editing:
   );
 }
 
-function Example({ example, id, day }: { example: VocabExample; id: number; day: number }) {
+function Example({ example, id, day, preparing }: { example: VocabExample; id: number; day: number; preparing: boolean }) {
+  const play = () => {
+    // 서버가 자연스러운 음성(MP3)을 만드는 중이면 기기 음성(기계 같은 소리)으로 읽지 않고 기다리게 한다.
+    if (preparing) {
+      showToast("자연스러운 음성을 만드는 중이에요. 잠시 뒤 다시 눌러 주세요.", "info", 3000);
+      void studyStore.refresh();
+      return;
+    }
+    void audioEngine.audition({ id, day, speaker: "B", en_text: example.en, audio_url: example.audio_url, duration_ms: example.duration_ms });
+  };
   return (
     <li className="flex items-start gap-2">
       <button
         type="button"
-        onClick={() =>
-          void audioEngine.audition({ id, day, speaker: "B", en_text: example.en, audio_url: example.audio_url, duration_ms: example.duration_ms })
-        }
-        aria-label={`예문 듣기: ${example.en}`}
+        onClick={play}
+        aria-label={preparing ? `예문 음성 준비 중: ${example.en}` : `예문 듣기: ${example.en}`}
         className="press mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-tint text-royal"
       >
         <Volume2 size={18} strokeWidth={2} aria-hidden />

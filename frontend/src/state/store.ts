@@ -1,5 +1,6 @@
 import { api, ApiError, sendEventsKeepalive, serverNow } from "../api/client";
 import type { Dashboard, EventsResponse, NewEvent, SessionData, StudyEvent, VocabEntry, VocabGenerator } from "../api/types";
+import { examplesPreparing } from "../lib/vocab";
 import { applyPending, type DayView } from "./overlay";
 import { newEventId, outbox, snapshotCache, type Snapshot } from "./outbox";
 
@@ -131,9 +132,11 @@ export class StudyStore {
         void this.refresh();
       }
     }, 30_000);
-    // 담은 단어의 뜻·예문을 서버가 만드는 동안(PENDING) 15초마다 단어장만 다시 받는다.
+    // 담은 단어의 뜻·예문(PENDING)이나 예문 음성 MP3 를 서버가 만드는 동안 15초마다 단어장만 다시 받는다.
+    // 음성 주소가 비어 있는 동안 앱은 기기 음성(강세 없는 기계 음성)으로 읽으므로, 준비되는 대로 바꿔야 한다.
     window.setInterval(() => {
-      const pendingTerm = this.snapshot?.vocab?.some((v) => v.status === "PENDING");
+      const now = serverNow();
+      const pendingTerm = this.snapshot?.vocab?.some((v) => v.status === "PENDING" || examplesPreparing(v, now));
       if (pendingTerm && this.sync.online && document.visibilityState === "visible") void this.refreshVocab();
     }, 15_000);
 

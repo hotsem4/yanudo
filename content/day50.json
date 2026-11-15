@@ -164,7 +164,7 @@
                 },
                 {
                   "en": "It's a crazy time of year for us.",
-                  "ko": "지금이 우리한테 제일 바쁜 시기야."
+                  "ko": "지금이 우리한텐 정신없이 바쁜 시기야."
                 },
                 {
                   "en": "Sorry, things got crazy at home.",
@@ -288,7 +288,7 @@
             {
               "text": "shared folder",
               "meaning": "공유 폴더",
-              "nuance": "팀원 모두가 열어 볼 수 있는 폴더. 'shared drive'라고도 한다.",
+              "nuance": "팀원 모두가 열어 볼 수 있는 폴더. 드라이브 전체를 함께 쓰면 'shared drive'라고 한다.",
               "examples": [
                 {
                   "en": "Everything is in the shared folder.",
@@ -355,7 +355,7 @@
             {
               "text": "a couple of",
               "meaning": "두어 개의",
-              "nuance": "정확히 둘이 아니라 '두세 개, 몇 개'라는 느낌. 구어에서 a few보다 조금 적은 수를 말할 때 쓴다.",
+              "nuance": "딱 둘을 뜻할 때도 있지만 구어에서는 '두세 개, 몇 개'처럼 느슨하게 쓴다. a few보다 조금 적은 수를 말할 때 쓴다.",
               "examples": [
                 {
                   "en": "I'll be there in a couple of minutes.",
@@ -506,8 +506,8 @@
                   "ko": "월요일로 초대 보낼게요."
                 },
                 {
-                  "en": "Did you get my calendar invite?",
-                  "ko": "제 캘린더 초대 받으셨어요?"
+                  "en": "Did you send the calendar invite yet?",
+                  "ko": "캘린더 초대 보내셨어요?"
                 },
                 {
                   "en": "Can you send the invite to the whole team?",

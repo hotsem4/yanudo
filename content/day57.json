@@ -150,7 +150,7 @@
           "speaker": "B",
           "en_text": "Just water, thanks. I was wondering if your team has worked with retailers before.",
           "ko_word_order": "그냥 물이요, 고마워요. / 궁금했는데요 / 당신 팀이 일해 본 적 있는지 / 소매업체들과 / 전에",
-          "ko_natural": "물이면 돼요. 혹시 소매업체랑 일해 보신 적 있으세요?",
+          "ko_natural": "물이면 돼요. 혹시 팀에서 소매업체랑 일해 보신 적 있으세요?",
           "terms": [
             {
               "text": "retailer",
@@ -237,8 +237,8 @@
                   "ko": "몸이 좀 나아졌어. — 다행이다."
                 },
                 {
-                  "en": "Good to hear from you!",
-                  "ko": "연락 줘서 반가워!"
+                  "en": "Good to hear the meeting went well.",
+                  "ko": "회의가 잘됐다니 다행이에요."
                 },
                 {
                   "en": "It's good to hear you're settling in.",
@@ -328,16 +328,16 @@
               "nuance": "정확한 숫자보다 대강의 그림을 알고 싶을 때 쓴다. 견적이나 일정 감을 물을 때 부담 없이 쓰기 좋다.",
               "examples": [
                 {
-                  "en": "Can you give me a rough idea of the price?",
-                  "ko": "가격이 대략 어느 정도인지 알려 줄래요?"
+                  "en": "Can I get a rough idea of the price?",
+                  "ko": "가격이 대략 어느 정도인지 알 수 있을까요?"
                 },
                 {
                   "en": "I just want to get a rough idea first.",
                   "ko": "먼저 대충 감만 잡고 싶어요."
                 },
                 {
-                  "en": "This map gives you a rough idea of the area.",
-                  "ko": "이 지도로 그 지역을 대략 알 수 있어요."
+                  "en": "This map will help you get a rough idea of the area.",
+                  "ko": "이 지도를 보면 그 지역을 대략 파악할 수 있어요."
                 }
               ]
             }

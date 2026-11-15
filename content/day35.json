@@ -107,7 +107,7 @@
               "examples": [
                 { "en": "What are you up to this weekend?", "ko": "이번 주말에 뭐 해?" },
                 { "en": "What have you been up to lately?", "ko": "요즘 어떻게 지냈어?" },
-                { "en": "I know what you're up to.", "ko": "너 무슨 꿍꿍이인지 다 알아." }
+                { "en": "What were you up to last night?", "ko": "어젯밤에 뭐 했어?" }
               ]
             },
             {
@@ -163,7 +163,7 @@
               "nuance": "결혼식 행사를 말한다. 결혼 생활이나 결혼 관계는 marriage라고 구별한다.",
               "examples": [
                 { "en": "Are you going to her wedding?", "ko": "그 친구 결혼식 갈 거야?" },
-                { "en": "The wedding was outdoors.", "ko": "결혼식이 야외에서 했어." },
+                { "en": "The wedding was outdoors.", "ko": "결혼식은 야외에서 했어." },
                 { "en": "I gave a speech at the wedding.", "ko": "결혼식에서 축사했어." }
               ]
             }
@@ -178,7 +178,7 @@
             {
               "text": "exhausted",
               "meaning": "완전히 지친",
-              "nuance": "tired보다 훨씬 강한 '녹초가 된' 상태. 그래서 very를 붙이지 않고 so나 totally를 붙인다.",
+              "nuance": "tired보다 훨씬 강한 '녹초가 된' 상태. 그래서 강조할 때는 very보다 so나 totally를 많이 붙인다.",
               "examples": [
                 { "en": "I'm totally exhausted after that hike.", "ko": "등산하고 완전 녹초야." },
                 { "en": "You look exhausted. Go to bed.", "ko": "너 완전 지쳐 보여. 가서 자." },
@@ -238,7 +238,7 @@
               "meaning": "~와 근황을 나누다",
               "nuance": "오랜만에 만난 사람과 그동안의 이야기를 나눌 때 쓴다. 밀린 일을 하는 catch up on과 구별한다.",
               "examples": [
-                { "en": "Let's catch up with coffee sometime.", "ko": "언제 커피 마시면서 얘기 좀 하자." },
+                { "en": "I need to catch up with Jenny over coffee.", "ko": "제니랑 커피 마시면서 근황 좀 나눠야겠어." },
                 { "en": "I caught up with an old friend last night.", "ko": "어젯밤에 옛 친구 만나서 수다 떨었어." },
                 { "en": "It's nice to catch up with you.", "ko": "이렇게 근황 나누니까 좋다." }
               ]

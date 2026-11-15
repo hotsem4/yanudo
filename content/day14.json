@@ -211,8 +211,8 @@
                   "ko": "생각 좀 해 볼게."
                 },
                 {
-                  "en": "Let me know if you need anything.",
-                  "ko": "필요한 거 있으면 알려 줘."
+                  "en": "Let me take a look at your throat.",
+                  "ko": "목 한번 볼게요."
                 }
               ]
             }
@@ -221,7 +221,7 @@
         {
           "speaker": "B",
           "en_text": "Is it anything serious, doctor?",
-          "ko_word_order": "그게 뭔가요 / 심각한 거라도, / 선생님?",
+          "ko_word_order": "그게 / 뭔가 심각한 건가요, / 선생님?",
           "ko_natural": "선생님, 심각한 건 아니죠?",
           "terms": [
             {

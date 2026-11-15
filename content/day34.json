@@ -24,7 +24,7 @@
             {
               "text": "Have you decided",
               "meaning": "결정했어?",
-              "nuance": "결정이 끝났는지 묻는 현재완료 질문. 뒤에 where, what, if 같은 의문사를 붙여 쓴다.",
+              "nuance": "결정이 끝났는지 묻는 현재완료 질문. 뒤에 where, what 같은 의문사나 if를 붙여 쓴다.",
               "examples": [
                 { "en": "Have you decided what to order?", "ko": "뭐 주문할지 정했어?" },
                 { "en": "Have you decided on a date yet?", "ko": "날짜는 정했어?" },

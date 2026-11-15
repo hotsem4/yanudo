@@ -273,7 +273,7 @@
                 },
                 {
                   "en": "Does it make a difference which one I choose?",
-                  "ko": "어느 걸 고르든 차이가 있어요?"
+                  "ko": "어느 걸 고르느냐에 따라 차이가 있어요?"
                 }
               ]
             }
@@ -375,7 +375,7 @@
         {
           "speaker": "B",
           "en_text": "I'd love that. It might be worth setting a new goal, like a hundred days.",
-          "ko_word_order": "그거 정말 좋아요. / ~할 만할 거예요 / 새 목표를 세우는 것이, / 100일 같은",
+          "ko_word_order": "그거 정말 좋아요. / ~할 만할지도 몰라요 / 새 목표를 세우는 것이, / 100일 같은",
           "ko_natural": "좋아요. 이번엔 100일 같은 새 목표를 세워 보는 것도 좋겠어요.",
           "terms": [
             {

@@ -268,8 +268,8 @@
                   "ko": "두 그룹으로 나누자."
                 },
                 {
-                  "en": "We split the bill into three.",
-                  "ko": "계산을 셋으로 나눴어."
+                  "en": "We split the pizza into eight slices.",
+                  "ko": "피자를 여덟 조각으로 나눴어."
                 },
                 {
                   "en": "The course is split into four weeks.",
@@ -348,7 +348,7 @@
         {
           "speaker": "A",
           "en_text": "If you could hold them until the end, that'd be great. There's plenty of time.",
-          "ko_word_order": "만약 그것들을 잡아 둘 수 있다면 / 끝까지, / 좋겠어요. / 시간은 충분히 있어요",
+          "ko_word_order": "만약 그것들을 미뤄 두실 수 있다면 / 끝까지, / 좋겠어요. / 시간은 충분히 있어요",
           "ko_natural": "질문은 끝날 때까지 잠깐 아껴 주시면 좋겠어요. 시간은 넉넉합니다.",
           "core": true,
           "terms": [

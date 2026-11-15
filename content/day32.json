@@ -76,7 +76,7 @@
               "nuance": "수업·서비스·행사에 이름을 올리는 가장 흔한 구어 표현. register보다 가볍다.",
               "examples": [
                 { "en": "I signed up for a cooking class.", "ko": "요리 수업에 등록했어." },
-                { "en": "You can sign up for free online.", "ko": "온라인으로 무료 가입할 수 있어요." },
+                { "en": "You can sign up for the class online.", "ko": "그 수업은 온라인으로 등록할 수 있어요." },
                 { "en": "Did you sign up for the marathon?", "ko": "마라톤 신청했어?" }
               ]
             },
@@ -181,9 +181,9 @@
         },
         {
           "speaker": "A",
-          "en_text": "Nice. Is there a joining fee, or can I cancel anytime?",
-          "ko_word_order": "좋네요. / 가입비가 있나요, / 아니면 제가 해지할 수 있나요 / 아무 때나?",
-          "ko_natural": "좋네요. 가입비가 있어요? 아니면 아무 때나 해지할 수 있어요?",
+          "en_text": "Nice. Is there a joining fee? And can I cancel anytime?",
+          "ko_word_order": "좋네요. / 가입비가 있나요? / 그리고 제가 해지할 수 있나요 / 아무 때나?",
+          "ko_natural": "좋네요. 가입비가 있어요? 그리고 아무 때나 해지할 수 있어요?",
           "terms": [
             {
               "text": "joining fee",

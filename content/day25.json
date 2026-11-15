@@ -323,8 +323,8 @@
         {
           "speaker": "A",
           "en_text": "Actually, I owe you one. Dinner's on me this Friday.",
-          "ko_word_order": "그리고 사실, / 내가 신세 졌어. / 저녁은 내가 살게 / 이번 금요일에",
-          "ko_natural": "그리고 신세 졌으니까 이번 금요일 저녁은 내가 살게.",
+          "ko_word_order": "사실, / 내가 신세 졌어. / 저녁은 내가 살게 / 이번 금요일에",
+          "ko_natural": "사실 나 너한테 신세 졌잖아. 이번 금요일 저녁은 내가 살게.",
           "core": true,
           "terms": [
             {

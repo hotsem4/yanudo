@@ -55,8 +55,8 @@
         {
           "speaker": "B",
           "en_text": "Yeah, they said it might snow later this afternoon.",
-          "ko_word_order": "네, / 그들이 말했어요 / 눈이 올지도 모른다고 / 오늘 오후 늦게",
-          "ko_natural": "네, 오늘 오후 늦게 눈 올 수도 있대요.",
+          "ko_word_order": "네, / 그들이 말했어요 / 눈이 올지도 모른다고 / 이따 오늘 오후에",
+          "ko_natural": "네, 이따 오후에 눈 올 수도 있대요.",
           "terms": [
             {
               "text": "they said",
@@ -114,8 +114,8 @@
                   "ko": "진짜? 벌써 다 했어?"
                 },
                 {
-                  "en": "Seriously, this is the best pizza ever.",
-                  "ko": "진짜 이거 최고의 피자야."
+                  "en": "Seriously? It's sold out already?",
+                  "ko": "진짜? 벌써 다 팔렸어?"
                 },
                 {
                   "en": "Are you seriously moving to Canada?",

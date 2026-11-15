@@ -166,7 +166,7 @@
           "speaker": "B",
           "en_text": "There's a small service charge of five dollars.",
           "ko_word_order": "있어요 / 적은 서비스 요금이 / 5달러의",
-          "ko_natural": "수수료가 5달러 정도 붙어요.",
+          "ko_natural": "수수료가 5달러 붙어요.",
           "terms": [
             {
               "text": "service charge",
@@ -285,7 +285,7 @@
           "speaker": "A",
           "en_text": "Here's my passport. Do I need to sign anything?",
           "ko_word_order": "여기 제 여권이요. / 제가 서명해야 하나요 / 뭐라도?",
-          "ko_natural": "여기 여권이요. 어디 사인해야 하나요?",
+          "ko_natural": "여기 여권이요. 사인할 거 있나요?",
           "terms": [
             {
               "text": "sign",

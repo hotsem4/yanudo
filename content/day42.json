@@ -8,7 +8,7 @@
         {
           "speaker": "A",
           "en_text": "Hey Ava, how's the customer survey report coming along?",
-          "ko_word_order": "저기 에이바, / 어떻게 돼 가요 / 고객 설문 보고서는 / 진행되는 게?",
+          "ko_word_order": "저기 에이바, / 어떻게 / 고객 설문 보고서는 / 진행되고 있나요?",
           "ko_natural": "에이바, 고객 설문 보고서는 잘 돼 가요?",
           "core": true,
           "terms": [

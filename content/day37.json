@@ -59,7 +59,7 @@
               "examples": [
                 { "en": "I'll be working from home tomorrow.", "ko": "내일은 재택근무할 거예요." },
                 { "en": "I'll be leading the meeting today.", "ko": "오늘 회의는 제가 진행해요." },
-                { "en": "I'll be out of the office on Friday.", "ko": "금요일엔 자리에 없을 거예요." }
+                { "en": "I'll be traveling for work on Friday.", "ko": "금요일엔 출장 중일 거예요." }
               ]
             }
           ]
@@ -142,7 +142,7 @@
               "nuance": "things를 대신하는 아주 흔한 구어. 셀 수 없는 명사라 stuffs라고 하지 않는다.",
               "examples": [
                 { "en": "I left my stuff in the car.", "ko": "내 짐 차에 두고 왔어." },
-                { "en": "There's a lot of stuff to do today.", "ko": "오늘 할 일이 많아." },
+                { "en": "I have way too much stuff in my bag.", "ko": "가방에 짐이 너무 많아." },
                 { "en": "Can I leave my stuff here?", "ko": "제 짐 여기 둬도 돼요?" }
               ]
             }

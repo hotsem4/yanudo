@@ -28,7 +28,7 @@
               "nuance": "'The name is'를 줄인 가벼운 말투. 예약 확인이나 접수처에서 이름만 툭 말할 때 쓴다.",
               "examples": [
                 { "en": "The name's Kim, table for two.", "ko": "김으로 예약했어요, 두 명이요." },
-                { "en": "The name's on the list, I think.", "ko": "명단에 이름 있을 거예요." },
+                { "en": "The name's Lee. I called this morning.", "ko": "이름은 리예요. 오늘 아침에 전화했었어요." },
                 { "en": "The name's Jake, by the way.", "ko": "아, 저는 제이크예요." }
               ]
             }
@@ -85,7 +85,7 @@
               "nuance": "머리 스타일을 말할 때 정수리 쪽 머리를 가리킨다. 옆머리는 on the sides라고 한다.",
               "examples": [
                 { "en": "Keep it a little longer on top.", "ko": "윗머리는 조금 길게 남겨 주세요." },
-                { "en": "My hair is getting thin on top.", "ko": "정수리 쪽 머리가 점점 얇아져." },
+                { "en": "My hair is getting thin on top.", "ko": "정수리 쪽 머리숱이 점점 줄어." },
                 { "en": "Short on the sides, messy on top.", "ko": "옆은 짧게, 위는 자연스럽게요." }
               ]
             }
@@ -197,7 +197,7 @@
             {
               "text": "thick",
               "meaning": "(머리숱이) 많은, 굵은",
-              "nuance": "머리카락이 많거나 굵을 때 thick, 숱이 적거나 가늘 때 thin이라고 한다.",
+              "nuance": "머리카락이 많거나 굵을 때 thick, 숱이 적거나 가늘 때 thin이라고 한다. 책이 두껍거나 안개가 짙을 때도 쓴다.",
               "examples": [
                 { "en": "You have such thick hair.", "ko": "머리숱 진짜 많다." },
                 { "en": "This book is too thick to carry.", "ko": "이 책은 들고 다니기엔 너무 두꺼워." },

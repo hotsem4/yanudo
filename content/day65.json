@@ -431,8 +431,8 @@
                   "ko": "알겠어요, 설명 고마워요."
                 },
                 {
-                  "en": "Did you get my message? — Yep, got it.",
-                  "ko": "내 메시지 받았어? — 응, 받았어."
+                  "en": "Send it by Friday, okay? — Yep, got it.",
+                  "ko": "금요일까지 보내 줘, 알았지? — 응, 알았어."
                 }
               ]
             },
@@ -466,7 +466,7 @@
             {
               "text": "where we're at",
               "meaning": "어디까지 왔는지",
-              "nuance": "일이 어느 단계까지 진행됐는지 말하는 구어. 문법적으로는 where we are가 맞지만 말로는 이렇게 많이 쓴다.",
+              "nuance": "일이 어느 단계까지 진행됐는지 말하는 구어. 격식 있는 글에서는 where we are를 쓰지만 말로는 이렇게 많이 쓴다.",
               "examples": [
                 {
                   "en": "Let me know where we're at with the order.",

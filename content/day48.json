@@ -176,7 +176,7 @@
               "text": "be headed",
               "form": "headed",
               "meaning": "~로 향하다",
-              "nuance": "어디 가는 중인지 물을 때 Where are you headed?를 많이 쓴다. Where are you going?보다 자연스러운 구어다.",
+              "nuance": "어디 가는 중인지 물을 때 Where are you headed?를 많이 쓴다. Where are you going?과 같은 뜻의 가벼운 구어다.",
               "examples": [
                 {
                   "en": "I'm headed home now.",
@@ -338,7 +338,7 @@
         {
           "speaker": "B",
           "en_text": "Nice. Can we be back by one, though? I have a call at one thirty.",
-          "ko_word_order": "좋네요. / 근데 우리 돌아올 수 있어요 / 1시까지? / 저 통화가 있어요 / 1시 반에",
+          "ko_word_order": "좋네요. / 우리 돌아올 수 있어요 / 1시까지, / 근데? / 저 통화가 있어요 / 1시 반에",
           "ko_natural": "좋아요. 근데 1시까지는 돌아올 수 있죠? 1시 반에 통화가 있어서요.",
           "terms": [
             {

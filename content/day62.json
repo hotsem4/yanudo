@@ -108,9 +108,9 @@
         },
         {
           "speaker": "B",
-          "en_text": "That's right. Payment is due within thirty days of receiving the invoice.",
-          "ko_word_order": "맞아요. / 결제는 기한이에요 / 30일 이내에 / 청구서를 받은 날부터",
-          "ko_natural": "맞습니다. 청구서를 받으신 날부터 30일 안에 결제하시면 돼요.",
+          "en_text": "That's right. Payment is due within thirty days of the invoice date.",
+          "ko_word_order": "맞아요. / 결제는 기한이에요 / 30일 이내에 / 청구서 날짜로부터",
+          "ko_natural": "맞습니다. 청구서 날짜로부터 30일 안에 결제하시면 돼요.",
           "terms": [
             {
               "text": "due",

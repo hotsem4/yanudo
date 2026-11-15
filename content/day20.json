@@ -35,7 +35,7 @@
         {
           "speaker": "B",
           "en_text": "That's me. Do I need to sign for it?",
-          "ko_word_order": "그게 저예요. / 제가 서명해야 하나요 / 그것에 대해?",
+          "ko_word_order": "그게 저예요. / 제가 서명해야 하나요 / 그걸 받았다고?",
           "ko_natural": "저예요. 사인해야 하나요?",
           "core": true,
           "terms": [
@@ -50,7 +50,7 @@
                 },
                 {
                   "en": "My neighbor signed for my package.",
-                  "ko": "이웃이 내 택배를 대신 받아 줬어."
+                  "ko": "이웃이 내 택배를 대신 받고 사인해 줬어."
                 },
                 {
                   "en": "Can I sign for it on your phone?",
@@ -217,7 +217,7 @@
             {
               "text": "in there",
               "meaning": "그 안에",
-              "nuance": "상대 쪽에 있는 공간이나 상자 속을 가리킨다. 내 쪽 안은 in here.",
+              "nuance": "내가 있는 곳이 아닌 저쪽 공간이나 상자·가방 속을 가리킨다. 내가 있는 곳 안은 in here.",
               "examples": [
                 {
                   "en": "What's in there? It's so heavy.",

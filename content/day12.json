@@ -369,7 +369,7 @@
         {
           "speaker": "B",
           "en_text": "Thank you! Have a good one.",
-          "ko_word_order": "고마워요! / 가지세요 / 좋은 하루를",
+          "ko_word_order": "고마워요! / 보내세요 / 좋은 하루를",
           "ko_natural": "감사합니다! 좋은 하루 되세요.",
           "core": false,
           "terms": [

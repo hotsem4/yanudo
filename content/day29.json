@@ -285,7 +285,7 @@
               "text": "buy lunch",
               "form": "buying lunch",
               "meaning": "점심을 사다",
-              "nuance": "점심값을 내가 낸다는 뜻. 친구 사이에서 장난스러운 벌칙으로도 쓴다.",
+              "nuance": "점심값을 낸다는 뜻. you're buying lunch는 '점심은 네가 사'라는 말로, 친구 사이에서 장난스러운 벌칙으로도 쓴다.",
               "examples": [
                 {
                   "en": "I'll buy lunch if you help me.",
@@ -307,12 +307,12 @@
           "speaker": "A",
           "en_text": "That's fair. I'll make it up to you, I promise.",
           "ko_word_order": "그건 공평하네. / 내가 갚을게 / 너에게, / 약속해",
-          "ko_natural": "그건 인정. 꼭 보답할게, 약속해.",
+          "ko_natural": "그건 인정. 이건 꼭 갚을게, 약속해.",
           "terms": [
             {
               "text": "make it up to someone",
               "form": "make it up to you",
-              "meaning": "(미안함을) 보답하다",
+              "meaning": "(미안한 일을) 갚다, 만회하다",
               "nuance": "약속을 어기거나 실망시킨 사람에게 나중에 잘해 주겠다고 할 때 쓴다.",
               "examples": [
                 {

@@ -87,7 +87,7 @@
           "speaker": "A",
           "en_text": "The steak is really popular, and so is the pasta.",
           "ko_word_order": "스테이크가 정말 인기 있어요, / 그리고 파스타도 그래요",
-          "ko_natural": "스테이크가 제일 인기 많고, 파스타도 많이 드세요.",
+          "ko_natural": "스테이크가 정말 인기 많고, 파스타도 인기 많아요.",
           "core": false,
           "terms": [
             {
@@ -114,7 +114,7 @@
               "text": "so is",
               "form": "so is",
               "meaning": "~도 그래요",
-              "nuance": "앞 문장과 같다는 것을 짧게 덧붙인다. 앞이 be동사면 so is, 일반동사면 so does를 쓴다.",
+              "nuance": "앞 문장과 같다는 것을 짧게 덧붙인다. 앞이 be동사면 so is·so are, 일반동사면 so does·so do처럼 앞 동사와 뒤 주어에 맞춘다.",
               "examples": [
                 {
                   "en": "The food is great, and so is the service.",
@@ -389,7 +389,7 @@
         {
           "speaker": "B",
           "en_text": "Thank you. Could I get some extra napkins, too?",
-          "ko_word_order": "고마워요. / 받을 수 있을까요 / 냅킨을 좀 더 / 함께?",
+          "ko_word_order": "고마워요. / 받을 수 있을까요 / 냅킨도 좀 더?",
           "ko_natural": "감사해요. 냅킨도 좀 더 주시겠어요?",
           "core": false,
           "terms": [

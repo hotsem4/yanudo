@@ -124,6 +124,7 @@ export class AudioEngine {
     this.bump();
     this.pauseElement();
     this.queue = queue;
+    this.speechFailures = 0;
     this.cursor = clamp(startAt, 0, Math.max(0, queue.items.length - 1));
     this.playing = false;
     this.resetTurn();
@@ -142,6 +143,7 @@ export class AudioEngine {
       this.resetTurn();
     }
     const resume = this.step !== null;
+    this.speechFailures = 0;
     this.playing = true;
     const token = this.bump();
     this.publish();
@@ -457,6 +459,11 @@ export class AudioEngine {
 
   private finish(): void {
     const q = this.queue;
+    // 끝에서 소리를 못 낸 문장이 있었으면(3번에 못 미쳐 멈추지 않았어도) 알린다.
+    if (this.speechFailures > 0) {
+      this.speechFailures = 0;
+      this.emit({ type: "speechFailed" });
+    }
     this.playing = false;
     this.resetTurn();
     this.phase = q && q.items.length > 0 ? "finished" : "idle";

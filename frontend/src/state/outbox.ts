@@ -52,6 +52,12 @@ export const outbox = {
     const list = readJson<StudyEvent[]>(HELD_KEY);
     return writeJson(HELD_KEY, [...(Array.isArray(list) ? list : []), event]);
   },
+  /** 보관한 기록을 꺼낸다(앱을 시작할 때마다 한 번 더 보내 본다). 꺼낸 뒤 보관함은 비운다. */
+  takeHeld(): StudyEvent[] {
+    const list = readJson<StudyEvent[]>(HELD_KEY);
+    writeJson(HELD_KEY, []);
+    return Array.isArray(list) ? list : [];
+  },
 };
 
 export const snapshotCache = {

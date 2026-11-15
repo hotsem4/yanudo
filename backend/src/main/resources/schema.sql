@@ -142,6 +142,9 @@ CREATE TABLE IF NOT EXISTS applied_event (
     id          TEXT    PRIMARY KEY,
     applied_at  INTEGER NOT NULL
 );
+-- 원장 이전에 저장된 VIEW 의 id 도 원장에 옮긴다(업그레이드 직전에 응답을 잃은 VIEW 의 재전송을 막는다). 다시 돌아도 같은 결과.
+INSERT OR IGNORE INTO applied_event (id, applied_at)
+    SELECT event_id, created_at FROM sentence_view WHERE event_id IS NOT NULL;
 
 CREATE TABLE IF NOT EXISTS vocab_event (
     id          TEXT    PRIMARY KEY,

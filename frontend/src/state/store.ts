@@ -31,6 +31,12 @@ const BATCH = 500;
 const SINGLE_AFTER = 3;
 /** 하나씩 보내서도 이만큼(누적) 거절되면 그 기록을 따로 보관하고 다음 기록을 보낸다. */
 const HOLD_AFTER = 6;
+
+/** 서버가 요청을 보고 거절한 응답인가. 502·503·504 는 서버가 꺼졌거나 앞단(tailscale serve) 문제라 연결 실패와 같다. */
+function isServerRejection(status: number): boolean {
+  if (status === 408 || status === 429) return false;
+  return (status >= 400 && status < 500) || status === 500;
+}
 const DEBOUNCE_MS = 1500;
 
 /**
@@ -71,6 +77,13 @@ export class StudyStore {
     this.pending = outbox.load();
     this.snapshot = snapshotCache.load();
     this.sync.online = navigator.onLine;
+    // 따로 보관한 기록은 시작할 때마다 아웃박스로 되돌려 한 번 더 보낸다(서버를 고쳤거나 일시 장애였을 수 있다).
+    const held = outbox.takeHeld();
+    if (held.length > 0) {
+      const known = new Set(this.pending.map((p) => p.id));
+      this.pending = [...this.pending, ...held.filter((e) => !known.has(e.id))].sort((a, b) => a.occurred_at - b.occurred_at);
+      this.sync.saveFailed = !outbox.save(this.pending);
+    }
     this.sync.held = outbox.heldCount();
     if ("BroadcastChannel" in window) {
       this.channel = new BroadcastChannel("habit66-outbox");
@@ -83,7 +96,7 @@ export class StudyStore {
         const before = this.pending.length;
         this.pending = this.pending.filter((p) => !this.sent.has(p.id));
         if (this.pending.length !== before) {
-          this.sync.saveFailed = !outbox.save(this.pending);
+          this.persist(); // 그사이 다른 창이 저장한 새 기록을 덮지 않게 합친 뒤 저장한다
           this.publish();
         }
       };
@@ -204,7 +217,7 @@ export class StudyStore {
       res = await api.events(batch);
       this.serverRejections = 0;
     } catch (err) {
-      if (err instanceof ApiError) this.onBatchRejected(batch);
+      if (err instanceof ApiError && isServerRejection(err.status)) this.onBatchRejected(batch);
       throw err;
     }
     const done = new Set([...res.accepted, ...res.rejected.map((r) => r.id)]);
@@ -228,7 +241,8 @@ export class StudyStore {
     const keep = (p: StudyEvent) => !(done.has(p.id) && sentNow.has(p)) || (!vocab.ok && p.type.startsWith("VOCAB_"));
     // 아웃박스 정리와 스냅샷 교체를 한 동기 구간에서 함께 한다. 전송 중 새로 쌓인 이벤트는 남는다.
     this.pending = this.pending.filter(keep);
-    const cleared = batch.filter((p) => done.has(p.id) && !this.pending.includes(p)).map((p) => p.id);
+    // 같은 id 의 새 버전(더 긴 FOCUS 등)이 남아 있으면 그 id 는 아직 끝나지 않았다. 다른 창에 지우라고 알리지 않는다.
+    const cleared = batch.filter((p) => done.has(p.id) && !this.pending.some((q) => q.id === p.id)).map((p) => p.id);
     cleared.forEach((id) => this.sent.add(id));
     if (this.sent.size > 5000) this.sent = new Set(Array.from(this.sent).slice(-2000));
     this.persist();

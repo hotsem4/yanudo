@@ -81,8 +81,11 @@ function navigate(event) {
 
 // 셸 갱신은 한 번에 하나씩(겹치면 앞 갱신의 옛 자산 정리가 뒤 갱신이 받은 새 자산을 지울 수 있다).
 let shellUpdates = Promise.resolve();
+const SHELL_UPDATE_LIMIT_MS = 30_000;
 function queueShellUpdate(page) {
-  shellUpdates = shellUpdates.then(() => updateShell(page)).catch(() => false);
+  // 자산 받기가 멈춰도 뒤의 갱신이 영원히 기다리지 않게 상한을 둔다(멈춘 작업은 버리고 다음 갱신으로).
+  const limited = () => Promise.race([updateShell(page), new Promise((resolve) => setTimeout(() => resolve(false), SHELL_UPDATE_LIMIT_MS))]);
+  shellUpdates = shellUpdates.then(limited).catch(() => false);
   return shellUpdates;
 }
 
@@ -105,6 +108,17 @@ async function updateShell(page) {
   const headers = { "Content-Type": page.headers.get("content-type") || "text/html; charset=utf-8" };
   await shell.put("/index.html", new Response(page.body, { headers }));
   await shell.put("/", new Response(page.body, { headers }));
+  // sw.js 가 바뀐 배포에서는 설치 중인 워커와 지금 워커가 같은 캐시를 함께 갱신할 수 있다. 상대의 옛 자산 정리가
+  // 방금 받은 자산을 지웠으면 다시 받아, 게시한 HTML 이 참조하는 자산이 빠지지 않게 한다.
+  for (const asset of assets) {
+    if (!(await statics.match(asset))) {
+      const again = await fetch(asset, { cache: "no-store" });
+      if (again.ok) await statics.put(asset, again);
+    }
+  }
+  const current = await (await shell.match("/index.html"))?.text();
+  // 그사이 다른 갱신이 다른 HTML 을 게시했으면 그쪽이 정리한다. 내 HTML 이 게시된 채일 때만 옛 자산을 지운다.
+  if (current !== page.body) return true;
   const keep = new Set(assets);
   for (const req of await statics.keys()) {
     const path = new URL(req.url).pathname;

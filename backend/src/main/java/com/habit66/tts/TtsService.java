@@ -224,6 +224,7 @@ public class TtsService {
         queued.set(jobs.size());
         failed.set(0);
         if (jobs.isEmpty()) {
+            lastError = null; // 다른 경로(스크립트 업로드 등)로 다 채워졌다. 10분 재시도를 멈춘다.
             return new Pass(0, false);
         }
         log.info("Generating {} audio clips with edge-tts", jobs.size());

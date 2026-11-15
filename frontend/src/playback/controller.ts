@@ -48,7 +48,7 @@ class PlaybackController {
       } else if (e.type === "queueEnd") {
         this.onQueueEnd(e.session);
       } else if (e.type === "speechFailed") {
-        showToast("이 문장은 소리를 낼 수 없어 멈췄어요. 연결된 뒤 다시 재생해 주세요.", "info", 3600);
+        showToast("소리를 내지 못한 문장이 있어요(들은 기록에는 넣지 않았어요). 연결된 뒤 다시 들어 보세요.", "info", 3600);
       }
     });
     this.sync();

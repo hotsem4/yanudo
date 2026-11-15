@@ -108,15 +108,27 @@ public class TermGenerationQueue {
             log.warn("Vocab generation crashed for term {}: {}", termId, e.toString());
             terms.markFailed(termId);
         } finally {
-            Long requested;
+            long next = -1;
             synchronized (handoff) {
-                queued.remove(termId);
-                requested = again.remove(termId);
+                Long requested = again.remove(termId);
+                // 로그인 실패로 멈추기 전에 들어온 요청(번호가 haltedThrough 이하)은 다시 하지 않는다. 그 뒤의 요청만 다시 맡긴다.
+                // 다시 맡길 때는 queued 에 남긴 채 넘긴다(그사이 비어 보이면 idle() 이 잠깐 참이 된다).
+                if (requested != null && requested > haltedThrough && !stopped) {
+                    next = sequence.incrementAndGet();
+                } else {
+                    queued.remove(termId);
+                }
             }
-            // 로그인 실패로 멈추기 전에 들어온 요청(번호가 haltedThrough 이하)은 다시 하지 않는다. 그 뒤의 요청만 다시 맡긴다.
-            if (requested != null && requested > haltedThrough && !stopped) {
+            if (next > 0) {
                 terms.markPending(termId); // 이미 만들어졌으면(READY) 바뀌지 않고, 다음 실행이 바로 끝난다
-                enqueue(termId);
+                long ticket2 = next;
+                try {
+                    worker.execute(() -> run(termId, ticket2));
+                } catch (RejectedExecutionException e) {
+                    synchronized (handoff) {
+                        queued.remove(termId);
+                    }
+                }
             }
         }
     }

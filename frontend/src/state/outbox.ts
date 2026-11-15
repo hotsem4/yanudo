@@ -33,6 +33,7 @@ function writeJson(key: string, value: unknown): boolean {
 }
 
 export const outbox = {
+  key: OUTBOX_KEY,
   load(): StudyEvent[] {
     const list = readJson<StudyEvent[]>(OUTBOX_KEY);
     return Array.isArray(list) ? list : [];

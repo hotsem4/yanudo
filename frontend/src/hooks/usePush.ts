@@ -11,6 +11,14 @@ function base64UrlToBytes(value: string): Uint8Array {
   return bytes;
 }
 
+/** 브라우저 구독이 지금 서버 키(VAPID)로 만든 것인가. data/vapid.json 이 바뀌면 옛 구독으로는 알림이 오지 않는다. */
+function sameKey(sub: PushSubscription, serverKey: Uint8Array): boolean {
+  const key = sub.options.applicationServerKey;
+  if (!key) return true; // 알 수 없으면 그대로 둔다
+  const bytes = new Uint8Array(key);
+  return bytes.length === serverKey.length && bytes.every((b, i) => b === serverKey[i]);
+}
+
 async function registration(): Promise<ServiceWorkerRegistration | null> {
   if (!("serviceWorker" in navigator)) return null;
   return (await navigator.serviceWorker.getRegistration()) ?? null;
@@ -31,6 +39,13 @@ export function usePush() {
       if (!sub) return setStatus("off");
       // 브라우저 구독만 있고 서버 등록이 빠졌을 수 있다(지난번 부분 실패). 서버 등록은 업서트라 다시 보내도 안전하다.
       try {
+        const { public_key } = await api.vapidPublicKey();
+        if (!sameKey(sub, base64UrlToBytes(public_key))) {
+          // 서버 키가 바뀌었다: 옛 구독은 지우고 꺼짐으로 보여 다시 켜게 한다.
+          await sub.unsubscribe().catch(() => undefined);
+          setMessage("알림 설정이 바뀌어 다시 켜야 해요.");
+          return setStatus("off");
+        }
         await api.subscribePush(sub.toJSON());
         setStatus("on");
       } catch {
@@ -52,8 +67,13 @@ export function usePush() {
       const reg = await registration();
       if (!reg) throw new Error("서비스 워커가 아직 준비되지 않았어요. 설치된 앱에서 다시 시도해 주세요.");
       const { public_key } = await api.vapidPublicKey();
-      const existing = await reg.pushManager.getSubscription();
-      const sub = existing ?? (await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: base64UrlToBytes(public_key) }));
+      const serverKey = base64UrlToBytes(public_key);
+      let existing = await reg.pushManager.getSubscription();
+      if (existing && !sameKey(existing, serverKey)) {
+        await existing.unsubscribe().catch(() => undefined);
+        existing = null;
+      }
+      const sub = existing ?? (await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: serverKey }));
       try {
         await api.subscribePush(sub.toJSON());
       } catch (err) {

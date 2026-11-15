@@ -370,8 +370,10 @@ function EditForm({ entry, missing, onDone }: { entry: VocabEntry; missing: bool
       first.current?.focus();
       return;
     }
-    studyStore.record({ type: "VOCAB_EDIT", term_key: entry.term_key, meaning: m, note: note.trim() || null });
-    showToast("뜻을 저장했어요", "success");
+    // 뜻을 그대로 두고 메모만 고쳤으면 뜻을 보내지 않는다. 보내면 서버가 직접 입력(MANUAL)으로 바꿔 출처를 잃는다.
+    const changed = m !== (entry.meaning ?? "").trim();
+    studyStore.record({ type: "VOCAB_EDIT", term_key: entry.term_key, meaning: changed ? m : null, note: note.trim() || null });
+    showToast(changed ? "뜻을 저장했어요" : "메모를 저장했어요", "success");
     onDone();
   };
 

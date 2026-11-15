@@ -61,13 +61,13 @@ public class CatalogService {
     public Catalog current() {
         Catalog catalog = cached;
         if (catalog == null) {
-            synchronized (this) {
-                catalog = cached;
-                if (catalog == null) {
-                    catalog = load();
-                    cached = catalog;
+            // 임포트와 같은 쓰기 잠금 안에서 처음 읽는다. 따로 잠그면 첫 읽기가 방금 끝난 임포트 결과를 옛 내용으로 덮을 수 있다.
+            catalog = writes.call(() -> {
+                if (cached == null) {
+                    cached = load();
                 }
-            }
+                return cached;
+            });
         }
         return catalog;
     }

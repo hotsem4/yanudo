@@ -85,6 +85,8 @@ function LockBody({ sentences, onDone, mascot }: { sentences: Sentence[]; onDone
   const [typedResult, setTypedResult] = useState<MatchResult | null>(null);
   const [misses, setMisses] = useState(0);
   const [confirmSkip, setConfirmSkip] = useState(false);
+  // 마이크를 못 쓴다는 사실은 이 락 동안 유지한다. 다음 문장으로 넘어갈 때 reset() 이 오류 코드를 지워도 건너뛰기가 사라지지 않게.
+  const [micDenied, setMicDenied] = useState(false);
   const sentence = sentences[index];
 
   // 대안마다 따로 채점해 가장 높은 것을 쓴다.
@@ -96,7 +98,7 @@ function LockBody({ sentences, onDone, mascot }: { sentences: Sentence[]; onDone
   }, [sentence.en_text, speech.alternatives, speech.transcript]);
   const hasAttempt = mode === "voice" && speech.transcript.length > 0;
   const passed = cleared[index] || (mode === "voice" && match.ratio >= PASS_RATIO);
-  const micBlocked = !speech.supported || (speech.errorCode !== null && MIC_BLOCKED.has(speech.errorCode));
+  const micBlocked = !speech.supported || micDenied || (speech.errorCode !== null && MIC_BLOCKED.has(speech.errorCode));
   const canSkip = micBlocked || misses >= MISSES_BEFORE_SKIP;
   const { stop, reset, listening, transcript, errorCode } = speech;
 
@@ -117,6 +119,10 @@ function LockBody({ sentences, onDone, mascot }: { sentences: Sentence[]; onDone
     }
     wasListening.current = listening;
   }, [listening, cleared, index, match.ratio, transcript, errorCode]);
+
+  useEffect(() => {
+    if (errorCode !== null && MIC_BLOCKED.has(errorCode)) setMicDenied(true);
+  }, [errorCode]);
 
   // 마이크를 쓸 수 없으면 받아 적기로 바꾼다.
   useEffect(() => {

@@ -35,6 +35,9 @@ import com.habit66.vocab.VocabService;
 @Service
 public class EventService {
 
+    /** 기기 시계가 이만큼 넘게 앞서면 받은 시각으로 자른다. 서버 시계 보정의 오차는 이보다 훨씬 작다. */
+    static final long FUTURE_TOLERANCE_MS = 10 * 60_000L;
+
     public record ApplyResult(List<String> accepted, List<Rejected> rejected) {
     }
 
@@ -85,8 +88,7 @@ public class EventService {
         tx.executeWithoutResult(status -> {
             Map<Completion, Long> completions = new LinkedHashMap<>();
             for (ClientEvent event : parsed.events()) {
-                // 미래 시각만 자른다. 늦게 도착한 어제 기록은 어제 날짜에 들어간다.
-                long at = Math.min(event.occurredAt(), receivedAt);
+                long at = effectiveTime(event.occurredAt(), receivedAt);
                 boolean ok;
                 if (event instanceof ClientEvent.View view) {
                     ok = applyView(view, at, receivedAt, cat, start, completions);
@@ -110,11 +112,24 @@ public class EventService {
         return new ApplyResult(List.copyOf(accepted), rejected);
     }
 
+    /**
+     * 이벤트가 일어난 시각. 늦게 도착한 어제 기록은 어제 날짜에 들어간다. 기기 시계가 크게 앞서 있으면(허용치 초과) 받은 시각으로 자른다.
+     * 허용치 안의 작은 미래 시각을 받은 시각으로 자르지 않는 이유: 응답을 잃어 다시 보낸 같은 이벤트가 롤오버를 사이에 두고
+     * 다른 날짜로 계산되면 두 번 기록된다. 그대로 쓰면 재전송해도 날짜가 같다.
+     */
+    static long effectiveTime(long occurredAt, long receivedAt) {
+        return occurredAt <= receivedAt + FUTURE_TOLERANCE_MS ? occurredAt : receivedAt;
+    }
+
     private boolean applyView(ClientEvent.View view, long at, long receivedAt, Catalog cat, LocalDate start,
             Map<Completion, Long> completions) {
         SentenceView sentence = cat.sentence(view.sentenceId()).orElse(null);
         if (sentence == null) {
             return false;
+        }
+        // 같은 이벤트가 이미 들어와 있으면(다른 날짜로 계산됐더라도) 다시 기록하지 않는다.
+        if (!jdbc.queryForList("SELECT 1 FROM sentence_view WHERE event_id = ? LIMIT 1", view.id()).isEmpty()) {
+            return true;
         }
         LocalDate date = clock.dateOf(at);
         Session session = view.session();
@@ -150,7 +165,8 @@ public class EventService {
     private boolean applyFocus(ClientEvent.Focus focus, long at, long receivedAt) {
         jdbc.update("""
                 INSERT INTO focus_session (started_at, log_date, seconds, updated_at) VALUES (?, ?, ?, ?)
-                ON CONFLICT(started_at) DO UPDATE SET seconds = excluded.seconds, updated_at = excluded.updated_at
+                ON CONFLICT(started_at) DO UPDATE SET seconds = excluded.seconds, log_date = excluded.log_date,
+                    updated_at = excluded.updated_at
                 WHERE excluded.seconds > focus_session.seconds
                 """, focus.startedAt(), clock.dateOf(at).toString(), focus.seconds(), receivedAt);
         return true;

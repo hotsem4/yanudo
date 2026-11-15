@@ -33,6 +33,8 @@ const DEBOUNCE_MS = 1500;
 export class StudyStore {
   private snapshot: Snapshot | null = null;
   private pending: StudyEvent[] = [];
+  /** 이 창이 서버에 보내 끝낸 이벤트 id. 다른 창의 저장소에서 다시 합치지 않으려고 둔다(최근 것만). */
+  private sent = new Set<string>();
   private state: StudyState = { kind: "booting" };
   private listeners = new Set<() => void>();
   private sync: SyncState = { pending: 0, online: true, syncing: false, lastError: null };
@@ -74,6 +76,11 @@ export class StudyStore {
       else void this.refresh();
     });
     window.addEventListener("pagehide", () => sendEventsKeepalive(this.pending));
+    // PWA 창과 브라우저 탭이 같은 아웃박스를 쓴다. 다른 창이 쌓은 미전송 기록을 내 목록에 합친다.
+    window.addEventListener("storage", (e) => {
+      if (e.key !== null && e.key !== outbox.key) return;
+      if (this.mergeOthers()) this.publish();
+    });
     // 자정 롤오버(논리 날짜 경계)를 넘기면 stale 이 되어 다시 받는다.
     window.setInterval(() => {
       if (this.snapshot && serverNow() >= this.snapshot.dashboard.valid_until) {
@@ -96,7 +103,7 @@ export class StudyStore {
     if (event.type === "VIEW" && this.isDuplicateView(event)) return;
     if (event.type === "FOCUS") this.pending = this.pending.filter((p) => p.id !== event.id);
     this.pending.push(event);
-    outbox.save(this.pending);
+    this.persist();
     this.publish();
     this.schedule(DEBOUNCE_MS);
   }
@@ -171,20 +178,24 @@ export class StudyStore {
     const sentVocab = batch.some((e) => e.type.startsWith("VOCAB_") && done.has(e.id));
     const prev = this.snapshot;
     const [sessions, vocab] = await Promise.all([
-      this.sessionsFor(res.dashboard, sentMark).catch(() => ({
-        today: prev?.today ?? null,
-        review: prev?.review ?? null,
-      })),
+      this.sessionsFor(res.dashboard, sentMark).catch(() => null),
       sentVocab
         ? this.fetchVocab()
         : Promise.resolve<VocabFetch>({ ok: true, entries: prev?.vocab ?? null, generator: prev?.vocabGenerator ?? null }),
     ]);
+    // 서버는 받았지만 새 세션을 못 받았다. 새 대시보드와 옛 세션을 한 스냅샷에 섞어 굳히지 않도록 아무것도 바꾸지 않고,
+    // 보낸 이벤트도 아웃박스에 남긴 채 실패로 끝내 백오프 뒤 다시 보낸다(서버는 같은 이벤트를 두 번 세지 않는다).
+    if (sessions === null) throw new Error("학습 목록을 받지 못했어요.");
     // 서버가 받은 단어장 이벤트라도 새 단어장을 못 받았으면 아웃박스에 남긴다. 지우면 옛 단어장이 그대로 보여
     // 뺀 단어가 되살아난 것처럼 보인다. 다시 보내도 서버가 처리한 id 는 무시하므로(vocab_event) 안전하다.
     const keep = (p: StudyEvent) => !done.has(p.id) || (!vocab.ok && p.type.startsWith("VOCAB_"));
     // 아웃박스 정리와 스냅샷 교체를 한 동기 구간에서 함께 한다. 전송 중 새로 쌓인 이벤트는 남는다.
     this.pending = this.pending.filter(keep);
-    outbox.save(this.pending);
+    done.forEach((id) => {
+      if (!this.pending.some((p) => p.id === id)) this.sent.add(id);
+    });
+    if (this.sent.size > 5000) this.sent = new Set(Array.from(this.sent).slice(-2000));
+    this.persist();
     this.apply(mine, res.dashboard, sessions, vocab);
     // 단어장을 못 받았으면 실패로 끝내 백오프 뒤에 다시 시도한다(바로 되풀이하지 않는다).
     if (!vocab.ok) throw new Error("단어장을 받지 못했어요.");
@@ -218,6 +229,24 @@ export class StudyStore {
     this.snapshot = { dashboard, today: sessions.today, review: sessions.review, vocab: vocab.entries, vocabGenerator: vocab.generator };
     snapshotCache.save(this.snapshot);
     this.publish();
+  }
+
+  /** 아웃박스를 저장한다. 다른 창이 그사이 쌓은 미전송 기록을 먼저 합쳐서 덮어쓰지 않게 한다. */
+  private persist(): void {
+    this.mergeOthers();
+    outbox.save(this.pending);
+  }
+
+  /**
+   * 저장소에 있는데 내 목록에 없는 이벤트(다른 창이 쌓은 것)를 합친다. 내가 이미 보낸 것은 되살리지 않는다.
+   * 모든 이벤트는 서버에서 멱등이라, 두 창이 같은 이벤트를 각각 보내도 한 번만 반영된다. 합친 것이 있으면 true.
+   */
+  private mergeOthers(): boolean {
+    const mine = new Set(this.pending.map((p) => p.id));
+    const others = outbox.load().filter((e) => !mine.has(e.id) && !this.sent.has(e.id));
+    if (others.length === 0) return false;
+    this.pending = [...this.pending, ...others].sort((a, b) => a.occurred_at - b.occurred_at);
+    return true;
   }
 
   /**

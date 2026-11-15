@@ -178,7 +178,8 @@ function applyVocab(snapshot: Snapshot, pending: readonly StudyEvent[]): VocabEn
           meaning: e.meaning ?? known?.meaning ?? null,
           nuance: null,
           examples: [],
-          status: e.meaning ? "READY" : "PENDING",
+          // 미리 만든 표현(known)은 서버도 만들지 않고 READY 로 둔다. 기다리는 것처럼 보이지 않게 같은 값을 쓴다.
+          status: e.meaning || known ? "READY" : "PENDING",
           source: e.meaning ? "MANUAL" : known ? "CONTENT" : "GENERATED",
           note: e.note,
           mastered: false,
@@ -215,10 +216,10 @@ function countIn(seen: Set<number>, ids: Set<number>): number {
 }
 
 /** 모닝 락을 지금 띄울지. 앱을 열 때와 화면 복귀 때만 묻는다(SPEC F-04-2). */
-export function shouldShowMorningLock(view: DayView, now: number, launchedByAutoplay: boolean): boolean {
+export function shouldShowMorningLock(view: DayView, now: number, autoplayExempt: boolean): boolean {
   const m = view.morningLock;
   return (
-    !launchedByAutoplay &&
+    !autoplayExempt &&
     !view.stale &&
     m.sentences.length > 0 &&
     !m.decided &&

@@ -28,6 +28,16 @@ def phase_range(day: int) -> tuple[int, int]:
     return 4, 20
 
 
+def text_of(value: object) -> str:
+    """문자열이면 앞뒤 공백을 뺀 값, 아니면(null·숫자 등) 빈 문자열. str(None) == "None" 이 통과하지 않게 한다."""
+    return value.strip() if isinstance(value, str) else ""
+
+
+def term_key(text: str) -> str:
+    """서버 TermKey 와 같은 규칙: 공백을 하나로 정리하고 소문자."""
+    return " ".join(text.split()).lower()
+
+
 def words(text: str) -> int:
     return len(re.findall(r"[A-Za-z0-9']+", text))
 
@@ -64,9 +74,9 @@ def check_lesson(lesson: dict, where: str, errors: list[str], warns: list[str]) 
         elif sp == prev_speaker:
             warns.append(f"{st}: 같은 화자가 연속 ({sp})")
         prev_speaker = sp
-        en = str(s.get("en_text", "")).strip()
-        wo = str(s.get("ko_word_order", "")).strip()
-        kn = str(s.get("ko_natural", "")).strip()
+        en = text_of(s.get("en_text"))
+        wo = text_of(s.get("ko_word_order"))
+        kn = text_of(s.get("ko_natural"))
         if not en or not wo or not kn:
             errors.append(f"{st}: en_text·ko_word_order·ko_natural 은 비어 있으면 안 됨")
             continue
@@ -78,29 +88,41 @@ def check_lesson(lesson: dict, where: str, errors: list[str], warns: list[str]) 
             warns.append(f"{st}: 어순 덩어리 {len(chunks)}개 (권장 2~6, 구분자는 ' / ') \"{wo}\"")
         if "/" in wo and " / " not in wo:
             errors.append(f"{st}: 어순 구분자는 공백 포함 ' / '")
-        if s.get("core"):
+        core = s.get("core", False)
+        if not isinstance(core, bool):
+            errors.append(f"{st}: core 는 true/false")
+        elif core:
             cores += 1
         terms = s.get("terms", [])
         if not isinstance(terms, list) or len(terms) > 3:
             errors.append(f"{st}: terms 는 0~3개 배열")
             continue
+        seen_keys: set[str] = set()
         for t in terms:
+            if not isinstance(t, dict):
+                errors.append(f"{st}: terms 원소는 객체여야 함")
+                continue
             tt = f"{st} term \"{t.get('text')}\""
-            text = str(t.get("text", "")).strip()
-            form = str(t.get("form") or text).strip()
+            text = text_of(t.get("text"))
+            form = text_of(t.get("form")) or text
             if not text:
                 errors.append(f"{tt}: text 비어 있음")
+            elif term_key(text) in seen_keys:
+                # 서버 임포트(LessonImport)가 한 문장 안의 같은 표현을 거절한다.
+                errors.append(f"{tt}: 같은 문장에 같은 표현이 두 번 있음")
+            else:
+                seen_keys.add(term_key(text))
             if form.lower() not in en.lower():
                 errors.append(f"{tt}: form \"{form}\" 이 en_text 에 없음")
             for key in ("meaning", "nuance"):
-                if not str(t.get(key, "")).strip():
+                if not text_of(t.get(key)):
                     errors.append(f"{tt}: {key} 비어 있음")
             ex = t.get("examples")
             if not isinstance(ex, list) or len(ex) != 3:
                 errors.append(f"{tt}: examples 는 정확히 3개")
                 continue
             for e in ex:
-                if not str(e.get("en", "")).strip() or not str(e.get("ko", "")).strip():
+                if not isinstance(e, dict) or not text_of(e.get("en")) or not text_of(e.get("ko")):
                     errors.append(f"{tt}: 예문 en·ko 비어 있음")
                 elif words(e["en"]) > 18:
                     warns.append(f"{tt}: 예문이 김 ({words(e['en'])}단어) \"{e['en']}\"")

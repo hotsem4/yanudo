@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react";
 // 다른 포트의 서버를 쓰려면 HABIT66_API 를 지정한다(예: .env.preview).
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
-  const target = env.HABIT66_API || "http://localhost:8080";
+  const target = env.HABIT66_API || "http://127.0.0.1:8080";
   return {
     plugins: [react()],
     server: {

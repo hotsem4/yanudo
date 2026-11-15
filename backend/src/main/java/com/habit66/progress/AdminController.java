@@ -54,7 +54,7 @@ public class AdminController {
     public SettingsView setStartDate(@RequestBody StartDateRequest body) {
         LocalDate date;
         try {
-            date = LocalDate.parse(body.startDate() == null ? "" : body.startDate().trim());
+            date = LocalDate.parse(body == null || body.startDate() == null ? "" : body.startDate().trim());
         } catch (DateTimeParseException e) {
             throw ApiException.badRequest("INVALID_START_DATE", "start_date 는 YYYY-MM-DD 형식이어야 합니다.");
         }

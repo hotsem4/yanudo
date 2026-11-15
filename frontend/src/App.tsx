@@ -65,6 +65,24 @@ export function App() {
     setVocabOpen(open);
     rememberVocabView(open);
   };
+  // 알림을 눌렀을 때 서비스 워커가 열린 창을 새로 고치지 않고 보내는 목적지(sw.js notificationclick).
+  useEffect(() => {
+    if (!("serviceWorker" in navigator)) return;
+    const onMessage = (e: MessageEvent) => {
+      const data = e.data as { type?: unknown; url?: unknown } | null;
+      if (data?.type !== "open-url" || typeof data.url !== "string") return;
+      const target = new URL(data.url, window.location.origin);
+      if (target.searchParams.get("view") === "vocab") {
+        setVocabOpen(true);
+        rememberVocabView(true);
+      } else if (target.searchParams.has("autoplay")) {
+        // 자동 재생 요청은 앱을 여는 흐름(readLaunch)을 타야 한다.
+        window.location.assign(target.href);
+      }
+    };
+    navigator.serviceWorker.addEventListener("message", onMessage);
+    return () => navigator.serviceWorker.removeEventListener("message", onMessage);
+  }, []);
   // 단어장에서는 독을 숨긴다(독은 학습 큐를 움직이므로 단어 카드와 헷갈린다). 학습 오디오가 나오는 중이면 멈출 수 있게 남긴다.
   const dockHidden = vocabOpen && !eng.playing && eng.phase !== "blocked";
   const selectMainTab = (t: MainTab) => {
@@ -189,7 +207,7 @@ function useMorningLock(view: DayView | null, open: (v: boolean) => void): void 
   useEffect(() => {
     if (!asking || !view || view.stale) return;
     setAsking(false);
-    if (shouldShowMorningLock(view, serverNow(), playback.launchedByAutoplay())) open(true);
+    if (shouldShowMorningLock(view, serverNow(), playback.takeLockExemption())) open(true);
   }, [asking, view, open]);
 
   useEffect(() => {

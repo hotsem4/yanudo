@@ -44,6 +44,7 @@ public class ClaudeCliGenerator implements TermGenerator, LoginProbe {
 
     static final String LOGIN_HINT = "터미널에서 claude 로그인 필요 (claude 를 실행해 /login)";
     static final String TOKEN_HINT = "장기 토큰이 만료됐거나 잘못됨 (claude setup-token 으로 새로 만들어 config/application.yml 에 넣기)";
+    static final String COMMAND_HINT = "claude 명령을 찾을 수 없음 (app.vocab.claude-command 와 PATH 확인)";
     /** {@code claude setup-token}으로 만든 장기 토큰을 자식 프로세스에 넘기는 변수(Claude Code 가 읽는다). */
     static final String TOKEN_ENV = "CLAUDE_CODE_OAUTH_TOKEN";
     private static final String PROBE_PROMPT = "Reply with exactly: ok";
@@ -173,7 +174,12 @@ public class ClaudeCliGenerator implements TermGenerator, LoginProbe {
             }
             builder.redirectOutput(stdout.toFile());
             builder.redirectError(stderr.toFile());
-            process = builder.start();
+            try {
+                process = builder.start();
+            } catch (IOException e) {
+                throw new GenerationException("cannot run '" + String.join(" ", command) + "': " + e.getMessage(),
+                        COMMAND_HINT, e);
+            }
             // 입력을 닫지 않으면 CLI 가 표준 입력을 기다릴 수 있다.
             process.getOutputStream().close();
 
@@ -182,8 +188,8 @@ public class ClaudeCliGenerator implements TermGenerator, LoginProbe {
             }
             return new Run(Files.readString(stdout, StandardCharsets.UTF_8), process.exitValue(), lastLine(stderr));
         } catch (IOException e) {
-            throw new GenerationException("cannot run '" + String.join(" ", command) + "': " + e.getMessage(),
-                    "claude 명령을 찾을 수 없음 (app.vocab.claude-command 와 PATH 확인)", e);
+            // 임시 파일·출력 읽기 실패는 이번 한 번의 문제다. 사용자 조치(로그인 등)가 필요한 실패로 보지 않는다.
+            throw new GenerationException("claude run failed: " + e.getMessage());
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             throw new GenerationException("interrupted while waiting for claude");

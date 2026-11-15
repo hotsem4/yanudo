@@ -60,6 +60,8 @@ public class TtsService {
     /** 실패가 남으면 잠시 쉬고 스스로 다시 스캔한다. 그래도 남은 것은 다음 generate·재시작 때 다시 잡힌다. */
     private static final int EXTRA_PASSES = 2;
     private static final long PASS_DELAY_MS = 15_000;
+    /** 연속 실패로 중단한 뒤(부팅 직후 네트워크가 아직 없을 때 등) 다시 훑기까지 기다리는 시간. */
+    private static final long ABORT_DELAY_MS = 120_000;
 
     private final AppProperties.Tts config;
     private final CatalogService catalog;
@@ -172,10 +174,11 @@ public class TtsService {
             int extraPasses = 0;
             while (!stopping && scanRequested.getAndSet(false)) {
                 Pass pass = runPass();
-                if (pass.failures() > 0 && !pass.aborted() && extraPasses < EXTRA_PASSES && !stopping) {
+                if (pass.failures() > 0 && extraPasses < EXTRA_PASSES && !stopping) {
                     extraPasses++;
-                    log.info("{} clips still missing, rescanning in {}s", pass.failures(), PASS_DELAY_MS / 1000);
-                    Thread.sleep(PASS_DELAY_MS);
+                    long delay = pass.aborted() ? ABORT_DELAY_MS : PASS_DELAY_MS;
+                    log.info("{} clips still missing, rescanning in {}s", pass.failures(), delay / 1000);
+                    Thread.sleep(delay);
                     scanRequested.set(true);
                 }
             }

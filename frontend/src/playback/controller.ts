@@ -4,6 +4,7 @@ import { audioEngine } from "../audio/useEngine";
 import type { Launch } from "../lib/launch";
 import { readSessionParam, writeSessionParam } from "../lib/launch";
 import { prefs } from "../lib/prefs";
+import { showToast } from "../lib/toast";
 import { studyStore } from "../state/store";
 
 /**
@@ -16,7 +17,8 @@ class PlaybackController {
   private tab: Session = readSessionParam();
   private cursors: Record<Session, number> = { TODAY: 0, REVIEW: 0 };
   private chain = false;
-  private launch: Launch | null = null;
+  /** 자동 실행으로 연 이번 실행의 첫 모닝 락 판단만 건너뛴다. 백그라운드에 두었다가 다음 날 돌아오면 다시 판단해야 한다. */
+  private lockExempt = false;
   private started = false;
   private listeners = new Set<() => void>();
 
@@ -27,14 +29,17 @@ class PlaybackController {
 
   getTab = (): Session => this.tab;
 
-  launchedByAutoplay(): boolean {
-    return this.launch !== null;
+  /** 모닝 락 면제를 한 번 쓴다. 자동 실행으로 열린 직후의 첫 판단에서만 true. */
+  takeLockExemption(): boolean {
+    const exempt = this.lockExempt;
+    this.lockExempt = false;
+    return exempt;
   }
 
   start(launch: Launch | null): void {
     if (this.started) return;
     this.started = true;
-    this.launch = launch;
+    this.lockExempt = launch !== null;
     studyStore.subscribe(() => this.sync());
     audioEngine.subscribe(() => {
       const s = audioEngine.getSnapshot();
@@ -45,6 +50,8 @@ class PlaybackController {
         studyStore.record({ type: "VIEW", sentence_id: e.item.id, session: e.session, via: "AUDIO" });
       } else if (e.type === "queueEnd") {
         this.onQueueEnd(e.session);
+      } else if (e.type === "speechFailed") {
+        showToast("이 문장은 소리를 낼 수 없어 멈췄어요. 연결된 뒤 다시 재생해 주세요.", "info", 3600);
       }
     });
     this.sync();

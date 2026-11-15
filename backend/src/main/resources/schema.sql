@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS sentence_view (
 );
 
 CREATE INDEX IF NOT EXISTS idx_view_date ON sentence_view (log_date);
+CREATE INDEX IF NOT EXISTS idx_view_event ON sentence_view (event_id);
 
 -- 쓰기 소유자: progress.EventService (changed_at 최신값 우선)
 CREATE TABLE IF NOT EXISTS sentence_mark (

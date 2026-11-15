@@ -311,6 +311,13 @@ class ApiIntegrationTest {
         assertThat(res.path("dashboard").path("focus").path("seconds_today").asLong()).isEqualTo(1620);
         assertThat(res.path("dashboard").path("focus").path("started_ats")).hasSize(1);
 
+        // 같은 집중이 더 길게 다시 오면 날짜도 끝난 시각을 따른다(어제 끝난 것으로 먼저 왔다가 오늘 끝난 것으로 늘어난 경우).
+        long nightStart = now - 86_400_000L - 600_000;
+        res = postEvents(array(focus(nightStart, 60, now - 86_400_000L)));
+        assertThat(res.path("dashboard").path("focus").path("seconds_today").asLong()).isEqualTo(1620);
+        res = postEvents(array(focus(nightStart, 120, now)));
+        assertThat(res.path("dashboard").path("focus").path("seconds_today").asLong()).isEqualTo(1740);
+
         res = postEvents(array(focus(startedAt + 1, 21_601, now), focus(startedAt + 2, 0, now)));
         assertThat(res.path("accepted")).isEmpty();
         assertThat(res.path("rejected")).hasSize(2);
@@ -446,6 +453,11 @@ class ApiIntegrationTest {
         assertThat(res.path("dashboard").path("today_progress")).isEqualTo(before.path("today_progress"));
         assertThat(res.path("dashboard").path("review_gate")).isEqualTo(before.path("review_gate"));
         assertThat(res.path("dashboard").path("streak")).isEqualTo(before.path("streak"));
+
+        // 같은 이벤트가 (기기 시계가 크게 틀려) 오늘 시각으로 다시 와도 오늘 복습으로 두 번 기록하지 않는다.
+        res = postEvents(array(view("late-1", yesterdayId, "TODAY", "AUDIO", CLOCK.millis())));
+        assertThat(texts(res.path("accepted"))).containsExactly("late-1");
+        assertThat(res.path("dashboard").path("review_gate")).isEqualTo(before.path("review_gate"));
     }
 
     @Test

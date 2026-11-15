@@ -97,6 +97,9 @@ class VocabIntegrationTest {
     @Autowired
     private ObjectMapper mapper;
 
+    @Autowired
+    private TermGenerationQueue queue;
+
     // ── 세션 문장의 terms ──────────────────────────────────────
 
     @Test
@@ -353,9 +356,9 @@ class VocabIntegrationTest {
         postRaw("/api/v1/admin/lessons/import", lesson);
         GENERATOR.gate.countDown();
 
-        JsonNode entry = await("latchword", "READY");
-        Thread.sleep(100);
-        entry = entry("latchword");
+        await("latchword", "READY");
+        // 생성 결과의 저장(또는 무시)까지 끝난 뒤의 최종 값을 본다.
+        JsonNode entry = entry("latchword");
         assertThat(entry.path("source").asText()).isEqualTo("CONTENT");
         assertThat(entry.path("meaning").asText()).isEqualTo("콘텐츠 뜻");
         assertThat(entry.path("examples").get(0).path("en").asText()).isEqualTo("One latchword.");
@@ -370,7 +373,7 @@ class VocabIntegrationTest {
         while (System.currentTimeMillis() < deadline) {
             entry = entryOrNull(termKey);
             if (entry != null && status.equals(entry.path("status").asText())
-                    && GENERATOR.idle()) {
+                    && GENERATOR.idle() && queue.idle()) {
                 return entry;
             }
             Thread.sleep(25);

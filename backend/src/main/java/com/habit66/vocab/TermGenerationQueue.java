@@ -53,6 +53,8 @@ public class TermGenerationQueue {
         return t;
     });
     private final Set<Long> queued = ConcurrentHashMap.newKeySet();
+    /** 대기·실행 중에 다시 맡겨진 표현. 지금 작업이 끝나면 한 번 더 시도한다. */
+    private final Set<Long> again = ConcurrentHashMap.newKeySet();
     private final AtomicLong sequence = new AtomicLong();
     /** 이 번호 이하로 들어온 작업은 시도하지 않는다(사용자 조치가 필요한 실패 이후). */
     private volatile long haltedThrough = -1;
@@ -71,10 +73,12 @@ public class TermGenerationQueue {
     /** 생성을 맡긴다. 이미 큐에 있으면 무시한다. */
     public void enqueue(long termId) {
         if (!queued.add(termId)) {
+            // 이미 대기·실행 중이다. 버리면 로그인 복구 직후의 재시도처럼 의도한 재시도가 사라지므로,
+            // 지금 작업이 끝난 뒤(새 번호로) 한 번 더 시도한다.
+            again.add(termId);
             return;
         }
         long ticket = sequence.incrementAndGet();
-        // 실행이 끝날 때까지 큐에 있는 것으로 둔다(실행 중에 재시도가 같은 표현을 한 번 더 맡기지 않게).
         worker.execute(() -> {
             try {
                 process(termId, ticket);
@@ -83,8 +87,17 @@ public class TermGenerationQueue {
                 terms.markFailed(termId);
             } finally {
                 queued.remove(termId);
+                if (again.remove(termId)) {
+                    terms.markPending(termId); // 이미 만들어졌으면(READY) 바뀌지 않고, 다음 실행이 바로 끝난다
+                    enqueue(termId);
+                }
             }
         });
+    }
+
+    /** 맡은 작업이 모두 끝났는가(결과 저장까지). 테스트가 완료를 기다릴 때 쓴다. */
+    boolean idle() {
+        return queued.isEmpty() && again.isEmpty();
     }
 
     /** 담겨 있고 아직 만들어지지 않은 표현을 모두 다시 맡긴다. 맡긴 수를 돌려준다. */

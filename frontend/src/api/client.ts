@@ -22,7 +22,18 @@ export class NetworkError extends Error {
 
 // ── 서버 시계 보정 ──────────────────────────────────────────────
 // 이벤트의 occurred_at 은 서버 시계 추정값으로 찍는다(docs/architecture.md "시각 보정").
-let offsetMs = 0;
+// 다시 켠 뒤 서버에 닿기 전(오프라인)에도 같은 보정을 쓰도록 마지막 값을 기기에 남긴다.
+const OFFSET_KEY = "habit66.clockOffset.v1";
+let offsetMs = readOffset();
+
+function readOffset(): number {
+  try {
+    const v = Number(window.localStorage.getItem(OFFSET_KEY));
+    return Number.isFinite(v) ? v : 0;
+  } catch {
+    return 0;
+  }
+}
 
 /** 서버 시계 추정값(정수 epoch ms). 이벤트 id(`focus:<started_at>`)와 서버의 정수 필드를 맞추려고 반올림한다. */
 export function serverNow(): number {
@@ -32,36 +43,49 @@ export function serverNow(): number {
 function observeServerTime(serverTime: number, sentAt: number, receivedAt: number): void {
   const midpoint = sentAt + (receivedAt - sentAt) / 2;
   offsetMs = Math.round(serverTime - midpoint);
+  try {
+    window.localStorage.setItem(OFFSET_KEY, String(offsetMs));
+  } catch {
+    /* 저장할 수 없어도 이번 실행에서는 쓴다 */
+  }
 }
 
 const TIMEOUT_MS = 15_000;
 
 async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   const controller = new AbortController();
+  // 본문을 다 읽을 때까지 건다. 헤더만 받고 본문에서 멈추면 동기화 전체가 멈춘다.
   const timer = window.setTimeout(() => controller.abort(), TIMEOUT_MS);
-  let response: Response;
   try {
-    response = await fetch(path, {
-      ...init,
-      signal: controller.signal,
-      headers: { Accept: "application/json", ...(init.body ? { "Content-Type": "application/json" } : {}), ...init.headers },
-    });
-  } catch {
-    throw new NetworkError();
+    let response: Response;
+    try {
+      response = await fetch(path, {
+        ...init,
+        signal: controller.signal,
+        headers: { Accept: "application/json", ...(init.body ? { "Content-Type": "application/json" } : {}), ...init.headers },
+      });
+    } catch {
+      throw new NetworkError();
+    }
+    if (!response.ok) {
+      let body: ApiErrorBody | null = null;
+      try {
+        body = (await response.json()) as ApiErrorBody;
+      } catch {
+        body = null;
+      }
+      throw new ApiError(response.status, body?.error ?? "HTTP_" + response.status, body?.message ?? "요청을 처리하지 못했어요.");
+    }
+    if (response.status === 204) return undefined as T;
+    try {
+      return (await response.json()) as T;
+    } catch (e) {
+      if (controller.signal.aborted) throw new NetworkError();
+      throw e;
+    }
   } finally {
     window.clearTimeout(timer);
   }
-  if (!response.ok) {
-    let body: ApiErrorBody | null = null;
-    try {
-      body = (await response.json()) as ApiErrorBody;
-    } catch {
-      body = null;
-    }
-    throw new ApiError(response.status, body?.error ?? "HTTP_" + response.status, body?.message ?? "요청을 처리하지 못했어요.");
-  }
-  if (response.status === 204) return undefined as T;
-  return (await response.json()) as T;
 }
 
 async function withClock<T extends { server_time: number }>(load: () => Promise<T>): Promise<T> {

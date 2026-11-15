@@ -26,7 +26,17 @@ from types import ModuleType
 from typing import Any, Callable, Coroutine, TypeVar
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlsplit
-from urllib.request import Request, urlopen
+from urllib.request import HTTPRedirectHandler, Request, build_opener
+
+
+class _NoRedirect(HTTPRedirectHandler):
+    """리다이렉트를 따라가지 않는다. 따라가면 X-Admin-Token 이 다른 주소(또는 평문 HTTP)로 함께 넘어갈 수 있다."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):  # noqa: D401
+        return None
+
+
+_OPENER = build_opener(_NoRedirect)
 
 
 T = TypeVar("T")
@@ -110,7 +120,7 @@ class Client:
             method=method,
         )
         try:
-            with urlopen(request, timeout=self.timeout) as response:
+            with _OPENER.open(request, timeout=self.timeout) as response:
                 raw = response.read()
         except HTTPError as exc:
             try:

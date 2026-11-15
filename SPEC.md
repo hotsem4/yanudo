@@ -58,7 +58,7 @@
 - **무음 대기 중 미디어 세션 유지**: 대기 동안 같은 `<audio>` 요소에 1초짜리 무음 WAV를 반복 재생해 잠금 화면 컨트롤과 버즈 버튼이 살아 있게 한다.
 - **Media Session API**: 메타데이터(영어 문장, `Day N · A/B`), `play` / `pause` / `previoustrack` / `nexttrack` 핸들러.
 - 배속: `0.85` / `1.0` / `1.15` 순환 토글. 무음 대기 시간은 배속과 무관하게 `duration_ms × 1.3`.
-- 오디오 파일이 아직 없거나 받아 두지 못한 문장은 기기 `speechSynthesis`(en-US)로 대신 읽는다. `duration_ms`는 서버가 늘 채운다(클립이 없으면 단어 수 × 380ms 추정, `duration_estimated: true`).
+- 오디오 파일이 아직 없거나 받아 두지 못한 문장(4초 안에 받지 못한 경우 포함)은 기기 `speechSynthesis`의 영어 음성으로 대신 읽는다. 음성 목록이 늦게 오면 잠깐 기다리고, 기기에 영어 음성이 없거나 읽기가 오류로 끝나면 다른 언어 음성으로 읽지 않고 재생을 멈춰 알린다(들음으로 기록하지 않는다). `duration_ms`는 서버가 늘 채운다(클립이 없으면 단어 수 × 380ms 추정, `duration_estimated: true`).
 - 무음 대기와 문장 간격은 그 길이의 무음 WAV를 같은 `<audio>` 요소에서 재생하고 `ended`로 끝낸다(화면이 꺼져도 타이머가 밀리지 않고, 일시정지하면 남은 시간이 보존된다).
 - `AUDIO` 열람 보고 시점: full·shadowing·역할극 A는 발화가 끝날 때, 역할극 B는 대기가 끝날 때.
 - 프리로드 상태(`준비 n/m`)를 화면에 작게 보인다.
@@ -254,7 +254,7 @@ vocab_event(id PK, applied_at)                                                  
 
 - `id`: 1~64자 `[A-Za-z0-9:._-]`. 같은 id를 다시 보내도 결과가 같다. 한 요청 최대 500개. 시각 필드에 소수가 오면 서버가 소수부를 버린다(클라이언트는 정수로 보낸다).
 - `rejected[].reason`: `INVALID_ID` | `INVALID_TYPE` | `INVALID_FIELD` | `UNKNOWN_SENTENCE`.
-- `occurred_at`은 서버 시계 추정값(클라이언트가 `server_time`으로 보정). 서버는 미래 값을 수신 시각으로 자른 뒤 논리 날짜로 바꾼다.
+- `occurred_at`은 서버 시계 추정값(클라이언트가 `server_time`으로 보정). 서버는 수신 시각보다 10분 넘게 앞선 값만 수신 시각으로 자른 뒤 논리 날짜로 바꾼다(작은 오차까지 자르면 응답을 잃고 다시 보낸 같은 이벤트가 롤오버를 사이에 두고 다른 날짜가 된다). 같은 `VIEW` id는 한 번만 기록한다.
 - VIEW(TODAY)의 문장이 그 날짜의 오늘 레슨이 아니면 REVIEW로 바꿔 기록한다. 그 결과 오늘 레슨을 한 경로로 완주하면 `day_achievement`를 기록한다.
 - MARK는 `changed_at`(= `occurred_at`)이 같거나 더 새로울 때 바꾼다(같은 시각이면 나중에 온 것). FOCUS는 `started_at` 기준으로 큰 `seconds`만 남기고(1~21600초), 그 기록의 날짜는 `occurred_at`(끝낸 시각) 기준이다. MORNING_LOCK은 그날 첫 결정만 남는다.
 - 형식 오류·없는 문장은 그 이벤트만 `rejected`, 나머지는 한 트랜잭션으로 수용한다.
@@ -402,7 +402,7 @@ app:
 
 ## 6. PWA
 
-- `manifest.json`: `display: standalone`, `start_url: /`, `theme_color: #2B59FF`, `background_color: #F5F7FB`, 아이콘 192/512(maskable 포함), 모드별 `shortcuts`.
+- `manifest.json`: `display: standalone`, `start_url: /`, `theme_color: #F5F7FB`(캔버스와 같아 상태 표시줄이 화면과 이어진다, `index.html`의 `theme-color`도 같다), `background_color: #F5F7FB`, 아이콘 192/512(maskable 포함), 모드별 `shortcuts`.
 - `sw.js`(직접 작성):
   - 앱 셸: 네비게이션은 네트워크 우선, 실패 시 캐시된 `/index.html`.
   - `/assets/*`, 폰트: 캐시 우선.
@@ -419,4 +419,4 @@ app:
 - 개발: `backend`는 `gradlew bootRun`(작업 디렉터리 = 프로젝트 루트), `frontend`는 `npm run dev`(5173, `/api` → `localhost:8080` 프록시).
 - 운영: `build-all.bat` → 프론트 빌드 → `dist/`를 `backend/src/main/resources/static/`로 복사 → `bootJar` → 루트에서 `java -jar`. 8080 한 포트로 SPA + API + 오디오를 모두 서빙한다.
 - SPA 라우팅: `/api`가 아닌 확장자 없는 경로는 `index.html`로 보낸다.
-- 외부 접속: `tailscale serve --bg 8080` → `https://<pc-name>.<tailnet>.ts.net/`.
+- 외부 접속: `tailscale serve --bg 8080` → `https://<pc-name>.<tailnet>.ts.net/`. 서버는 기본으로 `127.0.0.1`에만 묶는다(`server.address`, 같은 Wi-Fi의 다른 기기가 관리자 API를 직접 부르지 못하게). LAN에서 직접 열어야 하면 `APP_SERVER_ADDRESS=0.0.0.0`과 관리자 토큰을 함께 쓴다.

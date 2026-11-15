@@ -42,7 +42,8 @@ public class AnthropicApiGenerator implements TermGenerator {
     public Generated generate(Request request) throws GenerationException {
         StructuredMessageCreateParams<EntryOut> params = MessageCreateParams.builder()
                 .model(MODEL)
-                .maxTokens(4_000L)
+                // thinking 과 출력이 한도를 함께 쓴다. 짧은 항목이라 넉넉히 둔다.
+                .maxTokens(16_000L)
                 .outputConfig(EntryOut.class)
                 .addUserMessage(TermPrompt.of(request))
                 .build();
@@ -58,6 +59,9 @@ public class AnthropicApiGenerator implements TermGenerator {
         }
         if (response.stopReason().map(StopReason.REFUSAL::equals).orElse(false)) {
             throw new GenerationException("Anthropic API declined the request (stop_reason=refusal)");
+        }
+        if (response.stopReason().map(StopReason.MAX_TOKENS::equals).orElse(false)) {
+            throw new GenerationException("Anthropic API output hit max_tokens before the entry was complete");
         }
         Optional<EntryOut> entry = response.content().stream()
                 .flatMap(block -> block.text().stream())

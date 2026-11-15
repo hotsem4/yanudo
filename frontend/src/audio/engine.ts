@@ -46,10 +46,15 @@ export interface EngineSnapshot {
 
 export type EngineEvent =
   | { readonly type: "heard"; readonly item: PlayItem; readonly session: Session }
-  | { readonly type: "queueEnd"; readonly queueKey: string; readonly session: Session };
+  | { readonly type: "queueEnd"; readonly queueKey: string; readonly session: Session }
+  /** 파일도 기기 음성도 쓸 수 없어 소리를 내지 못했다(들음으로 기록하지 않는다). */
+  | { readonly type: "speechFailed" };
 
 type Step = "speak" | "hold" | "gap" | "advance";
-type Outcome = "done" | "stale" | "blocked";
+type Outcome = "done" | "stale" | "blocked" | "failed";
+
+/** 재생할 클립을 이만큼 기다려도 안 오면(응답 없는 네트워크) 기기 음성으로 읽는다. 프리로드는 계속 받는다. */
+const CLIP_WAIT_MS = 4000;
 type Loaded = { kind: "speak"; itemId: number } | { kind: "silence"; ms: number } | null;
 
 export class AudioEngine {
@@ -108,6 +113,7 @@ export class AudioEngine {
   load(queue: PlayQueue, startAt = 0): void {
     if (this.queue && this.queue.key === queue.key) {
       this.queue = queue;
+      this.clips.prefetch(queue.items.flatMap((i) => (i.audio_url ? [i.audio_url] : [])));
       if (!queue.playable && (this.playing || this.step !== null)) this.stopTurn("idle");
       this.publish();
       return;
@@ -185,26 +191,34 @@ export class AudioEngine {
   async audition(item: PlayItem): Promise<void> {
     if (this.playing) this.pause();
     const token = this.bump();
+    // 앞선 미리듣기는 playing 을 켜지 않으므로 위의 pause 로는 멈추지 않는다.
+    this.pauseElement();
     this.resetTurn();
     let url: string | null = null;
     try {
-      url = item.audio_url ? await this.clips.objectUrl(item.audio_url) : null;
+      url = item.audio_url ? await withTimeout(this.clips.objectUrl(item.audio_url), CLIP_WAIT_MS) : null;
     } catch {
       url = null;
     }
     if (token !== this.token) return;
     if (url) {
       this.el.loop = false;
-      this.el.src = url;
+      this.setSrc(url);
       this.el.playbackRate = 1;
       try {
         await this.el.play();
       } catch {
         /* 무시 */
       }
-    } else if ("speechSynthesis" in window) {
+    } else {
+      const u = "speechSynthesis" in window ? await englishUtterance(item, 1) : null;
+      if (token !== this.token) return;
+      if (!u) {
+        this.emit({ type: "speechFailed" });
+        return;
+      }
       speechSynthesis.cancel();
-      speechSynthesis.speak(utterance(item, 1));
+      speechSynthesis.speak(u);
     }
   }
 
@@ -270,9 +284,9 @@ export class AudioEngine {
     let url: string | null = null;
     if (item.audio_url) {
       try {
-        url = await this.clips.objectUrl(item.audio_url);
+        url = await withTimeout(this.clips.objectUrl(item.audio_url), CLIP_WAIT_MS);
       } catch {
-        url = null; // 오프라인이거나 아직 없는 클립 → 기기 음성으로
+        url = null; // 오프라인이거나 아직 없거나 응답이 없는 클립 → 기기 음성으로
       }
     }
     if (token !== this.token) return "stale";
@@ -285,7 +299,7 @@ export class AudioEngine {
       const sameClip = resume && this.loaded?.kind === "speak" && this.loaded.itemId === item.id;
       if (!sameClip) {
         this.el.loop = false;
-        this.el.src = url;
+        this.setSrc(url);
         this.loaded = { kind: "speak", itemId: item.id };
       }
       this.el.playbackRate = this.rate;
@@ -303,13 +317,16 @@ export class AudioEngine {
   }
 
   private async speakWithSynth(item: PlayItem, token: number): Promise<Outcome> {
-    if (!("speechSynthesis" in window)) return this.silence(item.duration_ms, "gap", token, false);
+    if (!("speechSynthesis" in window)) return "failed";
+    const u = await englishUtterance(item, this.rate);
+    if (token !== this.token) return "stale";
+    if (!u) return "failed";
     this.source = "speech";
     this.phase = "speaking";
     this.publish();
     // 기기 음성 동안 무음을 반복 재생해 Media Session 을 유지한다.
     this.el.loop = true;
-    this.el.src = silenceLoopUrl();
+    this.setSrc(silenceLoopUrl());
     this.loaded = null;
     const p = await this.playElement(token);
     if (p === "blocked" || p === "stale") return p;
@@ -324,9 +341,9 @@ export class AudioEngine {
       };
       const cancel = () => finish("stale");
       this.cancels.add(cancel);
-      const u = utterance(item, this.rate);
       u.onend = () => finish("done");
-      u.onerror = () => finish(token === this.token ? "done" : "stale");
+      // 오류로 끝난 발화는 소리가 나지 않았다. 들음으로 기록하지 않고 멈춘다.
+      u.onerror = () => finish(token === this.token ? "failed" : "stale");
       // 일부 기기는 onend 를 빠뜨린다. 넉넉한 상한을 둔다.
       const guard = window.setTimeout(() => finish("done"), Math.max(4000, item.duration_ms * 2.5));
       speechSynthesis.cancel();
@@ -346,7 +363,7 @@ export class AudioEngine {
     const sameSilence = resume && this.loaded?.kind === "silence" && this.loaded.ms === ms;
     if (!sameSilence) {
       this.el.loop = false;
-      this.el.src = silenceUrl(ms);
+      this.setSrc(silenceUrl(ms));
       this.loaded = { kind: "silence", ms };
     }
     this.el.playbackRate = 1;
@@ -412,6 +429,15 @@ export class AudioEngine {
       this.playing = false;
       this.phase = "blocked";
       this.publish();
+    } else if (r === "failed") {
+      // 같은 문장 단계에 머문다. 다시 재생하면 이 문장부터 다시 시도한다.
+      this.playing = false;
+      this.bump();
+      this.el.loop = false;
+      this.pauseElement();
+      this.phase = "idle";
+      this.publish();
+      this.emit({ type: "speechFailed" });
     }
   }
 
@@ -436,7 +462,8 @@ export class AudioEngine {
     this.playing = false;
     this.bump();
     this.pauseElement();
-    if (this.source === "speech") this.loaded = null;
+    // 기기 음성은 중간부터 이을 수 없어 문장 처음부터. 그 뒤의 무음 대기는 위치를 그대로 둔다.
+    if (this.source === "speech" && this.step === "speak") this.loaded = null;
     this.phase = phase;
     this.publish();
   }
@@ -457,6 +484,12 @@ export class AudioEngine {
     pending.forEach((c) => c());
     if ("speechSynthesis" in window && (speechSynthesis.speaking || speechSynthesis.pending)) speechSynthesis.cancel();
     return this.token;
+  }
+
+  /** 소스를 바꾸면 대기 중인 pause 이벤트가 사라진다(HTML 미디어 로드 알고리즘). 기다리던 수를 비워 실제 일시정지를 삼키지 않게 한다. */
+  private setSrc(url: string): void {
+    this.expectPause = 0;
+    this.el.src = url;
   }
 
   private pauseElement(): void {
@@ -549,14 +582,71 @@ function clamp(n: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, n));
 }
 
-let cachedVoices: SpeechSynthesisVoice[] | null = null;
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const t = window.setTimeout(() => reject(new Error("timeout")), ms);
+    promise.then(
+      (v) => {
+        window.clearTimeout(t);
+        resolve(v);
+      },
+      (e: unknown) => {
+        window.clearTimeout(t);
+        reject(e);
+      },
+    );
+  });
+}
 
-function utterance(item: PlayItem, rate: number): SpeechSynthesisUtterance {
+// 기기 음성 목록. 크롬은 처음에 빈 목록을 주고 voiceschanged 뒤에 채운다. 비어 있을 때 읽으면 기본 음성(한국어·중국어 등)이
+// 영어 문장을 읽는다(2026-11-16 실제로 관찰). 그래서 미리 받아 두고, 비어 있으면 잠깐 기다린다.
+let voices: SpeechSynthesisVoice[] = [];
+
+function refreshVoices(): void {
+  try {
+    voices = speechSynthesis.getVoices();
+  } catch {
+    voices = [];
+  }
+}
+
+if (typeof window !== "undefined" && "speechSynthesis" in window) {
+  refreshVoices();
+  speechSynthesis.addEventListener("voiceschanged", refreshVoices);
+}
+
+function voicesReady(timeoutMs = 1500): Promise<void> {
+  if (voices.length > 0) return Promise.resolve();
+  return new Promise((resolve) => {
+    const done = () => {
+      window.clearTimeout(t);
+      speechSynthesis.removeEventListener("voiceschanged", done);
+      refreshVoices();
+      resolve();
+    };
+    const t = window.setTimeout(done, timeoutMs);
+    speechSynthesis.addEventListener("voiceschanged", done);
+  });
+}
+
+/** 안드로이드는 en_US 처럼 밑줄을 쓰기도 한다. */
+const langOf = (v: SpeechSynthesisVoice) => v.lang.replace("_", "-").toLowerCase();
+
+/**
+ * 영어 음성으로 읽을 발화. 기기에 영어 음성이 없으면 null(다른 언어 음성으로 영어를 읽지 않는다).
+ * 목록을 끝내 받지 못하면 lang 만 정해 브라우저에 맡긴다.
+ */
+async function englishUtterance(item: PlayItem, rate: number): Promise<SpeechSynthesisUtterance | null> {
+  await voicesReady();
   const u = new SpeechSynthesisUtterance(item.en_text);
   u.lang = "en-US";
   u.rate = Math.max(0.5, rate * 0.95);
-  if (!cachedVoices || cachedVoices.length === 0) cachedVoices = speechSynthesis.getVoices();
-  const english = cachedVoices.filter((v) => v.lang.toLowerCase().startsWith("en-us"));
-  if (english.length > 0) u.voice = english[item.speaker === "B" && english.length > 1 ? 1 : 0];
+  if (voices.length === 0) return u;
+  const us = voices.filter((v) => langOf(v).startsWith("en-us"));
+  const english = us.length > 0 ? us : voices.filter((v) => langOf(v).startsWith("en"));
+  if (english.length === 0) return null;
+  const voice = english[item.speaker === "B" && english.length > 1 ? 1 : 0];
+  u.voice = voice;
+  u.lang = voice.lang.replace("_", "-");
   return u;
 }

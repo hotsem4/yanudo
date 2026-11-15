@@ -19,17 +19,22 @@ export function BottomSheet({ open, onClose, title, children }: Props) {
   const reduce = useReducedMotion();
   const drag = useDragControls();
 
+  // 부모가 매 렌더 새 onClose 를 넘겨도(집중 타이머가 매초 다시 그린다) 포커스 이동은 열릴 때 한 번만 한다.
+  // 다시 실행되면 입력 칸의 포커스를 패널이 빼앗아 모바일 키보드가 닫힌다.
+  const closeRef = useRef(onClose);
+  closeRef.current = onClose;
+
   useEffect(() => {
     if (!open) return;
     const prev = document.activeElement as HTMLElement | null;
     panelRef.current?.focus();
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && closeRef.current();
     window.addEventListener("keydown", onKey);
     return () => {
       window.removeEventListener("keydown", onKey);
       prev?.focus?.();
     };
-  }, [open, onClose]);
+  }, [open]);
 
   const onDragEnd = (_: unknown, info: PanInfo) => {
     if (info.offset.y > 100 || info.velocity.y > 500) onClose();

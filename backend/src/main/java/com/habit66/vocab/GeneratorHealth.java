@@ -3,6 +3,9 @@ package com.habit66.vocab;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +22,8 @@ import com.habit66.notify.ReminderMessage;
 import com.habit66.notify.ReminderService;
 import com.habit66.notify.ReminderService.Delivery;
 import com.habit66.vocab.LoginProbe.LoginCheck;
+
+import jakarta.annotation.PreDestroy;
 
 /**
  * 생성기 로그인 상태(SPEC F-08). 상태는 메모리에만 두고(파생값), 알림을 보낸 날만 app_setting 에 남겨
@@ -58,6 +63,15 @@ public class GeneratorHealth {
     private final ApplicationEventPublisher events;
     private final int warnDays;
 
+    /** 시작 점검용. 서버를 끌 때 기다려 claude 프로세스 정리(finally)가 끝나게 한다. */
+    private final ExecutorService startupCheck = Executors.newSingleThreadExecutor(r -> {
+        Thread t = new Thread(r, "vocab-login-check");
+        t.setDaemon(true);
+        return t;
+    });
+    /** 알림의 "오늘 보냈나 → 보내기 → 기록"을 한 번에 한 스레드만 하게 한다(큐 스레드와 점검 스레드가 동시에 실패를 볼 수 있다). */
+    private final Object alertLock = new Object();
+
     private volatile State state;
     private volatile String message;
     private volatile Long expiresAt;
@@ -88,10 +102,18 @@ public class GeneratorHealth {
         if (changed) {
             log.warn("Vocab generator needs login: {}", hint);
         }
-        alert(State.LOGIN_REQUIRED, "단어 뜻 만들기가 멈췄어요",
-                hint != null && hint.startsWith("장기 토큰")
-                        ? "PC에 넣어 둔 Claude 장기 토큰이 만료됐거나 잘못됐어요. claude setup-token 으로 새로 만들어 넣어 주세요."
-                        : "PC의 Claude 로그인이 끊겼어요. PC에서 claude 를 실행해 /login 하거나 장기 토큰을 넣어 주세요.");
+        alert(State.LOGIN_REQUIRED, "단어 뜻 만들기가 멈췄어요", bodyFor(hint));
+    }
+
+    /** 원인별 알림 본문. 로그인 문제가 아닌 사용자 조치(명령 없음, API 키)는 힌트를 그대로 싣는다. */
+    static String bodyFor(String hint) {
+        if (ClaudeCliGenerator.TOKEN_HINT.equals(hint)) {
+            return "PC에 넣어 둔 Claude 장기 토큰이 만료됐거나 잘못됐어요. claude setup-token 으로 새로 만들어 넣어 주세요.";
+        }
+        if (hint == null || ClaudeCliGenerator.LOGIN_HINT.equals(hint)) {
+            return "PC의 Claude 로그인이 끊겼어요. PC에서 claude 를 실행해 /login 하거나 장기 토큰을 넣어 주세요.";
+        }
+        return "PC에서 확인이 필요해요: " + hint;
     }
 
     /** 생성이 성공했다(큐가 부른다). */
@@ -106,9 +128,13 @@ public class GeneratorHealth {
         if (!(generator instanceof LoginProbe) || !generator.enabled()) {
             return;
         }
-        Thread thread = new Thread(this::check, "vocab-login-check");
-        thread.setDaemon(true);
-        thread.start();
+        startupCheck.execute(this::check);
+    }
+
+    @PreDestroy
+    void stop() throws InterruptedException {
+        startupCheck.shutdownNow();
+        startupCheck.awaitTermination(10, TimeUnit.SECONDS);
     }
 
     @Scheduled(cron = "${app.vocab.login-check-cron}", zone = "${app.timezone}")
@@ -158,17 +184,19 @@ public class GeneratorHealth {
 
     /** 같은 종류의 알림은 논리 날짜 하루에 한 번. 아무 채널로도 못 보냈으면 기록하지 않아 다음 기회에 다시 보낸다. */
     private void alert(State kind, String title, String body) {
-        String stamp = kind.name() + "|" + clock.today();
-        if (settings.get(ALERT_KEY).map(stamp::equals).orElse(false)) {
-            return;
-        }
-        Delivery delivery = notifier.deliver(new ReminderMessage(title, body, URL, TAG));
-        if (delivery.pushSent() + delivery.webhooksSent() > 0) {
-            settings.put(ALERT_KEY, stamp);
-            log.info("Sent vocab login alert ({}): push={}, webhooks={}", kind, delivery.pushSent(),
-                    delivery.webhooksSent());
-        } else {
-            log.info("Vocab login alert ({}) not delivered: no push subscription or webhook", kind);
+        synchronized (alertLock) {
+            String stamp = kind.name() + "|" + clock.today();
+            if (settings.get(ALERT_KEY).map(stamp::equals).orElse(false)) {
+                return;
+            }
+            Delivery delivery = notifier.deliver(new ReminderMessage(title, body, URL, TAG));
+            if (delivery.pushSent() + delivery.webhooksSent() > 0) {
+                settings.put(ALERT_KEY, stamp);
+                log.info("Sent vocab login alert ({}): push={}, webhooks={}", kind, delivery.pushSent(),
+                        delivery.webhooksSent());
+            } else {
+                log.info("Vocab login alert ({}) not delivered: no push subscription or webhook", kind);
+            }
         }
     }
 }

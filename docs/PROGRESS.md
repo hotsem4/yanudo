@@ -1,4 +1,6 @@
-# 진행 상황 (2026-11-16 03:2x)
+# 진행 상황 (2026-11-16 07:0x)
+
+> 이어서 할 일과 진행 중이던 전체 코드 리뷰는 [HANDOVER.md](HANDOVER.md)에 있다.
 
 ## 끝난 것
 - 기준 문서: `CLAUDE.md`, `SPEC.md`(F-01~F-08), `.claude/skills/clean-blue-ui/SKILL.md`, `docs/architecture.md`, `docs/curriculum.md`.
@@ -24,9 +26,12 @@
 - 실제 폴드8 기기 확인(지금은 브라우저 크기 흉내).
 - 운영 서버는 원래 꺼져 있었다. 확인용으로 띄웠다가 다시 껐다 → 쓰려면 `run.bat`(또는 `build-all.bat`)으로 켠다.
 
-## 사용자 결정 대기
-- 서버용 장기 토큰(`claude setup-token`) + 로그인 끊김 감지·폰 알림 추가 여부. 토큰 값은 채팅에 붙여 넣지 말고 `config/application.yml`(gitignore 대상)에 직접 넣는다.
-- 클라우드 배포(Oracle Always Free) 여부 — 검토 결과: `docs/deploy/oracle-always-free-review.md`.
+## 사용자 결정 (2026-11-16)
+- 장기 토큰 + 로그인 끊김 폰 알림: **구현함**(`9fe9ced`). 토큰 넣기는 선택(HANDOVER.md 3장).
+- 클라우드 배포(Oracle Always Free): **보류**, 로컬 PC 운영 유지. 검토 결과는 `docs/deploy/oracle-always-free-review.md`.
+
+## 진행 중
+- 전체 코드 리뷰(Fable 5.2 + Codex gpt-6.1-sol high) — 결과 위치와 다음 순서는 HANDOVER.md 2장.
 
 ## 미리보기 실행법
 `.claude/launch.json`: `backend-preview`(8090, `.preview-data/`), `backend-preview-morning`(8090, 빈 `.preview-data/morning`, 모닝 락 시간 창 00:00~23:59, 생성기 끔), `frontend-preview`(5174). 미리보기 jar는 `.preview-data/habit66-preview.jar`(새 빌드 뒤 복사). 실제 `data/`와 8080은 건드리지 않는다.

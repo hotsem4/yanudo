@@ -27,8 +27,8 @@
 | Codex `gpt-6.1-sol`, `model_reasoning_effort=high` | 백엔드 | `.codex-review/full/out-backend.md` |
 | 〃 | 프론트엔드 | `.codex-review/full/out-frontend.md` |
 | 〃 | 스크립트 + 백엔드 테스트 | `.codex-review/full/out-scripts-tests.md` |
-| Fable 5.2 서브에이전트 | 백엔드 + 스크립트 | 이 세션으로 돌아옴(파일 없음) |
-| Fable 5.2 서브에이전트 | 프론트엔드 | 이 세션으로 돌아옴(파일 없음) |
+| Fable 5.2 서브에이전트 | 백엔드 + 스크립트 | 세션으로 돌아오면 `.codex-review/full/fable-backend.md`에 저장 |
+| Fable 5.2 서브에이전트 | 프론트엔드 | 세션으로 돌아오면 `.codex-review/full/fable-frontend.md`에 저장 |
 
 - `.codex-review/`는 gitignore 대상. 리뷰 기준·출력 형식: `.codex-review/full/brief.md`, 보낸 묶음: `bundle-*.txt`, 진행 로그: `log-*.txt`(맨 끝에 Codex 답이 붙는다). 묶음에 개인 정보 없음 확인함.
 - **out 파일이 없거나 비어 있으면** 그 리뷰가 끝나지 않았거나 실패한 것이다. 다시 돌리는 명령(묶음별):

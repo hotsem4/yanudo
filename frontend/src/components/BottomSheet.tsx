@@ -1,6 +1,7 @@
-import { AnimatePresence, motion, useReducedMotion, type PanInfo } from "framer-motion";
+import { AnimatePresence, motion, useDragControls, useReducedMotion, type PanInfo } from "framer-motion";
 import { X } from "lucide-react";
 import { useEffect, useId, useRef, type ReactNode } from "react";
+import { startsInField } from "../lib/pointer";
 
 interface Props {
   open: boolean;
@@ -16,6 +17,7 @@ export function BottomSheet({ open, onClose, title, children }: Props) {
   const titleId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
+  const drag = useDragControls();
 
   useEffect(() => {
     if (!open) return;
@@ -54,6 +56,9 @@ export function BottomSheet({ open, onClose, title, children }: Props) {
             animate={reduce ? { opacity: 1 } : { y: 0, transition: { duration: 0.42, ease: DRAWER } }}
             exit={reduce ? { opacity: 0 } : { y: "100%", transition: { duration: 0.26, ease: DRAWER } }}
             drag={reduce ? false : "y"}
+            dragControls={drag}
+            dragListener={false}
+            onPointerDown={(e) => !startsInField(e) && drag.start(e)}
             dragConstraints={{ top: 0, bottom: 0 }}
             dragElastic={{ top: 0, bottom: 0.6 }}
             onDragEnd={onDragEnd}

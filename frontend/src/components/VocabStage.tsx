@@ -1,9 +1,10 @@
-import { AnimatePresence, motion, useReducedMotion, type PanInfo } from "framer-motion";
+import { AnimatePresence, motion, useDragControls, useReducedMotion, type PanInfo } from "framer-motion";
 import { Check, CheckCheck, ChevronLeft, ChevronRight, CloudOff, Pencil, Trash2, Volume2 } from "lucide-react";
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import type { VocabEntry, VocabExample } from "../api/types";
 import { audioEngine } from "../audio/useEngine";
 import type { MascotState } from "../lib/mascot";
+import { startsInField } from "../lib/pointer";
 import { showToast } from "../lib/toast";
 import { exampleItemId, needsMeaning, vocabCounts, type VocabFilter } from "../lib/vocab";
 import type { StudyState } from "../state/store";
@@ -69,6 +70,7 @@ export function VocabStage({ study, all, deck, index, filter, onFilter, onSelect
           entry={entry}
           index={index}
           total={deck.length}
+          filter={filter}
           onPrev={() => index > 0 && onSelect(deck[index - 1].term_key)}
           onNext={() => index < deck.length - 1 && onSelect(deck[index + 1].term_key)}
         />
@@ -81,6 +83,7 @@ interface CardProps {
   entry: VocabEntry;
   index: number;
   total: number;
+  filter: VocabFilter;
   onPrev: () => void;
   onNext: () => void;
 }
@@ -88,10 +91,11 @@ interface CardProps {
 const SWIPE_DISTANCE = 80;
 const SWIPE_VELOCITY = 110;
 
-function VocabCard({ entry, index, total, onPrev, onNext }: CardProps) {
+function VocabCard({ entry, index, total, filter, onPrev, onNext }: CardProps) {
   const reduce = useReducedMotion();
   const [back, setBack] = useState(false);
   const [editing, setEditing] = useState(false);
+  const drag = useDragControls();
 
   const onDragEnd = (_: unknown, info: PanInfo) => {
     const { offset, velocity } = info;
@@ -118,7 +122,14 @@ function VocabCard({ entry, index, total, onPrev, onNext }: CardProps) {
   };
 
   const toggleMastered = () => {
-    studyStore.record({ type: "VOCAB_MASTER", term_key: entry.term_key, mastered: !entry.mastered });
+    const mastered = !entry.mastered;
+    studyStore.record({ type: "VOCAB_MASTER", term_key: entry.term_key, mastered });
+    // 필터 밖으로 나가 카드가 사라지는 경우에만 어디로 갔는지 알리고 되돌릴 길을 준다.
+    if (filter === "all") return;
+    showToast(mastered ? `외운 단어로 옮겼어요: ${entry.text}` : `외우는 중으로 옮겼어요: ${entry.text}`, "success", 4000, {
+      label: "되돌리기",
+      run: () => studyStore.record({ type: "VOCAB_MASTER", term_key: entry.term_key, mastered: !mastered }),
+    });
   };
 
   return (
@@ -139,6 +150,9 @@ function VocabCard({ entry, index, total, onPrev, onNext }: CardProps) {
 
       <motion.div
         drag="x"
+        dragControls={drag}
+        dragListener={false}
+        onPointerDown={(e) => !startsInField(e) && drag.start(e)}
         dragSnapToOrigin
         dragElastic={0.18}
         dragMomentum={false}
@@ -158,7 +172,7 @@ function VocabCard({ entry, index, total, onPrev, onNext }: CardProps) {
         initial={reduce ? { opacity: 0 } : { opacity: 0, transform: "translateY(8px)" }}
         animate={{ opacity: 1, transform: "translateY(0px)" }}
         transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-        className={`mt-2 flex min-h-0 flex-1 touch-pan-y flex-col rounded-2xl ${back ? "" : "cursor-pointer select-none justify-center"}`}
+        className={`mt-2 flex min-h-0 flex-1 touch-pan-y flex-col rounded-2xl ${back ? "" : "cursor-pointer select-none"}`}
       >
         <AnimatePresence initial={false} mode="wait">
           {back ? (
@@ -168,7 +182,7 @@ function VocabCard({ entry, index, total, onPrev, onNext }: CardProps) {
               animate={{ opacity: 1, filter: "blur(0px)" }}
               exit={{ opacity: 0, filter: "blur(2px)" }}
               transition={{ duration: 0.16 }}
-              className="thin-scroll -mr-3 min-h-0 flex-1 overflow-y-auto overscroll-contain pr-3"
+              className="thin-scroll -mx-3 -mt-1 min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 pt-1"
             >
               <Back entry={entry} editing={editing} onEdit={setEditing} onFront={() => setBack(false)} />
             </motion.div>
@@ -179,7 +193,7 @@ function VocabCard({ entry, index, total, onPrev, onNext }: CardProps) {
               animate={{ opacity: 1, filter: "blur(0px)" }}
               exit={{ opacity: 0, filter: "blur(2px)" }}
               transition={{ duration: 0.16 }}
-              className="py-6"
+              className="my-auto py-6"
             >
               <p lang="en" translate="no" className="break-words text-balance text-[34px] font-bold leading-[1.2] tracking-tight text-ink">
                 {entry.text}

@@ -171,7 +171,8 @@ function applyVocab(snapshot: Snapshot, pending: readonly StudyEvent[]): VocabEn
       }
       case "VOCAB_EDIT": {
         const v = map.get(e.term_key);
-        if (v) map.set(e.term_key, { ...v, meaning: e.meaning ?? v.meaning, note: e.note, source: "MANUAL", status: e.meaning ? "READY" : v.status });
+        // 서버와 같은 규칙: 뜻을 고쳤을 때만 직접 입력(MANUAL)이 된다. 메모만 고치면 출처는 그대로다.
+        if (v) map.set(e.term_key, { ...v, meaning: e.meaning ?? v.meaning, note: e.note, source: e.meaning ? "MANUAL" : v.source, status: e.meaning ? "READY" : v.status });
         break;
       }
     }

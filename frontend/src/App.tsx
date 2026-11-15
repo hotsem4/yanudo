@@ -166,6 +166,9 @@ export function App() {
         onOpenVocab={() => {
           setSheet(null);
           setVocabFilter("all");
+          // 방금 이 문장에서 담은 단어(최근 먼저)를 바로 보여 준다. 없으면 가장 최근에 담은 단어.
+          const recent = vocabAll?.find((v) => v.sentence?.id === wordsFor?.id) ?? vocabAll?.[0];
+          setVocabKey(recent?.term_key ?? null);
           showVocab(true);
         }}
       />

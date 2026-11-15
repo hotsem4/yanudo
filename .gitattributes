@@ -1,0 +1,3 @@
+# Windows cmd 는 LF 줄바꿈 배치 파일을 잘못 읽는다(한글 주석·goto 가 깨진다).
+*.bat text eol=crlf
+*.cmd text eol=crlf

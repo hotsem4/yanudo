@@ -49,7 +49,7 @@ if errorlevel 8 goto :fail
 echo.
 echo [3/4] 백엔드 jar 빌드
 pushd backend
-call gradlew.bat bootJar --no-daemon -q || goto :fail
+call .\gradlew.bat bootJar --no-daemon -q || goto :fail
 popd
 
 if /i "%~1"=="norun" (

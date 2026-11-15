@@ -18,6 +18,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.MethodOrderer;
@@ -321,6 +323,45 @@ class VocabIntegrationTest {
         }
     }
 
+    @Test
+    @Order(12)
+    void resentOldEventsDoNotUndoLaterOnes() throws Exception {
+        long t = CLOCK.millis();
+        postEvents(array(add("x1", "resurrect", null, t), event("x2", "VOCAB_REMOVE", t + 1).put("term_key", "resurrect")));
+        assertThat(entryOrNull("resurrect")).isNull();
+        // 응답이 유실돼 옛 담기가 다시 와도 뺀 표현이 되살아나지 않는다.
+        JsonNode response = postEvents(array(add("x1", "resurrect", null, t)));
+        assertThat(texts(response.path("accepted"))).containsExactly("x1");
+        assertThat(entryOrNull("resurrect")).isNull();
+    }
+
+    @Test
+    @Order(13)
+    void importFinishingDuringGenerationWins() throws Exception {
+        GENERATOR.gate = new CountDownLatch(1);
+        CLOCK.set(CLOCK.millis() + 60_000);
+        postEvents(array(add("x3", "latchword", null, CLOCK.millis())));
+        assertThat(GENERATOR.entered.await(5, TimeUnit.SECONDS)).isTrue();
+
+        // 생성이 도는 사이 같은 표현이 완성된 콘텐츠로 들어온다.
+        String lesson = """
+                {"lessons":[{"day":6,"title":"t","sentences":[{"speaker":"A","en_text":"I like latchword a lot.",
+                 "ko_word_order":"나는 좋아해 / 래치워드를 / 많이","ko_natural":"래치워드 정말 좋아.",
+                 "terms":[{"text":"latchword","meaning":"콘텐츠 뜻","nuance":"콘텐츠 느낌",
+                   "examples":[{"en":"One latchword.","ko":"하나"},{"en":"Two latchword.","ko":"둘"},
+                               {"en":"Three latchword.","ko":"셋"}]}]}]}]}""";
+        postRaw("/api/v1/admin/lessons/import", lesson);
+        GENERATOR.gate.countDown();
+
+        JsonNode entry = await("latchword", "READY");
+        Thread.sleep(100);
+        entry = entry("latchword");
+        assertThat(entry.path("source").asText()).isEqualTo("CONTENT");
+        assertThat(entry.path("meaning").asText()).isEqualTo("콘텐츠 뜻");
+        assertThat(entry.path("examples").get(0).path("en").asText()).isEqualTo("One latchword.");
+        GENERATOR.gate = null;
+    }
+
     // ── 도우미 ────────────────────────────────────────────────
 
     private JsonNode await(String termKey, String status) throws Exception {
@@ -450,7 +491,10 @@ class VocabIntegrationTest {
     static final class FakeGenerator implements TermGenerator {
 
         final Queue<Request> requests = new ConcurrentLinkedQueue<>();
+        final CountDownLatch entered = new CountDownLatch(1);
         volatile boolean loginExpired;
+        /** 있으면 풀릴 때까지 생성을 붙잡아 둔다. */
+        volatile CountDownLatch gate;
         private volatile int running;
 
         @Override
@@ -458,6 +502,15 @@ class VocabIntegrationTest {
             running++;
             try {
                 requests.add(request);
+                CountDownLatch hold = gate;
+                if (hold != null) {
+                    entered.countDown();
+                    try {
+                        hold.await(5, TimeUnit.SECONDS);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
                 if (loginExpired) {
                     throw new GenerationException("OAuth session expired", ClaudeCliGenerator.LOGIN_HINT);
                 }

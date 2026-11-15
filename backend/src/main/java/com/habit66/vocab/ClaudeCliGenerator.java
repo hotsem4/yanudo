@@ -59,7 +59,7 @@ public class ClaudeCliGenerator implements TermGenerator {
 
     /** @param command 공백으로 나눈 실행 명령(기본 {@code claude}) */
     public ClaudeCliGenerator(String command, String model, int timeoutSeconds) {
-        this.command = Arrays.asList(command.trim().split("\\s+"));
+        this.command = splitCommand(command);
         this.model = model;
         this.timeoutSeconds = timeoutSeconds;
     }
@@ -112,6 +112,22 @@ public class ClaudeCliGenerator implements TermGenerator {
             delete(stderr);
             deleteTree(workDir);
         }
+    }
+
+    /** 설정값 전체가 실제 파일이면(예: C:\Program Files\...\claude.exe) 공백으로 나누지 않는다. */
+    static List<String> splitCommand(String command) {
+        String trimmed = command.trim();
+        String unquoted = trimmed.length() > 1 && trimmed.startsWith("\"") && trimmed.endsWith("\"")
+                ? trimmed.substring(1, trimmed.length() - 1)
+                : trimmed;
+        try {
+            if (Files.isRegularFile(Path.of(unquoted))) {
+                return List.of(unquoted);
+            }
+        } catch (RuntimeException e) {
+            // 경로로 읽을 수 없는 값이면 명령과 인자로 본다.
+        }
+        return Arrays.asList(trimmed.split("\\s+"));
     }
 
     /** 표준 출력의 결과 JSON 을 읽는다. 패키지 안 테스트가 직접 부른다. */

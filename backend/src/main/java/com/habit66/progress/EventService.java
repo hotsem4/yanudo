@@ -164,6 +164,9 @@ public class EventService {
 
     /** 단어장 이벤트. 없는 문장·담기지 않은 표현을 가리켜도 거절하지 않는다(그 부분만 무시한다). */
     private boolean applyVocab(ClientEvent event, long at, long receivedAt) {
+        if (!vocab.claim(event.id(), receivedAt)) {
+            return true;
+        }
         if (event instanceof ClientEvent.VocabAdd add) {
             vocab.add(add.text(), add.sentenceId(), add.meaning(), add.note(), at, receivedAt);
         } else if (event instanceof ClientEvent.VocabRemove remove) {

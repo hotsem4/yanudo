@@ -84,6 +84,14 @@ public class VocabService {
     // ── 쓰기 (EventService 의 트랜잭션·쓰기 잠금 안에서 불린다) ─────────
 
     /**
+     * 이 이벤트 id 를 처음 받았으면 기록하고 true. 이미 처리한 id 면 false(적용하지 않는다).
+     * 담기·빼기는 순서에 따라 결과가 달라서, 응답이 유실돼 옛 이벤트가 다시 와도 뒤의 결과를 되돌리지 않게 한다.
+     */
+    public boolean claim(String eventId, long now) {
+        return jdbc.update("INSERT OR IGNORE INTO vocab_event (id, applied_at) VALUES (?, ?)", eventId, now) > 0;
+    }
+
+    /**
      * 담는다. 이미 담겨 있으면 아무것도 하지 않는다. 뜻을 직접 주면 그 뜻으로 저장하고 생성하지 않는다.
      *
      * @param sentenceId 담을 때 보고 있던 문장. 현재 콘텐츠에 없으면 연결하지 않는다

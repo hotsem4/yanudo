@@ -98,6 +98,15 @@ class ClaudeCliGeneratorTest {
                 "\"-p\"", "\"\"");
     }
 
+    @Test
+    void commandPathWithSpacesStaysWhole() throws Exception {
+        Path dir = Files.createDirectories(temp.resolve("Program Files"));
+        Path exe = Files.writeString(dir.resolve("claude.exe"), "");
+        assertThat(ClaudeCliGenerator.splitCommand(exe.toString())).containsExactly(exe.toString());
+        assertThat(ClaudeCliGenerator.splitCommand("\"" + exe + "\"")).containsExactly(exe.toString());
+        assertThat(ClaudeCliGenerator.splitCommand("npx claude")).containsExactly("npx", "claude");
+    }
+
     /** 실제 구독 로그인으로 한 번 만들어 본다. HABIT66_LIVE_CLAUDE=1 일 때만 돈다. */
     @Test
     @EnabledIfEnvironmentVariable(named = "HABIT66_LIVE_CLAUDE", matches = "1")

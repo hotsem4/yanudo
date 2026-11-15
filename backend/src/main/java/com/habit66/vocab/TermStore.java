@@ -178,7 +178,10 @@ public class TermStore {
      * 시도한 시각"이고, 그 날짜로 하루 시도 횟수를 센다. 여기서 바꾸면 어제의 횟수가 오늘 것으로 읽힌다.
      */
     public void markPending(long id) {
-        writes.run(() -> jdbc.update("UPDATE term SET status = 'PENDING' WHERE id = ? AND source <> 'MANUAL'", id));
+        writes.run(() -> jdbc.update("""
+                UPDATE term SET status = 'PENDING'
+                WHERE id = ? AND source <> 'MANUAL' AND status IN ('PENDING', 'FAILED')
+                """, id));
     }
 
     /** 생성 시도 한 번을 센다. */
@@ -188,6 +191,7 @@ public class TermStore {
 
     /**
      * 생성 결과를 저장한다. 그 사이 사용자가 뜻을 직접 적었으면(MANUAL) 뜻은 그대로 두고 비어 있는 느낌·예문만 채운다.
+     * 생성 중에 임포트가 같은 표현을 완성된 콘텐츠로 바꿨으면(더 이상 PENDING 이 아니면) 아무것도 하지 않는다.
      */
     public void saveGenerated(long id, String meaning, String nuance, List<Example> examples, long now) {
         String json = toJson(examples);
@@ -198,16 +202,17 @@ public class TermStore {
                     examples_json = CASE WHEN source = 'MANUAL' THEN COALESCE(examples_json, ?) ELSE ? END,
                     source = CASE WHEN source = 'MANUAL' THEN source ELSE 'GENERATED' END,
                     status = 'READY', updated_at = ?
-                WHERE id = ?
+                WHERE id = ? AND (status = 'PENDING' OR source = 'MANUAL')
                 """, meaning, nuance, nuance, json, json, now, id));
     }
 
-    /** 생성 실패. 사용자가 이미 뜻을 적어 둔 표현(MANUAL)은 그대로 READY 로 둔다. */
-    public void markFailed(long id, long now) {
-        writes.run(() -> jdbc.update("""
-                UPDATE term SET status = CASE WHEN source = 'MANUAL' THEN 'READY' ELSE 'FAILED' END, updated_at = ?
-                WHERE id = ?
-                """, now, id));
+    /**
+     * 생성 실패. 아직 PENDING 인 표현만 FAILED 로 바꾼다(그사이 임포트·직접 입력으로 READY 가 됐으면 그대로 둔다).
+     * updated_at 은 바꾸지 않는다: 이 값은 "마지막으로 시도를 시작한 시각"이고, 롤오버 직전에 시작해 직후에 실패한
+     * 시도가 다음 날 횟수로 세어지면 안 된다.
+     */
+    public void markFailed(long id) {
+        writes.run(() -> jdbc.update("UPDATE term SET status = 'FAILED' WHERE id = ? AND status = 'PENDING'", id));
     }
 
     private long insert(String key, String text, String meaning, String nuance, String examplesJson, String source,

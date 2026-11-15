@@ -72,13 +72,15 @@ public class TermGenerationQueue {
             return;
         }
         long ticket = sequence.incrementAndGet();
+        // 실행이 끝날 때까지 큐에 있는 것으로 둔다(실행 중에 재시도가 같은 표현을 한 번 더 맡기지 않게).
         worker.execute(() -> {
-            queued.remove(termId);
             try {
                 process(termId, ticket);
             } catch (RuntimeException e) {
                 log.warn("Vocab generation crashed for term {}: {}", termId, e.toString());
-                terms.markFailed(termId, clock.now());
+                terms.markFailed(termId);
+            } finally {
+                queued.remove(termId);
             }
         });
     }
@@ -114,14 +116,14 @@ public class TermGenerationQueue {
         }
         long now = clock.now();
         if (!generator.enabled() || ticket <= haltedThrough) {
-            terms.markFailed(termId, now);
+            terms.markFailed(termId);
             return;
         }
         boolean sameDay = clock.dateOf(term.updatedAt()).equals(clock.dateOf(now));
         int attempts = sameDay ? term.attempts() : 0;
         if (attempts >= MAX_ATTEMPTS_PER_DAY) {
             log.info("Vocab generation for '{}' already tried {} times today", term.text(), attempts);
-            terms.markFailed(termId, now);
+            terms.markFailed(termId);
             return;
         }
         terms.countAttempt(termId, attempts + 1, now);
@@ -133,7 +135,7 @@ public class TermGenerationQueue {
                 tts.generate();
             }
         } catch (GenerationException e) {
-            terms.markFailed(termId, clock.now());
+            terms.markFailed(termId);
             log.warn("Vocab generation failed for '{}': {}", term.text(), e.getMessage());
             if (e.needsUserAction()) {
                 haltedThrough = sequence.get();

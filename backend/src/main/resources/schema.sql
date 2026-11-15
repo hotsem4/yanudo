@@ -134,3 +134,10 @@ CREATE TABLE IF NOT EXISTS vocab_entry (
     mastered_at  INTEGER,
     added_at     INTEGER NOT NULL
 );
+
+-- 쓰기 소유자: vocab.VocabService (처리한 VOCAB_* 이벤트 id. 같은 id 를 다시 받으면 무시한다)
+-- 다른 이벤트는 자연 키로 멱등하지만 담기와 빼기는 순서에 따라 결과가 달라 id 로 막는다
+CREATE TABLE IF NOT EXISTS vocab_event (
+    id          TEXT    PRIMARY KEY,
+    applied_at  INTEGER NOT NULL
+);

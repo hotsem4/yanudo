@@ -23,7 +23,7 @@
 - 알림을 누르면 열린 앱을 새로 고치지 않고 화면만 바꾼다.
 
 ## 2. 폰 연결 (2026-11-16 08:3x 완료)
-- Tailscale: 노트북·폰(z-fold8) 같은 tailnet, Serve(HTTPS) 활성화, `tailscale serve --bg 8080` → `https://<pc>.<tailnet>.ts.net/` 가 `http://127.0.0.1:8080` 으로 프록시. 주소는 `tailscale serve status`(`C:\Program Files\Tailscale	ailscale.exe`).
+- Tailscale: 노트북·폰(z-fold8) 같은 tailnet, Serve(HTTPS) 활성화, `tailscale serve --bg 8080` → `https://<pc>.<tailnet>.ts.net/` 가 `http://127.0.0.1:8080` 으로 프록시. 주소는 `tailscale serve status`(`C:\Program Files\Tailscale\tailscale.exe`).
 - 확인: HTTPS 로 화면 200, 대시보드(Day 2), `check-login` → `OK`(장기 토큰), tailnet IP 로 8080 직접 접속은 거부(의도).
 - 서버는 터미널 탭에서 `run.bat` 으로 실행 중. serve 설정은 Tailscale 에 남아 재부팅 뒤에도 유지되지만, 서버는 `run.bat` 을 다시 켜야 한다.
 - 남은 사용자 단계: 폰 Chrome 에서 주소 열기 → 홈 화면에 추가(앱 설치) → 마이크 허용(모닝 락), 설정 시트에서 22시 알림 켜기.

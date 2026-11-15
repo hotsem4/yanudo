@@ -454,7 +454,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--base-url",
-        default=os.environ.get("HABIT66_BASE_URL") or "http://localhost:8080",
+        default=os.environ.get("HABIT66_BASE_URL") or "http://127.0.0.1:8080",
         help="서버 주소 (환경 변수: HABIT66_BASE_URL)",
     )
     parser.add_argument(

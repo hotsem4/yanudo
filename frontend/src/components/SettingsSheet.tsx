@@ -138,6 +138,10 @@ function RecordSection({ study }: { study: StudyState }) {
         </button>
       )}
       {study.sync.lastError && <p className="mt-2 text-[12.5px] text-muted">마지막 동기화 오류: {study.sync.lastError}</p>}
+      {study.sync.held > 0 && (
+        <p className="mt-2 text-[12.5px] text-muted">서버가 받지 않은 기록 {study.sync.held}건을 기기에 따로 보관했어요.</p>
+      )}
+      {study.sync.saveFailed && <p className="mt-2 text-[12.5px] text-muted">기기 저장 공간이 부족해 기록을 저장하지 못했어요.</p>}
     </section>
   );
 }

@@ -14,16 +14,13 @@ const SHELL_URLS = ["/", "/index.html", "/manifest.json", "/icons/icon.svg", "/i
 // 앱 셸 + 그 index.html 이 참조하는 해시 JS/CSS 를 함께 받아 둔다.
 // SW 는 첫 로드가 끝난 뒤 등록되므로, 이렇게 하지 않으면 첫 설치 직후 오프라인 부팅 때 JS/CSS 가 없다.
 async function precacheShell() {
-  const shell = await caches.open(SHELL_CACHE);
-  const statics = await caches.open(STATIC_CACHE);
   const response = await fetch("/index.html", { cache: "no-store" });
   if (!response.ok) throw new Error("index.html " + response.status);
-  const html = await response.clone().text();
-  const assets = Array.from(new Set(html.match(/\/assets\/[^"'\s)]+/g) || []));
-  await shell.put("/index.html", response.clone());
-  await shell.put("/", response);
+  const page = { status: response.status, statusText: response.statusText, headers: response.headers, body: await response.text() };
+  const shell = await caches.open(SHELL_CACHE);
   await shell.addAll(SHELL_URLS.filter((u) => u !== "/" && u !== "/index.html"));
-  await statics.addAll(assets);
+  // 자산을 다 받은 뒤에 HTML 을 바꾼다(설치가 중간에 실패해도 지금 쓰는 앱의 HTML 은 그대로).
+  if (!(await updateShell(page))) throw new Error("shell assets incomplete");
 }
 
 self.addEventListener("install", (event) => {
@@ -42,47 +39,78 @@ self.addEventListener("activate", (event) => {
 
 const NAV_TIMEOUT_MS = 3500;
 
-// 서버만 꺼진 경우(tailscale serve 가 502) 나 PC 가 꺼져 응답이 없는 경우에도 캐시된 앱으로 오프라인 학습을 할 수 있게 한다.
-async function networkFirstShell(event) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), NAV_TIMEOUT_MS);
-  try {
-    const response = await fetch(event.request, { signal: controller.signal });
-    if (response.status >= 500) throw new Error("server " + response.status);
-    if (response.ok) event.waitUntil(updateShell(response.clone()).catch(() => undefined));
-    return response;
-  } catch {
-    const cached = (await caches.match("/index.html")) || (await caches.match("/"));
-    return cached || new Response("오프라인입니다. 연결되면 다시 열어 주세요.", {
-      status: 503,
-      headers: { "Content-Type": "text/plain; charset=utf-8" },
-    });
-  } finally {
-    clearTimeout(timer);
-  }
+// 네비게이션 응답을 본문까지 받는다. 리다이렉트는 그대로 넘긴다(본문을 다시 만들면 리다이렉트가 깨진다).
+async function fetchPage(request) {
+  const response = await fetch(request);
+  if (response.type === "opaqueredirect") return { raw: response };
+  return { status: response.status, statusText: response.statusText, headers: response.headers, body: await response.text() };
 }
 
-// 새 index.html 은 그것이 참조하는 해시 JS/CSS 를 모두 받은 뒤에만 캐시한다. 먼저 바꾸면 자산을 받기 전에 끊겼을 때
-// 새 HTML + 옛 JS 만 남아 오프라인으로 부팅하지 못한다. 바꾼 뒤에는 새 HTML 이 참조하지 않는 옛 자산을 지운다.
-async function updateShell(response) {
-  const html = await response.clone().text();
-  const assets = Array.from(new Set(html.match(/\/assets\/[^"'\s)]+/g) || []));
+// 본문은 이미 풀어 읽었으므로 원래 헤더(content-encoding·content-length)를 붙이지 않는다. 형식만 남긴다.
+function pageResponse(page) {
+  if (page.raw) return page.raw;
+  const headers = { "Content-Type": page.headers.get("content-type") || "text/html; charset=utf-8" };
+  return new Response(page.body, { status: page.status, statusText: page.statusText, headers });
+}
+
+async function cachedShell() {
+  const cached = (await caches.match("/index.html")) || (await caches.match("/"));
+  return cached || new Response("오프라인입니다. 연결되면 다시 열어 주세요.", {
+    status: 503,
+    headers: { "Content-Type": "text/plain; charset=utf-8" },
+  });
+}
+
+// 서버만 꺼진 경우(tailscale serve 가 502)나 PC 가 꺼져 응답이 없는 경우에도 캐시된 앱으로 오프라인 학습을 할 수 있게 한다.
+// 본문까지 NAV_TIMEOUT_MS 안에 오지 않으면 캐시된 셸을 준다. 늦게 온 응답으로도 셸 갱신은 계속한다(event.waitUntil).
+function navigate(event) {
+  const loaded = fetchPage(event.request);
+  event.waitUntil(loaded.then((page) => queueShellUpdate(page)).catch(() => undefined));
+  event.respondWith(
+    (async () => {
+      try {
+        const page = await Promise.race([loaded, new Promise((resolve) => setTimeout(() => resolve(null), NAV_TIMEOUT_MS))]);
+        if (page && (page.raw || page.status < 500)) return pageResponse(page);
+      } catch {
+        /* 연결 실패 */
+      }
+      return cachedShell();
+    })(),
+  );
+}
+
+// 셸 갱신은 한 번에 하나씩(겹치면 앞 갱신의 옛 자산 정리가 뒤 갱신이 받은 새 자산을 지울 수 있다).
+let shellUpdates = Promise.resolve();
+function queueShellUpdate(page) {
+  shellUpdates = shellUpdates.then(() => updateShell(page)).catch(() => false);
+  return shellUpdates;
+}
+
+// 앱 HTML 이고 참조 자산을 모두 받았을 때만 index.html 을 바꾼다. 먼저 바꾸면 자산을 받기 전에 끊겼을 때 새 HTML + 옛 JS 만 남아
+// 오프라인으로 부팅하지 못한다. 바꾼 뒤에는 새 HTML 이 참조하지 않는 옛 자산을 지운다. 바꿨으면 true.
+async function updateShell(page) {
+  if (page.raw || page.status !== 200) return false;
+  if (!(page.headers.get("content-type") || "").includes("text/html")) return false;
+  const assets = Array.from(new Set(page.body.match(/\/assets\/[^"'\s)]+/g) || []));
+  if (assets.length === 0) return false;
   const statics = await caches.open(STATIC_CACHE);
   for (const asset of assets) {
     if (!(await statics.match(asset))) {
       const fresh = await fetch(asset, { cache: "no-store" });
-      if (!fresh.ok) return;
+      if (!fresh.ok) return false;
       await statics.put(asset, fresh);
     }
   }
   const shell = await caches.open(SHELL_CACHE);
-  await shell.put("/index.html", response.clone());
-  await shell.put("/", response);
+  const headers = { "Content-Type": page.headers.get("content-type") || "text/html; charset=utf-8" };
+  await shell.put("/index.html", new Response(page.body, { headers }));
+  await shell.put("/", new Response(page.body, { headers }));
   const keep = new Set(assets);
   for (const req of await statics.keys()) {
     const path = new URL(req.url).pathname;
     if (path.startsWith("/assets/") && !keep.has(path)) await statics.delete(req);
   }
+  return true;
 }
 
 async function cacheFirst(request, cacheName) {
@@ -110,7 +138,7 @@ self.addEventListener("fetch", (event) => {
     }
     if (url.pathname.startsWith("/api/")) return; // 네트워크만
     if (request.mode === "navigate") {
-      event.respondWith(networkFirstShell(event));
+      navigate(event);
       return;
     }
     if (url.pathname.startsWith("/assets/") || url.pathname.startsWith("/icons/")) {

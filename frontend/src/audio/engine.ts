@@ -55,6 +55,8 @@ type Outcome = "done" | "stale" | "blocked" | "failed";
 
 /** 재생할 클립을 이만큼 기다려도 안 오면(응답 없는 네트워크) 기기 음성으로 읽는다. 프리로드는 계속 받는다. */
 const CLIP_WAIT_MS = 4000;
+/** 소리를 내지 못한 문장이 이만큼 이어지면 멈추고 알린다. 하나는 건너뛰고 다음 문장으로 간다(화면을 안 보는 연속 재생이 끊기지 않게). */
+const MAX_SPEECH_FAILURES = 3;
 type Loaded = { kind: "speak"; itemId: number } | { kind: "silence"; ms: number } | null;
 
 export class AudioEngine {
@@ -73,6 +75,7 @@ export class AudioEngine {
   private heardReported = false;
   private loaded: Loaded = null;
   private source: "file" | "speech" | null = null;
+  private speechFailures = 0;
   private holdTotal: number | null = null;
   private expectPause = 0;
   private snap: EngineSnapshot;
@@ -250,9 +253,20 @@ export class AudioEngine {
       if (this.step === "speak") {
         const r = await this.speak(item, token, resuming);
         resuming = false;
-        if (r !== "done") return this.settle(r);
-        if (turn.heardAfter === "speak") this.reportHeard(item, q.session);
-        this.step = turn.holdMs > 0 ? "hold" : turn.gapMs > 0 ? "gap" : "advance";
+        if (r === "failed") {
+          // 들음으로 기록하지 않고 이 문장을 건너뛴다. 연속이면 멈춘다.
+          this.speechFailures += 1;
+          if (this.speechFailures >= MAX_SPEECH_FAILURES) {
+            this.speechFailures = 0;
+            return this.settle(r);
+          }
+          this.step = "advance";
+        } else {
+          if (r !== "done") return this.settle(r);
+          this.speechFailures = 0;
+          if (turn.heardAfter === "speak") this.reportHeard(item, q.session);
+          this.step = turn.holdMs > 0 ? "hold" : turn.gapMs > 0 ? "gap" : "advance";
+        }
       }
       if (this.step === "hold") {
         const r = await this.silence(turn.holdMs, "holding", token, resuming);
@@ -615,7 +629,7 @@ if (typeof window !== "undefined" && "speechSynthesis" in window) {
   speechSynthesis.addEventListener("voiceschanged", refreshVoices);
 }
 
-function voicesReady(timeoutMs = 1500): Promise<void> {
+function voicesReady(timeoutMs = 3000): Promise<void> {
   if (voices.length > 0) return Promise.resolve();
   return new Promise((resolve) => {
     const done = () => {
@@ -633,15 +647,15 @@ function voicesReady(timeoutMs = 1500): Promise<void> {
 const langOf = (v: SpeechSynthesisVoice) => v.lang.replace("_", "-").toLowerCase();
 
 /**
- * 영어 음성으로 읽을 발화. 기기에 영어 음성이 없으면 null(다른 언어 음성으로 영어를 읽지 않는다).
- * 목록을 끝내 받지 못하면 lang 만 정해 브라우저에 맡긴다.
+ * 영어 음성으로 읽을 발화. 기기에 영어 음성이 없거나 목록을 끝내 받지 못하면 null(음성을 고르지 않고 읽으면
+ * 기본 음성이 영어를 읽는다 — 2026-11-16 관찰된 증상).
  */
 async function englishUtterance(item: PlayItem, rate: number): Promise<SpeechSynthesisUtterance | null> {
   await voicesReady();
   const u = new SpeechSynthesisUtterance(item.en_text);
   u.lang = "en-US";
   u.rate = Math.max(0.5, rate * 0.95);
-  if (voices.length === 0) return u;
+  if (voices.length === 0) return null;
   const us = voices.filter((v) => langOf(v).startsWith("en-us"));
   const english = us.length > 0 ? us : voices.filter((v) => langOf(v).startsWith("en"));
   if (english.length === 0) return null;

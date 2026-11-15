@@ -138,7 +138,7 @@ app:
 관리자 토큰을 넣었다면 스크립트에도 `--admin-token` 또는 환경 변수 `APP_ADMIN_TOKEN`을 주세요. 시작일을 바꾸려면:
 
 ```bash
-curl -X PUT http://localhost:8080/api/v1/admin/settings/start-date -H "Content-Type: application/json" -d "{\"start_date\":\"2026-11-15\"}"
+curl -X PUT http://127.0.0.1:8080/api/v1/admin/settings/start-date -H "Content-Type: application/json" -d "{\"start_date\":\"2026-11-15\"}"
 ```
 
 22시 리마인더는 서버에 도착한 기록 기준으로 판단합니다. PC가 22시 전후에 꺼져 있으면 알림이 가지 않습니다(서버가 22시~03시 사이에 켜지면 한 번 보충합니다).

@@ -3,6 +3,10 @@
 
 const CACHE_NAME = "audio-v1";
 const CONCURRENCY = 3;
+/** 클립 한 개를 받는 상한. 넘으면 끊어서 loading 에 영원히 남지 않게 한다(다음 요청이 새로 시도한다). */
+const LOAD_TIMEOUT_MS = 20_000;
+/** 받지 못한 클립을 프리로드가 다시 요청하기까지. 큐가 다시 실릴 때마다(기록 1건마다 여러 번) 재요청하지 않게. */
+const RETRY_AFTER_MS = 60_000;
 
 export interface PreloadStatus {
   ready: number;
@@ -12,6 +16,7 @@ export interface PreloadStatus {
 export class ClipStore {
   private blobs = new Map<string, string>();
   private loading = new Map<string, Promise<string>>();
+  private failedAt = new Map<string, number>();
   private wanted: string[] = [];
   private listeners = new Set<() => void>();
   private status: PreloadStatus = { ready: 0, total: 0 };
@@ -33,7 +38,8 @@ export class ClipStore {
   prefetch(urls: readonly string[]): void {
     this.wanted = Array.from(new Set(urls));
     this.updateStatus();
-    const queue = this.wanted.filter((u) => !this.blobs.has(u));
+    const now = Date.now();
+    const queue = this.wanted.filter((u) => !this.blobs.has(u) && now - (this.failedAt.get(u) ?? 0) >= RETRY_AFTER_MS);
     let index = 0;
     const worker = async () => {
       while (index < queue.length) {
@@ -57,8 +63,13 @@ export class ClipStore {
     const task = this.load(url)
       .then((blobUrl) => {
         this.blobs.set(url, blobUrl);
+        this.failedAt.delete(url);
         this.updateStatus();
         return blobUrl;
+      })
+      .catch((err: unknown) => {
+        this.failedAt.set(url, Date.now());
+        throw err;
       })
       .finally(() => this.loading.delete(url));
     this.loading.set(url, task);
@@ -68,14 +79,21 @@ export class ClipStore {
   private async load(url: string): Promise<string> {
     const cache = await openCache();
     let response = cache ? await cache.match(url) : undefined;
-    if (!response) {
-      const fresh = await fetch(url);
-      if (!fresh.ok) throw new Error(`clip ${fresh.status}`);
-      if (cache) await cache.put(url, fresh.clone()).catch(() => undefined);
-      response = fresh;
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), LOAD_TIMEOUT_MS);
+    try {
+      if (!response) {
+        const fresh = await fetch(url, { signal: controller.signal });
+        if (!fresh.ok) throw new Error(`clip ${fresh.status}`);
+        const blob = await fresh.clone().blob();
+        if (cache) await cache.put(url, fresh).catch(() => undefined);
+        return URL.createObjectURL(blob);
+      }
+      const blob = await response.blob();
+      return URL.createObjectURL(blob);
+    } finally {
+      window.clearTimeout(timer);
     }
-    const blob = await response.blob();
-    return URL.createObjectURL(blob);
   }
 
   private updateStatus(): void {

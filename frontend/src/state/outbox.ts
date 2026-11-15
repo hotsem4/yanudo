@@ -3,6 +3,7 @@ import type { Dashboard, SessionData, StudyEvent, VocabEntry, VocabGenerator } f
 // localStorage 영속화. 접근이 막혀 있어도(사생활 모드 등) 앱은 메모리로 계속 돈다.
 const OUTBOX_KEY = "habit66.outbox.v1";
 const SNAPSHOT_KEY = "habit66.snapshot.v1";
+const HELD_KEY = "habit66.outbox.held.v1";
 
 export interface Snapshot {
   dashboard: Dashboard;
@@ -41,6 +42,15 @@ export const outbox = {
   /** 동기 저장. 화면 반영보다 먼저 부른다(docs/architecture.md "프론트 상태"). */
   save(events: StudyEvent[]): boolean {
     return writeJson(OUTBOX_KEY, events);
+  },
+  /** 서버가 계속 거절해 따로 둔 기록. 버리지 않고 남겨 둔다(나중에 원인을 고친 뒤 확인할 수 있게). */
+  heldCount(): number {
+    const list = readJson<StudyEvent[]>(HELD_KEY);
+    return Array.isArray(list) ? list.length : 0;
+  },
+  hold(event: StudyEvent): boolean {
+    const list = readJson<StudyEvent[]>(HELD_KEY);
+    return writeJson(HELD_KEY, [...(Array.isArray(list) ? list : []), event]);
   },
 };
 

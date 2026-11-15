@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.habit66.config.AppProperties;
@@ -178,7 +179,7 @@ public class TtsService {
                     extraPasses++;
                     long delay = pass.aborted() ? ABORT_DELAY_MS : PASS_DELAY_MS;
                     log.info("{} clips still missing, rescanning in {}s", pass.failures(), delay / 1000);
-                    Thread.sleep(delay);
+                    waitOrWake(delay);
                     scanRequested.set(true);
                 }
             }
@@ -195,6 +196,26 @@ public class TtsService {
     }
 
     private record Pass(int failures, boolean aborted) {
+    }
+
+    /** 기다리되, 그사이 새 생성 요청(임포트·단어 담기·수동 호출)이 오면 바로 다시 훑는다. */
+    private void waitOrWake(long ms) throws InterruptedException {
+        long until = System.currentTimeMillis() + ms;
+        while (!stopping && !scanRequested.get() && System.currentTimeMillis() < until) {
+            Thread.sleep(500);
+        }
+    }
+
+    /**
+     * 마지막 실행에서 클립을 만들지 못했으면(부팅 직후 네트워크가 몇 분 넘게 없던 경우 등) 10분마다 다시 시도한다.
+     * 모두 만들어졌으면(lastError 없음) 아무것도 하지 않는다.
+     */
+    @Scheduled(fixedDelayString = "PT10M", initialDelayString = "PT10M")
+    public void retryMissing() {
+        if (lastError != null && !running.get() && autoGenerate()) {
+            log.info("Retrying missing audio clips after earlier failures");
+            generate();
+        }
     }
 
     /** 없는 클립을 한 번 훑는다. */

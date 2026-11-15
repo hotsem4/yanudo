@@ -203,11 +203,15 @@ function useMorningLock(view: DayView | null, open: (v: boolean) => void): void 
   // 아침에 열거나 밤새 백그라운드에 있던 앱으로 돌아오면 먼저 전날 캐시(논리 날짜가 지나 stale)로 그리므로,
   // 그때 판단하면 락이 뜨지 않는다. 새 대시보드를 받은 뒤에 판단한다.
   const [asking, setAsking] = useState(true);
+  // 자동 실행으로 연 날(서버가 준 논리 날짜). 그날 안의 화면 전환에는 면제를 유지하고, 다음 날 돌아오면 다시 판단한다.
+  const autoplayDay = useRef<string | null | undefined>(undefined);
 
   useEffect(() => {
     if (!asking || !view || view.stale) return;
     setAsking(false);
-    if (shouldShowMorningLock(view, serverNow(), playback.takeLockExemption())) open(true);
+    if (autoplayDay.current === undefined) autoplayDay.current = playback.launchedByAutoplay() ? view.dashboard.today : null;
+    const exempt = autoplayDay.current === view.dashboard.today;
+    if (shouldShowMorningLock(view, serverNow(), exempt)) open(true);
   }, [asking, view, open]);
 
   useEffect(() => {

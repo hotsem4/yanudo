@@ -1,5 +1,5 @@
 import { api, ApiError, sendEventsKeepalive, serverNow } from "../api/client";
-import type { Dashboard, NewEvent, SessionData, StudyEvent, VocabEntry, VocabGenerator } from "../api/types";
+import type { Dashboard, EventsResponse, NewEvent, SessionData, StudyEvent, VocabEntry, VocabGenerator } from "../api/types";
 import { applyPending, type DayView } from "./overlay";
 import { newEventId, outbox, snapshotCache, type Snapshot } from "./outbox";
 
@@ -15,6 +15,10 @@ export interface SyncState {
   online: boolean;
   syncing: boolean;
   lastError: string | null;
+  /** 서버가 계속 거절해 따로 보관한 기록 수. */
+  held: number;
+  /** 기기 저장소에 아웃박스를 저장하지 못했다(공간 부족 등). */
+  saveFailed: boolean;
 }
 
 export type StudyState =
@@ -23,6 +27,10 @@ export type StudyState =
   | { kind: "ready"; view: DayView; sync: SyncState };
 
 const BATCH = 500;
+/** 서버가 묶음을 이만큼 연속으로 거절하면 하나씩 보내 문제 기록을 가려낸다. */
+const SINGLE_AFTER = 3;
+/** 하나씩 보내서도 이만큼(누적) 거절되면 그 기록을 따로 보관하고 다음 기록을 보낸다. */
+const HOLD_AFTER = 6;
 const DEBOUNCE_MS = 1500;
 
 /**
@@ -37,7 +45,10 @@ export class StudyStore {
   private sent = new Set<string>();
   private state: StudyState = { kind: "booting" };
   private listeners = new Set<() => void>();
-  private sync: SyncState = { pending: 0, online: true, syncing: false, lastError: null };
+  private sync: SyncState = { pending: 0, online: true, syncing: false, lastError: null, held: 0, saveFailed: false };
+  private serverRejections = 0;
+  /** 다른 창에 "이 기록은 보냈다"를 알린다. 모르면 그 창이 메모리에 든 기록을 다시 저장해 되살린다. */
+  private channel: BroadcastChannel | null = null;
   private seq = 0;
   private appliedSeq = 0;
   private inFlight: Promise<void> | null = null;
@@ -60,6 +71,23 @@ export class StudyStore {
     this.pending = outbox.load();
     this.snapshot = snapshotCache.load();
     this.sync.online = navigator.onLine;
+    this.sync.held = outbox.heldCount();
+    if ("BroadcastChannel" in window) {
+      this.channel = new BroadcastChannel("habit66-outbox");
+      this.channel.onmessage = (e: MessageEvent) => {
+        const ids = (e.data as { sent?: unknown } | null)?.sent;
+        if (!Array.isArray(ids)) return;
+        ids.forEach((id) => {
+          if (typeof id === "string") this.sent.add(id);
+        });
+        const before = this.pending.length;
+        this.pending = this.pending.filter((p) => !this.sent.has(p.id));
+        if (this.pending.length !== before) {
+          this.sync.saveFailed = !outbox.save(this.pending);
+          this.publish();
+        }
+      };
+    }
     this.publish();
 
     window.addEventListener("online", () => {
@@ -170,8 +198,15 @@ export class StudyStore {
 
   private async flush(): Promise<void> {
     const mine = ++this.seq;
-    const batch = this.pending.slice(0, BATCH);
-    const res = await api.events(batch);
+    const batch = this.pending.slice(0, this.serverRejections >= SINGLE_AFTER ? 1 : BATCH);
+    let res: EventsResponse;
+    try {
+      res = await api.events(batch);
+      this.serverRejections = 0;
+    } catch (err) {
+      if (err instanceof ApiError) this.onBatchRejected(batch);
+      throw err;
+    }
     const done = new Set([...res.accepted, ...res.rejected.map((r) => r.id)]);
     // 암기 상태는 세션 응답에만 있으므로, MARK 를 보냈으면 세션을 다시 받아 오버레이가 빠진 뒤에도 값이 유지되게 한다.
     const sentMark = batch.some((e) => e.type === "MARK" && done.has(e.id));
@@ -188,14 +223,16 @@ export class StudyStore {
     if (sessions === null) throw new Error("학습 목록을 받지 못했어요.");
     // 서버가 받은 단어장 이벤트라도 새 단어장을 못 받았으면 아웃박스에 남긴다. 지우면 옛 단어장이 그대로 보여
     // 뺀 단어가 되살아난 것처럼 보인다. 다시 보내도 서버가 처리한 id 는 무시하므로(vocab_event) 안전하다.
-    const keep = (p: StudyEvent) => !done.has(p.id) || (!vocab.ok && p.type.startsWith("VOCAB_"));
+    // 확인받은 것은 보낸 그 객체뿐이다. 전송 중 같은 id 로 새로 기록된 것(더 긴 FOCUS 등)은 남긴다.
+    const sentNow = new Set<StudyEvent>(batch);
+    const keep = (p: StudyEvent) => !(done.has(p.id) && sentNow.has(p)) || (!vocab.ok && p.type.startsWith("VOCAB_"));
     // 아웃박스 정리와 스냅샷 교체를 한 동기 구간에서 함께 한다. 전송 중 새로 쌓인 이벤트는 남는다.
     this.pending = this.pending.filter(keep);
-    done.forEach((id) => {
-      if (!this.pending.some((p) => p.id === id)) this.sent.add(id);
-    });
+    const cleared = batch.filter((p) => done.has(p.id) && !this.pending.includes(p)).map((p) => p.id);
+    cleared.forEach((id) => this.sent.add(id));
     if (this.sent.size > 5000) this.sent = new Set(Array.from(this.sent).slice(-2000));
     this.persist();
+    if (cleared.length > 0) this.channel?.postMessage({ sent: cleared });
     this.apply(mine, res.dashboard, sessions, vocab);
     // 단어장을 못 받았으면 실패로 끝내 백오프 뒤에 다시 시도한다(바로 되풀이하지 않는다).
     if (!vocab.ok) throw new Error("단어장을 받지 못했어요.");
@@ -234,7 +271,23 @@ export class StudyStore {
   /** 아웃박스를 저장한다. 다른 창이 그사이 쌓은 미전송 기록을 먼저 합쳐서 덮어쓰지 않게 한다. */
   private persist(): void {
     this.mergeOthers();
-    outbox.save(this.pending);
+    this.sync.saveFailed = !outbox.save(this.pending);
+  }
+
+  /**
+   * 서버가 요청 전체를 거절했다(형식·서버 오류). 같은 묶음을 끝없이 다시 보내면 뒤의 기록이 모두 막히므로,
+   * 연속으로 거절되면 하나씩 보내고, 하나만 보내도 계속 거절되는 기록은 따로 보관한 뒤 다음 기록으로 넘어간다.
+   */
+  private onBatchRejected(batch: StudyEvent[]): void {
+    this.serverRejections += 1;
+    if (batch.length !== 1 || this.serverRejections < HOLD_AFTER) return;
+    const [bad] = batch;
+    if (!outbox.hold(bad)) return; // 보관하지 못하면 버리지 않고 계속 시도한다
+    this.pending = this.pending.filter((p) => p !== bad);
+    this.sent.add(bad.id);
+    this.persist();
+    this.sync.held += 1;
+    this.serverRejections = SINGLE_AFTER;
   }
 
   /**
@@ -242,11 +295,22 @@ export class StudyStore {
    * 모든 이벤트는 서버에서 멱등이라, 두 창이 같은 이벤트를 각각 보내도 한 번만 반영된다. 합친 것이 있으면 true.
    */
   private mergeOthers(): boolean {
-    const mine = new Set(this.pending.map((p) => p.id));
-    const others = outbox.load().filter((e) => !mine.has(e.id) && !this.sent.has(e.id));
-    if (others.length === 0) return false;
-    this.pending = [...this.pending, ...others].sort((a, b) => a.occurred_at - b.occurred_at);
-    return true;
+    const mine = new Map(this.pending.map((p) => [p.id, p]));
+    let changed = false;
+    for (const e of outbox.load()) {
+      if (this.sent.has(e.id)) continue;
+      const own = mine.get(e.id);
+      if (!own) {
+        this.pending.push(e);
+        changed = true;
+      } else if (e.type === "FOCUS" && own.type === "FOCUS" && e.seconds > own.seconds) {
+        // 같은 집중의 더 긴 버전이 저장소에 있으면 그것을 남긴다(짧은 것으로 덮어쓰지 않게).
+        this.pending = this.pending.map((p) => (p === own ? e : p));
+        changed = true;
+      }
+    }
+    if (changed) this.pending.sort((a, b) => a.occurred_at - b.occurred_at);
+    return changed;
   }
 
   /**

@@ -1,10 +1,13 @@
 package com.habit66.vocab;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.slf4j.Logger;
@@ -52,9 +55,12 @@ public class TermGenerationQueue {
         t.setDaemon(true);
         return t;
     });
-    private final Set<Long> queued = ConcurrentHashMap.newKeySet();
-    /** 대기·실행 중에 다시 맡겨진 표현. 지금 작업이 끝나면 한 번 더 시도한다. */
-    private final Set<Long> again = ConcurrentHashMap.newKeySet();
+    /** queued·again 의 검사와 갱신, 작업 종료 인계를 한 번에 한다(따로 하면 다시 맡긴 표시가 주인 없이 남는다). */
+    private final Object handoff = new Object();
+    private final Set<Long> queued = new HashSet<>();
+    /** 대기·실행 중에 다시 맡겨진 표현과 그 요청 번호. 지금 작업이 끝나면 한 번 더 시도한다. */
+    private final Map<Long, Long> again = new HashMap<>();
+    private volatile boolean stopped;
     private final AtomicLong sequence = new AtomicLong();
     /** 이 번호 이하로 들어온 작업은 시도하지 않는다(사용자 조치가 필요한 실패 이후). */
     private volatile long haltedThrough = -1;
@@ -72,32 +78,54 @@ public class TermGenerationQueue {
 
     /** 생성을 맡긴다. 이미 큐에 있으면 무시한다. */
     public void enqueue(long termId) {
-        if (!queued.add(termId)) {
-            // 이미 대기·실행 중이다. 버리면 로그인 복구 직후의 재시도처럼 의도한 재시도가 사라지므로,
-            // 지금 작업이 끝난 뒤(새 번호로) 한 번 더 시도한다.
-            again.add(termId);
-            return;
-        }
-        long ticket = sequence.incrementAndGet();
-        worker.execute(() -> {
-            try {
-                process(termId, ticket);
-            } catch (RuntimeException e) {
-                log.warn("Vocab generation crashed for term {}: {}", termId, e.toString());
-                terms.markFailed(termId);
-            } finally {
-                queued.remove(termId);
-                if (again.remove(termId)) {
-                    terms.markPending(termId); // 이미 만들어졌으면(READY) 바뀌지 않고, 다음 실행이 바로 끝난다
-                    enqueue(termId);
-                }
+        long ticket;
+        synchronized (handoff) {
+            if (stopped) {
+                return;
             }
-        });
+            if (queued.contains(termId)) {
+                // 이미 대기·실행 중이다. 버리면 로그인 복구 직후의 재시도처럼 의도한 재시도가 사라지므로,
+                // 지금 작업이 끝난 뒤 한 번 더 시도한다. 요청 번호는 중단 정책(haltedThrough)과 비교하려고 둔다.
+                again.put(termId, sequence.incrementAndGet());
+                return;
+            }
+            queued.add(termId);
+            ticket = sequence.incrementAndGet();
+        }
+        try {
+            worker.execute(() -> run(termId, ticket));
+        } catch (RejectedExecutionException e) {
+            synchronized (handoff) {
+                queued.remove(termId); // 서버 종료 중
+            }
+        }
+    }
+
+    private void run(long termId, long ticket) {
+        try {
+            process(termId, ticket);
+        } catch (RuntimeException e) {
+            log.warn("Vocab generation crashed for term {}: {}", termId, e.toString());
+            terms.markFailed(termId);
+        } finally {
+            Long requested;
+            synchronized (handoff) {
+                queued.remove(termId);
+                requested = again.remove(termId);
+            }
+            // 로그인 실패로 멈추기 전에 들어온 요청(번호가 haltedThrough 이하)은 다시 하지 않는다. 그 뒤의 요청만 다시 맡긴다.
+            if (requested != null && requested > haltedThrough && !stopped) {
+                terms.markPending(termId); // 이미 만들어졌으면(READY) 바뀌지 않고, 다음 실행이 바로 끝난다
+                enqueue(termId);
+            }
+        }
     }
 
     /** 맡은 작업이 모두 끝났는가(결과 저장까지). 테스트가 완료를 기다릴 때 쓴다. */
     boolean idle() {
-        return queued.isEmpty() && again.isEmpty();
+        synchronized (handoff) {
+            return queued.isEmpty() && again.isEmpty();
+        }
     }
 
     /** 담겨 있고 아직 만들어지지 않은 표현을 모두 다시 맡긴다. 맡긴 수를 돌려준다. */
@@ -127,6 +155,7 @@ public class TermGenerationQueue {
 
     @PreDestroy
     void stop() {
+        stopped = true;
         worker.shutdownNow();
     }
 
@@ -159,6 +188,8 @@ public class TermGenerationQueue {
         } catch (GenerationException e) {
             log.warn("Vocab generation failed for '{}': {}", term.text(), e.getMessage());
             if (e.needsUserAction()) {
+                // 로그인 같은 사용자 조치 실패는 하루 시도 횟수에서 뺀다. 세면 로그인을 고친 뒤에도 그날은 "이미 3번"으로 FAILED 가 된다.
+                terms.countAttempt(termId, attempts, clock.now());
                 haltedThrough = sequence.get();
                 log.warn("Vocab generation paused until the next add or retry: {}", e.hint());
                 // 알림(몇 초 걸릴 수 있다)을 FAILED 보다 먼저 보낸다. FAILED 가 보인 뒤 곧바로 온 재시도가

@@ -185,13 +185,15 @@ public class GeneratorHealth {
     /** 같은 종류의 알림은 논리 날짜 하루에 한 번. 아무 채널로도 못 보냈으면 기록하지 않아 다음 기회에 다시 보낸다. */
     private void alert(State kind, String title, String body) {
         synchronized (alertLock) {
-            String stamp = kind.name() + "|" + clock.today();
-            if (settings.get(ALERT_KEY).map(stamp::equals).orElse(false)) {
+            // 종류마다 따로 기록한다. 한 키에 마지막 종류만 남기면 같은 날 끊김 → 만료 예정 → 끊김 때 끊김 알림이 두 번 간다.
+            String key = ALERT_KEY + "." + kind.name();
+            String today = clock.today().toString();
+            if (settings.get(key).map(today::equals).orElse(false)) {
                 return;
             }
             Delivery delivery = notifier.deliver(new ReminderMessage(title, body, URL, TAG));
             if (delivery.pushSent() + delivery.webhooksSent() > 0) {
-                settings.put(ALERT_KEY, stamp);
+                settings.put(key, today);
                 log.info("Sent vocab login alert ({}): push={}, webhooks={}", kind, delivery.pushSent(),
                         delivery.webhooksSent());
             } else {

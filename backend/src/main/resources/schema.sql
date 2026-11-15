@@ -41,7 +41,6 @@ CREATE TABLE IF NOT EXISTS sentence_view (
 );
 
 CREATE INDEX IF NOT EXISTS idx_view_date ON sentence_view (log_date);
-CREATE INDEX IF NOT EXISTS idx_view_event ON sentence_view (event_id);
 
 -- 쓰기 소유자: progress.EventService (changed_at 최신값 우선)
 CREATE TABLE IF NOT EXISTS sentence_mark (
@@ -138,6 +137,12 @@ CREATE TABLE IF NOT EXISTS vocab_entry (
 
 -- 쓰기 소유자: vocab.VocabService (처리한 VOCAB_* 이벤트 id. 같은 id 를 다시 받으면 무시한다)
 -- 다른 이벤트는 자연 키로 멱등하지만 담기와 빼기는 순서에 따라 결과가 달라 id 로 막는다
+-- 쓰기 소유자: progress.EventService. 처리한 VIEW·MORNING_LOCK 이벤트 id(재전송이 다른 날짜로 다시 기록되지 않게)
+CREATE TABLE IF NOT EXISTS applied_event (
+    id          TEXT    PRIMARY KEY,
+    applied_at  INTEGER NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS vocab_event (
     id          TEXT    PRIMARY KEY,
     applied_at  INTEGER NOT NULL

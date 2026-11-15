@@ -35,9 +35,6 @@ import com.habit66.vocab.VocabService;
 @Service
 public class EventService {
 
-    /** 기기 시계가 이만큼 넘게 앞서면 받은 시각으로 자른다. 서버 시계 보정의 오차는 이보다 훨씬 작다. */
-    static final long FUTURE_TOLERANCE_MS = 10 * 60_000L;
-
     public record ApplyResult(List<String> accepted, List<Rejected> rejected) {
     }
 
@@ -88,7 +85,8 @@ public class EventService {
         tx.executeWithoutResult(status -> {
             Map<Completion, Long> completions = new LinkedHashMap<>();
             for (ClientEvent event : parsed.events()) {
-                long at = effectiveTime(event.occurredAt(), receivedAt);
+                // 미래 시각만 자른다(실제로 일어난 시각은 받은 시각보다 늦을 수 없다). 늦게 도착한 어제 기록은 어제 날짜에 들어간다.
+                long at = Math.min(event.occurredAt(), receivedAt);
                 boolean ok;
                 if (event instanceof ClientEvent.View view) {
                     ok = applyView(view, at, receivedAt, cat, start, completions);
@@ -97,7 +95,7 @@ public class EventService {
                 } else if (event instanceof ClientEvent.Focus focus) {
                     ok = applyFocus(focus, at, receivedAt);
                 } else if (event instanceof ClientEvent.MorningLock lock) {
-                    ok = applyMorningLock(lock, at);
+                    ok = applyMorningLock(lock, at, receivedAt);
                 } else {
                     ok = applyVocab(event, at, receivedAt);
                 }
@@ -113,12 +111,12 @@ public class EventService {
     }
 
     /**
-     * 이벤트가 일어난 시각. 늦게 도착한 어제 기록은 어제 날짜에 들어간다. 기기 시계가 크게 앞서 있으면(허용치 초과) 받은 시각으로 자른다.
-     * 허용치 안의 작은 미래 시각을 받은 시각으로 자르지 않는 이유: 응답을 잃어 다시 보낸 같은 이벤트가 롤오버를 사이에 두고
-     * 다른 날짜로 계산되면 두 번 기록된다. 그대로 쓰면 재전송해도 날짜가 같다.
+     * 처음 받은 이벤트 id 인가. VIEW·MORNING_LOCK 은 날짜가 키라, 응답을 잃고 롤오버를 지나 다시 보내면
+     * (미래 시각을 받은 시각으로 자르므로) 다른 날짜로 계산되어 두 번 기록될 수 있다. 자연 키로 무시된 이벤트도 여기 남긴다.
      */
-    static long effectiveTime(long occurredAt, long receivedAt) {
-        return occurredAt <= receivedAt + FUTURE_TOLERANCE_MS ? occurredAt : receivedAt;
+    private boolean claim(String eventId, long receivedAt) {
+        return jdbc.update("INSERT OR IGNORE INTO applied_event (id, applied_at) VALUES (?, ?)", eventId,
+                receivedAt) > 0;
     }
 
     private boolean applyView(ClientEvent.View view, long at, long receivedAt, Catalog cat, LocalDate start,
@@ -127,8 +125,7 @@ public class EventService {
         if (sentence == null) {
             return false;
         }
-        // 같은 이벤트가 이미 들어와 있으면(다른 날짜로 계산됐더라도) 다시 기록하지 않는다.
-        if (!jdbc.queryForList("SELECT 1 FROM sentence_view WHERE event_id = ? LIMIT 1", view.id()).isEmpty()) {
+        if (!claim(view.id(), receivedAt)) {
             return true;
         }
         LocalDate date = clock.dateOf(at);
@@ -172,7 +169,10 @@ public class EventService {
         return true;
     }
 
-    private boolean applyMorningLock(ClientEvent.MorningLock lock, long at) {
+    private boolean applyMorningLock(ClientEvent.MorningLock lock, long at, long receivedAt) {
+        if (!claim(lock.id(), receivedAt)) {
+            return true;
+        }
         jdbc.update("INSERT OR IGNORE INTO morning_lock (log_date, state, decided_at) VALUES (?, ?, ?)",
                 clock.dateOf(at).toString(), lock.result().name(), at);
         return true;

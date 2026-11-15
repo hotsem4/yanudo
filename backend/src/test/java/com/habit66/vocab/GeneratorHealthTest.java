@@ -84,13 +84,23 @@ class GeneratorHealthTest {
     }
 
     @Test
+    void eachAlertKindIsLimitedSeparately() {
+        GeneratorHealth health = health(new FakeProbe());
+        health.loginFailed(ClaudeCliGenerator.LOGIN_HINT); // 끊김 알림
+        next = LoginCheck.ok(wall.millis() + 2 * DAY);
+        health.check(); // 복구 뒤 곧 만료 알림
+        health.loginFailed(ClaudeCliGenerator.LOGIN_HINT); // 같은 날 다시 끊김: 이미 보냈다
+        verify(notifier, times(2)).deliver(any());
+    }
+
+    @Test
     void undeliveredAlertIsTriedAgain() {
         when(notifier.deliver(any())).thenReturn(new Delivery(0, 0));
         GeneratorHealth health = health(new FakeProbe());
         health.loginFailed(ClaudeCliGenerator.LOGIN_HINT);
         health.loginFailed(ClaudeCliGenerator.LOGIN_HINT);
         verify(notifier, times(2)).deliver(any());
-        assertThat(stored).doesNotContainKey(GeneratorHealth.ALERT_KEY);
+        assertThat(stored).isEmpty();
     }
 
     @Test

@@ -17,8 +17,7 @@ class PlaybackController {
   private tab: Session = readSessionParam();
   private cursors: Record<Session, number> = { TODAY: 0, REVIEW: 0 };
   private chain = false;
-  /** 자동 실행으로 연 이번 실행의 첫 모닝 락 판단만 건너뛴다. 백그라운드에 두었다가 다음 날 돌아오면 다시 판단해야 한다. */
-  private lockExempt = false;
+  private launchedByAutoplayFlag = false;
   private started = false;
   private listeners = new Set<() => void>();
 
@@ -29,17 +28,15 @@ class PlaybackController {
 
   getTab = (): Session => this.tab;
 
-  /** 모닝 락 면제를 한 번 쓴다. 자동 실행으로 열린 직후의 첫 판단에서만 true. */
-  takeLockExemption(): boolean {
-    const exempt = this.lockExempt;
-    this.lockExempt = false;
-    return exempt;
+  /** 이번 실행이 자동 실행 링크(루틴·알림)로 시작됐는가. 모닝 락 면제는 App 이 그날(논리 날짜)에만 적용한다. */
+  launchedByAutoplay(): boolean {
+    return this.launchedByAutoplayFlag;
   }
 
   start(launch: Launch | null): void {
     if (this.started) return;
     this.started = true;
-    this.lockExempt = launch !== null;
+    this.launchedByAutoplayFlag = launch !== null;
     studyStore.subscribe(() => this.sync());
     audioEngine.subscribe(() => {
       const s = audioEngine.getSnapshot();

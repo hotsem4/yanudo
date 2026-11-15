@@ -72,6 +72,7 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
       try {
         body = (await response.json()) as ApiErrorBody;
       } catch {
+        if (controller.signal.aborted) throw new NetworkError();
         body = null;
       }
       throw new ApiError(response.status, body?.error ?? "HTTP_" + response.status, body?.message ?? "요청을 처리하지 못했어요.");

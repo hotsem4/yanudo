@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Instant;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -38,9 +40,13 @@ import com.habit66.vocab.TermStore.Example;
  * {@code subtype: "success"}). 그래서 종료 코드나 subtype 이 아니라 {@code is_error}로 판단한다.</li>
  * </ul>
  */
-public class ClaudeCliGenerator implements TermGenerator {
+public class ClaudeCliGenerator implements TermGenerator, LoginProbe {
 
     static final String LOGIN_HINT = "터미널에서 claude 로그인 필요 (claude 를 실행해 /login)";
+    static final String TOKEN_HINT = "장기 토큰이 만료됐거나 잘못됨 (claude setup-token 으로 새로 만들어 config/application.yml 에 넣기)";
+    /** {@code claude setup-token}으로 만든 장기 토큰을 자식 프로세스에 넘기는 변수(Claude Code 가 읽는다). */
+    static final String TOKEN_ENV = "CLAUDE_CODE_OAUTH_TOKEN";
+    private static final String PROBE_PROMPT = "Reply with exactly: ok";
 
     static final String SCHEMA = """
             {"type":"object","properties":{"text":{"type":"string"},"meaning":{"type":"string"},\
@@ -56,16 +62,98 @@ public class ClaudeCliGenerator implements TermGenerator {
     private final List<String> command;
     private final String model;
     private final int timeoutSeconds;
+    private final String oauthToken;
 
     /** @param command 공백으로 나눈 실행 명령(기본 {@code claude}) */
     public ClaudeCliGenerator(String command, String model, int timeoutSeconds) {
+        this(command, model, timeoutSeconds, "");
+    }
+
+    /** @param oauthToken {@code claude setup-token}으로 만든 장기 토큰. 비어 있으면 PC 에 로그인된 구독을 쓴다. */
+    public ClaudeCliGenerator(String command, String model, int timeoutSeconds, String oauthToken) {
         this.command = splitCommand(command);
         this.model = model;
         this.timeoutSeconds = timeoutSeconds;
+        this.oauthToken = oauthToken == null ? "" : oauthToken.trim();
     }
 
     @Override
     public Generated generate(Request request) throws GenerationException {
+        Run run = run(List.of("-p", "--setting-sources", "project", "--no-session-persistence",
+                "--model", model, "--tools", "", "--output-format", "json",
+                "--json-schema", SCHEMA, TermPrompt.of(request)));
+        return read(run.stdout(), run.exitCode(), run.stderrTail());
+    }
+
+    /**
+     * 로그인이 살아 있는지 본다. {@code claude auth status}는 토큰을 서버에 확인하지 않으므로(가짜 토큰도 로그인됨으로 나온다)
+     * 아주 짧은 실제 호출로 판단하고, auth status 는 구독 로그인의 만료 예정 시각을 읽는 데만 쓴다.
+     */
+    @Override
+    public LoginCheck checkLogin() {
+        Long expiresAt = null;
+        try {
+            JsonNode status = JSON.readTree(run(List.of("auth", "status", "--json")).stdout());
+            if (status != null && status.has("loggedIn") && !status.path("loggedIn").asBoolean(true)) {
+                return LoginCheck.loginRequired(loginHint());
+            }
+            if (oauthToken.isEmpty() && status != null) {
+                expiresAt = parseInstant(status.path("loginExpiresAt").asText(""));
+            }
+        } catch (GenerationException | JsonProcessingException e) {
+            log.debug("claude auth status failed: {}", e.getMessage());
+        }
+        Run probe;
+        try {
+            probe = run(List.of("-p", "--setting-sources", "project", "--no-session-persistence",
+                    "--model", model, "--tools", "", "--output-format", "json", PROBE_PROMPT));
+        } catch (GenerationException e) {
+            return LoginCheck.unknown(e.getMessage());
+        }
+        JsonNode root;
+        try {
+            root = JSON.readTree(probe.stdout());
+        } catch (JsonProcessingException e) {
+            root = null;
+        }
+        if (root == null || !root.isObject()) {
+            return LoginCheck.unknown("claude printed no JSON result (exit code " + probe.exitCode() + "): "
+                    + probe.stderrTail());
+        }
+        if (root.path("is_error").asBoolean(false)) {
+            String message = root.path("result").asText("unknown error");
+            return isLoginError(root, message) ? LoginCheck.loginRequired(loginHint()) : LoginCheck.unknown(message);
+        }
+        return LoginCheck.ok(expiresAt);
+    }
+
+    /** 생성과 점검이 같은 기준으로 로그인 문제를 가린다. 401 이 오면 문구와 상관없이 로그인 문제다. */
+    static boolean isLoginError(JsonNode root, String message) {
+        return root.path("api_error_status").asInt(0) == 401
+                || "authentication_error".equals(root.path("api_error_type").asText(""))
+                || looksLikeLoginProblem(message);
+    }
+
+    private String loginHint() {
+        return oauthToken.isEmpty() ? LOGIN_HINT : TOKEN_HINT;
+    }
+
+    static Long parseInstant(String text) {
+        if (text == null || text.isBlank() || "null".equals(text)) {
+            return null;
+        }
+        try {
+            return Instant.parse(text).toEpochMilli();
+        } catch (DateTimeParseException e) {
+            return null;
+        }
+    }
+
+    record Run(String stdout, int exitCode, String stderrTail) {
+    }
+
+    /** 빈 임시 폴더에서 claude 를 한 번 실행한다. 시간을 넘기면 프로세스 트리를 끝낸다. */
+    private Run run(List<String> cliArgs) throws GenerationException {
         Path workDir = null;
         Path stdout = null;
         Path stderr = null;
@@ -76,12 +164,13 @@ public class ClaudeCliGenerator implements TermGenerator {
             stderr = Files.createTempFile("habit66-vocab-", ".err");
 
             List<String> args = new ArrayList<>(command);
-            args.addAll(List.of("-p", "--setting-sources", "project", "--no-session-persistence",
-                    "--model", model, "--tools", "", "--output-format", "json",
-                    "--json-schema", SCHEMA, TermPrompt.of(request)));
+            args.addAll(cliArgs);
             ProcessBuilder builder = new ProcessBuilder(WINDOWS ? windowsArgs(args) : args);
             builder.directory(workDir.toFile());
             stripInheritedSession(builder.environment());
+            if (!oauthToken.isEmpty()) {
+                builder.environment().put(TOKEN_ENV, oauthToken);
+            }
             builder.redirectOutput(stdout.toFile());
             builder.redirectError(stderr.toFile());
             process = builder.start();
@@ -91,7 +180,7 @@ public class ClaudeCliGenerator implements TermGenerator {
             if (!process.waitFor(timeoutSeconds, TimeUnit.SECONDS)) {
                 throw new GenerationException("claude timed out after " + timeoutSeconds + "s");
             }
-            return read(Files.readString(stdout, StandardCharsets.UTF_8), process.exitValue(), stderr);
+            return new Run(Files.readString(stdout, StandardCharsets.UTF_8), process.exitValue(), lastLine(stderr));
         } catch (IOException e) {
             throw new GenerationException("cannot run '" + String.join(" ", command) + "': " + e.getMessage(),
                     "claude 명령을 찾을 수 없음 (app.vocab.claude-command 와 PATH 확인)", e);
@@ -132,6 +221,10 @@ public class ClaudeCliGenerator implements TermGenerator {
 
     /** 표준 출력의 결과 JSON 을 읽는다. 패키지 안 테스트가 직접 부른다. */
     Generated read(String output, int exitCode, Path stderr) throws GenerationException {
+        return read(output, exitCode, lastLine(stderr));
+    }
+
+    private Generated read(String output, int exitCode, String stderrTail) throws GenerationException {
         JsonNode root;
         try {
             root = JSON.readTree(output);
@@ -140,12 +233,12 @@ public class ClaudeCliGenerator implements TermGenerator {
         }
         if (root == null || !root.isObject()) {
             throw new GenerationException("claude printed no JSON result (exit code " + exitCode + "): "
-                    + lastLine(stderr));
+                    + stderrTail);
         }
         if (root.path("is_error").asBoolean(false)) {
             String message = root.path("result").asText("unknown error");
             throw new GenerationException("claude reported an error (exit code " + exitCode + "): " + message,
-                    looksLikeLoginProblem(message) ? LOGIN_HINT : null);
+                    isLoginError(root, message) ? loginHint() : null);
         }
         JsonNode entry = root.path("structured_output");
         if (!entry.isObject()) {

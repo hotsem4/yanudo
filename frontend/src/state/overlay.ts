@@ -1,4 +1,13 @@
-import { termKey, type Dashboard, type MarkStatus, type Sentence, type SessionData, type StudyEvent, type VocabEntry } from "../api/types";
+import {
+  termKey,
+  type Dashboard,
+  type MarkStatus,
+  type Sentence,
+  type SessionData,
+  type StudyEvent,
+  type VocabEntry,
+  type VocabGenerator,
+} from "../api/types";
 import type { Snapshot } from "./outbox";
 
 /**
@@ -19,6 +28,8 @@ export interface DayView {
   focusSecondsToday: number;
   /** 단어장(최근 담은 것 먼저). 서버 목록 + 아직 보내지 않은 VOCAB_* 이벤트. null 이면 아직 받지 못함. */
   vocab: VocabEntry[] | null;
+  /** 뜻·예문 생성기 상태. 아직 받지 못했으면 null. */
+  vocabGenerator: VocabGenerator | null;
 }
 
 export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[], now: number): DayView {
@@ -123,6 +134,7 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
     },
     focusSecondsToday: d.focus.seconds_today + focusPending,
     vocab: applyVocab(snapshot, pending),
+    vocabGenerator: snapshot.vocabGenerator ?? null,
   };
 }
 

@@ -9,6 +9,7 @@ import { showToast } from "../lib/toast";
 import { exampleItemId, needsMeaning, vocabCounts, type VocabFilter } from "../lib/vocab";
 import type { StudyState } from "../state/store";
 import { studyStore } from "../state/store";
+import { useStudy } from "../state/useStudy";
 import { Mascot } from "./Mascot";
 import { Segmented, type SegmentOption } from "./Segmented";
 
@@ -24,6 +25,12 @@ interface Props {
   onSelect: (key: string) => void;
   onGoStudy: () => void;
   mascot: MascotState | null;
+}
+
+/** PC 의 Claude 로그인이 끊겨 새 단어의 뜻을 못 만드는 중인가. 뜻을 기다리는 단어의 뒷면 문구만 바꾼다(SPEC F-08). */
+function useLoginLost(): boolean {
+  const study = useStudy();
+  return study.kind === "ready" && study.view.vocabGenerator?.state === "LOGIN_REQUIRED";
 }
 
 /** 단어장 화면(SPEC F-08). 학습 카드 자리를 대신하고, 데이터 4상태를 모두 그린다. */
@@ -245,6 +252,7 @@ function VocabCard({ entry, index, total, filter, onPrev, onNext }: CardProps) {
 function Back({ entry, editing, onEdit, onFront }: { entry: VocabEntry; editing: boolean; onEdit: (v: boolean) => void; onFront: () => void }) {
   const pending = entry.status === "PENDING";
   const missing = needsMeaning(entry);
+  const loginLost = useLoginLost();
   const showForm = editing || missing;
   return (
     <div className="flex flex-col gap-4 pb-1">
@@ -268,7 +276,9 @@ function Back({ entry, editing, onEdit, onFront }: { entry: VocabEntry; editing:
             <span className="skeleton h-4 w-[84%] rounded-lg bg-line" />
             <span className="skeleton h-4 w-[68%] rounded-lg bg-line" />
           </div>
-          <p className="mt-3 text-[13.5px] leading-relaxed text-muted">뜻을 만드는 중… 잠시 뒤 뜻과 예문이 채워져요.</p>
+          <p className="mt-3 break-keep text-[13.5px] leading-relaxed text-muted">
+            {loginLost ? "PC의 Claude 로그인이 끊겨 기다리는 중이에요. 다시 로그인하면 뜻과 예문이 채워져요." : "뜻을 만드는 중… 잠시 뒤 뜻과 예문이 채워져요."}
+          </p>
           <button type="button" onClick={() => onEdit(true)} className="press mt-2 h-11 rounded-full bg-tint px-4 text-[13.5px] font-semibold text-royal">
             직접 적기
           </button>
@@ -342,6 +352,7 @@ function Example({ example, id, day }: { example: VocabExample; id: number; day:
 
 /** 뜻·메모 직접 입력. 직접 적은 값이 생성값보다 우선한다(SPEC F-08). */
 function EditForm({ entry, missing, onDone }: { entry: VocabEntry; missing: boolean; onDone: () => void }) {
+  const loginLost = useLoginLost();
   const meaningId = useId();
   const noteId = useId();
   const [meaning, setMeaning] = useState(entry.meaning ?? "");
@@ -369,7 +380,11 @@ function EditForm({ entry, missing, onDone }: { entry: VocabEntry; missing: bool
     <form onSubmit={submit} className="flex flex-col gap-3">
       {missing && (
         <p className="break-keep text-[13.5px] leading-relaxed text-muted">
-          {entry.status === "FAILED" ? "뜻을 만들지 못했어요. 직접 적어 두면 바로 쓸 수 있어요." : "아직 뜻이 없어요. 직접 적어 두세요."}
+          {entry.status !== "FAILED"
+            ? "아직 뜻이 없어요. 직접 적어 두세요."
+            : loginLost
+              ? "PC의 Claude 로그인이 끊겨 뜻을 만들지 못했어요. 다시 로그인하면 자동으로 만들고, 지금 직접 적어도 돼요."
+              : "뜻을 만들지 못했어요. 직접 적어 두면 바로 쓸 수 있어요."}
         </p>
       )}
       <div>

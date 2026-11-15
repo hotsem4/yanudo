@@ -62,8 +62,18 @@ export interface VocabEntry {
   sentence: { id: number; day: number; en_text: string; ko_natural: string } | null;
 }
 
+/** 뜻·예문 생성기 상태(SPEC 4.9). LOGIN_REQUIRED 면 PC 의 Claude 로그인이 끊겨 새 단어 생성이 멈춘 상태. */
+export type GeneratorState = "OK" | "EXPIRING" | "LOGIN_REQUIRED" | "OFF";
+
+export interface VocabGenerator {
+  state: GeneratorState;
+  message: string | null;
+  expires_at: number | null;
+}
+
 export interface VocabList {
   entries: VocabEntry[];
+  generator?: VocabGenerator;
 }
 
 /** 서버와 같은 표현 키: 소문자, 앞뒤 공백 제거, 연속 공백 하나로(SPEC F-08). */

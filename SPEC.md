@@ -116,6 +116,8 @@
 - **담기**: 학습 카드의 단어 버튼 → 그 문장의 미리 만든 표현(뜻 포함)과 나머지 단어 칩 → 눌러 담는다. 오프라인에서도 담기는 이벤트(`VOCAB_ADD`)로 쌓였다가 전송된다.
 - **미리 만들지 않은 단어**를 담으면 서버가 생성기로 뜻·느낌·예문 3개를 만든다(`status: PENDING` → `READY` / `FAILED`). 생성기는 `app.vocab.generator`로 고른다.
   - `claude-cli`(기본): 로그인된 Claude Code 구독으로 `claude -p` 헤드리스 실행. 사용자 설정 훅을 피하려고 `--setting-sources project`, 출력은 `--json-schema`로 강제, 도구 없음(`--tools ""`), 세션 저장 안 함. 실패하면 `FAILED`로 두고 다음 시작·재시도 때 다시 한다.
+    - **장기 토큰(선택)**: `claude setup-token`(구독으로 만드는 1년짜리 토큰, API 요금 아님)을 `app.vocab.claude-oauth-token`에 넣으면 `CLAUDE_CODE_OAUTH_TOKEN`으로 넘긴다. 비우면 PC에 로그인된 구독을 쓴다(만료일이 있어 약 한 달마다 다시 로그인).
+    - **로그인 끊김 알림**: 서버 시작 때와 매일 `login-check-cron`(기본 12:00)에 짧은 실제 호출 한 번으로 로그인을 점검한다(`claude auth status`는 토큰을 확인하지 않아 쓰지 않는다). 생성이나 점검이 로그인 문제(401·`authentication_error`)로 실패하면 폰(웹 푸시·웹훅)에 알리고, 구독 로그인은 만료 `login-warn-days`(기본 3)일 전부터 미리 알린다. 같은 알림은 논리 날짜 하루 한 번. 다시 성공하면 그사이 실패한 표현을 자동으로 다시 만든다. 단어장 화면은 뜻을 기다리는 단어의 뒷면에 로그인이 끊긴 이유를 보여 준다.
   - `anthropic-api`: API 키로 Claude Haiku 5.5. `none`: 생성하지 않고 사용자가 직접 뜻을 적는다.
   - 사용자는 어떤 표현이든 뜻·메모를 직접 고칠 수 있다(직접 입력이 생성값보다 우선).
 - **예문 음성**: 단어장에 담는 순간 그 표현의 예문 3개 음성을 만든다(1·3번 Ava, 2번 Andrew, `-10%`). 준비 전에는 기기 음성으로 대신 읽는다.
@@ -347,12 +349,15 @@ vocab_event(id PK, applied_at)                                                  
                     "audio_url": "/api/v1/audio/….mp3", "duration_ms": 1500, "duration_estimated": false } ],
     "status": "READY", "source": "CONTENT", "note": null,
     "mastered": false, "added_at": 1763170000000,
-    "sentence": { "id": 43, "day": 5, "en_text": "How about grabbing dinner together?", "ko_natural": "같이 저녁 먹는 거 어때요?" } } ] }
+    "sentence": { "id": 43, "day": 5, "en_text": "How about grabbing dinner together?", "ko_natural": "같이 저녁 먹는 거 어때요?" } } ],
+  "generator": { "state": "OK", "message": null, "expires_at": null } }
 ```
 
 - 담긴 순서의 역순(최근 먼저). `status: PENDING`이면 뜻·예문이 비어 있을 수 있다(생성 중). `FAILED`면 직접 입력을 안내한다.
 - 예문 음성은 `GET /admin/tts/jobs`에도 나와 스크립트로 채울 수 있다(담긴 표현의 예문만).
+- `generator.state`: `OK` | `EXPIRING`(구독 로그인 만료 임박, `expires_at`) | `LOGIN_REQUIRED`(로그인이 끊겨 생성이 멈춤, `message`에 할 일) | `OFF`(`generator: none`). 메모리에만 있는 값이라 서버를 다시 켜면 시작 점검 결과로 다시 정해진다.
 - `POST /api/v1/admin/vocab/retry`: `FAILED`·`PENDING` 표현 생성을 다시 시도. `{"queued": 2}`
+- `POST /api/v1/admin/vocab/check-login`: 로그인을 지금 점검하고 `generator`와 같은 모양을 돌려준다(몇 초 걸린다).
 
 설정(`application.yml`):
 
@@ -363,6 +368,9 @@ app:
     claude-command: claude
     claude-model: haiku          # claude -p --model 값
     timeout-seconds: 120
+    claude-oauth-token: ""       # claude setup-token 값. 프로젝트 루트 config/application.yml(커밋 안 됨)에 넣는다
+    login-check-cron: "0 0 12 * * *"
+    login-warn-days: 3
 ```
 
 ---

@@ -45,6 +45,7 @@ public class TermGenerationQueue {
     private final CatalogService catalog;
     private final JdbcTemplate jdbc;
     private final TtsService tts;
+    private final GeneratorHealth health;
 
     private final ExecutorService worker = Executors.newSingleThreadExecutor(r -> {
         Thread t = new Thread(r, "vocab-generator");
@@ -57,13 +58,14 @@ public class TermGenerationQueue {
     private volatile long haltedThrough = -1;
 
     public TermGenerationQueue(TermStore terms, TermGenerator generator, LogicalClock clock, CatalogService catalog,
-            JdbcTemplate jdbc, TtsService tts) {
+            JdbcTemplate jdbc, TtsService tts, GeneratorHealth health) {
         this.terms = terms;
         this.generator = generator;
         this.clock = clock;
         this.catalog = catalog;
         this.jdbc = jdbc;
         this.tts = tts;
+        this.health = health;
     }
 
     /** 생성을 맡긴다. 이미 큐에 있으면 무시한다. */
@@ -104,6 +106,12 @@ public class TermGenerationQueue {
         }
     }
 
+    /** 로그인이 다시 살아나면 그사이 실패한 표현을 다시 만든다. */
+    @EventListener(GeneratorHealth.Recovered.class)
+    public void onRecovered() {
+        retryAll();
+    }
+
     @PreDestroy
     void stop() {
         worker.shutdownNow();
@@ -131,16 +139,20 @@ public class TermGenerationQueue {
             Generated generated = generator.generate(new Request(term.text(), contextSentence(termId))).validated();
             terms.saveGenerated(termId, generated.meaning(), generated.nuance(), generated.examples(), clock.now());
             log.info("Generated vocab entry for '{}'", term.text());
+            health.generated();
             if (tts.autoGenerate()) {
                 tts.generate();
             }
         } catch (GenerationException e) {
-            terms.markFailed(termId);
             log.warn("Vocab generation failed for '{}': {}", term.text(), e.getMessage());
             if (e.needsUserAction()) {
                 haltedThrough = sequence.get();
                 log.warn("Vocab generation paused until the next add or retry: {}", e.hint());
+                // 알림(몇 초 걸릴 수 있다)을 FAILED 보다 먼저 보낸다. FAILED 가 보인 뒤 곧바로 온 재시도가
+                // 아직 끝나지 않은 이 작업 때문에 무시되지 않게.
+                health.loginFailed(e.hint());
             }
+            terms.markFailed(termId);
         }
     }
 

@@ -35,7 +35,7 @@ public class VocabService {
             String status, String source, String note, boolean mastered, long addedAt, SentenceRef sentence) {
     }
 
-    public record VocabList(List<EntryView> entries) {
+    public record VocabList(List<EntryView> entries, GeneratorHealth.View generator) {
     }
 
     private final JdbcTemplate jdbc;
@@ -45,9 +45,10 @@ public class VocabService {
     private final AudioLibrary library;
     private final TtsService tts;
     private final CatalogService catalog;
+    private final GeneratorHealth health;
 
     public VocabService(JdbcTemplate jdbc, TermStore terms, TermGenerationQueue generation, VocabClips clips,
-            AudioLibrary library, TtsService tts, CatalogService catalog) {
+            AudioLibrary library, TtsService tts, CatalogService catalog, GeneratorHealth health) {
         this.jdbc = jdbc;
         this.terms = terms;
         this.generation = generation;
@@ -55,6 +56,7 @@ public class VocabService {
         this.library = library;
         this.tts = tts;
         this.catalog = catalog;
+        this.health = health;
     }
 
     // ── 읽기 ──────────────────────────────────────────────────
@@ -78,7 +80,7 @@ public class VocabService {
             views.add(new EntryView(term.termKey(), term.text(), term.meaning(), term.nuance(), examples,
                     term.status(), term.source(), entry.note(), entry.mastered(), entry.addedAt(), sentence));
         }
-        return new VocabList(views);
+        return new VocabList(views, health.view());
     }
 
     // ── 쓰기 (EventService 의 트랜잭션·쓰기 잠금 안에서 불린다) ─────────

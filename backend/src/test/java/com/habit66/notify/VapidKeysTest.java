@@ -89,6 +89,6 @@ class VapidKeysTest {
                 new AppProperties.Reminder(false, "0 0 22 * * *", "0 30 22 * * *", 3,
                         new AppProperties.Telegram(false, "", ""),
                         new AppProperties.Discord(false, "")),
-                new AppProperties.Vocab("none", "claude", "haiku", 120));
+                new AppProperties.Vocab("none", "claude", "haiku", 120, "", "0 0 12 * * *", 3));
     }
 }

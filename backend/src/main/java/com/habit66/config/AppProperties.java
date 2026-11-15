@@ -25,7 +25,19 @@ public record AppProperties(
             @DefaultValue("claude-cli") String generator,
             @DefaultValue("claude") String claudeCommand,
             @DefaultValue("haiku") String claudeModel,
-            @DefaultValue("120") int timeoutSeconds) {
+            @DefaultValue("120") int timeoutSeconds,
+            @DefaultValue("") String claudeOauthToken,
+            @DefaultValue("0 0 12 * * *") String loginCheckCron,
+            @DefaultValue("3") int loginWarnDays) {
+
+        /** 토큰이 로그에 찍히지 않게 가린다(레코드 기본 toString 은 모든 값을 보여 준다). */
+        @Override
+        public String toString() {
+            return "Vocab[generator=" + generator + ", claudeCommand=" + claudeCommand + ", claudeModel=" + claudeModel
+                    + ", timeoutSeconds=" + timeoutSeconds + ", claudeOauthToken="
+                    + (claudeOauthToken == null || claudeOauthToken.isBlank() ? "(none)" : "(set)")
+                    + ", loginCheckCron=" + loginCheckCron + ", loginWarnDays=" + loginWarnDays + "]";
+        }
     }
 
     public record MorningLock(

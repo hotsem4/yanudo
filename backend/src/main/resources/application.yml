@@ -81,6 +81,12 @@ app:
     # claude -p --model 값
     claude-model: haiku
     timeout-seconds: 120
+    # claude setup-token 으로 만든 장기 토큰(1년). 비워 두면 PC 에 로그인된 구독을 쓴다(약 한 달마다 다시 로그인 필요).
+    # 값은 여기에 쓰지 말고 프로젝트 루트의 config/application.yml(커밋 안 됨)에 넣는다.
+    claude-oauth-token: ${APP_VOCAB_CLAUDE_OAUTH_TOKEN:}
+    # 로그인 점검(짧은 실제 호출 한 번). 서버 시작 때도 한다. 끊겼거나 곧 만료되면 폰으로 알린다.
+    login-check-cron: "0 0 12 * * *"
+    login-warn-days: 3
 
 logging:
   level:

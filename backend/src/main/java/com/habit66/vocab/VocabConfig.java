@@ -21,7 +21,8 @@ public class VocabConfig {
         String name = config.generator() == null ? "" : config.generator().trim().toLowerCase(Locale.ROOT);
         switch (name) {
             case "claude-cli":
-                return new ClaudeCliGenerator(config.claudeCommand(), config.claudeModel(), config.timeoutSeconds());
+                return new ClaudeCliGenerator(config.claudeCommand(), config.claudeModel(), config.timeoutSeconds(),
+                        config.claudeOauthToken());
             case "anthropic-api":
                 return new AnthropicApiGenerator(config.timeoutSeconds());
             case "none":

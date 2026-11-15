@@ -1,4 +1,4 @@
-import type { Dashboard, SessionData, StudyEvent, VocabEntry } from "../api/types";
+import type { Dashboard, SessionData, StudyEvent, VocabEntry, VocabGenerator } from "../api/types";
 
 // localStorage 영속화. 접근이 막혀 있어도(사생활 모드 등) 앱은 메모리로 계속 돈다.
 const OUTBOX_KEY = "habit66.outbox.v1";
@@ -10,6 +10,8 @@ export interface Snapshot {
   review: SessionData | null;
   /** 단어장. 아직 받지 못했으면 null(이전 캐시에는 없을 수 있다). */
   vocab?: VocabEntry[] | null;
+  /** 단어장과 함께 받은 생성기 상태(이전 캐시에는 없을 수 있다). */
+  vocabGenerator?: VocabGenerator | null;
 }
 
 function readJson<T>(key: string): T | null {

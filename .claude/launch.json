@@ -31,6 +31,22 @@
       "port": 8090
     },
     {
+      "name": "backend-preview-login",
+      "runtimeExecutable": "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.13.9-hotspot\\bin\\java.exe",
+      "runtimeArgs": [
+        "-Dfile.encoding=UTF-8",
+        "-jar",
+        ".preview-data/habit66-preview.jar",
+        "--server.port=8090",
+        "--app.data-dir=./.preview-data/login",
+        "--app.tts.auto-generate=false",
+        "--app.reminder.enabled=false",
+        "--app.vocab.generator=claude-cli",
+        "--app.vocab.claude-command=python C:/dev/english-66-habit/.preview-data/fake_claude_401.py"
+      ],
+      "port": 8090
+    },
+    {
       "name": "frontend-preview",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "frontend", "run", "dev", "--", "--mode", "preview"],

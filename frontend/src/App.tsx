@@ -181,27 +181,24 @@ export function App() {
 
 /** 앱을 열 때(첫 상태)와 화면 복귀 때만 모닝 락을 판단한다(SPEC F-04-2). */
 function useMorningLock(view: DayView | null, open: (v: boolean) => void): void {
-  const latest = useRef<DayView | null>(view);
-  latest.current = view;
-  const checkedFirst = useRef(false);
+  // 판단을 기다리는 중인가. 앱을 열 때와 화면에 돌아올 때 켜고, 오늘 것(stale 이 아닌 뷰)으로 한 번 판단하면 끈다.
+  // 아침에 열거나 밤새 백그라운드에 있던 앱으로 돌아오면 먼저 전날 캐시(논리 날짜가 지나 stale)로 그리므로,
+  // 그때 판단하면 락이 뜨지 않는다. 새 대시보드를 받은 뒤에 판단한다.
+  const [asking, setAsking] = useState(true);
 
   useEffect(() => {
-    // 아침에 처음 열면 먼저 전날 밤 캐시(논리 날짜가 지나 stale)로 그린다. 그걸로 첫 판단을 써 버리면
-    // 새 대시보드가 와도 다시 묻지 않아 락이 뜨지 않으므로, 오늘 것을 받을 때까지 기다린다.
-    if (!view || view.stale || checkedFirst.current) return;
-    checkedFirst.current = true;
+    if (!asking || !view || view.stale) return;
+    setAsking(false);
     if (shouldShowMorningLock(view, serverNow(), playback.launchedByAutoplay())) open(true);
-  }, [view, open]);
+  }, [asking, view, open]);
 
   useEffect(() => {
     const onVisible = () => {
-      if (document.visibilityState !== "visible") return;
-      const v = latest.current;
-      if (v && shouldShowMorningLock(v, serverNow(), playback.launchedByAutoplay())) open(true);
+      if (document.visibilityState === "visible") setAsking(true);
     };
     document.addEventListener("visibilitychange", onVisible);
     return () => document.removeEventListener("visibilitychange", onVisible);
-  }, [open]);
+  }, []);
 }
 
 /** 포롱이 새 단계로 자란 날 한 번만 알린다. 이미 본 단계는 기기에 기억해 되풀이하지 않는다. */

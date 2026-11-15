@@ -38,7 +38,10 @@ export function useSpeechMatch(): SpeechMatch {
   }, []);
 
   const reset = useCallback(() => {
-    recRef.current?.abort();
+    const rec = recRef.current;
+    recRef.current = null;
+    rec?.abort();
+    setListening(false);
     setTranscript("");
     setAlternatives([]);
     setError(null);
@@ -53,7 +56,10 @@ export function useSpeechMatch(): SpeechMatch {
     rec.interimResults = true;
     rec.continuous = false;
     rec.maxAlternatives = 3;
+    // 멈춘 직후 다시 시작하면 이전 인식기의 onend·onresult 가 늦게 올 수 있다. 지금 인식기의 것만 받는다.
+    const current = () => recRef.current === rec;
     rec.onresult = (event) => {
+      if (!current()) return;
       // 결과(발화 구간)는 이어 붙이고, 같은 구간의 대안끼리는 섞지 않는다: 대안 j 문장 = 각 구간의 j번째(없으면 첫째) 후보.
       let maxAlt = 1;
       for (let i = 0; i < event.results.length; i++) maxAlt = Math.max(maxAlt, event.results[i].length);
@@ -70,11 +76,13 @@ export function useSpeechMatch(): SpeechMatch {
       setAlternatives(alts);
     };
     rec.onerror = (event) => {
-      if (event.error === "aborted") return;
+      if (!current() || event.error === "aborted") return;
       setError(ERRORS[event.error] ?? "음성을 인식하지 못했어요. 다시 시도해 주세요.");
       setErrorCode(event.error);
     };
-    rec.onend = () => setListening(false);
+    rec.onend = () => {
+      if (current()) setListening(false);
+    };
     recRef.current = rec;
     setError(null);
     setErrorCode(null);

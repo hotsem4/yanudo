@@ -132,22 +132,23 @@ export class StudyStore {
     const mine = ++this.seq;
     const [dashboard, vocab] = await Promise.all([api.dashboard(), this.fetchVocab()]);
     const sessions = await this.sessionsFor(dashboard, true);
-    this.apply(mine, dashboard, sessions, vocab);
+    this.apply(mine, dashboard, sessions, vocab.entries);
   }
 
-  /** 단어장 받기. 실패하면(오프라인, 서버가 아직 단어장을 모름) 이전 값을 그대로 쓴다. */
-  private fetchVocab(): Promise<VocabEntry[] | null> {
+  /** 단어장 받기. 실패하면(오프라인 등) 이전 값을 쓰고 ok=false 로 알린다. */
+  private fetchVocab(): Promise<{ ok: boolean; entries: VocabEntry[] | null }> {
     return api
       .vocab()
-      .then((v) => v.entries)
-      .catch(() => this.snapshot?.vocab ?? null);
+      .then((v) => ({ ok: true, entries: v.entries }))
+      .catch(() => ({ ok: false, entries: this.snapshot?.vocab ?? null }));
   }
 
-  /** 뜻·예문을 만드는 중인 단어가 있을 때 그것만 다시 받는다. */
+  /** 뜻·예문을 만드는 중인 단어가 있을 때 그것만 다시 받는다. 그사이 다른 동기화가 시작됐으면 늦은 응답을 버린다. */
   private async refreshVocab(): Promise<void> {
     if (!this.snapshot || this.inFlight) return;
-    const vocab = await this.fetchVocab();
-    if (!this.snapshot) return;
+    const started = this.seq;
+    const { ok, entries: vocab } = await this.fetchVocab();
+    if (!ok || !this.snapshot || this.seq !== started || this.inFlight) return;
     this.snapshot = { ...this.snapshot, vocab };
     snapshotCache.save(this.snapshot);
     this.publish();
@@ -167,12 +168,17 @@ export class StudyStore {
         today: prev?.today ?? null,
         review: prev?.review ?? null,
       })),
-      sentVocab ? this.fetchVocab() : Promise.resolve(prev?.vocab ?? null),
+      sentVocab ? this.fetchVocab() : Promise.resolve({ ok: true, entries: prev?.vocab ?? null }),
     ]);
+    // 서버가 받은 단어장 이벤트라도 새 단어장을 못 받았으면 아웃박스에 남긴다. 지우면 옛 단어장이 그대로 보여
+    // 뺀 단어가 되살아난 것처럼 보인다. 다시 보내도 서버가 처리한 id 는 무시하므로(vocab_event) 안전하다.
+    const keep = (p: StudyEvent) => !done.has(p.id) || (!vocab.ok && p.type.startsWith("VOCAB_"));
     // 아웃박스 정리와 스냅샷 교체를 한 동기 구간에서 함께 한다. 전송 중 새로 쌓인 이벤트는 남는다.
-    this.pending = this.pending.filter((p) => !done.has(p.id));
+    this.pending = this.pending.filter(keep);
     outbox.save(this.pending);
-    this.apply(mine, res.dashboard, sessions, vocab);
+    this.apply(mine, res.dashboard, sessions, vocab.entries);
+    // 단어장을 못 받았으면 실패로 끝내 백오프 뒤에 다시 시도한다(바로 되풀이하지 않는다).
+    if (!vocab.ok) throw new Error("단어장을 받지 못했어요.");
     if (this.pending.length > 0) this.again = true;
   }
 

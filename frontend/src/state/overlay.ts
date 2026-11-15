@@ -144,6 +144,20 @@ function applyVocab(snapshot: Snapshot, pending: readonly StudyEvent[]): VocabEn
       case "VOCAB_ADD": {
         const key = termKey(e.text);
         if (map.has(key)) break;
+        // 서버 목록에 있던 표현을 뺐다가 다시 담은 경우(이미 서버에 반영됐을 수도 있다): 서버가 가진 뜻·예문을 그대로 쓴다.
+        const fromServer = server?.find((v) => v.term_key === key);
+        if (fromServer) {
+          map.set(key, {
+            ...fromServer,
+            meaning: e.meaning ?? fromServer.meaning,
+            source: e.meaning ? "MANUAL" : fromServer.source,
+            status: e.meaning ? "READY" : fromServer.status,
+            note: e.note,
+            mastered: false,
+            added_at: e.occurred_at,
+          });
+          break;
+        }
         const s = e.sentence_id !== null ? sentences.get(e.sentence_id) : undefined;
         const known = s?.terms?.find((t) => t.term_key === key);
         map.set(key, {

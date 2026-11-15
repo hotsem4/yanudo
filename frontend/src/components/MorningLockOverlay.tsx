@@ -19,6 +19,23 @@ interface Props {
 
 /** 모닝 3문장 보이스 락(SPEC F-04-2). 히어로 그라데이션 전면 오버레이. */
 export function MorningLockOverlay({ open, sentences, onDone, mascot }: Props) {
+  const panel = useRef<HTMLDivElement>(null);
+  const shown = open && sentences.length > 0;
+
+  // aria-modal 만으로는 포커스가 갇히지 않는다. 락 뒤 화면을 inert 로 막고 포커스를 락으로 옮긴다. 닫히면 되돌린다.
+  useEffect(() => {
+    const el = panel.current;
+    if (!shown || !el?.parentElement) return;
+    const before = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const others = [...el.parentElement.children].filter((c): c is HTMLElement => c !== el && c instanceof HTMLElement && !c.inert);
+    others.forEach((c) => (c.inert = true));
+    el.focus({ preventScroll: true });
+    return () => {
+      others.forEach((c) => (c.inert = false));
+      before?.focus({ preventScroll: true });
+    };
+  }, [shown]);
+
   useEffect(() => {
     if (!open) return;
     const meta = document.querySelector('meta[name="theme-color"]');
@@ -32,15 +49,17 @@ export function MorningLockOverlay({ open, sentences, onDone, mascot }: Props) {
 
   return (
     <AnimatePresence>
-      {open && sentences.length > 0 && (
+      {shown && (
         <motion.div
+          ref={panel}
+          tabIndex={-1}
           role="dialog"
           aria-modal="true"
           aria-labelledby="morning-title"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.25 } }}
-          className="fixed inset-0 z-50 overflow-y-auto bg-hero text-surface"
+          className="fixed inset-0 z-50 overflow-y-auto bg-hero text-surface focus:outline-none"
         >
           <LockBody sentences={sentences.slice(0, 3)} onDone={onDone} mascot={mascot} />
         </motion.div>

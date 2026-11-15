@@ -82,16 +82,22 @@ function navigate(event) {
 // 셸 갱신은 한 번에 하나씩(겹치면 앞 갱신의 옛 자산 정리가 뒤 갱신이 받은 새 자산을 지울 수 있다).
 let shellUpdates = Promise.resolve();
 const SHELL_UPDATE_LIMIT_MS = 30_000;
+// 지금 차례인 갱신의 번호. 시간 초과로 밀려난 갱신은 번호가 달라져 HTML 게시·자산 정리를 하지 않는다.
+let shellTurn = 0;
 function queueShellUpdate(page) {
-  // 자산 받기가 멈춰도 뒤의 갱신이 영원히 기다리지 않게 상한을 둔다(멈춘 작업은 버리고 다음 갱신으로).
-  const limited = () => Promise.race([updateShell(page), new Promise((resolve) => setTimeout(() => resolve(false), SHELL_UPDATE_LIMIT_MS))]);
+  // 자산 받기가 멈춰도 뒤의 갱신이 영원히 기다리지 않게 상한을 둔다.
+  const limited = () => {
+    const turn = ++shellTurn;
+    return Promise.race([updateShell(page, turn), new Promise((resolve) => setTimeout(() => resolve(false), SHELL_UPDATE_LIMIT_MS))]);
+  };
   shellUpdates = shellUpdates.then(limited).catch(() => false);
   return shellUpdates;
 }
 
 // 앱 HTML 이고 참조 자산을 모두 받았을 때만 index.html 을 바꾼다. 먼저 바꾸면 자산을 받기 전에 끊겼을 때 새 HTML + 옛 JS 만 남아
 // 오프라인으로 부팅하지 못한다. 바꾼 뒤에는 새 HTML 이 참조하지 않는 옛 자산을 지운다. 바꿨으면 true.
-async function updateShell(page) {
+async function updateShell(page, turn = ++shellTurn) {
+  const current = () => turn === shellTurn;
   if (page.raw || page.status !== 200) return false;
   if (!(page.headers.get("content-type") || "").includes("text/html")) return false;
   const assets = Array.from(new Set(page.body.match(/\/assets\/[^"'\s)]+/g) || []));
@@ -106,6 +112,7 @@ async function updateShell(page) {
   }
   const shell = await caches.open(SHELL_CACHE);
   const headers = { "Content-Type": page.headers.get("content-type") || "text/html; charset=utf-8" };
+  if (!current()) return false;
   await shell.put("/index.html", new Response(page.body, { headers }));
   await shell.put("/", new Response(page.body, { headers }));
   // sw.js 가 바뀐 배포에서는 설치 중인 워커와 지금 워커가 같은 캐시를 함께 갱신할 수 있다. 상대의 옛 자산 정리가
@@ -113,16 +120,18 @@ async function updateShell(page) {
   for (const asset of assets) {
     if (!(await statics.match(asset))) {
       const again = await fetch(asset, { cache: "no-store" });
-      if (again.ok) await statics.put(asset, again);
+      // 다시 받지 못했으면 정리하지 않는다(남은 옛 자산이라도 있어야 다음 접속까지 버틴다).
+      if (!again.ok) return true;
+      await statics.put(asset, again);
     }
   }
-  const current = await (await shell.match("/index.html"))?.text();
-  // 그사이 다른 갱신이 다른 HTML 을 게시했으면 그쪽이 정리한다. 내 HTML 이 게시된 채일 때만 옛 자산을 지운다.
-  if (current !== page.body) return true;
-  const keep = new Set(assets);
+  if (!current()) return true;
+  // 정리는 지울 때마다 "지금 게시된 HTML"이 참조하는 자산을 남긴다(다른 워커가 그사이 새 HTML 을 게시했어도 그 자산은 지우지 않는다).
   for (const req of await statics.keys()) {
     const path = new URL(req.url).pathname;
-    if (path.startsWith("/assets/") && !keep.has(path)) await statics.delete(req);
+    if (!path.startsWith("/assets/")) continue;
+    const published = (await (await shell.match("/index.html"))?.text()) || "";
+    if (!published.includes(path) && current()) await statics.delete(req);
   }
   return true;
 }

@@ -120,13 +120,18 @@ public class TermGenerationQueue {
                 }
             }
             if (next > 0) {
-                terms.markPending(termId); // 이미 만들어졌으면(READY) 바뀌지 않고, 다음 실행이 바로 끝난다
                 long ticket2 = next;
                 try {
+                    terms.markPending(termId); // 이미 만들어졌으면(READY) 바뀌지 않고, 다음 실행이 바로 끝난다
                     worker.execute(() -> run(termId, ticket2));
-                } catch (RejectedExecutionException e) {
+                } catch (RuntimeException e) {
+                    // 종료 중(RejectedExecution)이거나 DB 오류. 큐 표시를 남기면 이후 요청이 again 에만 쌓인다.
                     synchronized (handoff) {
                         queued.remove(termId);
+                        again.remove(termId);
+                    }
+                    if (!(e instanceof RejectedExecutionException)) {
+                        log.warn("Cannot requeue vocab term {}: {}", termId, e.toString());
                     }
                 }
             }

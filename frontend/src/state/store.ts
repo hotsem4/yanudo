@@ -78,11 +78,13 @@ export class StudyStore {
     this.snapshot = snapshotCache.load();
     this.sync.online = navigator.onLine;
     // 따로 보관한 기록은 시작할 때마다 아웃박스로 되돌려 한 번 더 보낸다(서버를 고쳤거나 일시 장애였을 수 있다).
-    const held = outbox.takeHeld();
+    const held = outbox.loadHeld();
     if (held.length > 0) {
       const known = new Set(this.pending.map((p) => p.id));
-      this.pending = [...this.pending, ...held.filter((e) => !known.has(e.id))].sort((a, b) => a.occurred_at - b.occurred_at);
+      // 맨 뒤에 둔다. 앞에 두면 서버가 정말 못 받는 기록이 다시 보관될 때까지 정상 기록 전송이 밀린다.
+      this.pending = [...this.pending, ...held.filter((e) => !known.has(e.id))];
       this.sync.saveFailed = !outbox.save(this.pending);
+      if (!this.sync.saveFailed) outbox.clearHeld();
     }
     this.sync.held = outbox.heldCount();
     if ("BroadcastChannel" in window) {

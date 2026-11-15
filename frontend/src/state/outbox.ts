@@ -52,11 +52,14 @@ export const outbox = {
     const list = readJson<StudyEvent[]>(HELD_KEY);
     return writeJson(HELD_KEY, [...(Array.isArray(list) ? list : []), event]);
   },
-  /** 보관한 기록을 꺼낸다(앱을 시작할 때마다 한 번 더 보내 본다). 꺼낸 뒤 보관함은 비운다. */
-  takeHeld(): StudyEvent[] {
+  /** 보관한 기록(앱을 시작할 때마다 한 번 더 보내 본다). */
+  loadHeld(): StudyEvent[] {
     const list = readJson<StudyEvent[]>(HELD_KEY);
-    writeJson(HELD_KEY, []);
     return Array.isArray(list) ? list : [];
+  },
+  /** 보관한 기록을 아웃박스로 옮겨 저장한 뒤에만 부른다(먼저 비우면 저장 실패 때 기록을 잃는다). */
+  clearHeld(): void {
+    writeJson(HELD_KEY, []);
   },
 };
 

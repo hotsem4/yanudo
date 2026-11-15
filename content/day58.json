@@ -1,0 +1,520 @@
+{
+  "lessons": [
+    {
+      "day": 58,
+      "title": "제품과 서비스 제안하기",
+      "theme": "Pitching a product",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Thanks for having me. I'd love to walk you through what we can offer your team.",
+          "ko_word_order": "저를 불러 줘서 고마워요. / 저는 정말 하고 싶어요 / 당신에게 차근차근 설명하는 것을 / 우리가 당신의 팀에 제공할 수 있는 것을",
+          "ko_natural": "시간 내 주셔서 감사합니다. 저희가 팀에 드릴 수 있는 걸 하나씩 설명드릴게요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "Thanks for having me",
+              "meaning": "초대해 줘서 고마워요",
+              "nuance": "회의·방송·모임에 초대받아 갔을 때 첫인사로 쓰는 정중하고 자연스러운 표현.",
+              "examples": [
+                {
+                  "en": "Thanks for having me, it's great to be here.",
+                  "ko": "불러 주셔서 감사해요, 오게 돼서 좋네요."
+                },
+                {
+                  "en": "Thanks for having me over for dinner last night.",
+                  "ko": "어젯밤 저녁 초대해 줘서 고마웠어."
+                },
+                {
+                  "en": "Thanks for having me on the show today.",
+                  "ko": "오늘 방송에 불러 주셔서 감사합니다."
+                }
+              ]
+            },
+            {
+              "text": "walk someone through",
+              "form": "walk you through",
+              "meaning": "차근차근 설명하다",
+              "nuance": "복잡한 내용을 단계별로 보여 주며 설명할 때 쓰는 구어. explain보다 친절하게 같이 따라가는 느낌이다.",
+              "examples": [
+                {
+                  "en": "Can you walk me through the new process?",
+                  "ko": "새 절차 좀 하나씩 설명해 줄래요?"
+                },
+                {
+                  "en": "I'll walk you through the setup step by step.",
+                  "ko": "설치 과정을 단계별로 알려 드릴게요."
+                },
+                {
+                  "en": "She walked us through the budget before the meeting.",
+                  "ko": "그녀가 회의 전에 예산을 차근차근 설명해 줬어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure, go ahead. We're mainly looking for ways to cut down on manual work.",
+          "ko_word_order": "네, 하세요. / 우리는 주로 찾고 있어요 / 방법들을 / 수작업을 줄일 수 있는",
+          "ko_natural": "네, 말씀하세요. 저희는 주로 수작업을 줄일 방법을 찾고 있어요.",
+          "terms": [
+            {
+              "text": "cut down on",
+              "meaning": "줄이다",
+              "nuance": "양이나 횟수를 줄일 때 쓰는 구동사. reduce보다 말로 할 때 훨씬 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "I'm trying to cut down on coffee.",
+                  "ko": "커피를 줄이려고 하고 있어요."
+                },
+                {
+                  "en": "We need to cut down on meetings.",
+                  "ko": "회의를 좀 줄여야 해요."
+                },
+                {
+                  "en": "Cutting down on sugar made me feel better.",
+                  "ko": "설탕을 줄였더니 몸이 좋아졌어요."
+                }
+              ]
+            },
+            {
+              "text": "manual work",
+              "meaning": "수작업",
+              "nuance": "사람이 손으로 직접 하는 반복 작업. 업무 자동화 이야기에서 자주 나온다.",
+              "examples": [
+                {
+                  "en": "This tool saves us hours of manual work.",
+                  "ko": "이 툴 덕분에 수작업 시간이 몇 시간씩 줄어요."
+                },
+                {
+                  "en": "Too much manual work leads to mistakes.",
+                  "ko": "수작업이 많으면 실수가 생겨요."
+                },
+                {
+                  "en": "Most of the data entry is still manual work.",
+                  "ko": "데이터 입력은 아직 대부분 수작업이에요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "That's exactly where our platform comes in. It handles most of your scheduling automatically.",
+          "ko_word_order": "그게 바로 지점이에요 / 우리 플랫폼이 들어오는. / 그건 처리해요 / 당신의 일정 관리 대부분을 / 자동으로",
+          "ko_natural": "바로 그 부분에서 저희 플랫폼이 도움이 돼요. 일정 관리 대부분을 자동으로 처리해 주거든요.",
+          "terms": [
+            {
+              "text": "where something comes in",
+              "form": "where our platform comes in",
+              "meaning": "여기서 ~가 필요하다",
+              "nuance": "'where ~ comes in' 꼴로 '바로 여기서 ~가 필요해진다'는 뜻. 설명이나 제안을 자연스럽게 이어 갈 때 쓴다.",
+              "examples": [
+                {
+                  "en": "That's where your experience comes in.",
+                  "ko": "그래서 당신 경험이 필요한 거예요."
+                },
+                {
+                  "en": "This is where teamwork comes in.",
+                  "ko": "여기서 팀워크가 중요해지는 거죠."
+                },
+                {
+                  "en": "So where does the new hire come in?",
+                  "ko": "그럼 새로 온 직원은 어디서 역할을 하나요?"
+                }
+              ]
+            },
+            {
+              "text": "automatically",
+              "meaning": "자동으로",
+              "nuance": "사람 손을 거치지 않고 저절로 된다는 뜻. 제품 기능을 설명할 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "The lights turn off automatically at midnight.",
+                  "ko": "자정이 되면 불이 자동으로 꺼져요."
+                },
+                {
+                  "en": "Your files are saved automatically.",
+                  "ko": "파일은 자동으로 저장돼요."
+                },
+                {
+                  "en": "The app updates automatically overnight.",
+                  "ko": "앱이 밤사이에 자동으로 업데이트돼요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Interesting. How would that fit in with the tools we're already using?",
+          "ko_word_order": "흥미롭네요. / 어떻게 그게 잘 맞을까요 / 도구들과 / 우리가 이미 쓰고 있는?",
+          "ko_natural": "흥미롭네요. 지금 쓰고 있는 툴들이랑은 어떻게 맞물리나요?",
+          "terms": [
+            {
+              "text": "fit in with",
+              "meaning": "~와 잘 맞다",
+              "nuance": "기존 것과 무리 없이 어울리는지 물을 때 쓰는 구어. 사람이 무리에 잘 어울릴 때도 쓴다.",
+              "examples": [
+                {
+                  "en": "Does this plan fit in with your schedule?",
+                  "ko": "이 계획이 일정이랑 맞아요?"
+                },
+                {
+                  "en": "The new chairs don't fit in with the rest of the office.",
+                  "ko": "새 의자가 사무실 분위기랑 안 어울려요."
+                },
+                {
+                  "en": "She fit in with the team right away.",
+                  "ko": "그녀는 팀에 금방 어울렸어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "It connects to your current system, so you won't have to switch everything over.",
+          "ko_word_order": "그건 연결돼요 / 당신의 현재 시스템에, / 그래서 당신은 할 필요 없을 거예요 / 모든 걸 옮기는 것을",
+          "ko_natural": "지금 쓰시는 시스템에 바로 연결되니까 전부 옮기실 필요가 없어요.",
+          "terms": [
+            {
+              "text": "connect to",
+              "form": "connects to",
+              "meaning": "~에 연결되다",
+              "nuance": "기기나 프로그램이 다른 시스템과 이어질 때 쓰는 기본 표현. 좀 더 기술적인 말로는 integrate with를 쓴다.",
+              "examples": [
+                {
+                  "en": "My laptop won't connect to the Wi-Fi.",
+                  "ko": "노트북이 와이파이에 연결이 안 돼요."
+                },
+                {
+                  "en": "The speaker connects to your phone through Bluetooth.",
+                  "ko": "스피커는 블루투스로 휴대폰에 연결돼요."
+                },
+                {
+                  "en": "Does this app connect to Google Calendar?",
+                  "ko": "이 앱 구글 캘린더랑 연결돼요?"
+                }
+              ]
+            },
+            {
+              "text": "switch over",
+              "form": "switch everything over",
+              "meaning": "다른 것으로 옮기다",
+              "nuance": "쓰던 시스템이나 방식을 통째로 새것으로 바꿀 때 쓰는 구어. 목적어를 switch와 over 사이에 넣기도 한다.",
+              "examples": [
+                {
+                  "en": "We switched over to the new software last month.",
+                  "ko": "지난달에 새 소프트웨어로 바꿨어요."
+                },
+                {
+                  "en": "It took a week to switch all our files over.",
+                  "ko": "파일 전부 옮기는 데 일주일 걸렸어요."
+                },
+                {
+                  "en": "When are we switching over to the new phone plan?",
+                  "ko": "새 요금제로 언제 바꾸는 거예요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "That sounds promising. I was wondering if it's been tested with teams our size.",
+          "ko_word_order": "그거 가능성 있게 들리네요. / 저는 궁금했어요 / 그게 테스트된 적이 있는지 / 우리 규모의 팀들과",
+          "ko_natural": "괜찮아 보이네요. 그런데 저희 정도 규모 팀에서도 써 본 적이 있는지 궁금해요.",
+          "terms": [
+            {
+              "text": "sound promising",
+              "form": "sounds promising",
+              "meaning": "가능성 있어 보이다",
+              "nuance": "제안이나 계획에 기대가 된다고 긍정적으로 반응할 때 쓴다. 아직 확정은 아니라는 신중한 느낌이 있다.",
+              "examples": [
+                {
+                  "en": "Your idea sounds promising.",
+                  "ko": "아이디어가 괜찮아 보이네요."
+                },
+                {
+                  "en": "The new candidate sounds promising.",
+                  "ko": "새 지원자 괜찮아 보여요."
+                },
+                {
+                  "en": "That sounds promising, but let's see the numbers.",
+                  "ko": "괜찮아 보이는데, 숫자부터 봅시다."
+                }
+              ]
+            },
+            {
+              "text": "I was wondering if",
+              "meaning": "~인지 궁금해서요",
+              "nuance": "과거진행형으로 한발 물러서 묻는 아주 공손한 표현. 부탁이나 민감한 질문을 부드럽게 꺼낼 때 쓴다.",
+              "examples": [
+                {
+                  "en": "I was wondering if you're free on Friday.",
+                  "ko": "금요일에 시간 되시는지 궁금해서요."
+                },
+                {
+                  "en": "I was wondering if I could leave a bit early today.",
+                  "ko": "오늘 조금 일찍 나가도 될까 해서요."
+                },
+                {
+                  "en": "I was wondering if you got my email.",
+                  "ko": "제 메일 받으셨는지 궁금해서요."
+                }
+              ]
+            },
+            {
+              "text": "our size",
+              "meaning": "우리 정도 규모의",
+              "nuance": "'명사 + our size'로 '우리만 한 규모의'라는 뜻. of our size를 줄인 구어체다.",
+              "examples": [
+                {
+                  "en": "Most companies our size use outside accountants.",
+                  "ko": "우리 정도 규모 회사는 대부분 외부 회계사를 써요."
+                },
+                {
+                  "en": "Is this plan good for a team our size?",
+                  "ko": "이 요금제가 우리 규모 팀에 맞나요?"
+                },
+                {
+                  "en": "Cities our size don't usually have a subway.",
+                  "ko": "우리 정도 크기 도시에는 보통 지하철이 없어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Definitely. It's already been rolled out at a few companies with over five hundred staff.",
+          "ko_word_order": "물론이죠. / 그건 이미 도입되었어요 / 몇몇 회사들에 / 500명이 넘는 직원이 있는",
+          "ko_natural": "그럼요. 직원이 500명 넘는 회사 몇 곳에서도 이미 도입했어요.",
+          "terms": [
+            {
+              "text": "roll out",
+              "form": "rolled out",
+              "meaning": "도입하다, 출시하다",
+              "nuance": "새 제품·서비스·제도를 여러 곳에 내놓을 때 쓰는 비즈니스 구어. launch보다 '널리 퍼뜨린다'는 느낌이다.",
+              "examples": [
+                {
+                  "en": "We're rolling out the new app next month.",
+                  "ko": "다음 달에 새 앱을 내놓을 거예요."
+                },
+                {
+                  "en": "The update was rolled out to all users.",
+                  "ko": "업데이트가 모든 사용자에게 배포됐어요."
+                },
+                {
+                  "en": "They plan to roll out the policy in March.",
+                  "ko": "그 정책은 3월에 시행할 계획이에요."
+                }
+              ]
+            },
+            {
+              "text": "staff",
+              "meaning": "직원들",
+              "nuance": "한 조직의 직원 전체를 묶어 부르는 말. employees보다 짧고 말로 할 때 흔하다.",
+              "examples": [
+                {
+                  "en": "We have about twenty staff in this office.",
+                  "ko": "이 사무실에는 직원이 스무 명쯤 있어요."
+                },
+                {
+                  "en": "The staff here are really friendly.",
+                  "ko": "여기 직원들 정말 친절해요."
+                },
+                {
+                  "en": "All staff must attend the safety training.",
+                  "ko": "전 직원이 안전 교육에 참석해야 해요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Good to know. It might be worth trying it out with one team first.",
+          "ko_word_order": "알게 돼서 좋네요. / 가치가 있을 수도 있어요 / 그걸 시험해 보는 것이 / 한 팀과 먼저",
+          "ko_natural": "그렇군요. 우선 한 팀에서 먼저 써 보는 게 좋을 것 같아요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "good to know",
+              "meaning": "알아 두면 좋네요",
+              "nuance": "새로운 정보를 듣고 '그렇군요, 참고할게요'라고 가볍게 받는 표현.",
+              "examples": [
+                {
+                  "en": "The store opens at nine? Good to know.",
+                  "ko": "가게가 9시에 열어요? 알아 둘게요."
+                },
+                {
+                  "en": "Good to know, thanks for telling me.",
+                  "ko": "알려 줘서 고마워요, 참고할게요."
+                },
+                {
+                  "en": "That's good to know before the trip.",
+                  "ko": "여행 전에 알아 둬서 다행이네요."
+                }
+              ]
+            },
+            {
+              "text": "it might be worth",
+              "meaning": "~해 볼 만하다",
+              "nuance": "'~하는 게 좋겠다'를 강요 없이 부드럽게 제안하는 표현. should보다 훨씬 완곡하다.",
+              "examples": [
+                {
+                  "en": "It might be worth calling them first.",
+                  "ko": "먼저 전화해 보는 게 좋을 수도 있어요."
+                },
+                {
+                  "en": "It might be worth checking the price online.",
+                  "ko": "온라인으로 가격을 확인해 볼 만해요."
+                },
+                {
+                  "en": "It might be worth asking your manager.",
+                  "ko": "팀장님께 여쭤보는 것도 방법이에요."
+                }
+              ]
+            },
+            {
+              "text": "try out",
+              "form": "trying it out",
+              "meaning": "시험 삼아 써 보다",
+              "nuance": "새 물건이나 방법을 본격적으로 쓰기 전에 직접 써 볼 때 쓰는 구동사.",
+              "examples": [
+                {
+                  "en": "I'm going to try out the new gym.",
+                  "ko": "새 헬스장 한번 가 볼 거예요."
+                },
+                {
+                  "en": "You can try it out for free.",
+                  "ko": "무료로 써 보실 수 있어요."
+                },
+                {
+                  "en": "We tried out a few recipes last weekend.",
+                  "ko": "지난 주말에 레시피 몇 개 해 봤어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I think that's a smart move. We could set up a two-week free trial for you.",
+          "ko_word_order": "저는 생각해요 / 그게 현명한 선택이라고. / 우리는 마련해 드릴 수 있어요 / 2주 무료 체험을 / 당신을 위해",
+          "ko_natural": "좋은 생각이에요. 2주 무료 체험을 준비해 드릴 수 있어요.",
+          "terms": [
+            {
+              "text": "smart move",
+              "meaning": "현명한 선택",
+              "nuance": "상대의 결정이나 계획이 영리하다고 칭찬할 때 쓰는 구어 표현.",
+              "examples": [
+                {
+                  "en": "Booking early was a smart move.",
+                  "ko": "일찍 예약한 건 잘한 선택이었어요."
+                },
+                {
+                  "en": "Leaving before the rain was a smart move.",
+                  "ko": "비 오기 전에 나온 건 현명했어요."
+                },
+                {
+                  "en": "Is it a smart move to change jobs now?",
+                  "ko": "지금 이직하는 게 현명한 걸까요?"
+                }
+              ]
+            },
+            {
+              "text": "set up",
+              "meaning": "마련하다, 준비하다",
+              "nuance": "회의·계정·장비 등을 준비해 갖춰 놓을 때 두루 쓰는 구동사.",
+              "examples": [
+                {
+                  "en": "Can you set up a meeting for Monday?",
+                  "ko": "월요일로 회의 잡아 줄래요?"
+                },
+                {
+                  "en": "I'll set up your account today.",
+                  "ko": "오늘 계정을 만들어 드릴게요."
+                },
+                {
+                  "en": "It took an hour to set up the printer.",
+                  "ko": "프린터 설치하는 데 한 시간 걸렸어요."
+                }
+              ]
+            },
+            {
+              "text": "free trial",
+              "meaning": "무료 체험",
+              "nuance": "유료 서비스를 정해진 기간 동안 공짜로 써 보게 하는 것. 구독 서비스에서 흔히 쓴다.",
+              "examples": [
+                {
+                  "en": "The app comes with a seven-day free trial.",
+                  "ko": "그 앱은 7일 무료 체험이 있어요."
+                },
+                {
+                  "en": "Don't forget to cancel before the free trial ends.",
+                  "ko": "무료 체험 끝나기 전에 해지하는 거 잊지 마."
+                },
+                {
+                  "en": "I signed up for a free trial last week.",
+                  "ko": "지난주에 무료 체험을 신청했어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Perfect. Send me the details, and I'll run it by my manager.",
+          "ko_word_order": "완벽해요. / 저에게 보내 주세요 / 세부 사항을, / 그러면 제가 그걸 의견을 물어볼게요 / 제 매니저에게",
+          "ko_natural": "좋아요. 자세한 내용 보내 주시면 팀장님께 한번 말씀드려 볼게요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "run something by someone",
+              "form": "run it by",
+              "meaning": "~에게 의견을 물어보다",
+              "nuance": "결정하기 전에 윗사람이나 동료에게 한번 보여 주고 괜찮은지 확인받는다는 구어 표현.",
+              "examples": [
+                {
+                  "en": "Let me run it by my team first.",
+                  "ko": "먼저 팀에 한번 물어볼게요."
+                },
+                {
+                  "en": "Can I run an idea by you?",
+                  "ko": "아이디어 하나 얘기해 봐도 돼요?"
+                },
+                {
+                  "en": "I ran the plan by my boss this morning.",
+                  "ko": "오늘 아침에 상사한테 계획을 보여 드렸어요."
+                }
+              ]
+            },
+            {
+              "text": "details",
+              "meaning": "자세한 내용",
+              "nuance": "'send me the details'처럼 일정·조건 같은 구체적인 정보를 통틀어 말할 때 쓴다.",
+              "examples": [
+                {
+                  "en": "I'll text you the details later.",
+                  "ko": "자세한 건 나중에 문자로 보낼게."
+                },
+                {
+                  "en": "Do you have the details of the event?",
+                  "ko": "행사 세부 사항 있어요?"
+                },
+                {
+                  "en": "We can sort out the details tomorrow.",
+                  "ko": "세부적인 건 내일 정리해요."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

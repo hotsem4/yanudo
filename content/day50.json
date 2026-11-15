@@ -1,0 +1,542 @@
+{
+  "lessons": [
+    {
+      "day": 50,
+      "title": "업무 메신저 대화",
+      "theme": "Chatting on a work messenger",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hey, got a sec? I have a quick question about tomorrow's deck.",
+          "ko_word_order": "저기, 잠깐 시간 있어요? / 저 짧은 질문이 있어요 / 내일 발표 자료에 대해",
+          "ko_natural": "저기, 잠깐 시간 돼요? 내일 발표 자료 관련해서 하나만 물어볼게요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "got a sec",
+              "meaning": "잠깐 시간 돼?",
+              "nuance": "Have you got a second?를 줄인 아주 가벼운 구어. 동료에게 말을 걸 때 쓰고, 윗사람에게는 Do you have a minute?가 무난하다.",
+              "examples": [
+                {
+                  "en": "Got a sec? I need your opinion.",
+                  "ko": "잠깐 시간 돼? 네 의견이 필요해."
+                },
+                {
+                  "en": "Hey, got a sec to look at this?",
+                  "ko": "저기, 이거 잠깐 봐 줄 수 있어?"
+                },
+                {
+                  "en": "Got a sec after lunch?",
+                  "ko": "점심 먹고 잠깐 시간 돼?"
+                }
+              ]
+            },
+            {
+              "text": "deck",
+              "meaning": "발표 자료(슬라이드)",
+              "nuance": "회사에서 슬라이드 묶음을 부르는 말. slides보다 업무 구어 느낌이 강하다.",
+              "examples": [
+                {
+                  "en": "Can you send me the sales deck?",
+                  "ko": "영업 발표 자료 좀 보내 줄래요?"
+                },
+                {
+                  "en": "The deck is almost done.",
+                  "ko": "발표 자료 거의 다 됐어요."
+                },
+                {
+                  "en": "Let's add a summary slide to the deck.",
+                  "ko": "자료에 요약 슬라이드를 하나 넣죠."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure, what's up? I'm between meetings, so I might be slow to reply.",
+          "ko_word_order": "그럼요, 무슨 일이에요? / 저는 회의 사이에 있어요, / 그래서 답이 느릴 수도 있어요",
+          "ko_natural": "네, 무슨 일이에요? 회의 사이라 답이 좀 늦을 수 있어요.",
+          "terms": [
+            {
+              "text": "between meetings",
+              "meaning": "회의와 회의 사이",
+              "nuance": "회의가 연달아 있어 잠깐 틈이 난 상태를 말한다. 바쁘다는 사정을 자연스럽게 알릴 때 좋다.",
+              "examples": [
+                {
+                  "en": "I'll call you between meetings.",
+                  "ko": "회의 사이에 전화할게요."
+                },
+                {
+                  "en": "I ate a sandwich between meetings.",
+                  "ko": "회의 사이에 샌드위치 하나 먹었어."
+                },
+                {
+                  "en": "She's running between meetings all day.",
+                  "ko": "그분 하루 종일 회의를 옮겨 다녀요."
+                }
+              ]
+            },
+            {
+              "text": "be slow to reply",
+              "form": "slow to reply",
+              "meaning": "답장이 늦다",
+              "nuance": "답이 늦을 수 있다고 미리 양해를 구할 때 쓴다. 이미 늦었을 때는 'Sorry for the slow reply'라고 한다.",
+              "examples": [
+                {
+                  "en": "Sorry, I've been slow to reply today.",
+                  "ko": "미안, 오늘 답이 늦었네."
+                },
+                {
+                  "en": "He's always slow to reply to emails.",
+                  "ko": "그 사람은 늘 메일 답장이 늦어."
+                },
+                {
+                  "en": "I'm on the road, so I'll be slow to reply.",
+                  "ko": "이동 중이라 답장이 늦을 거예요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "No worries. Did you get a chance to update the pricing slide?",
+          "ko_word_order": "괜찮아요. / 혹시 기회가 있었어요 / 업데이트할 / 가격 슬라이드를?",
+          "ko_natural": "괜찮아요. 혹시 가격 슬라이드 수정할 시간 있었어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "no worries",
+              "form": "No worries",
+              "meaning": "괜찮아요",
+              "nuance": "사과나 부탁에 '신경 쓰지 마'라고 가볍게 답하는 말. No problem과 비슷하고 동료 사이 메신저에서 특히 흔하다.",
+              "examples": [
+                {
+                  "en": "Sorry I'm late! — No worries.",
+                  "ko": "늦어서 미안! — 괜찮아."
+                },
+                {
+                  "en": "No worries, take your time.",
+                  "ko": "괜찮아요, 천천히 하세요."
+                },
+                {
+                  "en": "Thanks for waiting. — No worries at all.",
+                  "ko": "기다려 줘서 고마워요. — 전혀요."
+                }
+              ]
+            },
+            {
+              "text": "get a chance to",
+              "meaning": "~할 틈이 나다",
+              "nuance": "상대가 바빴을 수 있다는 걸 배려하며 했는지 물을 때 쓴다. 'Did you do ~?'보다 훨씬 부드럽다.",
+              "examples": [
+                {
+                  "en": "Did you get a chance to read my email?",
+                  "ko": "제 메일 읽어 볼 시간 있으셨어요?"
+                },
+                {
+                  "en": "I didn't get a chance to call her.",
+                  "ko": "그녀에게 전화할 틈이 없었어."
+                },
+                {
+                  "en": "If you get a chance, check out this article.",
+                  "ko": "시간 나면 이 기사 한번 봐."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Not yet, sorry. It's been a crazy morning. I'll get to it by noon.",
+          "ko_word_order": "아직요, 미안해요. / 정신없는 아침이었어요. / 제가 그걸 할게요 / 정오까지",
+          "ko_natural": "아직이요, 미안해요. 오전이 정신없었어요. 점심 전까지 할게요.",
+          "terms": [
+            {
+              "text": "crazy",
+              "meaning": "정신없이 바쁜",
+              "nuance": "일정이 몰려 정신없을 때 구어로 많이 쓴다. busy보다 감정이 실린 말이고 'It's been a crazy week'처럼 쓴다.",
+              "examples": [
+                {
+                  "en": "Work has been crazy this week.",
+                  "ko": "이번 주는 일이 정신없었어."
+                },
+                {
+                  "en": "It's a crazy time of year for us.",
+                  "ko": "지금이 우리한테 제일 바쁜 시기야."
+                },
+                {
+                  "en": "Sorry, things got crazy at home.",
+                  "ko": "미안, 집에 일이 좀 많았어."
+                }
+              ]
+            },
+            {
+              "text": "get to",
+              "form": "get to it",
+              "meaning": "(미루던 일을) 손대다",
+              "nuance": "할 일에 드디어 착수한다는 뜻. 'I'll get to it'은 '곧 할게'라는 동료 사이의 흔한 대답이다.",
+              "examples": [
+                {
+                  "en": "I'll get to your request after lunch.",
+                  "ko": "요청하신 건 점심 먹고 처리할게요."
+                },
+                {
+                  "en": "Sorry, I haven't gotten to it yet.",
+                  "ko": "미안, 아직 손을 못 댔어."
+                },
+                {
+                  "en": "I never got to the laundry this weekend.",
+                  "ko": "이번 주말에 빨래를 결국 못 했어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Thanks. Just a heads-up, Mark wants to review everything before three.",
+          "ko_word_order": "고마워요. / 미리 알려 드리면, / 마크가 검토하고 싶어 해요 / 전부를 / 3시 전에",
+          "ko_natural": "고마워요. 참고로, 마크가 3시 전에 전부 검토하고 싶대요.",
+          "terms": [
+            {
+              "text": "heads-up",
+              "form": "a heads-up",
+              "meaning": "미리 알려 줌",
+              "nuance": "곧 생길 일을 미리 귀띔할 때 쓰는 구어. 'Thanks for the heads-up'은 '미리 알려 줘서 고마워'라는 뜻이다.",
+              "examples": [
+                {
+                  "en": "Thanks for the heads-up about the traffic.",
+                  "ko": "차 막힌다고 미리 알려 줘서 고마워."
+                },
+                {
+                  "en": "Can you give me a heads-up before you leave?",
+                  "ko": "가기 전에 미리 말해 줄래?"
+                },
+                {
+                  "en": "I got a heads-up that the client is coming early.",
+                  "ko": "고객이 일찍 온다고 미리 들었어."
+                }
+              ]
+            },
+            {
+              "text": "review",
+              "meaning": "검토하다",
+              "nuance": "문서나 자료를 꼼꼼히 확인한다는 업무 표현. check보다 공식적이고 'review the contract'처럼 쓴다.",
+              "examples": [
+                {
+                  "en": "Please review the contract before signing.",
+                  "ko": "서명하기 전에 계약서를 검토해 주세요."
+                },
+                {
+                  "en": "I'll review your report tonight.",
+                  "ko": "오늘 밤에 보고서 검토할게요."
+                },
+                {
+                  "en": "Can we review the numbers together?",
+                  "ko": "숫자 같이 검토해 볼까요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Okay. Could you drop the latest numbers in the shared folder?",
+          "ko_word_order": "알겠어요. / 올려 줄 수 있어요 / 최신 숫자를 / 공유 폴더에?",
+          "ko_natural": "알겠어요. 최신 수치를 공유 폴더에 올려 줄래요?",
+          "terms": [
+            {
+              "text": "drop",
+              "meaning": "(파일을) 올려 두다",
+              "nuance": "파일이나 링크를 슬쩍 올려 둔다는 가벼운 업무 구어. upload보다 캐주얼하고 'drop it in the chat'처럼 쓴다.",
+              "examples": [
+                {
+                  "en": "Just drop the link in the chat.",
+                  "ko": "채팅방에 링크만 올려 줘."
+                },
+                {
+                  "en": "I dropped the file in your inbox.",
+                  "ko": "네 메일함에 파일 넣어 뒀어."
+                },
+                {
+                  "en": "Drop the photos in this folder, please.",
+                  "ko": "사진은 이 폴더에 올려 주세요."
+                }
+              ]
+            },
+            {
+              "text": "latest",
+              "meaning": "최신의",
+              "nuance": "가장 최근에 업데이트된 것을 말한다. newest보다 업무에서 훨씬 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Is this the latest version?",
+                  "ko": "이게 최신 버전이에요?"
+                },
+                {
+                  "en": "Did you see the latest update?",
+                  "ko": "최근 업데이트 봤어?"
+                },
+                {
+                  "en": "I'll send you the latest draft tonight.",
+                  "ko": "오늘 밤에 최신 초안 보낼게."
+                }
+              ]
+            },
+            {
+              "text": "shared folder",
+              "meaning": "공유 폴더",
+              "nuance": "팀원 모두가 열어 볼 수 있는 폴더. 'shared drive'라고도 한다.",
+              "examples": [
+                {
+                  "en": "Everything is in the shared folder.",
+                  "ko": "전부 공유 폴더에 있어요."
+                },
+                {
+                  "en": "I can't open the shared folder.",
+                  "ko": "공유 폴더가 안 열려요."
+                },
+                {
+                  "en": "Save a copy to the shared folder.",
+                  "ko": "공유 폴더에 사본 하나 저장해 줘."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Already done. I also left a couple of comments on slide six.",
+          "ko_word_order": "이미 했어요. / 저는 또 남겼어요 / 코멘트 몇 개를 / 6번 슬라이드에",
+          "ko_natural": "벌써 올렸어요. 6번 슬라이드에 코멘트도 몇 개 달아 놨어요.",
+          "terms": [
+            {
+              "text": "already done",
+              "form": "Already done",
+              "meaning": "벌써 했어요",
+              "nuance": "부탁받은 일을 이미 끝냈다고 짧게 답할 때 쓴다. 메신저에서는 'Done'만 써도 된다.",
+              "examples": [
+                {
+                  "en": "Can you book the room? — Already done.",
+                  "ko": "회의실 예약해 줄래요? — 벌써 했어요."
+                },
+                {
+                  "en": "The invoice? Already done.",
+                  "ko": "청구서요? 이미 처리했어요."
+                },
+                {
+                  "en": "Already done, check your inbox.",
+                  "ko": "벌써 했어, 메일함 확인해 봐."
+                }
+              ]
+            },
+            {
+              "text": "leave a comment",
+              "form": "left a couple of comments",
+              "meaning": "코멘트를 남기다",
+              "nuance": "문서나 게시물에 의견을 달 때 쓴다. 공유 문서로 협업할 때 매일 쓰는 표현이다.",
+              "examples": [
+                {
+                  "en": "Feel free to leave a comment on the doc.",
+                  "ko": "문서에 편하게 코멘트 남겨 주세요."
+                },
+                {
+                  "en": "She left a nice comment on my post.",
+                  "ko": "그녀가 내 게시물에 좋은 댓글을 남겼어."
+                },
+                {
+                  "en": "I'll leave comments by tomorrow.",
+                  "ko": "내일까지 코멘트 남길게요."
+                }
+              ]
+            },
+            {
+              "text": "a couple of",
+              "meaning": "두어 개의",
+              "nuance": "정확히 둘이 아니라 '두세 개, 몇 개'라는 느낌. 구어에서 a few보다 조금 적은 수를 말할 때 쓴다.",
+              "examples": [
+                {
+                  "en": "I'll be there in a couple of minutes.",
+                  "ko": "몇 분 안에 갈게."
+                },
+                {
+                  "en": "Can I ask a couple of questions?",
+                  "ko": "질문 두어 개 해도 될까요?"
+                },
+                {
+                  "en": "We met a couple of times last year.",
+                  "ko": "작년에 몇 번 만났어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Perfect. I'll take a look and ping you if anything's unclear.",
+          "ko_word_order": "완벽해요. / 제가 한번 볼게요 / 그리고 메시지 보낼게요 / 뭐든 불분명하면",
+          "ko_natural": "좋아요. 한번 보고 헷갈리는 거 있으면 메시지할게요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "take a look",
+              "meaning": "한번 보다",
+              "nuance": "검토나 확인을 가볍게 하겠다고 할 때 쓴다. 'Let me take a look'은 '제가 한번 볼게요'라는 뜻이다.",
+              "examples": [
+                {
+                  "en": "Can you take a look at my résumé?",
+                  "ko": "내 이력서 좀 봐 줄래?"
+                },
+                {
+                  "en": "Let me take a look at the schedule.",
+                  "ko": "일정 한번 볼게요."
+                },
+                {
+                  "en": "The mechanic took a look at my car.",
+                  "ko": "정비사가 내 차를 살펴봤어."
+                }
+              ]
+            },
+            {
+              "text": "ping",
+              "form": "ping you",
+              "meaning": "메시지 보내다",
+              "nuance": "메신저로 짧게 연락한다는 사무실 구어. message보다 가볍고 'Ping me when you're free'처럼 쓴다.",
+              "examples": [
+                {
+                  "en": "Ping me when you're free.",
+                  "ko": "시간 나면 메시지 줘."
+                },
+                {
+                  "en": "I'll ping Sarah about the meeting.",
+                  "ko": "회의 건은 사라한테 메시지할게."
+                },
+                {
+                  "en": "He pinged me twice this morning.",
+                  "ko": "그 사람이 오늘 아침에 두 번이나 메시지했어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Sounds good. Want to hop on a quick call around two to wrap it up?",
+          "ko_word_order": "좋아요. / 잠깐 통화할래요 / 2시쯤 / 마무리하게?",
+          "ko_natural": "좋아요. 2시쯤 잠깐 통화해서 마무리할까요?",
+          "terms": [
+            {
+              "text": "hop on a call",
+              "form": "hop on a quick call",
+              "meaning": "잠깐 통화하다",
+              "nuance": "짧게 전화나 화상 통화에 들어온다는 가벼운 업무 구어. join a call보다 캐주얼하다.",
+              "examples": [
+                {
+                  "en": "Can you hop on a call now?",
+                  "ko": "지금 잠깐 통화 가능해?"
+                },
+                {
+                  "en": "Let's hop on a call and sort this out.",
+                  "ko": "통화로 이거 해결하자."
+                },
+                {
+                  "en": "I'll hop on the call in five minutes.",
+                  "ko": "5분 뒤에 통화 들어갈게."
+                }
+              ]
+            },
+            {
+              "text": "wrap up",
+              "form": "wrap it up",
+              "meaning": "마무리하다",
+              "nuance": "일이나 회의를 정리하고 끝낸다는 구어. finish보다 '정리해서 끝낸다'는 느낌이 있다.",
+              "examples": [
+                {
+                  "en": "Let's wrap up for today.",
+                  "ko": "오늘은 여기서 마무리하죠."
+                },
+                {
+                  "en": "We should wrap this up by Friday.",
+                  "ko": "금요일까지 이거 마무리해야 해."
+                },
+                {
+                  "en": "Give me ten minutes to wrap up.",
+                  "ko": "정리하게 10분만 줘."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Works for me. I'll send you an invite in a bit.",
+          "ko_word_order": "저는 좋아요. / 제가 보낼게요 / 초대를 / 조금 있다가",
+          "ko_natural": "좋아요. 조금 있다가 초대 보낼게요.",
+          "terms": [
+            {
+              "text": "works for me",
+              "form": "Works for me",
+              "meaning": "저는 좋아요",
+              "nuance": "제안한 시간이나 방법이 괜찮다고 답할 때 쓴다. That works for me를 줄인 말로 일정 맞출 때 아주 흔하다.",
+              "examples": [
+                {
+                  "en": "Tuesday at ten? Works for me.",
+                  "ko": "화요일 10시요? 좋아요."
+                },
+                {
+                  "en": "Pizza works for me.",
+                  "ko": "피자 좋아."
+                },
+                {
+                  "en": "If it works for you, it works for me.",
+                  "ko": "너만 괜찮으면 나도 좋아."
+                }
+              ]
+            },
+            {
+              "text": "send an invite",
+              "form": "send you an invite",
+              "meaning": "(일정) 초대를 보내다",
+              "nuance": "캘린더 회의 초대를 보낼 때 쓴다. invitation보다 짧고 업무에서 더 흔하다.",
+              "examples": [
+                {
+                  "en": "I'll send an invite for Monday.",
+                  "ko": "월요일로 초대 보낼게요."
+                },
+                {
+                  "en": "Did you get my calendar invite?",
+                  "ko": "제 캘린더 초대 받으셨어요?"
+                },
+                {
+                  "en": "Can you send the invite to the whole team?",
+                  "ko": "팀 전체에 초대 보내 줄래요?"
+                }
+              ]
+            },
+            {
+              "text": "in a bit",
+              "meaning": "조금 있다가",
+              "nuance": "곧, 잠시 후라는 가벼운 구어. soon보다 캐주얼하고 'See you in a bit'처럼 쓴다.",
+              "examples": [
+                {
+                  "en": "I'll call you back in a bit.",
+                  "ko": "조금 있다 다시 전화할게."
+                },
+                {
+                  "en": "See you in a bit!",
+                  "ko": "이따 봐!"
+                },
+                {
+                  "en": "Dinner will be ready in a bit.",
+                  "ko": "저녁 곧 돼."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

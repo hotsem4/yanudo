@@ -1,0 +1,474 @@
+{
+  "lessons": [
+    {
+      "day": 21,
+      "title": "날씨와 가벼운 대화",
+      "theme": "Weather and small talk",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Wow, it's freezing this morning. Did you see the forecast?",
+          "ko_word_order": "와, 엄청 추워요 / 오늘 아침에. / 당신은 봤나요 / 일기예보를?",
+          "ko_natural": "와, 오늘 아침 진짜 춥네요. 일기예보 보셨어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "freezing",
+              "meaning": "엄청 추운",
+              "nuance": "얼 것처럼 춥다는 과장 섞인 구어. cold보다 훨씬 강하다.",
+              "examples": [
+                {
+                  "en": "Close the window. I'm freezing!",
+                  "ko": "창문 좀 닫아. 얼어 죽겠어!"
+                },
+                {
+                  "en": "The office is always freezing in summer.",
+                  "ko": "여름엔 사무실이 늘 너무 추워."
+                },
+                {
+                  "en": "It was freezing at the top of the mountain.",
+                  "ko": "산꼭대기는 엄청 추웠어."
+                }
+              ]
+            },
+            {
+              "text": "forecast",
+              "meaning": "일기예보",
+              "nuance": "weather forecast를 줄인 말. '예보로는'은 The forecast says ~.",
+              "examples": [
+                {
+                  "en": "The forecast says it'll be sunny all week.",
+                  "ko": "예보로는 일주일 내내 맑대."
+                },
+                {
+                  "en": "Check the forecast before the hike.",
+                  "ko": "등산 가기 전에 예보 확인해."
+                },
+                {
+                  "en": "The forecast was wrong again.",
+                  "ko": "예보가 또 틀렸어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Yeah, they said it might snow later this afternoon.",
+          "ko_word_order": "네, / 그들이 말했어요 / 눈이 올지도 모른다고 / 오늘 오후 늦게",
+          "ko_natural": "네, 오늘 오후 늦게 눈 올 수도 있대요.",
+          "terms": [
+            {
+              "text": "they said",
+              "meaning": "~래요(전해 들음)",
+              "nuance": "they는 특정한 사람이 아니라 예보·뉴스 같은 '사람들'을 가리킨다. 한국어의 '~래'와 비슷하다.",
+              "examples": [
+                {
+                  "en": "They said the subway is delayed today.",
+                  "ko": "오늘 지하철 늦어진대."
+                },
+                {
+                  "en": "They said on the news it'll be hot.",
+                  "ko": "뉴스에서 덥대."
+                },
+                {
+                  "en": "They said the new cafe is really good.",
+                  "ko": "새로 생긴 카페 진짜 괜찮대."
+                }
+              ]
+            },
+            {
+              "text": "might",
+              "meaning": "~일지도 모른다",
+              "nuance": "가능성이 반반쯤이거나 그보다 낮을 때. may보다 구어에서 더 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "I might be a little late tonight.",
+                  "ko": "나 오늘 좀 늦을지도 몰라."
+                },
+                {
+                  "en": "Take an umbrella. It might rain.",
+                  "ko": "우산 챙겨. 비 올지도 몰라."
+                },
+                {
+                  "en": "She might not come to the party.",
+                  "ko": "그녀는 파티에 안 올 수도 있어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Seriously? It was so warm last weekend, though.",
+          "ko_word_order": "진짜요? / 그건 너무 따뜻했어요 / 지난 주말에는, / 그런데",
+          "ko_natural": "진짜요? 지난 주말엔 그렇게 따뜻했는데요.",
+          "terms": [
+            {
+              "text": "seriously",
+              "meaning": "진짜?(놀람)",
+              "nuance": "놀라거나 믿기 어려울 때 쓰는 구어 맞장구. Really?보다 감정이 더 실린다.",
+              "examples": [
+                {
+                  "en": "Seriously? You finished it already?",
+                  "ko": "진짜? 벌써 다 했어?"
+                },
+                {
+                  "en": "Seriously, this is the best pizza ever.",
+                  "ko": "진짜 이거 최고의 피자야."
+                },
+                {
+                  "en": "Are you seriously moving to Canada?",
+                  "ko": "너 진짜 캐나다로 이사 가?"
+                }
+              ]
+            },
+            {
+              "text": "though",
+              "meaning": "(그래도) ~인데",
+              "nuance": "문장 끝의 though는 앞 말과 대조되는 느낌을 가볍게 덧붙인다. 구어에서 아주 흔하다.",
+              "examples": [
+                {
+                  "en": "The food was cold. The service was nice, though.",
+                  "ko": "음식은 식었어. 서비스는 좋았지만."
+                },
+                {
+                  "en": "It's expensive. I really want it, though.",
+                  "ko": "비싸. 그래도 진짜 갖고 싶어."
+                },
+                {
+                  "en": "Nice try, though.",
+                  "ko": "그래도 잘했어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I know. The weather's been all over the place lately.",
+          "ko_word_order": "그러니까요. / 날씨가 들쭉날쭉해 왔어요 / 요즘",
+          "ko_natural": "그러니까요. 요즘 날씨가 정말 오락가락해요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "all over the place",
+              "meaning": "들쭉날쭉한, 엉망인",
+              "nuance": "규칙 없이 오락가락하거나 정신없다는 구어. 날씨·일정·생각에 두루 쓴다.",
+              "examples": [
+                {
+                  "en": "My schedule is all over the place this week.",
+                  "ko": "이번 주 일정이 엉망이야."
+                },
+                {
+                  "en": "Prices are all over the place right now.",
+                  "ko": "요즘 가격이 들쭉날쭉해."
+                },
+                {
+                  "en": "Sorry, my thoughts are all over the place today.",
+                  "ko": "미안, 오늘 생각이 정리가 안 돼."
+                }
+              ]
+            },
+            {
+              "text": "lately",
+              "meaning": "요즘, 최근에",
+              "nuance": "최근 한동안 이어진 일에 쓰고 현재완료와 잘 어울린다. these days와 비슷하다.",
+              "examples": [
+                {
+                  "en": "I've been really busy lately.",
+                  "ko": "요즘 정말 바빴어."
+                },
+                {
+                  "en": "Have you talked to Mina lately?",
+                  "ko": "최근에 미나랑 얘기해 봤어?"
+                },
+                {
+                  "en": "He seems happier lately.",
+                  "ko": "그 사람 요즘 더 행복해 보여."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I never know what to wear on days like this.",
+          "ko_word_order": "저는 전혀 모르겠어요 / 무엇을 입을지 / 이런 날에는",
+          "ko_natural": "이런 날엔 뭘 입어야 할지 도통 모르겠어요.",
+          "terms": [
+            {
+              "text": "what to wear",
+              "meaning": "무엇을 입을지",
+              "nuance": "what to + 동사 꼴로 '무엇을 ~할지'. what to eat, what to say처럼 넓게 쓴다.",
+              "examples": [
+                {
+                  "en": "I can't decide what to wear tonight.",
+                  "ko": "오늘 밤 뭘 입을지 못 정하겠어."
+                },
+                {
+                  "en": "Tell me what to wear to the wedding.",
+                  "ko": "결혼식에 뭐 입고 가야 할지 알려 줘."
+                },
+                {
+                  "en": "She always knows what to wear.",
+                  "ko": "그녀는 늘 뭘 입어야 할지 잘 알아."
+                }
+              ]
+            },
+            {
+              "text": "days like this",
+              "meaning": "이런 날",
+              "nuance": "지금 같은 상황의 날을 가리킨다. 안 좋은 하루를 투덜거릴 때도 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "On days like this, I just want to stay home.",
+                  "ko": "이런 날엔 그냥 집에 있고 싶어."
+                },
+                {
+                  "en": "Days like this make me miss summer.",
+                  "ko": "이런 날이면 여름이 그리워."
+                },
+                {
+                  "en": "I need coffee on days like this.",
+                  "ko": "이런 날엔 커피가 필요해."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Tell me about it. I just wear layers every day now.",
+          "ko_word_order": "저한테 말해 봐요 / 그것에 대해. / 저는 그냥 입어요 / 겹겹이 / 요즘 매일",
+          "ko_natural": "내 말이요. 저는 요즘 그냥 매일 겹쳐 입어요.",
+          "terms": [
+            {
+              "text": "tell me about it",
+              "meaning": "내 말이(공감)",
+              "nuance": "글자 그대로 '말해 봐'가 아니라 '내 말이 그 말이야'라는 강한 공감. 불평에 맞장구칠 때 쓴다.",
+              "examples": [
+                {
+                  "en": "Tell me about it. I'm so tired too.",
+                  "ko": "내 말이. 나도 너무 피곤해."
+                },
+                {
+                  "en": "Tell me about it. My rent went up again.",
+                  "ko": "내 말이. 우리 집 월세도 또 올랐어."
+                },
+                {
+                  "en": "Tell me about it, this line is so slow.",
+                  "ko": "그러니까, 줄이 너무 안 줄어."
+                }
+              ]
+            },
+            {
+              "text": "wear layers",
+              "meaning": "겹쳐 입다",
+              "nuance": "얇은 옷을 여러 겹 입어 온도에 맞추는 것. dress in layers라고도 한다.",
+              "examples": [
+                {
+                  "en": "Wear layers if you go hiking.",
+                  "ko": "등산 가면 옷을 겹쳐 입어."
+                },
+                {
+                  "en": "It's smart to wear layers in spring.",
+                  "ko": "봄엔 겹쳐 입는 게 현명해."
+                },
+                {
+                  "en": "I wear layers because my office is cold.",
+                  "ko": "사무실이 추워서 겹쳐 입어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Smart move. Got any plans for the weekend?",
+          "ko_word_order": "현명한 선택이에요. / 있어요 / 무슨 계획이 / 주말을 위한?",
+          "ko_natural": "좋은 방법이네요. 주말에 뭐 하세요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "smart move",
+              "meaning": "현명한 선택",
+              "nuance": "상대의 결정을 가볍게 칭찬하는 구어. Good call도 비슷하게 쓴다.",
+              "examples": [
+                {
+                  "en": "Booking early was a smart move.",
+                  "ko": "일찍 예약한 건 잘한 선택이었어."
+                },
+                {
+                  "en": "Bringing an umbrella? Smart move.",
+                  "ko": "우산 챙겼어? 잘했네."
+                },
+                {
+                  "en": "Leaving before rush hour is a smart move.",
+                  "ko": "출퇴근 시간 전에 나가는 게 현명해."
+                }
+              ]
+            },
+            {
+              "text": "got any plans",
+              "meaning": "무슨 계획 있어요?",
+              "nuance": "Have you got any plans?에서 앞을 줄인 구어. 친한 사이나 가벼운 대화에서 쓴다.",
+              "examples": [
+                {
+                  "en": "Got any plans for tonight?",
+                  "ko": "오늘 밤에 뭐 해?"
+                },
+                {
+                  "en": "Got any plans for the holidays?",
+                  "ko": "연휴에 계획 있어?"
+                },
+                {
+                  "en": "You got any plans after work?",
+                  "ko": "퇴근하고 뭐 해?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Not really. I'll probably just stay in and watch movies.",
+          "ko_word_order": "별로요. / 저는 아마 그냥 집에 있을 거예요 / 그리고 영화를 볼 거예요",
+          "ko_natural": "딱히요. 아마 그냥 집에서 영화나 볼 것 같아요.",
+          "terms": [
+            {
+              "text": "stay in",
+              "meaning": "집에 있다(안 나가다)",
+              "nuance": "외출하지 않고 집에 머무는 것. 놀러 나가는 건 go out.",
+              "examples": [
+                {
+                  "en": "Let's stay in and order pizza tonight.",
+                  "ko": "오늘은 집에서 피자 시켜 먹자."
+                },
+                {
+                  "en": "I stayed in all weekend because of the rain.",
+                  "ko": "비 때문에 주말 내내 집에 있었어."
+                },
+                {
+                  "en": "Do you want to go out or stay in?",
+                  "ko": "나갈래, 아니면 집에 있을래?"
+                }
+              ]
+            },
+            {
+              "text": "not really",
+              "meaning": "별로요, 딱히",
+              "nuance": "No를 부드럽게 돌려 말하는 대답. 딱 잘라 말하는 느낌을 줄여 준다.",
+              "examples": [
+                {
+                  "en": "Hungry? Not really, I just ate.",
+                  "ko": "배고파? 아니 별로, 방금 먹었어."
+                },
+                {
+                  "en": "I'm not really into sports.",
+                  "ko": "나는 스포츠에 별로 관심 없어."
+                },
+                {
+                  "en": "Not really, but thanks for asking.",
+                  "ko": "딱히, 그래도 물어봐 줘서 고마워."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Sounds cozy. Oh, here comes my bus.",
+          "ko_word_order": "아늑하게 들리네요. / 오, 여기 와요 / 제 버스가",
+          "ko_natural": "아늑하겠네요. 아, 제 버스 왔다.",
+          "terms": [
+            {
+              "text": "cozy",
+              "meaning": "아늑한",
+              "nuance": "따뜻하고 편안한 느낌. 집·카페·옷에 두루 쓰며 영국 철자는 cosy.",
+              "examples": [
+                {
+                  "en": "This cafe is small but cozy.",
+                  "ko": "이 카페 작지만 아늑해."
+                },
+                {
+                  "en": "I love cozy nights with a good book.",
+                  "ko": "좋은 책 읽는 아늑한 밤이 좋아."
+                },
+                {
+                  "en": "Your new apartment looks so cozy.",
+                  "ko": "새 집 정말 아늑해 보인다."
+                }
+              ]
+            },
+            {
+              "text": "here comes",
+              "meaning": "~가 온다",
+              "nuance": "다가오는 것을 보며 '저기 온다'고 할 때 쓴다. 주어가 동사 뒤에 온다.",
+              "examples": [
+                {
+                  "en": "Here comes the train.",
+                  "ko": "기차 온다."
+                },
+                {
+                  "en": "Look, here comes Mina.",
+                  "ko": "봐, 미나 온다."
+                },
+                {
+                  "en": "Here comes the rain again.",
+                  "ko": "또 비 온다."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Okay, stay warm! Talk to you later.",
+          "ko_word_order": "그래요, / 따뜻하게 지내세요! / 나중에 얘기해요",
+          "ko_natural": "네, 따뜻하게 하고 다니세요! 다음에 또 얘기해요.",
+          "terms": [
+            {
+              "text": "stay warm",
+              "meaning": "따뜻하게 지내요",
+              "nuance": "추운 날 헤어질 때 하는 다정한 인사. 더운 날에는 stay cool이라고 한다.",
+              "examples": [
+                {
+                  "en": "It's snowing out there. Stay warm!",
+                  "ko": "밖에 눈 와. 따뜻하게 해!"
+                },
+                {
+                  "en": "Stay warm and drink something hot.",
+                  "ko": "따뜻하게 하고 뜨거운 거 마셔."
+                },
+                {
+                  "en": "Bye, and stay warm tonight.",
+                  "ko": "잘 가, 오늘 밤 따뜻하게 지내."
+                }
+              ]
+            },
+            {
+              "text": "talk to you later",
+              "meaning": "나중에 또 얘기해요",
+              "nuance": "대화를 마무리하는 가벼운 인사. 문자에서는 TTYL로 줄여 쓴다.",
+              "examples": [
+                {
+                  "en": "I have to go. Talk to you later!",
+                  "ko": "나 가야 해. 나중에 얘기해!"
+                },
+                {
+                  "en": "Okay, talk to you later tonight.",
+                  "ko": "그래, 오늘 밤에 얘기하자."
+                },
+                {
+                  "en": "Talk to you later, have fun.",
+                  "ko": "나중에 얘기해, 재밌게 놀아."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

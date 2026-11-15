@@ -1,0 +1,39 @@
+{
+  "name": "66 Habit English",
+  "short_name": "66 Habit",
+  "description": "영어 어순으로 하루 10문장을 소리 내어 외우는 66일 습관 앱",
+  "lang": "ko",
+  "start_url": "/",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F5F7FB",
+  "theme_color": "#F5F7FB",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "끊어 읽기 자동 재생",
+      "short_name": "끊어 읽기",
+      "url": "/?autoplay=true&mode=shadowing",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "역할극 자동 재생",
+      "short_name": "역할극",
+      "url": "/?autoplay=true&mode=roleplay",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "연속 듣기 자동 재생",
+      "short_name": "연속 듣기",
+      "url": "/?autoplay=true&mode=full",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}

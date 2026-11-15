@@ -1,0 +1,418 @@
+{
+  "lessons": [
+    {
+      "day": 28,
+      "title": "추천 받고 추천하기",
+      "theme": "Asking for and giving recommendations",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Can you recommend a nice restaurant around here?",
+          "ko_word_order": "추천해 줄 수 있어 / 괜찮은 식당을 / 이 근처에?",
+          "ko_natural": "이 근처에 괜찮은 식당 좀 추천해 줄래?",
+          "core": true,
+          "terms": [
+            {
+              "text": "recommend",
+              "meaning": "추천하다",
+              "nuance": "사람·장소·물건을 추천할 때 쓴다. Can you recommend ~?가 가장 흔한 질문 형태.",
+              "examples": [
+                {
+                  "en": "Can you recommend a good dentist?",
+                  "ko": "괜찮은 치과 추천해 줄래?"
+                },
+                {
+                  "en": "I highly recommend this book.",
+                  "ko": "이 책 강력 추천해."
+                },
+                {
+                  "en": "What do you recommend for beginners?",
+                  "ko": "초보자한테는 뭘 추천해요?"
+                }
+              ]
+            },
+            {
+              "text": "around here",
+              "meaning": "이 근처에",
+              "nuance": "지금 있는 곳 주변을 말한다. near here보다 범위가 넓고 구어적이다.",
+              "examples": [
+                {
+                  "en": "Is there a bank around here?",
+                  "ko": "이 근처에 은행 있어요?"
+                },
+                {
+                  "en": "I don't live around here.",
+                  "ko": "저 이 동네 안 살아요."
+                },
+                {
+                  "en": "Parking is hard around here.",
+                  "ko": "이 근처는 주차하기 힘들어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. What's the occasion? Something special?",
+          "ko_word_order": "그럼. / 무슨 날이야? / 뭔가 특별한 거야?",
+          "ko_natural": "그럼. 무슨 날이야? 특별한 자리야?",
+          "terms": [
+            {
+              "text": "occasion",
+              "meaning": "특별한 날·행사",
+              "nuance": "생일이나 기념일 같은 일. What's the occasion?은 '무슨 날이야?'라는 단골 질문.",
+              "examples": [
+                {
+                  "en": "Flowers? What's the occasion?",
+                  "ko": "꽃이야? 무슨 날이야?"
+                },
+                {
+                  "en": "This dress is perfect for any occasion.",
+                  "ko": "이 원피스는 어떤 자리에도 잘 어울려."
+                },
+                {
+                  "en": "We save this wine for special occasions.",
+                  "ko": "이 와인은 특별한 날을 위해 아껴 둬."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "It's my parents' anniversary, so I want somewhere nice.",
+          "ko_word_order": "부모님 기념일이야, / 그래서 나는 원해 / 괜찮은 곳을",
+          "ko_natural": "부모님 결혼기념일이라 좀 괜찮은 데로 가고 싶어.",
+          "terms": [
+            {
+              "text": "anniversary",
+              "meaning": "기념일",
+              "nuance": "결혼이나 창립처럼 해마다 돌아오는 기념일. 생일에는 쓰지 않는다.",
+              "examples": [
+                {
+                  "en": "It's our tenth wedding anniversary.",
+                  "ko": "우리 결혼 10주년이야."
+                },
+                {
+                  "en": "What did you do for your anniversary?",
+                  "ko": "기념일에 뭐 했어?"
+                },
+                {
+                  "en": "The company is celebrating its 50th anniversary.",
+                  "ko": "회사가 창립 50주년을 맞았어."
+                }
+              ]
+            },
+            {
+              "text": "somewhere nice",
+              "meaning": "괜찮은 곳",
+              "nuance": "somewhere 뒤에 형용사를 붙여 '~한 곳'. 장소를 딱 정하지 않고 말할 때 편하다.",
+              "examples": [
+                {
+                  "en": "Let's go somewhere nice for your birthday.",
+                  "ko": "네 생일엔 좋은 데 가자."
+                },
+                {
+                  "en": "We stayed somewhere nice near the beach.",
+                  "ko": "해변 근처 좋은 곳에 묵었어."
+                },
+                {
+                  "en": "Take her somewhere nice tonight.",
+                  "ko": "오늘 밤 그녀를 근사한 곳에 데려가."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Then you should definitely try the Italian place on Main Street.",
+          "ko_word_order": "그럼 너는 꼭 가 봐야 해 / 그 이탈리안 식당을 / 메인 스트리트에 있는",
+          "ko_natural": "그럼 메인 스트리트에 있는 이탈리안 식당 꼭 가 봐.",
+          "core": true,
+          "terms": [
+            {
+              "text": "you should try",
+              "form": "you should definitely try",
+              "meaning": "~ 해 봐(추천)",
+              "nuance": "음식·장소·방법을 추천할 때 가장 자연스러운 말. definitely를 넣으면 강하게 추천한다.",
+              "examples": [
+                {
+                  "en": "You should try the cheesecake here.",
+                  "ko": "여기 치즈케이크 먹어 봐."
+                },
+                {
+                  "en": "You should try yoga. It really helps.",
+                  "ko": "요가 해 봐. 진짜 도움 돼."
+                },
+                {
+                  "en": "You should try that new app.",
+                  "ko": "그 새 앱 써 봐."
+                }
+              ]
+            },
+            {
+              "text": "place",
+              "meaning": "가게·식당",
+              "nuance": "구어에서는 식당·카페·집을 두루 place라고 한다. the Italian place는 '그 이탈리안 식당'.",
+              "examples": [
+                {
+                  "en": "Do you know a good pizza place?",
+                  "ko": "맛있는 피자집 알아?"
+                },
+                {
+                  "en": "Let's go to that place we went last time.",
+                  "ko": "지난번에 갔던 거기 가자."
+                },
+                {
+                  "en": "Nice place! How long have you lived here?",
+                  "ko": "집 좋다! 여기 산 지 얼마나 됐어?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Oh, what's good there? I've never been.",
+          "ko_word_order": "오, 뭐가 맛있어 / 거기서? / 나는 가 본 적 없어",
+          "ko_natural": "아, 거기 뭐가 맛있어? 한 번도 안 가 봤거든.",
+          "terms": [
+            {
+              "text": "what's good there",
+              "meaning": "거기 뭐가 맛있어?",
+              "nuance": "식당 메뉴를 추천받을 때 쓴다. 가게 안에서 물을 때는 What's good here?",
+              "examples": [
+                {
+                  "en": "I'm going to that new bakery. What's good there?",
+                  "ko": "그 새 빵집 갈 건데 거기 뭐가 맛있어?"
+                },
+                {
+                  "en": "You've been to that bar? What's good there?",
+                  "ko": "그 바 가 봤어? 거기 뭐가 괜찮아?"
+                },
+                {
+                  "en": "What's good there for vegetarians?",
+                  "ko": "거기 채식 메뉴로 뭐가 괜찮아?"
+                }
+              ]
+            },
+            {
+              "text": "I've never been",
+              "meaning": "가 본 적 없어",
+              "nuance": "장소에 가 본 경험이 없을 때. been 뒤의 there나 to ~는 생략해도 통한다.",
+              "examples": [
+                {
+                  "en": "I've never been to Japan.",
+                  "ko": "일본에 가 본 적 없어."
+                },
+                {
+                  "en": "Is it nice? I've never been.",
+                  "ko": "거기 좋아? 한 번도 안 가 봤어."
+                },
+                {
+                  "en": "I've never been to a baseball game.",
+                  "ko": "야구장에 가 본 적이 없어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Their seafood pasta is amazing. You can't go wrong with it.",
+          "ko_word_order": "거기 해산물 파스타는 / 끝내줘. / 너는 실패할 수 없어 / 그걸로는",
+          "ko_natural": "해산물 파스타가 진짜 맛있어. 그거 시키면 실패 없어.",
+          "core": true,
+          "terms": [
+            {
+              "text": "can't go wrong with",
+              "meaning": "~면 실패 없다",
+              "nuance": "무엇을 골라도 안전하다고 추천할 때 쓰는 구어.",
+              "examples": [
+                {
+                  "en": "You can't go wrong with a classic white shirt.",
+                  "ko": "기본 흰 셔츠는 실패가 없어."
+                },
+                {
+                  "en": "For a gift, you can't go wrong with chocolate.",
+                  "ko": "선물로는 초콜릿이면 실패 없어."
+                },
+                {
+                  "en": "You can't go wrong with this brand.",
+                  "ko": "이 브랜드면 실패 없어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Is it pricey? I don't want to break the bank.",
+          "ko_word_order": "거기 비싸? / 나는 원하지 않아 / 돈을 왕창 쓰는 걸",
+          "ko_natural": "비싸? 돈을 너무 많이 쓰고 싶진 않아서.",
+          "terms": [
+            {
+              "text": "pricey",
+              "meaning": "비싼",
+              "nuance": "expensive의 구어. '좀 비싼 편'이라는 가벼운 느낌이다.",
+              "examples": [
+                {
+                  "en": "That café is nice but pricey.",
+                  "ko": "그 카페 좋은데 좀 비싸."
+                },
+                {
+                  "en": "Hotels downtown are pretty pricey.",
+                  "ko": "시내 호텔은 꽤 비싸."
+                },
+                {
+                  "en": "It's a bit pricey, but the quality is good.",
+                  "ko": "좀 비싸긴 한데 품질이 좋아."
+                }
+              ]
+            },
+            {
+              "text": "break the bank",
+              "meaning": "큰돈을 쓰다",
+              "nuance": "돈이 너무 많이 든다는 관용 표현. 주로 부정문으로 '부담 안 된다'고 할 때 쓴다.",
+              "examples": [
+                {
+                  "en": "A nice dinner doesn't have to break the bank.",
+                  "ko": "좋은 저녁이 꼭 비쌀 필요는 없어."
+                },
+                {
+                  "en": "This trip won't break the bank.",
+                  "ko": "이번 여행은 돈 많이 안 들어."
+                },
+                {
+                  "en": "I'd love a new phone, but I can't break the bank.",
+                  "ko": "새 폰 갖고 싶은데 큰돈은 못 써."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "It's a little expensive, but it's totally worth it.",
+          "ko_word_order": "좀 비싸, / 하지만 그건 / 완전히 그럴 가치가 있어",
+          "ko_natural": "좀 비싸긴 한데 충분히 그 값어치 해.",
+          "terms": [
+            {
+              "text": "worth it",
+              "meaning": "그만한 가치가 있는",
+              "nuance": "돈·시간·노력을 들일 만하다는 뜻. 추천할 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "The view from the top is worth it.",
+                  "ko": "정상에서 보는 경치가 그만한 가치가 있어."
+                },
+                {
+                  "en": "Was the concert worth it?",
+                  "ko": "콘서트 갈 만했어?"
+                },
+                {
+                  "en": "It took three hours, but it was worth it.",
+                  "ko": "세 시간 걸렸는데 그럴 만했어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Great. Do I need to book ahead on weekends?",
+          "ko_word_order": "좋아. / 내가 미리 예약해야 해 / 주말에는?",
+          "ko_natural": "좋다. 주말엔 미리 예약해야 해?",
+          "terms": [
+            {
+              "text": "book ahead",
+              "meaning": "미리 예약하다",
+              "nuance": "식당이나 숙소를 미리 잡아 둘 때. book in advance와 같은 뜻이고 더 짧고 구어적이다.",
+              "examples": [
+                {
+                  "en": "You have to book ahead for that hotel.",
+                  "ko": "그 호텔은 미리 예약해야 해."
+                },
+                {
+                  "en": "We didn't book ahead, so we waited an hour.",
+                  "ko": "미리 예약 안 해서 한 시간 기다렸어."
+                },
+                {
+                  "en": "It's better to book ahead in summer.",
+                  "ko": "여름엔 미리 예약하는 게 좋아."
+                }
+              ]
+            },
+            {
+              "text": "on weekends",
+              "meaning": "주말에(는)",
+              "nuance": "주말마다 되풀이되는 일을 말한다. 이번 주말 하루만이면 this weekend.",
+              "examples": [
+                {
+                  "en": "The park gets crowded on weekends.",
+                  "ko": "그 공원은 주말엔 붐벼."
+                },
+                {
+                  "en": "Do you work on weekends?",
+                  "ko": "주말에도 일해?"
+                },
+                {
+                  "en": "I sleep in on weekends.",
+                  "ko": "주말엔 늦잠 자."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Yeah, I'd call at least a few days in advance.",
+          "ko_word_order": "응, 나라면 전화할 거야 / 적어도 며칠 / 미리",
+          "ko_natural": "응, 나라면 최소 며칠 전에는 전화해 둘 거야.",
+          "terms": [
+            {
+              "text": "in advance",
+              "meaning": "미리",
+              "nuance": "정해진 때보다 앞서. 예약·결제·공지에서 자주 쓰고 ahead보다 조금 더 격식 있다.",
+              "examples": [
+                {
+                  "en": "Please pay in advance.",
+                  "ko": "선불로 결제해 주세요."
+                },
+                {
+                  "en": "Thanks in advance for your help.",
+                  "ko": "도와주셔서 미리 감사드려요."
+                },
+                {
+                  "en": "Let me know in advance if you can't come.",
+                  "ko": "못 오면 미리 알려 줘."
+                }
+              ]
+            },
+            {
+              "text": "at least",
+              "meaning": "적어도",
+              "nuance": "최소한을 말할 때 쓴다. 위로할 때 At least ~는 '그래도 ~잖아'.",
+              "examples": [
+                {
+                  "en": "It takes at least an hour.",
+                  "ko": "적어도 한 시간은 걸려."
+                },
+                {
+                  "en": "At least it didn't rain.",
+                  "ko": "그래도 비는 안 왔잖아."
+                },
+                {
+                  "en": "Drink at least two liters of water a day.",
+                  "ko": "물은 하루에 적어도 2리터 마셔."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

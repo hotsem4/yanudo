@@ -1,0 +1,310 @@
+{
+  "lessons": [
+    {
+      "day": 39,
+      "title": "업무 요청하기",
+      "theme": "Making requests at work",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hey Ava, got a minute? I have a quick favor to ask.",
+          "ko_word_order": "에이바, / 잠깐 시간 있어요? / 저 작은 부탁이 있어요 / 드릴",
+          "ko_natural": "에이바, 잠깐 시간 돼요? 부탁 하나만 드려도 될까요?",
+          "terms": [
+            {
+              "text": "got a minute",
+              "meaning": "잠깐 시간 돼요?",
+              "nuance": "'Have you got a minute?'을 줄인 구어. 동료 자리에 가서 말을 걸 때 가장 흔한 첫마디다.",
+              "examples": [
+                { "en": "Got a minute? I need your opinion.", "ko": "잠깐 시간 돼? 네 의견이 필요해." },
+                { "en": "Hey, got a minute after lunch?", "ko": "저기, 점심 먹고 잠깐 시간 돼요?" },
+                { "en": "Sorry, I haven't got a minute today.", "ko": "미안, 오늘은 잠깐도 시간이 없어." }
+              ]
+            },
+            {
+              "text": "a favor to ask",
+              "form": "quick favor to ask",
+              "meaning": "부탁할 것",
+              "nuance": "본론 전에 부탁이 있다고 미리 알리는 말. quick이나 small을 붙이면 부담을 덜어 준다.",
+              "examples": [
+                { "en": "I have a small favor to ask.", "ko": "작은 부탁 하나 있어." },
+                { "en": "Mom, I have a big favor to ask.", "ko": "엄마, 큰 부탁 하나 있어요." },
+                { "en": "Can I come in? I have a favor to ask.", "ko": "들어가도 돼? 부탁할 게 있어서." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure, what do you need? I'm just wrapping up an email.",
+          "ko_word_order": "그럼요, / 뭐가 필요해요? / 저 지금 막 마무리하고 있어요 / 이메일 하나를",
+          "ko_natural": "네, 뭐 필요해요? 메일 하나만 마무리하고 있었어요.",
+          "terms": [
+            {
+              "text": "wrap up",
+              "form": "wrapping up",
+              "meaning": "마무리하다",
+              "nuance": "일·회의·대화를 끝내 가는 단계에 쓰는 구어. 회의를 끝낼 때 'Let's wrap up'이라고 많이 한다.",
+              "examples": [
+                { "en": "Let's wrap up the meeting here.", "ko": "회의는 여기서 마무리하죠." },
+                { "en": "I'm wrapping up for the day.", "ko": "오늘 일 정리하고 있어요." },
+                { "en": "Can we wrap this up by five?", "ko": "이거 5시까지 마무리할 수 있을까요?" }
+              ]
+            },
+            {
+              "text": "what do you need",
+              "meaning": "뭐가 필요해요?",
+              "nuance": "부탁을 들을 준비가 됐다는 열린 대답. 'What's up?'보다 바로 도와주겠다는 느낌이 강하다.",
+              "examples": [
+                { "en": "Sure, what do you need from me?", "ko": "그럼요, 저한테 뭐가 필요해요?" },
+                { "en": "I'm at the store. What do you need?", "ko": "나 마트야. 뭐 필요해?" },
+                { "en": "Just tell me what you need.", "ko": "필요한 거 말만 해." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Would you mind looking over these slides before the client meeting tomorrow?",
+          "ko_word_order": "괜찮으시겠어요 / 이 슬라이드를 검토해 주는 게 / 고객 미팅 전에 / 내일?",
+          "ko_natural": "내일 고객 미팅 전에 이 슬라이드 한번 봐 줄 수 있어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "look over",
+              "form": "looking over",
+              "meaning": "훑어보다, 검토하다",
+              "nuance": "문서·자료를 꼼꼼하진 않아도 전체적으로 확인해 주는 것. 더 자세히 볼 때는 go through를 쓴다.",
+              "examples": [
+                { "en": "Can you look over my resume?", "ko": "내 이력서 좀 봐 줄래?" },
+                { "en": "I looked over the contract last night.", "ko": "어젯밤에 계약서 훑어봤어요." },
+                { "en": "Let me look over the numbers first.", "ko": "숫자부터 한번 볼게요." }
+              ]
+            },
+            {
+              "text": "client meeting",
+              "meaning": "고객사 미팅",
+              "nuance": "외부 고객과 하는 회의. 내부 회의는 internal meeting, team meeting이라고 구별한다.",
+              "examples": [
+                { "en": "I'm in a client meeting until three.", "ko": "3시까지 고객 미팅이에요." },
+                { "en": "The client meeting got moved to Friday.", "ko": "고객 미팅이 금요일로 옮겨졌어요." },
+                { "en": "Dress up a bit for the client meeting.", "ko": "고객 미팅이니까 좀 차려입어요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Not at all. Which parts do you want me to focus on?",
+          "ko_word_order": "전혀요. / 어느 부분을 / 당신은 원해요 / 제가 집중하길?",
+          "ko_natural": "그럼요. 어느 부분 위주로 봐 드릴까요?",
+          "terms": [
+            {
+              "text": "Not at all",
+              "meaning": "전혀요, 물론이죠",
+              "nuance": "'Would you mind ~?'에 '괜찮다, 해 줄게'라고 답하는 말. 여기서 Yes라고 하면 '싫다'는 뜻이 되니 조심한다.",
+              "examples": [
+                { "en": "Would you mind if I sat here? Not at all.", "ko": "여기 앉아도 될까요? 그럼요." },
+                { "en": "Not at all, it's no trouble.", "ko": "전혀요, 하나도 안 귀찮아요." },
+                { "en": "Would you mind holding this? Not at all.", "ko": "이것 좀 들어 줄래요? 그럼요." }
+              ]
+            },
+            {
+              "text": "focus on",
+              "meaning": "~에 집중하다",
+              "nuance": "여러 가지 중 특정 부분에 힘을 쏟는다는 뜻. 업무 우선순위를 정할 때 자주 쓴다.",
+              "examples": [
+                { "en": "Let's focus on the main issue.", "ko": "핵심 문제에 집중합시다." },
+                { "en": "I can't focus on anything today.", "ko": "오늘 아무것도 집중이 안 돼." },
+                { "en": "This year we're focusing on young customers.", "ko": "올해는 젊은 고객층에 집중하고 있어요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Mainly the numbers on pages five to eight. I want to double-check them.",
+          "ko_word_order": "주로 숫자들이요 / 5쪽에서 8쪽까지. / 저는 다시 확인하고 싶어요 / 그것들을",
+          "ko_natural": "주로 5쪽부터 8쪽까지 숫자요. 한 번 더 확인하고 싶어서요.",
+          "terms": [
+            {
+              "text": "double-check",
+              "meaning": "다시 한번 확인하다",
+              "nuance": "실수가 없는지 한 번 더 확인하는 것. 'Let me double-check'는 '다시 확인해 볼게요'라는 흔한 말이다.",
+              "examples": [
+                { "en": "Let me double-check the address.", "ko": "주소 다시 확인해 볼게요." },
+                { "en": "Always double-check before you hit send.", "ko": "보내기 누르기 전엔 꼭 다시 확인해." },
+                { "en": "I double-checked, and the room is free.", "ko": "다시 확인했는데 회의실 비어 있어요." }
+              ]
+            },
+            {
+              "text": "mainly",
+              "meaning": "주로",
+              "nuance": "여러 가지 중 가장 큰 비중을 말할 때 쓴다. mostly와 비슷하지만 '중심이 되는 것'을 더 강조한다.",
+              "examples": [
+                { "en": "I mainly work with overseas clients.", "ko": "주로 해외 고객사랑 일해요." },
+                { "en": "The store sells mainly used books.", "ko": "그 가게는 주로 헌책을 팔아." },
+                { "en": "It was mainly my fault.", "ko": "주로 제 잘못이었어요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Got it. When do you need it by?",
+          "ko_word_order": "알겠어요. / 언제 / 그게 필요해요 / 까지?",
+          "ko_natural": "알겠어요. 언제까지 필요해요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "need it by",
+              "meaning": "~까지 필요하다",
+              "nuance": "마감을 물을 때 쓰는 가장 실용적인 질문. 끝에 by가 남는 것이 구어의 자연스러운 어순이다.",
+              "examples": [
+                { "en": "I need it by Friday at the latest.", "ko": "늦어도 금요일까지는 필요해요." },
+                { "en": "Sorry, I need it by noon.", "ko": "미안한데 정오까지 필요해요." },
+                { "en": "Do you need it by today?", "ko": "오늘까지 필요해요?" }
+              ]
+            },
+            {
+              "text": "Got it",
+              "meaning": "알겠어요",
+              "nuance": "지시나 설명을 이해했다고 짧게 답하는 말. 동료 사이에 아주 흔하고, 상사에게도 무난하다.",
+              "examples": [
+                { "en": "Turn left at the bank. Got it.", "ko": "은행에서 좌회전. 알겠어." },
+                { "en": "Got it, I'll fix that now.", "ko": "알겠어요, 지금 고칠게요." },
+                { "en": "Do you get it? Yeah, got it.", "ko": "이해했어? 응, 알겠어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "If you could get it back to me by three, I'd really appreciate it.",
+          "ko_word_order": "만약 그걸 저한테 돌려줄 수 있다면 / 3시까지, / 저는 정말 감사할 거예요",
+          "ko_natural": "3시까지만 봐서 주시면 정말 감사하겠어요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "get something back to someone",
+              "form": "get it back to me",
+              "meaning": "(검토 후) 돌려주다",
+              "nuance": "받은 자료를 확인하거나 수정해서 다시 넘겨줄 때 쓴다. 회신을 뜻하는 get back to me와 비슷하지만 물건·문서를 돌려준다는 점이 다르다.",
+              "examples": [
+                { "en": "I'll get the draft back to you tonight.", "ko": "초안 오늘 밤에 돌려드릴게요." },
+                { "en": "Can you get the form back to me by Monday?", "ko": "양식 월요일까지 다시 보내 줄 수 있어요?" },
+                { "en": "She got my notes back to me with comments.", "ko": "그분이 메모에 의견 달아서 돌려줬어요." }
+              ]
+            },
+            {
+              "text": "I'd appreciate it",
+              "form": "I'd really appreciate it",
+              "meaning": "~해 주시면 감사하겠어요",
+              "nuance": "부탁 끝에 붙여 공손함을 더한다. 'If you could ~, I'd appreciate it'은 회사에서 가장 흔한 부탁 틀이다.",
+              "examples": [
+                { "en": "I'd appreciate it if you kept this quiet.", "ko": "이건 조용히 해 주시면 감사하겠어요." },
+                { "en": "If you could call me back, I'd appreciate it.", "ko": "다시 전화 주시면 감사하겠어요." },
+                { "en": "I'd appreciate it if you could help.", "ko": "도와주시면 감사하겠어요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Three should be fine. Should I just leave comments in the file?",
+          "ko_word_order": "3시면 괜찮을 거예요. / 제가 그냥 남길까요 / 코멘트를 / 파일 안에?",
+          "ko_natural": "3시면 될 것 같아요. 파일에 바로 코멘트 달까요?",
+          "terms": [
+            {
+              "text": "should be fine",
+              "meaning": "괜찮을 거예요",
+              "nuance": "should는 여기서 '아마 그럴 것'이라는 추측. 확답보다 부드럽게 가능하다고 말할 때 쓴다.",
+              "examples": [
+                { "en": "Tuesday should be fine for me.", "ko": "저는 화요일 괜찮을 거예요." },
+                { "en": "The traffic should be fine by now.", "ko": "지금쯤이면 길 괜찮을 거야." },
+                { "en": "It should be fine, but let me check.", "ko": "괜찮을 텐데, 한번 확인해 볼게요." }
+              ]
+            },
+            {
+              "text": "leave comments",
+              "meaning": "코멘트를 남기다",
+              "nuance": "문서·게시물에 의견을 적어 두는 것. 공유 문서로 일하는 회사에서 매일 쓰는 표현이다.",
+              "examples": [
+                { "en": "I left comments on your draft.", "ko": "초안에 코멘트 남겨 뒀어요." },
+                { "en": "Feel free to leave comments below.", "ko": "아래에 편하게 댓글 남겨 주세요." },
+                { "en": "Can you leave comments by tomorrow?", "ko": "내일까지 의견 달아 줄 수 있어요?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Yeah, that's perfect. And let me know if anything looks off.",
+          "ko_word_order": "네, 그게 딱 좋아요. / 그리고 알려 주세요 / 만약 뭔가 / 이상해 보이면",
+          "ko_natural": "네, 그게 좋겠어요. 뭐든 이상해 보이면 알려 주세요.",
+          "terms": [
+            {
+              "text": "look off",
+              "form": "looks off",
+              "meaning": "뭔가 이상해 보이다",
+              "nuance": "딱 집어 말하긴 어렵지만 어딘가 틀린 것 같을 때 쓰는 구어. 숫자·디자인·분위기에 두루 쓴다.",
+              "examples": [
+                { "en": "The colors look a little off on this screen.", "ko": "이 화면에선 색이 좀 이상해 보여." },
+                { "en": "Something looks off about this receipt.", "ko": "이 영수증 뭔가 이상한데." },
+                { "en": "Tell me if the layout looks off.", "ko": "레이아웃 이상하면 말해 줘요." }
+              ]
+            },
+            {
+              "text": "let me know",
+              "meaning": "알려 주세요",
+              "nuance": "tell me보다 부드럽고 회사에서 가장 많이 쓰는 표현 중 하나. 뒤에 if, when 등을 붙인다.",
+              "examples": [
+                { "en": "Let me know when you're ready.", "ko": "준비되면 알려 줘." },
+                { "en": "Let me know if you need anything.", "ko": "필요한 거 있으면 말해." },
+                { "en": "Can you let me know by tonight?", "ko": "오늘 밤까지 알려 줄 수 있어?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Will do. I'll ping you as soon as I'm done.",
+          "ko_word_order": "그렇게 할게요. / 제가 메시지 보낼게요 / 끝나자마자",
+          "ko_natural": "네, 그럴게요. 끝나는 대로 메시지 드릴게요.",
+          "terms": [
+            {
+              "text": "Will do",
+              "meaning": "그렇게 할게요",
+              "nuance": "'I will do that'을 줄인 짧은 대답. 부탁을 받고 바로 '네, 할게요'라고 할 때 동료 사이에 많이 쓴다.",
+              "examples": [
+                { "en": "Lock the door when you leave. Will do.", "ko": "나갈 때 문 잠가. 알겠어." },
+                { "en": "Say hi to your mom! Will do.", "ko": "어머님께 안부 전해 줘! 그럴게." },
+                { "en": "Will do, I'll send it after lunch.", "ko": "그럴게요, 점심 먹고 보낼게요." }
+              ]
+            },
+            {
+              "text": "ping",
+              "meaning": "(메신저로) 연락하다",
+              "nuance": "메신저나 채팅으로 짧게 연락한다는 회사 구어. 전화보다 가볍고 이메일보다 빠른 느낌이다.",
+              "examples": [
+                { "en": "Ping me when the meeting starts.", "ko": "회의 시작하면 메시지 줘요." },
+                { "en": "I pinged him, but he hasn't replied.", "ko": "메시지 보냈는데 아직 답이 없어요." },
+                { "en": "Feel free to ping me anytime.", "ko": "언제든 편하게 메시지 줘요." }
+              ]
+            },
+            {
+              "text": "as soon as",
+              "meaning": "~하자마자",
+              "nuance": "어떤 일이 끝나면 바로 다음 일을 하겠다는 약속에 자주 쓴다. 뒤에는 미래라도 현재형을 쓴다.",
+              "examples": [
+                { "en": "Call me as soon as you land.", "ko": "도착하자마자 전화해." },
+                { "en": "I'll start as soon as I get the files.", "ko": "파일 받자마자 시작할게요." },
+                { "en": "She left as soon as the meeting ended.", "ko": "그분 회의 끝나자마자 나갔어요." }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

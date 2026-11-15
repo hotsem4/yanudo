@@ -1,0 +1,399 @@
+{
+  "lessons": [
+    {
+      "day": 19,
+      "title": "전화로 문의하기",
+      "theme": "Calling to ask a question",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi, I'm calling to ask about your opening hours.",
+          "ko_word_order": "안녕하세요, 저는 전화하고 있어요 / 묻기 위해 / 당신들의 영업시간에 대해",
+          "ko_natural": "안녕하세요, 영업시간 좀 여쭤보려고 전화드렸어요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "I'm calling to",
+              "meaning": "~하려고 전화했어요",
+              "nuance": "전화를 건 이유를 첫마디로 밝힐 때 쓴다. I'm calling about ~(~ 건으로 전화했어요)도 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "I'm calling to confirm my appointment.",
+                  "ko": "예약 확인하려고 전화드렸어요."
+                },
+                {
+                  "en": "I'm calling to cancel my order.",
+                  "ko": "주문 취소하려고 전화했어요."
+                },
+                {
+                  "en": "Hi, I'm calling to check on my package.",
+                  "ko": "안녕하세요, 택배 확인하려고 전화드렸어요."
+                }
+              ]
+            },
+            {
+              "text": "opening hours",
+              "meaning": "영업시간",
+              "nuance": "가게·기관이 문을 여는 시간. 미국에서는 business hours나 그냥 hours도 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "The opening hours are on the door.",
+                  "ko": "영업시간은 문에 붙어 있어."
+                },
+                {
+                  "en": "Do the opening hours change on holidays?",
+                  "ko": "공휴일엔 영업시간이 바뀌어요?"
+                },
+                {
+                  "en": "Check the opening hours before you go.",
+                  "ko": "가기 전에 영업시간 확인해."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. We're open from ten to nine every day.",
+          "ko_word_order": "네. / 저희는 열어요 / 10시부터 9시까지 / 매일",
+          "ko_natural": "네. 매일 10시부터 9시까지 영업해요.",
+          "terms": [
+            {
+              "text": "open",
+              "meaning": "영업 중인, 문을 연",
+              "nuance": "형용사 open은 가게가 '열려 있는' 상태. 문을 닫은 상태는 closed.",
+              "examples": [
+                {
+                  "en": "Is the bank open on Saturday?",
+                  "ko": "은행 토요일에도 열어?"
+                },
+                {
+                  "en": "The cafe is open until midnight.",
+                  "ko": "그 카페는 자정까지 해."
+                },
+                {
+                  "en": "Sorry, we're not open yet.",
+                  "ko": "죄송하지만 아직 영업 전이에요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Great. Do you have any air purifiers in stock?",
+          "ko_word_order": "좋아요. / 당신들은 가지고 있나요 / 공기청정기를 / 재고로?",
+          "ko_natural": "네. 공기청정기 재고 있어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "in stock",
+              "meaning": "재고가 있는",
+              "nuance": "가게에 물건이 남아 있다는 뜻. 다 팔리면 out of stock.",
+              "examples": [
+                {
+                  "en": "Is this jacket in stock in a medium?",
+                  "ko": "이 재킷 M 사이즈 재고 있어요?"
+                },
+                {
+                  "en": "We'll have more in stock next week.",
+                  "ko": "다음 주에 재고가 더 들어와요."
+                },
+                {
+                  "en": "Only three are left in stock.",
+                  "ko": "재고가 세 개밖에 안 남았어요."
+                }
+              ]
+            },
+            {
+              "text": "air purifier",
+              "form": "air purifiers",
+              "meaning": "공기청정기",
+              "nuance": "미세먼지 철에 많이 쓰는 생활 가전. 가습기는 humidifier.",
+              "examples": [
+                {
+                  "en": "We run the air purifier all night.",
+                  "ko": "우리는 공기청정기를 밤새 틀어 둬."
+                },
+                {
+                  "en": "I need a new filter for my air purifier.",
+                  "ko": "공기청정기 필터를 새로 사야 해."
+                },
+                {
+                  "en": "This air purifier is really quiet.",
+                  "ko": "이 공기청정기 정말 조용해."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Let me check. Can you hold on a second?",
+          "ko_word_order": "제가 확인해 볼게요. / 기다려 줄 수 있나요 / 잠깐?",
+          "ko_natural": "확인해 볼게요. 잠시만 기다려 주시겠어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "hold on",
+              "meaning": "(끊지 않고) 기다리다",
+              "nuance": "전화나 대면에서 '잠깐만요'라는 뜻. 전화에서는 Please hold처럼 hold만 쓰기도 한다.",
+              "examples": [
+                {
+                  "en": "Hold on, let me grab a pen.",
+                  "ko": "잠깐만, 펜 좀 가져올게."
+                },
+                {
+                  "en": "Can you hold on while I get the manager?",
+                  "ko": "매니저 불러올 동안 기다려 주시겠어요?"
+                },
+                {
+                  "en": "Hold on, someone's at the door.",
+                  "ko": "잠깐만, 누가 왔어."
+                }
+              ]
+            },
+            {
+              "text": "a second",
+              "meaning": "잠깐",
+              "nuance": "실제 1초가 아니라 '잠깐'이라는 구어. a minute, a moment도 같은 뜻.",
+              "examples": [
+                {
+                  "en": "Give me a second to find it.",
+                  "ko": "그거 찾는 동안 잠깐만 기다려 줘."
+                },
+                {
+                  "en": "Can I talk to you for a second?",
+                  "ko": "잠깐 얘기 좀 할 수 있어?"
+                },
+                {
+                  "en": "I'll be back in a second.",
+                  "ko": "금방 올게."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Sure, take your time.",
+          "ko_word_order": "물론이죠, / 천천히 하세요",
+          "ko_natural": "네, 천천히 보세요.",
+          "terms": [
+            {
+              "text": "take your time",
+              "meaning": "천천히 하세요",
+              "nuance": "서두르지 말라고 배려하는 말. 친구에게도 직원에게도 두루 쓴다.",
+              "examples": [
+                {
+                  "en": "Take your time. I'm not in a hurry.",
+                  "ko": "천천히 해. 나 안 급해."
+                },
+                {
+                  "en": "Take your time with the menu.",
+                  "ko": "메뉴 천천히 보세요."
+                },
+                {
+                  "en": "You can take your time and decide later.",
+                  "ko": "천천히 생각하고 나중에 정해도 돼."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Thanks for waiting. We have two left.",
+          "ko_word_order": "기다려 줘서 고마워요. / 저희는 가지고 있어요 / 두 개가 남은 걸",
+          "ko_natural": "기다려 주셔서 감사해요. 두 대 남아 있네요.",
+          "terms": [
+            {
+              "text": "thanks for waiting",
+              "meaning": "기다려 줘서 고마워요",
+              "nuance": "상대를 기다리게 한 뒤 돌아와서 하는 인사. 더 공손하게는 Thank you for your patience.",
+              "examples": [
+                {
+                  "en": "Thanks for waiting. Your table is ready.",
+                  "ko": "기다려 주셔서 감사해요. 자리 준비됐어요."
+                },
+                {
+                  "en": "Sorry I'm late, and thanks for waiting.",
+                  "ko": "늦어서 미안, 기다려 줘서 고마워."
+                },
+                {
+                  "en": "Thanks for waiting so long.",
+                  "ko": "오래 기다려 줘서 고마워."
+                }
+              ]
+            },
+            {
+              "text": "left",
+              "meaning": "남은",
+              "nuance": "have ~ left 꼴로 '~가 남아 있다'. 방향의 left(왼쪽)와 철자는 같지만 뜻이 다르다.",
+              "examples": [
+                {
+                  "en": "How much money do we have left?",
+                  "ko": "우리 돈 얼마 남았어?"
+                },
+                {
+                  "en": "There's only one cookie left.",
+                  "ko": "쿠키 하나밖에 안 남았어."
+                },
+                {
+                  "en": "We have ten minutes left.",
+                  "ko": "10분 남았어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Could you hold one for me until tonight?",
+          "ko_word_order": "당신은 맡아 둘 수 있나요 / 하나를 / 저를 위해 / 오늘 밤까지?",
+          "ko_natural": "오늘 저녁까지 하나만 빼 놔 주실 수 있어요?",
+          "terms": [
+            {
+              "text": "hold",
+              "meaning": "따로 빼 두다",
+              "nuance": "물건을 사러 갈 때까지 맡아 달라고 할 때 쓴다. put aside도 같은 뜻.",
+              "examples": [
+                {
+                  "en": "Can you hold this dress for an hour?",
+                  "ko": "이 원피스 한 시간만 빼 둬 주실래요?"
+                },
+                {
+                  "en": "They held the last copy for me.",
+                  "ko": "마지막 한 권을 날 위해 빼 뒀더라."
+                },
+                {
+                  "en": "We can hold it until Friday.",
+                  "ko": "금요일까지 맡아 둘 수 있어요."
+                }
+              ]
+            },
+            {
+              "text": "until",
+              "meaning": "~까지",
+              "nuance": "그 시점까지 계속된다는 뜻. 기한까지 한 번 끝내는 일에는 by를 쓴다.",
+              "examples": [
+                {
+                  "en": "The store is closed until Monday.",
+                  "ko": "가게는 월요일까지 문 닫아."
+                },
+                {
+                  "en": "Let's wait until the rain stops.",
+                  "ko": "비 그칠 때까지 기다리자."
+                },
+                {
+                  "en": "I work until six on Fridays.",
+                  "ko": "금요일엔 6시까지 일해."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. What name should I put it under?",
+          "ko_word_order": "네. / 어떤 이름으로 / 제가 해 둘까요?",
+          "ko_natural": "네. 성함을 어떻게 해 둘까요?",
+          "terms": [
+            {
+              "text": "put it under",
+              "meaning": "(~ 이름으로) 해 두다",
+              "nuance": "예약·주문을 누구 이름으로 할지 말할 때 쓴다. 손님은 Put it under Kim처럼 답한다.",
+              "examples": [
+                {
+                  "en": "Put it under Kim, please.",
+                  "ko": "김으로 해 주세요."
+                },
+                {
+                  "en": "Can you put it under my company's name?",
+                  "ko": "회사 이름으로 해 주실 수 있어요?"
+                },
+                {
+                  "en": "I put it under my sister's name.",
+                  "ko": "언니 이름으로 해 뒀어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "It's Andrew. I'll be there around six.",
+          "ko_word_order": "앤드루예요. / 저는 거기 갈게요 / 6시쯤",
+          "ko_natural": "앤드루예요. 6시쯤 갈게요.",
+          "terms": [
+            {
+              "text": "be there",
+              "meaning": "그곳에 가다",
+              "nuance": "약속 장소에 가겠다고 할 때 쓴다. I'll go there보다 '그 자리에 있겠다'는 느낌이라 더 자연스럽다.",
+              "examples": [
+                {
+                  "en": "Don't worry, I'll be there on time.",
+                  "ko": "걱정 마, 제시간에 갈게."
+                },
+                {
+                  "en": "Will you be there tomorrow night?",
+                  "ko": "내일 밤에 거기 와?"
+                },
+                {
+                  "en": "I can be there in ten minutes.",
+                  "ko": "10분 안에 갈 수 있어."
+                }
+              ]
+            },
+            {
+              "text": "around",
+              "meaning": "~쯤",
+              "nuance": "시간·숫자 앞에서 '대략'. about과 거의 같지만 시간에는 around를 더 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Let's meet around noon.",
+                  "ko": "정오쯤 만나자."
+                },
+                {
+                  "en": "It costs around twenty dollars.",
+                  "ko": "20달러쯤 해."
+                },
+                {
+                  "en": "I usually wake up around seven.",
+                  "ko": "나는 보통 7시쯤 일어나."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Perfect. We'll see you then.",
+          "ko_word_order": "좋아요. / 저희는 뵐게요 / 그때",
+          "ko_natural": "좋습니다. 그때 뵐게요.",
+          "terms": [
+            {
+              "text": "see you then",
+              "meaning": "그때 봬요",
+              "nuance": "약속 시간을 정한 뒤 마무리하는 인사. 친구끼리도, 가게 직원도 쓴다.",
+              "examples": [
+                {
+                  "en": "Saturday at noon? See you then!",
+                  "ko": "토요일 정오? 그때 보자!"
+                },
+                {
+                  "en": "Okay, see you then at the station.",
+                  "ko": "좋아, 그때 역에서 봐."
+                },
+                {
+                  "en": "Great, see you then.",
+                  "ko": "좋아요, 그때 봬요."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

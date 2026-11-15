@@ -1,0 +1,420 @@
+{
+  "lessons": [
+    {
+      "day": 25,
+      "title": "고마움 표현하기",
+      "theme": "Saying thank you",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "I just wanted to say thanks for helping me move.",
+          "ko_word_order": "나 그냥 말하고 싶었어 / 고맙다고 / 내 이사를 도와준 것에",
+          "ko_natural": "이사 도와줘서 고맙다고 꼭 말하고 싶었어.",
+          "core": true,
+          "terms": [
+            {
+              "text": "I just wanted to say",
+              "meaning": "그냥 ~라고 말하고 싶었어",
+              "nuance": "본론을 부드럽게 꺼내는 말. 고마움이나 사과를 전할 때 특히 자연스럽다.",
+              "examples": [
+                {
+                  "en": "I just wanted to say congratulations.",
+                  "ko": "그냥 축하한다고 말하고 싶었어."
+                },
+                {
+                  "en": "I just wanted to say I'm sorry about earlier.",
+                  "ko": "아까 일은 미안하다고 말하고 싶었어."
+                },
+                {
+                  "en": "I just wanted to say you did a great job.",
+                  "ko": "정말 잘했다고 말해 주고 싶었어."
+                }
+              ]
+            },
+            {
+              "text": "help someone move",
+              "form": "helping me move",
+              "meaning": "이사를 도와주다",
+              "nuance": "move는 혼자서 '이사하다'라는 뜻. 영국에서는 move house라고도 한다.",
+              "examples": [
+                {
+                  "en": "Can you help me move next Saturday?",
+                  "ko": "다음 주 토요일에 이사 좀 도와줄래?"
+                },
+                {
+                  "en": "My brothers helped me move.",
+                  "ko": "형들이 이사를 도와줬어."
+                },
+                {
+                  "en": "I'll help you move if you buy pizza.",
+                  "ko": "피자 사면 이사 도와줄게."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Oh, it was nothing. I was happy to help.",
+          "ko_word_order": "아, 그건 아무것도 아니었어. / 나는 기뻤어 / 도울 수 있어서",
+          "ko_natural": "에이, 별거 아니었어. 도울 수 있어서 좋았어.",
+          "terms": [
+            {
+              "text": "it was nothing",
+              "meaning": "별거 아니었어",
+              "nuance": "고맙다는 말에 겸손하게 답하는 말. Don't mention it, No problem과 비슷하다.",
+              "examples": [
+                {
+                  "en": "Thanks for the ride! Oh, it was nothing.",
+                  "ko": "태워 줘서 고마워! 에이, 별거 아니야."
+                },
+                {
+                  "en": "It was nothing, really. I was going that way anyway.",
+                  "ko": "진짜 별거 아니었어. 어차피 그쪽으로 가는 길이었어."
+                },
+                {
+                  "en": "She fixed my laptop and said it was nothing.",
+                  "ko": "걔가 노트북 고쳐 주고는 별거 아니래."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Are you kidding? I couldn't have done it without you.",
+          "ko_word_order": "농담해? / 나는 해낼 수 없었을 거야 / 그걸 / 너 없이는",
+          "ko_natural": "무슨 소리야. 너 없었으면 못 했어.",
+          "core": true,
+          "terms": [
+            {
+              "text": "are you kidding",
+              "meaning": "무슨 소리야·농담하지 마",
+              "nuance": "상대 말이 말도 안 될 때 놀라며 하는 구어. 겸손한 말에 반박할 때도 쓴다.",
+              "examples": [
+                {
+                  "en": "Are you kidding? This is the best gift ever.",
+                  "ko": "무슨 소리야? 이거 최고의 선물이야."
+                },
+                {
+                  "en": "Are you kidding me? It's sold out already?",
+                  "ko": "장난해? 벌써 매진이라고?"
+                },
+                {
+                  "en": "You think you're bad at cooking? Are you kidding?",
+                  "ko": "너 요리 못한다고? 농담하지 마."
+                }
+              ]
+            },
+            {
+              "text": "couldn't have done it without you",
+              "meaning": "너 없었으면 못 했어",
+              "nuance": "도움을 준 사람에게 진심으로 고마움을 전하는 말. 감사 인사나 축사에서도 쓴다.",
+              "examples": [
+                {
+                  "en": "Thanks, team. I couldn't have done it without you.",
+                  "ko": "팀원들 고마워요. 여러분 없이는 못 했을 거예요."
+                },
+                {
+                  "en": "You fixed it? I couldn't have done it without you.",
+                  "ko": "고쳤어? 너 아니었으면 못 했다."
+                },
+                {
+                  "en": "Mom, I couldn't have done it without you.",
+                  "ko": "엄마, 엄마 없었으면 못 했을 거예요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Well, carrying that sofa up three floors was pretty tough.",
+          "ko_word_order": "음, 그 소파를 들고 올라가는 건 / 3층을 / 꽤 힘들었어",
+          "ko_natural": "하긴, 그 소파 들고 3층 올라가는 건 좀 힘들긴 했어.",
+          "terms": [
+            {
+              "text": "pretty",
+              "meaning": "꽤",
+              "nuance": "형용사 앞에서 '꽤, 제법'이라는 뜻. very보다 약하고 구어에서 아주 흔하다.",
+              "examples": [
+                {
+                  "en": "The test was pretty easy.",
+                  "ko": "시험 꽤 쉬웠어."
+                },
+                {
+                  "en": "I'm pretty sure he's coming.",
+                  "ko": "걔 올 거라고 거의 확신해."
+                },
+                {
+                  "en": "It's pretty cold today.",
+                  "ko": "오늘 꽤 춥다."
+                }
+              ]
+            },
+            {
+              "text": "tough",
+              "meaning": "힘든",
+              "nuance": "hard와 비슷하지만 몸이나 마음이 버거운 상황에 더 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "It's been a tough week.",
+                  "ko": "힘든 한 주였어."
+                },
+                {
+                  "en": "Finding a parking spot here is tough.",
+                  "ko": "여기서 주차 자리 찾기 힘들어."
+                },
+                {
+                  "en": "Learning a new language is tough at first.",
+                  "ko": "새 언어 배우는 건 처음엔 힘들어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I know. My back is still sore from it.",
+          "ko_word_order": "그러니까. / 내 허리가 / 아직도 쑤셔 / 그것 때문에",
+          "ko_natural": "그러니까. 아직도 허리가 쑤셔.",
+          "terms": [
+            {
+              "text": "sore",
+              "meaning": "쑤시는·뻐근한",
+              "nuance": "운동하거나 무리한 뒤 근육이 아플 때 쓴다. sore throat는 '목이 아픈 것'.",
+              "examples": [
+                {
+                  "en": "My legs are sore after the hike.",
+                  "ko": "등산하고 나서 다리가 쑤셔."
+                },
+                {
+                  "en": "I have a sore throat today.",
+                  "ko": "오늘 목이 아파."
+                },
+                {
+                  "en": "My arms are still sore from yesterday's workout.",
+                  "ko": "어제 운동해서 팔이 아직도 뻐근해."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Ha, mine too. So, is everything unpacked now?",
+          "ko_word_order": "하, 내 것도. / 그래서, 다 풀었어 / 이제?",
+          "ko_natural": "하하, 나도. 그래서 짐은 다 풀었어?",
+          "terms": [
+            {
+              "text": "mine too",
+              "meaning": "내 것도",
+              "nuance": "내 것도 마찬가지라는 짧은 맞장구. 앞에 나온 명사를 받는다(my back → mine).",
+              "examples": [
+                {
+                  "en": "Your flight got delayed? Mine too.",
+                  "ko": "비행기 지연됐어? 내 것도."
+                },
+                {
+                  "en": "My favorite color is blue. Mine too!",
+                  "ko": "내가 제일 좋아하는 색은 파랑이야. 나도!"
+                },
+                {
+                  "en": "Your coffee's cold? Mine too.",
+                  "ko": "커피 식었어? 내 것도."
+                }
+              ]
+            },
+            {
+              "text": "unpack",
+              "form": "unpacked",
+              "meaning": "짐을 풀다",
+              "nuance": "이사나 여행 뒤 상자나 가방에서 짐을 꺼내 정리하는 것. 반대는 pack.",
+              "examples": [
+                {
+                  "en": "I'm too tired to unpack tonight.",
+                  "ko": "오늘 밤엔 너무 피곤해서 짐 못 풀겠어."
+                },
+                {
+                  "en": "Did you unpack your suitcase yet?",
+                  "ko": "캐리어 짐 풀었어?"
+                },
+                {
+                  "en": "It took me a week to unpack after moving.",
+                  "ko": "이사하고 짐 푸는 데 일주일 걸렸어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Almost. I've set up the kitchen, but not the bedroom.",
+          "ko_word_order": "거의. / 나는 정리했어 / 부엌은, / 하지만 침실은 아직",
+          "ko_natural": "거의. 부엌은 정리했는데 침실은 아직이야.",
+          "terms": [
+            {
+              "text": "set up",
+              "meaning": "정리하다·설치하다",
+              "nuance": "가구나 기기를 쓸 수 있게 자리 잡아 놓을 때 쓴다. 행사 준비, 컴퓨터 설정에도 쓴다.",
+              "examples": [
+                {
+                  "en": "Can you help me set up my new TV?",
+                  "ko": "새 TV 설치하는 것 좀 도와줄래?"
+                },
+                {
+                  "en": "We set up the tables before the party.",
+                  "ko": "파티 전에 테이블을 세팅했어."
+                },
+                {
+                  "en": "It took an hour to set up the tent.",
+                  "ko": "텐트 치는 데 한 시간 걸렸어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Let me know if you need a hand with that.",
+          "ko_word_order": "나에게 알려 줘 / 만약 네가 필요하면 / 도움이 / 그것에",
+          "ko_natural": "그거 도움 필요하면 말해.",
+          "terms": [
+            {
+              "text": "need a hand",
+              "meaning": "도움이 필요하다",
+              "nuance": "a hand는 '일손, 도움'. 가볍게 도와 달라거나 도와주겠다고 할 때 쓰는 구어.",
+              "examples": [
+                {
+                  "en": "Do you need a hand with those bags?",
+                  "ko": "그 가방들 들어 줄까?"
+                },
+                {
+                  "en": "I need a hand in the kitchen.",
+                  "ko": "부엌에서 좀 도와줘."
+                },
+                {
+                  "en": "He looked like he needed a hand, so I helped.",
+                  "ko": "걔가 도움이 필요해 보여서 도와줬어."
+                }
+              ]
+            },
+            {
+              "text": "let me know",
+              "meaning": "알려 줘",
+              "nuance": "필요하거나 정해지면 말해 달라는 뜻. 친구와 직장 모두 쓰는 만능 표현.",
+              "examples": [
+                {
+                  "en": "Let me know what time works.",
+                  "ko": "몇 시가 좋은지 알려 줘."
+                },
+                {
+                  "en": "Let me know when you're ready.",
+                  "ko": "준비되면 말해."
+                },
+                {
+                  "en": "Please let me know by Friday.",
+                  "ko": "금요일까지 알려 주세요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Actually, I owe you one. Dinner's on me this Friday.",
+          "ko_word_order": "그리고 사실, / 내가 신세 졌어. / 저녁은 내가 살게 / 이번 금요일에",
+          "ko_natural": "그리고 신세 졌으니까 이번 금요일 저녁은 내가 살게.",
+          "core": true,
+          "terms": [
+            {
+              "text": "I owe you one",
+              "meaning": "신세 졌어",
+              "nuance": "도움을 받고 나중에 갚겠다는 가벼운 감사 표현. 친구 사이에서 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "Thanks for covering for me. I owe you one.",
+                  "ko": "대신 해 줘서 고마워. 신세 졌다."
+                },
+                {
+                  "en": "You saved me today. I owe you one.",
+                  "ko": "오늘 네 덕에 살았어. 내가 한 번 갚을게."
+                },
+                {
+                  "en": "I owe you one for the ride.",
+                  "ko": "태워 준 거 신세 졌어."
+                }
+              ]
+            },
+            {
+              "text": "be on me",
+              "form": "on me",
+              "meaning": "내가 살게",
+              "nuance": "계산을 내가 하겠다는 구어. The drinks are on me처럼 쓴다.",
+              "examples": [
+                {
+                  "en": "Lunch is on me today.",
+                  "ko": "오늘 점심은 내가 쏠게."
+                },
+                {
+                  "en": "Don't pay. This one's on me.",
+                  "ko": "내지 마. 이번엔 내가 살게."
+                },
+                {
+                  "en": "The first round is on me!",
+                  "ko": "첫 잔은 내가 쏜다!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Deal! You really didn't have to, but thanks.",
+          "ko_word_order": "콜! / 너 정말 그럴 필요 없었는데, / 그래도 고마워",
+          "ko_natural": "콜! 안 그래도 되는데, 고마워.",
+          "terms": [
+            {
+              "text": "deal",
+              "meaning": "좋아·콜",
+              "nuance": "제안을 받아들일 때 쓰는 짧은 구어. It's a deal을 줄인 말이다.",
+              "examples": [
+                {
+                  "en": "Loser buys coffee? Deal.",
+                  "ko": "진 사람이 커피 사기? 콜."
+                },
+                {
+                  "en": "I'll cook, and you wash the dishes. Deal?",
+                  "ko": "내가 요리할 테니 네가 설거지해. 콜?"
+                },
+                {
+                  "en": "Deal! See you at eight.",
+                  "ko": "좋아! 8시에 봐."
+                }
+              ]
+            },
+            {
+              "text": "didn't have to",
+              "meaning": "안 그래도 됐는데",
+              "nuance": "선물이나 호의를 받고 고마움과 미안함을 함께 나타낼 때 쓴다.",
+              "examples": [
+                {
+                  "en": "Flowers? You didn't have to!",
+                  "ko": "꽃이야? 안 그래도 되는데!"
+                },
+                {
+                  "en": "You didn't have to wait for me.",
+                  "ko": "나 안 기다려도 됐는데."
+                },
+                {
+                  "en": "You cooked dinner for me? You didn't have to.",
+                  "ko": "나 주려고 저녁 했어? 안 그래도 되는데."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

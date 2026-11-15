@@ -1,0 +1,384 @@
+{
+  "lessons": [
+    {
+      "day": 29,
+      "title": "계획 바꾸고 취소하기",
+      "theme": "Changing and canceling plans",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hey, about tomorrow... I'm afraid I have to cancel.",
+          "ko_word_order": "있잖아, 내일 말인데... / 유감이지만 / 나 취소해야 해",
+          "ko_natural": "있잖아, 내일 말이야... 미안한데 취소해야 할 것 같아.",
+          "core": true,
+          "terms": [
+            {
+              "text": "I'm afraid",
+              "meaning": "유감이지만",
+              "nuance": "안 좋은 소식을 부드럽게 전할 때 문장 앞에 붙인다. 무섭다는 뜻이 아니다.",
+              "examples": [
+                {
+                  "en": "I'm afraid we're fully booked tonight.",
+                  "ko": "죄송하지만 오늘 밤은 예약이 꽉 찼어요."
+                },
+                {
+                  "en": "I'm afraid I can't make it.",
+                  "ko": "미안한데 나 못 갈 것 같아."
+                },
+                {
+                  "en": "I'm afraid that's not possible.",
+                  "ko": "유감이지만 그건 어려워요."
+                }
+              ]
+            },
+            {
+              "text": "about",
+              "meaning": "~ 말인데",
+              "nuance": "꺼낼 화제를 먼저 말할 때 문장 앞에 둔다. About last night...처럼 쓴다.",
+              "examples": [
+                {
+                  "en": "About your question, I'll check and call you.",
+                  "ko": "질문하신 거 말인데요, 확인하고 전화드릴게요."
+                },
+                {
+                  "en": "So, about the party. Is it still on?",
+                  "ko": "그래서 파티 말인데, 아직 하는 거야?"
+                },
+                {
+                  "en": "About yesterday, I'm really sorry.",
+                  "ko": "어제 일 말인데, 정말 미안해."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Oh no, really? Did something happen?",
+          "ko_word_order": "아이고, 진짜? / 무슨 일 있었어?",
+          "ko_natural": "어머, 진짜? 무슨 일 있어?"
+        },
+        {
+          "speaker": "A",
+          "en_text": "Something came up at work, and I have to go in.",
+          "ko_word_order": "일이 생겼어 / 회사에서, / 그래서 나 나가야 해",
+          "ko_natural": "회사에 일이 생겨서 출근해야 하거든.",
+          "core": true,
+          "terms": [
+            {
+              "text": "come up",
+              "form": "came up",
+              "meaning": "(일이) 생기다",
+              "nuance": "갑자기 일이 생겨 약속을 못 지킬 때 쓰는 단골 표현.",
+              "examples": [
+                {
+                  "en": "Sorry, something came up. Can we talk later?",
+                  "ko": "미안, 일이 좀 생겼어. 나중에 얘기할까?"
+                },
+                {
+                  "en": "If anything comes up, call me.",
+                  "ko": "무슨 일 생기면 전화해."
+                },
+                {
+                  "en": "A problem came up during the meeting.",
+                  "ko": "회의 중에 문제가 하나 생겼어."
+                }
+              ]
+            },
+            {
+              "text": "go in",
+              "meaning": "출근하다",
+              "nuance": "회사나 학교에 나간다는 뜻. 쉬는 날 갑자기 출근할 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Do you have to go in on Monday?",
+                  "ko": "월요일에 출근해야 해?"
+                },
+                {
+                  "en": "I'm not going in today. I'm sick.",
+                  "ko": "오늘 출근 안 해. 아파."
+                },
+                {
+                  "en": "She goes in early to avoid traffic.",
+                  "ko": "걔는 차 막히는 거 피하려고 일찍 출근해."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "On a Saturday? Ugh, that's too bad.",
+          "ko_word_order": "토요일에? / 으, 그거 너무 아쉽다",
+          "ko_natural": "토요일에? 에이, 아쉽다.",
+          "terms": [
+            {
+              "text": "that's too bad",
+              "meaning": "아쉽다",
+              "nuance": "상대의 안 좋은 소식에 아쉬움을 나타내는 말. 진지한 위로보다는 가볍다.",
+              "examples": [
+                {
+                  "en": "You can't come? That's too bad.",
+                  "ko": "못 와? 아쉽다."
+                },
+                {
+                  "en": "That's too bad about your car.",
+                  "ko": "차가 그렇게 돼서 안됐다."
+                },
+                {
+                  "en": "It's sold out? That's too bad.",
+                  "ko": "매진이야? 아쉽네."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I know. I'm really sorry for the short notice.",
+          "ko_word_order": "그러게. / 정말 미안해 / 갑작스럽게 알려서",
+          "ko_natural": "그러게. 갑자기 말해서 정말 미안해.",
+          "terms": [
+            {
+              "text": "short notice",
+              "meaning": "갑작스러운 통보",
+              "nuance": "충분한 시간 없이 급하게 알리는 것. on short notice는 '급하게'.",
+              "examples": [
+                {
+                  "en": "Thanks for coming on such short notice.",
+                  "ko": "급하게 연락했는데 와 줘서 고마워."
+                },
+                {
+                  "en": "I can't find a babysitter on short notice.",
+                  "ko": "갑자기 베이비시터를 구할 수가 없어."
+                },
+                {
+                  "en": "Sorry for the short notice, but the class is canceled.",
+                  "ko": "갑작스럽게 알려 미안한데 수업이 취소됐어."
+                }
+              ]
+            },
+            {
+              "text": "I know",
+              "meaning": "그러게",
+              "nuance": "상대 말에 '나도 알아, 그러니까'라고 맞장구칠 때. 사실 확인보다 공감의 뜻이다.",
+              "examples": [
+                {
+                  "en": "This line is so long. I know, right?",
+                  "ko": "줄 진짜 길다. 그러니까 말이야."
+                },
+                {
+                  "en": "I know, I should've called first.",
+                  "ko": "그러게, 먼저 전화했어야 했는데."
+                },
+                {
+                  "en": "You look tired. I know, I barely slept.",
+                  "ko": "피곤해 보여. 그러게, 거의 못 잤어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "It's fine. Can we just push it to next weekend?",
+          "ko_word_order": "괜찮아. / 우리 그냥 미룰 수 있을까 / 다음 주말로?",
+          "ko_natural": "괜찮아. 그냥 다음 주말로 미룰까?",
+          "core": true,
+          "terms": [
+            {
+              "text": "push something to",
+              "form": "push it to",
+              "meaning": "(일정을) ~로 미루다",
+              "nuance": "약속이나 회의를 뒤로 미룰 때 쓰는 구어. push back도 같은 뜻.",
+              "examples": [
+                {
+                  "en": "Can we push the meeting to Friday?",
+                  "ko": "회의 금요일로 미룰 수 있어요?"
+                },
+                {
+                  "en": "They pushed the launch to next month.",
+                  "ko": "출시를 다음 달로 미뤘어."
+                },
+                {
+                  "en": "Let's push dinner to eight.",
+                  "ko": "저녁을 8시로 미루자."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Next Saturday works. I'll keep the whole day free.",
+          "ko_word_order": "다음 주 토요일 / 좋아. / 내가 비워 둘게 / 하루 종일",
+          "ko_natural": "다음 주 토요일 좋아. 그날은 하루 종일 비워 둘게.",
+          "terms": [
+            {
+              "text": "work",
+              "form": "works",
+              "meaning": "(일정이) 괜찮다",
+              "nuance": "일정이 맞는다는 뜻. Does Monday work for you?처럼 쓴다.",
+              "examples": [
+                {
+                  "en": "Does three o'clock work for you?",
+                  "ko": "3시 괜찮아?"
+                },
+                {
+                  "en": "Tuesday doesn't work for me.",
+                  "ko": "화요일은 안 돼."
+                },
+                {
+                  "en": "Let's meet at noon if that works.",
+                  "ko": "괜찮으면 정오에 만나자."
+                }
+              ]
+            },
+            {
+              "text": "keep something free",
+              "form": "keep the whole day free",
+              "meaning": "(시간을) 비워 두다",
+              "nuance": "다른 약속을 잡지 않고 시간을 비워 둘 때 쓴다.",
+              "examples": [
+                {
+                  "en": "Keep Friday night free for me.",
+                  "ko": "금요일 밤은 나 위해 비워 둬."
+                },
+                {
+                  "en": "I'm trying to keep my weekend free.",
+                  "ko": "주말은 비워 두려고 해."
+                },
+                {
+                  "en": "Can you keep the afternoon free?",
+                  "ko": "오후 비워 둘 수 있어?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Okay, but if you cancel again, you're buying lunch.",
+          "ko_word_order": "알았어, / 하지만 만약 네가 또 취소하면, / 네가 점심 사는 거야",
+          "ko_natural": "알았어. 근데 또 취소하면 점심은 네가 사.",
+          "terms": [
+            {
+              "text": "cancel",
+              "meaning": "취소하다",
+              "nuance": "약속이나 예약을 취소할 때 쓴다. 날짜만 미루는 건 push나 postpone.",
+              "examples": [
+                {
+                  "en": "I had to cancel my dentist appointment.",
+                  "ko": "치과 예약 취소해야 했어."
+                },
+                {
+                  "en": "The flight was canceled because of snow.",
+                  "ko": "눈 때문에 비행기가 결항됐어."
+                },
+                {
+                  "en": "Don't cancel on me again!",
+                  "ko": "또 나랑 약속 취소하지 마!"
+                }
+              ]
+            },
+            {
+              "text": "buy lunch",
+              "form": "buying lunch",
+              "meaning": "점심을 사다",
+              "nuance": "점심값을 내가 낸다는 뜻. 친구 사이에서 장난스러운 벌칙으로도 쓴다.",
+              "examples": [
+                {
+                  "en": "I'll buy lunch if you help me.",
+                  "ko": "도와주면 점심 살게."
+                },
+                {
+                  "en": "Who's buying lunch today?",
+                  "ko": "오늘 점심 누가 사?"
+                },
+                {
+                  "en": "My boss bought lunch for the whole team.",
+                  "ko": "상사가 팀 전체에 점심을 샀어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "That's fair. I'll make it up to you, I promise.",
+          "ko_word_order": "그건 공평하네. / 내가 갚을게 / 너에게, / 약속해",
+          "ko_natural": "그건 인정. 꼭 보답할게, 약속해.",
+          "terms": [
+            {
+              "text": "make it up to someone",
+              "form": "make it up to you",
+              "meaning": "(미안함을) 보답하다",
+              "nuance": "약속을 어기거나 실망시킨 사람에게 나중에 잘해 주겠다고 할 때 쓴다.",
+              "examples": [
+                {
+                  "en": "Sorry I missed your party. I'll make it up to you.",
+                  "ko": "파티 못 가서 미안해. 꼭 보상할게."
+                },
+                {
+                  "en": "How can I make it up to you?",
+                  "ko": "어떻게 하면 풀어 줄래?"
+                },
+                {
+                  "en": "He took her to dinner to make it up to her.",
+                  "ko": "걔가 미안해서 그녀에게 저녁을 샀어."
+                }
+              ]
+            },
+            {
+              "text": "that's fair",
+              "meaning": "그건 인정",
+              "nuance": "상대의 요구나 말이 합리적이라고 받아들일 때. Fair enough와 비슷하다.",
+              "examples": [
+                {
+                  "en": "You pay this time, and I'll pay next time. That's fair.",
+                  "ko": "이번엔 네가, 다음엔 내가 내자. 공평하지."
+                },
+                {
+                  "en": "That's fair. I was wrong.",
+                  "ko": "그건 인정. 내가 틀렸어."
+                },
+                {
+                  "en": "He gets the bigger room? That's fair, he pays more.",
+                  "ko": "걔가 큰 방 쓴다고? 그럴 만하지, 돈을 더 내잖아."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I'm holding you to that. Good luck at work!",
+          "ko_word_order": "나는 붙잡을 거야 / 너를 / 그 말에. / 회사 일 잘해!",
+          "ko_natural": "그 말 꼭 지켜. 일 잘하고!",
+          "terms": [
+            {
+              "text": "hold someone to",
+              "form": "holding you to that",
+              "meaning": "(약속을) 지키게 하다",
+              "nuance": "상대가 한 말을 나중에 꼭 지키라고 장난스럽게 다짐받을 때 쓴다.",
+              "examples": [
+                {
+                  "en": "You said you'd cook. I'm holding you to that.",
+                  "ko": "요리한다며. 그 말 꼭 지켜."
+                },
+                {
+                  "en": "I'll hold you to your promise.",
+                  "ko": "약속 꼭 지키게 할 거야."
+                },
+                {
+                  "en": "Dinner next week? I'll hold you to it.",
+                  "ko": "다음 주에 저녁? 꼭이다."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

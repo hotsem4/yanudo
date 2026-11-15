@@ -1,0 +1,286 @@
+{
+  "lessons": [
+    {
+      "day": 33,
+      "title": "미용실에서",
+      "theme": "At the hair salon",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi, I have an appointment at two. The name's Andrew.",
+          "ko_word_order": "안녕하세요, 저는 예약이 있어요 / 2시에. / 이름은 앤드루예요",
+          "ko_natural": "안녕하세요, 2시에 예약한 앤드루인데요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "have an appointment",
+              "meaning": "예약이 있다",
+              "nuance": "미용실·병원처럼 사람을 만나 서비스를 받는 예약에 쓴다. 식당·호텔 예약은 reservation이라고 한다.",
+              "examples": [
+                { "en": "I have an appointment with the dentist today.", "ko": "오늘 치과 예약 있어." },
+                { "en": "Do you have an appointment?", "ko": "예약하셨어요?" },
+                { "en": "I have an appointment at ten, so I'll be late.", "ko": "10시에 예약이 있어서 늦을 거야." }
+              ]
+            },
+            {
+              "text": "the name's",
+              "meaning": "이름은 ~예요",
+              "nuance": "'The name is'를 줄인 가벼운 말투. 예약 확인이나 접수처에서 이름만 툭 말할 때 쓴다.",
+              "examples": [
+                { "en": "The name's Kim, table for two.", "ko": "김으로 예약했어요, 두 명이요." },
+                { "en": "The name's on the list, I think.", "ko": "명단에 이름 있을 거예요." },
+                { "en": "The name's Jake, by the way.", "ko": "아, 저는 제이크예요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Hi Andrew, have a seat. What are we doing today?",
+          "ko_word_order": "안녕하세요 앤드루, / 앉으세요. / 우리 뭘 할까요 / 오늘?",
+          "ko_natural": "앤드루 님, 앉으세요. 오늘은 어떻게 해 드릴까요?",
+          "terms": [
+            {
+              "text": "have a seat",
+              "meaning": "앉으세요",
+              "nuance": "'Sit down'보다 훨씬 공손하고 부드러운 권유. 손님이나 면접자에게 자리를 권할 때 쓴다.",
+              "examples": [
+                { "en": "Please have a seat. The doctor will be right with you.", "ko": "앉아 계세요. 곧 선생님이 오실 거예요." },
+                { "en": "Come in and have a seat.", "ko": "들어와서 앉아." },
+                { "en": "Have a seat anywhere you like.", "ko": "편한 데 아무 데나 앉으세요." }
+              ]
+            },
+            {
+              "text": "What are we doing today?",
+              "meaning": "오늘 어떻게 할까요?",
+              "nuance": "미용사·트레이너처럼 손님과 함께 하는 일을 시작할 때 we를 써서 친근하게 묻는 말투다.",
+              "examples": [
+                { "en": "So, what are we doing today, color or cut?", "ko": "오늘은 염색이에요, 커트예요?" },
+                { "en": "What are we doing today, legs or arms?", "ko": "오늘은 하체 할까요, 팔 할까요?" },
+                { "en": "Okay, what are we doing today for lunch?", "ko": "자, 오늘 점심 뭐 먹을까?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Just a trim, please. Not too short on top.",
+          "ko_word_order": "그냥 다듬기만요, / 부탁해요. / 너무 짧지 않게 / 윗머리는",
+          "ko_natural": "그냥 다듬어만 주세요. 윗머리는 너무 짧지 않게요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "trim",
+              "meaning": "다듬기, 살짝 자르기",
+              "nuance": "길이를 거의 유지하면서 끝만 정리하는 것. 머리뿐 아니라 수염·나무를 다듬을 때도 쓴다.",
+              "examples": [
+                { "en": "I just need a quick trim.", "ko": "그냥 살짝만 다듬으면 돼요." },
+                { "en": "Can you trim my bangs?", "ko": "앞머리 좀 다듬어 주실래요?" },
+                { "en": "He trims his beard every morning.", "ko": "그 사람은 매일 아침 수염을 다듬어." }
+              ]
+            },
+            {
+              "text": "on top",
+              "meaning": "윗머리, 위쪽",
+              "nuance": "머리 스타일을 말할 때 정수리 쪽 머리를 가리킨다. 옆머리는 on the sides라고 한다.",
+              "examples": [
+                { "en": "Keep it a little longer on top.", "ko": "윗머리는 조금 길게 남겨 주세요." },
+                { "en": "My hair is getting thin on top.", "ko": "정수리 쪽 머리가 점점 얇아져." },
+                { "en": "Short on the sides, messy on top.", "ko": "옆은 짧게, 위는 자연스럽게요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Got it. How about the sides? Should I take a little off?",
+          "ko_word_order": "알겠어요. / 옆머리는요? / 제가 조금 쳐낼까요?",
+          "ko_natural": "알겠어요. 옆머리는요? 조금 쳐 드릴까요?",
+          "terms": [
+            {
+              "text": "take off",
+              "form": "take a little off",
+              "meaning": "(길이를) 잘라 내다",
+              "nuance": "미용실에서 얼마나 자를지 말할 때 쓴다. 'Take an inch off'처럼 길이를 넣어 말하면 된다.",
+              "examples": [
+                { "en": "Just take an inch off the ends.", "ko": "끝에서 1인치만 잘라 주세요." },
+                { "en": "Don't take too much off, please.", "ko": "너무 많이 자르진 마세요." },
+                { "en": "She took a lot off the back.", "ko": "뒷머리를 많이 잘라 냈어." }
+              ]
+            },
+            {
+              "text": "How about",
+              "meaning": "~는 어때요?",
+              "nuance": "다음 항목으로 넘어가며 묻거나 제안할 때 쓰는 가벼운 표현. What about와 거의 같다.",
+              "examples": [
+                { "en": "How about Thursday instead?", "ko": "대신 목요일은 어때?" },
+                { "en": "I'm fine. How about you?", "ko": "난 괜찮아. 너는?" },
+                { "en": "How about pizza tonight?", "ko": "오늘 밤 피자 어때?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Yeah, a bit shorter on the sides, but don't shave them.",
+          "ko_word_order": "네, / 조금 더 짧게 / 옆머리는, / 그런데 밀지는 마세요",
+          "ko_natural": "네, 옆은 조금 더 짧게요. 근데 밀지는 말아 주세요.",
+          "terms": [
+            {
+              "text": "a bit",
+              "meaning": "조금",
+              "nuance": "a little과 같은 뜻으로 영국·미국 모두 구어에서 아주 흔하다. 비교급 앞에 붙여 정도를 줄인다.",
+              "examples": [
+                { "en": "Can you speak a bit slower?", "ko": "조금만 천천히 말해 줄래요?" },
+                { "en": "I'm a bit hungry already.", "ko": "벌써 좀 배고파." },
+                { "en": "It's a bit far from here.", "ko": "여기서 좀 멀어요." }
+              ]
+            },
+            {
+              "text": "shave",
+              "meaning": "(면도기로) 밀다",
+              "nuance": "수염이나 머리를 피부 가까이 완전히 밀 때 쓴다. 바리캉으로 짧게 미는 것도 shave라고 말한다.",
+              "examples": [
+                { "en": "I forgot to shave this morning.", "ko": "오늘 아침에 면도하는 걸 깜빡했어." },
+                { "en": "He shaved his head for the summer.", "ko": "걔 여름이라고 머리를 밀었어." },
+                { "en": "Do you shave every day?", "ko": "매일 면도해?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. Do you usually part it on the left?",
+          "ko_word_order": "네. / 보통 가르마를 타세요 / 왼쪽으로?",
+          "ko_natural": "네. 가르마는 보통 왼쪽으로 타세요?",
+          "terms": [
+            {
+              "text": "part",
+              "meaning": "가르마를 타다",
+              "nuance": "동사로 쓰면 머리를 나누어 가르마를 탄다는 뜻. 명사 가르마는 part(미국), parting(영국)이다.",
+              "examples": [
+                { "en": "I part my hair in the middle.", "ko": "나는 가르마를 가운데로 타." },
+                { "en": "Try parting it on the other side.", "ko": "반대쪽으로 가르마 타 봐." },
+                { "en": "Your part looks different today.", "ko": "오늘 가르마가 좀 달라 보이네." }
+              ]
+            },
+            {
+              "text": "usually",
+              "meaning": "보통, 대개",
+              "nuance": "평소 습관을 물을 때 기본으로 쓰는 빈도 부사. 동사 앞, be동사 뒤에 둔다.",
+              "examples": [
+                { "en": "I usually walk to work.", "ko": "나는 보통 걸어서 출근해." },
+                { "en": "What time do you usually get up?", "ko": "보통 몇 시에 일어나?" },
+                { "en": "It's usually quiet on Sundays.", "ko": "일요일엔 보통 조용해." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Yes. Oh, and could you thin it out a little? It's really thick.",
+          "ko_word_order": "네. / 아, 그리고 숱 좀 쳐 주실 수 있어요 / 조금? / 그게 정말 많아요",
+          "ko_natural": "네. 아, 그리고 숱 좀 쳐 주실래요? 머리숱이 너무 많아서요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "thin out",
+              "form": "thin it out",
+              "meaning": "숱을 치다",
+              "nuance": "머리숱을 가볍게 덜어 낼 때 미용실에서 쓰는 표현. 'Can you thin out the back?'처럼 부위를 넣어도 된다.",
+              "examples": [
+                { "en": "Can you thin out the back a little?", "ko": "뒷머리 숱 좀 쳐 주세요." },
+                { "en": "My stylist thinned it out too much.", "ko": "미용사가 숱을 너무 많이 쳤어." },
+                { "en": "I get it thinned out every summer.", "ko": "여름마다 숱을 쳐." }
+              ]
+            },
+            {
+              "text": "thick",
+              "meaning": "(머리숱이) 많은, 굵은",
+              "nuance": "머리카락이 많거나 굵을 때 thick, 숱이 적거나 가늘 때 thin이라고 한다.",
+              "examples": [
+                { "en": "You have such thick hair.", "ko": "머리숱 진짜 많다." },
+                { "en": "This book is too thick to carry.", "ko": "이 책은 들고 다니기엔 너무 두꺼워." },
+                { "en": "The fog was really thick this morning.", "ko": "오늘 아침 안개가 엄청 짙었어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "All done. Take a look in the mirror. How do you like it?",
+          "ko_word_order": "다 됐어요. / 한번 보세요 / 거울을. / 어떻게 마음에 드세요?",
+          "ko_natural": "다 됐어요. 거울 한번 보세요. 마음에 드세요?",
+          "terms": [
+            {
+              "text": "take a look",
+              "meaning": "한번 보다",
+              "nuance": "'look'보다 부드럽고 '잠깐 확인해 보라'는 느낌. 서류나 물건을 보여 줄 때도 많이 쓴다.",
+              "examples": [
+                { "en": "Can you take a look at my car?", "ko": "제 차 좀 봐 주실래요?" },
+                { "en": "Take a look at this photo.", "ko": "이 사진 좀 봐." },
+                { "en": "I'll take a look and let you know.", "ko": "한번 보고 알려 줄게." }
+              ]
+            },
+            {
+              "text": "How do you like it?",
+              "meaning": "마음에 들어요?",
+              "nuance": "결과물이나 새로운 것에 대한 감상을 물을 때 쓴다. 'How do you like your new job?'처럼 대상을 바꿔 쓸 수 있다.",
+              "examples": [
+                { "en": "How do you like your new apartment?", "ko": "새 집은 어때?" },
+                { "en": "I made the soup myself. How do you like it?", "ko": "국 내가 직접 끓였는데, 어때?" },
+                { "en": "How do you like living in Busan?", "ko": "부산 생활 어때요?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I love it. It's exactly what I wanted.",
+          "ko_word_order": "정말 좋아요. / 그게 딱 / 제가 원했던 거예요",
+          "ko_natural": "너무 좋아요. 딱 제가 원하던 스타일이에요.",
+          "terms": [
+            {
+              "text": "exactly what I wanted",
+              "meaning": "딱 원하던 것",
+              "nuance": "결과나 선물이 기대에 꼭 맞을 때 만족을 강하게 표현한다. need를 넣어 'exactly what I needed'로도 쓴다.",
+              "examples": [
+                { "en": "This bag is exactly what I wanted.", "ko": "이 가방 딱 내가 원하던 거야." },
+                { "en": "A day off was exactly what I needed.", "ko": "하루 쉬는 게 딱 필요했어." },
+                { "en": "It's not exactly what I wanted, but it's fine.", "ko": "딱 원하던 건 아니지만 괜찮아." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Glad you like it. See you in about six weeks for a touch-up.",
+          "ko_word_order": "마음에 드신다니 기뻐요. / 뵐게요 / 약 6주 후에 / 손질하러",
+          "ko_natural": "마음에 드신다니 다행이에요. 6주쯤 뒤에 다듬으러 오세요.",
+          "terms": [
+            {
+              "text": "touch-up",
+              "meaning": "손질, 살짝 다듬기",
+              "nuance": "이미 해 둔 머리·화장·페인트를 살짝 보완하는 것. 동사로는 touch up이라고 띄어 쓴다.",
+              "examples": [
+                { "en": "My roots need a touch-up.", "ko": "뿌리 염색 다시 해야겠어." },
+                { "en": "I'll do a quick touch-up before the photo.", "ko": "사진 찍기 전에 화장 좀 고칠게." },
+                { "en": "The wall just needs a little touch-up.", "ko": "벽은 조금만 덧칠하면 돼요." }
+              ]
+            },
+            {
+              "text": "glad you like it",
+              "meaning": "마음에 든다니 다행이다",
+              "nuance": "상대가 칭찬하거나 만족할 때 받는 자연스러운 대답. 앞에 I'm을 생략한 구어체다.",
+              "examples": [
+                { "en": "Glad you like it! I picked it myself.", "ko": "마음에 든다니 좋다! 내가 직접 골랐어." },
+                { "en": "I'm glad you like the new design.", "ko": "새 디자인이 마음에 드신다니 다행이에요." },
+                { "en": "Glad you like it. There's more in the kitchen.", "ko": "맛있다니 다행이다. 부엌에 더 있어." }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,363 @@
+{
+  "lessons": [
+    {
+      "day": 22,
+      "title": "친구를 집에 초대하기",
+      "theme": "Inviting a friend over",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hey, are you doing anything on Saturday night?",
+          "ko_word_order": "야, 너 하니 / 뭐라도 / 토요일 밤에?",
+          "ko_natural": "야, 토요일 밤에 뭐 해?",
+          "core": true,
+          "terms": [
+            {
+              "text": "be doing anything",
+              "form": "doing anything",
+              "meaning": "무슨 계획 있다",
+              "nuance": "상대 일정을 가볍게 물을 때 쓰는 구어. 현재진행형으로 가까운 미래 계획을 묻는다.",
+              "examples": [
+                {
+                  "en": "Are you doing anything after work?",
+                  "ko": "퇴근하고 뭐 해?"
+                },
+                {
+                  "en": "I'm not doing anything this weekend.",
+                  "ko": "이번 주말엔 아무 계획 없어."
+                },
+                {
+                  "en": "Is your sister doing anything for her birthday?",
+                  "ko": "너희 언니 생일에 뭐 한대?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Not really. Why, what's up?",
+          "ko_word_order": "별로. / 왜, 무슨 일이야?",
+          "ko_natural": "딱히 없어. 왜, 무슨 일 있어?",
+          "terms": [
+            {
+              "text": "not really",
+              "meaning": "딱히·별로",
+              "nuance": "질문에 부드럽게 아니라고 할 때 쓰는 구어. 그냥 No보다 덜 딱딱하다.",
+              "examples": [
+                {
+                  "en": "Not really, I just ate.",
+                  "ko": "별로, 방금 먹었어."
+                },
+                {
+                  "en": "I'm not really a morning person.",
+                  "ko": "난 아침형 인간은 별로 아니야."
+                },
+                {
+                  "en": "Did you like the show? Not really.",
+                  "ko": "그 공연 좋았어? 별로였어."
+                }
+              ]
+            },
+            {
+              "text": "what's up",
+              "meaning": "무슨 일이야",
+              "nuance": "친구 사이 구어. 인사로 '잘 지내?'도 되고, 이 문장처럼 '왜, 무슨 일인데?'도 된다.",
+              "examples": [
+                {
+                  "en": "You called me earlier. What's up?",
+                  "ko": "아까 전화했더라. 무슨 일이야?"
+                },
+                {
+                  "en": "What's up? You look worried.",
+                  "ko": "무슨 일 있어? 걱정 있어 보여."
+                },
+                {
+                  "en": "Hey, what's up with the printer?",
+                  "ko": "야, 프린터 왜 저래?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I'm having a few friends over for dinner.",
+          "ko_word_order": "나 집에 불러 / 친구 몇 명을 / 저녁 먹으러",
+          "ko_natural": "친구 몇 명 집에 불러서 저녁 먹으려고.",
+          "core": true,
+          "terms": [
+            {
+              "text": "have someone over",
+              "form": "having a few friends over",
+              "meaning": "집에 초대하다",
+              "nuance": "친구나 지인을 집으로 부를 때 쓰는 일상 표현. invite보다 가볍고 자연스럽다.",
+              "examples": [
+                {
+                  "en": "We had the neighbors over last night.",
+                  "ko": "어젯밤에 이웃들을 집에 불렀어."
+                },
+                {
+                  "en": "Can I have some friends over this weekend?",
+                  "ko": "이번 주말에 친구들 좀 집에 불러도 돼?"
+                },
+                {
+                  "en": "My parents love having people over.",
+                  "ko": "우리 부모님은 사람들 집에 부르는 걸 좋아하셔."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "That sounds great. Count me in!",
+          "ko_word_order": "그거 좋다. / 나도 끼워 줘!",
+          "ko_natural": "좋다. 나도 갈게!",
+          "terms": [
+            {
+              "text": "count me in",
+              "meaning": "나도 낄게",
+              "nuance": "모임이나 계획에 참여하겠다고 할 때 쓰는 신나는 구어. 빠지겠다면 count me out.",
+              "examples": [
+                {
+                  "en": "A movie tonight? Count me in.",
+                  "ko": "오늘 밤 영화? 나도 갈래."
+                },
+                {
+                  "en": "If you're ordering pizza, count me in.",
+                  "ko": "피자 시킬 거면 나도 끼워 줘."
+                },
+                {
+                  "en": "A hike on Sunday? Sure, count me in!",
+                  "ko": "일요일에 등산? 좋아, 나도 갈게!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Great! It's nothing fancy, just homemade pasta.",
+          "ko_word_order": "좋아! / 거창한 건 아니고, / 그냥 집에서 만든 파스타야",
+          "ko_natural": "좋아! 별건 아니고 그냥 파스타 해 먹으려고.",
+          "terms": [
+            {
+              "text": "nothing fancy",
+              "meaning": "거창한 건 아님",
+              "nuance": "초대하거나 대접할 때 부담 갖지 말라고 겸손하게 하는 구어.",
+              "examples": [
+                {
+                  "en": "Dinner's nothing fancy, just soup and bread.",
+                  "ko": "저녁은 별거 없어, 그냥 수프랑 빵이야."
+                },
+                {
+                  "en": "I just want a quiet birthday, nothing fancy.",
+                  "ko": "생일은 그냥 조용히 보내고 싶어, 거창한 거 말고."
+                },
+                {
+                  "en": "It's a small hotel, nothing fancy, but it's clean.",
+                  "ko": "작은 호텔이라 화려하진 않은데 깨끗해."
+                }
+              ]
+            },
+            {
+              "text": "homemade",
+              "meaning": "집에서 만든",
+              "nuance": "가게에서 산 게 아니라 직접 만든 음식이나 물건. 정성이 들어간 느낌이다.",
+              "examples": [
+                {
+                  "en": "My mom sent me some homemade kimchi.",
+                  "ko": "엄마가 직접 담근 김치를 보내 주셨어."
+                },
+                {
+                  "en": "Nothing beats homemade cookies.",
+                  "ko": "집에서 구운 쿠키가 최고야."
+                },
+                {
+                  "en": "Is this sauce homemade?",
+                  "ko": "이 소스 직접 만든 거야?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Can I bring anything? Maybe some wine or dessert?",
+          "ko_word_order": "내가 가져갈까 / 뭐라도? / 와인이나 디저트 같은 거?",
+          "ko_natural": "뭐 사 갈까? 와인이나 디저트 같은 거?",
+          "core": true,
+          "terms": [
+            {
+              "text": "Can I bring anything",
+              "meaning": "뭐 사 갈까?",
+              "nuance": "초대받았을 때 예의로 꼭 묻는 말. 집들이나 파티 전에 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Thanks for inviting me! Can I bring anything?",
+                  "ko": "초대해 줘서 고마워! 뭐 가져갈까?"
+                },
+                {
+                  "en": "Can I bring anything for the barbecue?",
+                  "ko": "바비큐 때 뭐 가져갈 거 있어?"
+                },
+                {
+                  "en": "I'll be there at six. Can I bring anything?",
+                  "ko": "6시에 갈게. 뭐 사 갈까?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Just bring yourself. I've got everything covered.",
+          "ko_word_order": "그냥 데려와 / 너 자신만. / 내가 다 해결해 놨어",
+          "ko_natural": "몸만 와. 내가 다 준비해 둘게.",
+          "terms": [
+            {
+              "text": "just bring yourself",
+              "meaning": "몸만 와",
+              "nuance": "초대한 사람이 아무것도 가져오지 말라고 할 때 쓰는 다정한 말.",
+              "examples": [
+                {
+                  "en": "No gifts, please. Just bring yourself.",
+                  "ko": "선물은 됐어. 몸만 와."
+                },
+                {
+                  "en": "You don't need to cook anything. Just bring yourself.",
+                  "ko": "음식 안 해 와도 돼. 그냥 와."
+                },
+                {
+                  "en": "It's a casual party, so just bring yourself.",
+                  "ko": "편한 파티니까 몸만 오면 돼."
+                }
+              ]
+            },
+            {
+              "text": "have got everything covered",
+              "form": "got everything covered",
+              "meaning": "다 준비돼 있다",
+              "nuance": "내가 다 알아서 처리했으니 걱정 말라는 구어. 짧게 I've got it covered라고도 한다.",
+              "examples": [
+                {
+                  "en": "Don't worry about the tickets. I've got everything covered.",
+                  "ko": "표는 걱정 마. 내가 다 해 놨어."
+                },
+                {
+                  "en": "She's got everything covered for the trip.",
+                  "ko": "걔가 여행 준비를 다 해 놨어."
+                },
+                {
+                  "en": "We've got everything covered, so just relax.",
+                  "ko": "우리가 다 준비했으니까 편하게 있어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Okay. What's your address again?",
+          "ko_word_order": "알았어. / 뭐였지 / 너희 집 주소가 / 다시?",
+          "ko_natural": "알았어. 너희 집 주소가 뭐였더라?",
+          "terms": [
+            {
+              "text": "again",
+              "meaning": "(뭐였)더라",
+              "nuance": "이미 들었는데 잊어버린 걸 다시 물을 때 질문 끝에 붙인다. '한 번 더'보다 '뭐였더라'에 가깝다.",
+              "examples": [
+                {
+                  "en": "Sorry, what's your name again?",
+                  "ko": "미안, 이름이 뭐였더라?"
+                },
+                {
+                  "en": "When is the meeting again?",
+                  "ko": "회의가 언제였더라?"
+                },
+                {
+                  "en": "Where did you say you work again?",
+                  "ko": "어디서 일한다고 했더라?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I'll text it to you. Come around seven.",
+          "ko_word_order": "내가 그걸 문자로 보낼게 / 너에게. / 와 / 7시쯤",
+          "ko_natural": "문자로 보내 줄게. 7시쯤 와.",
+          "terms": [
+            {
+              "text": "text",
+              "meaning": "문자를 보내다",
+              "nuance": "text는 동사로 '문자 보내다'. 구어에서는 send a message보다 훨씬 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "Text me when you get home.",
+                  "ko": "집에 도착하면 문자해."
+                },
+                {
+                  "en": "I texted her, but she didn't reply.",
+                  "ko": "걔한테 문자했는데 답이 없어."
+                },
+                {
+                  "en": "Can you text me the photos?",
+                  "ko": "사진 문자로 보내 줄래?"
+                }
+              ]
+            },
+            {
+              "text": "around",
+              "meaning": "~쯤",
+              "nuance": "시간이나 숫자 앞에 붙여 '대략'이라는 뜻. about과 비슷하고 구어에서 아주 흔하다.",
+              "examples": [
+                {
+                  "en": "I usually wake up around six.",
+                  "ko": "보통 6시쯤 일어나."
+                },
+                {
+                  "en": "It costs around twenty dollars.",
+                  "ko": "20달러쯤 해."
+                },
+                {
+                  "en": "Let's meet around noon.",
+                  "ko": "정오쯤 만나자."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Perfect. See you Saturday, then!",
+          "ko_word_order": "좋아. / 그럼 보자 / 토요일에!",
+          "ko_natural": "좋아. 그럼 토요일에 봐!",
+          "terms": [
+            {
+              "text": "then",
+              "meaning": "그럼",
+              "nuance": "문장 끝에 붙여 '그럼 그렇게 하자'는 느낌으로 대화를 마무리하는 구어.",
+              "examples": [
+                {
+                  "en": "Okay, see you tomorrow, then.",
+                  "ko": "그래, 그럼 내일 봐."
+                },
+                {
+                  "en": "Let's order pizza, then.",
+                  "ko": "그럼 피자 시키자."
+                },
+                {
+                  "en": "You're busy? I'll call you later, then.",
+                  "ko": "바빠? 그럼 이따 전화할게."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

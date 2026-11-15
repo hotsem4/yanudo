@@ -1,0 +1,441 @@
+{
+  "lessons": [
+    {
+      "day": 7,
+      "title": "식당에서 주문하기",
+      "theme": "Ordering at a restaurant",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Are you ready to order, or do you need a minute?",
+          "ko_word_order": "준비되셨나요 / 주문할, / 아니면 필요하세요 / 잠깐이?",
+          "ko_natural": "주문하시겠어요, 아니면 조금 더 보시겠어요?",
+          "core": false,
+          "terms": [
+            {
+              "text": "ready to order",
+              "form": "ready to order",
+              "meaning": "주문할 준비가 된",
+              "nuance": "식당 직원이 주문을 받을 때 묻는 말이고, 손님이 직원을 부를 때 We're ready to order라고도 한다.",
+              "examples": [
+                {
+                  "en": "Excuse me, we're ready to order.",
+                  "ko": "저기요, 주문할게요."
+                },
+                {
+                  "en": "I'm not ready to order yet.",
+                  "ko": "아직 뭘 시킬지 못 정했어요."
+                },
+                {
+                  "en": "Is your table ready to order?",
+                  "ko": "이 테이블 주문하시겠어요?"
+                }
+              ]
+            },
+            {
+              "text": "need a minute",
+              "form": "need a minute",
+              "meaning": "잠깐 시간이 필요하다",
+              "nuance": "결정할 시간을 조금 더 달라고 할 때 쓴다. 손님은 Can we have a minute?이라고도 한다.",
+              "examples": [
+                {
+                  "en": "Sorry, we need a minute to decide.",
+                  "ko": "죄송해요, 고를 시간이 좀 필요해요."
+                },
+                {
+                  "en": "I just need a minute to get ready.",
+                  "ko": "준비하는 데 잠깐만 시간 줘."
+                },
+                {
+                  "en": "Do you need a minute with the menu?",
+                  "ko": "메뉴 좀 더 보시겠어요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I'm ready. What do you recommend here?",
+          "ko_word_order": "저는 준비됐어요. / 무엇을 / 당신은 추천하나요 / 여기서?",
+          "ko_natural": "주문할게요. 여기는 뭐가 맛있어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "recommend",
+              "form": "recommend",
+              "meaning": "추천하다",
+              "nuance": "뭘 먹을지 모를 때 What do you recommend?라고 묻는 게 가장 자연스럽다. 정중하게는 would you recommend를 쓴다.",
+              "examples": [
+                {
+                  "en": "Can you recommend a good hotel?",
+                  "ko": "좋은 호텔 추천해 줄 수 있어요?"
+                },
+                {
+                  "en": "I recommend the chicken soup.",
+                  "ko": "치킨 수프 추천해요."
+                },
+                {
+                  "en": "Which wine would you recommend?",
+                  "ko": "어떤 와인을 추천하세요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "The steak is really popular, and so is the pasta.",
+          "ko_word_order": "스테이크가 정말 인기 있어요, / 그리고 파스타도 그래요",
+          "ko_natural": "스테이크가 제일 인기 많고, 파스타도 많이 드세요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "popular",
+              "form": "popular",
+              "meaning": "인기 있는",
+              "nuance": "많은 사람이 좋아하거나 많이 찾는 것을 말한다. 식당 메뉴를 소개할 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "This is our most popular dish.",
+                  "ko": "이게 저희 제일 인기 메뉴예요."
+                },
+                {
+                  "en": "That café is popular with students.",
+                  "ko": "그 카페는 학생들한테 인기 많아요."
+                },
+                {
+                  "en": "Is this song popular in Korea?",
+                  "ko": "이 노래 한국에서 인기 있어요?"
+                }
+              ]
+            },
+            {
+              "text": "so is",
+              "form": "so is",
+              "meaning": "~도 그래요",
+              "nuance": "앞 문장과 같다는 것을 짧게 덧붙인다. 앞이 be동사면 so is, 일반동사면 so does를 쓴다.",
+              "examples": [
+                {
+                  "en": "The food is great, and so is the service.",
+                  "ko": "음식도 좋고 서비스도 좋아요."
+                },
+                {
+                  "en": "My brother is tall, and so is my dad.",
+                  "ko": "형도 키가 크고 아빠도 커요."
+                },
+                {
+                  "en": "Coffee is expensive here, and so is tea.",
+                  "ko": "여기는 커피도 비싸고 차도 비싸요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I'll have the steak, medium rare, please.",
+          "ko_word_order": "저는 먹을게요 / 스테이크를, / 미디엄 레어로, 부탁해요",
+          "ko_natural": "스테이크로 할게요. 미디엄 레어로 부탁드려요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "I'll have",
+              "form": "I'll have",
+              "meaning": "~로 할게요",
+              "nuance": "식당이나 카페에서 주문을 정할 때 쓰는 자연스러운 표현이다. I want보다 부드럽다.",
+              "examples": [
+                {
+                  "en": "I'll have the fish, please.",
+                  "ko": "생선 요리로 할게요."
+                },
+                {
+                  "en": "I'll have what she's having.",
+                  "ko": "저분이랑 같은 걸로 주세요."
+                },
+                {
+                  "en": "For dessert, I'll have the cheesecake.",
+                  "ko": "디저트는 치즈케이크로 할게요."
+                }
+              ]
+            },
+            {
+              "text": "medium rare",
+              "form": "medium rare",
+              "meaning": "미디엄 레어(살짝 익힘)",
+              "nuance": "스테이크 굽기를 말할 때 쓴다. 덜 익힌 순서로 rare, medium rare, medium, well-done이다.",
+              "examples": [
+                {
+                  "en": "I like my burger medium rare.",
+                  "ko": "버거는 미디엄 레어가 좋아요."
+                },
+                {
+                  "en": "Medium rare is the chef's recommendation.",
+                  "ko": "셰프는 미디엄 레어를 추천해요."
+                },
+                {
+                  "en": "Is medium rare too pink for you?",
+                  "ko": "미디엄 레어는 너무 덜 익은 것 같아요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Great choice. Would you like a salad or fries with that?",
+          "ko_word_order": "좋은 선택이에요. / 원하세요 / 샐러드나 감자튀김을 / 그것과 함께?",
+          "ko_natural": "잘 고르셨어요. 사이드는 샐러드랑 감자튀김 중에 뭘로 드릴까요?",
+          "core": false,
+          "terms": [
+            {
+              "text": "great choice",
+              "form": "great choice",
+              "meaning": "좋은 선택이에요",
+              "nuance": "손님이 메뉴를 고르면 직원이 기분 좋게 맞장구치는 말이다. Good choice도 같은 뜻이다.",
+              "examples": [
+                {
+                  "en": "The salmon? Great choice.",
+                  "ko": "연어요? 좋은 선택이세요."
+                },
+                {
+                  "en": "Great choice, that's my favorite too.",
+                  "ko": "잘 고르셨어요, 저도 그거 제일 좋아해요."
+                },
+                {
+                  "en": "That was a great choice of restaurant.",
+                  "ko": "식당 정말 잘 골랐다."
+                }
+              ]
+            },
+            {
+              "text": "fries",
+              "form": "fries",
+              "meaning": "감자튀김",
+              "nuance": "미국에서는 fries(French fries), 영국에서는 chips라고 한다.",
+              "examples": [
+                {
+                  "en": "Can I get fries instead of rice?",
+                  "ko": "밥 대신 감자튀김 될까요?"
+                },
+                {
+                  "en": "These fries are too salty.",
+                  "ko": "이 감자튀김 너무 짜요."
+                },
+                {
+                  "en": "A burger and fries, please.",
+                  "ko": "버거랑 감자튀김 주세요."
+                }
+              ]
+            },
+            {
+              "text": "with that",
+              "form": "with that",
+              "meaning": "곁들여서",
+              "nuance": "주문한 음식과 함께 먹을 것을 물을 때 쓴다. 패스트푸드점의 Anything else with that?도 같은 쓰임이다.",
+              "examples": [
+                {
+                  "en": "Would you like a drink with that?",
+                  "ko": "음료도 같이 드릴까요?"
+                },
+                {
+                  "en": "Do you want fries with that?",
+                  "ko": "감자튀김도 같이 드려요?"
+                },
+                {
+                  "en": "Anything else with that?",
+                  "ko": "그거랑 더 필요한 건 없으세요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Salad, please. Does the dressing have any nuts?",
+          "ko_word_order": "샐러드요. / 드레싱에 들어 있나요 / 견과류가?",
+          "ko_natural": "샐러드로 주세요. 드레싱에 견과류 들어가나요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "dressing",
+              "form": "dressing",
+              "meaning": "드레싱",
+              "nuance": "샐러드에 뿌리는 소스를 말한다. on the side를 붙이면 따로 달라는 뜻이다.",
+              "examples": [
+                {
+                  "en": "Can I get the dressing on the side?",
+                  "ko": "드레싱은 따로 주실래요?"
+                },
+                {
+                  "en": "What kind of dressing do you have?",
+                  "ko": "드레싱은 뭐가 있어요?"
+                },
+                {
+                  "en": "This dressing is a little sour.",
+                  "ko": "이 드레싱 좀 시큼해요."
+                }
+              ]
+            },
+            {
+              "text": "nut",
+              "form": "nuts",
+              "meaning": "견과류",
+              "nuance": "땅콩·호두 같은 견과류다. 알레르기가 있으면 I'm allergic to nuts라고 말한다.",
+              "examples": [
+                {
+                  "en": "I'm allergic to nuts.",
+                  "ko": "저 견과류 알레르기 있어요."
+                },
+                {
+                  "en": "Does this cake have nuts in it?",
+                  "ko": "이 케이크에 견과류 들어가요?"
+                },
+                {
+                  "en": "She always snacks on nuts.",
+                  "ko": "그녀는 늘 견과류를 간식으로 먹어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "No, it doesn't. Anything to drink?",
+          "ko_word_order": "아니요, 안 들어가요. / 마실 것은요?",
+          "ko_natural": "아니요, 안 들어가요. 음료는요?",
+          "core": false,
+          "terms": [
+            {
+              "text": "anything to drink",
+              "form": "anything to drink",
+              "meaning": "마실 건요?",
+              "nuance": "직원이 음료 주문을 받을 때 쓰는 짧은 질문이다. Something to drink?도 같은 뜻이다.",
+              "examples": [
+                {
+                  "en": "And anything to drink for you?",
+                  "ko": "음료는 뭘로 드릴까요?"
+                },
+                {
+                  "en": "Do you want anything to drink?",
+                  "ko": "뭐 마실래?"
+                },
+                {
+                  "en": "Can I get you anything to drink?",
+                  "ko": "마실 것 좀 드릴까요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Just water for now, thanks.",
+          "ko_word_order": "그냥 물이요 / 일단은, 고마워요",
+          "ko_natural": "일단 물만 주세요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "for now",
+              "form": "for now",
+              "meaning": "일단, 지금은",
+              "nuance": "나중에 바뀔 수 있지만 지금은 그렇다는 뜻이다. 주문할 때 '일단 이것만'이라는 느낌이다.",
+              "examples": [
+                {
+                  "en": "That's all for now, thanks.",
+                  "ko": "일단 그거면 돼요, 고마워요."
+                },
+                {
+                  "en": "Let's leave it here for now.",
+                  "ko": "일단 여기 두자."
+                },
+                {
+                  "en": "I'm staying with my sister for now.",
+                  "ko": "지금은 언니 집에서 지내고 있어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Sure. I'll bring that right out.",
+          "ko_word_order": "네. / 제가 가져올게요 / 그것을 바로",
+          "ko_natural": "네, 바로 갖다 드릴게요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "right out",
+              "form": "right out",
+              "meaning": "곧 (나와요)",
+              "nuance": "식당 직원이 음식이나 음료를 금방 내오겠다고 할 때 bring이나 be와 함께 쓴다.",
+              "examples": [
+                {
+                  "en": "Your food will be right out.",
+                  "ko": "음식 곧 나옵니다."
+                },
+                {
+                  "en": "I'll bring your drinks right out.",
+                  "ko": "음료 바로 가져다 드릴게요."
+                },
+                {
+                  "en": "The bread will be right out.",
+                  "ko": "빵은 곧 나와요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Thank you. Could I get some extra napkins, too?",
+          "ko_word_order": "고마워요. / 받을 수 있을까요 / 냅킨을 좀 더 / 함께?",
+          "ko_natural": "감사해요. 냅킨도 좀 더 주시겠어요?",
+          "core": false,
+          "terms": [
+            {
+              "text": "extra",
+              "form": "extra",
+              "meaning": "여분의, 추가의",
+              "nuance": "기본으로 주는 것보다 더 달라고 할 때 쓴다. 돈을 더 내는 추가 옵션에도 쓴다.",
+              "examples": [
+                {
+                  "en": "Can I get extra sauce?",
+                  "ko": "소스 좀 더 주실래요?"
+                },
+                {
+                  "en": "Do you have an extra pen?",
+                  "ko": "남는 펜 있어요?"
+                },
+                {
+                  "en": "Extra cheese costs a dollar.",
+                  "ko": "치즈 추가는 1달러예요."
+                }
+              ]
+            },
+            {
+              "text": "napkin",
+              "form": "napkins",
+              "meaning": "냅킨",
+              "nuance": "식탁에서 쓰는 종이나 천 냅킨이다. 휴지인 tissue와 구분해서 말한다.",
+              "examples": [
+                {
+                  "en": "Could you pass me a napkin?",
+                  "ko": "냅킨 좀 건네줄래요?"
+                },
+                {
+                  "en": "The napkins are by the door.",
+                  "ko": "냅킨은 문 옆에 있어요."
+                },
+                {
+                  "en": "I spilled coffee, so I need a napkin.",
+                  "ko": "커피를 흘려서 냅킨이 필요해요."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,456 @@
+{
+  "lessons": [
+    {
+      "day": 40,
+      "title": "일정 잡기",
+      "theme": "Scheduling a meeting",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hey Ava, could we set up a quick meeting sometime this week?",
+          "ko_word_order": "저기 에이바, / 우리 잡을 수 있을까요 / 짧은 회의를 / 이번 주 중에 언제?",
+          "ko_natural": "에이바, 이번 주 중에 잠깐 회의 한번 잡을 수 있을까요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "set up",
+              "meaning": "(회의를) 잡다",
+              "nuance": "회의·약속·통화 일정을 마련할 때 쓰는 구어. arrange보다 가볍고 schedule과 비슷하다.",
+              "examples": [
+                {
+                  "en": "Can you set up a call with the client?",
+                  "ko": "고객이랑 통화 일정 좀 잡아 줄래요?"
+                },
+                {
+                  "en": "I set up a lunch with the new team.",
+                  "ko": "새 팀이랑 점심 약속을 잡았어요."
+                },
+                {
+                  "en": "Let's set up a time to talk next week.",
+                  "ko": "다음 주에 얘기할 시간 한번 잡아요."
+                }
+              ]
+            },
+            {
+              "text": "sometime",
+              "meaning": "~ 중 언젠가",
+              "nuance": "정확한 때를 정하지 않고 그 기간 중 아무 때나를 말할 때. sometimes(가끔)와 헷갈리지 않게.",
+              "examples": [
+                {
+                  "en": "Let's grab coffee sometime next week.",
+                  "ko": "다음 주 중에 커피 한잔해요."
+                },
+                {
+                  "en": "I'll call you sometime tomorrow.",
+                  "ko": "내일 중에 전화할게요."
+                },
+                {
+                  "en": "We should visit Jeju sometime this summer.",
+                  "ko": "이번 여름에 언제 제주도 한번 가자."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. My Monday's pretty packed, but Tuesday afternoon is wide open.",
+          "ko_word_order": "좋아요. / 제 월요일은 꽤 꽉 찼어요, / 하지만 화요일 오후는 / 완전히 비어 있어요",
+          "ko_natural": "좋아요. 월요일은 일정이 꽉 찼는데, 화요일 오후는 완전히 비어 있어요.",
+          "terms": [
+            {
+              "text": "packed",
+              "meaning": "꽉 찬",
+              "nuance": "일정이나 장소가 빈틈없이 찼을 때 쓰는 구어. busy보다 빽빽하다는 느낌이 강하다.",
+              "examples": [
+                {
+                  "en": "My schedule is packed until Thursday.",
+                  "ko": "목요일까지 일정이 꽉 찼어요."
+                },
+                {
+                  "en": "The subway was packed this morning.",
+                  "ko": "오늘 아침 지하철이 꽉 찼어."
+                },
+                {
+                  "en": "We have a packed day tomorrow.",
+                  "ko": "내일은 일정이 빡빡한 날이에요."
+                }
+              ]
+            },
+            {
+              "text": "wide open",
+              "meaning": "완전히 비어 있는",
+              "nuance": "일정에 아무것도 없어 언제든 된다고 할 때 쓰는 구어. open 앞에 wide를 붙여 강조한다.",
+              "examples": [
+                {
+                  "en": "My afternoon is wide open if you want to talk.",
+                  "ko": "얘기하고 싶으면 오후엔 언제든 괜찮아요."
+                },
+                {
+                  "en": "Friday is wide open for me.",
+                  "ko": "금요일은 완전히 비어 있어요."
+                },
+                {
+                  "en": "Next week is still wide open.",
+                  "ko": "다음 주는 아직 일정이 하나도 없어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Would Tuesday at two work for you? It should only take half an hour.",
+          "ko_word_order": "화요일 2시가 괜찮을까요 / 당신에게? / 그건 걸릴 거예요 / 30분만",
+          "ko_natural": "화요일 2시 괜찮으세요? 30분이면 끝날 거예요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "work for",
+              "meaning": "~에게 (시간이) 맞다",
+              "nuance": "일정이나 제안이 상대에게 괜찮은지 물을 때 가장 흔한 표현. Is it okay for you?보다 자연스럽다.",
+              "examples": [
+                {
+                  "en": "Does Friday morning work for you?",
+                  "ko": "금요일 오전 괜찮아요?"
+                },
+                {
+                  "en": "That time doesn't really work for me.",
+                  "ko": "그 시간은 저한테 좀 어려워요."
+                },
+                {
+                  "en": "Let me know what works for your team.",
+                  "ko": "팀에 언제가 괜찮은지 알려 주세요."
+                }
+              ]
+            },
+            {
+              "text": "half an hour",
+              "meaning": "30분",
+              "nuance": "thirty minutes와 같은 뜻인데, 말할 때는 이쪽이 더 자연스럽고 흔하다.",
+              "examples": [
+                {
+                  "en": "The bus comes every half an hour.",
+                  "ko": "버스가 30분마다 와요."
+                },
+                {
+                  "en": "I'll be there in half an hour.",
+                  "ko": "30분 뒤에 도착해요."
+                },
+                {
+                  "en": "We talked for half an hour.",
+                  "ko": "30분 동안 얘기했어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Actually, I've got a client call at two. Could we push it back to three?",
+          "ko_word_order": "사실, 저는 있어요 / 고객 통화가 2시에. / 우리 그걸 미룰 수 있을까요 / 3시로?",
+          "ko_natural": "사실 2시에 고객 통화가 있어서요. 3시로 미뤄도 될까요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "push back",
+              "form": "push it back",
+              "meaning": "(일정을) 미루다",
+              "nuance": "회의·마감을 뒤로 미룰 때 쓰는 구어. postpone보다 가볍고, 반대로 앞당길 때는 move up을 쓴다.",
+              "examples": [
+                {
+                  "en": "They pushed back the launch to May.",
+                  "ko": "출시를 5월로 미뤘대요."
+                },
+                {
+                  "en": "Can we push our call back an hour?",
+                  "ko": "통화 한 시간만 미룰 수 있을까요?"
+                },
+                {
+                  "en": "The deadline got pushed back again.",
+                  "ko": "마감이 또 미뤄졌어요."
+                }
+              ]
+            },
+            {
+              "text": "client call",
+              "meaning": "고객 통화",
+              "nuance": "고객과 잡힌 전화나 화상 통화를 가리키는 업무 표현. 일정이 겹칠 때 이유로 자주 댄다.",
+              "examples": [
+                {
+                  "en": "I have a client call in ten minutes.",
+                  "ko": "10분 뒤에 고객 통화가 있어요."
+                },
+                {
+                  "en": "Sorry, my client call ran long.",
+                  "ko": "미안해요, 고객 통화가 길어졌어요."
+                },
+                {
+                  "en": "Can you join the client call tomorrow?",
+                  "ko": "내일 고객 통화에 같이 들어올래요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Three works for me. I'll send you a calendar invite right after this.",
+          "ko_word_order": "3시는 괜찮아요 / 저에게. / 제가 보낼게요 / 일정 초대를 / 이거 끝나고 바로",
+          "ko_natural": "3시 좋아요. 이거 끝나면 바로 캘린더 초대 보낼게요.",
+          "terms": [
+            {
+              "text": "calendar invite",
+              "meaning": "일정 초대",
+              "nuance": "구글·아웃룩 캘린더로 보내는 회의 초대. 회사에서는 invite를 명사로 짧게 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "Did you get my calendar invite?",
+                  "ko": "제 일정 초대 받으셨어요?"
+                },
+                {
+                  "en": "I'll update the calendar invite with the new time.",
+                  "ko": "바뀐 시간으로 일정 초대 수정할게요."
+                },
+                {
+                  "en": "Please accept the calendar invite when you can.",
+                  "ko": "시간 될 때 일정 초대 수락해 주세요."
+                }
+              ]
+            },
+            {
+              "text": "right after",
+              "meaning": "~ 직후에 바로",
+              "nuance": "끝나자마자를 말할 때. right가 바로를 강조하고, 직전은 right before라고 한다.",
+              "examples": [
+                {
+                  "en": "I'll call you right after lunch.",
+                  "ko": "점심 먹고 바로 전화할게요."
+                },
+                {
+                  "en": "She left right after the meeting.",
+                  "ko": "그녀는 회의 끝나자마자 나갔어요."
+                },
+                {
+                  "en": "Let's talk right after class.",
+                  "ko": "수업 끝나고 바로 얘기하자."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Great. Are we meeting in person, or should we just hop on a video call?",
+          "ko_word_order": "좋아요. / 우리 직접 만나나요, / 아니면 그냥 들어갈까요 / 화상 통화에?",
+          "ko_natural": "좋아요. 직접 만날까요, 아니면 그냥 화상으로 할까요?",
+          "terms": [
+            {
+              "text": "in person",
+              "meaning": "직접 (만나서)",
+              "nuance": "온라인이나 전화가 아니라 얼굴 보고 만날 때. face to face와 비슷하고 더 흔하다.",
+              "examples": [
+                {
+                  "en": "It's nice to finally meet you in person.",
+                  "ko": "드디어 직접 뵙네요."
+                },
+                {
+                  "en": "I'd rather discuss this in person.",
+                  "ko": "이건 직접 만나서 얘기하는 게 좋겠어요."
+                },
+                {
+                  "en": "You need to apply in person.",
+                  "ko": "직접 가서 신청해야 해요."
+                }
+              ]
+            },
+            {
+              "text": "hop on",
+              "meaning": "(통화에) 들어가다",
+              "nuance": "회의나 통화에 가볍게 접속할 때 쓰는 구어. join보다 캐주얼하고 빠른 느낌이다.",
+              "examples": [
+                {
+                  "en": "Can you hop on a quick call?",
+                  "ko": "잠깐 통화 가능해요?"
+                },
+                {
+                  "en": "I'll hop on Zoom in five minutes.",
+                  "ko": "5분 뒤에 줌 들어갈게요."
+                },
+                {
+                  "en": "Let's hop on a call and sort it out.",
+                  "ko": "통화로 얘기해서 정리해요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "In person would be better. I'll book the small room on the fifth floor.",
+          "ko_word_order": "직접 만나는 게 / 더 좋겠어요. / 제가 예약할게요 / 작은 회의실을 / 5층에 있는",
+          "ko_natural": "직접 만나는 게 좋겠어요. 5층 작은 회의실 잡아 둘게요.",
+          "terms": [
+            {
+              "text": "would be better",
+              "meaning": "~가 더 좋겠다",
+              "nuance": "두 선택지 중 하나를 부드럽게 고를 때. I prefer보다 덜 단정적이다.",
+              "examples": [
+                {
+                  "en": "Maybe tomorrow would be better.",
+                  "ko": "내일이 더 나을 것 같아요."
+                },
+                {
+                  "en": "Email would be better for me.",
+                  "ko": "저는 이메일이 더 편해요."
+                },
+                {
+                  "en": "A smaller table would be better here.",
+                  "ko": "여기엔 작은 테이블이 더 낫겠어요."
+                }
+              ]
+            },
+            {
+              "text": "book",
+              "meaning": "예약하다",
+              "nuance": "회의실·식당·표를 잡을 때 쓰는 일상 표현. reserve보다 말할 때 훨씬 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "Did you book a table for tonight?",
+                  "ko": "오늘 저녁 자리 예약했어?"
+                },
+                {
+                  "en": "I booked our flights yesterday.",
+                  "ko": "어제 비행기표 예약했어요."
+                },
+                {
+                  "en": "All the rooms are booked this afternoon.",
+                  "ko": "오늘 오후엔 회의실이 다 찼어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Perfect. Is there anything you'd like me to look over beforehand?",
+          "ko_word_order": "좋아요. / 뭔가 있나요 / 당신이 원하는 / 제가 검토하길 / 미리?",
+          "ko_natural": "좋아요. 미리 봐 둘 자료 있을까요?",
+          "terms": [
+            {
+              "text": "look over",
+              "meaning": "훑어보다, 검토하다",
+              "nuance": "문서를 빠르게 살펴볼 때 쓰는 구어. review보다 가볍고, 꼼꼼히 볼 때는 go through를 쓴다.",
+              "examples": [
+                {
+                  "en": "Could you look over my resume?",
+                  "ko": "제 이력서 좀 봐 줄래요?"
+                },
+                {
+                  "en": "I looked over the contract last night.",
+                  "ko": "어젯밤에 계약서 훑어봤어요."
+                },
+                {
+                  "en": "Let me look over the numbers first.",
+                  "ko": "숫자부터 먼저 볼게요."
+                }
+              ]
+            },
+            {
+              "text": "beforehand",
+              "meaning": "미리",
+              "nuance": "어떤 일 전에 미리라는 뜻으로 문장 끝에 붙인다. in advance와 비슷하고 대화에서 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Let me know beforehand if you can't come.",
+                  "ko": "못 오면 미리 알려 줘."
+                },
+                {
+                  "en": "I read the book beforehand.",
+                  "ko": "그 책은 미리 읽어 뒀어요."
+                },
+                {
+                  "en": "Call the restaurant beforehand to check.",
+                  "ko": "식당에 미리 전화해서 확인해 봐."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "If you could skim the draft I sent yesterday, that'd be great.",
+          "ko_word_order": "당신이 훑어봐 줄 수 있다면 / 초안을 / 제가 어제 보낸, / 그러면 정말 좋겠어요",
+          "ko_natural": "어제 보낸 초안 한번 훑어봐 주시면 좋겠어요.",
+          "terms": [
+            {
+              "text": "skim",
+              "meaning": "대충 훑어 읽다",
+              "nuance": "요점만 빠르게 훑어 읽을 때. look over보다 더 빠르고 가볍게 본다는 느낌이다.",
+              "examples": [
+                {
+                  "en": "I only had time to skim the article.",
+                  "ko": "기사는 대충 훑어볼 시간밖에 없었어요."
+                },
+                {
+                  "en": "Just skim the first two pages.",
+                  "ko": "앞에 두 페이지만 훑어봐."
+                },
+                {
+                  "en": "She skimmed the menu and ordered quickly.",
+                  "ko": "그녀는 메뉴를 쓱 보고 바로 주문했어요."
+                }
+              ]
+            },
+            {
+              "text": "that'd be great",
+              "meaning": "그러면 좋겠어요",
+              "nuance": "부탁 끝에 붙여 공손하게 마무리하는 말. If you could ~, that'd be great는 직장에서 아주 흔한 부탁 패턴이다.",
+              "examples": [
+                {
+                  "en": "If you could call me back, that'd be great.",
+                  "ko": "다시 전화 주시면 좋겠어요."
+                },
+                {
+                  "en": "A ride to the station? That'd be great.",
+                  "ko": "역까지 태워 준다고? 그럼 정말 좋지."
+                },
+                {
+                  "en": "If you could reply by Friday, that'd be great.",
+                  "ko": "금요일까지 답 주시면 감사하겠어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Will do. See you Tuesday at three, then.",
+          "ko_word_order": "그렇게 할게요. / 봬요 / 화요일 3시에, / 그럼",
+          "ko_natural": "그럴게요. 그럼 화요일 3시에 봬요.",
+          "terms": [
+            {
+              "text": "will do",
+              "meaning": "그렇게 할게요",
+              "nuance": "부탁을 받고 짧게 알겠다, 하겠다고 답하는 구어. 동료 사이에 자주 쓰고 아주 격식 있는 자리에선 피한다.",
+              "examples": [
+                {
+                  "en": "Please lock the door when you leave. — Will do.",
+                  "ko": "나갈 때 문 잠가 줘. — 알았어."
+                },
+                {
+                  "en": "Will do. I'll text you when I get there.",
+                  "ko": "그럴게. 도착하면 문자할게."
+                },
+                {
+                  "en": "Tell your mom I said hi. — Will do!",
+                  "ko": "어머니께 안부 전해 줘. — 그럴게!"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,459 @@
+{
+  "lessons": [
+    {
+      "day": 62,
+      "title": "계약 조건 확인하기",
+      "theme": "Reviewing contract terms",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Before we sign, I'd like to go over a few points in the contract.",
+          "ko_word_order": "우리가 서명하기 전에, / 저는 검토하고 싶어요 / 몇 가지 사항을 / 계약서에 있는",
+          "ko_natural": "서명하기 전에 계약서 몇 가지만 같이 짚어 보고 싶어요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "go over",
+              "meaning": "검토하다",
+              "nuance": "문서나 계획을 처음부터 훑어보며 확인할 때 쓰는 구동사. review보다 말로 할 때 자연스럽다.",
+              "examples": [
+                {
+                  "en": "Let's go over the plan one more time.",
+                  "ko": "계획 한 번만 더 짚어 보자."
+                },
+                {
+                  "en": "Can you go over my essay?",
+                  "ko": "내 에세이 좀 봐 줄래?"
+                },
+                {
+                  "en": "We went over the numbers together.",
+                  "ko": "숫자를 같이 검토했어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Of course. Which parts would you like to take a closer look at?",
+          "ko_word_order": "물론이죠. / 어느 부분을 / 당신은 하고 싶으세요 / 더 자세히 보는 것을?",
+          "ko_natural": "그럼요. 어느 부분을 좀 더 자세히 보고 싶으세요?",
+          "terms": [
+            {
+              "text": "take a closer look",
+              "meaning": "자세히 들여다보다",
+              "nuance": "대충 보지 않고 꼼꼼히 확인하겠다는 뜻. look at closely보다 자연스러운 구어다.",
+              "examples": [
+                {
+                  "en": "Let me take a closer look at your car.",
+                  "ko": "차 좀 자세히 볼게요."
+                },
+                {
+                  "en": "Take a closer look at this photo.",
+                  "ko": "이 사진 자세히 봐."
+                },
+                {
+                  "en": "We should take a closer look before we buy.",
+                  "ko": "사기 전에 꼼꼼히 봐야 해요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "First, the payment terms. Do we have thirty days from the invoice date?",
+          "ko_word_order": "먼저, / 결제 조건이요. / 우리는 30일이 있나요 / 청구서 날짜로부터?",
+          "ko_natural": "먼저 결제 조건이요. 청구서 날짜로부터 30일 안에 내면 되는 건가요?",
+          "terms": [
+            {
+              "text": "payment terms",
+              "meaning": "결제 조건",
+              "nuance": "언제, 어떻게 돈을 낼지 정한 계약상의 조건. 거래처와 이야기할 때 기본 용어다.",
+              "examples": [
+                {
+                  "en": "What are your payment terms?",
+                  "ko": "결제 조건이 어떻게 되나요?"
+                },
+                {
+                  "en": "We offer flexible payment terms.",
+                  "ko": "결제 조건을 유연하게 해 드려요."
+                },
+                {
+                  "en": "The payment terms changed this year.",
+                  "ko": "올해 결제 조건이 바뀌었어요."
+                }
+              ]
+            },
+            {
+              "text": "invoice",
+              "meaning": "청구서",
+              "nuance": "물건이나 서비스 대금을 청구하는 문서. 영수증(receipt)은 돈을 낸 뒤에 받는 것이다.",
+              "examples": [
+                {
+                  "en": "I'll send you the invoice tomorrow.",
+                  "ko": "내일 청구서 보내 드릴게요."
+                },
+                {
+                  "en": "Has the invoice been paid?",
+                  "ko": "청구서 결제됐어요?"
+                },
+                {
+                  "en": "There's a mistake on the invoice.",
+                  "ko": "청구서에 오류가 있어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "That's right. Payment is due within thirty days of receiving the invoice.",
+          "ko_word_order": "맞아요. / 결제는 기한이에요 / 30일 이내에 / 청구서를 받은 날부터",
+          "ko_natural": "맞습니다. 청구서를 받으신 날부터 30일 안에 결제하시면 돼요.",
+          "terms": [
+            {
+              "text": "due",
+              "meaning": "기한인",
+              "nuance": "돈이나 과제를 내야 하는 기한을 말한다. 'due on Friday'처럼 날짜와 함께 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "The rent is due on the first.",
+                  "ko": "월세는 1일까지 내야 해요."
+                },
+                {
+                  "en": "When is the report due?",
+                  "ko": "보고서 언제까지예요?"
+                },
+                {
+                  "en": "My library books are due tomorrow.",
+                  "ko": "도서관 책 반납이 내일까지예요."
+                }
+              ]
+            },
+            {
+              "text": "within",
+              "meaning": "~ 이내에",
+              "nuance": "정해진 기간이나 범위 안이라는 뜻. 기한을 말할 때 by(까지)와 구분해 쓴다.",
+              "examples": [
+                {
+                  "en": "We'll reply within 24 hours.",
+                  "ko": "24시간 안에 답 드릴게요."
+                },
+                {
+                  "en": "The station is within walking distance.",
+                  "ko": "역은 걸어갈 수 있는 거리예요."
+                },
+                {
+                  "en": "Please return it within two weeks.",
+                  "ko": "2주 안에 반납해 주세요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Got it. And what happens if either side wants to end the agreement early?",
+          "ko_word_order": "알겠어요. / 그리고 무슨 일이 일어나나요 / 만약 어느 한쪽이 원하면 / 계약을 일찍 끝내기를?",
+          "ko_natural": "알겠습니다. 그럼 어느 한쪽이 계약을 일찍 끝내고 싶으면 어떻게 되나요?",
+          "terms": [
+            {
+              "text": "either side",
+              "meaning": "어느 쪽이든",
+              "nuance": "계약이나 협상에서 두 당사자 중 어느 쪽이라도 해당된다는 뜻.",
+              "examples": [
+                {
+                  "en": "Either side can ask for a change.",
+                  "ko": "어느 쪽이든 변경을 요청할 수 있어요."
+                },
+                {
+                  "en": "If either side breaks the rules, the deal is off.",
+                  "ko": "어느 한쪽이라도 규칙을 어기면 거래는 무효예요."
+                },
+                {
+                  "en": "Was either side happy with the result?",
+                  "ko": "결과에 만족한 쪽이 있었나요?"
+                }
+              ]
+            },
+            {
+              "text": "agreement",
+              "meaning": "계약, 합의",
+              "nuance": "contract보다 넓은 말로, 서로 합의한 내용 전체를 가리킨다.",
+              "examples": [
+                {
+                  "en": "We reached an agreement last night.",
+                  "ko": "어젯밤에 합의에 이르렀어요."
+                },
+                {
+                  "en": "Please read the agreement carefully.",
+                  "ko": "계약서를 꼼꼼히 읽어 주세요."
+                },
+                {
+                  "en": "The agreement lasts for three years.",
+                  "ko": "그 계약은 3년간 유효해요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "In that situation, the contract can be terminated with sixty days' written notice.",
+          "ko_word_order": "그런 상황에서는, / 계약은 해지될 수 있어요 / 60일 전 서면 통지로",
+          "ko_natural": "그럴 땐 60일 전에 서면으로 알려 주시면 계약을 해지할 수 있어요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "terminate",
+              "form": "terminated",
+              "meaning": "해지하다",
+              "nuance": "계약이나 고용을 공식적으로 끝낼 때 쓰는 딱딱한 말. 일상에서는 end나 cancel을 쓴다.",
+              "examples": [
+                {
+                  "en": "They terminated the lease early.",
+                  "ko": "그들은 임대 계약을 일찍 해지했어요."
+                },
+                {
+                  "en": "Can I terminate my phone contract?",
+                  "ko": "휴대폰 약정 해지할 수 있어요?"
+                },
+                {
+                  "en": "His contract was terminated last month.",
+                  "ko": "그의 계약은 지난달 해지됐어요."
+                }
+              ]
+            },
+            {
+              "text": "written notice",
+              "meaning": "서면 통지",
+              "nuance": "말이 아니라 문서나 이메일로 공식적으로 알리는 것. 계약서와 회사 규정에 자주 나온다.",
+              "examples": [
+                {
+                  "en": "You need to give written notice before you quit.",
+                  "ko": "퇴사하려면 미리 서면으로 알려야 해요."
+                },
+                {
+                  "en": "We got written notice of the rent increase.",
+                  "ko": "월세 인상 통지서를 받았어요."
+                },
+                {
+                  "en": "Please send written notice by email.",
+                  "ko": "이메일로 서면 통지를 보내 주세요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "That seems reasonable. Could you also clarify who owns the data we upload?",
+          "ko_word_order": "그건 합리적으로 보여요. / 또한 분명히 해 주실 수 있나요 / 누가 소유하는지 / 우리가 올리는 데이터를?",
+          "ko_natural": "그건 괜찮네요. 그리고 저희가 올리는 데이터는 누구 소유인지도 확실히 해 주실 수 있을까요?",
+          "terms": [
+            {
+              "text": "reasonable",
+              "meaning": "합리적인",
+              "nuance": "무리하지 않고 받아들일 만하다는 뜻. 가격이나 조건을 평가할 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "The prices here are very reasonable.",
+                  "ko": "여기 가격이 꽤 괜찮아요."
+                },
+                {
+                  "en": "That's a reasonable request.",
+                  "ko": "합리적인 요청이네요."
+                },
+                {
+                  "en": "Please be home at a reasonable hour.",
+                  "ko": "적당한 시간에 들어와."
+                }
+              ]
+            },
+            {
+              "text": "clarify",
+              "meaning": "분명히 하다",
+              "nuance": "애매한 부분을 분명하게 설명해 달라고 할 때 쓰는 정중한 표현. 회의와 계약에서 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Could you clarify what you mean?",
+                  "ko": "무슨 뜻인지 좀 더 분명히 말씀해 주시겠어요?"
+                },
+                {
+                  "en": "Let me clarify one thing.",
+                  "ko": "한 가지만 분명히 할게요."
+                },
+                {
+                  "en": "I called to clarify the start time.",
+                  "ko": "시작 시간을 확인하려고 전화했어요."
+                }
+              ]
+            },
+            {
+              "text": "own",
+              "form": "owns",
+              "meaning": "소유하다",
+              "nuance": "무언가가 누구 것인지 말할 때 쓰는 기본 동사. 계약에서는 권리가 누구에게 있는지를 뜻한다.",
+              "examples": [
+                {
+                  "en": "Who owns this car?",
+                  "ko": "이 차 누구 거예요?"
+                },
+                {
+                  "en": "They own a small bakery downtown.",
+                  "ko": "그들은 시내에 작은 빵집을 갖고 있어요."
+                },
+                {
+                  "en": "I don't own a TV.",
+                  "ko": "저는 TV가 없어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Good question. Your data stays yours, and that's clearly stated in section five.",
+          "ko_word_order": "좋은 질문이에요. / 당신의 데이터는 당신 것으로 남아요, / 그리고 그건 분명히 명시되어 있어요 / 5조에",
+          "ko_natural": "좋은 질문이에요. 데이터는 계속 고객님 소유이고, 그건 5조에 분명히 적혀 있어요.",
+          "terms": [
+            {
+              "text": "be stated in",
+              "form": "stated in",
+              "meaning": "~에 명시되다",
+              "nuance": "규정이나 문서에 글로 적혀 있다는 수동태 표현. 계약 내용을 설명할 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "The rules are stated in the handbook.",
+                  "ko": "규칙은 안내서에 나와 있어요."
+                },
+                {
+                  "en": "It's stated in the email he sent.",
+                  "ko": "그가 보낸 메일에 적혀 있어요."
+                },
+                {
+                  "en": "The price is clearly stated in the ad.",
+                  "ko": "가격이 광고에 분명히 나와 있어요."
+                }
+              ]
+            },
+            {
+              "text": "section",
+              "meaning": "조항, 부분",
+              "nuance": "계약서나 보고서를 나눈 항목. 'section five'처럼 번호와 함께 말한다.",
+              "examples": [
+                {
+                  "en": "Please read section three carefully.",
+                  "ko": "3조를 잘 읽어 보세요."
+                },
+                {
+                  "en": "Which section of the report is yours?",
+                  "ko": "보고서 어느 부분이 당신 담당이에요?"
+                },
+                {
+                  "en": "The answer is in the last section.",
+                  "ko": "답은 마지막 부분에 있어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Great. I'd just like our legal team to review it before we sign off.",
+          "ko_word_order": "좋아요. / 저는 그냥 원해요 / 우리 법무팀이 그걸 검토하기를 / 우리가 최종 승인하기 전에",
+          "ko_natural": "좋네요. 최종 확정하기 전에 법무팀에서 한번 검토만 했으면 해요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "legal team",
+              "meaning": "법무팀",
+              "nuance": "회사에서 계약과 법률 문제를 맡는 부서. 그냥 legal이라고 줄여 말하기도 한다.",
+              "examples": [
+                {
+                  "en": "Our legal team is checking the contract.",
+                  "ko": "법무팀에서 계약서를 확인하고 있어요."
+                },
+                {
+                  "en": "Send it to the legal team first.",
+                  "ko": "먼저 법무팀에 보내세요."
+                },
+                {
+                  "en": "The legal team said it's fine.",
+                  "ko": "법무팀이 괜찮다고 했어요."
+                }
+              ]
+            },
+            {
+              "text": "sign off",
+              "meaning": "최종 승인하다",
+              "nuance": "결재하거나 최종 확인을 해 준다는 구어. 'sign off on + 대상'으로도 쓴다.",
+              "examples": [
+                {
+                  "en": "The boss needs to sign off on this.",
+                  "ko": "이건 사장님 최종 결재가 필요해요."
+                },
+                {
+                  "en": "Has everyone signed off on the design?",
+                  "ko": "디자인에 다들 오케이했어요?"
+                },
+                {
+                  "en": "I can't sign off until I see the numbers.",
+                  "ko": "숫자를 보기 전에는 승인 못 해요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "That makes perfect sense. Just let me know if they have any questions.",
+          "ko_word_order": "그건 완벽하게 이해돼요. / 그냥 저에게 알려 주세요 / 만약 그들이 질문이 있으면",
+          "ko_natural": "당연하죠. 법무팀에서 궁금한 거 있으시면 언제든 말씀해 주세요.",
+          "terms": [
+            {
+              "text": "make sense",
+              "form": "makes perfect sense",
+              "meaning": "이해가 되다, 일리 있다",
+              "nuance": "상대 말이 이치에 맞는다고 동의할 때 쓴다. perfect를 넣으면 '충분히 이해한다'는 느낌이 강해진다.",
+              "examples": [
+                {
+                  "en": "Does that make sense?",
+                  "ko": "이해되세요?"
+                },
+                {
+                  "en": "It makes sense to leave early.",
+                  "ko": "일찍 나가는 게 맞아요."
+                },
+                {
+                  "en": "His story doesn't make sense.",
+                  "ko": "그 사람 얘기는 말이 안 돼요."
+                }
+              ]
+            },
+            {
+              "text": "let me know",
+              "meaning": "알려 주세요",
+              "nuance": "필요하면 연락 달라는 뜻으로 대화를 마무리할 때 자주 쓰는 표현.",
+              "examples": [
+                {
+                  "en": "Let me know when you get home.",
+                  "ko": "집에 도착하면 알려 줘."
+                },
+                {
+                  "en": "Let me know if you need anything.",
+                  "ko": "필요한 거 있으면 말해요."
+                },
+                {
+                  "en": "Let me know what you think.",
+                  "ko": "어떻게 생각하는지 알려 줘요."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

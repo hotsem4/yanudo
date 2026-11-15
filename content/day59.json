@@ -1,0 +1,536 @@
+{
+  "lessons": [
+    {
+      "day": 59,
+      "title": "가격 협상하기",
+      "theme": "Negotiating price",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Thanks for the quote. To be honest, it's a bit higher than we expected.",
+          "ko_word_order": "고마워요 / 견적에 대해. / 솔직히 말하면, / 그건 조금 더 높아요 / 우리가 예상한 것보다",
+          "ko_natural": "견적 감사합니다. 솔직히 생각했던 것보다 조금 높네요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "quote",
+              "meaning": "견적",
+              "nuance": "업체가 미리 알려 주는 예상 가격. 문서로는 quotation이라고도 하지만 말로는 quote를 주로 쓴다.",
+              "examples": [
+                {
+                  "en": "Can you give me a quote for the repair?",
+                  "ko": "수리 견적 좀 주시겠어요?"
+                },
+                {
+                  "en": "We got three quotes from different movers.",
+                  "ko": "이삿짐 업체 세 곳에서 견적을 받았어요."
+                },
+                {
+                  "en": "The quote includes delivery.",
+                  "ko": "견적에 배송비가 포함돼 있어요."
+                }
+              ]
+            },
+            {
+              "text": "to be honest",
+              "meaning": "솔직히 말하면",
+              "nuance": "듣기 불편할 수 있는 말을 꺼내기 전에 쓰는 완충 표현. 친구 사이 문자에서는 TBH로 줄이기도 한다.",
+              "examples": [
+                {
+                  "en": "To be honest, I didn't like the movie.",
+                  "ko": "솔직히 그 영화 별로였어."
+                },
+                {
+                  "en": "To be honest, I forgot about the meeting.",
+                  "ko": "솔직히 말하면 회의를 깜빡했어요."
+                },
+                {
+                  "en": "I'm a little tired, to be honest.",
+                  "ko": "솔직히 좀 피곤해요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I understand. Do you mind sharing what budget you have in mind?",
+          "ko_word_order": "이해해요. / 괜찮으세요 / 공유하는 것이 / 어떤 예산을 / 당신이 생각하고 있는지?",
+          "ko_natural": "그러실 수 있죠. 혹시 생각하시는 예산이 어느 정도인지 여쭤봐도 될까요?",
+          "terms": [
+            {
+              "text": "do you mind",
+              "meaning": "~해도 괜찮을까요",
+              "nuance": "상대에게 부담이 될 수 있는 부탁을 정중하게 할 때 쓴다. 'Not at all'로 답하면 '괜찮아요'라는 뜻이다.",
+              "examples": [
+                {
+                  "en": "Do you mind closing the window?",
+                  "ko": "창문 좀 닫아 주시겠어요?"
+                },
+                {
+                  "en": "Do you mind if I sit here?",
+                  "ko": "여기 앉아도 될까요?"
+                },
+                {
+                  "en": "Do you mind waiting a few minutes?",
+                  "ko": "몇 분만 기다려 주시겠어요?"
+                }
+              ]
+            },
+            {
+              "text": "have in mind",
+              "meaning": "생각해 두다",
+              "nuance": "마음속에 이미 정해 둔 것이 있는지 물을 때 쓰는 자연스러운 구어 표현.",
+              "examples": [
+                {
+                  "en": "Do you have a date in mind?",
+                  "ko": "생각해 둔 날짜 있어요?"
+                },
+                {
+                  "en": "What kind of gift do you have in mind?",
+                  "ko": "어떤 선물 생각하고 있어?"
+                },
+                {
+                  "en": "I have someone in mind for the job.",
+                  "ko": "그 일에 생각해 둔 사람이 있어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "We were hoping to keep it under fifty thousand dollars for the first year.",
+          "ko_word_order": "우리는 바라고 있었어요 / 그걸 유지하기를 / 5만 달러 아래로 / 첫해에는",
+          "ko_natural": "첫해에는 5만 달러 안쪽으로 맞추고 싶었어요.",
+          "terms": [
+            {
+              "text": "be hoping to",
+              "form": "were hoping to",
+              "meaning": "~하길 바랐어요",
+              "nuance": "과거진행형으로 바람을 말하면 요구가 아니라 부드러운 희망처럼 들린다. 협상에서 자주 쓰는 완곡 표현.",
+              "examples": [
+                {
+                  "en": "We were hoping to finish by noon.",
+                  "ko": "정오까지 끝내길 바랐어요."
+                },
+                {
+                  "en": "I was hoping to talk to you about something.",
+                  "ko": "얘기할 게 좀 있어서요."
+                },
+                {
+                  "en": "They were hoping to get a table by the window.",
+                  "ko": "그분들은 창가 자리를 원했어요."
+                }
+              ]
+            },
+            {
+              "text": "keep it under",
+              "meaning": "~ 아래로 맞추다",
+              "nuance": "금액·시간·인원을 일정 선 아래로 유지하자고 할 때 쓰는 구어 표현.",
+              "examples": [
+                {
+                  "en": "Let's keep it under an hour.",
+                  "ko": "한 시간 안으로 끝내요."
+                },
+                {
+                  "en": "Can we keep it under fifty guests?",
+                  "ko": "손님은 50명 아래로 할 수 있을까요?"
+                },
+                {
+                  "en": "I want to keep it under a hundred dollars.",
+                  "ko": "100달러 안으로 하고 싶어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "That's a little tight, but there might be some wiggle room on the price.",
+          "ko_word_order": "그건 조금 빠듯해요, / 하지만 있을 수도 있어요 / 약간의 여유가 / 가격에",
+          "ko_natural": "좀 빠듯하긴 한데, 가격은 조정할 여지가 조금 있을 수도 있어요.",
+          "terms": [
+            {
+              "text": "tight",
+              "meaning": "빠듯한",
+              "nuance": "예산·일정·시간이 여유 없이 빡빡하다는 뜻. 회사 대화에서 아주 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Money is a bit tight this month.",
+                  "ko": "이번 달은 돈이 좀 빠듯해요."
+                },
+                {
+                  "en": "The schedule is really tight this week.",
+                  "ko": "이번 주 일정이 정말 빡빡해요."
+                },
+                {
+                  "en": "We're on a tight deadline.",
+                  "ko": "마감이 촉박해요."
+                }
+              ]
+            },
+            {
+              "text": "wiggle room",
+              "meaning": "조정의 여지",
+              "nuance": "협상이나 일정에서 조금 바꿀 수 있는 여유를 말하는 구어. flexibility보다 가볍고 친근하다.",
+              "examples": [
+                {
+                  "en": "Is there any wiggle room on the deadline?",
+                  "ko": "마감 조금 조정할 여지 있어요?"
+                },
+                {
+                  "en": "There's not much wiggle room in our budget.",
+                  "ko": "예산에 여유가 별로 없어요."
+                },
+                {
+                  "en": "Leave some wiggle room in the schedule.",
+                  "ko": "일정에 여유를 좀 두세요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "What if we signed a two-year contract instead of just one?",
+          "ko_word_order": "어떨까요 / 만약 우리가 계약한다면 / 2년 계약을 / 그냥 1년 대신에?",
+          "ko_natural": "1년 말고 2년으로 계약하면 어떨까요?",
+          "terms": [
+            {
+              "text": "what if",
+              "meaning": "~하면 어떨까요",
+              "nuance": "새 조건이나 아이디어를 가볍게 던져 볼 때 쓴다. 뒤에 과거형을 쓰면 더 조심스럽게 제안하는 느낌이다.",
+              "examples": [
+                {
+                  "en": "What if we left a little earlier?",
+                  "ko": "조금 일찍 나가면 어때요?"
+                },
+                {
+                  "en": "What if we try a different approach?",
+                  "ko": "다른 방법으로 해 보면 어떨까요?"
+                },
+                {
+                  "en": "What if we just order pizza tonight?",
+                  "ko": "오늘 밤엔 그냥 피자 시키면 어때?"
+                }
+              ]
+            },
+            {
+              "text": "sign a contract",
+              "form": "signed a two-year contract",
+              "meaning": "계약하다",
+              "nuance": "계약서에 서명해 정식으로 계약을 맺는다는 기본 표현. 기간은 contract 앞에 붙인다.",
+              "examples": [
+                {
+                  "en": "We signed a contract with a new supplier.",
+                  "ko": "새 공급업체와 계약했어요."
+                },
+                {
+                  "en": "Read everything before you sign the contract.",
+                  "ko": "계약서에 서명하기 전에 다 읽어 보세요."
+                },
+                {
+                  "en": "She just signed a one-year contract.",
+                  "ko": "그녀는 막 1년 계약을 했어요."
+                }
+              ]
+            },
+            {
+              "text": "instead of",
+              "meaning": "~ 대신에",
+              "nuance": "원래 것을 빼고 다른 것을 고를 때 쓴다. 뒤에 명사나 -ing가 온다.",
+              "examples": [
+                {
+                  "en": "Let's take the train instead of driving.",
+                  "ko": "운전하지 말고 기차 타요."
+                },
+                {
+                  "en": "Can I get tea instead of coffee?",
+                  "ko": "커피 대신 차로 주실 수 있어요?"
+                },
+                {
+                  "en": "He called instead of texting.",
+                  "ko": "그는 문자 대신 전화했어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "In that case, we could offer you a ten percent discount on the total.",
+          "ko_word_order": "그런 경우라면, / 우리는 드릴 수 있어요 / 10퍼센트 할인을 / 총액에서",
+          "ko_natural": "그렇다면 전체 금액에서 10퍼센트 할인해 드릴 수 있어요.",
+          "terms": [
+            {
+              "text": "in that case",
+              "meaning": "그렇다면",
+              "nuance": "상대가 말한 조건을 받아서 '그럼 이렇게 하죠'라고 이어 갈 때 쓴다.",
+              "examples": [
+                {
+                  "en": "In that case, let's meet tomorrow.",
+                  "ko": "그럼 내일 만나요."
+                },
+                {
+                  "en": "You're busy? In that case, I'll call later.",
+                  "ko": "바쁘세요? 그럼 이따 전화할게요."
+                },
+                {
+                  "en": "In that case, we'll need more chairs.",
+                  "ko": "그렇다면 의자가 더 필요하겠네요."
+                }
+              ]
+            },
+            {
+              "text": "offer a discount",
+              "form": "offer you a ten percent discount",
+              "meaning": "할인해 주다",
+              "nuance": "판매자가 가격을 깎아 주겠다고 제안할 때 쓰는 표현. give a discount보다 공식적인 느낌이다.",
+              "examples": [
+                {
+                  "en": "They offered us a discount for paying in cash.",
+                  "ko": "현금으로 내면 할인해 준다고 했어요."
+                },
+                {
+                  "en": "Do you offer a student discount?",
+                  "ko": "학생 할인 있어요?"
+                },
+                {
+                  "en": "We can offer a discount on bulk orders.",
+                  "ko": "대량 주문은 할인해 드릴 수 있어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I was wondering if you could also include the training at no extra cost.",
+          "ko_word_order": "저는 궁금했어요 / 당신이 또한 포함해 줄 수 있는지 / 교육을 / 추가 비용 없이",
+          "ko_natural": "혹시 교육도 추가 비용 없이 포함해 주실 수 있을까요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "at no extra cost",
+              "meaning": "추가 비용 없이",
+              "nuance": "돈을 더 내지 않아도 된다는 뜻의 정중한 표현. 편한 말로는 for free도 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "Delivery is included at no extra cost.",
+                  "ko": "배송은 추가 비용 없이 포함돼요."
+                },
+                {
+                  "en": "You can change your seat at no extra cost.",
+                  "ko": "추가 요금 없이 좌석을 바꿀 수 있어요."
+                },
+                {
+                  "en": "We'll fix it at no extra cost.",
+                  "ko": "추가 비용 없이 고쳐 드릴게요."
+                }
+              ]
+            },
+            {
+              "text": "include",
+              "meaning": "포함하다",
+              "nuance": "가격이나 서비스에 무엇이 들어 있는지 말할 때 쓰는 기본 동사. 수동태 be included도 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Does the price include tax?",
+                  "ko": "가격에 세금 포함이에요?"
+                },
+                {
+                  "en": "Breakfast is included in the room rate.",
+                  "ko": "객실 요금에 조식이 포함돼 있어요."
+                },
+                {
+                  "en": "Please include your phone number.",
+                  "ko": "전화번호도 같이 적어 주세요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "That's a fair ask. Let me check with my team and get back to you.",
+          "ko_word_order": "그건 타당한 요청이에요. / 제가 확인해 볼게요 / 제 팀과 / 그리고 당신에게 다시 연락할게요",
+          "ko_natural": "충분히 요청하실 만하죠. 팀이랑 확인해 보고 다시 연락드릴게요.",
+          "terms": [
+            {
+              "text": "fair ask",
+              "meaning": "합리적인 요청",
+              "nuance": "ask를 명사로 써서 '요청'이라는 뜻. 상대 요구가 무리하지 않다고 인정할 때 쓰는 비즈니스 구어.",
+              "examples": [
+                {
+                  "en": "Asking for a day off is a fair ask.",
+                  "ko": "하루 쉬겠다는 건 합리적인 요청이에요."
+                },
+                {
+                  "en": "I think that's a fair ask from the client.",
+                  "ko": "고객 쪽에서 충분히 요청할 만하다고 봐요."
+                },
+                {
+                  "en": "Is that a fair ask, or is it too much?",
+                  "ko": "그 정도 요청은 괜찮을까요, 아니면 너무 과한가요?"
+                }
+              ]
+            },
+            {
+              "text": "check with",
+              "meaning": "~에게 확인하다",
+              "nuance": "결정하기 전에 관련된 사람에게 물어본다는 뜻. 바로 답하기 어려울 때 시간을 버는 표현이다.",
+              "examples": [
+                {
+                  "en": "Let me check with my wife first.",
+                  "ko": "아내한테 먼저 물어볼게요."
+                },
+                {
+                  "en": "I'll check with the front desk.",
+                  "ko": "프런트에 확인해 볼게요."
+                },
+                {
+                  "en": "Did you check with your doctor?",
+                  "ko": "의사한테 확인해 봤어?"
+                }
+              ]
+            },
+            {
+              "text": "get back to",
+              "form": "get back to you",
+              "meaning": "다시 연락하다",
+              "nuance": "알아본 뒤 나중에 답을 주겠다는 뜻. 업무 대화에서 아주 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "I'll get back to you by tomorrow.",
+                  "ko": "내일까지 답 드릴게요."
+                },
+                {
+                  "en": "Sorry for not getting back to you sooner.",
+                  "ko": "더 빨리 연락 못 드려 죄송해요."
+                },
+                {
+                  "en": "Can I get back to you on that?",
+                  "ko": "그건 알아보고 다시 말씀드려도 될까요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Sounds good. If you can make that work, I think we have a deal.",
+          "ko_word_order": "좋아요. / 만약 당신이 그걸 되게 할 수 있다면, / 저는 생각해요 / 우리가 합의했다고",
+          "ko_natural": "좋습니다. 그렇게만 해 주시면 계약하는 걸로 하죠.",
+          "core": true,
+          "terms": [
+            {
+              "text": "make it work",
+              "form": "make that work",
+              "meaning": "되게 하다",
+              "nuance": "어려운 조건이라도 어떻게든 맞춰 보겠다는 의미의 구어. it 자리에 this, that이 오기도 한다.",
+              "examples": [
+                {
+                  "en": "It's a tight schedule, but we'll make it work.",
+                  "ko": "일정이 빡빡하지만 어떻게든 맞출게요."
+                },
+                {
+                  "en": "Can you make Tuesday work?",
+                  "ko": "화요일로 맞춰 주실 수 있어요?"
+                },
+                {
+                  "en": "We didn't have much money, but we made it work.",
+                  "ko": "돈이 별로 없었지만 어떻게든 해냈어요."
+                }
+              ]
+            },
+            {
+              "text": "have a deal",
+              "meaning": "합의가 되다",
+              "nuance": "협상이 끝나고 조건에 서로 동의했을 때 쓰는 말. 짧게 'Deal!'이라고도 한다.",
+              "examples": [
+                {
+                  "en": "You pay for lunch and I'll drive? We have a deal.",
+                  "ko": "네가 점심 사고 내가 운전? 좋아, 그렇게 하자."
+                },
+                {
+                  "en": "Shake on it, and we have a deal.",
+                  "ko": "악수하면 합의 끝이에요."
+                },
+                {
+                  "en": "I think we have a deal here.",
+                  "ko": "이 정도면 합의된 것 같네요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Great. I'll send over a revised proposal by the end of the week.",
+          "ko_word_order": "좋아요. / 제가 보내 드릴게요 / 수정된 제안서를 / 이번 주 말까지",
+          "ko_natural": "좋습니다. 이번 주 안으로 수정한 제안서 보내 드릴게요.",
+          "terms": [
+            {
+              "text": "send over",
+              "meaning": "보내 주다",
+              "nuance": "파일이나 서류를 상대 쪽으로 넘겨줄 때 쓰는 구어. 그냥 send보다 '건네준다'는 느낌이 있다.",
+              "examples": [
+                {
+                  "en": "Can you send over the slides?",
+                  "ko": "슬라이드 좀 보내 줄래요?"
+                },
+                {
+                  "en": "I'll send the photos over tonight.",
+                  "ko": "오늘 밤에 사진 보낼게."
+                },
+                {
+                  "en": "She sent over the contract this morning.",
+                  "ko": "그녀가 오늘 아침에 계약서를 보내왔어요."
+                }
+              ]
+            },
+            {
+              "text": "revised",
+              "meaning": "수정된",
+              "nuance": "피드백을 반영해 고친 버전을 말할 때 쓴다. 문서·일정·가격에 두루 붙는다.",
+              "examples": [
+                {
+                  "en": "Here's the revised schedule.",
+                  "ko": "수정된 일정표예요."
+                },
+                {
+                  "en": "Did you get the revised version?",
+                  "ko": "수정본 받았어요?"
+                },
+                {
+                  "en": "The revised price is a bit lower.",
+                  "ko": "수정된 가격이 조금 더 낮아요."
+                }
+              ]
+            },
+            {
+              "text": "by the end of the week",
+              "meaning": "이번 주 안에",
+              "nuance": "마감을 정할 때 흔히 쓰는 표현. 보통 금요일까지라는 뜻으로 통한다.",
+              "examples": [
+                {
+                  "en": "I'll finish it by the end of the week.",
+                  "ko": "이번 주 안에 끝낼게요."
+                },
+                {
+                  "en": "Can you reply by the end of the week?",
+                  "ko": "이번 주 안에 답 주실 수 있나요?"
+                },
+                {
+                  "en": "We should hear back by the end of the week.",
+                  "ko": "이번 주 안에는 답이 올 거예요."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

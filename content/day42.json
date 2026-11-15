@@ -1,0 +1,441 @@
+{
+  "lessons": [
+    {
+      "day": 42,
+      "title": "진행 상황 보고하기",
+      "theme": "Giving a progress update",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hey Ava, how's the customer survey report coming along?",
+          "ko_word_order": "저기 에이바, / 어떻게 돼 가요 / 고객 설문 보고서는 / 진행되는 게?",
+          "ko_natural": "에이바, 고객 설문 보고서는 잘 돼 가요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "come along",
+              "form": "coming along",
+              "meaning": "진행되다, 되어 가다",
+              "nuance": "일이 얼마나 진척됐는지 물을 때 쓰는 구어. How's it going보다 진행 정도에 초점이 있다.",
+              "examples": [
+                {
+                  "en": "How's your new house coming along?",
+                  "ko": "새 집은 잘 돼 가?"
+                },
+                {
+                  "en": "The project is coming along nicely.",
+                  "ko": "프로젝트 잘 진행되고 있어요."
+                },
+                {
+                  "en": "My Korean is coming along slowly.",
+                  "ko": "제 한국어 실력이 조금씩 늘고 있어요."
+                }
+              ]
+            },
+            {
+              "text": "survey",
+              "meaning": "설문 조사",
+              "nuance": "고객이나 직원 의견을 묻는 설문. questionnaire보다 일상과 업무에서 훨씬 흔하다.",
+              "examples": [
+                {
+                  "en": "Please fill out this short survey.",
+                  "ko": "이 짧은 설문 좀 작성해 주세요."
+                },
+                {
+                  "en": "The survey results came out today.",
+                  "ko": "설문 결과가 오늘 나왔어요."
+                },
+                {
+                  "en": "We sent a survey to all employees.",
+                  "ko": "전 직원에게 설문을 보냈어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "It's going well. I've analyzed about seventy percent of the responses so far.",
+          "ko_word_order": "잘 되고 있어요. / 저는 분석했어요 / 약 70퍼센트를 / 응답의 / 지금까지",
+          "ko_natural": "잘 되고 있어요. 지금까지 응답의 70% 정도 분석했어요.",
+          "terms": [
+            {
+              "text": "go well",
+              "form": "going well",
+              "meaning": "잘 되다",
+              "nuance": "일이 순조롭다고 말할 때. 진행형 It's going well은 지금 하고 있는 일에 쓴다.",
+              "examples": [
+                {
+                  "en": "I hope your interview goes well.",
+                  "ko": "면접 잘 보길 바라."
+                },
+                {
+                  "en": "Did the presentation go well?",
+                  "ko": "발표 잘 됐어요?"
+                },
+                {
+                  "en": "Things are going well at work.",
+                  "ko": "요즘 회사 일은 잘 풀리고 있어요."
+                }
+              ]
+            },
+            {
+              "text": "so far",
+              "meaning": "지금까지",
+              "nuance": "현재까지의 상황을 말할 때 문장 끝에 자주 붙인다. 현재완료와 잘 어울린다.",
+              "examples": [
+                {
+                  "en": "So far, so good.",
+                  "ko": "지금까진 괜찮아."
+                },
+                {
+                  "en": "We've sold two hundred tickets so far.",
+                  "ko": "지금까지 표를 200장 팔았어요."
+                },
+                {
+                  "en": "How do you like Seoul so far?",
+                  "ko": "지금까지 서울 어때요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Great. Are you still on track to finish it by Friday?",
+          "ko_word_order": "좋아요. / 당신은 아직 예정대로인가요 / 그걸 끝내는 데 / 금요일까지?",
+          "ko_natural": "좋네요. 금요일까지는 끝낼 수 있을 것 같아요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "on track",
+              "meaning": "예정대로인",
+              "nuance": "계획한 일정이나 목표대로 가고 있는지 말할 때 쓰는 업무 단골 표현. 반대는 behind schedule이다.",
+              "examples": [
+                {
+                  "en": "We're on track to launch in June.",
+                  "ko": "6월 출시 일정대로 가고 있어요."
+                },
+                {
+                  "en": "Is the budget still on track?",
+                  "ko": "예산은 아직 계획대로예요?"
+                },
+                {
+                  "en": "I'm on track with my savings goal.",
+                  "ko": "저축 목표대로 잘 모으고 있어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Mostly, but I've run into a small issue with the data.",
+          "ko_word_order": "대체로요, / 하지만 저는 부딪혔어요 / 작은 문제에 / 데이터에서",
+          "ko_natural": "거의요. 근데 데이터에 작은 문제가 좀 생겼어요.",
+          "terms": [
+            {
+              "text": "run into",
+              "meaning": "(문제에) 부딪히다",
+              "nuance": "예상 못 한 문제를 도중에 만났을 때. have a problem보다 하다가 마주쳤다는 느낌이 있다.",
+              "examples": [
+                {
+                  "en": "We ran into some traffic on the way.",
+                  "ko": "오는 길에 차가 좀 막혔어요."
+                },
+                {
+                  "en": "Let me know if you run into any problems.",
+                  "ko": "문제 생기면 알려 줘요."
+                },
+                {
+                  "en": "The project ran into delays last month.",
+                  "ko": "지난달에 프로젝트가 지연 문제에 부딪혔어요."
+                }
+              ]
+            },
+            {
+              "text": "issue",
+              "meaning": "문제",
+              "nuance": "업무에서 problem 대신 많이 쓰는 부드러운 말. 심각하지 않은 문제에도 두루 쓴다.",
+              "examples": [
+                {
+                  "en": "There's an issue with my login.",
+                  "ko": "로그인에 문제가 좀 있어요."
+                },
+                {
+                  "en": "Is there an issue with the order?",
+                  "ko": "주문에 무슨 문제 있나요?"
+                },
+                {
+                  "en": "We fixed the issue this morning.",
+                  "ko": "오늘 아침에 그 문제 해결했어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Oh, what kind of issue? Is it anything I can help with?",
+          "ko_word_order": "아, 어떤 종류의 문제요? / 그게 뭔가인가요 / 제가 도울 수 있는?",
+          "ko_natural": "아, 어떤 문제요? 제가 도와줄 수 있는 거예요?",
+          "terms": [
+            {
+              "text": "what kind of",
+              "meaning": "어떤 종류의",
+              "nuance": "종류를 구체적으로 물을 때. What issue?보다 부드럽고 자연스럽다.",
+              "examples": [
+                {
+                  "en": "What kind of music do you like?",
+                  "ko": "어떤 음악 좋아해?"
+                },
+                {
+                  "en": "What kind of job are you looking for?",
+                  "ko": "어떤 일자리 찾고 있어요?"
+                },
+                {
+                  "en": "What kind of car do you drive?",
+                  "ko": "무슨 차 타세요?"
+                }
+              ]
+            },
+            {
+              "text": "help with",
+              "meaning": "~을 돕다",
+              "nuance": "도울 일을 with 뒤에 둔다. Can you help me with ~?처럼 사람과 일을 같이 쓸 수 있다.",
+              "examples": [
+                {
+                  "en": "Can you help me with my homework?",
+                  "ko": "숙제 좀 도와줄래?"
+                },
+                {
+                  "en": "I'm happy to help with the move.",
+                  "ko": "이사하는 거 기꺼이 도와줄게요."
+                },
+                {
+                  "en": "Who can help with the setup?",
+                  "ko": "세팅 도와줄 사람 있어요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Some responses were recorded twice, so I'm cleaning them up right now.",
+          "ko_word_order": "몇몇 응답이 / 두 번 기록됐어요, / 그래서 저는 그것들을 정리하고 있어요 / 지금",
+          "ko_natural": "일부 응답이 중복으로 들어가서 지금 정리하고 있어요.",
+          "terms": [
+            {
+              "text": "record",
+              "form": "recorded",
+              "meaning": "기록하다",
+              "nuance": "데이터나 내용을 남겨 저장할 때. 녹음·녹화라는 뜻도 있지만 여기선 입력·기록이다.",
+              "examples": [
+                {
+                  "en": "All payments are recorded in this file.",
+                  "ko": "모든 결제는 이 파일에 기록돼요."
+                },
+                {
+                  "en": "Please record your hours every day.",
+                  "ko": "매일 근무 시간을 기록해 주세요."
+                },
+                {
+                  "en": "The temperature is recorded every hour.",
+                  "ko": "온도는 매시간 기록돼요."
+                }
+              ]
+            },
+            {
+              "text": "clean up",
+              "form": "cleaning them up",
+              "meaning": "정리하다",
+              "nuance": "지저분한 데이터·문서·방을 정리할 때. 데이터 작업에서는 오류를 걸러 낸다는 뜻으로 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "I need to clean up my inbox.",
+                  "ko": "메일함 정리 좀 해야 해."
+                },
+                {
+                  "en": "Let's clean up the kitchen after dinner.",
+                  "ko": "저녁 먹고 부엌 치우자."
+                },
+                {
+                  "en": "Can you clean up this spreadsheet?",
+                  "ko": "이 스프레드시트 좀 정리해 줄래요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Got it. Is that going to delay the deadline at all?",
+          "ko_word_order": "알겠어요. / 그게 늦출까요 / 마감을 / 조금이라도?",
+          "ko_natural": "알겠어요. 그것 때문에 마감이 늦어지진 않아요?",
+          "terms": [
+            {
+              "text": "delay",
+              "meaning": "늦추다, 지연시키다",
+              "nuance": "일정을 뒤로 밀리게 만들 때. push back은 일부러 미루는 것이고, delay는 문제 때문에 늦어지는 느낌이 강하다.",
+              "examples": [
+                {
+                  "en": "The rain delayed the game.",
+                  "ko": "비 때문에 경기가 지연됐어요."
+                },
+                {
+                  "en": "Our flight was delayed two hours.",
+                  "ko": "비행기가 두 시간 지연됐어요."
+                },
+                {
+                  "en": "Please don't delay sending the invoice.",
+                  "ko": "청구서 보내는 거 미루지 마세요."
+                }
+              ]
+            },
+            {
+              "text": "at all",
+              "meaning": "조금이라도, 전혀",
+              "nuance": "의문문·부정문 끝에 붙여 강조한다. 혹시라도 영향이 있는지 물을 때 좋다.",
+              "examples": [
+                {
+                  "en": "Did you sleep at all last night?",
+                  "ko": "어젯밤에 잠은 좀 잤어?"
+                },
+                {
+                  "en": "I'm not tired at all.",
+                  "ko": "전혀 안 피곤해."
+                },
+                {
+                  "en": "Is there any coffee left at all?",
+                  "ko": "커피 조금이라도 남았어요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "It shouldn't. I'll keep you posted if anything changes, though.",
+          "ko_word_order": "그러진 않을 거예요. / 제가 계속 알려 드릴게요 / 뭔가 바뀌면, / 그래도",
+          "ko_natural": "그렇진 않을 거예요. 그래도 뭐 바뀌면 바로 알려 드릴게요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "keep someone posted",
+              "form": "keep you posted",
+              "meaning": "계속 알려 주다",
+              "nuance": "진행 상황을 그때그때 공유하겠다고 할 때 쓰는 업무 단골 표현. keep you updated와 같은 뜻이다.",
+              "examples": [
+                {
+                  "en": "Keep me posted on the job interview.",
+                  "ko": "면접 어떻게 됐는지 알려 줘."
+                },
+                {
+                  "en": "We'll keep you posted about the schedule.",
+                  "ko": "일정은 계속 알려 드릴게요."
+                },
+                {
+                  "en": "Thanks for keeping me posted.",
+                  "ko": "계속 알려 줘서 고마워요."
+                }
+              ]
+            },
+            {
+              "text": "though",
+              "meaning": "그래도, 하지만",
+              "nuance": "문장 끝에 붙여 앞 말과 조금 다른 내용을 덧붙일 때 쓰는 구어. but보다 부드럽다.",
+              "examples": [
+                {
+                  "en": "It was a long day. Fun, though.",
+                  "ko": "긴 하루였어. 그래도 재밌었어."
+                },
+                {
+                  "en": "I'll try. No promises, though.",
+                  "ko": "해 볼게. 장담은 못 하지만."
+                },
+                {
+                  "en": "Nice car. Isn't it expensive, though?",
+                  "ko": "차 멋지다. 근데 비싸지 않아?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Thanks. I'd appreciate it if you could share a draft on Thursday.",
+          "ko_word_order": "고마워요. / 저는 감사하겠어요 / 당신이 공유해 줄 수 있다면 / 초안을 / 목요일에",
+          "ko_natural": "고마워요. 목요일에 초안 한번 공유해 주면 좋겠어요.",
+          "terms": [
+            {
+              "text": "I'd appreciate it if you could",
+              "meaning": "~해 주시면 감사하겠어요",
+              "nuance": "윗사람이나 동료에게 정중하게 부탁할 때. Can you ~?보다 훨씬 공손하고 회사에서 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "I'd appreciate it if you could call me back.",
+                  "ko": "다시 전화 주시면 감사하겠어요."
+                },
+                {
+                  "en": "I'd appreciate it if you could keep this quiet.",
+                  "ko": "이건 비밀로 해 주시면 고맙겠어요."
+                },
+                {
+                  "en": "I'd appreciate it if you could arrive early.",
+                  "ko": "일찍 와 주시면 감사하겠어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "No problem. I'll have a rough version in your inbox by noon.",
+          "ko_word_order": "문제없어요. / 제가 둘게요 / 대략적인 버전을 / 당신 메일함에 / 정오까지",
+          "ko_natural": "그럼요. 정오까지 대략적인 버전 메일로 보내 드릴게요.",
+          "terms": [
+            {
+              "text": "rough",
+              "meaning": "대략적인, 초벌의",
+              "nuance": "아직 다듬지 않은 상태를 말할 때. rough draft, rough idea처럼 명사 앞에 자주 붙인다.",
+              "examples": [
+                {
+                  "en": "This is just a rough idea.",
+                  "ko": "이건 그냥 대략적인 아이디어예요."
+                },
+                {
+                  "en": "Can you give me a rough estimate?",
+                  "ko": "대충 견적 좀 알려 줄래요?"
+                },
+                {
+                  "en": "Here's a rough sketch of the room.",
+                  "ko": "방을 대충 그려 본 거예요."
+                }
+              ]
+            },
+            {
+              "text": "inbox",
+              "meaning": "받은 메일함",
+              "nuance": "이메일 받은편지함. in your inbox는 메일로 보내 두겠다는 뜻으로 업무에서 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Check your inbox for the link.",
+                  "ko": "메일함에서 링크 확인해 보세요."
+                },
+                {
+                  "en": "My inbox is full of spam.",
+                  "ko": "메일함이 스팸으로 가득해."
+                },
+                {
+                  "en": "It should be in your inbox now.",
+                  "ko": "지금쯤 메일함에 와 있을 거예요."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

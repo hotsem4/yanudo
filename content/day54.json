@@ -1,0 +1,524 @@
+{
+  "lessons": [
+    {
+      "day": 54,
+      "title": "숫자와 데이터 설명하기",
+      "theme": "Talking about numbers and data",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "As you can see on this chart, sales went up by twelve percent last quarter.",
+          "ko_word_order": "보시는 것처럼 / 이 차트에서, / 매출은 12퍼센트 올랐습니다 / 지난 분기에",
+          "ko_natural": "이 차트에서 보시다시피, 지난 분기 매출이 12% 올랐습니다.",
+          "core": true,
+          "terms": [
+            {
+              "text": "as you can see",
+              "form": "As you can see",
+              "meaning": "보시다시피",
+              "nuance": "발표에서 화면이나 자료를 가리키며 설명을 시작할 때 쓰는 정석 표현이다.",
+              "examples": [
+                {
+                  "en": "As you can see, the room is ready.",
+                  "ko": "보시다시피 방은 준비됐어요."
+                },
+                {
+                  "en": "As you can see here, costs are rising.",
+                  "ko": "여기 보시다시피 비용이 오르고 있어요."
+                },
+                {
+                  "en": "As you can see, I'm a bit busy.",
+                  "ko": "보다시피 내가 좀 바빠."
+                }
+              ]
+            },
+            {
+              "text": "go up by",
+              "form": "went up by",
+              "meaning": "~만큼 오르다",
+              "nuance": "숫자가 얼마나 올랐는지 말할 때 by 뒤에 차이를 쓴다. 'go up to'는 '~까지 오르다'라서 뜻이 다르다.",
+              "examples": [
+                {
+                  "en": "Prices went up by ten percent.",
+                  "ko": "가격이 10퍼센트 올랐어요."
+                },
+                {
+                  "en": "Rent goes up by fifty dollars next month.",
+                  "ko": "다음 달 월세가 50달러 올라요."
+                },
+                {
+                  "en": "Our users went up by almost half.",
+                  "ko": "사용자가 거의 절반이나 늘었어요."
+                }
+              ]
+            },
+            {
+              "text": "quarter",
+              "meaning": "분기",
+              "nuance": "1년을 석 달씩 나눈 기간. Q1, Q2처럼 줄여 쓰고 'last quarter', 'next quarter'로 자주 말한다.",
+              "examples": [
+                {
+                  "en": "Our numbers were strong this quarter.",
+                  "ko": "이번 분기 실적이 좋았어요."
+                },
+                {
+                  "en": "We'll launch in the third quarter.",
+                  "ko": "3분기에 출시해요."
+                },
+                {
+                  "en": "Q4 is always our busiest time.",
+                  "ko": "4분기가 늘 제일 바빠요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Twelve percent is impressive. How does that compare to the same quarter last year?",
+          "ko_word_order": "12퍼센트는 인상적이네요. / 그게 어떻게 비교되나요 / 같은 분기와 / 작년의?",
+          "ko_natural": "12%면 대단하네요. 작년 같은 분기랑 비교하면 어때요?",
+          "terms": [
+            {
+              "text": "impressive",
+              "meaning": "인상적인, 대단한",
+              "nuance": "결과나 실력이 대단하다고 칭찬할 때 쓴다. good보다 감탄이 담겨 있고 업무 칭찬으로 무난하다.",
+              "examples": [
+                {
+                  "en": "Your English is really impressive.",
+                  "ko": "영어 실력이 정말 대단하세요."
+                },
+                {
+                  "en": "That was an impressive game.",
+                  "ko": "인상적인 경기였어."
+                },
+                {
+                  "en": "The view from here is impressive.",
+                  "ko": "여기 경치가 정말 멋지네요."
+                }
+              ]
+            },
+            {
+              "text": "compare to",
+              "meaning": "~와 비교되다",
+              "nuance": "두 수치나 대상을 견줄 때 쓴다. 'How does A compare to B?'는 데이터를 설명할 때 자주 나오는 질문이다.",
+              "examples": [
+                {
+                  "en": "How does this phone compare to the old one?",
+                  "ko": "이 폰은 예전 거랑 비교하면 어때?"
+                },
+                {
+                  "en": "Nothing can compare to my mom's cooking.",
+                  "ko": "엄마 요리랑은 비교도 안 돼."
+                },
+                {
+                  "en": "How does Seoul compare to Tokyo?",
+                  "ko": "서울은 도쿄랑 비교하면 어때요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Compared to last year, we're up about three point five million dollars.",
+          "ko_word_order": "작년과 비교하면, / 우리는 올랐어요 / 약 350만 달러",
+          "ko_natural": "작년과 비교하면 약 350만 달러 늘었습니다.",
+          "core": true,
+          "terms": [
+            {
+              "text": "compared to",
+              "form": "Compared to",
+              "meaning": "~와 비교하면",
+              "nuance": "기준이 되는 시점이나 대상을 앞에 두고 비교할 때 쓴다. compared with도 같은 뜻이다.",
+              "examples": [
+                {
+                  "en": "Compared to yesterday, it's warm today.",
+                  "ko": "어제랑 비교하면 오늘 따뜻하네."
+                },
+                {
+                  "en": "Sales were slow compared to March.",
+                  "ko": "3월에 비하면 판매가 느렸어요."
+                },
+                {
+                  "en": "This bag is cheap compared to the others.",
+                  "ko": "이 가방은 다른 것들에 비해 싸요."
+                }
+              ]
+            },
+            {
+              "text": "be up",
+              "form": "we're up",
+              "meaning": "(수치가) 늘다",
+              "nuance": "실적이나 수치가 올랐다는 짧은 구어. 줄었을 때는 'We're down 5%'처럼 down을 쓴다.",
+              "examples": [
+                {
+                  "en": "Sales are up this month.",
+                  "ko": "이번 달 매출이 늘었어요."
+                },
+                {
+                  "en": "Visitors were up twenty percent.",
+                  "ko": "방문자가 20% 늘었어요."
+                },
+                {
+                  "en": "Profits are down, but orders are up.",
+                  "ko": "이익은 줄었지만 주문은 늘었어요."
+                }
+              ]
+            },
+            {
+              "text": "point",
+              "form": "three point five",
+              "meaning": "소수점(읽기)",
+              "nuance": "소수점은 point로 읽는다. 3.5는 'three point five', 0.8은 'zero point eight' 또는 'point eight'이라고 한다.",
+              "examples": [
+                {
+                  "en": "The rate is two point five percent.",
+                  "ko": "금리는 2.5%예요."
+                },
+                {
+                  "en": "It weighs one point two kilos.",
+                  "ko": "무게는 1.2킬로예요."
+                },
+                {
+                  "en": "Our rating went up to four point eight.",
+                  "ko": "평점이 4.8까지 올랐어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "That's huge. What's driving most of that growth, would you say?",
+          "ko_word_order": "엄청나네요. / 무엇이 이끌고 있나요 / 그 성장의 대부분을, / 당신이 보기엔?",
+          "ko_natural": "엄청나네요. 그 성장은 주로 뭐 덕분이라고 보세요?",
+          "terms": [
+            {
+              "text": "drive",
+              "form": "driving",
+              "meaning": "(성장을) 이끌다",
+              "nuance": "어떤 결과를 만들어 내는 원인이라는 뜻의 비즈니스 표현. 'What's driving ~?'은 원인을 물을 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Young customers are driving our sales.",
+                  "ko": "젊은 고객들이 매출을 이끌고 있어요."
+                },
+                {
+                  "en": "What's driving the price increase?",
+                  "ko": "가격 상승의 원인이 뭐예요?"
+                },
+                {
+                  "en": "Strong demand drove the growth.",
+                  "ko": "강한 수요가 성장을 이끌었어요."
+                }
+              ]
+            },
+            {
+              "text": "would you say",
+              "meaning": "~라고 보세요?",
+              "nuance": "질문 끝에 붙여 상대 판단을 정중하게 묻는다. 단정하지 않고 의견을 구하는 부드러운 말투다.",
+              "examples": [
+                {
+                  "en": "How old would you say he is?",
+                  "ko": "그 사람 몇 살쯤으로 보여요?"
+                },
+                {
+                  "en": "Would you say it's worth the money?",
+                  "ko": "그 돈 낼 가치가 있다고 보세요?"
+                },
+                {
+                  "en": "What's the biggest risk, would you say?",
+                  "ko": "가장 큰 위험이 뭐라고 보세요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Online orders, mainly. They now make up roughly a third of total revenue.",
+          "ko_word_order": "온라인 주문이요, 주로. / 그것들은 이제 차지해요 / 대략 3분의 1을 / 전체 매출의",
+          "ko_natural": "주로 온라인 주문이에요. 이제 전체 매출의 3분의 1 정도를 차지합니다.",
+          "terms": [
+            {
+              "text": "make up",
+              "meaning": "(비율을) 차지하다",
+              "nuance": "전체에서 얼마만큼을 이룬다는 뜻. 'Women make up 60% of our users'처럼 비율을 설명할 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Students make up half of our customers.",
+                  "ko": "학생이 고객의 절반을 차지해요."
+                },
+                {
+                  "en": "Rent makes up most of my budget.",
+                  "ko": "월세가 내 예산 대부분을 차지해."
+                },
+                {
+                  "en": "Water makes up about 60% of the body.",
+                  "ko": "몸의 약 60%가 물이에요."
+                }
+              ]
+            },
+            {
+              "text": "roughly",
+              "meaning": "대략",
+              "nuance": "숫자를 어림잡아 말할 때 쓴다. about과 비슷하지만 데이터 설명에서 조금 더 격식 있다.",
+              "examples": [
+                {
+                  "en": "It costs roughly a hundred dollars.",
+                  "ko": "대략 100달러 정도 해요."
+                },
+                {
+                  "en": "The trip takes roughly two hours.",
+                  "ko": "가는 데 대략 두 시간 걸려요."
+                },
+                {
+                  "en": "Roughly half the team agreed.",
+                  "ko": "팀 절반 정도가 동의했어요."
+                }
+              ]
+            },
+            {
+              "text": "a third",
+              "meaning": "3분의 1",
+              "nuance": "분수는 '분자 + 서수'로 읽는다. 1/3은 a third, 2/3는 two thirds, 1/4은 a quarter다.",
+              "examples": [
+                {
+                  "en": "A third of the pizza is left.",
+                  "ko": "피자가 3분의 1 남았어."
+                },
+                {
+                  "en": "Prices dropped by a third.",
+                  "ko": "가격이 3분의 1 떨어졌어요."
+                },
+                {
+                  "en": "Two thirds of the class passed.",
+                  "ko": "반의 3분의 2가 합격했어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Interesting. But the line drops sharply in August. What happened there?",
+          "ko_word_order": "흥미롭네요. / 그런데 선이 급격히 떨어져요 / 8월에. / 거기서 무슨 일이 있었나요?",
+          "ko_natural": "흥미롭네요. 근데 8월에 선이 확 떨어지는데, 무슨 일이 있었던 거예요?",
+          "terms": [
+            {
+              "text": "drop sharply",
+              "form": "drops sharply",
+              "meaning": "급격히 떨어지다",
+              "nuance": "그래프나 수치가 짧은 기간에 크게 떨어질 때 쓴다. 조금만 줄면 'dip slightly'라고 한다.",
+              "examples": [
+                {
+                  "en": "Temperatures drop sharply at night.",
+                  "ko": "밤에는 기온이 급격히 떨어져요."
+                },
+                {
+                  "en": "The stock dropped sharply this morning.",
+                  "ko": "오늘 아침 주가가 급락했어요."
+                },
+                {
+                  "en": "Sales dropped sharply after the holidays.",
+                  "ko": "연휴 후에 판매가 급격히 줄었어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Good catch. Sales fell by about eight percent because of a supply issue.",
+          "ko_word_order": "잘 보셨어요. / 매출이 약 8퍼센트 떨어졌어요 / 공급 문제 때문에",
+          "ko_natural": "잘 보셨네요. 공급 문제 때문에 매출이 8% 정도 줄었어요.",
+          "terms": [
+            {
+              "text": "good catch",
+              "form": "Good catch",
+              "meaning": "잘 짚었어요",
+              "nuance": "상대가 놓치기 쉬운 점이나 실수를 찾아냈을 때 칭찬하는 구어. 회의나 검토 자리에서 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Good catch, that number is wrong.",
+                  "ko": "잘 찾았네요, 그 숫자 틀렸어요."
+                },
+                {
+                  "en": "Oh, the date is wrong. Good catch!",
+                  "ko": "아, 날짜가 틀렸네. 잘 봤다!"
+                },
+                {
+                  "en": "That was a good catch, thanks.",
+                  "ko": "그거 잘 잡아냈네, 고마워."
+                }
+              ]
+            },
+            {
+              "text": "fall by",
+              "form": "fell by",
+              "meaning": "~만큼 떨어지다",
+              "nuance": "수치가 얼마만큼 줄었는지 말할 때 쓴다. go up by의 반대이고 drop by, decrease by도 같은 뜻이다.",
+              "examples": [
+                {
+                  "en": "The price fell by half.",
+                  "ko": "가격이 절반으로 떨어졌어요."
+                },
+                {
+                  "en": "Traffic fell by 20% this year.",
+                  "ko": "올해 교통량이 20% 줄었어요."
+                },
+                {
+                  "en": "Membership fell by about a hundred people.",
+                  "ko": "회원이 100명 정도 줄었어요."
+                }
+              ]
+            },
+            {
+              "text": "supply issue",
+              "meaning": "공급 문제",
+              "nuance": "원자재나 상품이 제때 들어오지 않는 문제. 'supply chain issue'라고도 한다.",
+              "examples": [
+                {
+                  "en": "There's a supply issue with this model.",
+                  "ko": "이 모델은 공급에 문제가 있어요."
+                },
+                {
+                  "en": "The delay was caused by a supply issue.",
+                  "ko": "지연은 공급 문제 때문이었어요."
+                },
+                {
+                  "en": "We fixed the supply issue last week.",
+                  "ko": "지난주에 공급 문제를 해결했어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Has it recovered since then, or are we still below target?",
+          "ko_word_order": "그게 회복됐나요 / 그 이후로, / 아니면 우리는 여전히 목표 아래인가요?",
+          "ko_natural": "그 후로 회복됐어요, 아니면 아직 목표에 못 미치나요?",
+          "terms": [
+            {
+              "text": "recover",
+              "form": "recovered",
+              "meaning": "회복하다",
+              "nuance": "떨어졌던 수치나 건강이 원래대로 돌아온다는 뜻. 경제, 매출, 몸 상태에 두루 쓴다.",
+              "examples": [
+                {
+                  "en": "The market recovered quickly.",
+                  "ko": "시장이 빠르게 회복했어요."
+                },
+                {
+                  "en": "Has she fully recovered from the flu?",
+                  "ko": "그녀는 독감에서 완전히 나았어요?"
+                },
+                {
+                  "en": "It took months to recover the losses.",
+                  "ko": "손실을 만회하는 데 몇 달 걸렸어요."
+                }
+              ]
+            },
+            {
+              "text": "below target",
+              "meaning": "목표 미달",
+              "nuance": "정해 둔 목표 수치에 못 미친다는 뜻. 넘으면 'above target', 딱 맞으면 'on target'이다.",
+              "examples": [
+                {
+                  "en": "Our sales were below target in May.",
+                  "ko": "5월 매출이 목표에 못 미쳤어요."
+                },
+                {
+                  "en": "Costs came in below target.",
+                  "ko": "비용이 목표보다 적게 나왔어요."
+                },
+                {
+                  "en": "Two stores are below target this year.",
+                  "ko": "올해 두 매장이 목표 미달이에요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Yes, it's bounced back. September was our best month, nearly double August's sales.",
+          "ko_word_order": "네, 반등했어요. / 9월이 최고의 달이었어요, / 거의 두 배였어요 / 8월 매출의",
+          "ko_natural": "네, 다시 올라왔어요. 9월이 최고였는데, 8월 매출의 거의 두 배였어요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "bounce back",
+              "form": "bounced back",
+              "meaning": "반등하다, 회복하다",
+              "nuance": "안 좋던 상황에서 빠르게 다시 올라온다는 구어. recover보다 활기차고 빠른 회복 느낌이다.",
+              "examples": [
+                {
+                  "en": "Sales bounced back in the spring.",
+                  "ko": "봄에 매출이 반등했어요."
+                },
+                {
+                  "en": "He bounced back after a tough year.",
+                  "ko": "그는 힘든 한 해를 보내고 다시 일어섰어."
+                },
+                {
+                  "en": "Don't worry, you'll bounce back.",
+                  "ko": "걱정 마, 금방 회복할 거야."
+                }
+              ]
+            },
+            {
+              "text": "nearly double",
+              "meaning": "거의 두 배",
+              "nuance": "두 배에 조금 못 미치는 수치를 말할 때 쓴다. 정확히 두 배는 'twice as much', 세 배는 'triple'이다.",
+              "examples": [
+                {
+                  "en": "Rent here is nearly double what I paid before.",
+                  "ko": "여기 월세가 전에 내던 것의 거의 두 배야."
+                },
+                {
+                  "en": "The line was nearly double the usual length.",
+                  "ko": "줄이 평소의 거의 두 배였어."
+                },
+                {
+                  "en": "Our team has nearly doubled in size.",
+                  "ko": "우리 팀 규모가 거의 두 배가 됐어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Great. Could you send me these figures so I can share them with my team?",
+          "ko_word_order": "좋아요. / 보내 주실 수 있나요 / 이 수치들을 / 제가 공유할 수 있게 / 우리 팀과?",
+          "ko_natural": "좋네요. 팀에 공유할 수 있게 이 수치들 좀 보내 주시겠어요?",
+          "terms": [
+            {
+              "text": "figure",
+              "form": "figures",
+              "meaning": "수치, 숫자",
+              "nuance": "보고서나 통계에 나오는 숫자를 가리킨다. numbers보다 업무나 공식 자리에서 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "The sales figures look good.",
+                  "ko": "매출 수치가 좋아 보여요."
+                },
+                {
+                  "en": "Can you double-check these figures?",
+                  "ko": "이 수치 다시 확인해 줄래요?"
+                },
+                {
+                  "en": "The latest figures came out today.",
+                  "ko": "최신 수치가 오늘 나왔어요."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

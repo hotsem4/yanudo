@@ -1,0 +1,280 @@
+{
+  "lessons": [
+    {
+      "day": 31,
+      "title": "집 수리 요청하기",
+      "theme": "Asking for a home repair",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi, this is Andrew from unit 302. My kitchen sink is leaking.",
+          "ko_word_order": "안녕하세요, 저는 앤드루예요 / 302호의. / 제 부엌 싱크대가 / 새고 있어요",
+          "ko_natural": "안녕하세요, 302호 앤드루인데요. 부엌 싱크대에서 물이 새요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "unit",
+              "meaning": "(건물의) 호, 세대",
+              "nuance": "아파트·원룸 건물에서 집 한 칸을 가리키는 말. 전화로 자기 집을 밝힐 때 'unit + 번호'로 흔히 쓴다.",
+              "examples": [
+                { "en": "Which unit do you live in?", "ko": "몇 호에 사세요?" },
+                { "en": "The package was left at the wrong unit.", "ko": "택배가 다른 호수에 놓여 있었어요." },
+                { "en": "There are only twelve units in this building.", "ko": "이 건물은 열두 세대뿐이에요." }
+              ]
+            },
+            {
+              "text": "leak",
+              "form": "leaking",
+              "meaning": "(물이) 새다",
+              "nuance": "물·가스가 새거나 비밀이 새어 나갈 때 쓰는 기본 동사. 지금 새고 있으면 진행형으로 말한다.",
+              "examples": [
+                { "en": "The roof leaks every time it rains.", "ko": "비만 오면 지붕이 새요." },
+                { "en": "I think my water bottle is leaking.", "ko": "내 물병이 새는 것 같아." },
+                { "en": "Something is leaking under the car.", "ko": "차 밑에서 뭔가 새고 있어요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Oh no, how long has it been leaking?",
+          "ko_word_order": "아이고, / 얼마나 오래 / 그게 새고 있었어요?",
+          "ko_natural": "어머, 언제부터 샜어요?",
+          "terms": [
+            {
+              "text": "how long has it been",
+              "meaning": "얼마나 됐어요",
+              "nuance": "어떤 상태가 지금까지 얼마나 이어졌는지 물을 때 쓰는 현재완료 질문. 뒤에 -ing나 since를 붙여 쓴다.",
+              "examples": [
+                { "en": "How long has it been since you saw her?", "ko": "그 사람 본 지 얼마나 됐어?" },
+                { "en": "How long has it been hurting?", "ko": "아픈 지 얼마나 됐어요?" },
+                { "en": "Wow, how long has it been? Five years?", "ko": "와, 이게 얼마 만이야? 5년?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Since last night. There's water all over the floor under it.",
+          "ko_word_order": "어젯밤부터요. / 물이 있어요 / 바닥 온통 / 그 아래",
+          "ko_natural": "어젯밤부터요. 싱크대 밑 바닥이 물바다예요.",
+          "terms": [
+            {
+              "text": "since last night",
+              "meaning": "어젯밤부터",
+              "nuance": "since 뒤에 시작 시점을 붙여 '그때부터 지금까지'를 말한다. 기간을 말할 때는 for를 쓴다.",
+              "examples": [
+                { "en": "I've had a headache since last night.", "ko": "어젯밤부터 머리가 아파요." },
+                { "en": "He hasn't texted me since last night.", "ko": "걔 어젯밤부터 문자가 없어." },
+                { "en": "The heater has been off since last night.", "ko": "어젯밤부터 난방이 꺼져 있어요." }
+              ]
+            },
+            {
+              "text": "all over",
+              "meaning": "온통, 여기저기",
+              "nuance": "어떤 곳 전체에 퍼져 있다는 느낌의 구어 표현. 물건이 흩어져 있거나 얼룩이 번졌을 때 자주 쓴다.",
+              "examples": [
+                { "en": "There's paint all over my shirt.", "ko": "셔츠에 페인트가 잔뜩 묻었어." },
+                { "en": "His toys were all over the living room.", "ko": "거실에 걔 장난감이 널려 있었어." },
+                { "en": "This song is all over the internet now.", "ko": "이 노래 요즘 인터넷에 쫙 퍼졌어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Can you turn off the valve under the sink for now?",
+          "ko_word_order": "잠가 주실 수 있어요 / 밸브를 / 싱크대 아래 / 일단은?",
+          "ko_natural": "일단 싱크대 밑에 있는 밸브 좀 잠가 주실래요?",
+          "terms": [
+            {
+              "text": "turn off",
+              "meaning": "끄다, 잠그다",
+              "nuance": "전기·물·가스처럼 흐르는 것을 멈출 때 쓴다. 수도꼭지는 turn off, 문을 잠그는 건 lock이다.",
+              "examples": [
+                { "en": "Did you turn off the stove?", "ko": "가스레인지 껐어?" },
+                { "en": "Please turn off your phones during the movie.", "ko": "영화 상영 중에는 휴대폰을 꺼 주세요." },
+                { "en": "I forgot to turn off the water.", "ko": "물 잠그는 걸 깜빡했어." }
+              ]
+            },
+            {
+              "text": "for now",
+              "meaning": "일단은, 당분간",
+              "nuance": "완전한 해결은 나중이고 지금은 이렇게 하자는 느낌. 일상과 회사 모두에서 편하게 쓴다.",
+              "examples": [
+                { "en": "Let's just leave it here for now.", "ko": "일단 여기 두자." },
+                { "en": "That's all I need for now, thanks.", "ko": "지금은 그거면 돼요, 고마워요." },
+                { "en": "I'm staying with my parents for now.", "ko": "당분간은 부모님 집에 있어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I already did, but it's still dripping a little.",
+          "ko_word_order": "벌써 했어요, / 그런데 그게 아직 / 떨어지고 있어요 / 조금",
+          "ko_natural": "벌써 잠갔는데, 아직 물이 조금씩 떨어져요.",
+          "terms": [
+            {
+              "text": "drip",
+              "form": "dripping",
+              "meaning": "(물이) 똑똑 떨어지다",
+              "nuance": "물방울이 한 방울씩 떨어지는 모습. 콸콸 새는 leak보다 작은 느낌이다.",
+              "examples": [
+                { "en": "The faucet keeps dripping all night.", "ko": "수도꼭지에서 밤새 물이 똑똑 떨어져." },
+                { "en": "Sweat was dripping down his face.", "ko": "그 사람 얼굴에서 땀이 뚝뚝 떨어졌어." },
+                { "en": "Your umbrella is dripping on the floor.", "ko": "우산에서 바닥으로 물이 떨어지고 있어." }
+              ]
+            },
+            {
+              "text": "a little",
+              "meaning": "조금, 약간",
+              "nuance": "동사나 형용사 뒤에 붙어 정도를 줄여 말한다. 불만을 부드럽게 전할 때도 쓴다.",
+              "examples": [
+                { "en": "Can you turn the music down a little?", "ko": "음악 소리 조금만 줄여 줄래?" },
+                { "en": "I'm a little tired today.", "ko": "오늘 좀 피곤해." },
+                { "en": "The soup is a little salty.", "ko": "국이 약간 짜요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Okay, I'll send a plumber over tomorrow morning.",
+          "ko_word_order": "알겠어요, / 제가 배관공을 보낼게요 / 내일 아침에",
+          "ko_natural": "알겠어요, 내일 아침에 배관공을 보내 드릴게요.",
+          "terms": [
+            {
+              "text": "plumber",
+              "meaning": "배관공",
+              "nuance": "수도·배관을 고치는 기술자. 'b'는 소리 나지 않아 '플러머'로 발음한다.",
+              "examples": [
+                { "en": "We need to call a plumber.", "ko": "배관공 불러야겠다." },
+                { "en": "The plumber fixed the toilet in ten minutes.", "ko": "배관공이 변기를 10분 만에 고쳤어." },
+                { "en": "Do you know a good plumber nearby?", "ko": "근처에 괜찮은 배관공 알아?" }
+              ]
+            },
+            {
+              "text": "send someone over",
+              "form": "send a plumber over",
+              "meaning": "(사람을) 보내 주다",
+              "nuance": "사람을 상대방 쪽으로 보내 줄 때 쓰는 구어. over가 붙어 '그쪽으로' 가는 느낌이 산다.",
+              "examples": [
+                { "en": "I'll send someone over to check it.", "ko": "확인하러 사람 보낼게요." },
+                { "en": "Can you send a technician over today?", "ko": "오늘 기사님 보내 주실 수 있어요?" },
+                { "en": "They sent a guy over to fix the internet.", "ko": "인터넷 고치러 사람을 보내 줬어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Could you have them call me before they come by?",
+          "ko_word_order": "해 주실 수 있어요 / 그분들이 저한테 전화하게 / 그들이 들르기 전에?",
+          "ko_natural": "오시기 전에 저한테 전화 좀 달라고 해 주시겠어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "have someone do",
+              "form": "have them call",
+              "meaning": "~에게 ~하게 하다",
+              "nuance": "다른 사람을 시켜 무언가를 하게 할 때 쓴다. make보다 강요의 느낌이 없고 부탁·업무 지시에 자연스럽다.",
+              "examples": [
+                { "en": "I'll have my assistant email you the details.", "ko": "제 비서가 자세한 내용을 메일로 보내 드리게 할게요." },
+                { "en": "Can you have him call me back?", "ko": "그분한테 저한테 다시 전화 달라고 해 줄래요?" },
+                { "en": "We had the mechanic check the brakes.", "ko": "정비사한테 브레이크 점검을 받았어." }
+              ]
+            },
+            {
+              "text": "come by",
+              "meaning": "잠깐 들르다",
+              "nuance": "누군가의 집이나 사무실에 잠깐 들르는 것. visit보다 가볍고 구어적이다.",
+              "examples": [
+                { "en": "Feel free to come by anytime.", "ko": "언제든 편하게 들러." },
+                { "en": "She came by the office this morning.", "ko": "그 사람 오늘 아침에 사무실에 들렀어." },
+                { "en": "Can I come by after work?", "ko": "퇴근하고 잠깐 들러도 돼?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. Will you be home, or should we use the spare key?",
+          "ko_word_order": "그럼요. / 집에 계실 건가요, / 아니면 저희가 써야 할까요 / 보조 열쇠를?",
+          "ko_natural": "그럼요. 집에 계세요, 아니면 보조 열쇠로 들어갈까요?",
+          "terms": [
+            {
+              "text": "spare key",
+              "meaning": "보조 열쇠, 여분 열쇠",
+              "nuance": "잃어버리거나 다른 사람이 쓸 때를 대비한 여분 열쇠. spare는 '여분의'라는 뜻으로 spare tire처럼도 쓴다.",
+              "examples": [
+                { "en": "I keep a spare key under the mat.", "ko": "매트 밑에 여분 열쇠를 둬." },
+                { "en": "Does your landlord have a spare key?", "ko": "집주인한테 보조 열쇠 있어?" },
+                { "en": "I gave my sister a spare key.", "ko": "여동생한테 여분 열쇠 하나 줬어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I work from home, so I'll be around all day.",
+          "ko_word_order": "저는 재택근무해요, / 그래서 저는 있을 거예요 / 하루 종일",
+          "ko_natural": "재택근무라서 하루 종일 집에 있어요.",
+          "terms": [
+            {
+              "text": "work from home",
+              "meaning": "재택근무하다",
+              "nuance": "집에서 회사 일을 한다는 가장 흔한 표현. 줄여서 WFH라고도 쓴다.",
+              "examples": [
+                { "en": "I work from home on Fridays.", "ko": "금요일에는 재택근무해." },
+                { "en": "Can I work from home tomorrow?", "ko": "내일 재택근무해도 될까요?" },
+                { "en": "She's been working from home since March.", "ko": "그 사람 3월부터 재택근무하고 있어." }
+              ]
+            },
+            {
+              "text": "be around",
+              "form": "be around",
+              "meaning": "근처에 있다, 자리에 있다",
+              "nuance": "특정 장소에 있거나 연락이 닿는 상태를 편하게 말할 때 쓴다. 'Are you around?'는 '시간 돼?'에 가깝다.",
+              "examples": [
+                { "en": "Will you be around this weekend?", "ko": "이번 주말에 있을 거야?" },
+                { "en": "I'll be around if you need me.", "ko": "필요하면 불러, 근처에 있을게." },
+                { "en": "Is your manager around?", "ko": "매니저님 자리에 계세요?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Perfect. If it gets worse tonight, just call me right away.",
+          "ko_word_order": "좋아요. / 만약 그게 더 심해지면 / 오늘 밤에, / 그냥 저한테 바로 전화하세요",
+          "ko_natural": "좋아요. 혹시 오늘 밤에 더 심해지면 바로 전화 주세요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "get worse",
+              "form": "gets worse",
+              "meaning": "더 나빠지다, 심해지다",
+              "nuance": "상태·증상·상황이 악화될 때 쓴다. 반대로 좋아질 때는 get better라고 한다.",
+              "examples": [
+                { "en": "My cough got worse last night.", "ko": "어젯밤에 기침이 더 심해졌어." },
+                { "en": "Traffic gets worse after five.", "ko": "다섯 시 넘으면 차가 더 막혀." },
+                { "en": "Don't ignore it, or it'll get worse.", "ko": "그냥 두면 더 나빠질 거야." }
+              ]
+            },
+            {
+              "text": "right away",
+              "meaning": "바로, 즉시",
+              "nuance": "immediately보다 구어적이고 부드럽다. 부탁을 받고 '바로 할게요'라고 답할 때도 쓴다.",
+              "examples": [
+                { "en": "I'll get back to you right away.", "ko": "바로 연락드릴게요." },
+                { "en": "She answered my text right away.", "ko": "그 친구가 문자에 바로 답했어." },
+                { "en": "Can you start right away?", "ko": "바로 시작할 수 있어요?" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

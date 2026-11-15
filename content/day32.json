@@ -1,0 +1,290 @@
+{
+  "lessons": [
+    {
+      "day": 32,
+      "title": "헬스장 등록하기",
+      "theme": "Joining a gym",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi, I'm thinking about joining. Can you tell me about memberships?",
+          "ko_word_order": "안녕하세요, 저는 생각 중이에요 / 가입하는 걸. / 알려 주실 수 있어요 / 회원권에 대해?",
+          "ko_natural": "안녕하세요, 등록할까 생각 중인데요. 회원권 좀 설명해 주실 수 있어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "think about -ing",
+              "form": "thinking about joining",
+              "meaning": "~할까 생각 중이다",
+              "nuance": "아직 결정하지 않고 고민 중일 때 진행형으로 많이 쓴다. 상대에게 부담 없이 운을 띄우는 느낌이다.",
+              "examples": [
+                { "en": "I'm thinking about moving to Seoul.", "ko": "서울로 이사할까 생각 중이야." },
+                { "en": "We're thinking about getting a dog.", "ko": "우리 강아지 키울까 고민 중이야." },
+                { "en": "Are you still thinking about quitting?", "ko": "아직도 그만둘까 생각 중이야?" }
+              ]
+            },
+            {
+              "text": "membership",
+              "form": "memberships",
+              "meaning": "회원권, 회원 자격",
+              "nuance": "헬스장·창고형 마트·구독 서비스의 회원 자격을 말한다. 회원 카드는 membership card라고 한다.",
+              "examples": [
+                { "en": "My gym membership expires next month.", "ko": "헬스장 회원권이 다음 달에 끝나." },
+                { "en": "Do I need a membership to shop here?", "ko": "여기서 장 보려면 회원이어야 해요?" },
+                { "en": "I finally canceled my membership.", "ko": "드디어 회원권 해지했어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. We have monthly and annual plans, plus a day pass.",
+          "ko_word_order": "그럼요. / 저희는 있어요 / 월간과 연간 요금제가, / 그리고 1일권도",
+          "ko_natural": "네. 월 회원권이랑 연 회원권이 있고, 1일권도 있어요.",
+          "terms": [
+            {
+              "text": "annual",
+              "meaning": "연간의, 1년의",
+              "nuance": "yearly와 같은 뜻이지만 조금 더 공식적인 느낌. 요금제·행사·보고서에 자주 붙는다.",
+              "examples": [
+                { "en": "Our annual party is next Friday.", "ko": "다음 주 금요일이 저희 연례 파티예요." },
+                { "en": "The annual fee is waived for the first year.", "ko": "첫해는 연회비가 면제돼요." },
+                { "en": "I just got my annual checkup.", "ko": "방금 연례 건강검진 받고 왔어." }
+              ]
+            },
+            {
+              "text": "day pass",
+              "meaning": "1일 이용권",
+              "nuance": "하루만 쓸 수 있는 입장권·이용권. 헬스장, 놀이공원, 대중교통에서 두루 쓴다.",
+              "examples": [
+                { "en": "A day pass for the subway is eight dollars.", "ko": "지하철 1일권은 8달러예요." },
+                { "en": "I bought a day pass to try the gym.", "ko": "헬스장 한번 써 보려고 1일권 샀어." },
+                { "en": "Do you sell day passes for the pool?", "ko": "수영장 1일권도 파세요?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "What's the difference in price if I sign up for a year?",
+          "ko_word_order": "가격 차이가 뭐예요 / 만약 제가 등록하면 / 1년으로?",
+          "ko_natural": "1년으로 등록하면 가격이 얼마나 차이 나요?",
+          "terms": [
+            {
+              "text": "sign up for",
+              "meaning": "~에 등록하다, 가입하다",
+              "nuance": "수업·서비스·행사에 이름을 올리는 가장 흔한 구어 표현. register보다 가볍다.",
+              "examples": [
+                { "en": "I signed up for a cooking class.", "ko": "요리 수업에 등록했어." },
+                { "en": "You can sign up for free online.", "ko": "온라인으로 무료 가입할 수 있어요." },
+                { "en": "Did you sign up for the marathon?", "ko": "마라톤 신청했어?" }
+              ]
+            },
+            {
+              "text": "difference in price",
+              "meaning": "가격 차이",
+              "nuance": "두 선택지의 가격을 비교할 때 쓴다. 'price difference'라고 줄여 말해도 된다.",
+              "examples": [
+                { "en": "Is there a big difference in price?", "ko": "가격 차이가 많이 나요?" },
+                { "en": "The difference in price is only five dollars.", "ko": "가격 차이가 5달러밖에 안 나." },
+                { "en": "I can't see the difference in price here.", "ko": "여기선 가격 차이를 모르겠네요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "The annual plan works out to about thirty dollars a month.",
+          "ko_word_order": "연간 요금제는 / 계산하면 나와요 / 약 30달러로 / 한 달에",
+          "ko_natural": "연 회원권은 계산하면 한 달에 30달러 정도예요.",
+          "terms": [
+            {
+              "text": "work out to",
+              "form": "works out to",
+              "meaning": "계산하면 ~이 되다",
+              "nuance": "전체 금액을 나누거나 계산했을 때 결과를 말하는 구어 표현. 가격 비교할 때 아주 많이 쓴다.",
+              "examples": [
+                { "en": "That works out to ten dollars each.", "ko": "그럼 한 사람당 10달러네." },
+                { "en": "It works out to about two hours a day.", "ko": "계산하면 하루 두 시간 정도야." },
+                { "en": "The bulk pack works out to be cheaper.", "ko": "대용량이 따져 보면 더 싸." }
+              ]
+            },
+            {
+              "text": "a month",
+              "meaning": "한 달에",
+              "nuance": "가격이나 횟수 뒤에 붙여 '~당'을 나타낸다. per month보다 말할 때 훨씬 자연스럽다.",
+              "examples": [
+                { "en": "I go hiking twice a month.", "ko": "한 달에 두 번 등산 가." },
+                { "en": "Rent is nine hundred a month.", "ko": "월세가 한 달에 900이야." },
+                { "en": "How much is it a month?", "ko": "한 달에 얼마예요?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "That's not bad. Does that include group classes?",
+          "ko_word_order": "그거 나쁘지 않네요. / 그게 포함하나요 / 그룹 수업을?",
+          "ko_natural": "괜찮네요. 그룹 수업도 포함이에요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "not bad",
+              "meaning": "괜찮다, 꽤 좋다",
+              "nuance": "직역은 '나쁘지 않다'지만 실제로는 '꽤 괜찮다'는 긍정 표현. 가격·음식·결과를 평가할 때 쓴다.",
+              "examples": [
+                { "en": "Not bad for a first try!", "ko": "첫 시도치고 꽤 잘했네!" },
+                { "en": "The food here is not bad.", "ko": "여기 음식 괜찮다." },
+                { "en": "Fifty dollars? That's not bad at all.", "ko": "50달러? 전혀 나쁘지 않네." }
+              ]
+            },
+            {
+              "text": "include",
+              "meaning": "포함하다",
+              "nuance": "가격이나 서비스에 무엇이 들어 있는지 물을 때 쓰는 기본 동사. 'Is ~ included?' 형태도 많이 쓴다.",
+              "examples": [
+                { "en": "Does the price include breakfast?", "ko": "가격에 조식 포함이에요?" },
+                { "en": "Tax is included in the total.", "ko": "총액에 세금이 포함돼 있어요." },
+                { "en": "The kit includes everything you need.", "ko": "키트에 필요한 게 다 들어 있어요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Yes, and you also get two free sessions with a personal trainer.",
+          "ko_word_order": "네, / 그리고 또 받으세요 / 무료 2회를 / 개인 트레이너와",
+          "ko_natural": "네, 그리고 PT도 2회 무료로 받으실 수 있어요.",
+          "terms": [
+            {
+              "text": "session",
+              "form": "sessions",
+              "meaning": "(수업·활동의) 1회",
+              "nuance": "PT, 상담, 수업처럼 정해진 시간 동안 하는 한 번을 말한다. 회의나 교육 시간에도 쓴다.",
+              "examples": [
+                { "en": "Each session lasts about an hour.", "ko": "한 회에 한 시간 정도예요." },
+                { "en": "I have a therapy session at four.", "ko": "4시에 상담 있어." },
+                { "en": "We'll have a short Q&A session at the end.", "ko": "마지막에 짧게 질의응답 시간이 있어요." }
+              ]
+            },
+            {
+              "text": "personal trainer",
+              "meaning": "개인 트레이너",
+              "nuance": "일대일로 운동을 지도하는 트레이너. 한국에서 말하는 'PT'는 영어로 보통 personal training이라고 한다.",
+              "examples": [
+                { "en": "I started working with a personal trainer.", "ko": "개인 트레이너랑 운동 시작했어." },
+                { "en": "My personal trainer is really strict.", "ko": "내 트레이너 진짜 엄격해." },
+                { "en": "How much is a personal trainer here?", "ko": "여기 PT는 얼마예요?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Nice. Is there a joining fee, or can I cancel anytime?",
+          "ko_word_order": "좋네요. / 가입비가 있나요, / 아니면 제가 해지할 수 있나요 / 아무 때나?",
+          "ko_natural": "좋네요. 가입비가 있어요? 아니면 아무 때나 해지할 수 있어요?",
+          "terms": [
+            {
+              "text": "joining fee",
+              "meaning": "가입비",
+              "nuance": "처음 가입할 때 한 번 내는 비용. sign-up fee, enrollment fee라고도 한다.",
+              "examples": [
+                { "en": "They waived the joining fee for students.", "ko": "학생은 가입비를 면제해 줬어." },
+                { "en": "The joining fee is fifty dollars.", "ko": "가입비가 50달러예요." },
+                { "en": "Is the joining fee refundable?", "ko": "가입비는 환불돼요?" }
+              ]
+            },
+            {
+              "text": "anytime",
+              "meaning": "아무 때나, 언제든",
+              "nuance": "시간 제약이 없다는 뜻. 고맙다는 말에 'Anytime!'으로 답하면 '언제든지요'라는 뜻이 된다.",
+              "examples": [
+                { "en": "You can call me anytime.", "ko": "언제든 전화해." },
+                { "en": "Thanks for the ride! Anytime.", "ko": "태워 줘서 고마워! 언제든지." },
+                { "en": "The store is open, so come anytime.", "ko": "가게 열려 있으니 아무 때나 와." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "No joining fee this month, and you can cancel with a month's notice.",
+          "ko_word_order": "가입비 없어요 / 이번 달엔, / 그리고 해지하실 수 있어요 / 한 달 전 통보로",
+          "ko_natural": "이번 달은 가입비가 없고, 해지는 한 달 전에만 말씀하시면 돼요.",
+          "terms": [
+            {
+              "text": "notice",
+              "form": "a month's notice",
+              "meaning": "사전 통보",
+              "nuance": "해지·퇴사·이사 전에 미리 알리는 것. 'two weeks' notice'처럼 기간을 앞에 붙여 쓴다.",
+              "examples": [
+                { "en": "I gave my two weeks' notice today.", "ko": "오늘 퇴사 2주 전 통보했어." },
+                { "en": "Sorry for the short notice.", "ko": "갑자기 말씀드려서 죄송해요." },
+                { "en": "We need at least a week's notice.", "ko": "최소 일주일 전에는 알려 주셔야 해요." }
+              ]
+            },
+            {
+              "text": "cancel",
+              "meaning": "해지하다, 취소하다",
+              "nuance": "예약·주문·구독·회원권을 끝낼 때 두루 쓴다. 미국식은 canceled, 영국식은 cancelled로 쓴다.",
+              "examples": [
+                { "en": "I need to cancel my subscription.", "ko": "구독 해지해야 해." },
+                { "en": "Our flight got canceled.", "ko": "우리 비행기 결항됐어." },
+                { "en": "Can I cancel without paying a fee?", "ko": "수수료 없이 취소할 수 있어요?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Great, I'll go with the annual plan, then.",
+          "ko_word_order": "좋아요, / 저는 고를게요 / 연간 요금제로, / 그럼",
+          "ko_natural": "좋아요, 그럼 연 회원권으로 할게요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "go with",
+              "meaning": "~로 하다, 고르다",
+              "nuance": "여러 선택지 중 하나로 결정할 때 쓰는 구어. 메뉴, 요금제, 디자인 등 거의 모든 선택에 쓴다.",
+              "examples": [
+                { "en": "I'll go with the blue one.", "ko": "파란 걸로 할게요." },
+                { "en": "Let's go with your idea.", "ko": "네 아이디어로 가자." },
+                { "en": "Which hotel did you go with?", "ko": "어느 호텔로 했어?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Awesome. Let me grab your ID and we'll get you set up.",
+          "ko_word_order": "좋아요. / 제가 신분증을 받을게요 / 그리고 저희가 등록해 드릴게요",
+          "ko_natural": "좋아요. 신분증 주시면 바로 등록해 드릴게요.",
+          "terms": [
+            {
+              "text": "grab",
+              "meaning": "잠깐 받다, 가져오다",
+              "nuance": "물건을 빠르게 집거나 받는 느낌의 구어. 'grab a coffee'처럼 가볍게 뭔가를 할 때도 쓴다.",
+              "examples": [
+                { "en": "Can you grab me a napkin?", "ko": "냅킨 하나 갖다줄래?" },
+                { "en": "Let me grab my jacket.", "ko": "재킷 좀 챙길게." },
+                { "en": "I'll grab your order in a second.", "ko": "주문 바로 받을게요." }
+              ]
+            },
+            {
+              "text": "get someone set up",
+              "form": "get you set up",
+              "meaning": "(이용할 수 있게) 준비해 주다",
+              "nuance": "가입·설치·계정 등 필요한 절차를 처리해 준다는 친절한 표현. 매장·고객 응대에서 자주 들린다.",
+              "examples": [
+                { "en": "IT will get you set up with a laptop.", "ko": "IT팀이 노트북 세팅해 줄 거예요." },
+                { "en": "Let's get you set up with an account.", "ko": "계정부터 만들어 드릴게요." },
+                { "en": "It takes five minutes to get you set up.", "ko": "준비해 드리는 데 5분이면 돼요." }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

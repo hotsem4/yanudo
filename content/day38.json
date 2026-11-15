@@ -1,0 +1,307 @@
+{
+  "lessons": [
+    {
+      "day": 38,
+      "title": "출근길 가벼운 대화",
+      "theme": "Small talk on the way to work",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Morning! I didn't know you took this train too.",
+          "ko_word_order": "좋은 아침! / 나는 몰랐어요 / 당신도 이 열차를 타는 줄",
+          "ko_natural": "좋은 아침이에요! 이 지하철 타시는 줄 몰랐어요.",
+          "terms": [
+            {
+              "text": "Morning!",
+              "meaning": "좋은 아침!",
+              "nuance": "Good morning을 줄인 가벼운 인사. 동료나 이웃처럼 자주 보는 사이에 쓴다.",
+              "examples": [
+                { "en": "Morning! Did you sleep okay?", "ko": "좋은 아침! 잘 잤어?" },
+                { "en": "Morning, everyone. Coffee's ready.", "ko": "다들 좋은 아침. 커피 내려놨어요." },
+                { "en": "Morning! You're in early today.", "ko": "좋은 아침! 오늘 일찍 왔네요." }
+              ]
+            },
+            {
+              "text": "I didn't know",
+              "meaning": "~인 줄 몰랐어요",
+              "nuance": "새로 알게 된 사실에 가볍게 놀랄 때 쓴다. 뒤 동사도 과거형으로 맞추는 게 자연스럽다.",
+              "examples": [
+                { "en": "I didn't know you had a sister.", "ko": "너 누나 있는 줄 몰랐어." },
+                { "en": "Sorry, I didn't know you were busy.", "ko": "미안, 바쁜 줄 몰랐어." },
+                { "en": "I didn't know this place was so popular.", "ko": "여기가 이렇게 인기 있는 줄 몰랐어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Hey! I usually take the earlier one, but I overslept this morning.",
+          "ko_word_order": "안녕하세요! / 저는 보통 더 이른 걸 타요, / 그런데 늦잠을 잤어요 / 오늘 아침에",
+          "ko_natural": "안녕하세요! 보통은 한 대 앞 차 타는데 오늘 늦잠 잤어요.",
+          "terms": [
+            {
+              "text": "oversleep",
+              "form": "overslept",
+              "meaning": "늦잠 자다",
+              "nuance": "일어나야 할 시간을 놓치고 자 버린 것. 일부러 늦게까지 자는 건 sleep in이라고 구별한다.",
+              "examples": [
+                { "en": "Sorry I'm late, I overslept.", "ko": "늦어서 미안, 늦잠 잤어." },
+                { "en": "Set two alarms so you don't oversleep.", "ko": "늦잠 안 자게 알람 두 개 맞춰." },
+                { "en": "He overslept and missed his flight.", "ko": "걔 늦잠 자서 비행기 놓쳤어." }
+              ]
+            },
+            {
+              "text": "the earlier one",
+              "meaning": "더 이른 것",
+              "nuance": "앞에 나온 열차·버스·회의 중 더 이른 시간 것을 가리킨다. 반대는 the later one이다.",
+              "examples": [
+                { "en": "Let's take the earlier one to be safe.", "ko": "혹시 모르니 더 이른 거 타자." },
+                { "en": "The earlier one was already full.", "ko": "앞 시간대 건 이미 꽉 찼어요." },
+                { "en": "Can I switch to the earlier one?", "ko": "앞 시간 걸로 바꿀 수 있을까요?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Happens to the best of us. The train's packed today, huh?",
+          "ko_word_order": "누구에게나 일어나요. / 열차가 꽉 찼네요 / 오늘, / 그렇죠?",
+          "ko_natural": "누구나 그럴 때 있죠. 오늘 지하철 진짜 꽉 찼네요.",
+          "terms": [
+            {
+              "text": "happens to the best of us",
+              "meaning": "누구나 그럴 수 있다",
+              "nuance": "실수한 상대를 가볍게 위로하는 관용 표현. 앞의 It을 생략하고 말하는 경우가 많다.",
+              "examples": [
+                { "en": "You forgot your password? Happens to the best of us.", "ko": "비밀번호 까먹었어? 누구나 그래." },
+                { "en": "Don't feel bad. It happens to the best of us.", "ko": "속상해하지 마. 누구나 그럴 수 있어." },
+                { "en": "Missed the bus? Happens to the best of us.", "ko": "버스 놓쳤어? 그럴 때도 있지." }
+              ]
+            },
+            {
+              "text": "packed",
+              "meaning": "꽉 찬, 붐비는",
+              "nuance": "사람이 빽빽하게 들어찬 상태를 말하는 구어. crowded보다 더 꽉 찬 느낌이다.",
+              "examples": [
+                { "en": "The restaurant was packed on Friday night.", "ko": "금요일 밤에 식당이 꽉 찼어." },
+                { "en": "My schedule is packed this week.", "ko": "이번 주 일정이 꽉 찼어." },
+                { "en": "The stadium was packed with fans.", "ko": "경기장이 팬들로 가득했어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Yeah, it's always like this on Monday mornings.",
+          "ko_word_order": "네, / 늘 이래요 / 월요일 아침마다",
+          "ko_natural": "네, 월요일 아침엔 맨날 이래요.",
+          "terms": [
+            {
+              "text": "like this",
+              "meaning": "이렇게, 이런 식으로",
+              "nuance": "지금 눈앞의 상황을 가리키며 말한다. 'Is it always like this?'처럼 불평이나 놀람에 자주 쓴다.",
+              "examples": [
+                { "en": "Is it always like this at rush hour?", "ko": "출퇴근 시간엔 늘 이래요?" },
+                { "en": "Hold the camera like this.", "ko": "카메라 이렇게 잡아." },
+                { "en": "I've never seen him like this.", "ko": "걔가 이런 모습은 처음 봐." }
+              ]
+            },
+            {
+              "text": "on Monday mornings",
+              "meaning": "월요일 아침마다",
+              "nuance": "요일·시간대를 복수로 쓰면 '매주 그때마다'라는 반복의 뜻이 된다.",
+              "examples": [
+                { "en": "We have a team meeting on Monday mornings.", "ko": "월요일 아침마다 팀 회의가 있어요." },
+                { "en": "Traffic is terrible on Monday mornings.", "ko": "월요일 아침마다 길이 엄청 막혀." },
+                { "en": "I never feel like talking on Monday mornings.", "ko": "월요일 아침엔 말할 기분이 안 나." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "So, what's on your plate today? Anything big?",
+          "ko_word_order": "그래서, / 뭐가 있어요 / 오늘 할 일로? / 큰 거 있어요?",
+          "ko_natural": "오늘은 뭐 하세요? 큰 일 있어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "on someone's plate",
+              "form": "on your plate",
+              "meaning": "해야 할 일",
+              "nuance": "접시에 담긴 음식처럼 맡은 일이 쌓여 있다는 비유. 'I have a lot on my plate'는 '할 일이 산더미다'라는 뜻이다.",
+              "examples": [
+                { "en": "I have a lot on my plate this week.", "ko": "이번 주에 할 일이 산더미야." },
+                { "en": "What's on your plate after this project?", "ko": "이 프로젝트 끝나면 뭐 맡아요?" },
+                { "en": "She already has too much on her plate.", "ko": "그분 이미 일이 너무 많아요." }
+              ]
+            },
+            {
+              "text": "anything big",
+              "meaning": "뭐 큰일",
+              "nuance": "중요한 일정이나 사건이 있는지 짧게 묻는 말. 'Anything exciting?'처럼 형용사를 바꿔 쓸 수 있다.",
+              "examples": [
+                { "en": "Anything big happening this weekend?", "ko": "이번 주말에 뭐 큰일 있어?" },
+                { "en": "Is there anything big on the agenda today?", "ko": "오늘 안건 중에 큰 거 있어요?" },
+                { "en": "Did I miss anything big?", "ko": "내가 뭐 중요한 거 놓쳤어?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I've got back-to-back meetings all morning, so I'll barely have time to breathe.",
+          "ko_word_order": "저는 연달아 회의가 있어요 / 오전 내내, / 그래서 거의 없을 거예요 / 숨 쉴 시간도",
+          "ko_natural": "오전 내내 회의가 줄줄이 있어서 숨 돌릴 틈도 없을 거예요.",
+          "terms": [
+            {
+              "text": "back-to-back",
+              "meaning": "연달아, 줄줄이",
+              "nuance": "일정이 틈 없이 연속으로 붙어 있을 때 쓴다. 회의·경기·비행 일정에 자주 붙는다.",
+              "examples": [
+                { "en": "I have back-to-back calls until three.", "ko": "3시까지 통화가 줄줄이 있어." },
+                { "en": "They won back-to-back games.", "ko": "그 팀이 연달아 이겼어." },
+                { "en": "Try not to book meetings back-to-back.", "ko": "회의를 연달아 잡지 않도록 해 봐요." }
+              ]
+            },
+            {
+              "text": "barely",
+              "meaning": "거의 ~ 않다, 간신히",
+              "nuance": "형태는 긍정문이지만 뜻은 '거의 없다'에 가깝다. 'I barely made it'은 '간신히 해냈다'는 뜻이다.",
+              "examples": [
+                { "en": "I barely slept last night.", "ko": "어젯밤에 거의 못 잤어." },
+                { "en": "We barely caught the last bus.", "ko": "막차를 간신히 탔어." },
+                { "en": "I can barely hear you.", "ko": "목소리가 거의 안 들려." }
+              ]
+            },
+            {
+              "text": "time to breathe",
+              "meaning": "숨 돌릴 틈",
+              "nuance": "너무 바빠 쉴 틈이 없다는 걸 과장해서 말한다. 'a moment to breathe'라고도 한다.",
+              "examples": [
+                { "en": "Give me some time to breathe.", "ko": "숨 좀 돌리게 해 줘." },
+                { "en": "I haven't had time to breathe all week.", "ko": "일주일 내내 숨 돌릴 틈도 없었어." },
+                { "en": "Finally, a little time to breathe.", "ko": "드디어 숨 좀 돌리네." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Ouch. Do you want me to grab you a coffee on the way in?",
+          "ko_word_order": "아이고. / 원하세요 / 제가 커피 하나 사다 드리길 / 들어가는 길에?",
+          "ko_natural": "아이고. 들어가는 길에 커피 하나 사다 드릴까요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "Do you want me to",
+              "meaning": "제가 ~해 드릴까요?",
+              "nuance": "상대를 위해 뭔가 해 주겠다고 제안하는 구어 표현. 더 공손하게는 'Would you like me to'를 쓴다.",
+              "examples": [
+                { "en": "Do you want me to drive?", "ko": "내가 운전할까?" },
+                { "en": "Do you want me to call him for you?", "ko": "제가 그분께 전화해 드릴까요?" },
+                { "en": "Do you want me to save you a seat?", "ko": "자리 맡아 줄까?" }
+              ]
+            },
+            {
+              "text": "on the way in",
+              "meaning": "들어가는 길에",
+              "nuance": "사무실이나 건물로 들어가는 길에 들른다는 뜻. 나가는 길은 on the way out이다.",
+              "examples": [
+                { "en": "I'll pick up the mail on the way in.", "ko": "들어가는 길에 우편물 챙길게." },
+                { "en": "Grab a bagel on the way in if you're hungry.", "ko": "배고프면 들어오는 길에 베이글 사 와." },
+                { "en": "I saw your car on the way in.", "ko": "들어오는 길에 네 차 봤어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "That would be amazing. I'll pay you back at lunch.",
+          "ko_word_order": "그러면 정말 좋죠. / 제가 갚을게요 / 점심때",
+          "ko_natural": "그럼 진짜 최고죠. 점심때 돈 드릴게요.",
+          "terms": [
+            {
+              "text": "pay someone back",
+              "form": "pay you back",
+              "meaning": "~에게 돈을 갚다",
+              "nuance": "빌린 돈이나 대신 내 준 돈을 돌려줄 때 쓴다. 은혜를 갚는다는 뜻으로도 쓸 수 있다.",
+              "examples": [
+                { "en": "Can I pay you back tomorrow?", "ko": "내일 갚아도 돼?" },
+                { "en": "He still hasn't paid me back.", "ko": "걔 아직도 돈 안 갚았어." },
+                { "en": "I'll pay you back for the tickets.", "ko": "표값 줄게." }
+              ]
+            },
+            {
+              "text": "That would be amazing",
+              "meaning": "그러면 정말 좋죠",
+              "nuance": "상대의 제안을 반갑게 받아들이는 말. would를 써서 '그렇게 해 주면'이라는 가정의 느낌이 담긴다.",
+              "examples": [
+                { "en": "You can drop me off? That would be amazing.", "ko": "내려 줄 수 있어? 그럼 너무 좋지." },
+                { "en": "That would be amazing, thank you.", "ko": "그래 주시면 정말 좋죠, 감사해요." },
+                { "en": "A day off would be amazing right now.", "ko": "지금 하루 쉬면 진짜 좋겠다." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Don't worry about it. It's on me today.",
+          "ko_word_order": "그건 신경 쓰지 마세요. / 제가 낼게요 / 오늘은",
+          "ko_natural": "신경 쓰지 마세요. 오늘은 제가 살게요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "it's on me",
+              "meaning": "내가 낼게",
+              "nuance": "밥값·커피값을 내가 내겠다고 할 때 쓰는 아주 흔한 표현. 'This one's on me'처럼도 쓴다.",
+              "examples": [
+                { "en": "Put your wallet away, it's on me.", "ko": "지갑 넣어, 내가 낼게." },
+                { "en": "Lunch is on me today.", "ko": "오늘 점심은 내가 쏠게." },
+                { "en": "This round is on me.", "ko": "이번 잔은 내가 살게." }
+              ]
+            },
+            {
+              "text": "Don't worry about it",
+              "meaning": "신경 쓰지 마세요",
+              "nuance": "고마워하거나 미안해하는 상대에게 '괜찮다'고 넘기는 말. 사과에 대한 대답으로도 자주 쓴다.",
+              "examples": [
+                { "en": "Sorry about the mess. Don't worry about it.", "ko": "어질러서 미안. 신경 쓰지 마." },
+                { "en": "Don't worry about it, I'll fix it.", "ko": "신경 쓰지 마, 내가 고칠게." },
+                { "en": "Don't worry about it, it happens.", "ko": "괜찮아, 그럴 수도 있지." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "You're a lifesaver. Oh, this is our stop.",
+          "ko_word_order": "당신은 생명의 은인이에요. / 아, / 여기가 우리 역이에요",
+          "ko_natural": "진짜 구세주예요. 아, 우리 내릴 역이에요.",
+          "terms": [
+            {
+              "text": "lifesaver",
+              "meaning": "구세주, 큰 도움",
+              "nuance": "곤란할 때 도와준 사람이나 물건에 고마움을 과장해서 표현한다. 친구·동료 사이에 아주 흔하다.",
+              "examples": [
+                { "en": "Thanks for the charger, you're a lifesaver.", "ko": "충전기 고마워, 진짜 살았다." },
+                { "en": "This app is a real lifesaver.", "ko": "이 앱 진짜 유용해." },
+                { "en": "You covered my shift? You're a lifesaver!", "ko": "내 근무 대신 서 줬어? 구세주다!" }
+              ]
+            },
+            {
+              "text": "stop",
+              "meaning": "(버스·지하철) 정류장, 역",
+              "nuance": "내리거나 타는 곳을 말한다. 'This is my stop'은 '저 여기서 내려요'라는 뜻으로 많이 쓴다.",
+              "examples": [
+                { "en": "This is my stop. See you tomorrow!", "ko": "저 여기서 내려요. 내일 봐요!" },
+                { "en": "How many stops to City Hall?", "ko": "시청까지 몇 정거장이에요?" },
+                { "en": "I missed my stop again.", "ko": "또 내릴 역을 지나쳤어." }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

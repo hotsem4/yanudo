@@ -1,0 +1,424 @@
+{
+  "lessons": [
+    {
+      "day": 24,
+      "title": "사과하기",
+      "theme": "Apologizing",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "I'm so sorry I'm late. I missed my bus.",
+          "ko_word_order": "정말 미안해 / 늦어서. / 나 놓쳤어 / 버스를",
+          "ko_natural": "늦어서 정말 미안해. 버스를 놓쳤어.",
+          "core": true,
+          "terms": [
+            {
+              "text": "miss the bus",
+              "form": "missed my bus",
+              "meaning": "버스를 놓치다",
+              "nuance": "miss는 '그리워하다' 말고 '(차나 기회를) 놓치다'라는 뜻으로 아주 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "Hurry up, or we'll miss the bus.",
+                  "ko": "서둘러, 안 그러면 버스 놓쳐."
+                },
+                {
+                  "en": "I missed the last bus and took a taxi.",
+                  "ko": "막차를 놓쳐서 택시 탔어."
+                },
+                {
+                  "en": "She never misses the bus.",
+                  "ko": "걔는 버스를 놓치는 법이 없어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Don't worry about it. I just got here too.",
+          "ko_word_order": "걱정하지 마 / 그것에 대해. / 나도 막 도착했어",
+          "ko_natural": "괜찮아. 나도 방금 왔어.",
+          "terms": [
+            {
+              "text": "don't worry about it",
+              "meaning": "신경 쓰지 마",
+              "nuance": "사과나 고마움에 '괜찮다'고 답하는 가장 흔한 구어.",
+              "examples": [
+                {
+                  "en": "You spilled some coffee? Don't worry about it.",
+                  "ko": "커피 쏟았어? 신경 쓰지 마."
+                },
+                {
+                  "en": "Don't worry about it. I'll clean it up.",
+                  "ko": "신경 쓰지 마. 내가 치울게."
+                },
+                {
+                  "en": "Don't worry about it, it happens to everyone.",
+                  "ko": "신경 쓰지 마, 누구나 그럴 수 있어."
+                }
+              ]
+            },
+            {
+              "text": "get here",
+              "form": "got here",
+              "meaning": "여기 도착하다",
+              "nuance": "arrive보다 일상적인 구어. 상대가 있는 장소라면 get there를 쓴다.",
+              "examples": [
+                {
+                  "en": "What time did you get here?",
+                  "ko": "여기 몇 시에 왔어?"
+                },
+                {
+                  "en": "Call me when you get here.",
+                  "ko": "여기 도착하면 전화해."
+                },
+                {
+                  "en": "It took an hour to get here.",
+                  "ko": "여기 오는 데 한 시간 걸렸어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Really? I feel bad for making you wait.",
+          "ko_word_order": "정말? / 나 마음이 안 좋아 / 너를 기다리게 해서",
+          "ko_natural": "진짜? 기다리게 해서 너무 미안하다.",
+          "core": true,
+          "terms": [
+            {
+              "text": "feel bad",
+              "meaning": "미안하다·마음이 쓰이다",
+              "nuance": "내 잘못으로 상대에게 미안한 마음이 들 때 쓴다. I'm sorry보다 감정을 더 드러낸다.",
+              "examples": [
+                {
+                  "en": "I feel bad about yesterday.",
+                  "ko": "어제 일 때문에 마음이 안 좋아."
+                },
+                {
+                  "en": "Don't feel bad, it wasn't your fault.",
+                  "ko": "미안해하지 마, 네 잘못 아니었어."
+                },
+                {
+                  "en": "I feel bad that I couldn't come.",
+                  "ko": "못 가서 미안해."
+                }
+              ]
+            },
+            {
+              "text": "make someone wait",
+              "form": "making you wait",
+              "meaning": "기다리게 하다",
+              "nuance": "약속에 늦었을 때 사과와 함께 자주 쓴다. Sorry to keep you waiting은 더 공손하다.",
+              "examples": [
+                {
+                  "en": "I hate making people wait.",
+                  "ko": "남을 기다리게 하는 거 싫어."
+                },
+                {
+                  "en": "They made us wait for an hour.",
+                  "ko": "우리를 한 시간이나 기다리게 했어."
+                },
+                {
+                  "en": "Don't make him wait too long.",
+                  "ko": "걔 너무 오래 기다리게 하지 마."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "It's really no big deal. Seriously.",
+          "ko_word_order": "그건 정말 / 별일 아니야. / 진짜로",
+          "ko_natural": "진짜 별거 아니야. 정말로.",
+          "terms": [
+            {
+              "text": "no big deal",
+              "meaning": "별일 아님",
+              "nuance": "상대가 미안해하거나 걱정할 때 대수롭지 않다고 안심시키는 구어.",
+              "examples": [
+                {
+                  "en": "I forgot my umbrella, but it's no big deal.",
+                  "ko": "우산을 깜빡했는데 별일 아니야."
+                },
+                {
+                  "en": "It's no big deal if you can't make it.",
+                  "ko": "못 와도 괜찮아, 별일 아니야."
+                },
+                {
+                  "en": "Losing one game is no big deal.",
+                  "ko": "한 경기 지는 건 별거 아니야."
+                }
+              ]
+            },
+            {
+              "text": "seriously",
+              "meaning": "진짜로",
+              "nuance": "내 말이 진심이라고 강조할 때 쓴다. 놀랐을 때 Seriously?는 '진짜?'.",
+              "examples": [
+                {
+                  "en": "Seriously, you look great.",
+                  "ko": "진짜로, 너 좋아 보여."
+                },
+                {
+                  "en": "I'm seriously thinking about quitting.",
+                  "ko": "나 진지하게 그만둘까 생각 중이야."
+                },
+                {
+                  "en": "You can borrow it. Seriously, it's fine.",
+                  "ko": "빌려 가도 돼. 진짜 괜찮아."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I should've texted you that I was running late.",
+          "ko_word_order": "나 문자했어야 했는데 / 너에게 / 내가 늦어지고 있다고",
+          "ko_natural": "늦는다고 문자라도 보냈어야 했는데.",
+          "terms": [
+            {
+              "text": "should have",
+              "form": "should've",
+              "meaning": "~했어야 했는데",
+              "nuance": "하지 않은 일을 후회할 때 쓴다. 말할 때는 보통 should've로 줄인다.",
+              "examples": [
+                {
+                  "en": "I should've brought a jacket.",
+                  "ko": "재킷 가져올걸."
+                },
+                {
+                  "en": "You should've told me earlier.",
+                  "ko": "더 일찍 말해 주지 그랬어."
+                },
+                {
+                  "en": "We should have left earlier.",
+                  "ko": "더 일찍 출발했어야 했어."
+                }
+              ]
+            },
+            {
+              "text": "run late",
+              "form": "running late",
+              "meaning": "늦어지다",
+              "nuance": "약속이나 일정에 늦어지고 있을 때 쓰는 구어. I'm late보다 '가는 중인데 늦는다'는 느낌.",
+              "examples": [
+                {
+                  "en": "Sorry, I'm running a little late.",
+                  "ko": "미안, 좀 늦을 것 같아."
+                },
+                {
+                  "en": "The doctor is running late today.",
+                  "ko": "오늘 진료가 좀 밀리고 있어요."
+                },
+                {
+                  "en": "If you're running late, just call me.",
+                  "ko": "늦어지면 그냥 전화해."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Yeah, next time just give me a heads-up.",
+          "ko_word_order": "응, 다음번엔 / 그냥 줘 / 나에게 / 미리 알림을",
+          "ko_natural": "응, 다음엔 미리 말만 해 줘.",
+          "terms": [
+            {
+              "text": "give someone a heads-up",
+              "form": "give me a heads-up",
+              "meaning": "미리 알려 주다",
+              "nuance": "갑작스럽지 않게 미리 귀띔해 달라는 구어. 직장에서도 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "Can you give me a heads-up before you come?",
+                  "ko": "오기 전에 미리 알려 줄래?"
+                },
+                {
+                  "en": "He gave us a heads-up about the traffic.",
+                  "ko": "걔가 차 막힌다고 미리 알려 줬어."
+                },
+                {
+                  "en": "I'll give you a heads-up if anything changes.",
+                  "ko": "뭐 바뀌면 미리 알려 줄게."
+                }
+              ]
+            },
+            {
+              "text": "next time",
+              "meaning": "다음번엔",
+              "nuance": "같은 일이 다시 있을 때를 말한다. 문장 앞이나 뒤 어디에나 둘 수 있다.",
+              "examples": [
+                {
+                  "en": "Next time, let's take the subway.",
+                  "ko": "다음엔 지하철 타자."
+                },
+                {
+                  "en": "I'll pay next time.",
+                  "ko": "다음엔 내가 낼게."
+                },
+                {
+                  "en": "Next time you're in town, call me.",
+                  "ko": "다음에 이 동네 오면 연락해."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I will, I promise. It won't happen again.",
+          "ko_word_order": "그럴게, / 약속해. / 그런 일은 없을 거야 / 다시",
+          "ko_natural": "그럴게, 약속해. 다시는 안 그럴게.",
+          "core": true,
+          "terms": [
+            {
+              "text": "It won't happen again",
+              "meaning": "다시는 안 그럴게",
+              "nuance": "잘못을 사과하며 다시 그러지 않겠다고 약속하는 말. 친구와 직장 모두 쓴다.",
+              "examples": [
+                {
+                  "en": "I'm sorry, sir. It won't happen again.",
+                  "ko": "죄송합니다. 다시는 이런 일 없을 거예요."
+                },
+                {
+                  "en": "I forgot again? It won't happen again, I swear.",
+                  "ko": "또 깜빡했어? 맹세하는데 다시는 안 그럴게."
+                },
+                {
+                  "en": "Sorry about the noise last night. It won't happen again.",
+                  "ko": "어젯밤 시끄러워서 죄송해요. 다시는 안 그럴게요."
+                }
+              ]
+            },
+            {
+              "text": "promise",
+              "meaning": "약속하다",
+              "nuance": "I promise를 덧붙이면 진심을 강조한다. 친한 사이에서 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "I promise I'll call you tonight.",
+                  "ko": "오늘 밤에 꼭 전화할게, 약속해."
+                },
+                {
+                  "en": "You promised to help me!",
+                  "ko": "도와준다고 약속했잖아!"
+                },
+                {
+                  "en": "I can't promise anything.",
+                  "ko": "아무것도 장담 못 해."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Okay, apology accepted. Let's go inside.",
+          "ko_word_order": "알았어, / 사과는 받아 줄게. / 가자 / 안으로",
+          "ko_natural": "알았어, 사과 받아 줄게. 들어가자.",
+          "terms": [
+            {
+              "text": "apology accepted",
+              "meaning": "사과 받아 줄게",
+              "nuance": "사과를 받아들일 때 쓰는 조금 장난스러운 말. 친한 사이에서 분위기를 풀 때 쓴다.",
+              "examples": [
+                {
+                  "en": "Okay, okay, apology accepted.",
+                  "ko": "알았어, 알았어, 사과 받아 줄게."
+                },
+                {
+                  "en": "Apology accepted, but you owe me lunch.",
+                  "ko": "사과는 받아 줄게, 대신 점심 사."
+                },
+                {
+                  "en": "He said sorry, and I said apology accepted.",
+                  "ko": "걔가 미안하다길래 사과 받아 준다고 했어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Let me buy you a coffee to make up for it.",
+          "ko_word_order": "내가 사 줄게 / 너에게 커피를 / 그걸 만회하려고",
+          "ko_natural": "미안하니까 커피 한잔 살게.",
+          "terms": [
+            {
+              "text": "make up for",
+              "meaning": "만회하다·보상하다",
+              "nuance": "잘못이나 손해를 다른 것으로 채워 줄 때 쓴다. 사과 뒤에 자주 붙는다.",
+              "examples": [
+                {
+                  "en": "I'll work late to make up for the lost time.",
+                  "ko": "놓친 시간 만회하려고 늦게까지 일할게."
+                },
+                {
+                  "en": "Nothing can make up for missing your wedding.",
+                  "ko": "네 결혼식 못 간 건 뭘로도 만회가 안 돼."
+                },
+                {
+                  "en": "She baked cookies to make up for being rude.",
+                  "ko": "걔가 무례하게 군 게 미안해서 쿠키를 구웠어."
+                }
+              ]
+            },
+            {
+              "text": "buy someone something",
+              "form": "buy you a coffee",
+              "meaning": "~에게 ~을 사 주다",
+              "nuance": "음식이나 음료를 대접할 때 쓴다. Let me buy you ~는 '내가 살게'라는 제안.",
+              "examples": [
+                {
+                  "en": "Let me buy you lunch today.",
+                  "ko": "오늘 점심은 내가 살게."
+                },
+                {
+                  "en": "My dad bought me a new bike.",
+                  "ko": "아빠가 새 자전거 사 주셨어."
+                },
+                {
+                  "en": "Can I buy you a drink?",
+                  "ko": "한잔 사도 될까요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Well, I'm not going to say no to that.",
+          "ko_word_order": "음, 나는 거절하지 않을 거야 / 그것을",
+          "ko_natural": "음, 그건 마다할 수 없지.",
+          "terms": [
+            {
+              "text": "say no to",
+              "meaning": "거절하다·마다하다",
+              "nuance": "I won't say no to ~는 '좋다'를 재치 있게 돌려 말하는 표현이다.",
+              "examples": [
+                {
+                  "en": "I never say no to free food.",
+                  "ko": "공짜 음식은 절대 안 마다해."
+                },
+                {
+                  "en": "It's hard to say no to my boss.",
+                  "ko": "상사한테 거절하기 어려워."
+                },
+                {
+                  "en": "I wouldn't say no to a short break.",
+                  "ko": "잠깐 쉬는 거라면 마다하지 않지."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+import type { Dashboard, SessionData, StudyEvent, VocabEntry } from "../api/types";
+
+// localStorage 영속화. 접근이 막혀 있어도(사생활 모드 등) 앱은 메모리로 계속 돈다.
+const OUTBOX_KEY = "habit66.outbox.v1";
+const SNAPSHOT_KEY = "habit66.snapshot.v1";
+
+export interface Snapshot {
+  dashboard: Dashboard;
+  today: SessionData | null;
+  review: SessionData | null;
+  /** 단어장. 아직 받지 못했으면 null(이전 캐시에는 없을 수 있다). */
+  vocab?: VocabEntry[] | null;
+}
+
+function readJson<T>(key: string): T | null {
+  try {
+    const raw = window.localStorage.getItem(key);
+    return raw ? (JSON.parse(raw) as T) : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeJson(key: string, value: unknown): boolean {
+  try {
+    window.localStorage.setItem(key, JSON.stringify(value));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export const outbox = {
+  load(): StudyEvent[] {
+    const list = readJson<StudyEvent[]>(OUTBOX_KEY);
+    return Array.isArray(list) ? list : [];
+  },
+  /** 동기 저장. 화면 반영보다 먼저 부른다(docs/architecture.md "프론트 상태"). */
+  save(events: StudyEvent[]): boolean {
+    return writeJson(OUTBOX_KEY, events);
+  },
+};
+
+export const snapshotCache = {
+  load(): Snapshot | null {
+    const snap = readJson<Snapshot>(SNAPSHOT_KEY);
+    return snap && snap.dashboard ? snap : null;
+  },
+  save(snapshot: Snapshot): void {
+    writeJson(SNAPSHOT_KEY, snapshot);
+  },
+};
+
+export function newEventId(): string {
+  const c = globalThis.crypto;
+  if (c && typeof c.randomUUID === "function") return c.randomUUID();
+  const bytes = new Uint8Array(16);
+  if (c && typeof c.getRandomValues === "function") c.getRandomValues(bytes);
+  else for (let i = 0; i < bytes.length; i++) bytes[i] = Math.floor(Math.random() * 256);
+  return Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+}

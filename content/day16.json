@@ -1,0 +1,363 @@
+{
+  "lessons": [
+    {
+      "day": 16,
+      "title": "호텔 체크인",
+      "theme": "Checking in at a hotel",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi, I have a reservation under Andrew Kim.",
+          "ko_word_order": "안녕하세요, 저는 있어요 / 예약이 / 앤드루 김 이름으로",
+          "ko_natural": "안녕하세요, 앤드루 김으로 예약했는데요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "under",
+              "meaning": "~의 이름으로",
+              "nuance": "예약자 이름을 말할 때 쓰는 전치사. The booking is under my name처럼도 쓴다.",
+              "examples": [
+                {
+                  "en": "The table is under my wife's name.",
+                  "ko": "테이블은 아내 이름으로 예약돼 있어요."
+                },
+                {
+                  "en": "Is there a booking under Lee?",
+                  "ko": "이 씨 이름으로 된 예약 있어요?"
+                },
+                {
+                  "en": "I put the order under my first name.",
+                  "ko": "주문은 내 이름으로 해 뒀어."
+                }
+              ]
+            },
+            {
+              "text": "have a reservation",
+              "meaning": "예약이 있다",
+              "nuance": "도착해서 예약했다고 말할 때 쓰는 기본 표현. I booked a room도 같은 뜻.",
+              "examples": [
+                {
+                  "en": "Do you have a reservation with us?",
+                  "ko": "저희 쪽에 예약하셨어요?"
+                },
+                {
+                  "en": "We have a reservation for eight o'clock.",
+                  "ko": "8시로 예약했어요."
+                },
+                {
+                  "en": "Sorry, we don't have a reservation.",
+                  "ko": "죄송한데 예약은 안 했어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Welcome! Let me pull that up for you.",
+          "ko_word_order": "어서 오세요! / 제가 그걸 띄워 볼게요 / 당신을 위해",
+          "ko_natural": "어서 오세요! 예약 확인해 드릴게요.",
+          "terms": [
+            {
+              "text": "pull up",
+              "form": "pull that up",
+              "meaning": "(화면에) 불러오다",
+              "nuance": "컴퓨터에서 정보를 찾아 화면에 띄울 때 쓰는 구어. 대명사는 pull it up처럼 가운데에 넣는다.",
+              "examples": [
+                {
+                  "en": "Can you pull up the map on your phone?",
+                  "ko": "폰으로 지도 좀 띄워 줄래?"
+                },
+                {
+                  "en": "Let me pull up your order.",
+                  "ko": "주문 내역 불러올게요."
+                },
+                {
+                  "en": "I'll pull up the photos from last summer.",
+                  "ko": "작년 여름 사진 띄워 볼게."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Thanks. Is breakfast included in the price?",
+          "ko_word_order": "고마워요. / 조식이 포함되나요 / 가격에?",
+          "ko_natural": "고마워요. 조식도 포함인가요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "included",
+              "meaning": "포함된",
+              "nuance": "요금 안에 들어 있는지 물을 때 쓴다. Is tax included?처럼 짧게도 쓴다.",
+              "examples": [
+                {
+                  "en": "Is the tip included?",
+                  "ko": "팁 포함이에요?"
+                },
+                {
+                  "en": "Drinks aren't included in the set menu.",
+                  "ko": "세트 메뉴에 음료는 포함 안 돼요."
+                },
+                {
+                  "en": "Everything is included, even parking.",
+                  "ko": "주차까지 다 포함이에요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Yes, it's served from seven to ten.",
+          "ko_word_order": "네, 그것은 제공돼요 / 7시부터 / 10시까지",
+          "ko_natural": "네, 7시부터 10시까지 드실 수 있어요.",
+          "terms": [
+            {
+              "text": "serve",
+              "form": "served",
+              "meaning": "(음식을) 내다, 제공하다",
+              "nuance": "식당·호텔에서 음식이 나오는 것을 말한다. be served 꼴로 '제공된다'.",
+              "examples": [
+                {
+                  "en": "Lunch is served at noon.",
+                  "ko": "점심은 정오에 나와요."
+                },
+                {
+                  "en": "Do you still serve breakfast?",
+                  "ko": "아직 아침 식사 돼요?"
+                },
+                {
+                  "en": "They serve great coffee here.",
+                  "ko": "여기 커피 정말 잘해."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Great. Could I get a room on a higher floor?",
+          "ko_word_order": "좋아요. / 제가 받을 수 있을까요 / 방을 / 더 높은 층에 있는?",
+          "ko_natural": "좋네요. 좀 높은 층 방으로 주실 수 있어요?",
+          "terms": [
+            {
+              "text": "higher floor",
+              "meaning": "더 높은 층",
+              "nuance": "호텔에서 전망 좋거나 조용한 방을 원할 때 하는 흔한 요청. 낮은 층은 a lower floor.",
+              "examples": [
+                {
+                  "en": "The view is better on a higher floor.",
+                  "ko": "높은 층이 전망이 더 좋아."
+                },
+                {
+                  "en": "We moved to a higher floor last year.",
+                  "ko": "작년에 더 높은 층으로 이사했어."
+                },
+                {
+                  "en": "Is there a quieter room on a higher floor?",
+                  "ko": "높은 층에 좀 더 조용한 방 있어요?"
+                }
+              ]
+            },
+            {
+              "text": "could I get",
+              "meaning": "~ 받을 수 있을까요?",
+              "nuance": "주문·요청할 때 쓰는 공손한 구어. Can I get보다 조금 더 정중하다.",
+              "examples": [
+                {
+                  "en": "Could I get a glass of water?",
+                  "ko": "물 한 잔 주실 수 있어요?"
+                },
+                {
+                  "en": "Could I get the bill, please?",
+                  "ko": "계산서 좀 주시겠어요?"
+                },
+                {
+                  "en": "Could I get a receipt?",
+                  "ko": "영수증 받을 수 있을까요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure, I can put you on the twelfth floor.",
+          "ko_word_order": "물론이죠, / 제가 넣어 드릴 수 있어요 / 당신을 / 12층에",
+          "ko_natural": "네, 12층으로 드릴게요.",
+          "terms": [
+            {
+              "text": "put someone on",
+              "form": "put you on",
+              "meaning": "~에 배정하다",
+              "nuance": "방·층·명단에 누군가를 넣어 줄 때 쓰는 구어. 방에는 put you in a room처럼 in도 쓴다.",
+              "examples": [
+                {
+                  "en": "Can you put me on the waiting list?",
+                  "ko": "대기자 명단에 올려 줄래요?"
+                },
+                {
+                  "en": "They put us on the top floor.",
+                  "ko": "우리를 꼭대기 층에 배정했어."
+                },
+                {
+                  "en": "I'll put you on the morning shift.",
+                  "ko": "아침 근무로 넣어 줄게."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Perfect. What time is check-out?",
+          "ko_word_order": "완벽해요. / 몇 시인가요 / 체크아웃은?",
+          "ko_natural": "좋아요. 체크아웃은 몇 시예요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "check-out",
+              "meaning": "체크아웃(퇴실)",
+              "nuance": "명사는 check-out, 동사는 check out으로 띄어 쓴다. 상점 계산대도 checkout이라 한다.",
+              "examples": [
+                {
+                  "en": "Check-out is at noon on Sundays.",
+                  "ko": "일요일엔 체크아웃이 정오예요."
+                },
+                {
+                  "en": "We need to check out by eleven.",
+                  "ko": "11시까지 체크아웃해야 해."
+                },
+                {
+                  "en": "Can I leave my bags after check-out?",
+                  "ko": "체크아웃 후에 짐 맡겨도 돼요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "It's at eleven, but you can ask for late check-out.",
+          "ko_word_order": "그건 11시예요, / 하지만 당신은 요청할 수 있어요 / 늦은 체크아웃을",
+          "ko_natural": "11시인데, 레이트 체크아웃을 요청하실 수도 있어요.",
+          "terms": [
+            {
+              "text": "late check-out",
+              "meaning": "늦은 퇴실",
+              "nuance": "정해진 시간보다 늦게 나가는 것. 일찍 들어가는 건 early check-in.",
+              "examples": [
+                {
+                  "en": "Is late check-out free for members?",
+                  "ko": "회원은 레이트 체크아웃 무료예요?"
+                },
+                {
+                  "en": "We got a late check-out until two.",
+                  "ko": "2시까지 늦게 체크아웃하기로 했어."
+                },
+                {
+                  "en": "I'd love a late check-out tomorrow.",
+                  "ko": "내일 늦게 체크아웃하고 싶어요."
+                }
+              ]
+            },
+            {
+              "text": "ask for",
+              "meaning": "요청하다",
+              "nuance": "원하는 것을 달라고 할 때 쓴다. ask는 묻는 것, ask for는 달라는 것.",
+              "examples": [
+                {
+                  "en": "Don't be afraid to ask for help.",
+                  "ko": "도움 요청하는 걸 겁내지 마."
+                },
+                {
+                  "en": "I asked for extra towels.",
+                  "ko": "수건을 더 달라고 했어."
+                },
+                {
+                  "en": "She asked for a table by the window.",
+                  "ko": "그녀는 창가 자리를 달라고 했어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Good to know. And where's the elevator?",
+          "ko_word_order": "알게 돼서 좋네요. / 그리고 어디 있나요 / 엘리베이터는?",
+          "ko_natural": "그렇군요. 엘리베이터는 어디예요?",
+          "terms": [
+            {
+              "text": "good to know",
+              "meaning": "알아 두면 좋네요",
+              "nuance": "새로 들은 정보가 쓸모 있을 때 하는 짧은 맞장구. 가볍고 친근한 말투.",
+              "examples": [
+                {
+                  "en": "The museum is free on Fridays? Good to know.",
+                  "ko": "금요일엔 박물관이 무료라고? 좋은 정보네."
+                },
+                {
+                  "en": "Good to know. Thanks for telling me.",
+                  "ko": "알아 둘게. 알려 줘서 고마워."
+                },
+                {
+                  "en": "The store closes early today? Good to know.",
+                  "ko": "오늘 가게 일찍 닫아? 알아 둬야겠다."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Right around the corner. Enjoy your stay!",
+          "ko_word_order": "바로 모퉁이를 돌면요. / 즐기세요 / 당신의 머무름을!",
+          "ko_natural": "모퉁이 돌면 바로 있어요. 편히 쉬세요!",
+          "terms": [
+            {
+              "text": "around the corner",
+              "meaning": "모퉁이 돌면 바로",
+              "nuance": "아주 가까이 있다는 뜻으로도 쓴다. 시간에 쓰면 '곧 다가온다'.",
+              "examples": [
+                {
+                  "en": "There's a pharmacy just around the corner.",
+                  "ko": "모퉁이 돌면 바로 약국 있어."
+                },
+                {
+                  "en": "My office is right around the corner.",
+                  "ko": "우리 사무실 바로 근처야."
+                },
+                {
+                  "en": "The bus stop is around the corner.",
+                  "ko": "버스 정류장은 모퉁이 돌면 있어."
+                }
+              ]
+            },
+            {
+              "text": "enjoy your stay",
+              "meaning": "편히 머무세요",
+              "nuance": "호텔·숙소 직원이 손님을 맞을 때 쓰는 인사. 손님은 Thanks, I will로 답하면 된다.",
+              "examples": [
+                {
+                  "en": "Here's your key. Enjoy your stay.",
+                  "ko": "여기 열쇠요. 편히 머무세요."
+                },
+                {
+                  "en": "We hope you enjoy your stay in Seoul.",
+                  "ko": "서울에서 즐겁게 지내세요."
+                },
+                {
+                  "en": "Did you enjoy your stay with us?",
+                  "ko": "저희 숙소에서 잘 지내셨어요?"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

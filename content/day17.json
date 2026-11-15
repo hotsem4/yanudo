@@ -1,0 +1,381 @@
+{
+  "lessons": [
+    {
+      "day": 17,
+      "title": "공항과 탑승",
+      "theme": "At the airport",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi, I'm checking in for the flight to Tokyo.",
+          "ko_word_order": "안녕하세요, 저는 체크인하고 있어요 / 비행편을 위해 / 도쿄로 가는",
+          "ko_natural": "안녕하세요, 도쿄행 비행기 체크인하려고요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "check in",
+              "form": "checking in",
+              "meaning": "탑승 수속하다",
+              "nuance": "공항에서는 탑승 수속, 호텔에서는 입실을 뜻한다. 명사는 check-in.",
+              "examples": [
+                {
+                  "en": "You can check in online the day before.",
+                  "ko": "전날 온라인으로 체크인할 수 있어요."
+                },
+                {
+                  "en": "We checked in two hours early.",
+                  "ko": "우리는 두 시간 일찍 수속했어."
+                },
+                {
+                  "en": "Where do I check in for this flight?",
+                  "ko": "이 비행기 어디서 수속해요?"
+                }
+              ]
+            },
+            {
+              "text": "flight",
+              "meaning": "항공편",
+              "nuance": "비행 한 편을 뜻한다. 도쿄행은 the flight to Tokyo, 도쿄발은 the flight from Tokyo.",
+              "examples": [
+                {
+                  "en": "My flight leaves at six in the morning.",
+                  "ko": "내 비행기는 아침 6시에 떠."
+                },
+                {
+                  "en": "How was your flight?",
+                  "ko": "비행은 어땠어?"
+                },
+                {
+                  "en": "I booked a cheap flight to Bangkok.",
+                  "ko": "방콕 가는 싼 항공권을 예약했어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. Are you checking any bags today?",
+          "ko_word_order": "네. / 당신은 부치나요 / 가방을 좀 / 오늘?",
+          "ko_natural": "네. 오늘 부치실 짐 있으세요?",
+          "terms": [
+            {
+              "text": "check a bag",
+              "form": "checking any bags",
+              "meaning": "짐을 부치다",
+              "nuance": "비행기 화물칸에 짐을 맡기는 것. 들고 타는 짐은 carry-on이라고 한다.",
+              "examples": [
+                {
+                  "en": "It costs thirty dollars to check a bag.",
+                  "ko": "짐 하나 부치는 데 30달러예요."
+                },
+                {
+                  "en": "I never check bags on short trips.",
+                  "ko": "짧은 여행엔 짐을 절대 안 부쳐."
+                },
+                {
+                  "en": "Do I have to check this suitcase?",
+                  "ko": "이 캐리어 부쳐야 해요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Just one. This backpack is my carry-on.",
+          "ko_word_order": "하나만요. / 이 배낭은 / 제 기내 휴대 가방이에요",
+          "ko_natural": "하나만요. 이 배낭은 들고 탈 거예요.",
+          "terms": [
+            {
+              "text": "carry-on",
+              "meaning": "기내 휴대 가방",
+              "nuance": "비행기 안으로 들고 타는 짐. carry-on bag이라고도 한다.",
+              "examples": [
+                {
+                  "en": "My carry-on is too heavy.",
+                  "ko": "내 기내용 가방이 너무 무거워."
+                },
+                {
+                  "en": "You can bring one carry-on and one small bag.",
+                  "ko": "기내용 가방 하나랑 작은 가방 하나 들고 탈 수 있어요."
+                },
+                {
+                  "en": "I packed everything in my carry-on.",
+                  "ko": "짐을 전부 기내용 가방에 쌌어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Okay. Please put your bag on the scale.",
+          "ko_word_order": "알겠어요. / 올려 주세요 / 당신의 가방을 / 저울 위에",
+          "ko_natural": "네. 가방을 저울에 올려 주세요.",
+          "terms": [
+            {
+              "text": "scale",
+              "meaning": "저울",
+              "nuance": "무게를 다는 기구. 체중계도 scale이라고 한다.",
+              "examples": [
+                {
+                  "en": "I stepped on the scale this morning.",
+                  "ko": "오늘 아침에 체중계에 올라갔어."
+                },
+                {
+                  "en": "The kitchen scale is in the drawer.",
+                  "ko": "주방 저울은 서랍에 있어."
+                },
+                {
+                  "en": "Put the box on the scale, please.",
+                  "ko": "상자를 저울에 올려 주세요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Could I get a window seat, please?",
+          "ko_word_order": "제가 받을 수 있을까요 / 창가 자리를, / 부탁해요?",
+          "ko_natural": "창가 자리로 주실 수 있어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "window seat",
+              "meaning": "창가 자리",
+              "nuance": "비행기·기차의 창가 자리. 통로 쪽은 aisle seat.",
+              "examples": [
+                {
+                  "en": "I always ask for a window seat.",
+                  "ko": "나는 늘 창가 자리를 달라고 해."
+                },
+                {
+                  "en": "Is there a window seat left?",
+                  "ko": "창가 자리 남았어요?"
+                },
+                {
+                  "en": "My son loves the window seat on trains.",
+                  "ko": "우리 아들은 기차 창가 자리를 좋아해."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. Boarding starts at two thirty at Gate 15.",
+          "ko_word_order": "네. / 탑승은 시작해요 / 2시 30분에 / 15번 게이트에서",
+          "ko_natural": "네. 탑승은 2시 반에 15번 게이트에서 시작해요.",
+          "terms": [
+            {
+              "text": "boarding",
+              "meaning": "탑승",
+              "nuance": "비행기·배에 타는 것. 탑승권은 boarding pass.",
+              "examples": [
+                {
+                  "en": "Boarding is delayed by twenty minutes.",
+                  "ko": "탑승이 20분 늦어졌어요."
+                },
+                {
+                  "en": "Please have your boarding pass ready.",
+                  "ko": "탑승권을 준비해 주세요."
+                },
+                {
+                  "en": "We're now boarding all passengers.",
+                  "ko": "지금 모든 승객 탑승을 시작합니다."
+                }
+              ]
+            },
+            {
+              "text": "gate",
+              "meaning": "탑승구",
+              "nuance": "공항의 탑승구. 탑승구가 바뀌는 것은 gate change.",
+              "examples": [
+                {
+                  "en": "Our gate changed to 22.",
+                  "ko": "우리 게이트가 22번으로 바뀌었어."
+                },
+                {
+                  "en": "Let's get coffee near the gate.",
+                  "ko": "게이트 근처에서 커피 사자."
+                },
+                {
+                  "en": "The gate closes ten minutes before departure.",
+                  "ko": "탑승구는 출발 10분 전에 닫혀요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Is the flight on time?",
+          "ko_word_order": "비행기는 / 정시인가요?",
+          "ko_natural": "비행기 제시간에 뜨나요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "on time",
+              "meaning": "제시간에",
+              "nuance": "예정된 시각에 정확히. in time은 '늦지 않게(여유 있게)'라는 차이가 있다.",
+              "examples": [
+                {
+                  "en": "The train was on time for once.",
+                  "ko": "웬일로 기차가 제시간에 왔어."
+                },
+                {
+                  "en": "Please try to be on time tomorrow.",
+                  "ko": "내일은 제시간에 와 줘."
+                },
+                {
+                  "en": "Our bus never leaves on time.",
+                  "ko": "우리 버스는 제시간에 출발하는 법이 없어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Yes, but try to get there twenty minutes early.",
+          "ko_word_order": "네, 하지만 / 노력하세요 / 거기 도착하도록 / 20분 일찍",
+          "ko_natural": "네, 그래도 20분 일찍 가 계세요.",
+          "terms": [
+            {
+              "text": "get there",
+              "meaning": "그곳에 도착하다",
+              "nuance": "어딘가에 도착하는 것을 말하는 구어. arrive there보다 훨씬 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "How long does it take to get there?",
+                  "ko": "거기까지 얼마나 걸려?"
+                },
+                {
+                  "en": "Call me when you get there.",
+                  "ko": "도착하면 전화해."
+                },
+                {
+                  "en": "We got there just before it closed.",
+                  "ko": "문 닫기 직전에 도착했어."
+                }
+              ]
+            },
+            {
+              "text": "try to",
+              "meaning": "~하려고 하다",
+              "nuance": "노력해 보라는 부드러운 권유. try -ing는 '시험 삼아 해 보다'로 뜻이 다르다.",
+              "examples": [
+                {
+                  "en": "I'll try to call you tonight.",
+                  "ko": "오늘 밤에 전화해 볼게."
+                },
+                {
+                  "en": "Try to get some sleep on the plane.",
+                  "ko": "비행기에서 잠 좀 자 봐."
+                },
+                {
+                  "en": "We tried to find a taxi, but it was hard.",
+                  "ko": "택시 잡으려고 했는데 힘들었어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Okay. Which way is security?",
+          "ko_word_order": "알겠어요. / 어느 쪽인가요 / 보안 검색대는?",
+          "ko_natural": "네. 보안 검색대는 어느 쪽이에요?",
+          "terms": [
+            {
+              "text": "security",
+              "meaning": "보안 검색대",
+              "nuance": "공항에서는 짐과 몸을 검사하는 곳을 짧게 security라고 부른다. go through security(보안 검색을 받다).",
+              "examples": [
+                {
+                  "en": "The line at security was really long.",
+                  "ko": "보안 검색 줄이 엄청 길었어."
+                },
+                {
+                  "en": "Take your laptop out at security.",
+                  "ko": "보안 검색대에서는 노트북을 꺼내세요."
+                },
+                {
+                  "en": "We got through security in ten minutes.",
+                  "ko": "보안 검색을 10분 만에 통과했어."
+                }
+              ]
+            },
+            {
+              "text": "which way",
+              "meaning": "어느 쪽",
+              "nuance": "방향을 물을 때 쓰는 짧은 말. Which way to ~?처럼 줄여서도 쓴다.",
+              "examples": [
+                {
+                  "en": "Which way is the exit?",
+                  "ko": "출구가 어느 쪽이에요?"
+                },
+                {
+                  "en": "Excuse me, which way to the beach?",
+                  "ko": "실례지만 해변은 어느 쪽이에요?"
+                },
+                {
+                  "en": "I'm not sure which way to go.",
+                  "ko": "어느 쪽으로 가야 할지 모르겠어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Straight ahead on your left. Have a good flight!",
+          "ko_word_order": "곧장 앞으로 / 당신의 왼쪽에요. / 좋은 비행 되세요!",
+          "ko_natural": "쭉 가시면 왼쪽에 있어요. 즐거운 비행 되세요!",
+          "terms": [
+            {
+              "text": "straight ahead",
+              "meaning": "곧장 앞에",
+              "nuance": "길 안내에서 '쭉 가면 바로 앞'이라는 뜻. 같은 뜻으로 Go straight도 쓴다.",
+              "examples": [
+                {
+                  "en": "The station is straight ahead.",
+                  "ko": "역은 쭉 가면 바로 앞이야."
+                },
+                {
+                  "en": "Keep going straight ahead for two blocks.",
+                  "ko": "두 블록 더 쭉 가."
+                },
+                {
+                  "en": "Look straight ahead, not at your phone.",
+                  "ko": "폰 보지 말고 앞을 봐."
+                }
+              ]
+            },
+            {
+              "text": "on your left",
+              "meaning": "왼쪽에",
+              "nuance": "길 안내에서 상대 기준 왼쪽. 오른쪽은 on your right.",
+              "examples": [
+                {
+                  "en": "You'll see the bank on your left.",
+                  "ko": "왼쪽에 은행이 보일 거예요."
+                },
+                {
+                  "en": "The restroom is on your left.",
+                  "ko": "화장실은 왼쪽에 있어요."
+                },
+                {
+                  "en": "Pass the park, and it's on your left.",
+                  "ko": "공원을 지나면 왼쪽에 있어요."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

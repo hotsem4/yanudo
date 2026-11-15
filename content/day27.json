@@ -1,0 +1,457 @@
+{
+  "lessons": [
+    {
+      "day": 27,
+      "title": "의견 묻고 말하기",
+      "theme": "Asking for and sharing opinions",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "So, what did you think of the movie?",
+          "ko_word_order": "그래서, 어떻게 생각했어 / 그 영화에 대해?",
+          "ko_natural": "그래서, 영화 어땠어?",
+          "core": true,
+          "terms": [
+            {
+              "text": "what did you think of",
+              "meaning": "~ 어땠어?",
+              "nuance": "경험한 것에 대한 의견을 물을 때 가장 흔한 표현. How was ~?보다 생각을 묻는 느낌.",
+              "examples": [
+                {
+                  "en": "What did you think of the new café?",
+                  "ko": "새로 생긴 카페 어땠어?"
+                },
+                {
+                  "en": "What did you think of his speech?",
+                  "ko": "걔 연설 어땠어?"
+                },
+                {
+                  "en": "What did you think of the book's ending?",
+                  "ko": "그 책 결말 어땠어?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I loved it, but the ending was kind of weird.",
+          "ko_word_order": "너무 좋았어, / 하지만 결말이 / 좀 이상했어",
+          "ko_natural": "너무 좋았는데, 결말이 좀 이상했어.",
+          "terms": [
+            {
+              "text": "kind of",
+              "meaning": "좀·약간",
+              "nuance": "말을 부드럽게 흐리는 구어. 빨리 말하면 kinda처럼 들린다.",
+              "examples": [
+                {
+                  "en": "I'm kind of hungry.",
+                  "ko": "좀 배고프네."
+                },
+                {
+                  "en": "The room was kind of small.",
+                  "ko": "방이 좀 작았어."
+                },
+                {
+                  "en": "It's kind of hard to explain.",
+                  "ko": "설명하기 좀 어려워."
+                }
+              ]
+            },
+            {
+              "text": "weird",
+              "meaning": "이상한",
+              "nuance": "strange보다 구어적. 어색하거나 납득이 안 될 때 쓴다.",
+              "examples": [
+                {
+                  "en": "That's weird. My key was right here.",
+                  "ko": "이상하다. 열쇠가 여기 있었는데."
+                },
+                {
+                  "en": "He's been acting weird all day.",
+                  "ko": "걔 하루 종일 이상하게 굴어."
+                },
+                {
+                  "en": "It feels weird to be back at school.",
+                  "ko": "학교에 다시 오니 기분이 이상해."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Really? I thought the ending was the best part.",
+          "ko_word_order": "정말? / 나는 생각했어 / 결말이 / 제일 좋은 부분이라고",
+          "ko_natural": "진짜? 난 결말이 제일 좋았는데.",
+          "terms": [
+            {
+              "text": "the best part",
+              "meaning": "제일 좋은 부분",
+              "nuance": "경험 중 가장 좋았던 점을 말할 때. The best part is ~로도 쓴다.",
+              "examples": [
+                {
+                  "en": "The best part of the trip was the food.",
+                  "ko": "여행에서 제일 좋았던 건 음식이었어."
+                },
+                {
+                  "en": "The best part is, it's free.",
+                  "ko": "제일 좋은 건 그게 공짜라는 거야."
+                },
+                {
+                  "en": "Weekends are the best part of my week.",
+                  "ko": "주말이 일주일 중 제일 좋아."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Why? It felt like it didn't really make sense.",
+          "ko_word_order": "왜? / 느낌이었어 / 그게 별로 말이 안 되는 것 같은",
+          "ko_natural": "왜? 좀 말이 안 되는 것 같던데.",
+          "terms": [
+            {
+              "text": "make sense",
+              "meaning": "말이 되다·이해가 되다",
+              "nuance": "이야기나 설명이 이해될 때 쓴다. doesn't make sense는 '말이 안 된다'.",
+              "examples": [
+                {
+                  "en": "Does that make sense?",
+                  "ko": "이해돼?"
+                },
+                {
+                  "en": "His excuse doesn't make sense.",
+                  "ko": "걔 변명 말이 안 돼."
+                },
+                {
+                  "en": "Now it all makes sense!",
+                  "ko": "이제 다 이해가 된다!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "In my opinion, it left room for a sequel.",
+          "ko_word_order": "내 생각에는, / 그게 여지를 남겼어 / 속편을 위한",
+          "ko_natural": "내 생각엔 속편 나오라고 여지를 남긴 것 같아.",
+          "core": true,
+          "terms": [
+            {
+              "text": "in my opinion",
+              "meaning": "내 생각에는",
+              "nuance": "내 의견임을 분명히 할 때. 구어에서는 I think를 더 흔히 쓰고, 이건 조금 더 또렷하게 말하는 느낌.",
+              "examples": [
+                {
+                  "en": "In my opinion, the first book was better.",
+                  "ko": "내 생각엔 1권이 더 나았어."
+                },
+                {
+                  "en": "In my opinion, we should leave early.",
+                  "ko": "내 생각엔 일찍 출발하는 게 좋아."
+                },
+                {
+                  "en": "It's too expensive, in my opinion.",
+                  "ko": "내 생각엔 너무 비싸."
+                }
+              ]
+            },
+            {
+              "text": "leave room for",
+              "form": "left room for",
+              "meaning": "여지를 남기다",
+              "nuance": "나중을 위해 공간이나 가능성을 남겨 둘 때. 디저트 배를 남겨 둘 때도 쓴다.",
+              "examples": [
+                {
+                  "en": "Leave room for dessert!",
+                  "ko": "디저트 배는 남겨 둬!"
+                },
+                {
+                  "en": "The plan leaves room for changes.",
+                  "ko": "그 계획은 바뀔 여지가 있어."
+                },
+                {
+                  "en": "His answer left no room for doubt.",
+                  "ko": "걔 대답엔 의심할 여지가 없었어."
+                }
+              ]
+            },
+            {
+              "text": "sequel",
+              "meaning": "속편",
+              "nuance": "영화나 책의 다음 편. 앞 이야기를 다룬 건 prequel.",
+              "examples": [
+                {
+                  "en": "The sequel is coming out next year.",
+                  "ko": "속편이 내년에 나와."
+                },
+                {
+                  "en": "Sequels are usually not as good.",
+                  "ko": "속편은 보통 1편만 못해."
+                },
+                {
+                  "en": "I can't wait for the sequel.",
+                  "ko": "속편 너무 기다려져."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Maybe, but I prefer movies with a clear ending.",
+          "ko_word_order": "그럴지도, / 하지만 나는 더 좋아해 / 영화를 / 확실한 결말이 있는",
+          "ko_natural": "그럴 수도. 근데 난 결말이 확실한 영화가 좋더라.",
+          "terms": [
+            {
+              "text": "prefer",
+              "meaning": "더 좋아하다",
+              "nuance": "둘 중 하나를 더 좋아할 때. prefer A to B 형태로 비교한다.",
+              "examples": [
+                {
+                  "en": "I prefer tea to coffee.",
+                  "ko": "커피보다 차가 좋아."
+                },
+                {
+                  "en": "Do you prefer the window or the aisle?",
+                  "ko": "창가랑 통로 중 어디가 좋으세요?"
+                },
+                {
+                  "en": "She prefers working from home.",
+                  "ko": "걔는 재택근무를 더 좋아해."
+                }
+              ]
+            },
+            {
+              "text": "clear",
+              "meaning": "분명한·확실한",
+              "nuance": "흐릿하지 않고 확실한 것. clear answer, clear idea처럼 쓴다.",
+              "examples": [
+                {
+                  "en": "Can you give me a clear answer?",
+                  "ko": "확실하게 대답해 줄래?"
+                },
+                {
+                  "en": "The instructions weren't very clear.",
+                  "ko": "설명이 별로 분명하지 않았어."
+                },
+                {
+                  "en": "I have a clear plan for this year.",
+                  "ko": "올해 계획이 분명하게 있어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Fair enough. What about the main actor, though?",
+          "ko_word_order": "그럴 수 있지. / 어땠어 / 주연 배우는, / 그런데?",
+          "ko_natural": "그럴 수 있지. 그럼 주연 배우는 어땠어?",
+          "terms": [
+            {
+              "text": "fair enough",
+              "meaning": "그럴 만하네",
+              "nuance": "상대 말에 완전히 동의하진 않아도 일리가 있다고 인정할 때 쓰는 구어.",
+              "examples": [
+                {
+                  "en": "You're too tired to go? Fair enough.",
+                  "ko": "너무 피곤해서 못 가? 그럴 수 있지."
+                },
+                {
+                  "en": "Fair enough, let's do it your way.",
+                  "ko": "일리 있네, 네 방식대로 하자."
+                },
+                {
+                  "en": "He wants more money. Fair enough.",
+                  "ko": "걔가 돈을 더 달래. 그럴 만하지."
+                }
+              ]
+            },
+            {
+              "text": "what about",
+              "meaning": "~는 어때?",
+              "nuance": "화제를 바꾸거나 다른 대상을 물을 때 쓴다.",
+              "examples": [
+                {
+                  "en": "What about you? Are you coming?",
+                  "ko": "너는? 올 거야?"
+                },
+                {
+                  "en": "What about Sunday instead?",
+                  "ko": "대신 일요일은 어때?"
+                },
+                {
+                  "en": "What about the kids? Who's watching them?",
+                  "ko": "애들은? 누가 봐?"
+                }
+              ]
+            },
+            {
+              "text": "though",
+              "meaning": "그런데·그래도",
+              "nuance": "문장 끝에 붙여 화제를 바꾸거나 앞 말과 대조할 때 쓰는 구어.",
+              "examples": [
+                {
+                  "en": "I liked it. The music was too loud, though.",
+                  "ko": "좋았어. 음악이 너무 시끄럽긴 했지만."
+                },
+                {
+                  "en": "It's small. I love the view, though.",
+                  "ko": "작긴 해. 그래도 전망은 정말 좋아."
+                },
+                {
+                  "en": "He's quiet. He's really funny, though.",
+                  "ko": "걔 조용해. 근데 진짜 웃겨."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "He was amazing. I bet he'll win an award.",
+          "ko_word_order": "그는 끝내줬어. / 장담하는데 / 그는 탈 거야 / 상을",
+          "ko_natural": "연기 진짜 끝내줬어. 분명 상 받을 거야.",
+          "terms": [
+            {
+              "text": "I bet",
+              "meaning": "분명 ~일 거야",
+              "nuance": "확신하는 추측을 말할 때 쓰는 구어. '내기해도 좋다'는 느낌이다.",
+              "examples": [
+                {
+                  "en": "I bet it'll rain tomorrow.",
+                  "ko": "내일 분명 비 올 거야."
+                },
+                {
+                  "en": "I bet you're tired after that flight.",
+                  "ko": "그 비행 끝나고 피곤하겠다."
+                },
+                {
+                  "en": "I bet she knows the answer.",
+                  "ko": "걔는 분명 답을 알 거야."
+                }
+              ]
+            },
+            {
+              "text": "win an award",
+              "meaning": "상을 받다",
+              "nuance": "대회나 시상식에서 상을 탈 때 쓴다. get an award도 쓴다.",
+              "examples": [
+                {
+                  "en": "Her book won an award last year.",
+                  "ko": "걔 책이 작년에 상을 받았어."
+                },
+                {
+                  "en": "I never expected to win an award.",
+                  "ko": "상 받을 줄은 전혀 몰랐어."
+                },
+                {
+                  "en": "The restaurant has won many awards.",
+                  "ko": "그 식당은 상을 여러 번 받았어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I totally agree with you on that one.",
+          "ko_word_order": "나 완전히 동의해 / 너에게 / 그 부분은",
+          "ko_natural": "그건 완전 동의해.",
+          "core": true,
+          "terms": [
+            {
+              "text": "agree with someone on",
+              "form": "agree with you on",
+              "meaning": "~에 대해 동의하다",
+              "nuance": "누구에게 동의하면 with, 어떤 점에 동의하면 on. 의견을 주고받을 때의 기본 틀.",
+              "examples": [
+                {
+                  "en": "I agree with you on most things.",
+                  "ko": "대부분은 너랑 생각이 같아."
+                },
+                {
+                  "en": "Do you agree with him on this?",
+                  "ko": "이거에 대해 걔랑 같은 생각이야?"
+                },
+                {
+                  "en": "She agrees with me on the price.",
+                  "ko": "가격은 걔도 나랑 같은 생각이야."
+                }
+              ]
+            },
+            {
+              "text": "totally",
+              "meaning": "완전히",
+              "nuance": "강하게 동의하거나 강조할 때 쓰는 구어. 친구 사이에서 아주 흔하다.",
+              "examples": [
+                {
+                  "en": "I totally forgot about it.",
+                  "ko": "완전히 까먹었어."
+                },
+                {
+                  "en": "You're totally right.",
+                  "ko": "네 말이 완전 맞아."
+                },
+                {
+                  "en": "That's a totally different story.",
+                  "ko": "그건 완전 다른 얘기야."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "See? We don't disagree on everything after all.",
+          "ko_word_order": "봤지? / 우리가 생각이 다르진 않아 / 모든 것에 대해 / 결국",
+          "ko_natural": "봐, 우리가 매번 생각이 다른 건 아니잖아.",
+          "terms": [
+            {
+              "text": "after all",
+              "meaning": "결국·따지고 보면",
+              "nuance": "예상과 달리 결국 그렇다는 걸 말할 때. 보통 문장 끝에 붙는다.",
+              "examples": [
+                {
+                  "en": "The test wasn't that hard after all.",
+                  "ko": "시험이 결국 그렇게 어렵진 않았어."
+                },
+                {
+                  "en": "I decided to go after all.",
+                  "ko": "결국 가기로 했어."
+                },
+                {
+                  "en": "You were right after all.",
+                  "ko": "결국 네 말이 맞았네."
+                }
+              ]
+            },
+            {
+              "text": "disagree",
+              "meaning": "의견이 다르다",
+              "nuance": "동의하지 않을 때 쓴다. I disagree는 직설적이라 I'm not sure about that으로 돌려 말하기도 한다.",
+              "examples": [
+                {
+                  "en": "I disagree with that idea.",
+                  "ko": "그 생각엔 동의 못 해."
+                },
+                {
+                  "en": "We often disagree, but we're still friends.",
+                  "ko": "우린 자주 의견이 다르지만 여전히 친구야."
+                },
+                {
+                  "en": "Sorry, but I have to disagree.",
+                  "ko": "미안하지만 난 생각이 달라."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,525 @@
+{
+  "lessons": [
+    {
+      "day": 56,
+      "title": "화상회의 문제 대처",
+      "theme": "Handling video call problems",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi Ava, can you hear me? I think my audio keeps cutting out.",
+          "ko_word_order": "안녕하세요 에이바, 제 말 들려요? / 제 생각에 / 제 오디오가 계속 끊겨요",
+          "ko_natural": "에이바, 제 목소리 들려요? 소리가 자꾸 끊기는 것 같아요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "keep ~ing",
+              "form": "keeps",
+              "meaning": "계속 ~하다",
+              "nuance": "원치 않는 일이 반복될 때 자주 쓴다. 뒤에 동사 -ing가 온다.",
+              "examples": [
+                {
+                  "en": "My laptop keeps freezing.",
+                  "ko": "노트북이 자꾸 멈춰."
+                },
+                {
+                  "en": "He keeps calling me.",
+                  "ko": "그 사람이 계속 전화해."
+                },
+                {
+                  "en": "I keep forgetting her name.",
+                  "ko": "그녀 이름을 자꾸 까먹어."
+                }
+              ]
+            },
+            {
+              "text": "cut out",
+              "form": "cutting out",
+              "meaning": "(소리가) 끊기다",
+              "nuance": "통화나 오디오가 중간중간 끊길 때 쓴다. 엔진이 갑자기 꺼질 때도 쓴다.",
+              "examples": [
+                {
+                  "en": "Sorry, you cut out for a second.",
+                  "ko": "죄송해요, 잠깐 끊겼어요."
+                },
+                {
+                  "en": "The music keeps cutting out.",
+                  "ko": "음악이 자꾸 끊겨."
+                },
+                {
+                  "en": "My phone cuts out in the elevator.",
+                  "ko": "엘리베이터에선 전화가 끊겨요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "You're breaking up a little. Could you try turning off your camera?",
+          "ko_word_order": "당신 소리가 조금 끊겨요. / 해 보시겠어요 / 카메라를 끄는 걸?",
+          "ko_natural": "소리가 좀 끊겨요. 카메라 한번 꺼 보시겠어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "break up",
+              "form": "breaking up",
+              "meaning": "(소리가) 끊기다",
+              "nuance": "통화 중 상대 목소리가 끊겨 들릴 때 'You're breaking up'이라고 한다. 연인이 헤어진다는 뜻과는 문맥으로 구분한다.",
+              "examples": [
+                {
+                  "en": "I can't hear you, you're breaking up.",
+                  "ko": "안 들려요, 소리가 끊겨요."
+                },
+                {
+                  "en": "The signal is bad, so I might break up.",
+                  "ko": "신호가 약해서 끊길 수도 있어요."
+                },
+                {
+                  "en": "You were breaking up during the call.",
+                  "ko": "통화 중에 소리가 끊겼어요."
+                }
+              ]
+            },
+            {
+              "text": "try ~ing",
+              "form": "try turning",
+              "meaning": "(시험 삼아) ~해 보다",
+              "nuance": "문제를 풀려고 방법을 시험 삼아 해 보라고 할 때 쓴다. 'try to ~'는 '애써 ~하려 하다'라서 뜻이 다르다.",
+              "examples": [
+                {
+                  "en": "Try restarting your computer.",
+                  "ko": "컴퓨터 재부팅해 봐."
+                },
+                {
+                  "en": "Have you tried calling her?",
+                  "ko": "그녀한테 전화해 봤어?"
+                },
+                {
+                  "en": "Try adding a little salt.",
+                  "ko": "소금 조금 넣어 봐."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Okay, I just switched it off. Is that any better now?",
+          "ko_word_order": "네, 방금 그걸 껐어요. / 그게 조금이라도 나아졌나요 / 지금?",
+          "ko_natural": "네, 방금 껐어요. 이제 좀 나아졌어요?",
+          "terms": [
+            {
+              "text": "switch off",
+              "form": "switched it off",
+              "meaning": "끄다",
+              "nuance": "전원이나 기기를 끈다는 뜻으로 turn off와 같다. 영국 영어에서 특히 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Switch off the lights when you leave.",
+                  "ko": "나갈 때 불 꺼."
+                },
+                {
+                  "en": "I switched my phone off during the movie.",
+                  "ko": "영화 보는 동안 폰을 꺼 뒀어."
+                },
+                {
+                  "en": "Did you switch off the heater?",
+                  "ko": "히터 껐어?"
+                }
+              ]
+            },
+            {
+              "text": "any better",
+              "meaning": "조금이라도 나은",
+              "nuance": "나아졌는지 조심스럽게 물을 때 쓴다. 'Is that any better?'는 조치한 뒤 상대 반응을 확인하는 말이다.",
+              "examples": [
+                {
+                  "en": "Is your headache any better?",
+                  "ko": "두통 좀 나아졌어?"
+                },
+                {
+                  "en": "The traffic isn't any better today.",
+                  "ko": "오늘도 길이 전혀 안 나아졌어."
+                },
+                {
+                  "en": "Does this chair feel any better?",
+                  "ko": "이 의자는 좀 나아요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Much better, thanks. Oh, and there's a bit of an echo on your end.",
+          "ko_word_order": "훨씬 나아요, 고마워요. / 아, 그리고 약간의 울림이 있어요 / 그쪽에서",
+          "ko_natural": "훨씬 나아요. 아, 그리고 그쪽에서 소리가 좀 울려요.",
+          "terms": [
+            {
+              "text": "a bit of",
+              "meaning": "약간의",
+              "nuance": "양이나 정도가 조금이라는 구어. a little보다 캐주얼하고 'a bit of a problem'처럼 문제를 부드럽게 말할 때도 쓴다.",
+              "examples": [
+                {
+                  "en": "We have a bit of a problem.",
+                  "ko": "문제가 좀 있어요."
+                },
+                {
+                  "en": "I need a bit of help.",
+                  "ko": "도움이 좀 필요해."
+                },
+                {
+                  "en": "There's a bit of traffic today.",
+                  "ko": "오늘 길이 좀 막혀."
+                }
+              ]
+            },
+            {
+              "text": "on one's end",
+              "form": "on your end",
+              "meaning": "그쪽에서는",
+              "nuance": "통화나 화상회의에서 상대 쪽 환경을 가리킬 때 쓴다. 'on my end'는 '제 쪽에서는'이다.",
+              "examples": [
+                {
+                  "en": "Everything looks fine on my end.",
+                  "ko": "제 쪽에선 다 괜찮아 보여요."
+                },
+                {
+                  "en": "Is it raining on your end?",
+                  "ko": "거기는 비 와요?"
+                },
+                {
+                  "en": "There was a problem on their end.",
+                  "ko": "그쪽에 문제가 있었어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Sorry about that. Let me grab my headphones. Give me one second.",
+          "ko_word_order": "죄송해요. / 제가 헤드폰을 가져올게요. / 1초만 주세요",
+          "ko_natural": "죄송해요. 헤드폰 좀 가져올게요. 잠깐만요.",
+          "terms": [
+            {
+              "text": "grab",
+              "meaning": "얼른 가져오다",
+              "nuance": "물건을 재빨리 집어 오거나 챙긴다는 구어. get보다 가볍고 빠른 느낌이다.",
+              "examples": [
+                {
+                  "en": "Let me grab my jacket.",
+                  "ko": "재킷 좀 챙길게."
+                },
+                {
+                  "en": "Can you grab me a water?",
+                  "ko": "물 하나 갖다줄래?"
+                },
+                {
+                  "en": "I'll grab the keys and meet you outside.",
+                  "ko": "열쇠 챙겨서 밖에서 만나."
+                }
+              ]
+            },
+            {
+              "text": "give me a second",
+              "form": "give me one second",
+              "meaning": "잠깐만요",
+              "nuance": "잠시만 기다려 달라는 구어. 'One sec'로 줄여 말하기도 한다.",
+              "examples": [
+                {
+                  "en": "Give me a second to find it.",
+                  "ko": "찾는 동안 잠깐만요."
+                },
+                {
+                  "en": "Just give me a second, I'm almost done.",
+                  "ko": "잠깐만, 거의 다 했어."
+                },
+                {
+                  "en": "Can you give me a second? I'm on the phone.",
+                  "ko": "잠깐만요, 통화 중이에요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "No rush. Meanwhile, I'll share my screen so we're ready to go.",
+          "ko_word_order": "서두르지 마세요. / 그동안, / 제가 화면을 공유할게요 / 바로 시작할 수 있게",
+          "ko_natural": "천천히 하세요. 그동안 제가 화면 공유해 놓을게요.",
+          "terms": [
+            {
+              "text": "no rush",
+              "form": "No rush",
+              "meaning": "천천히 하세요",
+              "nuance": "급하지 않으니 서두르지 말라고 배려하는 말. Take your time과 비슷하고 더 짧다.",
+              "examples": [
+                {
+                  "en": "No rush, reply when you can.",
+                  "ko": "급한 거 아니니 시간 될 때 답해 줘."
+                },
+                {
+                  "en": "There's no rush on this report.",
+                  "ko": "이 보고서는 급하지 않아요."
+                },
+                {
+                  "en": "No rush, I'll wait in the car.",
+                  "ko": "천천히 해, 차에서 기다릴게."
+                }
+              ]
+            },
+            {
+              "text": "meanwhile",
+              "form": "Meanwhile",
+              "meaning": "그동안",
+              "nuance": "다른 일이 진행되는 사이에라는 뜻. 문장 앞에 쓰고 in the meantime과 비슷하다.",
+              "examples": [
+                {
+                  "en": "Meanwhile, I'll make some tea.",
+                  "ko": "그동안 차 좀 끓일게."
+                },
+                {
+                  "en": "Meanwhile, the kids fell asleep.",
+                  "ko": "그사이 애들은 잠들었어."
+                },
+                {
+                  "en": "Meanwhile, let's review the plan.",
+                  "ko": "그동안 계획을 검토하죠."
+                }
+              ]
+            },
+            {
+              "text": "share one's screen",
+              "form": "share my screen",
+              "meaning": "화면을 공유하다",
+              "nuance": "화상회의에서 내 컴퓨터 화면을 다른 사람에게 보여 주는 것. 'Can you see my screen?'과 함께 쓴다.",
+              "examples": [
+                {
+                  "en": "Can you share your screen?",
+                  "ko": "화면 공유해 주실래요?"
+                },
+                {
+                  "en": "I'll share my screen in a minute.",
+                  "ko": "잠시 후에 화면 공유할게요."
+                },
+                {
+                  "en": "Wait, I can't share my screen.",
+                  "ko": "잠깐만요, 화면 공유가 안 돼요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Okay, I'm back. Hmm, all I can see is a black screen right now.",
+          "ko_word_order": "네, 돌아왔어요. / 음, 제가 볼 수 있는 건 전부 / 검은 화면이에요 / 지금",
+          "ko_natural": "네, 왔어요. 음, 지금 저한테는 검은 화면만 보여요.",
+          "terms": [
+            {
+              "text": "I'm back",
+              "meaning": "돌아왔어요",
+              "nuance": "잠깐 자리를 비웠다가 돌아왔을 때 쓰는 말. 화상회의나 메신저에서는 'Back'만 써도 된다.",
+              "examples": [
+                {
+                  "en": "Sorry, I'm back now.",
+                  "ko": "죄송해요, 이제 돌아왔어요."
+                },
+                {
+                  "en": "I'm back from lunch.",
+                  "ko": "점심 먹고 왔어요."
+                },
+                {
+                  "en": "Mom, I'm back!",
+                  "ko": "엄마, 나 왔어!"
+                }
+              ]
+            },
+            {
+              "text": "all I can see is",
+              "meaning": "보이는 건 ~뿐이다",
+              "nuance": "'all + 주어 + 동사'는 '~하는 건 그것뿐'이라는 뜻이다. 'All I need is ~'처럼 응용해 쓴다.",
+              "examples": [
+                {
+                  "en": "All I can see is fog.",
+                  "ko": "보이는 건 안개뿐이야."
+                },
+                {
+                  "en": "All I can hear is static.",
+                  "ko": "들리는 건 잡음뿐이에요."
+                },
+                {
+                  "en": "All I can see is your name.",
+                  "ko": "당신 이름만 보여요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Really? Hang on, let me stop sharing and try that again.",
+          "ko_word_order": "정말요? / 잠깐만요, / 공유를 멈추고 / 다시 해 볼게요",
+          "ko_natural": "그래요? 잠깐만요, 공유 껐다가 다시 해 볼게요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "hang on",
+              "form": "Hang on",
+              "meaning": "잠깐만요",
+              "nuance": "잠시 기다려 달라는 구어. wait보다 부드럽고 전화나 화상회의에서 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Hang on, I'll check.",
+                  "ko": "잠깐만, 확인해 볼게."
+                },
+                {
+                  "en": "Can you hang on a minute?",
+                  "ko": "잠깐만 기다려 줄래요?"
+                },
+                {
+                  "en": "Hang on, that's not right.",
+                  "ko": "잠깐, 그거 이상한데."
+                }
+              ]
+            },
+            {
+              "text": "stop sharing",
+              "meaning": "공유를 멈추다",
+              "nuance": "화상회의에서 화면 공유를 끄는 것으로, 버튼 이름이기도 하다. 다시 켜는 건 'share again'이다.",
+              "examples": [
+                {
+                  "en": "Can you stop sharing for a moment?",
+                  "ko": "잠깐 공유 좀 멈춰 주실래요?"
+                },
+                {
+                  "en": "I forgot to stop sharing my screen.",
+                  "ko": "화면 공유 끄는 걸 깜빡했어요."
+                },
+                {
+                  "en": "Click here to stop sharing.",
+                  "ko": "공유를 멈추려면 여기 누르세요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "There it is. I can see your slides clearly now. Shall we get going?",
+          "ko_word_order": "저기 나오네요. / 당신 슬라이드가 잘 보여요 / 이제. / 시작할까요?",
+          "ko_natural": "아, 나왔어요. 이제 슬라이드 잘 보여요. 시작할까요?",
+          "terms": [
+            {
+              "text": "there it is",
+              "form": "There it is",
+              "meaning": "아, 나왔다",
+              "nuance": "찾던 것이 나타나거나 화면이 뜰 때 쓰는 말. 'Here it is'는 내가 건네거나 찾아냈을 때 쓴다.",
+              "examples": [
+                {
+                  "en": "There it is! I found my phone.",
+                  "ko": "아, 저기 있다! 폰 찾았어."
+                },
+                {
+                  "en": "Wait for it... there it is.",
+                  "ko": "기다려 봐... 나왔다."
+                },
+                {
+                  "en": "There it is, on the top shelf.",
+                  "ko": "저기 있네, 맨 위 선반에."
+                }
+              ]
+            },
+            {
+              "text": "shall we",
+              "form": "Shall we",
+              "meaning": "~할까요?",
+              "nuance": "함께 하자고 정중하게 제안할 때 쓴다. Should we보다 부드럽고 약간 격식 있다.",
+              "examples": [
+                {
+                  "en": "Shall we order now?",
+                  "ko": "이제 주문할까요?"
+                },
+                {
+                  "en": "Shall we take a short break?",
+                  "ko": "잠깐 쉴까요?"
+                },
+                {
+                  "en": "It's late. Shall we call it a day?",
+                  "ko": "늦었네요. 오늘은 여기까지 할까요?"
+                }
+              ]
+            },
+            {
+              "text": "get going",
+              "meaning": "시작하다, 출발하다",
+              "nuance": "슬슬 시작하거나 떠나자는 구어. 'We should get going'은 '이제 가 봐야겠다'는 뜻도 된다.",
+              "examples": [
+                {
+                  "en": "We should get going before it rains.",
+                  "ko": "비 오기 전에 출발하자."
+                },
+                {
+                  "en": "Let's get going, we're late.",
+                  "ko": "가자, 늦었어."
+                },
+                {
+                  "en": "Once we get going, it'll be easy.",
+                  "ko": "일단 시작하면 쉬울 거예요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Let's do it. If we get disconnected again, I'll just call your cell.",
+          "ko_word_order": "그렇게 해요. / 만약 우리 연결이 또 끊기면, / 제가 그냥 전화할게요 / 당신 휴대폰으로",
+          "ko_natural": "그래요. 혹시 또 연결 끊기면 그냥 휴대폰으로 전화할게요.",
+          "terms": [
+            {
+              "text": "get disconnected",
+              "meaning": "연결이 끊기다",
+              "nuance": "통화나 인터넷 연결이 갑자기 끊길 때 쓴다. 'We got cut off'도 같은 뜻이다.",
+              "examples": [
+                {
+                  "en": "Sorry, we got disconnected.",
+                  "ko": "죄송해요, 연결이 끊겼어요."
+                },
+                {
+                  "en": "I keep getting disconnected from the Wi-Fi.",
+                  "ko": "와이파이가 자꾸 끊겨."
+                },
+                {
+                  "en": "If you get disconnected, just rejoin.",
+                  "ko": "연결 끊기면 다시 들어오세요."
+                }
+              ]
+            },
+            {
+              "text": "cell",
+              "meaning": "휴대폰",
+              "nuance": "cell phone을 줄인 미국 구어. 영국에서는 mobile이라고 한다.",
+              "examples": [
+                {
+                  "en": "Call me on my cell.",
+                  "ko": "제 휴대폰으로 전화 주세요."
+                },
+                {
+                  "en": "What's your cell number?",
+                  "ko": "휴대폰 번호가 뭐예요?"
+                },
+                {
+                  "en": "I left my cell at home.",
+                  "ko": "휴대폰을 집에 두고 왔어."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

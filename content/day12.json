@@ -1,0 +1,401 @@
+{
+  "lessons": [
+    {
+      "day": 12,
+      "title": "택시 타기",
+      "theme": "Taking a taxi",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi, can you take me to Seoul Station?",
+          "ko_word_order": "안녕하세요, / 데려다줄 수 있나요 / 저를 / 서울역에?",
+          "ko_natural": "안녕하세요, 서울역으로 가 주세요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "take me to",
+              "form": "take me to",
+              "meaning": "~로 데려다주다, ~로 가 주세요",
+              "nuance": "택시에서 목적지를 말할 때 가장 흔한 표현이다. 더 짧게 To Seoul Station, please라고도 한다.",
+              "examples": [
+                {
+                  "en": "Can you take me to this address?",
+                  "ko": "이 주소로 가 주세요."
+                },
+                {
+                  "en": "Please take me to the nearest hospital.",
+                  "ko": "가장 가까운 병원으로 가 주세요."
+                },
+                {
+                  "en": "My dad took me to the airport.",
+                  "ko": "아빠가 공항까지 데려다줬어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. Please fasten your seatbelt.",
+          "ko_word_order": "물론이죠. / 매 주세요 / 당신의 안전벨트를",
+          "ko_natural": "네. 안전벨트 매 주세요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "fasten",
+              "form": "fasten",
+              "meaning": "(벨트를) 매다",
+              "nuance": "안전벨트를 맬 때 쓰는 말로 기내 방송에서도 자주 나온다. 구어에서는 put on도 쓴다.",
+              "examples": [
+                {
+                  "en": "Fasten your seatbelt before we take off.",
+                  "ko": "이륙 전에 안전벨트를 매세요."
+                },
+                {
+                  "en": "I couldn't fasten the buckle.",
+                  "ko": "버클을 못 채웠어요."
+                },
+                {
+                  "en": "Make sure the kids fasten their seatbelts.",
+                  "ko": "애들 안전벨트 꼭 매게 하세요."
+                }
+              ]
+            },
+            {
+              "text": "seatbelt",
+              "form": "seatbelt",
+              "meaning": "안전벨트",
+              "nuance": "차나 비행기의 안전벨트다. seat belt처럼 띄어 쓰기도 한다.",
+              "examples": [
+                {
+                  "en": "Is your seatbelt on?",
+                  "ko": "안전벨트 맸어?"
+                },
+                {
+                  "en": "The seatbelt in the back is broken.",
+                  "ko": "뒷좌석 안전벨트가 고장 났어요."
+                },
+                {
+                  "en": "Always wear a seatbelt, even in a taxi.",
+                  "ko": "택시에서도 꼭 안전벨트를 매세요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Is there a lot of traffic right now?",
+          "ko_word_order": "있나요 / 차가 많이 / 지금?",
+          "ko_natural": "지금 차 많이 막혀요?",
+          "core": false,
+          "terms": [
+            {
+              "text": "traffic",
+              "form": "traffic",
+              "meaning": "교통량, 오가는 차",
+              "nuance": "길에 차가 많은 상태를 말한다. heavy traffic은 차가 많이 막힌다는 뜻이고, stuck in traffic은 차가 막혀 꼼짝 못한다는 뜻이다.",
+              "examples": [
+                {
+                  "en": "Sorry I'm late. I got stuck in traffic.",
+                  "ko": "늦어서 미안해요. 차가 막혔어요."
+                },
+                {
+                  "en": "Traffic is light on Sundays.",
+                  "ko": "일요일엔 차가 별로 없어요."
+                },
+                {
+                  "en": "Let's leave early to avoid traffic.",
+                  "ko": "차 막히기 전에 일찍 나가자."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "A little. It should take about twenty minutes.",
+          "ko_word_order": "조금요. / 그것은 걸릴 거예요 / 약 20분이",
+          "ko_natural": "조금요. 20분 정도 걸릴 거예요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "a little",
+              "form": "a little",
+              "meaning": "조금, 약간",
+              "nuance": "정도가 크지 않다고 답할 때 쓴다. 대답으로 혼자 써도 자연스럽다.",
+              "examples": [
+                {
+                  "en": "Are you tired? A little.",
+                  "ko": "피곤해요? 조금요."
+                },
+                {
+                  "en": "Can you speak a little slower?",
+                  "ko": "조금만 천천히 말해 줄래요?"
+                },
+                {
+                  "en": "I'm a little nervous.",
+                  "ko": "좀 긴장돼요."
+                }
+              ]
+            },
+            {
+              "text": "should take",
+              "form": "should take",
+              "meaning": "(시간이) 걸릴 거예요",
+              "nuance": "여기서 should는 '~해야 한다'가 아니라 '아마 ~일 것이다'라는 예상을 나타낸다.",
+              "examples": [
+                {
+                  "en": "It should take an hour by car.",
+                  "ko": "차로 한 시간쯤 걸릴 거예요."
+                },
+                {
+                  "en": "The repair should take two days.",
+                  "ko": "수리는 이틀 걸릴 거예요."
+                },
+                {
+                  "en": "Lunch should take thirty minutes at most.",
+                  "ko": "점심은 길어야 30분 걸릴 거예요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I'm in a bit of a hurry.",
+          "ko_word_order": "저는 있어요 / 약간 서두르는 중에",
+          "ko_natural": "제가 좀 급해서요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "in a hurry",
+              "form": "in a bit of a hurry",
+              "meaning": "급한, 서두르는",
+              "nuance": "시간이 없어서 서둘러야 할 때 쓴다. 상대에게 재촉하는 느낌 없이 내 사정을 알리는 말이다.",
+              "examples": [
+                {
+                  "en": "Sorry, I'm in a hurry.",
+                  "ko": "미안해요, 제가 급해서요."
+                },
+                {
+                  "en": "Why are you in such a hurry?",
+                  "ko": "왜 그렇게 서둘러?"
+                },
+                {
+                  "en": "She left in a hurry.",
+                  "ko": "그녀는 급하게 나갔어요."
+                }
+              ]
+            },
+            {
+              "text": "a bit of",
+              "form": "a bit of",
+              "meaning": "약간의, 좀",
+              "nuance": "명사 앞에 붙여 정도를 줄이는 구어 표현이다. a bit of a problem처럼 말을 부드럽게 만든다.",
+              "examples": [
+                {
+                  "en": "We have a bit of a problem.",
+                  "ko": "문제가 좀 있어요."
+                },
+                {
+                  "en": "It was a bit of a surprise.",
+                  "ko": "좀 놀랐어요."
+                },
+                {
+                  "en": "Can I have a bit of sugar?",
+                  "ko": "설탕 조금만 주실래요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Okay, I'll take a shortcut.",
+          "ko_word_order": "알겠어요, / 제가 갈게요 / 지름길로",
+          "ko_natural": "알겠어요, 지름길로 갈게요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "take a shortcut",
+              "form": "take a shortcut",
+              "meaning": "지름길로 가다",
+              "nuance": "더 빠른 길로 가겠다고 할 때 쓴다. 지름길 자체는 shortcut이라고 한다.",
+              "examples": [
+                {
+                  "en": "Let's take a shortcut through the park.",
+                  "ko": "공원 가로질러 지름길로 가자."
+                },
+                {
+                  "en": "I took a shortcut and got lost.",
+                  "ko": "지름길로 갔다가 길을 잃었어요."
+                },
+                {
+                  "en": "Can we take a shortcut? We're late.",
+                  "ko": "지름길로 갈 수 있을까요? 늦었어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Could you drop me off at the main entrance?",
+          "ko_word_order": "내려 줄 수 있나요 / 저를 / 정문 입구에?",
+          "ko_natural": "정문 입구에 내려 주실 수 있어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "drop off",
+              "form": "drop me off",
+              "meaning": "내려 주다",
+              "nuance": "차로 데려다주고 내려 줄 때 쓴다. 대명사는 drop me off처럼 가운데 넣는다.",
+              "examples": [
+                {
+                  "en": "Can you drop me off at the corner?",
+                  "ko": "모퉁이에서 내려 줄래요?"
+                },
+                {
+                  "en": "I'll drop the kids off at school.",
+                  "ko": "내가 애들 학교에 내려 줄게."
+                },
+                {
+                  "en": "She dropped me off at home.",
+                  "ko": "그녀가 집 앞에 내려 줬어요."
+                }
+              ]
+            },
+            {
+              "text": "entrance",
+              "form": "entrance",
+              "meaning": "입구",
+              "nuance": "건물에 들어가는 문이다. main entrance는 정문, back entrance는 뒷문이다.",
+              "examples": [
+                {
+                  "en": "Meet me at the north entrance.",
+                  "ko": "북쪽 입구에서 만나요."
+                },
+                {
+                  "en": "The entrance is around the corner.",
+                  "ko": "입구는 모퉁이 돌아서 있어요."
+                },
+                {
+                  "en": "Where's the entrance to the parking lot?",
+                  "ko": "주차장 입구가 어디예요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Here we are. It comes to twelve thousand won.",
+          "ko_word_order": "다 왔어요. / 그것은 나와요 / 1만 2천 원이",
+          "ko_natural": "다 왔습니다. 1만 2천 원 나왔어요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "here we are",
+              "form": "here we are",
+              "meaning": "다 왔어요",
+              "nuance": "목적지에 도착했을 때 운전자나 안내하는 사람이 쓴다.",
+              "examples": [
+                {
+                  "en": "Here we are, your hotel.",
+                  "ko": "다 왔어요, 호텔이에요."
+                },
+                {
+                  "en": "Here we are! Home sweet home.",
+                  "ko": "다 왔다! 역시 집이 최고야."
+                },
+                {
+                  "en": "Okay, here we are. Watch your step.",
+                  "ko": "자, 다 왔어요. 발밑 조심하세요."
+                }
+              ]
+            },
+            {
+              "text": "come to",
+              "form": "comes to",
+              "meaning": "(금액이) ~ 나오다",
+              "nuance": "합계 금액을 말할 때 쓴다. That comes to ~, The total comes to ~처럼 말한다.",
+              "examples": [
+                {
+                  "en": "The total comes to thirty dollars.",
+                  "ko": "합계 30달러 나왔어요."
+                },
+                {
+                  "en": "Dinner came to about fifty dollars each.",
+                  "ko": "저녁값이 1인당 50달러쯤 나왔어요."
+                },
+                {
+                  "en": "What does it come to with tax?",
+                  "ko": "세금 포함하면 얼마예요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Here's fifteen thousand. Keep the change.",
+          "ko_word_order": "여기 1만 5천 원이요. / 가지세요 / 잔돈은",
+          "ko_natural": "여기 1만 5천 원이요. 잔돈은 괜찮아요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "keep the change",
+              "form": "keep the change",
+              "meaning": "잔돈은 가지세요",
+              "nuance": "택시나 식당에서 거스름돈을 팁처럼 두고 갈 때 쓴다.",
+              "examples": [
+                {
+                  "en": "Thanks, and keep the change.",
+                  "ko": "고마워요, 잔돈은 됐어요."
+                },
+                {
+                  "en": "Just keep the change, buddy.",
+                  "ko": "잔돈은 그냥 가지세요."
+                },
+                {
+                  "en": "He told the driver to keep the change.",
+                  "ko": "그는 기사님께 잔돈은 가지라고 했어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Thank you! Have a good one.",
+          "ko_word_order": "고마워요! / 가지세요 / 좋은 하루를",
+          "ko_natural": "감사합니다! 좋은 하루 되세요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "have a good one",
+              "form": "have a good one",
+              "meaning": "좋은 하루 보내요",
+              "nuance": "헤어질 때 가볍게 쓰는 미국식 인사다. 시간대와 상관없이 쓸 수 있어 편하다.",
+              "examples": [
+                {
+                  "en": "Thanks for your help. Have a good one!",
+                  "ko": "도와줘서 고마워요. 좋은 하루 보내요!"
+                },
+                {
+                  "en": "See you Monday. Have a good one.",
+                  "ko": "월요일에 봐요. 잘 지내요."
+                },
+                {
+                  "en": "Have a good one, guys!",
+                  "ko": "다들 잘 가!"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

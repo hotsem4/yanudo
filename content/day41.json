@@ -1,0 +1,441 @@
+{
+  "lessons": [
+    {
+      "day": 41,
+      "title": "회의에서 의견 말하기",
+      "theme": "Sharing opinions in a meeting",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "So Ava, what's your take on the new onboarding design?",
+          "ko_word_order": "그래서 에이바, / 당신 생각은 뭐예요 / 새 온보딩 디자인에 대한?",
+          "ko_natural": "에이바, 새 온보딩 디자인은 어떻게 생각해요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "what's your take on",
+              "meaning": "~을 어떻게 생각해요?",
+              "nuance": "상대 의견을 편하게 물을 때 쓰는 구어. What do you think about보다 그 사람만의 관점을 묻는 느낌이다.",
+              "examples": [
+                {
+                  "en": "What's your take on the new policy?",
+                  "ko": "새 정책 어떻게 생각해요?"
+                },
+                {
+                  "en": "What's your take on working from home?",
+                  "ko": "재택근무에 대해 어떻게 생각해?"
+                },
+                {
+                  "en": "So what's your take on the new manager?",
+                  "ko": "그래서 새 매니저는 어떤 것 같아?"
+                }
+              ]
+            },
+            {
+              "text": "onboarding",
+              "meaning": "첫 사용 안내 과정",
+              "nuance": "앱을 처음 쓸 때 사용법을 안내하는 화면, 또는 신입 직원 적응 과정을 가리키는 업계 용어다.",
+              "examples": [
+                {
+                  "en": "Our onboarding takes about two minutes.",
+                  "ko": "저희 온보딩은 2분 정도 걸려요."
+                },
+                {
+                  "en": "HR is in charge of new employee onboarding.",
+                  "ko": "신입 온보딩은 인사팀 담당이에요."
+                },
+                {
+                  "en": "The onboarding emails go out on day one.",
+                  "ko": "온보딩 메일은 첫날 나가요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I like how clean it looks, but I'm not sure about all the steps.",
+          "ko_word_order": "저는 좋아요 / 그게 깔끔해 보이는 게, / 하지만 잘 모르겠어요 / 그 많은 단계는",
+          "ko_natural": "깔끔해 보여서 좋은데, 단계가 그렇게 많아야 하는지는 잘 모르겠어요.",
+          "terms": [
+            {
+              "text": "clean",
+              "meaning": "깔끔한",
+              "nuance": "디자인·문서가 군더더기 없이 정돈됐을 때 칭찬하는 말. neat보다 디자인 쪽에서 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "I love the clean layout of this website.",
+                  "ko": "이 웹사이트 레이아웃 깔끔해서 좋아요."
+                },
+                {
+                  "en": "Her slides always look so clean.",
+                  "ko": "그녀 슬라이드는 늘 깔끔해."
+                },
+                {
+                  "en": "We need a cleaner logo.",
+                  "ko": "좀 더 깔끔한 로고가 필요해요."
+                }
+              ]
+            },
+            {
+              "text": "not sure about",
+              "meaning": "~는 잘 모르겠다",
+              "nuance": "반대 의견을 직접 말하지 않고 부드럽게 의문을 표시할 때. I don't like보다 훨씬 완곡하다.",
+              "examples": [
+                {
+                  "en": "I'm not sure about the color.",
+                  "ko": "색깔은 좀 잘 모르겠어."
+                },
+                {
+                  "en": "I'm not sure about this plan.",
+                  "ko": "이 계획은 좀 확신이 안 서요."
+                },
+                {
+                  "en": "She's not sure about moving abroad.",
+                  "ko": "그녀는 해외로 이사 가는 걸 망설이고 있어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "That's a fair point. A lot of users drop off after the third screen.",
+          "ko_word_order": "그건 일리 있는 지적이에요. / 많은 사용자가 / 이탈해요 / 세 번째 화면 이후에",
+          "ko_natural": "맞는 말이에요. 세 번째 화면에서 많이들 나가 버리거든요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "fair point",
+              "meaning": "일리 있는 말",
+              "nuance": "상대 의견을 인정할 때 쓰는 회의 단골 표현. 동의한 뒤 내 말을 이어 갈 때도 좋다.",
+              "examples": [
+                {
+                  "en": "Fair point, I hadn't considered the cost.",
+                  "ko": "일리 있네요, 비용은 생각 못 했어요."
+                },
+                {
+                  "en": "You make a fair point about the budget.",
+                  "ko": "예산 얘기는 일리가 있어요."
+                },
+                {
+                  "en": "That's a fair point, but we're short on time.",
+                  "ko": "맞는 말인데, 시간이 부족해요."
+                }
+              ]
+            },
+            {
+              "text": "drop off",
+              "meaning": "이탈하다, 줄어들다",
+              "nuance": "사용자·고객이 중간에 그만두고 나가거나 숫자가 줄어들 때 쓰는 업무 표현이다.",
+              "examples": [
+                {
+                  "en": "Sales dropped off in the summer.",
+                  "ko": "여름에 매출이 떨어졌어요."
+                },
+                {
+                  "en": "Many viewers drop off after ten minutes.",
+                  "ko": "시청자가 10분 뒤에 많이 빠져나가요."
+                },
+                {
+                  "en": "Why do customers drop off at checkout?",
+                  "ko": "고객들이 왜 결제 단계에서 이탈할까요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Exactly. What if we trimmed it down to just three steps?",
+          "ko_word_order": "바로 그거예요. / 우리가 줄이면 어떨까요 / 그걸 / 딱 세 단계로?",
+          "ko_natural": "바로 그거예요. 세 단계로 확 줄이면 어때요?",
+          "terms": [
+            {
+              "text": "what if",
+              "meaning": "~하면 어떨까?",
+              "nuance": "새 아이디어를 부담 없이 제안할 때. 뒤에 과거형을 쓰면 더 조심스러운 제안이 된다.",
+              "examples": [
+                {
+                  "en": "What if we left a bit earlier?",
+                  "ko": "조금 일찍 출발하면 어때?"
+                },
+                {
+                  "en": "What if we asked the client directly?",
+                  "ko": "고객한테 직접 물어보면 어떨까요?"
+                },
+                {
+                  "en": "What if we tried a different color?",
+                  "ko": "다른 색을 써 보면 어때요?"
+                }
+              ]
+            },
+            {
+              "text": "trim down",
+              "form": "trimmed it down",
+              "meaning": "다듬어 줄이다",
+              "nuance": "불필요한 부분을 잘라 내 분량을 줄일 때. cut down과 비슷하지만 다듬는다는 느낌이 있다.",
+              "examples": [
+                {
+                  "en": "Can you trim down the report to five pages?",
+                  "ko": "보고서를 다섯 장으로 줄여 줄래요?"
+                },
+                {
+                  "en": "We need to trim down our budget.",
+                  "ko": "예산을 좀 줄여야 해요."
+                },
+                {
+                  "en": "I trimmed my speech down a little.",
+                  "ko": "발표 원고를 조금 줄였어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I see where you're coming from, but we still need their email address.",
+          "ko_word_order": "저는 알겠어요 / 당신이 왜 그렇게 말하는지, / 하지만 우리는 여전히 필요해요 / 그들의 이메일 주소가",
+          "ko_natural": "무슨 말인지는 알겠는데, 이메일 주소는 꼭 받아야 해요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "see where someone is coming from",
+              "form": "see where you're coming from",
+              "meaning": "무슨 말인지 알다",
+              "nuance": "상대 입장을 먼저 인정한 뒤 반대 의견을 말할 때. 회의에서 부드럽게 반박하는 데 아주 좋다.",
+              "examples": [
+                {
+                  "en": "I see where you're coming from, but it's too risky.",
+                  "ko": "무슨 말인지는 알겠지만 너무 위험해요."
+                },
+                {
+                  "en": "I can see where she's coming from.",
+                  "ko": "그녀가 왜 그러는지 이해돼요."
+                },
+                {
+                  "en": "Try to see where your parents are coming from.",
+                  "ko": "부모님 입장도 한번 생각해 봐."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Would you mind if we asked for it later, after they've tried the app?",
+          "ko_word_order": "괜찮을까요 / 우리가 그걸 요청해도 / 나중에, / 그들이 앱을 써 본 다음에?",
+          "ko_natural": "이메일은 사용자가 앱을 써 본 다음에 받으면 어떨까요?",
+          "terms": [
+            {
+              "text": "would you mind if",
+              "meaning": "~해도 괜찮을까요?",
+              "nuance": "허락을 공손하게 구할 때. 뒤에 과거형을 쓰면 더 정중하고, 괜찮다는 대답은 No나 Not at all이다.",
+              "examples": [
+                {
+                  "en": "Would you mind if I opened the window?",
+                  "ko": "창문 좀 열어도 될까요?"
+                },
+                {
+                  "en": "Would you mind if I joined you?",
+                  "ko": "제가 같이 앉아도 될까요?"
+                },
+                {
+                  "en": "Would you mind if we started a bit late?",
+                  "ko": "조금 늦게 시작해도 괜찮을까요?"
+                }
+              ]
+            },
+            {
+              "text": "ask for",
+              "form": "asked for",
+              "meaning": "달라고 하다, 요청하다",
+              "nuance": "무언가를 달라고 할 때. ask는 묻다, ask for는 달라고 하다로 구분한다.",
+              "examples": [
+                {
+                  "en": "Don't be afraid to ask for help.",
+                  "ko": "도움 요청하는 걸 두려워하지 마."
+                },
+                {
+                  "en": "He asked for a refund.",
+                  "ko": "그는 환불을 요청했어요."
+                },
+                {
+                  "en": "Can I ask for a glass of water?",
+                  "ko": "물 한 잔 부탁해도 될까요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Hmm, I hadn't thought of that. That could actually work.",
+          "ko_word_order": "음, 저는 생각 못 했어요 / 그건. / 그거 실제로 될 수도 있겠네요",
+          "ko_natural": "음, 그건 생각 못 했네요. 그거 괜찮겠는데요.",
+          "terms": [
+            {
+              "text": "I hadn't thought of that",
+              "meaning": "그건 생각 못 했네요",
+              "nuance": "상대가 새로운 관점을 줬을 때 인정하는 말. 상대 아이디어를 존중하는 느낌이 있어 회의에서 좋다.",
+              "examples": [
+                {
+                  "en": "Oh, good idea. I hadn't thought of that.",
+                  "ko": "아, 좋은 생각이네. 그건 생각 못 했어."
+                },
+                {
+                  "en": "Parking? I hadn't thought of that.",
+                  "ko": "주차? 그건 생각도 못 했네."
+                },
+                {
+                  "en": "Honestly, I hadn't thought of that.",
+                  "ko": "솔직히 그건 생각 못 했어요."
+                }
+              ]
+            },
+            {
+              "text": "could work",
+              "form": "could actually work",
+              "meaning": "될 수도 있다",
+              "nuance": "아이디어가 괜찮을 것 같다고 조심스럽게 동의할 때. will work보다 확신이 덜하다.",
+              "examples": [
+                {
+                  "en": "That plan could work if we start early.",
+                  "ko": "일찍 시작하면 그 계획 될 수도 있어요."
+                },
+                {
+                  "en": "A smaller venue could work better.",
+                  "ko": "더 작은 장소가 나을 수도 있어요."
+                },
+                {
+                  "en": "Hmm, that could work for both of us.",
+                  "ko": "음, 그럼 둘 다 괜찮겠다."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "If you want, I can put together a quick mockup for the team.",
+          "ko_word_order": "원하시면, / 제가 만들 수 있어요 / 간단한 목업을 / 팀을 위해",
+          "ko_natural": "원하시면 팀에 보여 줄 간단한 시안을 만들어 볼게요.",
+          "terms": [
+            {
+              "text": "put together",
+              "meaning": "(자료를) 만들다, 꾸리다",
+              "nuance": "여러 요소를 모아 문서·발표·계획을 만들 때 쓰는 구어. make보다 모아서 꾸린다는 느낌이다.",
+              "examples": [
+                {
+                  "en": "I'll put together a list of options.",
+                  "ko": "선택지 목록 정리해 볼게요."
+                },
+                {
+                  "en": "She put together a great team.",
+                  "ko": "그녀는 훌륭한 팀을 꾸렸어요."
+                },
+                {
+                  "en": "Can you put together a short presentation?",
+                  "ko": "짧은 발표 자료 좀 만들어 줄래요?"
+                }
+              ]
+            },
+            {
+              "text": "mockup",
+              "meaning": "시안, 목업",
+              "nuance": "실제 제품 전에 모양을 보여 주는 화면이나 모형. 디자인·기획 회의에서 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "The designer sent us three mockups.",
+                  "ko": "디자이너가 시안 세 개 보냈어요."
+                },
+                {
+                  "en": "Let's look at the mockup together.",
+                  "ko": "목업 같이 봐요."
+                },
+                {
+                  "en": "This is just a rough mockup.",
+                  "ko": "이건 그냥 대략적인 시안이에요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "That'd be really helpful. Let's go over it in Thursday's meeting.",
+          "ko_word_order": "그거 정말 도움이 되겠어요. / 같이 검토해 봐요 / 그걸 / 목요일 회의에서",
+          "ko_natural": "그럼 정말 좋죠. 목요일 회의 때 같이 봐요.",
+          "terms": [
+            {
+              "text": "go over",
+              "meaning": "검토하다, 짚어 보다",
+              "nuance": "내용을 하나씩 같이 살펴볼 때. 회의에서 자료를 함께 볼 때 특히 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "Let's go over the plan one more time.",
+                  "ko": "계획 한 번만 더 짚어 봐요."
+                },
+                {
+                  "en": "The teacher went over the answers.",
+                  "ko": "선생님이 답을 하나씩 짚어 줬어요."
+                },
+                {
+                  "en": "Can we go over the budget tomorrow?",
+                  "ko": "내일 예산 같이 검토할 수 있어요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sounds good. I'll have it ready by Wednesday afternoon.",
+          "ko_word_order": "좋아요. / 제가 그걸 준비해 둘게요 / 수요일 오후까지",
+          "ko_natural": "좋아요. 수요일 오후까지 준비해 둘게요.",
+          "terms": [
+            {
+              "text": "sounds good",
+              "meaning": "좋아요",
+              "nuance": "제안에 가볍게 동의할 때 쓰는 구어. OK보다 긍정적이고 친근하다.",
+              "examples": [
+                {
+                  "en": "Pizza tonight? — Sounds good.",
+                  "ko": "오늘 피자 어때? — 좋지."
+                },
+                {
+                  "en": "Sounds good, see you at six.",
+                  "ko": "좋아, 6시에 봐."
+                },
+                {
+                  "en": "That sounds good to me.",
+                  "ko": "저는 좋아요."
+                }
+              ]
+            },
+            {
+              "text": "have something ready",
+              "form": "have it ready",
+              "meaning": "준비해 두다",
+              "nuance": "정해진 때까지 끝내 놓겠다고 약속할 때. 마감을 말하는 by와 함께 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "I'll have the report ready by noon.",
+                  "ko": "정오까지 보고서 준비해 둘게요."
+                },
+                {
+                  "en": "Please have your ID ready.",
+                  "ko": "신분증을 준비해 주세요."
+                },
+                {
+                  "en": "Can you have the car ready by eight?",
+                  "ko": "8시까지 차 준비해 둘 수 있어요?"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

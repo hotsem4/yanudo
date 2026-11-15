@@ -1,0 +1,464 @@
+{
+  "lessons": [
+    {
+      "day": 53,
+      "title": "발표 시작하기",
+      "theme": "Starting a presentation",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Good morning, everyone. Thanks for coming. Can everyone in the back hear me okay?",
+          "ko_word_order": "좋은 아침입니다, 여러분. / 와 주셔서 감사합니다. / 뒤쪽에 계신 분들 모두 / 제 말이 잘 들리나요?",
+          "ko_natural": "안녕하세요, 여러분. 와 주셔서 감사합니다. 뒤에 계신 분들 잘 들리세요?",
+          "terms": [
+            {
+              "text": "thanks for coming",
+              "form": "Thanks for coming",
+              "meaning": "와 줘서 고마워요",
+              "nuance": "행사나 발표, 모임의 시작이나 끝에 참석자에게 하는 인사. 손님을 배웅할 때도 쓴다.",
+              "examples": [
+                {
+                  "en": "Thanks for coming to my party!",
+                  "ko": "내 파티에 와 줘서 고마워!"
+                },
+                {
+                  "en": "Thanks for coming all this way.",
+                  "ko": "먼 길 와 주셔서 감사해요."
+                },
+                {
+                  "en": "Thanks for coming in on a Saturday.",
+                  "ko": "토요일인데 나와 줘서 고마워요."
+                }
+              ]
+            },
+            {
+              "text": "in the back",
+              "meaning": "뒤쪽에",
+              "nuance": "방이나 차의 뒤편 자리를 말한다. 발표자가 뒤에 앉은 사람을 챙길 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "There are seats in the back.",
+                  "ko": "뒤쪽에 자리 있어요."
+                },
+                {
+                  "en": "The kids are sleeping in the back.",
+                  "ko": "애들은 뒷좌석에서 자고 있어."
+                },
+                {
+                  "en": "Can people in the back see the screen?",
+                  "ko": "뒤에 계신 분들 화면 보이세요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Yes, loud and clear. Could you make the slides a little bigger, though?",
+          "ko_word_order": "네, 크고 분명하게요. / 만들어 주실 수 있나요 / 슬라이드를 조금 더 크게, / 그런데?",
+          "ko_natural": "네, 잘 들려요. 근데 슬라이드를 조금만 크게 해 주시겠어요?",
+          "terms": [
+            {
+              "text": "loud and clear",
+              "meaning": "아주 잘 들려요",
+              "nuance": "소리가 잘 들린다고 확인해 줄 때 쓰는 관용구. 무전에서 나온 말로, '무슨 말인지 확실히 알겠다'는 뜻으로도 쓴다.",
+              "examples": [
+                {
+                  "en": "Can you hear me? — Loud and clear.",
+                  "ko": "들려요? — 아주 잘 들려요."
+                },
+                {
+                  "en": "Your message came through loud and clear.",
+                  "ko": "네 뜻은 확실히 알겠어."
+                },
+                {
+                  "en": "I hear you loud and clear.",
+                  "ko": "무슨 말인지 똑똑히 알겠어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Sure, is that better? Great. Let me start by introducing myself.",
+          "ko_word_order": "네, 이게 나은가요? 좋아요. / 시작하겠습니다 / 제 소개로",
+          "ko_natural": "네, 이제 좀 나아요? 좋습니다. 먼저 제 소개부터 할게요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "let me start by ~ing",
+              "form": "Let me start by",
+              "meaning": "~부터 시작할게요",
+              "nuance": "발표나 회의의 첫 순서를 밝힐 때 쓰는 정석 표현. 뒤에 동사 -ing가 온다.",
+              "examples": [
+                {
+                  "en": "Let me start by thanking the organizers.",
+                  "ko": "먼저 주최 측에 감사드리며 시작하겠습니다."
+                },
+                {
+                  "en": "Let me start by showing you a short video.",
+                  "ko": "짧은 영상부터 보여 드릴게요."
+                },
+                {
+                  "en": "Let me start by asking you a question.",
+                  "ko": "질문 하나로 시작해 볼게요."
+                }
+              ]
+            },
+            {
+              "text": "introduce oneself",
+              "form": "introducing myself",
+              "meaning": "자기소개하다",
+              "nuance": "처음 만난 자리에서 이름과 하는 일을 밝히는 것. 'Let me introduce myself'는 공식적인 자기소개의 시작 말이다.",
+              "examples": [
+                {
+                  "en": "Could you introduce yourself briefly?",
+                  "ko": "간단히 자기소개 부탁드려요."
+                },
+                {
+                  "en": "He forgot to introduce himself.",
+                  "ko": "그 사람 자기소개하는 걸 깜빡했어."
+                },
+                {
+                  "en": "Let's go around and introduce ourselves.",
+                  "ko": "돌아가면서 자기소개해요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Please do. Most of us haven't worked with your team before.",
+          "ko_word_order": "그렇게 해 주세요. / 우리 대부분은 / 일해 본 적이 없어요 / 당신 팀과 / 전에",
+          "ko_natural": "네, 부탁드려요. 저희 대부분이 그쪽 팀이랑 일해 본 적이 없어서요.",
+          "terms": [
+            {
+              "text": "please do",
+              "form": "Please do",
+              "meaning": "네, 그렇게 하세요",
+              "nuance": "상대가 하겠다는 일을 반갑게 권할 때 짧게 쓰는 말. Go ahead보다 더 환영하는 느낌이다.",
+              "examples": [
+                {
+                  "en": "Can I take a cookie? — Please do.",
+                  "ko": "쿠키 하나 먹어도 돼요? — 그럼요, 드세요."
+                },
+                {
+                  "en": "Should I call you later? — Please do.",
+                  "ko": "나중에 전화할까요? — 네, 그래 주세요."
+                },
+                {
+                  "en": "If you have questions, please do ask.",
+                  "ko": "질문 있으면 꼭 물어보세요."
+                }
+              ]
+            },
+            {
+              "text": "work with",
+              "form": "worked with",
+              "meaning": "~와 함께 일하다",
+              "nuance": "동료나 다른 회사와 협업한다는 뜻. 'I've worked with them before'처럼 경험을 말할 때 현재완료와 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "I've worked with her for three years.",
+                  "ko": "그녀랑 3년째 같이 일하고 있어요."
+                },
+                {
+                  "en": "It's great to work with you.",
+                  "ko": "같이 일하게 돼서 좋아요."
+                },
+                {
+                  "en": "Have you worked with this client before?",
+                  "ko": "이 고객이랑 일해 본 적 있어요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I'm Andrew, and I lead the data team that put this report together.",
+          "ko_word_order": "저는 앤드루이고, / 저는 데이터팀을 이끌어요 / 이 보고서를 만든",
+          "ko_natural": "저는 앤드루이고, 이 보고서를 만든 데이터팀을 맡고 있습니다.",
+          "terms": [
+            {
+              "text": "lead",
+              "meaning": "(팀을) 이끌다",
+              "nuance": "팀이나 프로젝트를 책임지고 이끈다는 뜻. 직함 없이 자기 역할을 소개할 때 'I lead ~'를 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "She leads the marketing team.",
+                  "ko": "그녀가 마케팅팀을 이끌어요."
+                },
+                {
+                  "en": "Who's going to lead this project?",
+                  "ko": "이 프로젝트는 누가 이끌어요?"
+                },
+                {
+                  "en": "I led a small team at my last job.",
+                  "ko": "전 직장에서 작은 팀을 이끌었어요."
+                }
+              ]
+            },
+            {
+              "text": "put together",
+              "form": "put this report together",
+              "meaning": "만들다, 준비하다",
+              "nuance": "여러 자료를 모아 하나로 만든다는 구어. 보고서, 발표 자료, 계획 등에 쓴다.",
+              "examples": [
+                {
+                  "en": "I put together a short list of options.",
+                  "ko": "선택지를 짧게 정리해 봤어요."
+                },
+                {
+                  "en": "Who put this presentation together?",
+                  "ko": "이 발표 자료 누가 만들었어요?"
+                },
+                {
+                  "en": "We need to put together a plan.",
+                  "ko": "계획을 세워야 해요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Nice to meet you. And how long will the presentation take?",
+          "ko_word_order": "만나서 반가워요. / 그리고 얼마나 오래 / 발표가 걸릴까요?",
+          "ko_natural": "반갑습니다. 발표는 얼마나 걸리나요?",
+          "terms": [
+            {
+              "text": "take",
+              "meaning": "(시간이) 걸리다",
+              "nuance": "시간이 얼마나 드는지 말할 때 쓴다. 'It takes about an hour'처럼 주어로 it을 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "How long does it take to get there?",
+                  "ko": "거기 가는 데 얼마나 걸려요?"
+                },
+                {
+                  "en": "It only takes ten minutes by bus.",
+                  "ko": "버스로 10분밖에 안 걸려요."
+                },
+                {
+                  "en": "This might take a while.",
+                  "ko": "이거 시간 좀 걸릴 수도 있어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "About twenty minutes. I've split it into three parts to keep it simple.",
+          "ko_word_order": "약 20분이요. / 저는 그걸 나눴어요 / 세 부분으로 / 간단하게 하려고",
+          "ko_natural": "20분 정도요. 알기 쉽게 세 부분으로 나눴습니다.",
+          "core": true,
+          "terms": [
+            {
+              "text": "split into",
+              "form": "split it into",
+              "meaning": "~로 나누다",
+              "nuance": "하나를 여러 부분으로 나눈다는 뜻. 발표 구성을 소개할 때 'I've split it into ~ parts'처럼 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "Let's split into two groups.",
+                  "ko": "두 그룹으로 나누자."
+                },
+                {
+                  "en": "We split the bill into three.",
+                  "ko": "계산을 셋으로 나눴어."
+                },
+                {
+                  "en": "The course is split into four weeks.",
+                  "ko": "강좌는 4주로 나뉘어 있어요."
+                }
+              ]
+            },
+            {
+              "text": "keep it simple",
+              "meaning": "간단하게 하다",
+              "nuance": "복잡하게 만들지 말자는 뜻. 발표, 설명, 디자인 등에서 두루 쓴다.",
+              "examples": [
+                {
+                  "en": "Let's keep it simple this time.",
+                  "ko": "이번엔 간단하게 가죠."
+                },
+                {
+                  "en": "Keep it simple, just three slides.",
+                  "ko": "간단하게, 슬라이드 세 장만."
+                },
+                {
+                  "en": "I like to keep it simple when I cook.",
+                  "ko": "요리할 땐 간단하게 하는 게 좋아."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Great. Should we jump in with questions, or save them for the end?",
+          "ko_word_order": "좋아요. / 우리가 끼어들어야 하나요 / 질문으로, / 아니면 그것들을 아껴 둘까요 / 마지막을 위해?",
+          "ko_natural": "좋아요. 질문은 중간에 바로 해도 되나요, 아니면 끝에 할까요?",
+          "terms": [
+            {
+              "text": "jump in",
+              "meaning": "(대화에) 끼어들다",
+              "nuance": "대화나 발표 중간에 말을 보탠다는 구어. 'Feel free to jump in'은 '언제든 말씀 보태 주세요'라는 뜻이다.",
+              "examples": [
+                {
+                  "en": "Feel free to jump in anytime.",
+                  "ko": "언제든 편하게 끼어드세요."
+                },
+                {
+                  "en": "Can I jump in for a second?",
+                  "ko": "잠깐 한마디 해도 될까요?"
+                },
+                {
+                  "en": "She jumped in to help me explain.",
+                  "ko": "그녀가 끼어들어 설명을 도와줬어."
+                }
+              ]
+            },
+            {
+              "text": "save something for",
+              "form": "save them for",
+              "meaning": "~까지 아껴 두다",
+              "nuance": "지금 쓰지 않고 나중을 위해 남겨 둔다는 뜻. 질문, 간식, 돈 등 다양하게 쓴다.",
+              "examples": [
+                {
+                  "en": "Save some cake for me!",
+                  "ko": "케이크 나도 좀 남겨 둬!"
+                },
+                {
+                  "en": "I'm saving this wine for a special day.",
+                  "ko": "이 와인은 특별한 날을 위해 아껴 두는 거야."
+                },
+                {
+                  "en": "Let's save that topic for lunch.",
+                  "ko": "그 얘기는 점심때 하자."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "If you could hold them until the end, that'd be great. There's plenty of time.",
+          "ko_word_order": "만약 그것들을 잡아 둘 수 있다면 / 끝까지, / 좋겠어요. / 시간은 충분히 있어요",
+          "ko_natural": "질문은 끝날 때까지 잠깐 아껴 주시면 좋겠어요. 시간은 넉넉합니다.",
+          "core": true,
+          "terms": [
+            {
+              "text": "hold",
+              "meaning": "(잠시) 미뤄 두다",
+              "nuance": "질문이나 전화, 결정을 잠시 보류해 달라고 할 때 쓴다. 'Hold that thought'는 '그 얘기 잠깐 기억해 둬'라는 뜻이다.",
+              "examples": [
+                {
+                  "en": "Can you hold my calls for an hour?",
+                  "ko": "한 시간 동안 전화 연결하지 말아 주세요."
+                },
+                {
+                  "en": "Hold that thought, I'll be right back.",
+                  "ko": "그 얘기 잠깐만, 금방 올게."
+                },
+                {
+                  "en": "Please hold your applause until the end.",
+                  "ko": "박수는 마지막까지 아껴 주세요."
+                }
+              ]
+            },
+            {
+              "text": "that'd be great",
+              "meaning": "그러면 좋겠어요",
+              "nuance": "부탁하거나 제안을 받아들일 때 쓰는 공손한 구어. That would be great를 줄인 형태다.",
+              "examples": [
+                {
+                  "en": "A ride home? That'd be great, thanks.",
+                  "ko": "집까지 태워 준다고? 그럼 좋지, 고마워."
+                },
+                {
+                  "en": "If you can send it today, that'd be great.",
+                  "ko": "오늘 보내 주시면 좋겠어요."
+                },
+                {
+                  "en": "Coffee? Oh, that'd be great.",
+                  "ko": "커피요? 아, 좋죠."
+                }
+              ]
+            },
+            {
+              "text": "plenty of",
+              "meaning": "충분한, 넉넉한",
+              "nuance": "필요한 것보다 넉넉하다는 뜻. a lot of보다 '부족할 걱정 없다'는 안심이 담긴다.",
+              "examples": [
+                {
+                  "en": "Don't rush, we have plenty of time.",
+                  "ko": "서두르지 마, 시간 충분해."
+                },
+                {
+                  "en": "There's plenty of food for everyone.",
+                  "ko": "모두 먹을 음식이 넉넉해요."
+                },
+                {
+                  "en": "She has plenty of experience.",
+                  "ko": "그녀는 경험이 충분해요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sounds good. Whenever you're ready, we're all ears.",
+          "ko_word_order": "좋아요. / 준비되시면 언제든, / 우리는 귀 기울이고 있어요",
+          "ko_natural": "좋아요. 준비되시면 시작하세요, 잘 듣겠습니다.",
+          "terms": [
+            {
+              "text": "whenever you're ready",
+              "meaning": "준비되시면 언제든",
+              "nuance": "서두르지 말고 준비되면 시작하라고 배려하는 말. 발표, 진료, 주문 등 여러 자리에서 쓴다.",
+              "examples": [
+                {
+                  "en": "Whenever you're ready, we can begin.",
+                  "ko": "준비되시면 시작할게요."
+                },
+                {
+                  "en": "Come to the counter whenever you're ready.",
+                  "ko": "준비되시면 카운터로 오세요."
+                },
+                {
+                  "en": "Order whenever you're ready.",
+                  "ko": "준비되면 주문하세요."
+                }
+              ]
+            },
+            {
+              "text": "be all ears",
+              "form": "all ears",
+              "meaning": "귀 기울여 듣다",
+              "nuance": "상대 이야기를 기대하며 집중해 듣겠다는 재치 있는 구어. 'I'm all ears'는 '어서 말해 봐'라는 느낌이다.",
+              "examples": [
+                {
+                  "en": "Tell me about the trip. I'm all ears.",
+                  "ko": "여행 얘기 해 줘. 듣고 있어."
+                },
+                {
+                  "en": "Got a better idea? I'm all ears.",
+                  "ko": "더 좋은 생각 있어? 말해 봐."
+                },
+                {
+                  "en": "The kids were all ears during the story.",
+                  "ko": "아이들이 이야기에 귀를 쫑긋 세웠어."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,464 @@
+{
+  "lessons": [
+    {
+      "day": 49,
+      "title": "업무 전화 받기",
+      "theme": "Taking a work call",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Good morning, Brightline Marketing, this is Andrew speaking. How can I help?",
+          "ko_word_order": "좋은 아침입니다, 브라이트라인 마케팅, / 저는 앤드루입니다 / 어떻게 제가 도울 수 있을까요?",
+          "ko_natural": "안녕하세요, 브라이트라인 마케팅 앤드루입니다. 무엇을 도와드릴까요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "speaking",
+              "meaning": "(전화) ~입니다",
+              "nuance": "전화를 받으며 자기 이름을 밝힐 때 쓴다. 상대가 나를 찾으면 'Speaking.' 한마디로 '전데요'가 된다.",
+              "examples": [
+                {
+                  "en": "Hello, Sarah speaking.",
+                  "ko": "여보세요, 사라입니다."
+                },
+                {
+                  "en": "Is this Mr. Cho? — Yes, speaking.",
+                  "ko": "조 선생님이세요? — 네, 전데요."
+                },
+                {
+                  "en": "Customer service, Tom speaking.",
+                  "ko": "고객센터 톰입니다."
+                }
+              ]
+            },
+            {
+              "text": "how can I help",
+              "form": "How can I help",
+              "meaning": "무엇을 도와드릴까요",
+              "nuance": "전화나 창구에서 용건을 물을 때 쓰는 기본 응대. 더 격식 있게는 How may I help you?라고 한다.",
+              "examples": [
+                {
+                  "en": "Hi, IT support. How can I help?",
+                  "ko": "네, IT 지원팀입니다. 무엇을 도와드릴까요?"
+                },
+                {
+                  "en": "You look lost. How can I help?",
+                  "ko": "길 잃으신 것 같네요. 도와드릴까요?"
+                },
+                {
+                  "en": "Thanks for calling back. How can I help today?",
+                  "ko": "다시 전화 주셔서 감사해요. 오늘은 무슨 일이세요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Hi, this is Ava from Northwind. Could I speak to Jenny Park, please?",
+          "ko_word_order": "안녕하세요, 저는 노스윈드의 에이바예요. / 제가 통화할 수 있을까요 / 제니 박과, 부탁드려요?",
+          "ko_natural": "안녕하세요, 노스윈드의 에이바인데요. 제니 박 씨와 통화할 수 있을까요?",
+          "terms": [
+            {
+              "text": "speak to",
+              "meaning": "~와 통화하다",
+              "nuance": "전화에서 특정 사람을 바꿔 달라고 할 때 쓴다. talk to보다 조금 더 공손해서 업무 전화에 잘 어울린다.",
+              "examples": [
+                {
+                  "en": "Can I speak to the manager, please?",
+                  "ko": "매니저분과 통화할 수 있을까요?"
+                },
+                {
+                  "en": "Who would you like to speak to?",
+                  "ko": "누구와 통화하시겠어요?"
+                },
+                {
+                  "en": "I need to speak to someone in billing.",
+                  "ko": "결제 담당자와 통화해야 해요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I'm afraid she's in a meeting right now. Can I take a message?",
+          "ko_word_order": "유감이지만 / 그녀는 회의 중이에요 / 지금. / 제가 메시지를 받아 둘까요?",
+          "ko_natural": "죄송하지만 지금 회의 중이세요. 메시지 남겨 드릴까요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "I'm afraid",
+              "meaning": "죄송하지만, 아쉽지만",
+              "nuance": "안 좋은 소식을 부드럽게 꺼낼 때 문장 앞에 붙인다. 무섭다는 뜻이 아니라 Sorry, but보다 정중한 완충 표현이다.",
+              "examples": [
+                {
+                  "en": "I'm afraid we're fully booked tonight.",
+                  "ko": "죄송하지만 오늘 밤은 예약이 다 찼어요."
+                },
+                {
+                  "en": "I'm afraid I can't make it on Friday.",
+                  "ko": "아쉽지만 금요일엔 못 갈 것 같아요."
+                },
+                {
+                  "en": "I'm afraid that item is out of stock.",
+                  "ko": "죄송하지만 그 상품은 품절이에요."
+                }
+              ]
+            },
+            {
+              "text": "take a message",
+              "meaning": "메시지를 받아 두다",
+              "nuance": "전화 받은 사람이 자리에 없는 사람 대신 용건을 받아 둘 때 쓴다. 거는 쪽은 leave a message라고 한다.",
+              "examples": [
+                {
+                  "en": "He's out for lunch. Can I take a message?",
+                  "ko": "점심 드시러 나가셨어요. 메시지 남겨 드릴까요?"
+                },
+                {
+                  "en": "Could you take a message for me?",
+                  "ko": "메시지 좀 받아 주시겠어요?"
+                },
+                {
+                  "en": "I took a message from your landlord.",
+                  "ko": "집주인한테서 온 메시지 받아 뒀어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. Could you let her know I'm calling about the delivery schedule?",
+          "ko_word_order": "네. / 그녀에게 알려 주시겠어요 / 제가 전화한다고 / 배송 일정에 관해서?",
+          "ko_natural": "네. 배송 일정 때문에 전화했다고 전해 주시겠어요?",
+          "terms": [
+            {
+              "text": "let someone know",
+              "form": "let her know",
+              "meaning": "~에게 알려 주다",
+              "nuance": "tell보다 부드럽고 일상과 업무 모두에서 많이 쓴다. 'Let me know'는 '알려 줘'라는 단골 표현이다.",
+              "examples": [
+                {
+                  "en": "Let me know when you get home.",
+                  "ko": "집에 도착하면 알려 줘."
+                },
+                {
+                  "en": "I'll let you know by tomorrow.",
+                  "ko": "내일까지 알려 드릴게요."
+                },
+                {
+                  "en": "Can you let the team know about the change?",
+                  "ko": "팀에 변경 사항 좀 알려 줄래요?"
+                }
+              ]
+            },
+            {
+              "text": "call about",
+              "form": "calling about",
+              "meaning": "~ 건으로 전화하다",
+              "nuance": "전화한 용건을 밝힐 때 쓴다. 'I'm calling about ~'은 업무 전화의 첫 문장으로 아주 흔하다.",
+              "examples": [
+                {
+                  "en": "I'm calling about the job posting.",
+                  "ko": "채용 공고 보고 전화드렸어요."
+                },
+                {
+                  "en": "She called about your order.",
+                  "ko": "그분이 주문 건으로 전화하셨어요."
+                },
+                {
+                  "en": "Hi, I'm calling about my bill.",
+                  "ko": "안녕하세요, 요금 건으로 전화했어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Of course. Would you mind spelling your last name for me?",
+          "ko_word_order": "물론이죠. / 괜찮으시겠어요 / 철자를 불러 주시는 게 / 당신의 성을 / 저를 위해?",
+          "ko_natural": "그럼요. 성 철자 좀 불러 주시겠어요?",
+          "terms": [
+            {
+              "text": "would you mind ~ing",
+              "form": "Would you mind",
+              "meaning": "~해 주시겠어요?",
+              "nuance": "부탁을 아주 공손하게 할 때 쓴다. 뒤에 동사 -ing가 오고, 들어줄 때는 'Not at all'처럼 부정으로 답한다.",
+              "examples": [
+                {
+                  "en": "Would you mind closing the window?",
+                  "ko": "창문 좀 닫아 주시겠어요?"
+                },
+                {
+                  "en": "Would you mind waiting a few minutes?",
+                  "ko": "몇 분만 기다려 주시겠어요?"
+                },
+                {
+                  "en": "Would you mind if I sat here?",
+                  "ko": "여기 앉아도 될까요?"
+                }
+              ]
+            },
+            {
+              "text": "spell",
+              "form": "spelling",
+              "meaning": "철자를 말하다",
+              "nuance": "이름이나 이메일처럼 받아 적기 헷갈리는 것을 확인할 때 쓴다. 'How do you spell that?'도 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "How do you spell your name?",
+                  "ko": "이름 철자가 어떻게 되세요?"
+                },
+                {
+                  "en": "Could you spell the email address?",
+                  "ko": "이메일 주소 철자 좀 불러 주시겠어요?"
+                },
+                {
+                  "en": "I always have to spell my last name twice.",
+                  "ko": "제 성은 늘 두 번씩 철자를 불러 줘야 해요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "It's Lewis, L-E-W-I-S. She should already have my number.",
+          "ko_word_order": "루이스예요, L-E-W-I-S. / 그녀는 이미 가지고 있을 거예요 / 제 번호를",
+          "ko_natural": "루이스요, L-E-W-I-S. 제 번호는 이미 알고 계실 거예요.",
+          "terms": [
+            {
+              "text": "should",
+              "meaning": "~일 것이다(추측)",
+              "nuance": "의무가 아니라 '아마 그럴 거다'라는 예상을 말할 때도 쓴다. probably보다 근거 있는 기대에 가깝다.",
+              "examples": [
+                {
+                  "en": "The package should arrive tomorrow.",
+                  "ko": "택배는 내일 도착할 거예요."
+                },
+                {
+                  "en": "He should be home by now.",
+                  "ko": "그 사람 지금쯤 집에 있을 거야."
+                },
+                {
+                  "en": "This shouldn't take long.",
+                  "ko": "이거 오래 안 걸릴 거예요."
+                }
+              ]
+            },
+            {
+              "text": "have someone's number",
+              "form": "have my number",
+              "meaning": "~의 번호를 알다",
+              "nuance": "연락처를 저장해 두었거나 알고 있다는 뜻. 이때는 know보다 have가 훨씬 자연스럽다.",
+              "examples": [
+                {
+                  "en": "Do you have Mina's number?",
+                  "ko": "미나 번호 알아?"
+                },
+                {
+                  "en": "I don't have his new number.",
+                  "ko": "그 사람 새 번호를 몰라요."
+                },
+                {
+                  "en": "Text me if you still have my number.",
+                  "ko": "내 번호 아직 있으면 문자 줘."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Just to be safe, could you give me the best number to reach you?",
+          "ko_word_order": "혹시 몰라서, / 제게 주시겠어요 / 가장 좋은 번호를 / 당신에게 연락할?",
+          "ko_natural": "혹시 모르니까, 연락 잘 되는 번호를 하나 알려 주시겠어요?",
+          "terms": [
+            {
+              "text": "just to be safe",
+              "meaning": "혹시 모르니까",
+              "nuance": "확실히 해 두려고 한 번 더 챙길 때 쓰는 말. just in case와 비슷하고, 문장 앞에 놓아 행동의 이유를 밝힌다.",
+              "examples": [
+                {
+                  "en": "Just to be safe, I'll bring an umbrella.",
+                  "ko": "혹시 모르니까 우산 챙길게."
+                },
+                {
+                  "en": "Let's leave early, just to be safe.",
+                  "ko": "혹시 모르니 일찍 나가자."
+                },
+                {
+                  "en": "Just to be safe, save the file twice.",
+                  "ko": "혹시 모르니까 파일 두 번 저장해 둬."
+                }
+              ]
+            },
+            {
+              "text": "reach",
+              "form": "reach you",
+              "meaning": "연락이 닿다",
+              "nuance": "전화나 메일로 사람과 연락이 될 때 쓴다. contact보다 구어적이고 '연락이 닿는다'는 결과에 초점이 있다.",
+              "examples": [
+                {
+                  "en": "I couldn't reach him all day.",
+                  "ko": "하루 종일 그 사람이랑 연락이 안 됐어."
+                },
+                {
+                  "en": "You can reach me on my cell.",
+                  "ko": "제 휴대폰으로 연락하시면 돼요."
+                },
+                {
+                  "en": "Is email the best way to reach you?",
+                  "ko": "이메일로 연락드리는 게 제일 좋을까요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure, it's 010-2345-6789. I'll be at my desk until five.",
+          "ko_word_order": "네, 010-2345-6789예요. / 저는 자리에 있을 거예요 / 5시까지",
+          "ko_natural": "네, 010-2345-6789예요. 5시까지는 자리에 있어요.",
+          "terms": [
+            {
+              "text": "be at one's desk",
+              "form": "at my desk",
+              "meaning": "자리에 있다",
+              "nuance": "사무실에서 자기 책상, 즉 자리에 있다는 뜻. 자리를 비웠으면 'She's away from her desk'라고 한다.",
+              "examples": [
+                {
+                  "en": "He's not at his desk right now.",
+                  "ko": "지금 자리에 안 계세요."
+                },
+                {
+                  "en": "I'll be at my desk all afternoon.",
+                  "ko": "오후 내내 자리에 있을게요."
+                },
+                {
+                  "en": "Call me when you're back at your desk.",
+                  "ko": "자리에 돌아오면 전화 줘."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Got it. I'll make sure she gets your message as soon as she's out.",
+          "ko_word_order": "알겠습니다. / 꼭 하도록 할게요 / 그녀가 당신의 메시지를 받도록 / 그녀가 나오자마자",
+          "ko_natural": "알겠습니다. 회의 끝나시는 대로 꼭 전해 드릴게요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "got it",
+              "meaning": "알겠어요",
+              "nuance": "상대 말을 이해했거나 받아 적었다는 짧은 대답. I understand보다 가볍고 동료나 고객 전화 모두에서 쓴다.",
+              "examples": [
+                {
+                  "en": "Turn left at the bank? Got it.",
+                  "ko": "은행에서 좌회전이요? 알겠어요."
+                },
+                {
+                  "en": "Got it, I'll send it by noon.",
+                  "ko": "알겠어요, 정오까지 보낼게요."
+                },
+                {
+                  "en": "Two coffees, no sugar. Got it.",
+                  "ko": "커피 두 잔, 설탕 없이. 알겠습니다."
+                }
+              ]
+            },
+            {
+              "text": "make sure",
+              "meaning": "꼭 ~하도록 하다",
+              "nuance": "확실히 챙기겠다고 약속하거나 상대에게 당부할 때 쓴다. 'Make sure you ~'는 '꼭 ~해'라는 뜻이다.",
+              "examples": [
+                {
+                  "en": "Make sure you lock the door.",
+                  "ko": "문 꼭 잠가."
+                },
+                {
+                  "en": "I'll make sure it's ready by Monday.",
+                  "ko": "월요일까지 꼭 준비해 둘게요."
+                },
+                {
+                  "en": "Did you make sure the oven is off?",
+                  "ko": "오븐 꺼진 거 확인했어?"
+                }
+              ]
+            },
+            {
+              "text": "as soon as",
+              "meaning": "~하자마자",
+              "nuance": "어떤 일이 끝나면 곧바로 하겠다는 뜻. 업무에서는 as soon as possible(ASAP)로도 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "Call me as soon as you land.",
+                  "ko": "도착하자마자 전화해."
+                },
+                {
+                  "en": "I'll reply as soon as I can.",
+                  "ko": "최대한 빨리 답장할게요."
+                },
+                {
+                  "en": "She left as soon as the meeting ended.",
+                  "ko": "그녀는 회의 끝나자마자 나갔어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Perfect, I really appreciate it. Talk to you soon!",
+          "ko_word_order": "완벽해요, / 정말 감사해요. / 곧 또 얘기해요!",
+          "ko_natural": "좋아요, 정말 감사합니다. 그럼 또 연락드릴게요!",
+          "terms": [
+            {
+              "text": "appreciate",
+              "form": "appreciate it",
+              "meaning": "고맙게 여기다",
+              "nuance": "Thank you보다 진심을 담은 느낌으로 업무 자리에서 특히 자주 쓴다. 'I'd appreciate it if ~'는 공손한 부탁이다.",
+              "examples": [
+                {
+                  "en": "Thanks for the ride. I appreciate it.",
+                  "ko": "태워 줘서 고마워."
+                },
+                {
+                  "en": "I'd appreciate it if you could reply today.",
+                  "ko": "오늘 답장 주시면 감사하겠습니다."
+                },
+                {
+                  "en": "We really appreciate your patience.",
+                  "ko": "기다려 주셔서 정말 감사합니다."
+                }
+              ]
+            },
+            {
+              "text": "talk to you soon",
+              "meaning": "또 연락해요",
+              "nuance": "전화나 메신저를 끝낼 때 쓰는 친근한 인사. 업무 통화에서도 무난하고 줄여서 'Talk soon'이라고도 한다.",
+              "examples": [
+                {
+                  "en": "Okay, talk to you soon!",
+                  "ko": "그래, 또 얘기하자!"
+                },
+                {
+                  "en": "Thanks for calling. Talk to you soon.",
+                  "ko": "전화 줘서 고마워. 또 연락해."
+                },
+                {
+                  "en": "Great catching up. Talk to you soon.",
+                  "ko": "근황 나눠서 좋았어. 또 연락하자."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

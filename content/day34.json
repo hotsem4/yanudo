@@ -1,0 +1,297 @@
+{
+  "lessons": [
+    {
+      "day": 34,
+      "title": "여행 계획 세우기",
+      "theme": "Planning a trip",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Have you decided where we're going for the long weekend?",
+          "ko_word_order": "정했어? / 우리가 어디 갈지 / 이번 연휴에",
+          "ko_natural": "이번 연휴에 어디 갈지 정했어?",
+          "terms": [
+            {
+              "text": "long weekend",
+              "meaning": "(사흘 이상) 연휴",
+              "nuance": "주말에 공휴일이 붙어 길어진 연휴를 말한다. 한국의 '황금연휴'에 가까운 느낌이다.",
+              "examples": [
+                { "en": "Any plans for the long weekend?", "ko": "연휴에 무슨 계획 있어?" },
+                { "en": "The roads are always busy on a long weekend.", "ko": "연휴엔 길이 늘 막혀." },
+                { "en": "We're camping over the long weekend.", "ko": "우리 연휴 동안 캠핑 가." }
+              ]
+            },
+            {
+              "text": "Have you decided",
+              "meaning": "결정했어?",
+              "nuance": "결정이 끝났는지 묻는 현재완료 질문. 뒤에 where, what, if 같은 의문사를 붙여 쓴다.",
+              "examples": [
+                { "en": "Have you decided what to order?", "ko": "뭐 주문할지 정했어?" },
+                { "en": "Have you decided on a date yet?", "ko": "날짜는 정했어?" },
+                { "en": "Have you decided if you're coming?", "ko": "올지 말지 정했어?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I'm thinking Busan. We haven't been there in years.",
+          "ko_word_order": "나는 부산 생각 중이야. / 우리 거기 안 가 봤잖아 / 몇 년 동안",
+          "ko_natural": "부산 어때? 거기 안 간 지 몇 년 됐잖아.",
+          "terms": [
+            {
+              "text": "I'm thinking",
+              "meaning": "~할까 해, ~ 생각 중이야",
+              "nuance": "뒤에 바로 명사를 붙여 '~ 어떨까 싶어'라고 가볍게 제안하는 구어. 확정이 아닌 느낌을 준다.",
+              "examples": [
+                { "en": "For dinner, I'm thinking Thai.", "ko": "저녁은 태국 음식 어떨까 싶어." },
+                { "en": "I'm thinking maybe next Friday?", "ko": "다음 주 금요일쯤 어때?" },
+                { "en": "I'm thinking we leave around eight.", "ko": "8시쯤 출발하면 어떨까 해." }
+              ]
+            },
+            {
+              "text": "in years",
+              "meaning": "몇 년 동안",
+              "nuance": "부정문 현재완료와 함께 '몇 년째 안 했다'는 뜻. in ages라고 하면 '엄청 오래'라는 과장된 느낌이 된다.",
+              "examples": [
+                { "en": "I haven't seen him in years.", "ko": "걔 못 본 지 몇 년 됐어." },
+                { "en": "This is the best pizza I've had in years.", "ko": "몇 년 만에 먹은 피자 중 최고야." },
+                { "en": "She hasn't driven in years.", "ko": "그 사람 운전 안 한 지 몇 년 됐어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Good idea. Should we take the train or drive down?",
+          "ko_word_order": "좋은 생각이야. / 우리 기차 탈까 / 아니면 차로 내려갈까?",
+          "ko_natural": "좋다. 기차 탈까, 아니면 차로 내려갈까?",
+          "core": true,
+          "terms": [
+            {
+              "text": "drive down",
+              "meaning": "차를 몰고 내려가다",
+              "nuance": "지도상 아래쪽이나 먼 지방으로 운전해 갈 때 쓴다. 위쪽이면 drive up이라고 한다.",
+              "examples": [
+                { "en": "We drove down to the coast on Saturday.", "ko": "토요일에 해안까지 차로 내려갔어." },
+                { "en": "My parents are driving down for my birthday.", "ko": "부모님이 내 생일이라고 차로 내려오셔." },
+                { "en": "It's a long way to drive down.", "ko": "차로 내려가기엔 먼 길이야." }
+              ]
+            },
+            {
+              "text": "take the train",
+              "meaning": "기차를 타다",
+              "nuance": "교통수단을 이용한다고 할 때는 ride보다 take가 자연스럽다. take the bus, take a taxi도 같은 방식이다.",
+              "examples": [
+                { "en": "I usually take the train to work.", "ko": "나는 보통 기차로 출근해." },
+                { "en": "It's faster to take the train.", "ko": "기차 타는 게 더 빨라." },
+                { "en": "Let's take the train back tonight.", "ko": "오늘 밤엔 기차 타고 돌아오자." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Let's take the KTX. It only takes about two and a half hours.",
+          "ko_word_order": "KTX 타자. / 그거 겨우 걸려 / 두 시간 반 정도",
+          "ko_natural": "KTX 타자. 두 시간 반밖에 안 걸려.",
+          "terms": [
+            {
+              "text": "it takes",
+              "form": "It only takes",
+              "meaning": "(시간이) 걸리다",
+              "nuance": "'It takes + 시간'은 소요 시간을 말하는 기본 틀. only를 넣으면 '겨우 그것밖에'라는 느낌이 된다.",
+              "examples": [
+                { "en": "It takes about ten minutes on foot.", "ko": "걸어서 10분쯤 걸려요." },
+                { "en": "How long does it take to get there?", "ko": "거기까지 얼마나 걸려?" },
+                { "en": "The repair took longer than I thought.", "ko": "수리가 생각보다 오래 걸렸어." }
+              ]
+            },
+            {
+              "text": "two and a half hours",
+              "meaning": "두 시간 반",
+              "nuance": "'반'은 and a half로 붙인다. 30분은 half an hour, 1시간 반은 an hour and a half라고 한다.",
+              "examples": [
+                { "en": "The movie is two and a half hours long.", "ko": "영화가 두 시간 반짜리야." },
+                { "en": "I waited two and a half hours at the airport.", "ko": "공항에서 두 시간 반 기다렸어." },
+                { "en": "The hike took us two and a half hours.", "ko": "등산하는 데 두 시간 반 걸렸어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Okay. If we book early, we can get cheaper tickets.",
+          "ko_word_order": "알겠어. / 만약 우리가 일찍 예매하면, / 우리는 얻을 수 있어 / 더 싼 표를",
+          "ko_natural": "좋아. 일찍 예매하면 표를 더 싸게 살 수 있어.",
+          "core": true,
+          "terms": [
+            {
+              "text": "book",
+              "meaning": "예약하다, 예매하다",
+              "nuance": "표·숙소·식당 예약 모두에 쓰는 구어 동사. make a reservation보다 짧고 일상적이다.",
+              "examples": [
+                { "en": "I already booked the hotel.", "ko": "호텔 벌써 예약했어." },
+                { "en": "The flights are all booked up.", "ko": "비행기 표가 다 매진이야." },
+                { "en": "Did you book a table for Friday?", "ko": "금요일 자리 예약했어?" }
+              ]
+            },
+            {
+              "text": "get tickets",
+              "form": "get cheaper tickets",
+              "meaning": "표를 구하다",
+              "nuance": "buy 대신 get을 쓰면 '구하다, 손에 넣다'는 느낌으로 더 자연스럽다. 공연·경기 표에도 쓴다.",
+              "examples": [
+                { "en": "I couldn't get tickets for the concert.", "ko": "콘서트 표 못 구했어." },
+                { "en": "Where can I get tickets for the game?", "ko": "경기 표 어디서 구할 수 있어?" },
+                { "en": "Let's get tickets before they sell out.", "ko": "매진되기 전에 표 사자." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "True. I'll look for a place near the beach tonight.",
+          "ko_word_order": "맞아. / 내가 찾아볼게 / 숙소를 / 해변 근처에 / 오늘 밤에",
+          "ko_natural": "맞아. 오늘 밤에 해변 근처로 숙소 찾아볼게.",
+          "terms": [
+            {
+              "text": "look for",
+              "meaning": "찾아보다",
+              "nuance": "아직 찾지 못한 것을 찾는 과정을 말한다. 찾아낸 결과는 find로 말한다.",
+              "examples": [
+                { "en": "I'm looking for my keys.", "ko": "열쇠 찾는 중이야." },
+                { "en": "She's looking for a new job.", "ko": "그 친구 새 직장 알아보고 있어." },
+                { "en": "Are you looking for something specific?", "ko": "특별히 찾으시는 거 있어요?" }
+              ]
+            },
+            {
+              "text": "a place",
+              "meaning": "숙소, 묵을 곳",
+              "nuance": "여행 이야기에서 place는 호텔·에어비앤비 등 묵을 곳을 두루 가리킨다. 'my place'는 '우리 집'이다.",
+              "examples": [
+                { "en": "We found a nice place by the lake.", "ko": "호숫가에 괜찮은 숙소 찾았어." },
+                { "en": "Do you want to come over to my place?", "ko": "우리 집 올래?" },
+                { "en": "The place we stayed at was super clean.", "ko": "우리가 묵은 숙소 엄청 깨끗했어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Let's keep it under a hundred dollars a night, if we can.",
+          "ko_word_order": "그건 유지하자 / 100달러 아래로 / 하룻밤에, / 가능하면",
+          "ko_natural": "가능하면 1박에 100달러 안쪽으로 하자.",
+          "terms": [
+            {
+              "text": "keep ~ under",
+              "form": "keep it under",
+              "meaning": "~ 아래로 맞추다",
+              "nuance": "예산·시간·인원을 일정 선 아래로 유지하자고 할 때 쓴다. 회의에서 'Let's keep it under an hour'처럼도 쓴다.",
+              "examples": [
+                { "en": "Let's keep the meeting under thirty minutes.", "ko": "회의는 30분 안에 끝내자." },
+                { "en": "Try to keep it under two pages.", "ko": "두 쪽 안으로 써 봐." },
+                { "en": "I want to keep the budget under a thousand.", "ko": "예산은 천 달러 아래로 맞추고 싶어." }
+              ]
+            },
+            {
+              "text": "if we can",
+              "meaning": "가능하면",
+              "nuance": "문장 끝에 붙여 요구를 부드럽게 만든다. 'if possible'보다 대화체에 가깝다.",
+              "examples": [
+                { "en": "Let's leave early, if we can.", "ko": "가능하면 일찍 출발하자." },
+                { "en": "I'd like a window seat, if I can.", "ko": "가능하면 창가 자리로 주세요." },
+                { "en": "We'll finish today, if we can.", "ko": "되면 오늘 끝낼게요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sounds good. What do you want to do while we're there?",
+          "ko_word_order": "좋아. / 너는 뭘 하고 싶어 / 우리가 거기 있는 동안?",
+          "ko_natural": "좋아. 거기 가서 뭐 하고 싶어?",
+          "terms": [
+            {
+              "text": "while we're there",
+              "meaning": "거기 있는 동안",
+              "nuance": "while 뒤에 주어와 동사를 붙여 '~하는 동안'을 말한다. 여행지에서 할 일을 정할 때 자주 쓴다.",
+              "examples": [
+                { "en": "Let's visit the market while we're there.", "ko": "거기 간 김에 시장도 가 보자." },
+                { "en": "While you're there, grab some snacks.", "ko": "간 김에 과자 좀 사 와." },
+                { "en": "It rained the whole time while we were there.", "ko": "우리 거기 있는 내내 비가 왔어." }
+              ]
+            },
+            {
+              "text": "Sounds good",
+              "meaning": "좋아",
+              "nuance": "제안에 가볍게 동의하는 아주 흔한 구어. 친구 사이부터 회사 메신저까지 두루 쓴다.",
+              "examples": [
+                { "en": "Lunch at noon? Sounds good.", "ko": "12시에 점심? 좋아." },
+                { "en": "Sounds good to me.", "ko": "난 좋아." },
+                { "en": "Sounds good, see you then.", "ko": "좋아요, 그때 봐요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Honestly, I just want to eat seafood the whole time.",
+          "ko_word_order": "솔직히, / 나는 그냥 해산물 먹고 싶어 / 내내",
+          "ko_natural": "솔직히 가서 내내 해산물만 먹고 싶어.",
+          "terms": [
+            {
+              "text": "the whole time",
+              "meaning": "내내, 계속",
+              "nuance": "어떤 기간 처음부터 끝까지 쭉이라는 뜻. 불평할 때나 과장해서 말할 때도 자주 쓴다.",
+              "examples": [
+                { "en": "He was on his phone the whole time.", "ko": "걔 내내 휴대폰만 보고 있었어." },
+                { "en": "I slept the whole time on the flight.", "ko": "비행기에서 내내 잤어." },
+                { "en": "Were you here the whole time?", "ko": "여태 계속 여기 있었어?" }
+              ]
+            },
+            {
+              "text": "honestly",
+              "meaning": "솔직히",
+              "nuance": "속마음을 털어놓을 때 문장 앞이나 뒤에 붙인다. 짜증이나 놀람을 표현하는 감탄사로도 쓴다.",
+              "examples": [
+                { "en": "Honestly, I didn't like the movie.", "ko": "솔직히 그 영화 별로였어." },
+                { "en": "I honestly don't remember.", "ko": "진짜 기억이 안 나." },
+                { "en": "Honestly, it's not a big deal.", "ko": "솔직히 별일 아니야." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Ha, same. I'll put together a rough plan and send it to you.",
+          "ko_word_order": "하, 나도. / 내가 짜 볼게 / 대략적인 계획을 / 그리고 너한테 보낼게",
+          "ko_natural": "하하, 나도. 대충 일정 짜서 보내 줄게.",
+          "core": true,
+          "terms": [
+            {
+              "text": "put together",
+              "meaning": "(계획·자료를) 짜다, 만들다",
+              "nuance": "여러 요소를 모아 하나로 정리한다는 느낌. 일정, 발표 자료, 팀을 꾸릴 때 두루 쓴다.",
+              "examples": [
+                { "en": "Can you put together a list for me?", "ko": "목록 좀 정리해 줄래?" },
+                { "en": "We put together a small party for her.", "ko": "그 친구 위해 작은 파티를 준비했어." },
+                { "en": "I'm putting together the slides now.", "ko": "지금 발표 자료 만들고 있어." }
+              ]
+            },
+            {
+              "text": "rough",
+              "meaning": "대략적인",
+              "nuance": "자세하지 않고 대강인 상태를 말한다. rough idea, rough draft처럼 계획·초안 앞에 자주 붙는다.",
+              "examples": [
+                { "en": "Can you give me a rough idea of the cost?", "ko": "비용이 대략 얼마인지 알려 줄래요?" },
+                { "en": "This is just a rough draft.", "ko": "이건 그냥 대충 쓴 초안이야." },
+                { "en": "I have a rough idea of what I want.", "ko": "원하는 게 대충은 있어." }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

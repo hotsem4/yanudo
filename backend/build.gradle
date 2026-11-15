@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.1'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.habit66'
+version = '1.0.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.xerial:sqlite-jdbc:3.46.1.3'
+    implementation 'org.hibernate.orm:hibernate-community-dialects'
+    implementation 'nl.martijndwars:web-push:5.1.1'
+    // web-push 는 BouncyCastle 을 전이 의존으로 가져오지 않는다(직접 넣어야 한다).
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.78.1'
+    // 단어장 생성기 중 anthropic-api 만 쓴다(기본 생성기 claude-cli 는 이 의존을 쓰지 않는다).
+    implementation 'com.anthropic:anthropic-java:3.3.0'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    jvmArgs '-Dfile.encoding=UTF-8'
+}
+
+tasks.named('bootJar') {
+    archiveFileName = 'habit66.jar'
+}
+
+// data/ 디렉터리를 프로젝트 루트에 두기 위해 루트에서 실행한다.
+tasks.named('bootRun') {
+    workingDir = rootProject.projectDir.parentFile
+    jvmArgs '-Dfile.encoding=UTF-8'
+}

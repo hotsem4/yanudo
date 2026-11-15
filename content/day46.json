@@ -1,0 +1,442 @@
+{
+  "lessons": [
+    {
+      "day": 46,
+      "title": "휴가 신청하기",
+      "theme": "Asking for time off",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi Ava, is now a good time? I wanted to ask about some time off.",
+          "ko_word_order": "안녕하세요 에이바, / 지금 괜찮으세요? / 저는 여쭤보고 싶었어요 / 휴가에 대해",
+          "ko_natural": "에이바, 지금 잠깐 괜찮으세요? 휴가 문제로 여쭤볼 게 있어서요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "is now a good time",
+              "meaning": "지금 괜찮으세요?",
+              "nuance": "상사나 바쁜 사람에게 말을 걸기 전에 시간이 되는지 확인하는 공손한 표현이다.",
+              "examples": [
+                {
+                  "en": "Is now a good time to talk?",
+                  "ko": "지금 얘기해도 괜찮아요?"
+                },
+                {
+                  "en": "Sorry, now isn't a good time.",
+                  "ko": "미안, 지금은 좀 곤란해."
+                },
+                {
+                  "en": "Is now a good time to call you?",
+                  "ko": "지금 전화해도 돼요?"
+                }
+              ]
+            },
+            {
+              "text": "time off",
+              "meaning": "휴가, 쉬는 기간",
+              "nuance": "회사를 쉬는 기간을 말하는 일반 표현. vacation보다 넓어서 병가나 개인 사유도 포함한다.",
+              "examples": [
+                {
+                  "en": "I need some time off after this project.",
+                  "ko": "이 프로젝트 끝나면 좀 쉬어야겠어요."
+                },
+                {
+                  "en": "How much time off do you get a year?",
+                  "ko": "1년에 휴가 며칠 받아요?"
+                },
+                {
+                  "en": "She's taking time off to have a baby.",
+                  "ko": "그녀는 출산 때문에 휴가를 내요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure, come on in. When were you thinking of going?",
+          "ko_word_order": "그럼요, 들어와요. / 언제 / 생각하고 있었어요 / 가는 걸?",
+          "ko_natural": "그래요, 들어와요. 언제쯤 생각하고 있어요?",
+          "terms": [
+            {
+              "text": "come on in",
+              "meaning": "들어오세요",
+              "nuance": "문 앞에 있는 사람을 반갑게 맞이할 때. Come in보다 친근하다.",
+              "examples": [
+                {
+                  "en": "Come on in, the door's open.",
+                  "ko": "들어와, 문 열려 있어."
+                },
+                {
+                  "en": "Come on in and have a seat.",
+                  "ko": "들어와서 앉아요."
+                },
+                {
+                  "en": "Oh, it's you! Come on in.",
+                  "ko": "아, 너구나! 들어와."
+                }
+              ]
+            },
+            {
+              "text": "be thinking of",
+              "form": "thinking of",
+              "meaning": "~할 생각이다",
+              "nuance": "계획을 말하거나 물을 때. 과거진행형 were you thinking of로 물으면 더 부드럽다.",
+              "examples": [
+                {
+                  "en": "I'm thinking of changing jobs.",
+                  "ko": "이직할까 생각 중이에요."
+                },
+                {
+                  "en": "Where were you thinking of eating?",
+                  "ko": "어디서 먹을 생각이었어?"
+                },
+                {
+                  "en": "We're thinking of moving to Busan.",
+                  "ko": "부산으로 이사할까 해."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I was hoping to take the first week of December off.",
+          "ko_word_order": "저는 바라고 있었어요 / 쉬기를 / 12월 첫째 주를",
+          "ko_natural": "12월 첫째 주에 쉬었으면 해서요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "I was hoping to",
+              "meaning": "~했으면 해서요",
+              "nuance": "원하는 것을 공손하게 꺼낼 때. I want to보다 훨씬 부드러워 상사에게 쓰기 좋다.",
+              "examples": [
+                {
+                  "en": "I was hoping to leave a bit early today.",
+                  "ko": "오늘 좀 일찍 들어갔으면 해서요."
+                },
+                {
+                  "en": "I was hoping to talk to you about my schedule.",
+                  "ko": "제 일정 얘기를 좀 드렸으면 했어요."
+                },
+                {
+                  "en": "We were hoping to get a table by the window.",
+                  "ko": "창가 자리였으면 했는데요."
+                }
+              ]
+            },
+            {
+              "text": "take (a day) off",
+              "form": "take the first week of December off",
+              "meaning": "(그 기간을) 쉬다",
+              "nuance": "휴가로 회사를 쉴 때. take Friday off, take a day off처럼 take와 off 사이에 기간을 넣는다.",
+              "examples": [
+                {
+                  "en": "I'm taking Friday off.",
+                  "ko": "금요일에 쉬어요."
+                },
+                {
+                  "en": "Can I take a day off next week?",
+                  "ko": "다음 주에 하루 쉬어도 될까요?"
+                },
+                {
+                  "en": "He took two weeks off in the summer.",
+                  "ko": "그는 여름에 2주 쉬었어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Let me check the team calendar. Hmm, Jake's already off that week.",
+          "ko_word_order": "확인해 볼게요 / 팀 캘린더를. / 음, 제이크가 이미 쉬어요 / 그 주에",
+          "ko_natural": "팀 일정표 좀 볼게요. 음, 그 주엔 제이크가 이미 휴가네요.",
+          "terms": [
+            {
+              "text": "be off",
+              "form": "off that week",
+              "meaning": "쉬다, 근무가 없다",
+              "nuance": "출근하지 않는 날을 말할 때. I'm off tomorrow는 내일 쉰다는 아주 흔한 말이다.",
+              "examples": [
+                {
+                  "en": "I'm off on Mondays.",
+                  "ko": "저 월요일엔 쉬어요."
+                },
+                {
+                  "en": "Are you off this weekend?",
+                  "ko": "이번 주말에 쉬어?"
+                },
+                {
+                  "en": "She's off sick today.",
+                  "ko": "그녀는 오늘 아파서 쉬어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Oh, I didn't realize that. Would that be a problem?",
+          "ko_word_order": "아, 저는 몰랐어요 / 그걸. / 그게 문제가 될까요?",
+          "ko_natural": "아, 몰랐어요. 그럼 곤란할까요?",
+          "terms": [
+            {
+              "text": "realize",
+              "meaning": "알아차리다, 깨닫다",
+              "nuance": "몰랐던 사실을 알게 될 때. I didn't realize는 몰랐다며 부드럽게 넘어갈 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "I didn't realize it was so late.",
+                  "ko": "이렇게 늦은 줄 몰랐어."
+                },
+                {
+                  "en": "She realized she'd left her keys at home.",
+                  "ko": "그녀는 열쇠를 집에 두고 온 걸 깨달았어요."
+                },
+                {
+                  "en": "Do you realize how lucky we are?",
+                  "ko": "우리가 얼마나 운 좋은지 알아?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "It might be tight, since we're wrapping up the year-end report.",
+          "ko_word_order": "그건 빠듯할 수도 있어요, / 우리가 마무리하고 있어서요 / 연말 보고서를",
+          "ko_natural": "연말 보고서 마무리 중이라 좀 빠듯할 수도 있어요.",
+          "terms": [
+            {
+              "text": "tight",
+              "meaning": "빠듯한",
+              "nuance": "시간·예산·일정에 여유가 없을 때. busy보다 여유가 없다는 데 초점이 있다.",
+              "examples": [
+                {
+                  "en": "Money is a bit tight this month.",
+                  "ko": "이번 달은 돈이 좀 빠듯해."
+                },
+                {
+                  "en": "We're on a tight schedule.",
+                  "ko": "일정이 빠듯해요."
+                },
+                {
+                  "en": "Ten minutes is tight, but we can make it.",
+                  "ko": "10분은 빠듯하지만 갈 수 있어."
+                }
+              ]
+            },
+            {
+              "text": "wrap up",
+              "form": "wrapping up",
+              "meaning": "마무리하다",
+              "nuance": "일이나 회의를 끝내 가는 단계에서 쓰는 구어. finish보다 정리하며 끝낸다는 느낌이다.",
+              "examples": [
+                {
+                  "en": "Let's wrap up the meeting.",
+                  "ko": "회의 마무리하죠."
+                },
+                {
+                  "en": "I'm just wrapping up a few emails.",
+                  "ko": "메일 몇 개만 마무리하고 있어요."
+                },
+                {
+                  "en": "We wrapped up the project last week.",
+                  "ko": "지난주에 프로젝트를 마무리했어요."
+                }
+              ]
+            },
+            {
+              "text": "year-end",
+              "meaning": "연말의",
+              "nuance": "회계나 업무에서 한 해 마감을 말할 때 명사 앞에 붙인다. year-end party(송년회)처럼도 쓴다.",
+              "examples": [
+                {
+                  "en": "The year-end party is on the twentieth.",
+                  "ko": "송년회는 20일이에요."
+                },
+                {
+                  "en": "We're busy with year-end sales.",
+                  "ko": "연말 세일로 바빠요."
+                },
+                {
+                  "en": "Year-end bonuses come out in January.",
+                  "ko": "연말 보너스는 1월에 나와요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I've already finished my part, and Mina has offered to cover for me.",
+          "ko_word_order": "저는 이미 끝냈어요 / 제 몫을, / 그리고 미나가 해 주겠다고 했어요 / 제 일을 대신",
+          "ko_natural": "제 담당 부분은 이미 끝냈고, 미나가 제 일을 대신 맡아 주겠다고 했어요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "cover for",
+              "meaning": "~의 일을 대신하다",
+              "nuance": "자리를 비운 동료의 업무를 대신 맡을 때. 직장에서 휴가나 병가 얘기할 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Can you cover for me on Friday?",
+                  "ko": "금요일에 제 일 좀 대신해 줄래요?"
+                },
+                {
+                  "en": "I covered for Tom while he was sick.",
+                  "ko": "톰이 아플 때 제가 대신 일했어요."
+                },
+                {
+                  "en": "Who's covering for you next week?",
+                  "ko": "다음 주에 누가 당신 일을 맡아요?"
+                }
+              ]
+            },
+            {
+              "text": "offer to",
+              "form": "offered to",
+              "meaning": "~하겠다고 나서다",
+              "nuance": "부탁받기 전에 먼저 해 주겠다고 할 때. offer 뒤에는 to와 동사원형이 온다.",
+              "examples": [
+                {
+                  "en": "He offered to drive me home.",
+                  "ko": "그가 집까지 태워 주겠다고 했어."
+                },
+                {
+                  "en": "She offered to pay for dinner.",
+                  "ko": "그녀가 저녁값을 내겠다고 했어요."
+                },
+                {
+                  "en": "Thanks for offering to help.",
+                  "ko": "도와주겠다고 해 줘서 고마워."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "In that case, I don't see why not. Just submit the request online.",
+          "ko_word_order": "그런 경우라면, / 안 될 이유가 없네요. / 그냥 신청을 올리세요 / 온라인으로",
+          "ko_natural": "그렇다면 안 될 거 없죠. 온라인으로 신청만 올려 주세요.",
+          "terms": [
+            {
+              "text": "in that case",
+              "meaning": "그렇다면",
+              "nuance": "상대가 준 새 정보를 바탕으로 결론을 낼 때. then보다 조건을 분명히 받는 느낌이다.",
+              "examples": [
+                {
+                  "en": "It's raining? In that case, let's stay in.",
+                  "ko": "비 와? 그럼 집에 있자."
+                },
+                {
+                  "en": "In that case, I'll call you tomorrow.",
+                  "ko": "그렇다면 내일 전화할게요."
+                },
+                {
+                  "en": "Oh, you're busy? In that case, never mind.",
+                  "ko": "아, 바빠? 그럼 됐어."
+                }
+              ]
+            },
+            {
+              "text": "I don't see why not",
+              "meaning": "안 될 거 없죠",
+              "nuance": "허락이나 제안에 괜찮다고 답하는 부드러운 표현. 반대할 이유가 없으니 된다는 느낌이다.",
+              "examples": [
+                {
+                  "en": "Can I bring a friend? — I don't see why not.",
+                  "ko": "친구 데려가도 돼? — 안 될 거 없지."
+                },
+                {
+                  "en": "I don't see why not, if you finish early.",
+                  "ko": "일찍 끝내면 안 될 거 없죠."
+                },
+                {
+                  "en": "Sure, I don't see why not.",
+                  "ko": "그럼, 안 될 거 없지."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Thank you so much. I'll make sure everything's handed over before I leave.",
+          "ko_word_order": "정말 고마워요. / 꼭 할게요 / 모든 게 인계되도록 / 제가 떠나기 전에",
+          "ko_natural": "정말 감사해요. 가기 전에 인수인계 확실히 해 둘게요.",
+          "terms": [
+            {
+              "text": "make sure",
+              "meaning": "꼭 ~하도록 하다",
+              "nuance": "빠뜨리지 않고 확실히 하겠다고 약속할 때. 상사를 안심시키는 말로 좋다.",
+              "examples": [
+                {
+                  "en": "Make sure you lock the door.",
+                  "ko": "문 꼭 잠가."
+                },
+                {
+                  "en": "I'll make sure she gets the message.",
+                  "ko": "그녀가 메시지 꼭 받게 할게요."
+                },
+                {
+                  "en": "Make sure to drink lots of water.",
+                  "ko": "물 꼭 많이 마셔."
+                }
+              ]
+            },
+            {
+              "text": "hand over",
+              "form": "handed over",
+              "meaning": "인계하다, 넘겨주다",
+              "nuance": "맡던 업무나 물건을 다른 사람에게 넘길 때. 휴가나 퇴사 전 인수인계를 말할 때 쓴다.",
+              "examples": [
+                {
+                  "en": "I'll hand over the project to Mina.",
+                  "ko": "프로젝트를 미나에게 넘길게요."
+                },
+                {
+                  "en": "Please hand over your keys at the front desk.",
+                  "ko": "열쇠는 프런트에 맡겨 주세요."
+                },
+                {
+                  "en": "He handed over his work before retiring.",
+                  "ko": "그는 은퇴 전에 업무를 넘겨줬어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Great. Have a good break, and enjoy the time with your family.",
+          "ko_word_order": "좋아요. / 잘 쉬다 와요, / 그리고 즐겨요 / 가족과의 시간을",
+          "ko_natural": "좋아요. 잘 쉬고, 가족이랑 좋은 시간 보내요.",
+          "terms": [
+            {
+              "text": "break",
+              "meaning": "휴가, 휴식",
+              "nuance": "짧은 휴가, 방학, 쉬는 시간 모두에 쓴다. Have a good break는 휴가 가는 사람에게 하는 인사다.",
+              "examples": [
+                {
+                  "en": "How was your winter break?",
+                  "ko": "겨울 방학 어땠어?"
+                },
+                {
+                  "en": "Let's take a ten-minute break.",
+                  "ko": "10분 쉬었다 해요."
+                },
+                {
+                  "en": "I'm going to Japan over the break.",
+                  "ko": "휴가 때 일본 가요."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

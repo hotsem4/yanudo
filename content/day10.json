@@ -1,0 +1,421 @@
+{
+  "lessons": [
+    {
+      "day": 10,
+      "title": "교환과 환불",
+      "theme": "Exchanges and refunds",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi, I bought this shirt here last week.",
+          "ko_word_order": "안녕하세요, 저는 샀어요 / 이 셔츠를 여기서 / 지난주에",
+          "ko_natural": "안녕하세요, 지난주에 여기서 이 셔츠를 샀는데요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "buy",
+              "form": "bought",
+              "meaning": "사다",
+              "nuance": "과거형이 bought로 불규칙하게 바뀐다. 교환이나 환불할 때는 I bought this here로 구매 사실을 먼저 말한다.",
+              "examples": [
+                {
+                  "en": "Where did you buy that bag?",
+                  "ko": "그 가방 어디서 샀어요?"
+                },
+                {
+                  "en": "I bought a new phone yesterday.",
+                  "ko": "어제 새 휴대폰 샀어요."
+                },
+                {
+                  "en": "Let me buy you a coffee.",
+                  "ko": "커피 한잔 살게요."
+                }
+              ]
+            },
+            {
+              "text": "last week",
+              "form": "last week",
+              "meaning": "지난주에",
+              "nuance": "앞에 in이나 at 없이 그대로 쓴다. 다음 주는 next week, 이번 주는 this week다.",
+              "examples": [
+                {
+                  "en": "I saw her last week.",
+                  "ko": "지난주에 그녀를 봤어요."
+                },
+                {
+                  "en": "We moved in last week.",
+                  "ko": "지난주에 이사 들어왔어요."
+                },
+                {
+                  "en": "Where were you last week?",
+                  "ko": "지난주에 어디 있었어?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Okay. Is there a problem with it?",
+          "ko_word_order": "네. / 문제가 있나요 / 그것에?",
+          "ko_natural": "네. 무슨 문제가 있으세요?",
+          "core": false,
+          "terms": [
+            {
+              "text": "a problem with",
+              "form": "a problem with",
+              "meaning": "~에 문제",
+              "nuance": "물건이나 서비스에 이상이 있을 때 a problem with + 대상으로 말한다.",
+              "examples": [
+                {
+                  "en": "There's a problem with my order.",
+                  "ko": "제 주문에 문제가 있어요."
+                },
+                {
+                  "en": "I had a problem with the Wi-Fi.",
+                  "ko": "와이파이에 문제가 있었어요."
+                },
+                {
+                  "en": "Is there a problem with the car?",
+                  "ko": "차에 문제 있어요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "It's too small. Can I exchange it?",
+          "ko_word_order": "그것은 너무 작아요. / 제가 교환할 수 있나요 / 그것을?",
+          "ko_natural": "너무 작아서요. 교환할 수 있을까요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "too small",
+              "form": "too small",
+              "meaning": "너무 작은",
+              "nuance": "too는 정도가 지나쳐서 문제가 될 때 쓴다. 크면 too big, 꽉 끼면 too tight라고 한다.",
+              "examples": [
+                {
+                  "en": "These shoes are too small for me.",
+                  "ko": "이 신발 저한테 너무 작아요."
+                },
+                {
+                  "en": "The room was too small for four people.",
+                  "ko": "네 명이 쓰기엔 방이 너무 작았어요."
+                },
+                {
+                  "en": "My old jeans are too small now.",
+                  "ko": "예전 청바지가 이제 너무 작아요."
+                }
+              ]
+            },
+            {
+              "text": "exchange",
+              "form": "exchange",
+              "meaning": "교환하다",
+              "nuance": "산 물건을 다른 것으로 바꿀 때 쓴다. exchange A for B는 A를 B로 바꾼다는 뜻이다.",
+              "examples": [
+                {
+                  "en": "I'd like to exchange this for a bigger size.",
+                  "ko": "이거 더 큰 사이즈로 바꾸고 싶어요."
+                },
+                {
+                  "en": "Can I exchange it without a receipt?",
+                  "ko": "영수증 없이 교환돼요?"
+                },
+                {
+                  "en": "You can exchange items within two weeks.",
+                  "ko": "2주 안에 교환할 수 있어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. Do you have the receipt with you?",
+          "ko_word_order": "물론이죠. / 가지고 계신가요 / 영수증을 / 지금?",
+          "ko_natural": "네. 영수증 가지고 계세요?",
+          "core": false,
+          "terms": [
+            {
+              "text": "have ~ with you",
+              "form": "have the receipt with you",
+              "meaning": "지금 가지고 있다",
+              "nuance": "지금 몸에 지니고 있는지 물을 때 쓴다. on you라고도 한다(Do you have cash on you?).",
+              "examples": [
+                {
+                  "en": "Do you have your passport with you?",
+                  "ko": "여권 지금 가지고 계세요?"
+                },
+                {
+                  "en": "I don't have my wallet with me.",
+                  "ko": "지갑을 안 가지고 왔어요."
+                },
+                {
+                  "en": "Do you have an umbrella with you?",
+                  "ko": "우산 갖고 있어?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Yes, here it is. And the tags are still on.",
+          "ko_word_order": "네, 여기 있어요. / 그리고 택들이 / 아직 붙어 있어요",
+          "ko_natural": "네, 여기요. 택도 아직 그대로 있어요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "here it is",
+              "form": "here it is",
+              "meaning": "여기 있어요",
+              "nuance": "찾던 물건을 꺼내 보여 주거나 건넬 때 쓴다. 이미 말한 그 물건을 가리킨다.",
+              "examples": [
+                {
+                  "en": "Where's my ticket? Oh, here it is.",
+                  "ko": "내 표 어디 갔지? 아, 여기 있다."
+                },
+                {
+                  "en": "You wanted the menu? Here it is.",
+                  "ko": "메뉴 찾으셨죠? 여기 있어요."
+                },
+                {
+                  "en": "Here it is, the photo I told you about.",
+                  "ko": "여기 있다, 내가 말한 사진."
+                }
+              ]
+            },
+            {
+              "text": "tag",
+              "form": "tags",
+              "meaning": "(옷에 달린) 택, 가격표",
+              "nuance": "옷에 달린 가격표나 상표를 말한다. 택이 붙어 있어야 반품되는 경우가 많다.",
+              "examples": [
+                {
+                  "en": "Don't cut off the tags yet.",
+                  "ko": "아직 택 떼지 마."
+                },
+                {
+                  "en": "The price tag says twenty dollars.",
+                  "ko": "가격표에 20달러라고 쓰여 있어요."
+                },
+                {
+                  "en": "I forgot to take the tag off my shirt.",
+                  "ko": "셔츠 택 떼는 걸 깜빡했어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sorry, we don't have a larger size right now.",
+          "ko_word_order": "죄송해요, / 저희는 없어요 / 더 큰 사이즈가 / 지금은",
+          "ko_natural": "죄송하지만 지금은 더 큰 사이즈가 없어요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "a larger size",
+              "form": "a larger size",
+              "meaning": "더 큰 사이즈",
+              "nuance": "옷이나 신발의 한 치수 큰 것을 말한다. 작은 건 a smaller size다.",
+              "examples": [
+                {
+                  "en": "Do you have this in a larger size?",
+                  "ko": "이거 더 큰 사이즈 있어요?"
+                },
+                {
+                  "en": "I need a larger size in these boots.",
+                  "ko": "이 부츠는 더 큰 사이즈가 필요해요."
+                },
+                {
+                  "en": "Should I get a larger size?",
+                  "ko": "더 큰 사이즈로 살까?"
+                }
+              ]
+            },
+            {
+              "text": "right now",
+              "form": "right now",
+              "meaning": "지금(은)",
+              "nuance": "바로 지금을 강조한다. 지금은 안 되지만 나중엔 될 수도 있다는 느낌도 준다.",
+              "examples": [
+                {
+                  "en": "I'm busy right now. Can I call you back?",
+                  "ko": "지금 바빠요. 다시 전화해도 돼요?"
+                },
+                {
+                  "en": "She's not here right now.",
+                  "ko": "그녀는 지금 자리에 없어요."
+                },
+                {
+                  "en": "Let's go right now.",
+                  "ko": "지금 바로 가자."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Then can I just get a refund instead?",
+          "ko_word_order": "그럼 제가 그냥 받을 수 있을까요 / 환불을 / 대신에?",
+          "ko_natural": "그럼 그냥 환불받을 수 있을까요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "get a refund",
+              "form": "get a refund",
+              "meaning": "환불받다",
+              "nuance": "산 물건 값을 돌려받을 때 쓴다. 가게 쪽에서 돌려주는 건 give a refund라고 한다.",
+              "examples": [
+                {
+                  "en": "Can I get a refund if it doesn't fit?",
+                  "ko": "안 맞으면 환불받을 수 있어요?"
+                },
+                {
+                  "en": "I finally got a refund for my ticket.",
+                  "ko": "드디어 표값 환불받았어요."
+                },
+                {
+                  "en": "You can't get a refund on sale items.",
+                  "ko": "세일 상품은 환불이 안 돼요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure thing. I'll put it back on your card.",
+          "ko_word_order": "그럼요. / 제가 넣어 드릴게요 / 그것을 다시 / 당신의 카드에",
+          "ko_natural": "그럼요. 결제하신 카드로 환불해 드릴게요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "sure thing",
+              "form": "sure thing",
+              "meaning": "그럼요, 물론이죠",
+              "nuance": "부탁에 흔쾌히 답하는 미국식 구어다. 고맙다는 말에 대한 답으로도 쓴다.",
+              "examples": [
+                {
+                  "en": "Can you send me the file? Sure thing.",
+                  "ko": "파일 좀 보내 줄래요? 그럼요."
+                },
+                {
+                  "en": "Sure thing, I'll be right there.",
+                  "ko": "물론이지, 바로 갈게."
+                },
+                {
+                  "en": "Thanks for the ride. Sure thing!",
+                  "ko": "태워 줘서 고마워요. 별말씀을요!"
+                }
+              ]
+            },
+            {
+              "text": "put ~ back on",
+              "form": "put it back on",
+              "meaning": "(카드로) 돌려주다",
+              "nuance": "결제한 금액을 같은 카드로 되돌려 줄 때 쓴다. 매장 직원이 환불 방법을 말할 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "They put the money back on my card.",
+                  "ko": "돈을 제 카드로 다시 넣어 줬어요."
+                },
+                {
+                  "en": "Can you put the refund back on this card?",
+                  "ko": "환불은 이 카드로 해 주실 수 있어요?"
+                },
+                {
+                  "en": "We'll put the deposit back on your card.",
+                  "ko": "보증금은 카드로 돌려 드릴게요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "When will I get the money back?",
+          "ko_word_order": "언제 / 제가 돌려받나요 / 돈을?",
+          "ko_natural": "돈은 언제 들어와요?",
+          "core": false,
+          "terms": [
+            {
+              "text": "get ~ back",
+              "form": "get the money back",
+              "meaning": "돌려받다",
+              "nuance": "빌려준 것이나 낸 돈을 다시 받을 때 쓴다. 대상을 가운데 넣어 get it back처럼 쓴다.",
+              "examples": [
+                {
+                  "en": "Did you get your book back?",
+                  "ko": "책 돌려받았어?"
+                },
+                {
+                  "en": "I want to get my deposit back.",
+                  "ko": "보증금 돌려받고 싶어요."
+                },
+                {
+                  "en": "Lend me ten dollars. You'll get it back tomorrow.",
+                  "ko": "10달러만 빌려줘. 내일 돌려줄게."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "It should show up in three to five business days.",
+          "ko_word_order": "그것은 들어올 거예요 / 3~5일 안에 / 영업일로",
+          "ko_natural": "영업일 기준 3~5일 안에 들어올 거예요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "show up",
+              "form": "show up",
+              "meaning": "(돈·기록이) 들어오다, 나타나다",
+              "nuance": "계좌나 화면에 무언가가 나타날 때 쓴다. 사람이 약속 장소에 '오다'라는 뜻으로도 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "The payment hasn't shown up yet.",
+                  "ko": "결제가 아직 안 들어왔어요."
+                },
+                {
+                  "en": "My name didn't show up on the list.",
+                  "ko": "명단에 제 이름이 안 나왔어요."
+                },
+                {
+                  "en": "He didn't show up to class today.",
+                  "ko": "걔 오늘 수업에 안 왔어."
+                }
+              ]
+            },
+            {
+              "text": "business day",
+              "form": "business days",
+              "meaning": "영업일",
+              "nuance": "주말과 공휴일을 뺀 평일을 말한다. 배송이나 환불 기간을 안내할 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Shipping takes two business days.",
+                  "ko": "배송은 영업일 기준 2일 걸려요."
+                },
+                {
+                  "en": "We'll reply within one business day.",
+                  "ko": "영업일 하루 안에 답변 드릴게요."
+                },
+                {
+                  "en": "Weekends don't count as business days.",
+                  "ko": "주말은 영업일에 안 들어가요."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,344 @@
+{
+  "lessons": [
+    {
+      "day": 18,
+      "title": "길을 잃었을 때",
+      "theme": "Getting lost",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Excuse me, I think I'm lost. Can you help?",
+          "ko_word_order": "실례합니다, / 제 생각에 저는 길을 잃었어요. / 도와줄 수 있나요?",
+          "ko_natural": "저기요, 길을 잃은 것 같은데 좀 도와주시겠어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "lost",
+              "meaning": "길을 잃은",
+              "nuance": "be lost는 '길을 잃은 상태', get lost는 '길을 잃게 되다'. 명령문 Get lost!는 '꺼져'라는 무례한 말이니 주의.",
+              "examples": [
+                {
+                  "en": "We got lost on the way to the hotel.",
+                  "ko": "호텔 가는 길에 길을 잃었어."
+                },
+                {
+                  "en": "I'm totally lost. Where are we?",
+                  "ko": "완전히 길 잃었어. 여기 어디야?"
+                },
+                {
+                  "en": "It's easy to get lost in this city.",
+                  "ko": "이 도시에선 길 잃기 쉬워."
+                }
+              ]
+            },
+            {
+              "text": "excuse me",
+              "meaning": "실례합니다(저기요)",
+              "nuance": "모르는 사람에게 말을 걸 때 쓰는 첫마디. 잘못을 사과할 때는 sorry가 더 자연스럽다.",
+              "examples": [
+                {
+                  "en": "Excuse me, is this seat taken?",
+                  "ko": "저기요, 여기 자리 있어요?"
+                },
+                {
+                  "en": "Excuse me, can I get past?",
+                  "ko": "실례합니다, 좀 지나갈게요."
+                },
+                {
+                  "en": "Excuse me, do you know what time it is?",
+                  "ko": "저기요, 지금 몇 시인지 아세요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. Where are you headed?",
+          "ko_word_order": "그럼요. / 어디로 / 당신은 가는 중인가요?",
+          "ko_natural": "그럼요. 어디 가시는데요?",
+          "terms": [
+            {
+              "text": "be headed",
+              "form": "are you headed",
+              "meaning": "~로 가는 중이다",
+              "nuance": "어디로 가는 길인지 묻거나 말하는 구어. Where are you going?보다 부드럽고 자연스럽다.",
+              "examples": [
+                {
+                  "en": "I'm headed home. Want a ride?",
+                  "ko": "나 집에 가는 길이야. 태워 줄까?"
+                },
+                {
+                  "en": "We're headed to the beach this weekend.",
+                  "ko": "우리 이번 주말에 바닷가 가."
+                },
+                {
+                  "en": "Where are you guys headed tonight?",
+                  "ko": "너희 오늘 밤 어디 가?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I'm looking for the Riverside Hotel.",
+          "ko_word_order": "저는 찾고 있어요 / 리버사이드 호텔을",
+          "ko_natural": "리버사이드 호텔을 찾고 있어요.",
+          "terms": [
+            {
+              "text": "look for",
+              "form": "looking for",
+              "meaning": "찾다",
+              "nuance": "찾고 있는 과정을 말한다. 찾아냈을 때는 find를 쓴다.",
+              "examples": [
+                {
+                  "en": "I'm looking for my keys again.",
+                  "ko": "또 열쇠 찾고 있어."
+                },
+                {
+                  "en": "Are you looking for something special?",
+                  "ko": "특별히 찾으시는 거 있어요?"
+                },
+                {
+                  "en": "We looked for a parking spot for twenty minutes.",
+                  "ko": "주차 자리를 20분이나 찾았어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Oh, you're going the wrong way.",
+          "ko_word_order": "아, / 당신은 가고 있어요 / 반대 방향으로",
+          "ko_natural": "아, 반대쪽으로 가고 계세요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "the wrong way",
+              "meaning": "반대 방향, 잘못된 길",
+              "nuance": "길을 반대로 가고 있을 때 쓴다. 지하철·버스를 반대로 탔을 때도 쓸 수 있다.",
+              "examples": [
+                {
+                  "en": "I took the subway the wrong way.",
+                  "ko": "지하철을 반대 방향으로 탔어."
+                },
+                {
+                  "en": "Turn back. This is the wrong way.",
+                  "ko": "돌아가. 이쪽 아니야."
+                },
+                {
+                  "en": "Sorry, I sent you the wrong way.",
+                  "ko": "미안, 내가 길을 잘못 알려 줬어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Really? Is it far from here?",
+          "ko_word_order": "정말요? / 그게 먼가요 / 여기서부터?",
+          "ko_natural": "정말요? 여기서 멀어요?",
+          "terms": [
+            {
+              "text": "far from here",
+              "meaning": "여기서 먼",
+              "nuance": "거리를 물을 때 쓰는 기본 표현. 가깝다면 It's close by.",
+              "examples": [
+                {
+                  "en": "My hometown isn't far from here.",
+                  "ko": "우리 고향은 여기서 멀지 않아."
+                },
+                {
+                  "en": "Is the beach far from here?",
+                  "ko": "해변이 여기서 멀어요?"
+                },
+                {
+                  "en": "The airport is pretty far from here.",
+                  "ko": "공항은 여기서 꽤 멀어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Not too far. Maybe a ten-minute walk.",
+          "ko_word_order": "그리 멀진 않아요. / 아마 / 걸어서 10분 거리요",
+          "ko_natural": "그렇게 안 멀어요. 걸어서 10분쯤이에요.",
+          "terms": [
+            {
+              "text": "a ten-minute walk",
+              "meaning": "걸어서 10분 거리",
+              "nuance": "숫자-minute walk 꼴로 걸어서 몇 분인지 말한다. 이때 minute에 s를 붙이지 않는다.",
+              "examples": [
+                {
+                  "en": "The park is a five-minute walk from my place.",
+                  "ko": "공원은 우리 집에서 걸어서 5분이야."
+                },
+                {
+                  "en": "It's only a two-minute walk to the station.",
+                  "ko": "역까지 걸어서 2분밖에 안 걸려."
+                },
+                {
+                  "en": "The office is a fifteen-minute walk from here.",
+                  "ko": "사무실은 여기서 걸어서 15분이야."
+                }
+              ]
+            },
+            {
+              "text": "not too far",
+              "meaning": "그리 멀지 않은",
+              "nuance": "부담 없는 거리라는 느낌. not very far보다 가볍게 들린다.",
+              "examples": [
+                {
+                  "en": "The mall is not too far from us.",
+                  "ko": "쇼핑몰은 우리 집에서 그리 멀지 않아."
+                },
+                {
+                  "en": "Let's walk. It's not too far.",
+                  "ko": "걸어가자. 그렇게 안 멀어."
+                },
+                {
+                  "en": "I found a gym not too far from work.",
+                  "ko": "회사에서 멀지 않은 헬스장을 찾았어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Could you point it out on my map?",
+          "ko_word_order": "당신은 가리켜 줄 수 있나요 / 그것을 / 제 지도에서?",
+          "ko_natural": "지도에서 어딘지 좀 짚어 주실래요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "point out",
+              "form": "point it out",
+              "meaning": "가리키다, 짚어 주다",
+              "nuance": "손가락으로 위치를 짚어 줄 때 쓴다. 대명사는 point it out처럼 가운데에 넣는다.",
+              "examples": [
+                {
+                  "en": "Can you point out your house in this photo?",
+                  "ko": "이 사진에서 너희 집 좀 짚어 줄래?"
+                },
+                {
+                  "en": "She pointed out the best seats.",
+                  "ko": "그녀가 제일 좋은 자리를 가리켜 줬어."
+                },
+                {
+                  "en": "He pointed out the castle from the window.",
+                  "ko": "그가 창밖으로 성을 가리켰어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. Turn around and walk past the church.",
+          "ko_word_order": "네. / 돌아서 / 그리고 걸어서 지나가세요 / 교회를",
+          "ko_natural": "네. 돌아서 교회를 지나 쭉 가세요.",
+          "terms": [
+            {
+              "text": "turn around",
+              "meaning": "뒤돌다, 방향을 돌리다",
+              "nuance": "오던 길로 다시 돌아갈 때 쓴다. 차를 돌릴 때도 같은 말을 쓴다.",
+              "examples": [
+                {
+                  "en": "We missed the exit, so we turned around.",
+                  "ko": "출구를 놓쳐서 차를 돌렸어."
+                },
+                {
+                  "en": "Turn around and look at the camera.",
+                  "ko": "뒤돌아서 카메라 봐."
+                },
+                {
+                  "en": "I turned around and saw my old friend.",
+                  "ko": "뒤를 돌아보니 옛 친구가 있었어."
+                }
+              ]
+            },
+            {
+              "text": "walk past",
+              "meaning": "걸어서 지나가다",
+              "nuance": "어떤 건물을 지나쳐 계속 간다는 뜻. 차로 지나가면 drive past.",
+              "examples": [
+                {
+                  "en": "I walk past that cafe every morning.",
+                  "ko": "매일 아침 그 카페 앞을 지나가."
+                },
+                {
+                  "en": "Walk past the bank and turn right.",
+                  "ko": "은행을 지나서 오른쪽으로 도세요."
+                },
+                {
+                  "en": "She walked right past me without seeing me.",
+                  "ko": "그녀가 날 못 보고 바로 지나쳤어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "So it's right after the church?",
+          "ko_word_order": "그러니까 그건 / 바로 다음이에요 / 교회?",
+          "ko_natural": "그러니까 교회 바로 다음이에요?",
+          "terms": [
+            {
+              "text": "right after",
+              "meaning": "바로 다음(에)",
+              "nuance": "장소에도 시간에도 쓴다. right가 '바로'를 강조한다.",
+              "examples": [
+                {
+                  "en": "I'll call you right after the meeting.",
+                  "ko": "회의 끝나자마자 전화할게."
+                },
+                {
+                  "en": "Our house is right after the bridge.",
+                  "ko": "우리 집은 다리 바로 다음이야."
+                },
+                {
+                  "en": "She left right after dinner.",
+                  "ko": "그녀는 저녁 먹자마자 갔어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Yes, you can't miss it. Good luck!",
+          "ko_word_order": "네, / 당신은 놓칠 수 없어요 / 그것을. / 행운을 빌어요!",
+          "ko_natural": "네, 바로 보일 거예요. 잘 찾아가세요!",
+          "terms": [
+            {
+              "text": "can't miss it",
+              "meaning": "쉽게 찾을 거예요",
+              "nuance": "길 안내 끝에 '눈에 확 띄니 못 찾을 리 없다'고 안심시키는 말. 보통 You can't miss it으로 쓴다.",
+              "examples": [
+                {
+                  "en": "It's a big red building. You can't miss it.",
+                  "ko": "빨간 큰 건물이에요. 바로 보일 거예요."
+                },
+                {
+                  "en": "The sign is huge, so you can't miss it.",
+                  "ko": "간판이 엄청 커서 못 찾을 수가 없어."
+                },
+                {
+                  "en": "Look for the tall tower. You can't miss it.",
+                  "ko": "높은 탑을 찾아. 놓칠 수가 없어."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,401 @@
+{
+  "lessons": [
+    {
+      "day": 8,
+      "title": "계산하고 포장하기",
+      "theme": "Paying and taking food home",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Excuse me, could we get the check, please?",
+          "ko_word_order": "실례합니다, / 우리가 받을 수 있을까요 / 계산서를, 부탁해요?",
+          "ko_natural": "저기요, 계산서 좀 주시겠어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "get the check",
+              "form": "get the check",
+              "meaning": "계산서를 받다",
+              "nuance": "식당에서 계산서를 달라고 할 때 쓴다. 미국은 check, 영국은 bill을 주로 쓴다.",
+              "examples": [
+                {
+                  "en": "Let's get the check and go.",
+                  "ko": "계산하고 가자."
+                },
+                {
+                  "en": "Can I get the check when you have a moment?",
+                  "ko": "시간 되실 때 계산서 좀 주세요."
+                },
+                {
+                  "en": "We waited forever to get the check.",
+                  "ko": "계산서 받는 데 한참 기다렸어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. Was everything okay with your meal?",
+          "ko_word_order": "물론이죠. / 모든 게 괜찮았나요 / 식사는?",
+          "ko_natural": "네. 식사는 괜찮으셨어요?",
+          "core": false,
+          "terms": [
+            {
+              "text": "was everything okay",
+              "form": "was everything okay",
+              "meaning": "다 괜찮으셨어요?",
+              "nuance": "식사나 서비스가 만족스러웠는지 직원이 묻는 말이다. 식사 중에는 Is everything okay?라고 묻는다.",
+              "examples": [
+                {
+                  "en": "Was everything okay with your room?",
+                  "ko": "객실은 다 괜찮으셨어요?"
+                },
+                {
+                  "en": "Was everything okay at the party?",
+                  "ko": "파티에선 별일 없었어?"
+                },
+                {
+                  "en": "Hi, was everything okay with your order?",
+                  "ko": "안녕하세요, 주문하신 건 다 괜찮으셨어요?"
+                }
+              ]
+            },
+            {
+              "text": "meal",
+              "form": "meal",
+              "meaning": "식사, 한 끼",
+              "nuance": "아침·점심·저녁 같은 한 끼를 말한다. Enjoy your meal은 식당에서 '맛있게 드세요'라는 인사다.",
+              "examples": [
+                {
+                  "en": "Enjoy your meal!",
+                  "ko": "맛있게 드세요!"
+                },
+                {
+                  "en": "That was the best meal I've had all week.",
+                  "ko": "이번 주 먹은 것 중에 제일 맛있었어요."
+                },
+                {
+                  "en": "We had a big meal at my grandma's.",
+                  "ko": "할머니 댁에서 거하게 먹었어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "It was delicious. Can I get a box for this?",
+          "ko_word_order": "정말 맛있었어요. / 받을 수 있을까요 / 상자를 / 이것을 위한?",
+          "ko_natural": "정말 맛있었어요. 이거 싸 갈 용기 좀 주시겠어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "delicious",
+              "form": "delicious",
+              "meaning": "아주 맛있는",
+              "nuance": "음식이 정말 맛있을 때 쓴다. 구어에서는 good이나 great도 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "This soup is delicious.",
+                  "ko": "이 수프 정말 맛있어요."
+                },
+                {
+                  "en": "Thanks for the delicious dinner.",
+                  "ko": "맛있는 저녁 고마워요."
+                },
+                {
+                  "en": "Everything here looks delicious.",
+                  "ko": "여기 다 맛있어 보여요."
+                }
+              ]
+            },
+            {
+              "text": "box",
+              "form": "box",
+              "meaning": "포장 용기",
+              "nuance": "남은 음식을 싸 갈 용기를 달라고 할 때 쓴다. to-go box나 container라고도 한다.",
+              "examples": [
+                {
+                  "en": "Could I get a box for the leftovers?",
+                  "ko": "남은 거 싸 갈 용기 주실래요?"
+                },
+                {
+                  "en": "They gave us a box for the cake.",
+                  "ko": "케이크 담을 상자를 주더라고요."
+                },
+                {
+                  "en": "Do you need a box for that?",
+                  "ko": "그거 싸 갈 용기 필요하세요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Of course. I'll pack it up for you.",
+          "ko_word_order": "물론이죠. / 제가 싸 드릴게요 / 그것을 / 당신을 위해",
+          "ko_natural": "그럼요. 제가 싸 드릴게요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "pack up",
+              "form": "pack it up",
+              "meaning": "싸다, 포장하다",
+              "nuance": "남은 음식이나 짐을 싸서 챙길 때 쓴다. 대상이 대명사면 pack it up처럼 가운데에 넣는다.",
+              "examples": [
+                {
+                  "en": "Can you pack up the rest of the pizza?",
+                  "ko": "남은 피자 좀 싸 주실래요?"
+                },
+                {
+                  "en": "Let's pack up and go home.",
+                  "ko": "짐 싸서 집에 가자."
+                },
+                {
+                  "en": "She packed up the leftovers for me.",
+                  "ko": "그녀가 남은 음식을 싸 줬어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Thanks. Can we split the bill?",
+          "ko_word_order": "고마워요. / 우리가 나눌 수 있나요 / 계산서를?",
+          "ko_natural": "감사해요. 따로 계산해도 될까요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "split the bill",
+              "form": "split the bill",
+              "meaning": "나눠서 계산하다",
+              "nuance": "여러 사람이 나눠 내자고 할 때 쓴다. 미국에서는 split the check라고도 한다.",
+              "examples": [
+                {
+                  "en": "Let's split the bill this time.",
+                  "ko": "이번엔 나눠서 내자."
+                },
+                {
+                  "en": "Do you want to split the bill?",
+                  "ko": "나눠서 계산할래?"
+                },
+                {
+                  "en": "We always split the bill evenly.",
+                  "ko": "우리는 항상 똑같이 나눠 내요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Okay. How would you like to split it?",
+          "ko_word_order": "네. / 어떻게 / 나누고 싶으세요 / 그것을?",
+          "ko_natural": "네. 어떻게 나눠 드릴까요?",
+          "core": false,
+          "terms": [
+            {
+              "text": "how would you like",
+              "form": "how would you like",
+              "meaning": "어떻게 해 드릴까요?",
+              "nuance": "직원이 방식이나 취향을 공손하게 물을 때 쓴다. 결제 방법이나 요리 방식을 물을 때도 쓴다.",
+              "examples": [
+                {
+                  "en": "How would you like to pay?",
+                  "ko": "결제는 어떻게 하시겠어요?"
+                },
+                {
+                  "en": "How would you like your eggs?",
+                  "ko": "계란은 어떻게 해 드릴까요?"
+                },
+                {
+                  "en": "How would you like your coffee?",
+                  "ko": "커피는 어떻게 드릴까요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Just down the middle. Here are our cards.",
+          "ko_word_order": "그냥 반으로요. / 여기 있어요 / 우리 카드들이",
+          "ko_natural": "그냥 반반으로요. 여기 카드요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "down the middle",
+              "form": "down the middle",
+              "meaning": "반반으로",
+              "nuance": "금액이나 물건을 정확히 반으로 나눌 때 쓴다. split it down the middle이 흔한 형태다.",
+              "examples": [
+                {
+                  "en": "Let's split the cost down the middle.",
+                  "ko": "비용은 반반 나누자."
+                },
+                {
+                  "en": "We cut the cake right down the middle.",
+                  "ko": "케이크를 딱 반으로 잘랐어요."
+                },
+                {
+                  "en": "Can you split this sandwich down the middle?",
+                  "ko": "이 샌드위치 반으로 잘라 줄 수 있어요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Here you go. Would you like your receipts?",
+          "ko_word_order": "여기 있어요. / 원하세요 / 영수증을?",
+          "ko_natural": "여기 있습니다. 영수증 드릴까요?",
+          "core": false,
+          "terms": [
+            {
+              "text": "here you go",
+              "form": "here you go",
+              "meaning": "여기 있어요",
+              "nuance": "물건을 건네줄 때 쓰는 아주 흔한 구어다. Here it is보다 '받으세요'라는 느낌이 강하다.",
+              "examples": [
+                {
+                  "en": "Here you go, one hot chocolate.",
+                  "ko": "여기 있어요, 핫초코 하나요."
+                },
+                {
+                  "en": "Here you go, your keys.",
+                  "ko": "여기요, 열쇠요."
+                },
+                {
+                  "en": "Can I borrow a pen? Sure, here you go.",
+                  "ko": "펜 좀 빌릴 수 있어요? 네, 여기요."
+                }
+              ]
+            },
+            {
+              "text": "receipt",
+              "form": "receipts",
+              "meaning": "영수증",
+              "nuance": "계산하고 받는 영수증이다. 교환이나 환불할 때 꼭 필요하다.",
+              "examples": [
+                {
+                  "en": "Can I get a receipt, please?",
+                  "ko": "영수증 좀 주시겠어요?"
+                },
+                {
+                  "en": "Keep the receipt just in case.",
+                  "ko": "혹시 모르니 영수증 챙겨 둬."
+                },
+                {
+                  "en": "I lost the receipt.",
+                  "ko": "영수증을 잃어버렸어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "No, thanks. Is the tip included?",
+          "ko_word_order": "아니요, 괜찮아요. / 팁이 포함되어 있나요?",
+          "ko_natural": "아니요, 괜찮아요. 팁 포함인가요?",
+          "core": false,
+          "terms": [
+            {
+              "text": "no, thanks",
+              "form": "no, thanks",
+              "meaning": "아니요, 괜찮아요",
+              "nuance": "제안을 정중하게 거절할 때 쓴다. No만 말하면 퉁명스럽게 들리니 thanks를 붙인다.",
+              "examples": [
+                {
+                  "en": "More coffee? No, thanks.",
+                  "ko": "커피 더 드릴까요? 아니요, 괜찮아요."
+                },
+                {
+                  "en": "No, thanks. I'm just looking.",
+                  "ko": "괜찮아요. 그냥 구경 중이에요."
+                },
+                {
+                  "en": "No, thanks, I already ate.",
+                  "ko": "괜찮아, 벌써 먹었어."
+                }
+              ]
+            },
+            {
+              "text": "tip",
+              "form": "tip",
+              "meaning": "팁",
+              "nuance": "미국 식당에서는 보통 음식값의 15~20%를 팁으로 낸다. leave a tip은 팁을 두고 간다는 뜻이다.",
+              "examples": [
+                {
+                  "en": "We left a big tip.",
+                  "ko": "팁을 넉넉히 두고 왔어요."
+                },
+                {
+                  "en": "Is a tip expected here?",
+                  "ko": "여기선 팁을 줘야 해요?"
+                },
+                {
+                  "en": "The tip is already on the bill.",
+                  "ko": "팁은 이미 계산서에 들어 있어요."
+                }
+              ]
+            },
+            {
+              "text": "included",
+              "form": "included",
+              "meaning": "포함된",
+              "nuance": "가격에 무엇이 들어 있는지 물을 때 Is ~ included?로 쓴다.",
+              "examples": [
+                {
+                  "en": "Is breakfast included?",
+                  "ko": "조식 포함인가요?"
+                },
+                {
+                  "en": "Tax is included in the price.",
+                  "ko": "가격에 세금 포함이에요."
+                },
+                {
+                  "en": "Drinks aren't included.",
+                  "ko": "음료는 포함 안 돼요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "No, it's not. Thanks for coming in!",
+          "ko_word_order": "아니요, 아니에요. / 고마워요 / 와 주셔서!",
+          "ko_natural": "아니요, 포함 안 돼 있어요. 와 주셔서 감사합니다!",
+          "core": false,
+          "terms": [
+            {
+              "text": "thanks for coming in",
+              "form": "thanks for coming in",
+              "meaning": "와 주셔서 감사해요",
+              "nuance": "가게나 식당 직원이 나가는 손님에게 하는 인사다. 친구가 집에 왔을 때는 Thanks for coming을 쓴다.",
+              "examples": [
+                {
+                  "en": "Thanks for coming in. See you next time!",
+                  "ko": "와 주셔서 감사해요. 또 오세요!"
+                },
+                {
+                  "en": "Thanks for coming in today, Mr. Park.",
+                  "ko": "박 선생님, 오늘 와 주셔서 감사합니다."
+                },
+                {
+                  "en": "Thanks for coming in on such short notice.",
+                  "ko": "급하게 연락드렸는데 와 주셔서 감사해요."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

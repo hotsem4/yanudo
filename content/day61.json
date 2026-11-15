@@ -1,0 +1,575 @@
+{
+  "lessons": [
+    {
+      "day": 61,
+      "title": "고객 불만 처리하기",
+      "theme": "Handling a customer complaint",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi Ava, I'm calling because our last shipment arrived almost a week late.",
+          "ko_word_order": "안녕하세요 에이바, / 저는 전화하고 있어요 / 우리의 지난 배송품이 도착했기 때문에 / 거의 일주일 늦게",
+          "ko_natural": "에이바 씨, 지난번 물건이 거의 일주일이나 늦게 와서 전화드렸어요.",
+          "terms": [
+            {
+              "text": "I'm calling because",
+              "meaning": "~ 때문에 전화드렸어요",
+              "nuance": "전화 건 이유를 바로 밝히는 자연스러운 첫마디. 업무 전화에서 아주 흔하다.",
+              "examples": [
+                {
+                  "en": "I'm calling because I missed your call.",
+                  "ko": "부재중 전화가 있어서 전화드렸어요."
+                },
+                {
+                  "en": "I'm calling because I need to change my booking.",
+                  "ko": "예약을 바꾸려고 전화드렸어요."
+                },
+                {
+                  "en": "I'm calling because there's a problem with my bill.",
+                  "ko": "요금 고지서에 문제가 있어서 전화했어요."
+                }
+              ]
+            },
+            {
+              "text": "shipment",
+              "meaning": "배송 물품",
+              "nuance": "회사끼리 주고받는 화물이나 한 번에 보낸 물건. 개인 택배는 보통 package라고 한다.",
+              "examples": [
+                {
+                  "en": "The shipment should arrive on Monday.",
+                  "ko": "물건은 월요일에 도착할 거예요."
+                },
+                {
+                  "en": "We're still waiting for the shipment from China.",
+                  "ko": "중국에서 오는 물건을 아직 기다리고 있어요."
+                },
+                {
+                  "en": "The next shipment leaves tomorrow.",
+                  "ko": "다음 물량은 내일 출발해요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Oh no, I'm really sorry to hear that. Can you tell me exactly what happened?",
+          "ko_word_order": "아 이런, / 그걸 듣게 되어 정말 유감이에요. / 말해 주실 수 있나요 / 정확히 무슨 일이 있었는지?",
+          "ko_natural": "아이고, 정말 죄송합니다. 정확히 어떻게 된 건지 말씀해 주시겠어요?",
+          "terms": [
+            {
+              "text": "sorry to hear that",
+              "meaning": "그렇다니 유감이에요",
+              "nuance": "상대의 안 좋은 일을 듣고 공감할 때 쓴다. 내 잘못이 아니어도 쓸 수 있는 표현이다.",
+              "examples": [
+                {
+                  "en": "You're sick? Sorry to hear that.",
+                  "ko": "아프다고? 저런, 안됐다."
+                },
+                {
+                  "en": "I'm sorry to hear about your dog.",
+                  "ko": "강아지 일은 정말 안됐어요."
+                },
+                {
+                  "en": "Sorry to hear that your trip got canceled.",
+                  "ko": "여행이 취소됐다니 안타깝네요."
+                }
+              ]
+            },
+            {
+              "text": "exactly",
+              "meaning": "정확히",
+              "nuance": "무엇이 어떻게 됐는지 구체적으로 알고 싶을 때 의문사와 함께 쓴다.",
+              "examples": [
+                {
+                  "en": "What exactly did he say?",
+                  "ko": "그가 정확히 뭐라고 했어요?"
+                },
+                {
+                  "en": "I don't know exactly where it is.",
+                  "ko": "정확히 어디 있는지는 몰라요."
+                },
+                {
+                  "en": "When exactly does the store close?",
+                  "ko": "가게가 정확히 몇 시에 닫아요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "It held up our whole production line, and some of the boxes were damaged.",
+          "ko_word_order": "그게 지연시켰어요 / 우리 생산 라인 전체를, / 그리고 상자들 일부가 / 파손되었어요",
+          "ko_natural": "그것 때문에 생산 라인이 통째로 멈췄고, 상자 몇 개는 파손돼 있었어요.",
+          "terms": [
+            {
+              "text": "hold up",
+              "form": "held up",
+              "meaning": "지연시키다",
+              "nuance": "무언가를 막아 늦어지게 한다는 구어. 'I got held up'처럼 늦은 이유를 말할 때도 쓴다.",
+              "examples": [
+                {
+                  "en": "Sorry I'm late, I got held up in traffic.",
+                  "ko": "늦어서 미안, 차가 막혔어."
+                },
+                {
+                  "en": "The bad weather held up our flight.",
+                  "ko": "악천후로 비행기가 지연됐어요."
+                },
+                {
+                  "en": "Don't let one small issue hold up the project.",
+                  "ko": "작은 문제 하나로 프로젝트가 늦어지지 않게 해요."
+                }
+              ]
+            },
+            {
+              "text": "production line",
+              "meaning": "생산 라인",
+              "nuance": "공장에서 제품을 만드는 작업 흐름. assembly line도 비슷하게 쓴다.",
+              "examples": [
+                {
+                  "en": "The production line runs 24 hours a day.",
+                  "ko": "생산 라인은 24시간 돌아가요."
+                },
+                {
+                  "en": "They stopped the production line for repairs.",
+                  "ko": "수리하려고 생산 라인을 멈췄어요."
+                },
+                {
+                  "en": "He works on the production line.",
+                  "ko": "그는 생산 라인에서 일해요."
+                }
+              ]
+            },
+            {
+              "text": "damaged",
+              "meaning": "파손된",
+              "nuance": "물건이 깨지거나 상한 상태. broken보다 넓게 쓰이고 배송·보험 이야기에서 흔하다.",
+              "examples": [
+                {
+                  "en": "My package arrived damaged.",
+                  "ko": "택배가 망가진 채로 왔어요."
+                },
+                {
+                  "en": "Was your car damaged in the accident?",
+                  "ko": "사고로 차가 부서졌어요?"
+                },
+                {
+                  "en": "We can't sell damaged goods.",
+                  "ko": "파손된 물건은 팔 수 없어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "That's completely unacceptable, and I apologize for all the trouble it's caused you.",
+          "ko_word_order": "그건 완전히 받아들일 수 없는 일이에요, / 그리고 저는 사과드려요 / 모든 불편에 대해 / 그게 당신에게 끼친",
+          "ko_natural": "정말 있어서는 안 될 일이에요. 불편을 끼쳐 드려 진심으로 사과드립니다.",
+          "core": true,
+          "terms": [
+            {
+              "text": "unacceptable",
+              "meaning": "있을 수 없는",
+              "nuance": "용납할 수 없을 만큼 잘못됐다는 강한 말. 내 쪽 잘못을 인정할 때 쓰면 진지한 사과가 된다.",
+              "examples": [
+                {
+                  "en": "This level of noise is unacceptable.",
+                  "ko": "이 정도 소음은 용납할 수 없어요."
+                },
+                {
+                  "en": "Being two hours late is unacceptable.",
+                  "ko": "두 시간 늦는 건 말도 안 돼요."
+                },
+                {
+                  "en": "The service here was unacceptable.",
+                  "ko": "여기 서비스는 너무했어요."
+                }
+              ]
+            },
+            {
+              "text": "apologize for",
+              "meaning": "~에 대해 사과하다",
+              "nuance": "sorry보다 격식 있는 사과. 고객이나 윗사람에게 공식적으로 사과할 때 쓴다.",
+              "examples": [
+                {
+                  "en": "I apologize for the delay.",
+                  "ko": "늦어져서 죄송합니다."
+                },
+                {
+                  "en": "He apologized for being rude.",
+                  "ko": "그는 무례하게 군 걸 사과했어요."
+                },
+                {
+                  "en": "We apologize for any confusion.",
+                  "ko": "혼란을 드려 죄송합니다."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Honestly, this isn't the first time something like this has happened.",
+          "ko_word_order": "솔직히, / 이게 처음이 아니에요 / 이런 일이 / 일어난 것이",
+          "ko_natural": "솔직히 이런 일이 처음도 아니잖아요.",
+          "terms": [
+            {
+              "text": "this isn't the first time",
+              "meaning": "이번이 처음이 아니다",
+              "nuance": "같은 문제가 반복됐다는 불만을 에둘러 강하게 말하는 표현.",
+              "examples": [
+                {
+                  "en": "This isn't the first time he's been late.",
+                  "ko": "그가 늦은 게 이번이 처음이 아니에요."
+                },
+                {
+                  "en": "This isn't the first time I've asked you.",
+                  "ko": "너한테 부탁한 거 이번이 처음 아니야."
+                },
+                {
+                  "en": "This isn't the first time the printer broke.",
+                  "ko": "프린터가 고장 난 게 처음이 아니에요."
+                }
+              ]
+            },
+            {
+              "text": "something like this",
+              "meaning": "이런 일",
+              "nuance": "구체적으로 말하지 않고 지금 같은 상황을 통틀어 가리킨다.",
+              "examples": [
+                {
+                  "en": "I've never seen something like this before.",
+                  "ko": "이런 건 처음 봐요."
+                },
+                {
+                  "en": "Something like this could happen to anyone.",
+                  "ko": "이런 일은 누구에게나 생길 수 있어요."
+                },
+                {
+                  "en": "I was looking for something like this.",
+                  "ko": "딱 이런 걸 찾고 있었어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "You're right, and I'll look into it personally to find out what went wrong.",
+          "ko_word_order": "당신 말이 맞아요, / 그리고 제가 그걸 직접 알아볼게요 / 알아내기 위해 / 무엇이 잘못됐는지",
+          "ko_natural": "맞습니다. 제가 직접 알아보고 뭐가 문제였는지 확인하겠습니다.",
+          "core": true,
+          "terms": [
+            {
+              "text": "look into",
+              "meaning": "알아보다, 조사하다",
+              "nuance": "문제의 원인을 조사하거나 확인하겠다는 뜻. 고객 응대에서 'I'll look into it'은 거의 정해진 말이다.",
+              "examples": [
+                {
+                  "en": "I'll look into it and call you back.",
+                  "ko": "알아보고 다시 전화드릴게요."
+                },
+                {
+                  "en": "The police are looking into the accident.",
+                  "ko": "경찰이 사고를 조사하고 있어요."
+                },
+                {
+                  "en": "Can you look into flights for next week?",
+                  "ko": "다음 주 비행기 좀 알아봐 줄래요?"
+                }
+              ]
+            },
+            {
+              "text": "personally",
+              "meaning": "직접",
+              "nuance": "다른 사람에게 맡기지 않고 내가 직접 챙기겠다는 의지를 보여 준다.",
+              "examples": [
+                {
+                  "en": "I'll deliver it personally.",
+                  "ko": "제가 직접 갖다드릴게요."
+                },
+                {
+                  "en": "The manager called me personally.",
+                  "ko": "매니저가 직접 전화했어요."
+                },
+                {
+                  "en": "I'll personally make sure it's fixed.",
+                  "ko": "고쳐지는 거 제가 직접 챙길게요."
+                }
+              ]
+            },
+            {
+              "text": "go wrong",
+              "form": "went wrong",
+              "meaning": "잘못되다",
+              "nuance": "일이 계획대로 안 됐을 때 쓰는 구어. 원인을 찾을 때 'what went wrong'으로 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Everything went wrong on our first date.",
+                  "ko": "첫 데이트 때 모든 게 꼬였어요."
+                },
+                {
+                  "en": "What could go wrong?",
+                  "ko": "잘못될 게 뭐 있겠어?"
+                },
+                {
+                  "en": "Let's figure out where we went wrong.",
+                  "ko": "어디서 틀렸는지 찾아봐요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I appreciate that. But we really need to make sure this doesn't happen again.",
+          "ko_word_order": "고마워요. / 하지만 우리는 정말 확실히 해야 해요 / 이게 일어나지 않도록 / 다시",
+          "ko_natural": "그렇게 해 주시면 고맙죠. 그래도 다시는 이런 일이 없도록 꼭 해 주셔야 해요.",
+          "terms": [
+            {
+              "text": "I appreciate that",
+              "meaning": "그렇게 해 줘서 고마워요",
+              "nuance": "상대의 행동이나 제안에 감사할 때 쓴다. Thanks보다 진지하고 정중하다.",
+              "examples": [
+                {
+                  "en": "You saved me a seat? I appreciate that.",
+                  "ko": "자리 맡아 줬어? 고마워."
+                },
+                {
+                  "en": "I appreciate that you called.",
+                  "ko": "전화 주셔서 감사해요."
+                },
+                {
+                  "en": "I really appreciate that, thank you.",
+                  "ko": "정말 감사합니다."
+                }
+              ]
+            },
+            {
+              "text": "make sure",
+              "meaning": "확실히 하다",
+              "nuance": "실수가 없도록 꼭 챙기라는 뜻. 업무에서 매일 쓰는 표현이다.",
+              "examples": [
+                {
+                  "en": "Make sure you lock the door.",
+                  "ko": "문 꼭 잠가."
+                },
+                {
+                  "en": "I'll make sure she gets the message.",
+                  "ko": "그녀가 메시지 꼭 받게 할게요."
+                },
+                {
+                  "en": "Make sure to bring your ID.",
+                  "ko": "신분증 꼭 챙기세요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Absolutely. We'll replace the damaged items and cover all the shipping costs.",
+          "ko_word_order": "물론이죠. / 저희가 교체해 드릴게요 / 파손된 물건들을 / 그리고 부담할게요 / 모든 배송비를",
+          "ko_natural": "물론입니다. 파손된 물건은 교체해 드리고 배송비도 전부 저희가 부담할게요.",
+          "terms": [
+            {
+              "text": "replace",
+              "meaning": "교체하다",
+              "nuance": "망가지거나 문제 있는 것을 새것으로 바꿔 줄 때 쓴다. exchange는 다른 물건과 맞바꾸는 느낌이다.",
+              "examples": [
+                {
+                  "en": "We need to replace the batteries.",
+                  "ko": "배터리를 갈아야 해요."
+                },
+                {
+                  "en": "They replaced my broken phone for free.",
+                  "ko": "고장 난 폰을 무료로 바꿔 줬어요."
+                },
+                {
+                  "en": "Can you replace this light bulb?",
+                  "ko": "이 전구 좀 갈아 줄래요?"
+                }
+              ]
+            },
+            {
+              "text": "cover the costs",
+              "form": "cover all the shipping costs",
+              "meaning": "비용을 부담하다",
+              "nuance": "누가 돈을 내는지 말할 때 쓰는 표현. costs 앞에 어떤 비용인지 넣어 말하기도 한다.",
+              "examples": [
+                {
+                  "en": "Will insurance cover the costs?",
+                  "ko": "보험으로 비용 처리가 될까요?"
+                },
+                {
+                  "en": "The company will cover your travel costs.",
+                  "ko": "출장비는 회사가 부담할 거예요."
+                },
+                {
+                  "en": "Who's going to cover the costs of the party?",
+                  "ko": "파티 비용은 누가 내요?"
+                }
+              ]
+            },
+            {
+              "text": "shipping costs",
+              "meaning": "배송비",
+              "nuance": "물건을 보내는 데 드는 비용. 온라인 쇼핑에서는 shipping fee도 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "Shipping costs are included in the price.",
+                  "ko": "배송비는 가격에 포함돼 있어요."
+                },
+                {
+                  "en": "How much are the shipping costs to Korea?",
+                  "ko": "한국까지 배송비가 얼마예요?"
+                },
+                {
+                  "en": "Shipping costs went up again this year.",
+                  "ko": "올해 배송비가 또 올랐어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Okay, that helps. When can we expect the replacements to arrive?",
+          "ko_word_order": "알겠어요, 그거 도움이 돼요. / 언제 / 우리가 기대할 수 있나요 / 교체품들이 도착하기를?",
+          "ko_natural": "네, 그럼 좀 낫네요. 교체품은 언제쯤 받을 수 있을까요?",
+          "terms": [
+            {
+              "text": "that helps",
+              "meaning": "그럼 좀 낫네요",
+              "nuance": "상대의 조치가 상황을 나아지게 했다고 인정할 때 쓴다. 완전히 해결됐다는 뜻은 아니다.",
+              "examples": [
+                {
+                  "en": "Thanks for the map, that helps a lot.",
+                  "ko": "지도 고마워, 큰 도움 돼."
+                },
+                {
+                  "en": "Moving the meeting to two? That helps.",
+                  "ko": "회의를 2시로 옮긴다고요? 그럼 좀 낫네요."
+                },
+                {
+                  "en": "I'll take notes for you if that helps.",
+                  "ko": "도움이 된다면 제가 필기해 드릴게요."
+                }
+              ]
+            },
+            {
+              "text": "expect",
+              "meaning": "예상하다, 기다리다",
+              "nuance": "언제 일이 일어날지 물을 때 쓴다. 'When can I expect...?'는 업무에서 정중하게 재촉하는 표현이다.",
+              "examples": [
+                {
+                  "en": "When can I expect your answer?",
+                  "ko": "언제쯤 답을 받을 수 있을까요?"
+                },
+                {
+                  "en": "We're expecting rain this weekend.",
+                  "ko": "이번 주말에 비가 온대요."
+                },
+                {
+                  "en": "I didn't expect so many people.",
+                  "ko": "사람이 이렇게 많을 줄 몰랐어요."
+                }
+              ]
+            },
+            {
+              "text": "replacement",
+              "form": "replacements",
+              "meaning": "교체품",
+              "nuance": "고장 나거나 잃어버린 것 대신 받는 물건. 사람에게 쓰면 '후임'이 된다.",
+              "examples": [
+                {
+                  "en": "I ordered a replacement for my charger.",
+                  "ko": "충전기 대체품을 주문했어요."
+                },
+                {
+                  "en": "The store sent a replacement right away.",
+                  "ko": "가게에서 바로 교체품을 보내 줬어요."
+                },
+                {
+                  "en": "We need a replacement for the broken chair.",
+                  "ko": "망가진 의자 대신할 게 필요해요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "They'll be sent out first thing tomorrow, and I'll keep you posted along the way.",
+          "ko_word_order": "그것들은 발송될 거예요 / 내일 아침 제일 먼저, / 그리고 제가 계속 알려 드릴게요 / 진행되는 동안",
+          "ko_natural": "내일 아침 일찍 바로 발송하고, 진행 상황은 계속 알려 드릴게요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "send out",
+              "form": "sent out",
+              "meaning": "발송하다",
+              "nuance": "여러 곳에 물건이나 안내를 보낼 때 쓰는 구동사. 수동태 'be sent out'으로도 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "We sent out the invitations last week.",
+                  "ko": "지난주에 초대장을 보냈어요."
+                },
+                {
+                  "en": "Your order will be sent out today.",
+                  "ko": "주문하신 물건은 오늘 발송돼요."
+                },
+                {
+                  "en": "The school sent out a notice about the snow.",
+                  "ko": "학교에서 눈 때문에 안내문을 보냈어요."
+                }
+              ]
+            },
+            {
+              "text": "first thing tomorrow",
+              "meaning": "내일 아침 제일 먼저",
+              "nuance": "다음 날 일과를 시작하자마자 하겠다는 뜻. 서두르겠다는 의지를 보여 준다.",
+              "examples": [
+                {
+                  "en": "I'll call them first thing tomorrow.",
+                  "ko": "내일 아침에 제일 먼저 전화할게요."
+                },
+                {
+                  "en": "Can we talk first thing tomorrow?",
+                  "ko": "내일 아침 일찍 얘기할 수 있을까요?"
+                },
+                {
+                  "en": "She'll fix it first thing tomorrow.",
+                  "ko": "그녀가 내일 아침 바로 고칠 거예요."
+                }
+              ]
+            },
+            {
+              "text": "keep someone posted",
+              "form": "keep you posted",
+              "meaning": "계속 알려 주다",
+              "nuance": "새 소식이 생길 때마다 알려 주겠다는 구어. 업무와 일상 모두에서 쓴다.",
+              "examples": [
+                {
+                  "en": "Keep me posted on your trip.",
+                  "ko": "여행 소식 계속 알려 줘."
+                },
+                {
+                  "en": "I'll keep you posted if anything changes.",
+                  "ko": "바뀌는 거 있으면 계속 알려 드릴게요."
+                },
+                {
+                  "en": "Thanks for keeping us posted.",
+                  "ko": "계속 소식 알려 줘서 고마워요."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,418 @@
+{
+  "lessons": [
+    {
+      "day": 14,
+      "title": "병원 진료",
+      "theme": "Seeing a doctor",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "So, what brings you in today?",
+          "ko_word_order": "그래서, / 무엇이 데려왔나요 / 당신을 / 오늘?",
+          "ko_natural": "자, 오늘은 어디가 불편해서 오셨어요?",
+          "terms": [
+            {
+              "text": "what brings you in",
+              "meaning": "무슨 일로 오셨어요",
+              "nuance": "병원·가게에서 방문 이유를 부드럽게 묻는 말. Why are you here?보다 훨씬 친절하게 들린다.",
+              "examples": [
+                {
+                  "en": "Hi there, what brings you in this morning?",
+                  "ko": "안녕하세요, 오늘 아침엔 무슨 일로 오셨어요?"
+                },
+                {
+                  "en": "What brings you in? Is it your back again?",
+                  "ko": "어쩐 일로 오셨어요? 또 허리 때문이에요?"
+                },
+                {
+                  "en": "So what brings you in to the shop today?",
+                  "ko": "오늘은 가게에 무슨 일로 오셨어요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I've had a bad headache for three days.",
+          "ko_word_order": "저는 겪어 왔어요 / 심한 두통을 / 사흘 동안",
+          "ko_natural": "사흘째 머리가 심하게 아파요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "headache",
+              "meaning": "두통",
+              "nuance": "have a headache로 '머리가 아프다'. 골치 아픈 일을 가리킬 때도 쓴다.",
+              "examples": [
+                {
+                  "en": "Coffee sometimes gives me a headache.",
+                  "ko": "커피 마시면 가끔 머리가 아파."
+                },
+                {
+                  "en": "I have a headache, so I'm going to bed early.",
+                  "ko": "머리가 아파서 일찍 잘게."
+                },
+                {
+                  "en": "This traffic is such a headache.",
+                  "ko": "이 교통 체증 정말 골치야."
+                }
+              ]
+            },
+            {
+              "text": "bad",
+              "meaning": "(통증이) 심한",
+              "nuance": "아픔·감기에 붙는 bad는 '나쁜'이 아니라 '심한'. 아주 심하면 terrible을 쓴다.",
+              "examples": [
+                {
+                  "en": "She has a bad cold this week.",
+                  "ko": "그녀는 이번 주에 감기가 심해."
+                },
+                {
+                  "en": "My back is really bad today.",
+                  "ko": "오늘 허리가 정말 심하게 아파."
+                },
+                {
+                  "en": "That's a bad cut. You need a bandage.",
+                  "ko": "상처가 깊네. 밴드 붙여야겠다."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Does anything else hurt, like your stomach?",
+          "ko_word_order": "다른 데도 아픈가요, / 예를 들어 / 당신의 배 같은?",
+          "ko_natural": "다른 데도 아프세요? 배라든가요.",
+          "terms": [
+            {
+              "text": "hurt",
+              "meaning": "아프다",
+              "nuance": "몸 어디가 아프다고 할 때 쓰는 기본 동사. My ___ hurts 꼴로 아픈 부위를 주어로 쓴다.",
+              "examples": [
+                {
+                  "en": "My feet hurt after the long walk.",
+                  "ko": "오래 걸었더니 발이 아파."
+                },
+                {
+                  "en": "Does it hurt when I press here?",
+                  "ko": "여기 누르면 아파요?"
+                },
+                {
+                  "en": "Ouch, that really hurts!",
+                  "ko": "아야, 진짜 아프다!"
+                }
+              ]
+            },
+            {
+              "text": "like",
+              "meaning": "~같은(예를 들면)",
+              "nuance": "예를 들 때 붙이는 구어 표현. 격식 있는 글에서는 such as를 쓴다.",
+              "examples": [
+                {
+                  "en": "I love fruit, like apples and grapes.",
+                  "ko": "나는 사과나 포도 같은 과일을 좋아해."
+                },
+                {
+                  "en": "Bring something warm, like a jacket.",
+                  "ko": "재킷처럼 따뜻한 거 챙겨."
+                },
+                {
+                  "en": "We can do something fun, like bowling.",
+                  "ko": "볼링 같은 재밌는 거 하자."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "No, but I feel dizzy when I stand up.",
+          "ko_word_order": "아니요, 하지만 / 저는 어지러워요 / 제가 일어설 때",
+          "ko_natural": "아니요. 그런데 일어설 때 어지러워요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "dizzy",
+              "meaning": "어지러운",
+              "nuance": "머리가 빙빙 도는 느낌. 속이 울렁거리면 nauseous를 쓴다.",
+              "examples": [
+                {
+                  "en": "I got dizzy on the roller coaster.",
+                  "ko": "롤러코스터 타고 어지러웠어."
+                },
+                {
+                  "en": "Sit down if you feel dizzy.",
+                  "ko": "어지러우면 앉아."
+                },
+                {
+                  "en": "The heat made me a little dizzy.",
+                  "ko": "더워서 좀 어지러웠어."
+                }
+              ]
+            },
+            {
+              "text": "stand up",
+              "meaning": "일어서다",
+              "nuance": "앉아 있다가 일어서는 동작. 잠자리에서 일어나는 건 get up.",
+              "examples": [
+                {
+                  "en": "Please stand up when your name is called.",
+                  "ko": "이름이 불리면 일어서 주세요."
+                },
+                {
+                  "en": "I stood up too fast and almost fell.",
+                  "ko": "너무 빨리 일어서다가 넘어질 뻔했어."
+                },
+                {
+                  "en": "Everyone stood up and clapped.",
+                  "ko": "모두 일어서서 박수를 쳤어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Okay, let me check your blood pressure.",
+          "ko_word_order": "좋아요, / 제가 확인할게요 / 당신의 혈압을",
+          "ko_natural": "네, 혈압 한번 재 볼게요.",
+          "terms": [
+            {
+              "text": "blood pressure",
+              "meaning": "혈압",
+              "nuance": "check/take one's blood pressure로 '혈압을 재다'. 고혈압은 high blood pressure.",
+              "examples": [
+                {
+                  "en": "My dad has high blood pressure.",
+                  "ko": "우리 아빠는 고혈압이 있어."
+                },
+                {
+                  "en": "The nurse took my blood pressure.",
+                  "ko": "간호사가 혈압을 쟀어."
+                },
+                {
+                  "en": "Salty food is bad for your blood pressure.",
+                  "ko": "짠 음식은 혈압에 안 좋아."
+                }
+              ]
+            },
+            {
+              "text": "let me",
+              "meaning": "제가 ~할게요",
+              "nuance": "허락을 구하듯 부드럽게 '내가 ~할게'라고 할 때 쓴다. 가게·병원 직원이 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Let me get the door for you.",
+                  "ko": "제가 문 열어 드릴게요."
+                },
+                {
+                  "en": "Let me think about it.",
+                  "ko": "생각 좀 해 볼게."
+                },
+                {
+                  "en": "Let me know if you need anything.",
+                  "ko": "필요한 거 있으면 알려 줘."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Is it anything serious, doctor?",
+          "ko_word_order": "그게 뭔가요 / 심각한 거라도, / 선생님?",
+          "ko_natural": "선생님, 심각한 건 아니죠?",
+          "terms": [
+            {
+              "text": "serious",
+              "meaning": "심각한",
+              "nuance": "병·문제가 심각한지 물을 때 쓴다. It's nothing serious(별거 아니에요)도 함께 알아 두면 좋다.",
+              "examples": [
+                {
+                  "en": "Don't worry, it's nothing serious.",
+                  "ko": "걱정 마, 별거 아니야."
+                },
+                {
+                  "en": "Was the accident serious?",
+                  "ko": "사고가 심각했어?"
+                },
+                {
+                  "en": "He had a serious injury last year.",
+                  "ko": "그는 작년에 크게 다쳤어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "No, you're probably just run down from stress.",
+          "ko_word_order": "아니요, / 당신은 아마 그냥 지친 거예요 / 스트레스 때문에",
+          "ko_natural": "아니요, 아마 스트레스 때문에 몸이 좀 지치신 것 같아요.",
+          "terms": [
+            {
+              "text": "run down",
+              "meaning": "몸이 지친, 기력이 떨어진",
+              "nuance": "피로가 쌓여 몸이 약해진 상태를 말하는 구어. tired보다 '컨디션이 바닥'인 느낌.",
+              "examples": [
+                {
+                  "en": "I've been feeling run down all week.",
+                  "ko": "일주일 내내 기운이 없어."
+                },
+                {
+                  "en": "You look really run down today.",
+                  "ko": "너 오늘 많이 지쳐 보여."
+                },
+                {
+                  "en": "Working nights left me totally run down.",
+                  "ko": "밤 근무 때문에 완전히 녹초가 됐어."
+                }
+              ]
+            },
+            {
+              "text": "probably",
+              "meaning": "아마",
+              "nuance": "꽤 그럴 거라고 볼 때 쓴다. maybe보다 확신이 크다.",
+              "examples": [
+                {
+                  "en": "It'll probably rain tomorrow.",
+                  "ko": "내일 아마 비 올 거야."
+                },
+                {
+                  "en": "She's probably still asleep.",
+                  "ko": "그녀는 아마 아직 자고 있을 거야."
+                },
+                {
+                  "en": "I'll probably be a little late.",
+                  "ko": "나 아마 좀 늦을 거야."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Should I take anything for it?",
+          "ko_word_order": "제가 먹어야 하나요 / 뭐라도 / 그것을 위해?",
+          "ko_natural": "약이라도 먹어야 할까요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "should I",
+              "meaning": "제가 ~해야 할까요?",
+              "nuance": "상대에게 조언을 구하는 가장 흔한 꼴. Do I have to는 의무를, Should I는 조언을 묻는다.",
+              "examples": [
+                {
+                  "en": "Should I bring anything to the party?",
+                  "ko": "파티에 뭐 가져갈까?"
+                },
+                {
+                  "en": "What should I wear tomorrow?",
+                  "ko": "내일 뭐 입어야 하지?"
+                },
+                {
+                  "en": "Should I call her back now?",
+                  "ko": "지금 그녀한테 다시 전화할까?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Get some rest and drink plenty of water.",
+          "ko_word_order": "좀 쉬세요 / 그리고 마시세요 / 충분한 물을",
+          "ko_natural": "푹 쉬시고 물 많이 드세요.",
+          "terms": [
+            {
+              "text": "get some rest",
+              "meaning": "좀 쉬다",
+              "nuance": "아프거나 피곤한 사람에게 하는 말. take a rest보다 일상에서 훨씬 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "You look tired. Go home and get some rest.",
+                  "ko": "피곤해 보여. 집에 가서 좀 쉬어."
+                },
+                {
+                  "en": "I'm going to get some rest before dinner.",
+                  "ko": "저녁 먹기 전에 좀 쉴게."
+                },
+                {
+                  "en": "Did you get some rest last night?",
+                  "ko": "어젯밤에 좀 쉬었어?"
+                }
+              ]
+            },
+            {
+              "text": "plenty of",
+              "meaning": "넉넉한, 많은",
+              "nuance": "필요한 만큼 충분하다는 긍정적인 느낌. a lot of보다 '넉넉하다'에 무게가 있다.",
+              "examples": [
+                {
+                  "en": "Don't hurry. We have plenty of time.",
+                  "ko": "서두르지 마. 시간 넉넉해."
+                },
+                {
+                  "en": "There's plenty of food for everyone.",
+                  "ko": "모두 먹을 만큼 음식이 충분해."
+                },
+                {
+                  "en": "Make sure you get plenty of sleep.",
+                  "ko": "잠은 꼭 충분히 자."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Thanks, doctor. I'll come back if it gets worse.",
+          "ko_word_order": "감사해요, 선생님. / 저는 다시 올게요 / 만약 그게 더 나빠지면",
+          "ko_natural": "감사합니다. 더 심해지면 다시 올게요.",
+          "terms": [
+            {
+              "text": "get worse",
+              "form": "gets worse",
+              "meaning": "더 나빠지다",
+              "nuance": "병·상황이 악화될 때 쓴다. 반대는 get better.",
+              "examples": [
+                {
+                  "en": "The traffic gets worse after six.",
+                  "ko": "6시 넘으면 차가 더 막혀."
+                },
+                {
+                  "en": "My cold got worse overnight.",
+                  "ko": "감기가 밤새 더 심해졌어."
+                },
+                {
+                  "en": "Don't wait until it gets worse.",
+                  "ko": "더 나빠질 때까지 기다리지 마."
+                }
+              ]
+            },
+            {
+              "text": "come back",
+              "meaning": "다시 오다",
+              "nuance": "같은 곳에 다시 오는 것. 돌아간다는 go back과 방향이 반대다.",
+              "examples": [
+                {
+                  "en": "Can you come back after lunch?",
+                  "ko": "점심 이후에 다시 와 줄래요?"
+                },
+                {
+                  "en": "We'll definitely come back here.",
+                  "ko": "여기 꼭 다시 올 거야."
+                },
+                {
+                  "en": "When are you coming back from Japan?",
+                  "ko": "일본에서 언제 돌아와?"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

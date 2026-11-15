@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>성장형 캐릭터 시안</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="mock.css">
+<style>
+  body { padding: 40px; }
+  .sheet { width: 1120px; margin: 0 auto 40px; padding: 36px 40px 40px; }
+  h1 { font-size: 28px; letter-spacing: -.02em; }
+  h1 small { font-size: 15px; font-weight: 500; color: rgb(var(--muted)); margin-left: 10px; }
+  .lead { margin-top: 8px; font-size: 15px; line-height: 1.6; color: rgb(var(--muted)); max-width: 760px; word-break: keep-all; }
+  h2 { margin: 32px 0 14px; font-size: 15px; font-weight: 600; }
+  .stages { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+  .cell { background: rgb(var(--canvas)); border-radius: 20px; padding: 14px 12px 14px; text-align: center; }
+  .cell .art { width: 120px; height: 120px; margin: 0 auto; }
+  .cell b { display: block; margin-top: 8px; font-size: 14px; }
+  .cell span { display: block; margin-top: 2px; font-size: 12.5px; color: rgb(var(--muted)); }
+  .moods { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .moods .cell { display: flex; align-items: center; gap: 14px; text-align: left; padding: 14px 18px; }
+  .moods .art { width: 104px; height: 104px; margin: 0; flex: none; }
+  .moods p { font-size: 12.5px; line-height: 1.5; color: rgb(var(--muted)); margin-top: 4px; word-break: keep-all; }
+  .places { display: grid; grid-template-columns: 1.1fr 1.2fr 1fr; gap: 12px; align-items: stretch; }
+  .place { background: rgb(var(--canvas)); border-radius: 20px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+  .place > span { font-size: 12.5px; color: rgb(var(--muted)); margin-top: auto; }
+  .toast { align-self: flex-start; display: flex; align-items: center; gap: 8px; padding: 8px 16px 8px 8px; border-radius: 99px; background: rgb(var(--surface)); box-shadow: var(--shadow-lift); font-size: 13.5px; font-weight: 600; }
+  .toast .art { width: 32px; height: 32px; }
+  .empty { display: flex; align-items: center; gap: 14px; }
+  .empty .art { width: 76px; height: 76px; flex: none; }
+  .empty b { font-size: 15px; } .empty p { font-size: 13px; color: rgb(var(--muted)); margin-top: 2px; }
+  .sizes { display: flex; align-items: flex-end; gap: 14px; }
+  .sizes div { text-align: center; font-size: 11.5px; color: rgb(var(--muted)); }
+  .sizes .art { margin: 0 auto 4px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="characters.js"></script>
+<script>
+const info = {
+  bird: {
+    title: "1안 포롱", sub: "알에서 깨어 파랑새가 된다",
+    lead: "66일 동안 알을 품는 이야기입니다. 첫 주에 알이 금 가고 부리가 나오는 변화가 빠르게 보이고, 뒤로 갈수록 날개와 꼬리깃이 펴집니다. 소리 내어 따라 말하는 새라는 점이 암송과 이어집니다.",
+    stage: ["알", "금 간 알", "아기 새", "솜털 새", "날개 편 새", "완주한 파랑새"],
+  },
+  whale: {
+    title: "2안 소리", sub: "물방울에서 노래하는 고래가 된다",
+    lead: "물방울 하나가 고래로 자랍니다. 21일부터 머리 위 물줄기가 앱의 음성 파형 막대로 솟고, 단계마다 막대가 3개, 5개, 7개로 늘어납니다. 고래의 노래와 소리 내어 읽기가 이어지고, 지금의 파형 디자인을 그대로 씁니다.",
+    stage: ["물방울", "꼬리가 돋은 물방울", "아기 고래", "첫 물줄기", "노래하는 고래", "완주한 고래"],
+  },
+};
+const moodText = {
+  wait: "기대하는 눈으로 기다립니다. 스트릭이 이어지는 중이거나 첫날.",
+  done: "웃는 눈에 반짝임. 오늘 습관을 달성한 뒤.",
+  sleepy: "졸린 눈. 스트릭이 끊긴 뒤 오늘 아직일 때. 혼내지 않고 깨워 달라는 느낌.",
+  party: "66일 완주. 최종 모습으로 반짝임이 가장 많습니다.",
+};
+const days = Char.STAGE_DAYS;
+const range = (i) => i === 5 ? "Day 66 완주" : `Day ${days[i]}부터`;
+document.getElementById("root").innerHTML = ["bird", "whale"].map((k) => `
+  <section class="sheet card" id="${k}">
+    <h1>${info[k].title}<small>${info[k].sub}</small></h1>
+    <p class="lead">${info[k].lead}</p>
+    <h2>성장 6단계 (Day 기준, 빠져도 되돌아가지 않음)</h2>
+    <div class="stages">${info[k].stage.map((n, i) => `
+      <div class="cell"><div class="art">${Char.draw(k, i + 1, i === 5 ? "party" : "wait")}</div><b>${n}</b><span class="num">${range(i)}</span></div>`).join("")}
+    </div>
+    <h2>기분 4가지 (스트릭과 오늘 달성 여부, 5단계 모습 기준)</h2>
+    <div class="moods">${["wait", "done", "sleepy", "party"].map((m) => `
+      <div class="cell"><div class="art">${Char.draw(k, m === "party" ? 6 : 5, m)}</div><div><b>${Char.moods[m]}</b><p>${moodText[m]}</p></div></div>`).join("")}
+    </div>
+    <h2>등장하는 곳과 크기</h2>
+    <div class="places">
+      <div class="place">
+        <div class="hero" style="width:180px"><span class="row1"><span class="label">66일 습관</span></span>
+          <span class="big num" style="margin-top:4px">Day 23<small> / 66</small></span>
+          <span class="bar"><i style="transform:scaleX(.35)"></i></span>
+          <span class="foot"><span>연속 9일</span><span>프리즈 2</span></span>
+          <span class="badge">${Char.draw(k, 4, "wait")}</span></div>
+        <span>메인 화면에서는 히어로 카드 오른쪽 위 흰 원 배지(38px) 한 곳에만 삽니다.</span>
+      </div>
+      <div class="place">
+        <div class="toast"><span class="art">${Char.draw(k, 4, "done")}</span>오늘 습관 달성! 연속 10일</div>
+        <div class="empty"><span class="art">${Char.draw(k, 2, "sleepy")}</span><div><b>서버에 연결하지 못했어요</b><p>오류 화면과 빈 화면의 원형 아이콘 자리</p></div></div>
+        <span>달성 토스트(32px)와 빈 화면·오류 화면(76px). 평소 학습 중에는 나오지 않습니다.</span>
+      </div>
+      <div class="place">
+        <div class="sizes">${[24, 38, 64, 96].map((s) => `<div><div class="art" style="width:${s}px;height:${s}px">${Char.draw(k, 5, "wait")}</div>${s}px</div>`).join("")}</div>
+        <span>24px까지 줄여도 눈과 실루엣이 읽힙니다. 66일 기록 시트와 모닝 오버레이에서는 96px.</span>
+      </div>
+    </div>
+  </section>`).join("");
+</script>
+</body>
+</html>

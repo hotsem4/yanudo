@@ -1,0 +1,419 @@
+{
+  "lessons": [
+    {
+      "day": 23,
+      "title": "부탁하기",
+      "theme": "Asking for a favor",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hey, can I ask you a favor?",
+          "ko_word_order": "있잖아, 내가 해도 될까 / 너에게 / 부탁 하나를?",
+          "ko_natural": "있잖아, 부탁 하나만 해도 돼?",
+          "core": true,
+          "terms": [
+            {
+              "text": "ask someone a favor",
+              "form": "ask you a favor",
+              "meaning": "부탁하다",
+              "nuance": "본론 전에 부탁이 있다고 미리 알리는 말. 더 공손하게는 Could I ask you a favor?",
+              "examples": [
+                {
+                  "en": "Can I ask you a small favor?",
+                  "ko": "작은 부탁 하나 해도 될까?"
+                },
+                {
+                  "en": "I need to ask my boss a favor.",
+                  "ko": "상사한테 부탁할 게 있어."
+                },
+                {
+                  "en": "She asked me a favor yesterday.",
+                  "ko": "걔가 어제 나한테 부탁을 했어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure, what do you need?",
+          "ko_word_order": "그럼, / 뭐가 필요해?",
+          "ko_natural": "그럼, 뭔데?"
+        },
+        {
+          "speaker": "A",
+          "en_text": "I'm going away to Jeju for a few days next week.",
+          "ko_word_order": "나 떠나 / 제주로 / 며칠 동안 / 다음 주에",
+          "ko_natural": "다음 주에 며칠 제주도 가거든.",
+          "terms": [
+            {
+              "text": "go away",
+              "form": "going away",
+              "meaning": "(여행으로) 떠나다",
+              "nuance": "집을 비우고 여행이나 휴가를 갈 때 쓴다. 장소를 말하지 않아도 '어디 간다'는 뜻이 된다.",
+              "examples": [
+                {
+                  "en": "We're going away for the weekend.",
+                  "ko": "우리 주말에 여행 가."
+                },
+                {
+                  "en": "Are you going away this summer?",
+                  "ko": "이번 여름에 어디 가?"
+                },
+                {
+                  "en": "I always go away for my birthday.",
+                  "ko": "난 생일마다 여행을 떠나."
+                }
+              ]
+            },
+            {
+              "text": "a few days",
+              "meaning": "며칠",
+              "nuance": "정확히 정하지 않은 2~4일 정도를 말할 때. a couple of days는 이틀 안팎이다.",
+              "examples": [
+                {
+                  "en": "I'll be back in a few days.",
+                  "ko": "며칠 있다 돌아올게."
+                },
+                {
+                  "en": "It took a few days to feel better.",
+                  "ko": "낫는 데 며칠 걸렸어."
+                },
+                {
+                  "en": "Can you wait a few more days?",
+                  "ko": "며칠만 더 기다려 줄래?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Lucky you! So, what can I do for you?",
+          "ko_word_order": "좋겠다! / 그래서, 뭘 해 줄까 / 너를 위해?",
+          "ko_natural": "좋겠다! 그래서 내가 뭘 해 주면 돼?",
+          "terms": [
+            {
+              "text": "lucky you",
+              "meaning": "좋겠다",
+              "nuance": "상대의 좋은 소식에 부러움을 섞어 반응하는 구어. 살짝 장난스러운 느낌이다.",
+              "examples": [
+                {
+                  "en": "You got the day off? Lucky you!",
+                  "ko": "오늘 쉬어? 좋겠다!"
+                },
+                {
+                  "en": "Lucky you, you don't have to work tomorrow.",
+                  "ko": "좋겠네, 내일 출근 안 해도 되고."
+                },
+                {
+                  "en": "Free concert tickets? Lucky you.",
+                  "ko": "공짜 콘서트 표? 부럽다."
+                }
+              ]
+            },
+            {
+              "text": "What can I do for you",
+              "meaning": "뭘 도와줄까?",
+              "nuance": "도와줄 준비가 됐다며 용건을 묻는 말. 가게 직원이 손님에게도 쓴다.",
+              "examples": [
+                {
+                  "en": "Good morning. What can I do for you?",
+                  "ko": "안녕하세요. 뭘 도와드릴까요?"
+                },
+                {
+                  "en": "You called? What can I do for you?",
+                  "ko": "전화했어? 뭐 해 줄까?"
+                },
+                {
+                  "en": "Come in, sit down. What can I do for you?",
+                  "ko": "들어와서 앉아. 무슨 일이야?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Could you possibly feed my cat while I'm away?",
+          "ko_word_order": "혹시 밥 줄 수 있어 / 내 고양이에게 / 내가 없는 동안?",
+          "ko_natural": "혹시 나 없는 동안 고양이 밥 좀 줄 수 있어?",
+          "core": true,
+          "terms": [
+            {
+              "text": "possibly",
+              "meaning": "혹시",
+              "nuance": "Could you possibly ~?는 Could you ~?보다 한층 조심스럽게 부탁하는 말. 부담 되는 부탁에 쓴다.",
+              "examples": [
+                {
+                  "en": "Could you possibly lend me your car?",
+                  "ko": "혹시 차 좀 빌려줄 수 있어?"
+                },
+                {
+                  "en": "Could you possibly speak a little slower?",
+                  "ko": "혹시 조금만 천천히 말해 주실 수 있나요?"
+                },
+                {
+                  "en": "Could I possibly leave early today?",
+                  "ko": "혹시 오늘 일찍 가도 될까요?"
+                }
+              ]
+            },
+            {
+              "text": "feed",
+              "meaning": "먹이를 주다",
+              "nuance": "동물이나 아기에게 밥을 줄 때 쓰는 동사.",
+              "examples": [
+                {
+                  "en": "Don't forget to feed the fish.",
+                  "ko": "물고기 밥 주는 거 잊지 마."
+                },
+                {
+                  "en": "I feed my dog twice a day.",
+                  "ko": "개한테 하루 두 번 밥 줘."
+                },
+                {
+                  "en": "She's feeding the baby right now.",
+                  "ko": "지금 아기 밥 먹이는 중이야."
+                }
+              ]
+            },
+            {
+              "text": "while I'm away",
+              "meaning": "내가 없는 동안",
+              "nuance": "여행이나 출장으로 자리를 비우는 기간을 말한다. while I'm gone도 같은 뜻.",
+              "examples": [
+                {
+                  "en": "Can you water my plants while I'm away?",
+                  "ko": "나 없는 동안 화분에 물 좀 줄래?"
+                },
+                {
+                  "en": "My sister will stay here while I'm away.",
+                  "ko": "나 없는 동안 언니가 여기 있을 거야."
+                },
+                {
+                  "en": "Please check my mail while I'm away.",
+                  "ko": "나 없는 동안 우편물 좀 봐 줘."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Of course. I'm happy to help out.",
+          "ko_word_order": "물론이지. / 나는 기꺼이 / 도와줄게",
+          "ko_natural": "당연하지. 기꺼이 도와줄게.",
+          "terms": [
+            {
+              "text": "help out",
+              "meaning": "거들다·도와주다",
+              "nuance": "help와 비슷하지만 일손을 보태거나 잠깐 거들어 준다는 느낌이 강한 구어.",
+              "examples": [
+                {
+                  "en": "My cousin helps out at the restaurant on weekends.",
+                  "ko": "사촌이 주말마다 식당 일을 거들어."
+                },
+                {
+                  "en": "Thanks for helping out today.",
+                  "ko": "오늘 도와줘서 고마워."
+                },
+                {
+                  "en": "Can you help me out with this box?",
+                  "ko": "이 상자 좀 거들어 줄래?"
+                }
+              ]
+            },
+            {
+              "text": "be happy to",
+              "form": "happy to",
+              "meaning": "기꺼이 ~하다",
+              "nuance": "부탁을 흔쾌히 들어줄 때 쓴다. I'd be happy to는 조금 더 공손하다.",
+              "examples": [
+                {
+                  "en": "I'm happy to drive you to the airport.",
+                  "ko": "공항까지 기꺼이 태워다 줄게."
+                },
+                {
+                  "en": "We'd be happy to answer any questions.",
+                  "ko": "어떤 질문이든 기꺼이 답해 드릴게요."
+                },
+                {
+                  "en": "She's always happy to share her notes.",
+                  "ko": "걔는 항상 필기를 흔쾌히 보여 줘."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Thanks. I'll leave the spare key with you.",
+          "ko_word_order": "고마워. / 내가 맡길게 / 여분 열쇠를 / 너에게",
+          "ko_natural": "고마워. 여분 열쇠 맡겨 둘게.",
+          "terms": [
+            {
+              "text": "spare key",
+              "meaning": "여분 열쇠",
+              "nuance": "잃어버릴 때를 대비한 예비 열쇠. spare는 '남는, 여분의'라는 뜻이다.",
+              "examples": [
+                {
+                  "en": "I keep a spare key under the mat.",
+                  "ko": "매트 밑에 여분 열쇠를 둬."
+                },
+                {
+                  "en": "Do you have a spare key to the car?",
+                  "ko": "차 보조 키 있어?"
+                },
+                {
+                  "en": "I lost my spare key last month.",
+                  "ko": "지난달에 여분 열쇠를 잃어버렸어."
+                }
+              ]
+            },
+            {
+              "text": "leave something with someone",
+              "form": "leave the spare key with you",
+              "meaning": "~에게 맡기다",
+              "nuance": "물건을 누군가에게 맡겨 둘 때 쓴다. 호텔이나 가게에 짐을 맡길 때도 쓴다.",
+              "examples": [
+                {
+                  "en": "Can I leave my bags with you for an hour?",
+                  "ko": "한 시간 동안 가방 좀 맡겨도 될까요?"
+                },
+                {
+                  "en": "I left the kids with my mom.",
+                  "ko": "애들을 엄마한테 맡겼어."
+                },
+                {
+                  "en": "Just leave the package with the guard.",
+                  "ko": "택배는 경비실에 맡겨 주세요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "How often should I stop by?",
+          "ko_word_order": "얼마나 자주 / 내가 들러야 해?",
+          "ko_natural": "얼마나 자주 들르면 돼?",
+          "terms": [
+            {
+              "text": "stop by",
+              "meaning": "잠깐 들르다",
+              "nuance": "가는 길에 잠깐 들른다는 구어. drop by와 거의 같다.",
+              "examples": [
+                {
+                  "en": "I'll stop by your office after lunch.",
+                  "ko": "점심 먹고 사무실에 잠깐 들를게."
+                },
+                {
+                  "en": "Stop by anytime you're in the area.",
+                  "ko": "근처 오면 언제든 들러."
+                },
+                {
+                  "en": "Can you stop by the store on your way home?",
+                  "ko": "집에 오는 길에 가게 좀 들러 줄래?"
+                }
+              ]
+            },
+            {
+              "text": "how often",
+              "meaning": "얼마나 자주",
+              "nuance": "빈도를 묻는 기본 표현. 답은 once a day, every other day처럼 한다.",
+              "examples": [
+                {
+                  "en": "How often do you work out?",
+                  "ko": "운동 얼마나 자주 해?"
+                },
+                {
+                  "en": "How often does the bus come?",
+                  "ko": "버스가 얼마나 자주 와?"
+                },
+                {
+                  "en": "How often should I water this plant?",
+                  "ko": "이 식물은 물을 얼마나 자주 줘야 해?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Once a day is fine, if it's not too much trouble.",
+          "ko_word_order": "하루에 한 번이면 / 괜찮아, / 만약 그게 아니라면 / 너무 큰 수고가",
+          "ko_natural": "하루에 한 번이면 돼. 너무 번거롭지 않으면.",
+          "core": true,
+          "terms": [
+            {
+              "text": "once a day",
+              "meaning": "하루에 한 번",
+              "nuance": "횟수를 말하는 기본 표현. twice a day, three times a week처럼 바꿔 쓴다.",
+              "examples": [
+                {
+                  "en": "Take this medicine once a day.",
+                  "ko": "이 약은 하루에 한 번 드세요."
+                },
+                {
+                  "en": "I check my email once a day.",
+                  "ko": "이메일은 하루에 한 번 확인해."
+                },
+                {
+                  "en": "He calls his mom once a day.",
+                  "ko": "걔는 엄마한테 하루에 한 번 전화해."
+                }
+              ]
+            },
+            {
+              "text": "too much trouble",
+              "meaning": "큰 수고·번거로움",
+              "nuance": "if it's not too much trouble은 부탁 끝에 붙여 상대 부담을 배려하는 공손한 말.",
+              "examples": [
+                {
+                  "en": "Could you send it today, if it's not too much trouble?",
+                  "ko": "번거롭지 않으시면 오늘 보내 주실 수 있나요?"
+                },
+                {
+                  "en": "Cooking for ten people is too much trouble.",
+                  "ko": "열 명 요리하는 건 너무 번거로워."
+                },
+                {
+                  "en": "Is it too much trouble to change my seat?",
+                  "ko": "자리 바꾸는 게 많이 번거로울까요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Not at all. Have a great trip!",
+          "ko_word_order": "전혀. / 좋은 여행 해!",
+          "ko_natural": "전혀 안 번거로워. 여행 잘 다녀와!",
+          "terms": [
+            {
+              "text": "not at all",
+              "meaning": "전혀요",
+              "nuance": "부탁이나 감사에 '전혀 부담 아니다'라고 답할 때 쓴다. 공손하면서 따뜻한 말.",
+              "examples": [
+                {
+                  "en": "Do you mind if I sit here? Not at all.",
+                  "ko": "여기 앉아도 될까요? 그럼요."
+                },
+                {
+                  "en": "I'm not at all tired.",
+                  "ko": "나 전혀 안 피곤해."
+                },
+                {
+                  "en": "Sorry to bother you. Oh, not at all.",
+                  "ko": "귀찮게 해서 미안해요. 아, 전혀요."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

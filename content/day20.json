@@ -1,0 +1,342 @@
+{
+  "lessons": [
+    {
+      "day": 20,
+      "title": "배달과 택배",
+      "theme": "Deliveries and packages",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi, I have a package for Ava Park.",
+          "ko_word_order": "안녕하세요, 저는 가지고 있어요 / 택배를 / 에이바 박 앞으로 온",
+          "ko_natural": "안녕하세요, 에이바 박 님 앞으로 택배 왔어요.",
+          "terms": [
+            {
+              "text": "package",
+              "meaning": "소포, 택배",
+              "nuance": "우편·택배로 오는 상자. 영국에서는 parcel을 더 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "My package finally arrived today.",
+                  "ko": "내 택배가 오늘 드디어 왔어."
+                },
+                {
+                  "en": "Can you pick up my package for me?",
+                  "ko": "내 택배 좀 받아 줄래?"
+                },
+                {
+                  "en": "There's a package at the front desk.",
+                  "ko": "프런트에 택배 하나 와 있어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "That's me. Do I need to sign for it?",
+          "ko_word_order": "그게 저예요. / 제가 서명해야 하나요 / 그것에 대해?",
+          "ko_natural": "저예요. 사인해야 하나요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "sign for",
+              "meaning": "받았다고 서명하다",
+              "nuance": "택배·등기를 받으면서 수령 확인 서명을 하는 것. 그냥 sign은 서류에 서명하는 것.",
+              "examples": [
+                {
+                  "en": "Someone has to sign for the delivery.",
+                  "ko": "누군가 배송을 받고 서명해야 해요."
+                },
+                {
+                  "en": "My neighbor signed for my package.",
+                  "ko": "이웃이 내 택배를 대신 받아 줬어."
+                },
+                {
+                  "en": "Can I sign for it on your phone?",
+                  "ko": "폰에다 사인하면 돼요?"
+                }
+              ]
+            },
+            {
+              "text": "that's me",
+              "meaning": "저예요",
+              "nuance": "이름이 불렸을 때 본인이라고 답하는 말. 전화에서 '전데요'는 Speaking.",
+              "examples": [
+                {
+                  "en": "Table for Kim? That's me.",
+                  "ko": "김 씨 일행이요? 저예요."
+                },
+                {
+                  "en": "Andrew? Yes, that's me.",
+                  "ko": "앤드루요? 네, 저예요."
+                },
+                {
+                  "en": "Number twelve? Oh, that's me!",
+                  "ko": "12번이요? 아, 저예요!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "No, I just need to take a photo.",
+          "ko_word_order": "아니요, / 저는 그냥 필요해요 / 사진을 찍는 게",
+          "ko_natural": "아니요, 사진만 찍으면 돼요.",
+          "terms": [
+            {
+              "text": "take a photo",
+              "meaning": "사진을 찍다",
+              "nuance": "사진은 take로 찍는다. 구어에서는 take a picture도 똑같이 쓴다.",
+              "examples": [
+                {
+                  "en": "Can you take a photo of us?",
+                  "ko": "우리 사진 좀 찍어 줄래요?"
+                },
+                {
+                  "en": "I took a photo of the receipt.",
+                  "ko": "영수증 사진 찍어 뒀어."
+                },
+                {
+                  "en": "You can't take photos inside the museum.",
+                  "ko": "박물관 안에서는 사진 찍으면 안 돼."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Okay. Oh, this box looks damaged.",
+          "ko_word_order": "알겠어요. / 어, 이 상자는 / 손상돼 보여요",
+          "ko_natural": "네. 어, 상자가 좀 망가진 것 같은데요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "damaged",
+              "meaning": "파손된",
+              "nuance": "물건이 깨지거나 찌그러진 상태. 사람이 다친 건 hurt나 injured를 쓴다.",
+              "examples": [
+                {
+                  "en": "The box arrived damaged.",
+                  "ko": "상자가 파손된 채로 왔어."
+                },
+                {
+                  "en": "Some of the cups were damaged in the move.",
+                  "ko": "이사하다가 컵 몇 개가 깨졌어."
+                },
+                {
+                  "en": "Don't accept it if it's damaged.",
+                  "ko": "파손돼 있으면 받지 마."
+                }
+              ]
+            },
+            {
+              "text": "look",
+              "form": "looks",
+              "meaning": "~해 보이다",
+              "nuance": "look + 형용사로 '겉보기에 ~하다'. 확실하지 않을 때 쓴다.",
+              "examples": [
+                {
+                  "en": "You look tired today.",
+                  "ko": "너 오늘 피곤해 보여."
+                },
+                {
+                  "en": "That cake looks amazing.",
+                  "ko": "그 케이크 정말 맛있어 보인다."
+                },
+                {
+                  "en": "The sky looks dark.",
+                  "ko": "하늘이 어두워 보여."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Sorry about that. Do you want to check inside?",
+          "ko_word_order": "그건 죄송해요. / 당신은 원하나요 / 안을 확인하는 걸?",
+          "ko_natural": "죄송합니다. 안에 한번 확인해 보실래요?",
+          "terms": [
+            {
+              "text": "sorry about that",
+              "meaning": "그건 죄송해요",
+              "nuance": "가벼운 실수나 불편에 대해 사과하는 말. I'm so sorry보다 가볍다.",
+              "examples": [
+                {
+                  "en": "Sorry about that. I'll fix it now.",
+                  "ko": "미안해요. 지금 고칠게요."
+                },
+                {
+                  "en": "Oops, wrong number. Sorry about that.",
+                  "ko": "어, 잘못 걸었네요. 죄송해요."
+                },
+                {
+                  "en": "Sorry about that, I didn't see you there.",
+                  "ko": "미안, 거기 있는 줄 몰랐어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Yeah, hang on a second.",
+          "ko_word_order": "네, / 기다려요 / 잠깐",
+          "ko_natural": "네, 잠깐만요.",
+          "terms": [
+            {
+              "text": "hang on",
+              "meaning": "잠깐 기다리다",
+              "nuance": "hold on과 비슷한 구어. 친한 사이나 일상 대화에서 더 자주 들린다.",
+              "examples": [
+                {
+                  "en": "Hang on, I'll be right there.",
+                  "ko": "잠깐만, 금방 갈게."
+                },
+                {
+                  "en": "Hang on, let me find my keys.",
+                  "ko": "잠깐, 열쇠 좀 찾고."
+                },
+                {
+                  "en": "Can you hang on while I check?",
+                  "ko": "확인하는 동안 잠깐 기다려 줄래?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Is everything okay in there?",
+          "ko_word_order": "모든 게 괜찮나요 / 그 안에?",
+          "ko_natural": "안에 물건은 괜찮아요?",
+          "terms": [
+            {
+              "text": "in there",
+              "meaning": "그 안에",
+              "nuance": "상대 쪽에 있는 공간이나 상자 속을 가리킨다. 내 쪽 안은 in here.",
+              "examples": [
+                {
+                  "en": "What's in there? It's so heavy.",
+                  "ko": "그 안에 뭐 들었어? 엄청 무겁네."
+                },
+                {
+                  "en": "Is anyone in there?",
+                  "ko": "안에 누구 있어요?"
+                },
+                {
+                  "en": "Your phone is in there, in my bag.",
+                  "ko": "네 폰 그 안에, 내 가방 안에 있어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Looks fine. Next time, could you leave it by the door?",
+          "ko_word_order": "괜찮아 보여요. / 다음번에는, / 당신은 두고 갈 수 있나요 / 그것을 / 문 옆에?",
+          "ko_natural": "괜찮네요. 다음엔 문 앞에 두고 가 주실래요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "leave",
+              "meaning": "두고 가다",
+              "nuance": "물건을 어떤 곳에 놓고 떠나는 것. 실수로 두고 온 것에도 leave를 쓴다.",
+              "examples": [
+                {
+                  "en": "Just leave it on the table.",
+                  "ko": "그냥 테이블에 두고 가."
+                },
+                {
+                  "en": "I left my umbrella on the bus.",
+                  "ko": "버스에 우산을 두고 내렸어."
+                },
+                {
+                  "en": "Can I leave my bag here for a minute?",
+                  "ko": "가방 잠깐 여기 둬도 돼요?"
+                }
+              ]
+            },
+            {
+              "text": "by the door",
+              "meaning": "문 옆에",
+              "nuance": "by는 '바로 옆에'. 택배 요청에서는 at the door(문 앞)도 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "I left my shoes by the door.",
+                  "ko": "신발은 문 옆에 벗어 뒀어."
+                },
+                {
+                  "en": "There's a box by the door for you.",
+                  "ko": "문 옆에 네 앞으로 온 상자 있어."
+                },
+                {
+                  "en": "Keep your umbrella by the door.",
+                  "ko": "우산은 문 옆에 둬."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Sure, I'll add a note to your address.",
+          "ko_word_order": "물론이죠, / 제가 추가할게요 / 메모를 / 당신의 주소에",
+          "ko_natural": "네, 주소에 메모 남겨 둘게요.",
+          "terms": [
+            {
+              "text": "add a note",
+              "meaning": "메모를 남기다",
+              "nuance": "기록·주문에 짧은 메모를 덧붙일 때 쓴다. 종이 쪽지를 남기는 건 leave a note.",
+              "examples": [
+                {
+                  "en": "I'll add a note to the order.",
+                  "ko": "주문에 메모 남겨 둘게요."
+                },
+                {
+                  "en": "You can add a note for the driver.",
+                  "ko": "기사님께 메모를 남길 수 있어요."
+                },
+                {
+                  "en": "She added a note about her allergy.",
+                  "ko": "그녀는 알레르기에 대해 메모를 남겼어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Thanks so much. Have a good one!",
+          "ko_word_order": "정말 고마워요. / 좋은 하루 보내세요!",
+          "ko_natural": "정말 감사해요. 좋은 하루 되세요!",
+          "terms": [
+            {
+              "text": "have a good one",
+              "meaning": "좋은 하루 보내요",
+              "nuance": "헤어질 때 쓰는 가벼운 인사. Have a nice day보다 캐주얼하고 시간대에 상관없이 쓴다.",
+              "examples": [
+                {
+                  "en": "Thanks for the coffee. Have a good one!",
+                  "ko": "커피 고마워요. 좋은 하루 보내요!"
+                },
+                {
+                  "en": "See you Monday. Have a good one.",
+                  "ko": "월요일에 봐. 잘 지내."
+                },
+                {
+                  "en": "Have a good one, and drive safe.",
+                  "ko": "잘 가, 운전 조심하고."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

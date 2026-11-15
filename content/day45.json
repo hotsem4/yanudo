@@ -1,0 +1,519 @@
+{
+  "lessons": [
+    {
+      "day": 45,
+      "title": "피드백 주고받기",
+      "theme": "Giving and receiving feedback",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Got a minute? I'd like to share some thoughts on your slides.",
+          "ko_word_order": "잠깐 시간 있어요? / 저는 나누고 싶어요 / 몇 가지 생각을 / 당신 슬라이드에 대해",
+          "ko_natural": "잠깐 시간 돼요? 슬라이드 보고 든 생각 좀 얘기해 주고 싶어서요.",
+          "terms": [
+            {
+              "text": "got a minute",
+              "meaning": "잠깐 시간 있어요?",
+              "nuance": "Have you got a minute?을 줄인 구어. 대화를 시작하며 상대 시간을 먼저 물을 때 쓴다.",
+              "examples": [
+                {
+                  "en": "Got a minute? I need your advice.",
+                  "ko": "잠깐 시간 돼? 조언이 필요해."
+                },
+                {
+                  "en": "Hey, got a minute to talk?",
+                  "ko": "저기, 잠깐 얘기할 시간 있어?"
+                },
+                {
+                  "en": "If you've got a minute, come see me.",
+                  "ko": "잠깐 시간 되면 나 좀 보러 와."
+                }
+              ]
+            },
+            {
+              "text": "share one's thoughts",
+              "form": "share some thoughts",
+              "meaning": "생각을 말하다",
+              "nuance": "피드백을 부드럽게 꺼낼 때. give you feedback보다 덜 딱딱하고 평가받는 느낌이 적다.",
+              "examples": [
+                {
+                  "en": "Can I share some thoughts on your plan?",
+                  "ko": "계획에 대해 제 생각 좀 말해도 될까요?"
+                },
+                {
+                  "en": "She shared her thoughts on the new logo.",
+                  "ko": "그녀가 새 로고에 대한 생각을 말해 줬어요."
+                },
+                {
+                  "en": "Feel free to share your thoughts.",
+                  "ko": "편하게 생각 말씀해 주세요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Of course. I'd really appreciate any feedback you have.",
+          "ko_word_order": "물론이죠. / 저는 정말 감사할 거예요 / 어떤 피드백이든 / 당신이 가진",
+          "ko_natural": "물론이죠. 어떤 피드백이든 주시면 정말 감사하죠.",
+          "core": true,
+          "terms": [
+            {
+              "text": "appreciate",
+              "meaning": "고맙게 여기다",
+              "nuance": "thank보다 정중하게 고마움을 표현할 때. I'd appreciate는 앞으로 받을 도움에 미리 감사하는 말이다.",
+              "examples": [
+                {
+                  "en": "I really appreciate your help.",
+                  "ko": "도와줘서 정말 고마워."
+                },
+                {
+                  "en": "We'd appreciate a quick reply.",
+                  "ko": "빠른 답장 주시면 감사하겠습니다."
+                },
+                {
+                  "en": "I appreciate you coming all this way.",
+                  "ko": "여기까지 와 줘서 고마워요."
+                }
+              ]
+            },
+            {
+              "text": "feedback",
+              "meaning": "피드백, 의견",
+              "nuance": "셀 수 없는 명사라 a feedback이나 feedbacks로 쓰지 않는다. some, any와 함께 쓴다.",
+              "examples": [
+                {
+                  "en": "Thanks for the feedback.",
+                  "ko": "피드백 고마워요."
+                },
+                {
+                  "en": "We got great feedback from customers.",
+                  "ko": "고객들한테 좋은 반응을 받았어요."
+                },
+                {
+                  "en": "Can you give me some feedback on my essay?",
+                  "ko": "제 에세이에 피드백 좀 주실래요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Overall, it was really clear, and the charts were easy to follow.",
+          "ko_word_order": "전체적으로, / 그건 정말 명확했어요, / 그리고 차트들은 / 따라가기 쉬웠어요",
+          "ko_natural": "전체적으로 아주 명확했고, 차트도 이해하기 쉬웠어요.",
+          "terms": [
+            {
+              "text": "overall",
+              "meaning": "전체적으로",
+              "nuance": "세부보다 전반적인 평가를 먼저 말할 때. 피드백을 칭찬으로 시작할 때 좋다.",
+              "examples": [
+                {
+                  "en": "Overall, I had a great time.",
+                  "ko": "전체적으로 정말 즐거웠어요."
+                },
+                {
+                  "en": "The hotel was fine overall.",
+                  "ko": "호텔은 전반적으로 괜찮았어."
+                },
+                {
+                  "en": "Overall, sales went up this year.",
+                  "ko": "전체적으로 올해 매출이 올랐어요."
+                }
+              ]
+            },
+            {
+              "text": "easy to follow",
+              "meaning": "이해하기 쉬운",
+              "nuance": "설명·발표·지시가 흐름대로 이해하기 쉬울 때. 반대는 hard to follow다.",
+              "examples": [
+                {
+                  "en": "The recipe is easy to follow.",
+                  "ko": "그 레시피는 따라 하기 쉬워요."
+                },
+                {
+                  "en": "Your directions were easy to follow.",
+                  "ko": "알려 준 길 찾기 쉬웠어."
+                },
+                {
+                  "en": "Make the instructions easy to follow.",
+                  "ko": "설명서를 따라 하기 쉽게 만드세요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Thanks. Is there anything you think I could improve?",
+          "ko_word_order": "고마워요. / 뭔가 있을까요 / 당신 생각에 / 제가 개선할 수 있는?",
+          "ko_natural": "고마워요. 제가 더 고칠 만한 부분이 있을까요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "improve",
+              "meaning": "개선하다, 나아지게 하다",
+              "nuance": "더 좋게 만들 때. 피드백을 청할 때 What could I improve?처럼 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "How can I improve my English?",
+                  "ko": "영어 실력 어떻게 늘릴 수 있을까요?"
+                },
+                {
+                  "en": "The app has improved a lot.",
+                  "ko": "앱이 많이 좋아졌어요."
+                },
+                {
+                  "en": "We're always trying to improve our service.",
+                  "ko": "저희는 늘 서비스를 개선하려고 해요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "You might want to cut down on the text. Some slides felt a bit crowded.",
+          "ko_word_order": "당신은 원할지도 몰라요 / 줄이는 걸 / 글을. / 몇몇 슬라이드는 느껴졌어요 / 좀 빽빽하게",
+          "ko_natural": "글을 좀 줄여 보는 게 좋겠어요. 몇 장은 좀 빽빽해 보였어요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "you might want to",
+              "meaning": "~하는 게 좋을 거예요",
+              "nuance": "충고를 부드럽게 할 때 쓰는 완곡한 표현. You should보다 훨씬 덜 지시적이다.",
+              "examples": [
+                {
+                  "en": "You might want to bring an umbrella.",
+                  "ko": "우산 챙기는 게 좋을 거예요."
+                },
+                {
+                  "en": "You might want to call ahead.",
+                  "ko": "미리 전화해 보는 게 좋겠어요."
+                },
+                {
+                  "en": "You might want to save your work first.",
+                  "ko": "먼저 작업한 거 저장하는 게 좋을 거야."
+                }
+              ]
+            },
+            {
+              "text": "cut down on",
+              "meaning": "~을 줄이다",
+              "nuance": "양을 줄일 때. 식습관에 자주 쓰고(cut down on sugar), 업무에서는 분량을 줄일 때 쓴다.",
+              "examples": [
+                {
+                  "en": "I'm trying to cut down on coffee.",
+                  "ko": "커피 좀 줄이려고 해."
+                },
+                {
+                  "en": "We need to cut down on meetings.",
+                  "ko": "회의를 좀 줄여야 해요."
+                },
+                {
+                  "en": "Cut down on sugar if you can.",
+                  "ko": "가능하면 설탕을 줄여."
+                }
+              ]
+            },
+            {
+              "text": "crowded",
+              "meaning": "빽빽한, 붐비는",
+              "nuance": "공간이나 화면에 너무 많이 들어차 답답할 때. 사람이 붐비는 장소에도 쓴다.",
+              "examples": [
+                {
+                  "en": "The page looks too crowded.",
+                  "ko": "페이지가 너무 빽빽해 보여."
+                },
+                {
+                  "en": "The bus was really crowded today.",
+                  "ko": "오늘 버스가 엄청 붐볐어."
+                },
+                {
+                  "en": "The room feels crowded with all these boxes.",
+                  "ko": "상자들 때문에 방이 꽉 차 보여."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "That makes sense. I was trying to fit in too much information.",
+          "ko_word_order": "그 말이 이해돼요. / 저는 넣으려고 했어요 / 너무 많은 정보를",
+          "ko_natural": "맞는 말이에요. 정보를 너무 많이 넣으려고 했어요.",
+          "terms": [
+            {
+              "text": "make sense",
+              "form": "makes sense",
+              "meaning": "말이 되다, 이해되다",
+              "nuance": "상대 설명이나 지적을 받아들일 때 쓰는 아주 흔한 맞장구. That makes sense로 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Oh, that makes sense now.",
+                  "ko": "아, 이제 이해가 되네."
+                },
+                {
+                  "en": "Does that make sense?",
+                  "ko": "이해되시나요?"
+                },
+                {
+                  "en": "It makes sense to leave early.",
+                  "ko": "일찍 나가는 게 맞는 것 같아."
+                }
+              ]
+            },
+            {
+              "text": "fit in",
+              "meaning": "끼워 넣다",
+              "nuance": "제한된 공간이나 일정에 무언가를 넣을 때. 무리에 잘 어울린다는 뜻도 있지만 여기선 넣다라는 뜻이다.",
+              "examples": [
+                {
+                  "en": "Can you fit in one more meeting today?",
+                  "ko": "오늘 회의 하나 더 끼워 넣을 수 있어요?"
+                },
+                {
+                  "en": "I can't fit everything in my suitcase.",
+                  "ko": "캐리어에 다 안 들어가."
+                },
+                {
+                  "en": "We fit in a quick lunch before the show.",
+                  "ko": "공연 전에 점심을 급히 끼워 넣었어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "It happens. Try sticking to one main point per slide.",
+          "ko_word_order": "그럴 수 있어요. / 지켜 보세요 / 핵심 하나만 / 슬라이드마다",
+          "ko_natural": "그럴 수 있죠. 슬라이드 한 장에 핵심 하나만 넣어 봐요.",
+          "terms": [
+            {
+              "text": "stick to",
+              "form": "sticking to",
+              "meaning": "고수하다, 지키다",
+              "nuance": "정한 계획·규칙·주제에서 벗어나지 않을 때. stick with와 비슷하다.",
+              "examples": [
+                {
+                  "en": "Let's stick to the plan.",
+                  "ko": "계획대로 하자."
+                },
+                {
+                  "en": "Try to stick to your budget.",
+                  "ko": "예산 안에서 써 봐."
+                },
+                {
+                  "en": "Please stick to the topic.",
+                  "ko": "주제에서 벗어나지 말아 주세요."
+                }
+              ]
+            },
+            {
+              "text": "per",
+              "meaning": "~마다, ~당",
+              "nuance": "단위당을 말할 때 쓰는 말. a(an)와 같은 뜻이지만 업무나 숫자 얘기에서 더 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "It costs ten dollars per person.",
+                  "ko": "1인당 10달러예요."
+                },
+                {
+                  "en": "We meet twice per week.",
+                  "ko": "일주일에 두 번 만나요."
+                },
+                {
+                  "en": "The limit is one per customer.",
+                  "ko": "고객 한 명당 하나로 제한돼요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Got it. I'll rework the middle section and send it back to you.",
+          "ko_word_order": "알겠어요. / 제가 다시 손볼게요 / 중간 부분을 / 그리고 그걸 다시 보낼게요 / 당신에게",
+          "ko_natural": "알겠어요. 중간 부분 다시 손봐서 보내 드릴게요.",
+          "terms": [
+            {
+              "text": "rework",
+              "meaning": "다시 손보다",
+              "nuance": "이미 만든 것을 크게 고칠 때. edit보다 구조까지 손보는 느낌이다.",
+              "examples": [
+                {
+                  "en": "We need to rework the budget.",
+                  "ko": "예산을 다시 짜야 해요."
+                },
+                {
+                  "en": "She reworked her resume twice.",
+                  "ko": "그녀는 이력서를 두 번 손봤어요."
+                },
+                {
+                  "en": "Can you rework this paragraph?",
+                  "ko": "이 단락 좀 다시 써 줄래요?"
+                }
+              ]
+            },
+            {
+              "text": "send back",
+              "form": "send it back",
+              "meaning": "다시 보내다",
+              "nuance": "받은 것을 고쳐서 다시 보내거나 물건을 반품할 때 쓴다.",
+              "examples": [
+                {
+                  "en": "Please sign it and send it back.",
+                  "ko": "서명해서 다시 보내 주세요."
+                },
+                {
+                  "en": "I sent the shoes back.",
+                  "ko": "신발 반품했어."
+                },
+                {
+                  "en": "Can you send back the form today?",
+                  "ko": "오늘 양식 다시 보내 줄 수 있어요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Sounds good. And honestly, your delivery has gotten a lot better lately.",
+          "ko_word_order": "좋아요. / 그리고 솔직히, / 당신의 말하는 방식이 / 많이 좋아졌어요 / 요즘",
+          "ko_natural": "좋아요. 그리고 솔직히 요즘 발표 실력이 정말 많이 늘었어요.",
+          "terms": [
+            {
+              "text": "delivery",
+              "meaning": "말하는 방식, 전달력",
+              "nuance": "발표나 연설에서 목소리·속도·태도 같은 전달 방식. 배달이라는 뜻과 헷갈리지 않게.",
+              "examples": [
+                {
+                  "en": "Her delivery was calm and confident.",
+                  "ko": "그녀는 차분하고 자신 있게 발표했어요."
+                },
+                {
+                  "en": "Work on your delivery, not just the slides.",
+                  "ko": "슬라이드뿐 아니라 말하는 방식도 연습해."
+                },
+                {
+                  "en": "The jokes were funny, but his delivery was too fast.",
+                  "ko": "농담은 웃겼는데 말이 너무 빨랐어."
+                }
+              ]
+            },
+            {
+              "text": "get better",
+              "form": "gotten a lot better",
+              "meaning": "나아지다, 늘다",
+              "nuance": "실력이나 상황이 좋아질 때. 미국 구어에서는 완료형에 gotten을 쓴다.",
+              "examples": [
+                {
+                  "en": "Your English is getting better.",
+                  "ko": "영어 실력이 늘고 있네."
+                },
+                {
+                  "en": "I hope you get better soon.",
+                  "ko": "빨리 낫길 바라."
+                },
+                {
+                  "en": "Things will get better, trust me.",
+                  "ko": "상황이 좋아질 거야, 믿어 봐."
+                }
+              ]
+            },
+            {
+              "text": "lately",
+              "meaning": "요즘, 최근에",
+              "nuance": "최근 한동안 계속된 일을 말할 때. 현재완료와 잘 어울리고 recently보다 구어적이다.",
+              "examples": [
+                {
+                  "en": "I've been really busy lately.",
+                  "ko": "요즘 정말 바빴어."
+                },
+                {
+                  "en": "Have you seen any good movies lately?",
+                  "ko": "요즘 좋은 영화 본 거 있어?"
+                },
+                {
+                  "en": "She's been working late lately.",
+                  "ko": "그녀는 요즘 야근을 하고 있어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "That means a lot. Thanks for taking the time to go through it.",
+          "ko_word_order": "그 말이 큰 힘이 돼요. / 고마워요 / 시간을 내 줘서 / 그걸 꼼꼼히 봐 주는 데",
+          "ko_natural": "그 말 정말 힘이 되네요. 시간 내서 꼼꼼히 봐 주셔서 고마워요.",
+          "terms": [
+            {
+              "text": "mean a lot",
+              "form": "means a lot",
+              "meaning": "큰 의미가 있다",
+              "nuance": "칭찬이나 도움에 진심으로 고마워할 때. Thank you보다 감정이 더 담긴 표현이다.",
+              "examples": [
+                {
+                  "en": "Your support means a lot to me.",
+                  "ko": "네 응원이 나한텐 큰 힘이 돼."
+                },
+                {
+                  "en": "It would mean a lot if you came.",
+                  "ko": "네가 와 주면 정말 고마울 거야."
+                },
+                {
+                  "en": "Thanks, that really means a lot.",
+                  "ko": "고마워, 정말 힘이 된다."
+                }
+              ]
+            },
+            {
+              "text": "take the time to",
+              "form": "taking the time to",
+              "meaning": "시간을 내서 ~하다",
+              "nuance": "바쁜데도 일부러 시간을 써 준 데 감사할 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Thanks for taking the time to meet me.",
+                  "ko": "시간 내서 만나 줘서 고마워요."
+                },
+                {
+                  "en": "Take the time to read the contract.",
+                  "ko": "시간을 들여서 계약서를 읽어 봐."
+                },
+                {
+                  "en": "She took the time to explain everything.",
+                  "ko": "그녀가 시간을 내서 다 설명해 줬어요."
+                }
+              ]
+            },
+            {
+              "text": "go through",
+              "meaning": "꼼꼼히 살펴보다",
+              "nuance": "문서를 처음부터 끝까지 자세히 볼 때. look over보다 더 꼼꼼한 느낌이다.",
+              "examples": [
+                {
+                  "en": "Let's go through the list together.",
+                  "ko": "목록 같이 하나씩 보자."
+                },
+                {
+                  "en": "I went through all my emails this morning.",
+                  "ko": "오늘 아침에 메일을 전부 확인했어."
+                },
+                {
+                  "en": "Can you go through my essay?",
+                  "ko": "내 에세이 꼼꼼히 봐 줄래?"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

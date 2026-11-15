@@ -1,0 +1,300 @@
+{
+  "lessons": [
+    {
+      "day": 35,
+      "title": "지난 주말 이야기",
+      "theme": "Talking about last weekend",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hey, how was your weekend? Did you do anything fun?",
+          "ko_word_order": "야, 주말 어땠어? / 너 했어 / 뭐 재미있는 거?",
+          "ko_natural": "주말 잘 보냈어? 뭐 재밌는 거 했어?",
+          "core": true,
+          "terms": [
+            {
+              "text": "do anything fun",
+              "meaning": "뭐 재미있는 걸 하다",
+              "nuance": "주말·휴가 뒤에 가볍게 안부 겸 묻는 단골 질문. 'anything'을 써서 부담 없이 묻는 느낌이다.",
+              "examples": [
+                { "en": "Are you doing anything fun tonight?", "ko": "오늘 밤에 뭐 재밌는 거 해?" },
+                { "en": "We didn't do anything fun on vacation.", "ko": "휴가 때 딱히 재밌는 건 안 했어." },
+                { "en": "Did the kids do anything fun at camp?", "ko": "애들 캠프에서 뭐 재밌는 거 했대?" }
+              ]
+            },
+            {
+              "text": "How was your weekend?",
+              "meaning": "주말 어땠어?",
+              "nuance": "월요일 아침 동료·친구 사이에 인사처럼 쓰는 질문. 길게 대답하지 않아도 되는 가벼운 스몰토크다.",
+              "examples": [
+                { "en": "Morning! How was your weekend?", "ko": "좋은 아침! 주말 잘 보냈어?" },
+                { "en": "How was your weekend, by the way?", "ko": "그나저나 주말은 어땠어요?" },
+                { "en": "I forgot to ask, how was your weekend?", "ko": "깜빡했다, 주말 어땠어?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Not really. I just stayed in and caught up on sleep.",
+          "ko_word_order": "별로. / 나는 그냥 집에 있었어 / 그리고 밀린 잠을 잤어",
+          "ko_natural": "딱히. 그냥 집에서 밀린 잠 잤어.",
+          "terms": [
+            {
+              "text": "stay in",
+              "form": "stayed in",
+              "meaning": "집에 있다, 안 나가다",
+              "nuance": "외출하지 않고 집에서 쉰다는 구어. 반대로 놀러 나가는 건 go out이라고 한다.",
+              "examples": [
+                { "en": "Let's just stay in and order pizza.", "ko": "그냥 집에서 피자 시켜 먹자." },
+                { "en": "I'm staying in tonight, I'm too tired.", "ko": "오늘 밤엔 집에 있을래, 너무 피곤해." },
+                { "en": "It was raining, so we stayed in.", "ko": "비가 와서 집에 있었어." }
+              ]
+            },
+            {
+              "text": "catch up on",
+              "form": "caught up on",
+              "meaning": "밀린 것을 하다",
+              "nuance": "밀린 잠·일·드라마처럼 쌓인 것을 몰아서 할 때 쓴다. 사람과 근황을 나누는 catch up with와 구별한다.",
+              "examples": [
+                { "en": "I need to catch up on some emails.", "ko": "밀린 메일 좀 처리해야 해." },
+                { "en": "I caught up on my favorite show.", "ko": "좋아하는 드라마 밀린 거 다 봤어." },
+                { "en": "Sunday is for catching up on sleep.", "ko": "일요일은 밀린 잠 자는 날이야." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "That sounds nice. Mine was busier than I expected.",
+          "ko_word_order": "그거 좋네. / 내 거는 더 바빴어 / 내가 예상한 것보다",
+          "ko_natural": "좋았겠다. 난 생각보다 바빴어.",
+          "terms": [
+            {
+              "text": "than I expected",
+              "meaning": "예상보다",
+              "nuance": "비교급 뒤에 붙여 기대와 달랐다는 걸 말한다. 'than I thought'도 같은 뜻으로 많이 쓴다.",
+              "examples": [
+                { "en": "The test was easier than I expected.", "ko": "시험이 생각보다 쉬웠어." },
+                { "en": "It cost more than I expected.", "ko": "예상보다 돈이 더 들었어." },
+                { "en": "The trip was shorter than I expected.", "ko": "여행이 생각보다 짧았어." }
+              ]
+            },
+            {
+              "text": "mine",
+              "meaning": "내 것",
+              "nuance": "앞에 나온 명사를 반복하지 않으려고 쓴다. 여기서는 'my weekend'를 줄인 말이다.",
+              "examples": [
+                { "en": "Your phone is newer than mine.", "ko": "네 폰이 내 거보다 새 거야." },
+                { "en": "Is this coffee mine or yours?", "ko": "이 커피 내 거야, 네 거야?" },
+                { "en": "Her day was fine, but mine was awful.", "ko": "그 친구 하루는 괜찮았는데 난 최악이었어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Oh yeah? What were you up to?",
+          "ko_word_order": "아 그래? / 너 뭐 하고 있었는데?",
+          "ko_natural": "그래? 뭐 했는데?",
+          "core": true,
+          "terms": [
+            {
+              "text": "be up to",
+              "form": "were you up to",
+              "meaning": "~을 하고 지내다",
+              "nuance": "무엇을 하며 지냈는지 편하게 묻는 구어. 'What are you up to?'는 '뭐 해?'라는 인사로도 쓴다.",
+              "examples": [
+                { "en": "What are you up to this weekend?", "ko": "이번 주말에 뭐 해?" },
+                { "en": "What have you been up to lately?", "ko": "요즘 어떻게 지냈어?" },
+                { "en": "I know what you're up to.", "ko": "너 무슨 꿍꿍이인지 다 알아." }
+              ]
+            },
+            {
+              "text": "Oh yeah?",
+              "meaning": "아 그래?",
+              "nuance": "상대 말에 관심을 보이며 더 들려 달라는 맞장구. 억양을 올려 말한다.",
+              "examples": [
+                { "en": "I got a new job. Oh yeah? Where?", "ko": "나 이직했어. 아 그래? 어디로?" },
+                { "en": "Oh yeah? I didn't know that.", "ko": "아 그래? 몰랐네." },
+                { "en": "Oh yeah? Tell me more.", "ko": "오, 진짜? 더 말해 봐." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "My cousin got married on Saturday, so I was in Daegu all day.",
+          "ko_word_order": "내 사촌이 결혼했어 / 토요일에, / 그래서 나는 대구에 있었어 / 하루 종일",
+          "ko_natural": "토요일에 사촌 결혼식이 있어서 하루 종일 대구에 있었어.",
+          "terms": [
+            {
+              "text": "get married",
+              "form": "got married",
+              "meaning": "결혼하다",
+              "nuance": "결혼식을 올리는 사건을 말할 때는 marry보다 get married가 훨씬 자연스럽다. 상태는 be married로 말한다.",
+              "examples": [
+                { "en": "They're getting married next spring.", "ko": "걔네 내년 봄에 결혼해." },
+                { "en": "When did you get married?", "ko": "언제 결혼하셨어요?" },
+                { "en": "My best friend just got married.", "ko": "제일 친한 친구가 얼마 전에 결혼했어." }
+              ]
+            },
+            {
+              "text": "cousin",
+              "meaning": "사촌",
+              "nuance": "친가·외가, 남녀 구분 없이 모두 cousin이라고 한다. 육촌은 second cousin이다.",
+              "examples": [
+                { "en": "My cousin lives in Canada.", "ko": "내 사촌은 캐나다에 살아." },
+                { "en": "We're cousins, not siblings.", "ko": "우리 남매 아니고 사촌이야." },
+                { "en": "I have a lot of cousins on my mom's side.", "ko": "외가 쪽으로 사촌이 많아." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Oh, nice! Was it a big wedding?",
+          "ko_word_order": "오, 좋다! / 그거 큰 결혼식이었어?",
+          "ko_natural": "와, 좋았겠다! 결혼식 크게 했어?",
+          "terms": [
+            {
+              "text": "wedding",
+              "meaning": "결혼식",
+              "nuance": "결혼식 행사를 말한다. 결혼 생활이나 결혼 관계는 marriage라고 구별한다.",
+              "examples": [
+                { "en": "Are you going to her wedding?", "ko": "그 친구 결혼식 갈 거야?" },
+                { "en": "The wedding was outdoors.", "ko": "결혼식이 야외에서 했어." },
+                { "en": "I gave a speech at the wedding.", "ko": "결혼식에서 축사했어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "It was beautiful, but I'm still exhausted from the drive back.",
+          "ko_word_order": "그건 아름다웠어, / 그런데 나는 아직도 지쳐 있어 / 돌아오는 운전 때문에",
+          "ko_natural": "예뻤는데, 운전해서 돌아오느라 아직도 피곤해.",
+          "terms": [
+            {
+              "text": "exhausted",
+              "meaning": "완전히 지친",
+              "nuance": "tired보다 훨씬 강한 '녹초가 된' 상태. 그래서 very를 붙이지 않고 so나 totally를 붙인다.",
+              "examples": [
+                { "en": "I'm totally exhausted after that hike.", "ko": "등산하고 완전 녹초야." },
+                { "en": "You look exhausted. Go to bed.", "ko": "너 완전 지쳐 보여. 가서 자." },
+                { "en": "The kids were exhausted from swimming.", "ko": "애들이 수영하고 녹초가 됐어." }
+              ]
+            },
+            {
+              "text": "the drive back",
+              "meaning": "돌아오는 운전길",
+              "nuance": "drive를 명사로 써서 운전해서 가는 길 자체를 말한다. 가는 길은 the drive there라고 한다.",
+              "examples": [
+                { "en": "The drive back took five hours.", "ko": "돌아오는 데 다섯 시간 걸렸어." },
+                { "en": "I fell asleep on the drive back.", "ko": "돌아오는 차에서 잠들었어." },
+                { "en": "Let's stop for coffee on the drive back.", "ko": "돌아오는 길에 커피 마시고 가자." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I bet. Did you at least get to see your family?",
+          "ko_word_order": "그렇겠다. / 너 적어도 / 가족은 볼 수 있었어?",
+          "ko_natural": "그렇겠다. 그래도 가족들은 좀 봤어?",
+          "terms": [
+            {
+              "text": "I bet",
+              "meaning": "그렇겠다, 당연하지",
+              "nuance": "상대 말에 '그럴 만하다'고 공감하는 짧은 맞장구. 친구 사이에 아주 자주 쓴다.",
+              "examples": [
+                { "en": "I worked twelve hours today. I bet you're tired.", "ko": "오늘 12시간 일했어. 피곤하겠다." },
+                { "en": "I bet she was happy.", "ko": "그 친구 좋아했겠다." },
+                { "en": "It was so cold! I bet.", "ko": "진짜 추웠어! 그랬겠다." }
+              ]
+            },
+            {
+              "text": "get to",
+              "form": "get to see",
+              "meaning": "~할 기회가 생기다",
+              "nuance": "좋은 기회를 얻어 무언가를 하게 됐다는 느낌. can보다 '운 좋게'라는 뉘앙스가 있다.",
+              "examples": [
+                { "en": "I got to meet the singer backstage.", "ko": "무대 뒤에서 그 가수 만날 수 있었어." },
+                { "en": "Do you get to work from home?", "ko": "너 재택근무 할 수 있어?" },
+                { "en": "We didn't get to try the cake.", "ko": "우리 케이크 먹어 볼 틈도 없었어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Yeah, it was great to catch up with everyone.",
+          "ko_word_order": "응, / 좋았어 / 모두랑 근황 나눈 게",
+          "ko_natural": "응, 다들 오랜만에 만나서 얘기 나누니까 좋더라.",
+          "core": true,
+          "terms": [
+            {
+              "text": "catch up with",
+              "meaning": "~와 근황을 나누다",
+              "nuance": "오랜만에 만난 사람과 그동안의 이야기를 나눌 때 쓴다. 밀린 일을 하는 catch up on과 구별한다.",
+              "examples": [
+                { "en": "Let's catch up with coffee sometime.", "ko": "언제 커피 마시면서 얘기 좀 하자." },
+                { "en": "I caught up with an old friend last night.", "ko": "어젯밤에 옛 친구 만나서 수다 떨었어." },
+                { "en": "It's nice to catch up with you.", "ko": "이렇게 근황 나누니까 좋다." }
+              ]
+            },
+            {
+              "text": "it was great to",
+              "meaning": "~해서 좋았다",
+              "nuance": "지난 경험이 좋았다고 말하는 틀. 헤어질 때 'It was great to see you'처럼 인사로도 쓴다.",
+              "examples": [
+                { "en": "It was great to see you again.", "ko": "다시 봐서 반가웠어." },
+                { "en": "It was great to finally relax.", "ko": "드디어 쉬니까 좋았어." },
+                { "en": "It was great to hear from you.", "ko": "연락 줘서 반가웠어." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "That's what weekends are for. Okay, back to work, I guess.",
+          "ko_word_order": "그게 주말이 있는 이유지. / 자, 다시 일하러, / 해야겠지",
+          "ko_natural": "주말이 그러라고 있는 거지. 자, 이제 일해야겠다.",
+          "terms": [
+            {
+              "text": "that's what ~ are for",
+              "form": "That's what weekends are for",
+              "meaning": "그러라고 있는 거야",
+              "nuance": "어떤 것의 존재 이유를 가볍게 말하는 관용 표현. 'That's what friends are for'가 가장 유명하다.",
+              "examples": [
+                { "en": "Don't thank me. That's what friends are for.", "ko": "고맙긴. 친구 좋다는 게 뭐야." },
+                { "en": "That's what holidays are for.", "ko": "휴일이 그러라고 있는 거지." },
+                { "en": "Ask questions. That's what meetings are for.", "ko": "질문해요. 회의가 그러라고 있는 거예요." }
+              ]
+            },
+            {
+              "text": "back to work",
+              "meaning": "다시 일하러",
+              "nuance": "휴식이나 잡담을 끝내고 일로 돌아갈 때 쓰는 말. 'Back to work!'만 말해도 '자, 일하자'가 된다.",
+              "examples": [
+                { "en": "Break's over, back to work.", "ko": "쉬는 시간 끝, 다시 일하자." },
+                { "en": "She went back to work after maternity leave.", "ko": "그 사람 출산휴가 끝나고 복직했어." },
+                { "en": "I have to get back to work now.", "ko": "이제 다시 일하러 가야 해." }
+              ]
+            },
+            {
+              "text": "I guess",
+              "meaning": "~인가 보다, 그런 것 같다",
+              "nuance": "확신 없이 말하거나 마지못해 받아들일 때 문장 끝에 붙인다. 'I think'보다 덜 단정적이다.",
+              "examples": [
+                { "en": "I guess we'll have to wait.", "ko": "기다려야 하나 보네." },
+                { "en": "It's fine, I guess.", "ko": "뭐, 괜찮은 것 같아." },
+                { "en": "I guess you're right.", "ko": "네 말이 맞는 것 같다." }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

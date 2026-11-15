@@ -1,0 +1,537 @@
+{
+  "lessons": [
+    {
+      "day": 63,
+      "title": "네트워킹 행사에서",
+      "theme": "At a networking event",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi, mind if I join you? I don't really know anyone here yet.",
+          "ko_word_order": "안녕하세요, / 제가 끼어도 될까요? / 저는 정말 아무도 몰라요 / 여기에서 아직",
+          "ko_natural": "안녕하세요, 같이 있어도 될까요? 여기 아직 아는 사람이 없어서요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "mind if I",
+              "meaning": "~해도 될까요?",
+              "nuance": "Do you mind if I를 줄인 편한 구어. 행사나 카페에서 자리에 끼거나 뭔가 빌릴 때 쓴다.",
+              "examples": [
+                {
+                  "en": "Mind if I sit here?",
+                  "ko": "여기 앉아도 돼요?"
+                },
+                {
+                  "en": "Mind if I borrow your pen?",
+                  "ko": "펜 좀 빌려도 될까요?"
+                },
+                {
+                  "en": "Mind if I open the window?",
+                  "ko": "창문 좀 열어도 돼요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Not at all. I'm Ava, by the way. I'm in marketing at a startup.",
+          "ko_word_order": "전혀요. / 저는 에이바예요, 그나저나. / 저는 마케팅 일을 해요 / 스타트업에서",
+          "ko_natural": "그럼요. 저는 에이바라고 해요. 스타트업에서 마케팅 일을 하고 있어요.",
+          "terms": [
+            {
+              "text": "not at all",
+              "meaning": "전혀요, 괜찮아요",
+              "nuance": "'Mind if...?'나 'Do you mind...?'에 '괜찮아요'라고 답할 때 쓴다. 여기에 Yes라고 하면 오히려 '싫다'는 뜻이 된다.",
+              "examples": [
+                {
+                  "en": "Do you mind if I call you later? — Not at all.",
+                  "ko": "나중에 전화해도 될까요? — 그럼요."
+                },
+                {
+                  "en": "Thanks for waiting. — Not at all.",
+                  "ko": "기다려 줘서 고마워요. — 별말씀을요."
+                },
+                {
+                  "en": "I'm not at all tired.",
+                  "ko": "전혀 안 피곤해요."
+                }
+              ]
+            },
+            {
+              "text": "by the way",
+              "meaning": "그나저나",
+              "nuance": "대화 중 화제를 살짝 돌리거나 덧붙일 때 쓴다. 문자로는 BTW라고 줄인다.",
+              "examples": [
+                {
+                  "en": "By the way, did you call your mom?",
+                  "ko": "그나저나 엄마한테 전화했어?"
+                },
+                {
+                  "en": "I'm Tom, by the way.",
+                  "ko": "아, 저는 톰이에요."
+                },
+                {
+                  "en": "By the way, the meeting moved to three.",
+                  "ko": "참, 회의가 3시로 바뀌었어요."
+                }
+              ]
+            },
+            {
+              "text": "be in marketing",
+              "form": "I'm in marketing",
+              "meaning": "마케팅 분야에서 일하다",
+              "nuance": "'be in + 분야'로 어떤 업계에서 일한다고 짧게 말하는 구어 표현.",
+              "examples": [
+                {
+                  "en": "My sister is in marketing too.",
+                  "ko": "제 언니도 마케팅 쪽 일해요."
+                },
+                {
+                  "en": "He's been in marketing for ten years.",
+                  "ko": "그는 마케팅 일을 10년 했어요."
+                },
+                {
+                  "en": "Are you in marketing or sales?",
+                  "ko": "마케팅 쪽이세요, 영업 쪽이세요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Nice to meet you. I'm Andrew, and I'm a product manager at a logistics company.",
+          "ko_word_order": "만나서 반가워요. / 저는 앤드루예요, / 그리고 저는 제품 매니저예요 / 물류 회사의",
+          "ko_natural": "반가워요. 저는 앤드루고, 물류 회사에서 프로덕트 매니저로 일해요.",
+          "terms": [
+            {
+              "text": "product manager",
+              "meaning": "제품 기획자",
+              "nuance": "제품의 방향과 기능을 정하고 팀을 조율하는 직무. 줄여서 PM이라고도 한다.",
+              "examples": [
+                {
+                  "en": "Our product manager decides which features to build.",
+                  "ko": "어떤 기능을 만들지는 우리 PM이 정해요."
+                },
+                {
+                  "en": "She became a product manager last year.",
+                  "ko": "그녀는 작년에 PM이 됐어요."
+                },
+                {
+                  "en": "Ask the product manager about the release date.",
+                  "ko": "출시일은 PM한테 물어보세요."
+                }
+              ]
+            },
+            {
+              "text": "logistics",
+              "meaning": "물류",
+              "nuance": "물건을 보관하고 운송하는 일 전체를 말하는 업계 용어. 항상 -s가 붙은 형태로 쓴다.",
+              "examples": [
+                {
+                  "en": "He works in logistics.",
+                  "ko": "그는 물류 쪽에서 일해요."
+                },
+                {
+                  "en": "Logistics costs went up this year.",
+                  "ko": "올해 물류비가 올랐어요."
+                },
+                {
+                  "en": "We hired a logistics company for the move.",
+                  "ko": "이사 때문에 물류 업체를 썼어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Oh, interesting. So what brings you to an event like this?",
+          "ko_word_order": "오, 흥미롭네요. / 그럼 무엇이 데려왔나요 / 당신을 / 이런 행사에?",
+          "ko_natural": "오, 그렇군요. 이런 행사에는 어떻게 오시게 됐어요?",
+          "terms": [
+            {
+              "text": "what brings you to",
+              "meaning": "~에 어쩐 일로",
+              "nuance": "왜 왔는지를 부드럽게 묻는 표현. Why are you here?보다 훨씬 친근하고 정중하다.",
+              "examples": [
+                {
+                  "en": "What brings you to Seoul?",
+                  "ko": "서울엔 어쩐 일이세요?"
+                },
+                {
+                  "en": "So what brings you to this part of town?",
+                  "ko": "이 동네엔 무슨 일로 왔어?"
+                },
+                {
+                  "en": "What brings you to the clinic today?",
+                  "ko": "오늘은 어디가 불편해서 오셨어요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I'm hoping to meet people in the tech space and see what they're working on.",
+          "ko_word_order": "저는 바라고 있어요 / 사람들을 만나기를 / 테크 분야의 / 그리고 보기를 / 그들이 무엇을 하고 있는지",
+          "ko_natural": "IT 쪽 사람들 좀 만나고, 다들 요즘 어떤 일 하는지 들어 보고 싶어서요.",
+          "terms": [
+            {
+              "text": "space",
+              "meaning": "업계, 분야",
+              "nuance": "'the tech space'처럼 업계나 분야를 가리키는 요즘 비즈니스 구어. industry보다 가볍다.",
+              "examples": [
+                {
+                  "en": "She's well known in the fashion space.",
+                  "ko": "그녀는 패션 업계에서 유명해요."
+                },
+                {
+                  "en": "There's a lot of competition in this space.",
+                  "ko": "이 분야는 경쟁이 치열해요."
+                },
+                {
+                  "en": "Which companies are big in the AI space?",
+                  "ko": "AI 분야에서 큰 회사가 어디예요?"
+                }
+              ]
+            },
+            {
+              "text": "work on",
+              "form": "working on",
+              "meaning": "~을 작업하다",
+              "nuance": "진행 중인 일이나 프로젝트를 말할 때 쓴다. 'What are you working on?'은 근황을 묻는 흔한 질문이다.",
+              "examples": [
+                {
+                  "en": "What are you working on these days?",
+                  "ko": "요즘 무슨 일 하고 있어요?"
+                },
+                {
+                  "en": "I'm working on a new song.",
+                  "ko": "새 노래 작업 중이에요."
+                },
+                {
+                  "en": "We worked on the project all weekend.",
+                  "ko": "주말 내내 프로젝트를 했어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Same here. Events like this are a great way to get your name out there.",
+          "ko_word_order": "저도 마찬가지예요. / 이런 행사들은 / 좋은 방법이에요 / 당신의 이름을 알리는",
+          "ko_natural": "저도요. 이런 행사가 이름 알리기에 딱 좋더라고요.",
+          "terms": [
+            {
+              "text": "same here",
+              "meaning": "저도요",
+              "nuance": "상대와 같은 상황이나 생각이라고 짧게 말하는 구어. Me too보다 살짝 어른스러운 느낌이다.",
+              "examples": [
+                {
+                  "en": "I'm starving. — Same here.",
+                  "ko": "배고파 죽겠어. — 나도."
+                },
+                {
+                  "en": "Same here, I just moved to the city.",
+                  "ko": "저도요, 이 도시에 막 이사 왔어요."
+                },
+                {
+                  "en": "I love this song. — Same here!",
+                  "ko": "이 노래 너무 좋아. — 나도!"
+                }
+              ]
+            },
+            {
+              "text": "a great way to",
+              "meaning": "~하기 좋은 방법",
+              "nuance": "어떤 활동의 장점을 자연스럽게 추천할 때 쓴다.",
+              "examples": [
+                {
+                  "en": "Walking is a great way to relax.",
+                  "ko": "걷기는 긴장 풀기에 좋아요."
+                },
+                {
+                  "en": "Cooking together is a great way to get closer.",
+                  "ko": "같이 요리하면 금방 친해져요."
+                },
+                {
+                  "en": "Podcasts are a great way to learn English.",
+                  "ko": "팟캐스트는 영어 배우기에 좋은 방법이에요."
+                }
+              ]
+            },
+            {
+              "text": "get one's name out there",
+              "form": "get your name out there",
+              "meaning": "이름을 알리다",
+              "nuance": "자신이나 회사를 사람들에게 널리 알린다는 구어. 홍보나 네트워킹 이야기에서 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Social media helps you get your name out there.",
+                  "ko": "SNS는 이름 알리는 데 도움이 돼요."
+                },
+                {
+                  "en": "She played small shows to get her name out there.",
+                  "ko": "그녀는 이름을 알리려고 작은 공연을 했어요."
+                },
+                {
+                  "en": "It takes time to get your name out there.",
+                  "ko": "이름을 알리는 데는 시간이 걸려요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Definitely. Actually, it sounds like our companies might have a lot in common.",
+          "ko_word_order": "그럼요. / 그러고 보니, / ~처럼 들려요 / 우리 회사들이 / 공통점이 많을 수도 있는 것",
+          "ko_natural": "맞아요. 그러고 보니 저희 회사랑 공통점이 꽤 많을 것 같네요.",
+          "terms": [
+            {
+              "text": "actually",
+              "meaning": "그러고 보니",
+              "nuance": "앞 말에 새로운 생각을 덧붙이거나 살짝 방향을 바꿀 때 쓴다. 꼭 '사실은'으로만 옮겨지지 않는다.",
+              "examples": [
+                {
+                  "en": "Actually, I have a better idea.",
+                  "ko": "아, 그러고 보니 더 좋은 생각이 있어요."
+                },
+                {
+                  "en": "Actually, can I have water instead?",
+                  "ko": "아, 그냥 물로 주시겠어요?"
+                },
+                {
+                  "en": "I actually live near here.",
+                  "ko": "저 사실 이 근처 살아요."
+                }
+              ]
+            },
+            {
+              "text": "it sounds like",
+              "meaning": "~인 것 같네요",
+              "nuance": "들은 내용을 바탕으로 내 생각을 부드럽게 말할 때 쓴다.",
+              "examples": [
+                {
+                  "en": "It sounds like you had a busy day.",
+                  "ko": "오늘 바빴나 보네요."
+                },
+                {
+                  "en": "It sounds like the plan worked.",
+                  "ko": "계획이 잘 됐나 보네요."
+                },
+                {
+                  "en": "It sounds like she's not coming.",
+                  "ko": "그녀는 안 오는 것 같아요."
+                }
+              ]
+            },
+            {
+              "text": "have in common",
+              "form": "have a lot in common",
+              "meaning": "공통점이 있다",
+              "nuance": "사람이나 회사 사이에 비슷한 점이 있다고 할 때 쓴다. 사이에 a lot, nothing 등을 넣는다.",
+              "examples": [
+                {
+                  "en": "We have a lot in common.",
+                  "ko": "우린 공통점이 많아요."
+                },
+                {
+                  "en": "They have nothing in common.",
+                  "ko": "그들은 공통점이 하나도 없어요."
+                },
+                {
+                  "en": "What do these two cities have in common?",
+                  "ko": "이 두 도시는 뭐가 비슷해요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "You know, it might be worth grabbing a coffee sometime to talk more.",
+          "ko_word_order": "있잖아요, / ~할 만할지도 몰라요 / 커피 한잔하는 것이 / 언제 한번 / 더 이야기하려고",
+          "ko_natural": "그럼 언제 커피 한잔하면서 더 얘기해 보는 것도 좋겠어요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "you know",
+              "meaning": "있잖아요",
+              "nuance": "말을 꺼내거나 생각을 정리할 때 붙이는 구어. 상대의 주의를 가볍게 끄는 느낌이다.",
+              "examples": [
+                {
+                  "en": "You know, I've never been to Paris.",
+                  "ko": "있잖아, 나 파리 한 번도 안 가 봤어."
+                },
+                {
+                  "en": "You know, that's not a bad idea.",
+                  "ko": "그거 말이야, 나쁘지 않은 생각이네."
+                },
+                {
+                  "en": "You know, we should do this more often.",
+                  "ko": "있잖아요, 이런 거 더 자주 해야겠어요."
+                }
+              ]
+            },
+            {
+              "text": "grab a coffee",
+              "form": "grabbing a coffee",
+              "meaning": "커피 한잔하다",
+              "nuance": "부담 없이 잠깐 만나 커피 마시자는 구어. have a coffee보다 가볍고 캐주얼하다.",
+              "examples": [
+                {
+                  "en": "Want to grab a coffee after work?",
+                  "ko": "퇴근하고 커피 한잔할래?"
+                },
+                {
+                  "en": "Let's grab a coffee next week.",
+                  "ko": "다음 주에 커피 한잔해요."
+                },
+                {
+                  "en": "I grabbed a coffee on the way in.",
+                  "ko": "오는 길에 커피 한 잔 샀어요."
+                }
+              ]
+            },
+            {
+              "text": "sometime",
+              "meaning": "언제 한번",
+              "nuance": "정확한 날짜 없이 '언젠가 한번'이라는 뜻. 가볍게 다음 만남을 제안할 때 쓴다.",
+              "examples": [
+                {
+                  "en": "Let's have dinner sometime.",
+                  "ko": "언제 저녁 한번 먹어요."
+                },
+                {
+                  "en": "Come visit us sometime.",
+                  "ko": "언제 한번 놀러 와."
+                },
+                {
+                  "en": "I'd like to try surfing sometime.",
+                  "ko": "언젠가 서핑 한번 해 보고 싶어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I'd like that. Here's my card. Feel free to reach out anytime.",
+          "ko_word_order": "그거 좋겠어요. / 여기 제 명함이에요. / 편하게 연락 주세요 / 언제든지",
+          "ko_natural": "좋아요. 제 명함이에요. 언제든 편하게 연락 주세요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "card",
+              "meaning": "명함",
+              "nuance": "비즈니스 자리에서는 card라고만 해도 명함(business card)을 뜻한다.",
+              "examples": [
+                {
+                  "en": "Can I get your card?",
+                  "ko": "명함 한 장 받을 수 있을까요?"
+                },
+                {
+                  "en": "I ran out of cards at the event.",
+                  "ko": "행사에서 명함이 다 떨어졌어요."
+                },
+                {
+                  "en": "He handed me his card.",
+                  "ko": "그가 명함을 건넸어요."
+                }
+              ]
+            },
+            {
+              "text": "feel free to",
+              "meaning": "편하게 ~하세요",
+              "nuance": "상대에게 부담 갖지 말고 하라고 권할 때 쓰는 친절한 표현.",
+              "examples": [
+                {
+                  "en": "Feel free to ask me anything.",
+                  "ko": "뭐든 편하게 물어보세요."
+                },
+                {
+                  "en": "Feel free to take a seat.",
+                  "ko": "편하게 앉으세요."
+                },
+                {
+                  "en": "Feel free to bring a friend.",
+                  "ko": "친구 데려와도 괜찮아요."
+                }
+              ]
+            },
+            {
+              "text": "reach out",
+              "meaning": "연락하다",
+              "nuance": "도움이나 관계를 위해 먼저 연락한다는 비즈니스 구어. contact보다 부드럽고 친근하다.",
+              "examples": [
+                {
+                  "en": "Don't hesitate to reach out if you need help.",
+                  "ko": "도움 필요하면 언제든 연락하세요."
+                },
+                {
+                  "en": "She reached out to me on LinkedIn.",
+                  "ko": "그녀가 링크드인으로 연락해 왔어요."
+                },
+                {
+                  "en": "I'll reach out to the team today.",
+                  "ko": "오늘 팀에 연락해 볼게요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Thanks, I'll drop you a line next week. Enjoy the rest of your evening!",
+          "ko_word_order": "고마워요, / 제가 연락드릴게요 / 다음 주에. / 즐기세요 / 남은 저녁 시간을!",
+          "ko_natural": "고마워요, 다음 주에 연락드릴게요. 남은 시간 즐겁게 보내세요!",
+          "terms": [
+            {
+              "text": "drop someone a line",
+              "form": "drop you a line",
+              "meaning": "연락하다",
+              "nuance": "짧은 메일이나 메시지를 보내겠다는 친근한 구어 표현.",
+              "examples": [
+                {
+                  "en": "Drop me a line when you're in town.",
+                  "ko": "이쪽 오면 연락 줘."
+                },
+                {
+                  "en": "I'll drop her a line about the party.",
+                  "ko": "파티 얘기는 그녀한테 연락해 둘게."
+                },
+                {
+                  "en": "Drop us a line if you have questions.",
+                  "ko": "궁금한 거 있으면 연락 주세요."
+                }
+              ]
+            },
+            {
+              "text": "enjoy the rest of",
+              "meaning": "남은 ~ 잘 보내세요",
+              "nuance": "헤어질 때 남은 시간 잘 보내라는 따뜻한 인사. 뒤에 your day, the weekend 등을 붙인다.",
+              "examples": [
+                {
+                  "en": "Enjoy the rest of your day!",
+                  "ko": "남은 하루 잘 보내세요!"
+                },
+                {
+                  "en": "Enjoy the rest of your trip.",
+                  "ko": "남은 여행 즐겁게 하세요."
+                },
+                {
+                  "en": "Enjoy the rest of the weekend!",
+                  "ko": "남은 주말 잘 보내!"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

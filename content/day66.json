@@ -1,0 +1,518 @@
+{
+  "lessons": [
+    {
+      "day": 66,
+      "title": "66일을 돌아보며",
+      "theme": "Looking back on 66 days",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Can you believe it's been sixty-six days since we started this habit?",
+          "ko_word_order": "믿어져요 / 66일이 됐다는 게 / 우리가 시작한 이후로 / 이 습관을?",
+          "ko_natural": "우리가 이 습관 시작한 지 벌써 66일이라니 믿어져요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "can you believe",
+              "meaning": "믿어져요?",
+              "nuance": "놀랍거나 감격스러운 일을 함께 나눌 때 쓰는 구어. 정말 믿는지 묻는 말이 아니다.",
+              "examples": [
+                {
+                  "en": "Can you believe it's December already?",
+                  "ko": "벌써 12월이라니 믿어져?"
+                },
+                {
+                  "en": "Can you believe he said that?",
+                  "ko": "그 사람이 그런 말을 했다니 믿어져?"
+                },
+                {
+                  "en": "Can you believe how cheap this was?",
+                  "ko": "이게 이렇게 쌌다니 믿어져?"
+                }
+              ]
+            },
+            {
+              "text": "it's been",
+              "meaning": "(시간이) ~ 됐다",
+              "nuance": "'it's been + 기간 + since'로 어떤 일 이후 시간이 얼마나 흘렀는지 말한다.",
+              "examples": [
+                {
+                  "en": "It's been ages since we last met.",
+                  "ko": "마지막으로 본 지 엄청 오래됐네."
+                },
+                {
+                  "en": "It's been three years since I moved here.",
+                  "ko": "여기 이사 온 지 3년 됐어요."
+                },
+                {
+                  "en": "It's been a while since I had pizza.",
+                  "ko": "피자 먹은 지 꽤 됐어요."
+                }
+              ]
+            },
+            {
+              "text": "habit",
+              "meaning": "습관",
+              "nuance": "꾸준히 반복해서 몸에 밴 행동. 'build a habit'은 습관을 들인다는 뜻이다.",
+              "examples": [
+                {
+                  "en": "Reading before bed is a good habit.",
+                  "ko": "자기 전 독서는 좋은 습관이에요."
+                },
+                {
+                  "en": "I'm trying to break the habit of checking my phone.",
+                  "ko": "휴대폰 보는 습관을 고치려고 해요."
+                },
+                {
+                  "en": "It takes time to build a new habit.",
+                  "ko": "새 습관을 들이려면 시간이 걸려요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I know, right? Honestly, I wasn't sure I'd stick with it this long.",
+          "ko_word_order": "그러니까요, 그렇죠? / 솔직히, / 저는 확신이 없었어요 / 제가 그걸 계속할지 / 이렇게 오래",
+          "ko_natural": "그러게요! 솔직히 제가 이렇게 오래 할 수 있을 줄 몰랐어요.",
+          "terms": [
+            {
+              "text": "I know, right?",
+              "meaning": "그러니까!",
+              "nuance": "상대 말에 강하게 맞장구칠 때 쓰는 친근한 구어. 친구나 편한 동료 사이에 쓴다.",
+              "examples": [
+                {
+                  "en": "This cake is amazing! — I know, right?",
+                  "ko": "이 케이크 대박! — 그치?"
+                },
+                {
+                  "en": "It's so hot today. — I know, right?",
+                  "ko": "오늘 너무 덥다. — 그러니까."
+                },
+                {
+                  "en": "I know, right? I couldn't stop laughing.",
+                  "ko": "그러니까! 웃음이 안 멈추더라."
+                }
+              ]
+            },
+            {
+              "text": "stick with",
+              "meaning": "꾸준히 계속하다",
+              "nuance": "포기하지 않고 하던 일을 계속한다는 구어. 운동·공부·습관 이야기에 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Stick with it, and you'll get better.",
+                  "ko": "꾸준히 하면 늘 거예요."
+                },
+                {
+                  "en": "I stuck with piano for ten years.",
+                  "ko": "피아노를 10년 동안 계속했어요."
+                },
+                {
+                  "en": "It's hard to stick with a diet.",
+                  "ko": "다이어트를 꾸준히 하기 어려워요."
+                }
+              ]
+            },
+            {
+              "text": "this long",
+              "meaning": "이렇게 오래",
+              "nuance": "예상보다 시간이 길었다는 놀라움을 담는다.",
+              "examples": [
+                {
+                  "en": "Why did it take this long?",
+                  "ko": "왜 이렇게 오래 걸렸어?"
+                },
+                {
+                  "en": "I've never waited this long for a bus.",
+                  "ko": "버스를 이렇게 오래 기다린 건 처음이에요."
+                },
+                {
+                  "en": "I didn't think the movie would be this long.",
+                  "ko": "영화가 이렇게 길 줄 몰랐어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Same. In the first week, I could barely order a coffee without freezing up.",
+          "ko_word_order": "저도요. / 첫 주에는, / 저는 거의 못 했어요 / 커피 주문하는 것도 / 얼어붙지 않고",
+          "ko_natural": "저도요. 첫 주엔 커피 하나 주문하는 것도 긴장해서 버벅댔잖아요.",
+          "terms": [
+            {
+              "text": "barely",
+              "meaning": "겨우, 거의 못",
+              "nuance": "아주 조금밖에 못 했다는 뜻으로 부정의 느낌이 강하다. hardly와 비슷하다.",
+              "examples": [
+                {
+                  "en": "I barely slept last night.",
+                  "ko": "어젯밤에 거의 못 잤어요."
+                },
+                {
+                  "en": "We barely made it to the airport.",
+                  "ko": "공항에 겨우 도착했어요."
+                },
+                {
+                  "en": "I can barely hear you.",
+                  "ko": "잘 안 들려요."
+                }
+              ]
+            },
+            {
+              "text": "freeze up",
+              "form": "freezing up",
+              "meaning": "얼어붙다, 굳다",
+              "nuance": "긴장해서 말이나 행동이 멈춰 버리는 상태를 말하는 구어.",
+              "examples": [
+                {
+                  "en": "I always freeze up during interviews.",
+                  "ko": "면접만 보면 얼어붙어요."
+                },
+                {
+                  "en": "He froze up when the teacher called on him.",
+                  "ko": "선생님이 시키자 그는 굳어 버렸어요."
+                },
+                {
+                  "en": "Try not to freeze up on stage.",
+                  "ko": "무대에서 얼지 않도록 해 봐."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "And now you're running client meetings and negotiating prices like a pro.",
+          "ko_word_order": "그리고 지금 당신은 진행하고 있어요 / 고객 미팅을 / 그리고 가격을 협상하고 있어요 / 프로처럼",
+          "ko_natural": "그런데 이제는 고객 미팅도 진행하고 가격 협상도 프로처럼 하잖아요.",
+          "terms": [
+            {
+              "text": "run",
+              "form": "running",
+              "meaning": "진행하다, 운영하다",
+              "nuance": "회의나 가게, 행사를 맡아서 이끈다는 뜻. 회사에서 run a meeting은 회의를 주재한다는 말이다.",
+              "examples": [
+                {
+                  "en": "Who's running the meeting today?",
+                  "ko": "오늘 회의는 누가 진행해요?"
+                },
+                {
+                  "en": "My parents run a small restaurant.",
+                  "ko": "부모님이 작은 식당을 하세요."
+                },
+                {
+                  "en": "She runs the office when the boss is away.",
+                  "ko": "사장님이 없을 땐 그녀가 사무실을 맡아요."
+                }
+              ]
+            },
+            {
+              "text": "negotiate",
+              "form": "negotiating",
+              "meaning": "협상하다",
+              "nuance": "조건이나 가격을 서로 조율해 합의하려고 이야기하는 것.",
+              "examples": [
+                {
+                  "en": "We negotiated a better price.",
+                  "ko": "가격을 더 좋게 협상했어요."
+                },
+                {
+                  "en": "You can sometimes negotiate the rent.",
+                  "ko": "월세는 가끔 협상할 수 있어요."
+                },
+                {
+                  "en": "He's good at negotiating with suppliers.",
+                  "ko": "그는 공급업체와 협상을 잘해요."
+                }
+              ]
+            },
+            {
+              "text": "like a pro",
+              "meaning": "프로처럼",
+              "nuance": "누군가 무언가를 아주 능숙하게 할 때 칭찬하는 구어 표현.",
+              "examples": [
+                {
+                  "en": "She cooks like a pro.",
+                  "ko": "그녀는 요리를 프로처럼 해요."
+                },
+                {
+                  "en": "You handled that like a pro.",
+                  "ko": "그거 완전 프로처럼 처리했네."
+                },
+                {
+                  "en": "After a month, he was skiing like a pro.",
+                  "ko": "한 달 뒤 그는 프로처럼 스키를 탔어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Thanks. Listening every morning really made a difference, even on busy days.",
+          "ko_word_order": "고마워요. / 매일 아침 듣는 것이 / 정말 차이를 만들었어요, / 바쁜 날에도",
+          "ko_natural": "고마워요. 바쁜 날에도 매일 아침 들었던 게 정말 효과가 컸어요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "make a difference",
+              "form": "made a difference",
+              "meaning": "효과가 있다, 차이를 만들다",
+              "nuance": "작은 행동이 의미 있는 변화를 가져왔다고 말할 때 쓴다.",
+              "examples": [
+                {
+                  "en": "A little exercise can make a big difference.",
+                  "ko": "운동 조금만 해도 큰 차이가 나요."
+                },
+                {
+                  "en": "Your help really made a difference.",
+                  "ko": "도와주신 게 정말 큰 힘이 됐어요."
+                },
+                {
+                  "en": "Does it make a difference which one I choose?",
+                  "ko": "어느 걸 고르든 차이가 있어요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Totally. Looking back, I'm really proud of how far we've come together.",
+          "ko_word_order": "완전요. / 돌아보면, / 저는 정말 자랑스러워요 / 우리가 얼마나 멀리 왔는지가 / 함께",
+          "ko_natural": "맞아요. 돌아보면 우리가 함께 여기까지 온 게 정말 뿌듯해요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "totally",
+              "meaning": "완전 그래요",
+              "nuance": "상대 말에 전적으로 동의할 때 쓰는 구어 맞장구. 친한 사이에 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "That was a great movie. — Totally.",
+                  "ko": "영화 진짜 좋았다. — 완전."
+                },
+                {
+                  "en": "I totally forgot about it.",
+                  "ko": "그거 완전히 잊어버렸어."
+                },
+                {
+                  "en": "You're totally right.",
+                  "ko": "네 말이 완전 맞아."
+                }
+              ]
+            },
+            {
+              "text": "looking back",
+              "meaning": "돌이켜 보면",
+              "nuance": "지난 일을 되돌아보며 깨달음이나 소감을 말할 때 문장 앞에 쓴다.",
+              "examples": [
+                {
+                  "en": "Looking back, I should have studied more.",
+                  "ko": "돌이켜 보면 공부를 더 했어야 했어요."
+                },
+                {
+                  "en": "Looking back, it was the best year of my life.",
+                  "ko": "돌아보면 내 인생 최고의 해였어."
+                },
+                {
+                  "en": "Looking back, I'm glad I moved here.",
+                  "ko": "돌이켜 보면 여기로 이사 온 게 잘한 일이에요."
+                }
+              ]
+            },
+            {
+              "text": "how far we've come",
+              "meaning": "얼마나 성장했는지",
+              "nuance": "출발점에 비해 얼마나 발전했는지 돌아볼 때 쓰는 따뜻한 표현.",
+              "examples": [
+                {
+                  "en": "Look at how far we've come since last year.",
+                  "ko": "작년에 비해 우리가 얼마나 왔는지 봐."
+                },
+                {
+                  "en": "It's amazing how far we've come as a team.",
+                  "ko": "팀으로서 우리가 이만큼 성장한 게 놀라워요."
+                },
+                {
+                  "en": "I didn't realize how far we've come.",
+                  "ko": "우리가 이렇게 많이 발전한 줄 몰랐어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I was wondering if you'd like to keep going with me after today.",
+          "ko_word_order": "저는 궁금했어요 / 당신이 원할지 / 계속해 나가기를 / 저와 함께 / 오늘 이후에도",
+          "ko_natural": "혹시 오늘 이후에도 저랑 같이 계속해 볼 생각 있어요?",
+          "terms": [
+            {
+              "text": "keep going",
+              "meaning": "계속해 나가다",
+              "nuance": "멈추지 않고 계속하자는 구어. 격려하는 느낌이 담겨 있다.",
+              "examples": [
+                {
+                  "en": "You're doing great, keep going!",
+                  "ko": "잘하고 있어, 계속해!"
+                },
+                {
+                  "en": "We were tired, but we kept going.",
+                  "ko": "지쳤지만 계속 갔어요."
+                },
+                {
+                  "en": "Should we stop here or keep going?",
+                  "ko": "여기서 멈출까, 계속 갈까?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I'd love that. It might be worth setting a new goal, like a hundred days.",
+          "ko_word_order": "그거 정말 좋아요. / ~할 만할 거예요 / 새 목표를 세우는 것이, / 100일 같은",
+          "ko_natural": "좋아요. 이번엔 100일 같은 새 목표를 세워 보는 것도 좋겠어요.",
+          "terms": [
+            {
+              "text": "I'd love that",
+              "meaning": "그거 좋죠",
+              "nuance": "제안이나 초대를 기쁘게 받아들일 때 쓰는 따뜻한 대답. Sure보다 감정이 더 실린다.",
+              "examples": [
+                {
+                  "en": "Want to come over for dinner? — I'd love that.",
+                  "ko": "저녁 먹으러 올래? — 좋지."
+                },
+                {
+                  "en": "I'd love that, thanks for asking.",
+                  "ko": "좋아요, 물어봐 줘서 고마워요."
+                },
+                {
+                  "en": "A walk sounds nice. I'd love that.",
+                  "ko": "산책 좋다. 그러자."
+                }
+              ]
+            },
+            {
+              "text": "set a goal",
+              "form": "setting a new goal",
+              "meaning": "목표를 세우다",
+              "nuance": "이루고 싶은 것을 구체적으로 정할 때 쓰는 기본 표현.",
+              "examples": [
+                {
+                  "en": "I set a goal to read twenty books this year.",
+                  "ko": "올해 책 스무 권 읽기로 목표를 세웠어요."
+                },
+                {
+                  "en": "It helps to set small goals first.",
+                  "ko": "작은 목표부터 세우는 게 도움이 돼요."
+                },
+                {
+                  "en": "Our team set a sales goal for the year.",
+                  "ko": "우리 팀은 연간 매출 목표를 세웠어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Let's do it. Congratulations, Ava. We really pulled it off.",
+          "ko_word_order": "그렇게 해요. / 축하해요, 에이바. / 우리는 정말 해냈어요",
+          "ko_natural": "그래요, 해 봐요. 축하해요, 에이바. 우리 진짜 해냈어요.",
+          "terms": [
+            {
+              "text": "let's do it",
+              "meaning": "그래, 하자",
+              "nuance": "제안에 바로 의욕적으로 동의할 때 쓰는 구어.",
+              "examples": [
+                {
+                  "en": "A road trip this weekend? Let's do it!",
+                  "ko": "이번 주말에 드라이브 여행? 가자!"
+                },
+                {
+                  "en": "Okay, let's do it.",
+                  "ko": "좋아, 해 보자."
+                },
+                {
+                  "en": "A new gym? Let's do it together.",
+                  "ko": "새 헬스장? 같이 다니자."
+                }
+              ]
+            },
+            {
+              "text": "pull off",
+              "form": "pulled it off",
+              "meaning": "해내다",
+              "nuance": "어려운 일을 기대 이상으로 성공시켰다는 구어. 뿌듯한 느낌이 담긴다.",
+              "examples": [
+                {
+                  "en": "I can't believe we pulled it off!",
+                  "ko": "우리가 해내다니 믿기지 않아!"
+                },
+                {
+                  "en": "It was risky, but she pulled it off.",
+                  "ko": "위험했지만 그녀는 해냈어요."
+                },
+                {
+                  "en": "Do you think we can pull this off?",
+                  "ko": "우리가 이거 해낼 수 있을까?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Congrats to you too, Andrew. Here's to the next sixty-six days!",
+          "ko_word_order": "당신에게도 축하해요, 앤드루. / ~를 위하여 / 다음 66일을!",
+          "ko_natural": "앤드루 씨도 축하해요. 앞으로의 66일을 위하여!",
+          "terms": [
+            {
+              "text": "congrats",
+              "meaning": "축하해",
+              "nuance": "Congratulations를 줄인 편한 구어. 친구나 가까운 사이에 쓴다.",
+              "examples": [
+                {
+                  "en": "Congrats on the new baby!",
+                  "ko": "출산 축하해!"
+                },
+                {
+                  "en": "I heard you got promoted. Congrats!",
+                  "ko": "승진했다며. 축하해!"
+                },
+                {
+                  "en": "Congrats, you totally deserve it.",
+                  "ko": "축하해, 넌 그럴 자격 있어."
+                }
+              ]
+            },
+            {
+              "text": "here's to",
+              "meaning": "~를 위하여",
+              "nuance": "건배하거나 축하할 때 쓰는 표현. 잔을 들며 앞으로의 일을 기원할 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Here's to a great new year!",
+                  "ko": "멋진 새해를 위하여!"
+                },
+                {
+                  "en": "Here's to the happy couple!",
+                  "ko": "행복한 두 사람을 위하여!"
+                },
+                {
+                  "en": "Here's to your new job!",
+                  "ko": "새 직장을 위하여!"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

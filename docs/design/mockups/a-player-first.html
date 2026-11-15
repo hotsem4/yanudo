@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시안 A 플레이어 우선</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="mock.css">
+<style>
+  /*
+   * 시안 A · 플레이어 우선. 걷거나 서서 한 손으로 쓰는 상황에 맞춰 화면을 "문장 + 큰 재생부" 둘로 줄인다.
+   * 브리프에서 벗어난 것: 벤토 2칸 헤더 → 한 줄 상태 띠, 흰 학습 카드 없음(문장을 캔버스에 직접),
+   * 영어 25px → 32px(펼친 화면 40px), 컨트롤 2줄 세그먼트 → 눌러서 순환하는 칩 한 줄, 검은 플로팅 독 → 흰 하단 재생 패널.
+   */
+  main { max-width: 448px; min-height: 100dvh; margin: 0 auto; padding: 16px 20px 0; display: flex; flex-direction: column; gap: 14px; }
+  .strip { display: flex; align-items: center; gap: 10px; padding: 8px 14px 8px 8px; height: 56px; order: -2; }
+  .tabs { order: -1; }
+  .strip .who { width: 40px; height: 40px; border-radius: 50%; background: rgb(var(--tint)); padding: 3px; flex: none; }
+  .strip .day { flex: 1; min-width: 0; }
+  .strip .day b { font-size: 15px; letter-spacing: -.01em; white-space: nowrap; display: block; }
+  .strip .day b small { font-size: 12px; font-weight: 600; color: rgb(var(--muted)); }
+  .strip .day .bar { display: block; margin-top: 5px; height: 4px; max-width: 120px; }
+  .strip .stat { display: flex; align-items: center; gap: 4px; font-size: 12.5px; font-weight: 600; color: rgb(var(--muted-strong)); }
+  .strip .stat svg { color: rgb(var(--royal)); font-size: 15px; }
+  .strip .time { height: 40px; padding: 0 12px; border-radius: 99px; background: rgb(var(--tint)); color: rgb(var(--royal)); font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+  .line { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 8px 4px; }
+  .line .top { display: flex; align-items: center; gap: 10px; font-size: 12.5px; font-weight: 600; color: rgb(var(--muted)); margin-bottom: 18px; }
+  .line .top .mark { margin-left: auto; background: rgb(var(--surface)); box-shadow: var(--shadow-card); }
+  .line .en { font-size: 32px; line-height: 1.25; letter-spacing: -.025em; }
+  .line .order { font-size: 17px; margin-top: 20px; }
+  .line .order span { background: rgb(var(--surface)); box-shadow: var(--shadow-card); }
+  .line .ko { font-size: 15px; }
+  .player { margin: 0 -20px; padding: 18px 24px 22px; background: rgb(var(--surface)); border-radius: 32px 32px 0 0; box-shadow: 0 -8px 30px rgb(var(--royal) / .08); }
+  .say { margin-top: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: rgb(var(--muted-strong)); }
+  .say em { font-style: normal; color: rgb(var(--royal)); }
+  .wave { display: flex; align-items: center; gap: 3px; height: 20px; }
+  .wave i { width: 4px; border-radius: 99px; background: rgb(var(--royal) / .4); }
+  .keys { margin-top: 14px; display: flex; align-items: center; justify-content: center; gap: 22px; }
+  .keys .side { width: 60px; height: 60px; border-radius: 50%; background: rgb(var(--tint)); color: rgb(var(--royal)); font-size: 24px; display: flex; align-items: center; justify-content: center; }
+  .keys .go { width: 84px; height: 84px; border-radius: 50%; background: rgb(var(--royal)); color: rgb(var(--surface)); font-size: 34px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-glow); }
+  .keys .go svg { fill: currentColor; transform: translateX(2px); }
+  .opts { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr auto auto; gap: 8px; }
+  .opt { height: 48px; padding: 0 14px; border-radius: 99px; background: rgb(var(--canvas)); font-size: 13px; font-weight: 600; color: rgb(var(--ink)); display: flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; }
+  .opt svg { color: rgb(var(--royal)); font-size: 16px; }
+  .rightcol { display: contents; }
+  @media (min-width: 600px) {
+    main { max-width: 960px; height: 100dvh; padding: 24px 32px; display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 28px; }
+    .rightcol { display: flex; flex-direction: column; gap: 14px; grid-column: 2; grid-row: 1; }
+    .line { grid-column: 1; grid-row: 1; padding: 0 12px; }
+    .line .en { font-size: 40px; }
+    .line .order { font-size: 19px; margin-top: 26px; }
+    .line .ko { font-size: 16px; }
+    .strip { height: auto; flex-wrap: wrap; padding: 14px; border-radius: 24px; order: 0; }
+    .tabs { order: 0; }
+    .strip .who { width: 64px; height: 64px; }
+    .strip .day { flex: 1 1 calc(100% - 80px); }
+    .strip .day b { font-size: 22px; }
+    .strip .day .bar { max-width: none; margin-top: 8px; height: 6px; }
+    .strip .stat, .strip .time { flex: 1; justify-content: center; height: 40px; border-radius: 99px; background: rgb(var(--canvas)); }
+    .strip .time { background: rgb(var(--tint)); }
+    .player { margin: 0; flex: 1; border-radius: 24px; box-shadow: var(--shadow-card); padding: 20px; display: flex; flex-direction: column; }
+    .keys { flex: 1; gap: 14px; }
+    .keys .go { width: 104px; height: 104px; font-size: 40px; }
+    .opts { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="characters.js"></script>
+<script src="mock.js"></script>
+<script>
+const { ic, D, lines, cur, order, spk, rail, char } = M;
+const L = lines[cur];
+document.getElementById("root").innerHTML = `
+<main>
+  <section class="line">
+    <div class="top">${spk(L[0])}<span class="num">15 / 20</span><span class="mark">${ic("check")}암기</span></div>
+    <p class="en" lang="en" translate="no">${L[1]}</p><p class="order">${order(L[2])}</p><p class="ko">${L[3]}</p>
+  </section>
+  <div class="rightcol">
+    <div class="card pill strip">
+      <span class="who">${char()}</span>
+      <span class="day"><b class="num">Day ${D.current_day}<small> / 66</small></b><span class="bar"><i style="transform:scaleX(${D.current_day / 66})"></i></span></span>
+      <span class="stat num">${ic("flame")}${D.streak}일</span>
+      <button class="time num">${ic("glass")}25:00</button>
+    </div>
+    <div class="seg tab tabs"><button>오늘의 10문장</button><button class="on">누적 복습</button></div>
+    <section class="player">
+      ${rail(20, 14, [0, 1, 2, 4, 7, 10])}
+      <div class="say"><span class="wave">${[10, 16, 20, 14, 18, 12, 8].map((h) => `<i style="height:${h}px"></i>`).join("")}</span>따라 말해 보세요 <em class="num">2.1초</em></div>
+      <div class="keys"><button class="side" aria-label="이전 문장">${ic("prev")}</button><button class="go" aria-label="재생">${ic("play")}</button><button class="side" aria-label="다음 문장">${ic("next")}</button></div>
+      <div class="opts"><button class="opt">${ic("eye")}전체 보기</button><button class="opt">${ic("ear")}끊어읽기</button><button class="opt num">1.0x</button><button class="opt" aria-label="설정">${ic("set")}</button></div>
+    </section>
+  </div>
+</main>`;
+</script>
+</body>
+</html>

@@ -1,0 +1,400 @@
+{
+  "lessons": [
+    {
+      "day": 11,
+      "title": "버스와 지하철 타기",
+      "theme": "Taking the bus and subway",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Excuse me, does this bus go to the museum?",
+          "ko_word_order": "실례합니다, / 이 버스가 가나요 / 박물관에?",
+          "ko_natural": "실례지만, 이 버스 박물관 가요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "does this bus go to",
+              "form": "does this bus go to",
+              "meaning": "이 버스 ~에 가나요?",
+              "nuance": "버스나 지하철이 목적지에 가는지 확인할 때 쓰는 질문이다. bus 자리에 train을 넣어도 된다.",
+              "examples": [
+                {
+                  "en": "Does this bus go to the airport?",
+                  "ko": "이 버스 공항 가요?"
+                },
+                {
+                  "en": "Does this bus go to City Hall?",
+                  "ko": "이 버스 시청 가요?"
+                },
+                {
+                  "en": "Does this bus go to the beach?",
+                  "ko": "이 버스 해변 가요?"
+                }
+              ]
+            },
+            {
+              "text": "museum",
+              "form": "museum",
+              "meaning": "박물관, 미술관",
+              "nuance": "박물관과 미술관을 모두 museum이라고 한다. art museum이면 미술관이다.",
+              "examples": [
+                {
+                  "en": "The museum is closed on Mondays.",
+                  "ko": "그 박물관은 월요일에 쉬어요."
+                },
+                {
+                  "en": "Let's visit the art museum.",
+                  "ko": "미술관 가 보자."
+                },
+                {
+                  "en": "The museum is free on Sundays.",
+                  "ko": "박물관은 일요일에 무료예요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "No, you want the number 15 bus.",
+          "ko_word_order": "아니요, 당신은 원해요 / 15번 버스를",
+          "ko_natural": "아니요, 15번 버스 타셔야 해요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "you want",
+              "form": "you want",
+              "meaning": "(길 안내) ~하시면 돼요",
+              "nuance": "길이나 교통편을 알려 줄 때 '~를 타셔야 해요'라는 뜻으로 쓰는 구어다. 명령처럼 들리지 않아 친절하다.",
+              "examples": [
+                {
+                  "en": "You want the second exit.",
+                  "ko": "2번 출구로 나가시면 돼요."
+                },
+                {
+                  "en": "You want the train on the other side.",
+                  "ko": "반대편 열차 타셔야 해요."
+                },
+                {
+                  "en": "For the beach, you want Line 1.",
+                  "ko": "해변 가시려면 1호선 타시면 돼요."
+                }
+              ]
+            },
+            {
+              "text": "number",
+              "form": "number",
+              "meaning": "~번",
+              "nuance": "버스·방·좌석의 번호를 말할 때 쓴다. 짧게 the 15라고만 해도 된다.",
+              "examples": [
+                {
+                  "en": "Take the number 7 bus.",
+                  "ko": "7번 버스 타세요."
+                },
+                {
+                  "en": "My room number is 302.",
+                  "ko": "제 방 번호는 302호예요."
+                },
+                {
+                  "en": "What number is your seat?",
+                  "ko": "몇 번 좌석이에요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Oh, where can I catch it?",
+          "ko_word_order": "아, 어디서 / 제가 탈 수 있나요 / 그것을?",
+          "ko_natural": "아, 그건 어디서 타요?",
+          "core": false,
+          "terms": [
+            {
+              "text": "catch",
+              "form": "catch",
+              "meaning": "(버스 등을) 타다",
+              "nuance": "버스나 기차를 시간 맞춰 탈 때 쓰는 구어다. 놓치면 miss를 쓴다.",
+              "examples": [
+                {
+                  "en": "I need to catch the last train.",
+                  "ko": "막차 타야 해요."
+                },
+                {
+                  "en": "Where do I catch the shuttle?",
+                  "ko": "셔틀은 어디서 타요?"
+                },
+                {
+                  "en": "We caught a bus to the beach.",
+                  "ko": "우리는 버스 타고 해변에 갔어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "The stop is right across the street.",
+          "ko_word_order": "정류장은 있어요 / 바로 길 건너편에",
+          "ko_natural": "정류장이 바로 길 건너에 있어요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "across the street",
+              "form": "across the street",
+              "meaning": "길 건너편에",
+              "nuance": "길 맞은편에 있다고 말할 때 쓴다. 앞에 right를 붙이면 '바로 맞은편'이다.",
+              "examples": [
+                {
+                  "en": "There's a bakery across the street.",
+                  "ko": "길 건너에 빵집이 있어요."
+                },
+                {
+                  "en": "She lives right across the street.",
+                  "ko": "그녀는 바로 길 건너에 살아요."
+                },
+                {
+                  "en": "Let's park across the street.",
+                  "ko": "길 건너편에 주차하자."
+                }
+              ]
+            },
+            {
+              "text": "stop",
+              "form": "stop",
+              "meaning": "정류장",
+              "nuance": "버스가 서는 곳이다. bus stop이라고도 하고 지하철역은 station이라고 한다.",
+              "examples": [
+                {
+                  "en": "I'll wait at the bus stop.",
+                  "ko": "버스 정류장에서 기다릴게요."
+                },
+                {
+                  "en": "Is this my stop?",
+                  "ko": "여기서 내려야 하나요?"
+                },
+                {
+                  "en": "Get off at the last stop.",
+                  "ko": "종점에서 내리세요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "How often does it come?",
+          "ko_word_order": "얼마나 자주 / 그것은 오나요?",
+          "ko_natural": "얼마나 자주 와요?",
+          "core": false,
+          "terms": []
+        },
+        {
+          "speaker": "B",
+          "en_text": "Every ten minutes or so.",
+          "ko_word_order": "매 10분마다 / 또는 그쯤",
+          "ko_natural": "10분 정도마다 와요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "every",
+              "form": "every",
+              "meaning": "~마다",
+              "nuance": "일정한 간격으로 반복될 때 every + 시간으로 말한다. every day, every two hours처럼 쓴다.",
+              "examples": [
+                {
+                  "en": "The train leaves every thirty minutes.",
+                  "ko": "기차는 30분마다 출발해요."
+                },
+                {
+                  "en": "I call my mom every Sunday.",
+                  "ko": "일요일마다 엄마한테 전화해요."
+                },
+                {
+                  "en": "Take this medicine every eight hours.",
+                  "ko": "이 약은 8시간마다 드세요."
+                }
+              ]
+            },
+            {
+              "text": "or so",
+              "form": "or so",
+              "meaning": "~쯤, 정도",
+              "nuance": "숫자 뒤에 붙여 대략 그 정도라는 뜻을 더한다. 문장 끝에 붙이는 아주 구어적인 말이다.",
+              "examples": [
+                {
+                  "en": "I'll be there in an hour or so.",
+                  "ko": "한 시간쯤 뒤에 도착할게."
+                },
+                {
+                  "en": "It costs twenty dollars or so.",
+                  "ko": "20달러쯤 해요."
+                },
+                {
+                  "en": "We waited ten minutes or so.",
+                  "ko": "10분 정도 기다렸어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Can I pay with cash on the bus?",
+          "ko_word_order": "제가 낼 수 있나요 / 현금으로 / 버스에서?",
+          "ko_natural": "버스에서 현금 내도 돼요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "pay with cash",
+              "form": "pay with cash",
+              "meaning": "현금으로 내다",
+              "nuance": "결제 수단을 말할 때 쓴다. pay in cash도 같은 뜻이고 카드는 pay by card라고 한다.",
+              "examples": [
+                {
+                  "en": "Do you mind if I pay with cash?",
+                  "ko": "현금으로 내도 될까요?"
+                },
+                {
+                  "en": "I always pay with cash at the market.",
+                  "ko": "시장에서는 늘 현금으로 내요."
+                },
+                {
+                  "en": "Paying with cash is cheaper at this shop.",
+                  "ko": "이 가게는 현금으로 내면 더 싸요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "No, but they sell transit cards at that store.",
+          "ko_word_order": "아니요, 하지만 그들은 팔아요 / 교통카드를 / 저 가게에서",
+          "ko_natural": "아니요, 그래도 저 가게에서 교통카드 팔아요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "transit card",
+              "form": "transit cards",
+              "meaning": "교통카드",
+              "nuance": "버스와 지하철에 찍는 충전식 카드다. 충전은 top up 또는 add money라고 한다.",
+              "examples": [
+                {
+                  "en": "I need to top up my transit card.",
+                  "ko": "교통카드 충전해야 해요."
+                },
+                {
+                  "en": "You can use your transit card on the subway too.",
+                  "ko": "교통카드는 지하철에서도 쓸 수 있어요."
+                },
+                {
+                  "en": "I left my transit card at home.",
+                  "ko": "교통카드를 집에 두고 왔어요."
+                }
+              ]
+            },
+            {
+              "text": "they sell",
+              "form": "they sell",
+              "meaning": "(그 가게에서) 팔아요",
+              "nuance": "they가 특정한 사람이 아니라 가게나 회사 사람들을 막연히 가리킨다. 원어민이 아주 자주 쓰는 말투다.",
+              "examples": [
+                {
+                  "en": "They sell great bread at that bakery.",
+                  "ko": "저 빵집은 빵이 정말 맛있어요."
+                },
+                {
+                  "en": "Do they sell stamps here?",
+                  "ko": "여기 우표 팔아요?"
+                },
+                {
+                  "en": "They sell phone chargers at the airport.",
+                  "ko": "공항에서 휴대폰 충전기 팔아요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Great. How many stops is it to the museum?",
+          "ko_word_order": "좋아요. / 몇 정거장인가요 / 박물관까지?",
+          "ko_natural": "좋네요. 박물관까지 몇 정거장이에요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "how many stops",
+              "form": "how many stops",
+              "meaning": "몇 정거장",
+              "nuance": "목적지까지 정거장 수를 물을 때 쓴다. 대답은 It's three stops처럼 한다.",
+              "examples": [
+                {
+                  "en": "How many stops until we get off?",
+                  "ko": "몇 정거장 가서 내려요?"
+                },
+                {
+                  "en": "How many stops are left?",
+                  "ko": "몇 정거장 남았어요?"
+                },
+                {
+                  "en": "How many stops is Seoul Station from here?",
+                  "ko": "여기서 서울역까지 몇 정거장이에요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "It's six stops. Just listen for the announcement.",
+          "ko_word_order": "여섯 정거장이에요. / 그냥 귀 기울이세요 / 안내 방송에",
+          "ko_natural": "여섯 정거장이에요. 안내 방송 잘 들으세요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "listen for",
+              "form": "listen for",
+              "meaning": "귀 기울여 듣다",
+              "nuance": "특정 소리나 말이 나오기를 기다리며 들을 때 쓴다. listen to는 그냥 듣는다는 뜻이다.",
+              "examples": [
+                {
+                  "en": "Listen for your name to be called.",
+                  "ko": "이름 부르는지 잘 들으세요."
+                },
+                {
+                  "en": "I listened for the doorbell all day.",
+                  "ko": "하루 종일 초인종 소리에 귀 기울였어요."
+                },
+                {
+                  "en": "Listen for the beep, then speak.",
+                  "ko": "삐 소리 나면 말씀하세요."
+                }
+              ]
+            },
+            {
+              "text": "announcement",
+              "form": "announcement",
+              "meaning": "안내 방송",
+              "nuance": "역·공항·버스에서 나오는 방송이다. 공지사항이라는 뜻도 있다.",
+              "examples": [
+                {
+                  "en": "Did you hear the announcement?",
+                  "ko": "안내 방송 들었어요?"
+                },
+                {
+                  "en": "There's an announcement before each stop.",
+                  "ko": "정거장마다 안내 방송이 나와요."
+                },
+                {
+                  "en": "The announcement said the train is late.",
+                  "ko": "열차가 늦는다고 방송에서 그랬어요."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

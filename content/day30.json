@@ -1,0 +1,398 @@
+{
+  "lessons": [
+    {
+      "day": 30,
+      "title": "물건을 잃어버렸을 때",
+      "theme": "Losing something",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Excuse me, I think I left my wallet here earlier.",
+          "ko_word_order": "실례합니다, 제 생각엔 / 제가 두고 갔어요 / 제 지갑을 / 여기에 아까",
+          "ko_natural": "저기요, 아까 여기에 지갑을 두고 간 것 같아요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "leave",
+              "form": "left",
+              "meaning": "두고 오다",
+              "nuance": "물건을 어딘가에 깜빡 두고 왔을 때 쓴다. 장소를 말할 때는 forget보다 leave가 자연스럽다.",
+              "examples": [
+                {
+                  "en": "I left my umbrella on the bus.",
+                  "ko": "버스에 우산을 두고 내렸어."
+                },
+                {
+                  "en": "Did you leave your keys in the car?",
+                  "ko": "차에 열쇠 두고 왔어?"
+                },
+                {
+                  "en": "I always leave my glasses somewhere.",
+                  "ko": "난 맨날 안경을 어딘가 두고 와."
+                }
+              ]
+            },
+            {
+              "text": "earlier",
+              "meaning": "아까",
+              "nuance": "오늘 조금 전을 말할 때. before보다 '오늘 아까'의 느낌이 강하다.",
+              "examples": [
+                {
+                  "en": "I saw your brother earlier.",
+                  "ko": "아까 너희 형 봤어."
+                },
+                {
+                  "en": "Did you call me earlier?",
+                  "ko": "아까 전화했어?"
+                },
+                {
+                  "en": "It was sunny earlier, but now it's raining.",
+                  "ko": "아까는 맑았는데 지금은 비 와."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Oh no. Do you remember where you were sitting?",
+          "ko_word_order": "이런. / 기억나세요 / 어디에 / 앉아 계셨는지?",
+          "ko_natural": "이런. 어디 앉아 계셨는지 기억나세요?"
+        },
+        {
+          "speaker": "A",
+          "en_text": "By the window, about two hours ago.",
+          "ko_word_order": "창가에요, / 대략 두 시간 전에",
+          "ko_natural": "창가 자리요, 두 시간쯤 전에요.",
+          "terms": [
+            {
+              "text": "by the window",
+              "meaning": "창가에",
+              "nuance": "창문 옆을 말한다. 식당의 창가 자리는 a table by the window.",
+              "examples": [
+                {
+                  "en": "Can we sit by the window?",
+                  "ko": "창가에 앉아도 돼요?"
+                },
+                {
+                  "en": "My desk is by the window.",
+                  "ko": "내 책상은 창가에 있어."
+                },
+                {
+                  "en": "She was reading by the window.",
+                  "ko": "걔는 창가에서 책을 읽고 있었어."
+                }
+              ]
+            },
+            {
+              "text": "ago",
+              "meaning": "~ 전에",
+              "nuance": "지금 기준으로 얼마 전인지 말할 때 시간 뒤에 붙인다. before와 달리 혼자 쓰지 않는다.",
+              "examples": [
+                {
+                  "en": "I moved here three years ago.",
+                  "ko": "3년 전에 여기로 이사 왔어."
+                },
+                {
+                  "en": "She left a minute ago.",
+                  "ko": "걔 방금 전에 나갔어."
+                },
+                {
+                  "en": "We met a long time ago.",
+                  "ko": "우리 오래전에 만났어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "What does it look like? Can you describe it?",
+          "ko_word_order": "그게 어떻게 생겼나요? / 설명해 주실 수 있나요 / 그것을?",
+          "ko_natural": "어떻게 생겼어요? 설명해 주실 수 있어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "look like",
+              "meaning": "~처럼 생기다",
+              "nuance": "생김새를 묻거나 말할 때. What does it look like?는 물건과 사람 모두에 쓴다.",
+              "examples": [
+                {
+                  "en": "What does your new car look like?",
+                  "ko": "새 차 어떻게 생겼어?"
+                },
+                {
+                  "en": "He looks like his dad.",
+                  "ko": "걔는 아빠 닮았어."
+                },
+                {
+                  "en": "It looks like a small black box.",
+                  "ko": "작은 검은 상자처럼 생겼어."
+                }
+              ]
+            },
+            {
+              "text": "describe",
+              "meaning": "설명하다·묘사하다",
+              "nuance": "생김새나 상황을 말로 그려 낼 때. 분실물이나 증상을 설명할 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Can you describe the man you saw?",
+                  "ko": "보신 남자 인상착의를 설명해 주시겠어요?"
+                },
+                {
+                  "en": "It's hard to describe the taste.",
+                  "ko": "맛을 설명하기 어려워."
+                },
+                {
+                  "en": "Describe your perfect weekend.",
+                  "ko": "네가 꿈꾸는 주말을 말해 봐."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "It's a small brown leather wallet with a zipper.",
+          "ko_word_order": "그건 작은 갈색 / 가죽 지갑이에요 / 지퍼가 달린",
+          "ko_natural": "지퍼 달린 작은 갈색 가죽 지갑이에요.",
+          "terms": [
+            {
+              "text": "leather",
+              "meaning": "가죽",
+              "nuance": "가죽 제품을 말할 때 명사 앞에 붙인다. 인조 가죽은 fake leather.",
+              "examples": [
+                {
+                  "en": "I bought a leather jacket.",
+                  "ko": "가죽 재킷 샀어."
+                },
+                {
+                  "en": "These shoes are real leather.",
+                  "ko": "이 신발 진짜 가죽이야."
+                },
+                {
+                  "en": "Leather seats get hot in summer.",
+                  "ko": "가죽 시트는 여름에 뜨거워져."
+                }
+              ]
+            },
+            {
+              "text": "zipper",
+              "meaning": "지퍼",
+              "nuance": "옷이나 가방의 지퍼. 영국에서는 zip이라고 한다.",
+              "examples": [
+                {
+                  "en": "Your zipper is open.",
+                  "ko": "너 지퍼 열렸어."
+                },
+                {
+                  "en": "The zipper on my bag is broken.",
+                  "ko": "가방 지퍼가 고장 났어."
+                },
+                {
+                  "en": "I need a jacket with a zipper.",
+                  "ko": "지퍼 달린 재킷이 필요해."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Let me check our lost and found. Just a second.",
+          "ko_word_order": "제가 확인해 볼게요 / 저희 분실물 보관함을. / 잠시만요",
+          "ko_natural": "분실물 보관함 확인해 볼게요. 잠시만요.",
+          "terms": [
+            {
+              "text": "lost and found",
+              "meaning": "분실물 보관소",
+              "nuance": "잃어버린 물건을 모아 두는 곳. 학교·역·가게 어디서나 쓴다.",
+              "examples": [
+                {
+                  "en": "Did you check the lost and found?",
+                  "ko": "분실물 보관소 확인해 봤어?"
+                },
+                {
+                  "en": "Someone took my scarf to the lost and found.",
+                  "ko": "누가 내 목도리를 분실물 보관소에 갖다 놨어."
+                },
+                {
+                  "en": "The lost and found is next to the ticket office.",
+                  "ko": "분실물 센터는 매표소 옆에 있어요."
+                }
+              ]
+            },
+            {
+              "text": "just a second",
+              "meaning": "잠깐만요",
+              "nuance": "상대를 잠깐 기다리게 할 때. Just a moment보다 가볍고 구어적이다.",
+              "examples": [
+                {
+                  "en": "Just a second, I'm almost done.",
+                  "ko": "잠깐만, 거의 다 했어."
+                },
+                {
+                  "en": "Can you hold on just a second?",
+                  "ko": "잠깐만 기다려 줄래?"
+                },
+                {
+                  "en": "Just a second, let me find my glasses.",
+                  "ko": "잠깐만, 안경 좀 찾고."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Thanks. All my cards and my ID are in it.",
+          "ko_word_order": "감사해요. / 제 카드 전부랑 신분증이 / 그 안에 있어요",
+          "ko_natural": "감사합니다. 카드랑 신분증이 다 거기 들어 있어서요.",
+          "terms": [
+            {
+              "text": "ID",
+              "meaning": "신분증",
+              "nuance": "identification의 줄임말로 '아이디'라고 읽는다. 신분증을 통틀어 말한다.",
+              "examples": [
+                {
+                  "en": "Can I see your ID, please?",
+                  "ko": "신분증 좀 보여 주시겠어요?"
+                },
+                {
+                  "en": "Don't forget to bring your ID.",
+                  "ko": "신분증 가져오는 거 잊지 마."
+                },
+                {
+                  "en": "I lost my ID at the airport.",
+                  "ko": "공항에서 신분증을 잃어버렸어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Is this it? Someone turned it in an hour ago.",
+          "ko_word_order": "이거 맞나요? / 누가 맡겼어요 / 그걸 / 한 시간 전에",
+          "ko_natural": "이거 맞으세요? 한 시간 전에 어떤 분이 맡기고 갔어요.",
+          "terms": [
+            {
+              "text": "turn in",
+              "form": "turned it in",
+              "meaning": "(분실물을) 맡기다·내다",
+              "nuance": "주운 물건을 관리하는 곳에 갖다 줄 때 쓴다. 숙제나 서류를 낼 때도 쓴다.",
+              "examples": [
+                {
+                  "en": "I found a phone and turned it in to the police.",
+                  "ko": "휴대폰을 주워서 경찰에 갖다줬어."
+                },
+                {
+                  "en": "Please turn in your homework by Friday.",
+                  "ko": "숙제는 금요일까지 내세요."
+                },
+                {
+                  "en": "Did anyone turn in a black umbrella?",
+                  "ko": "검은 우산 맡긴 사람 있나요?"
+                }
+              ]
+            },
+            {
+              "text": "Is this it",
+              "meaning": "이거 맞아요?",
+              "nuance": "찾던 물건이나 장소가 맞는지 확인할 때 쓰는 짧은 말.",
+              "examples": [
+                {
+                  "en": "I found a key under the desk. Is this it?",
+                  "ko": "책상 밑에서 열쇠 찾았어. 이거야?"
+                },
+                {
+                  "en": "Is this it? The book you lost?",
+                  "ko": "이거야? 네가 잃어버린 책?"
+                },
+                {
+                  "en": "Is this it? Gate 12?",
+                  "ko": "여기 맞아? 12번 게이트?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Yes, that's mine! I'm so relieved. Thank you so much.",
+          "ko_word_order": "네, 그거 제 거예요! / 정말 안심이에요. / 정말 감사합니다",
+          "ko_natural": "네, 제 거 맞아요! 진짜 다행이다. 정말 감사합니다.",
+          "core": true,
+          "terms": [
+            {
+              "text": "relieved",
+              "meaning": "안심한",
+              "nuance": "걱정하던 일이 해결돼 마음이 놓일 때. I'm so relieved는 '아, 다행이다'에 가깝다.",
+              "examples": [
+                {
+                  "en": "I was so relieved when the test was over.",
+                  "ko": "시험이 끝나서 정말 후련했어."
+                },
+                {
+                  "en": "She looked relieved to see us.",
+                  "ko": "걔가 우리를 보고 안심한 얼굴이었어."
+                },
+                {
+                  "en": "We're relieved that nobody got hurt.",
+                  "ko": "아무도 안 다쳐서 다행이야."
+                }
+              ]
+            },
+            {
+              "text": "that's mine",
+              "meaning": "제 거예요",
+              "nuance": "내 물건임을 확인할 때. mine은 '나의 것'.",
+              "examples": [
+                {
+                  "en": "Hey, that's mine! Give it back.",
+                  "ko": "야, 그거 내 거야! 돌려줘."
+                },
+                {
+                  "en": "That's mine, the red suitcase.",
+                  "ko": "그 빨간 캐리어가 제 거예요."
+                },
+                {
+                  "en": "I think that's mine. Can I check?",
+                  "ko": "그거 제 것 같은데 확인해 봐도 될까요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "You're welcome. You might want to check that everything's there.",
+          "ko_word_order": "천만에요. / 확인해 보시는 게 좋겠어요 / 다 들어 있는지",
+          "ko_natural": "별말씀을요. 다 들어 있는지 한번 확인해 보세요.",
+          "terms": [
+            {
+              "text": "you might want to",
+              "meaning": "~하는 게 좋을 거예요",
+              "nuance": "부드럽게 조언할 때 쓴다. You should보다 강요하는 느낌이 적다.",
+              "examples": [
+                {
+                  "en": "You might want to bring a jacket.",
+                  "ko": "재킷 챙기는 게 좋을 거야."
+                },
+                {
+                  "en": "You might want to call ahead first.",
+                  "ko": "미리 전화해 보는 게 좋을 거예요."
+                },
+                {
+                  "en": "You might want to save your work.",
+                  "ko": "작업한 거 저장해 두는 게 좋겠어."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

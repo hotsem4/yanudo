@@ -1,0 +1,99 @@
+/* 66 Habit English 시안 공통 스타일. 앱의 clean-blue-ui 토큰을 그대로 옮겼다(시안 전용, 앱 코드 아님). */
+:root {
+  --canvas: 245 247 251;
+  --surface: 255 255 255;
+  --royal: 43 89 255;
+  --royal-soft: 107 139 255;
+  --tint: 238 242 255;
+  --ink: 17 24 39;
+  --muted: 100 116 139;
+  --muted-strong: 71 85 105;
+  --faint: 148 163 184;
+  --line: 232 237 247;
+  --frost: 191 208 255;
+  --shadow-card: 0 8px 30px rgb(var(--royal) / 0.06);
+  --shadow-lift: 0 14px 40px rgb(var(--royal) / 0.14);
+  --shadow-glow: 0 10px 30px rgb(var(--royal) / 0.35);
+  --shadow-dock: 0 18px 40px rgb(var(--ink) / 0.28);
+  --hero: linear-gradient(135deg, rgb(var(--royal)) 0%, rgb(var(--royal-soft)) 100%);
+  --font: "Inter", "Pretendard Variable", Pretendard, -apple-system, "Segoe UI", "Malgun Gothic", sans-serif;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { overflow-x: clip; background: rgb(var(--canvas)); }
+body { font-family: var(--font); color: rgb(var(--ink)); -webkit-font-smoothing: antialiased; font-feature-settings: "cv11", "ss01"; }
+button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; padding: 0; }
+button:focus-visible { outline: 2px solid rgb(var(--royal)); outline-offset: 2px; }
+.num { font-variant-numeric: tabular-nums; }
+svg.ic { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* ── 캐릭터 색 연결(리터럴 색 없이 토큰만) ───────────────────── */
+.kchar { display: block; width: 100%; height: 100%; overflow: visible; }
+.k-body { fill: rgb(var(--royal)); }
+.k-soft, .k-wing { fill: rgb(var(--royal-soft)); }
+.k-light, .k-belly, .k-shell { fill: rgb(var(--frost)); }
+.k-speck { fill: rgb(var(--royal-soft)); opacity: .55; }
+.k-white, .k-beak { fill: rgb(var(--surface)); }
+.k-ink { fill: rgb(var(--ink)); }
+.k-blush { fill: rgb(var(--surface)); opacity: .34; }
+.kchar[data-stage="1"] .k-blush { fill: rgb(var(--royal-soft)); opacity: .5; }
+.k-ground { fill: rgb(var(--line)); }
+.k-stroke-ink { stroke: rgb(var(--ink)); }
+.k-stroke-soft { stroke: rgb(var(--royal-soft)); }
+.k-stroke-light { stroke: rgb(var(--frost)); }
+.k-stroke-body { stroke: rgb(var(--royal)); opacity: .45; }
+/* 움직임은 transform·opacity 만 */
+.k-bob { animation: k-bob 3.2s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+.kchar[data-mood="sleepy"] .k-bob { animation-duration: 5.4s; }
+.kchar[data-mood="done"] .k-bob, .kchar[data-mood="party"] .k-bob { animation: k-hop 1.6s cubic-bezier(.23, 1, .32, 1) infinite; }
+.k-twinkle { animation: k-twinkle 1.8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.k-wave { transform-box: fill-box; transform-origin: 50% 100%; }
+.kchar[data-mood="done"] .k-wave, .kchar[data-mood="party"] .k-wave { animation: k-wave 900ms cubic-bezier(.77, 0, .175, 1) infinite; }
+@keyframes k-bob { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.015, .975); } }
+@keyframes k-hop { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-4px); } }
+@keyframes k-twinkle { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.7); } }
+@keyframes k-wave { 0%, 100% { transform: scaleY(.55); } 50% { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) { .k-bob, .k-twinkle, .k-wave { animation: none !important; } }
+
+/* ── 앱 화면 조각(기준안 재현) ────────────────────────────── */
+.card { background: rgb(var(--surface)); border-radius: 24px; box-shadow: var(--shadow-card); }
+.pill { border-radius: 9999px; }
+.label { font-size: 12px; font-weight: 500; color: rgb(var(--muted)); }
+.big { font-size: 26px; font-weight: 700; letter-spacing: -.02em; line-height: 1.2; }
+.big small { font-size: 15px; font-weight: 600; opacity: .7; }
+.bar { height: 6px; border-radius: 99px; overflow: hidden; background: rgb(var(--line)); }
+.bar i { display: block; height: 100%; border-radius: 99px; background: rgb(var(--royal)); transform-origin: left; }
+.hero { background: var(--hero); color: rgb(var(--surface)); border-radius: 24px; box-shadow: var(--shadow-card); padding: 16px; position: relative; display: flex; flex-direction: column; min-height: 139px; text-align: left; }
+.hero .label { color: rgb(var(--surface) / .8); }
+.hero .bar { background: rgb(var(--surface) / .25); margin-top: 10px; }
+.hero .bar i { background: rgb(var(--surface)); }
+.foot { margin-top: auto; padding-top: 12px; display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; font-weight: 600; }
+.foot span { display: flex; align-items: center; gap: 4px; }
+.timer { padding: 16px; display: flex; flex-direction: column; min-height: 139px; text-align: left; }
+.timer .foot { color: rgb(var(--muted)); justify-content: flex-start; gap: 4px; }
+.timer .foot svg { color: rgb(var(--royal)); }
+.row1 { display: flex; height: 24px; align-items: center; justify-content: space-between; }
+.seg { display: flex; padding: 4px; border-radius: 99px; background: rgb(var(--surface)); box-shadow: var(--shadow-card); }
+.seg.tab { background: rgb(var(--tint)); box-shadow: none; }
+.seg button { flex: 1; height: 40px; border-radius: 99px; font-size: 12.5px; font-weight: 500; color: rgb(var(--muted)); display: flex; align-items: center; justify-content: center; gap: 4px; white-space: nowrap; }
+.seg.tab button { color: rgb(var(--muted-strong)); }
+.seg button.on { background: rgb(var(--royal)); color: rgb(var(--surface)); font-weight: 600; }
+.seg.tab button.on { background: rgb(var(--surface)); color: rgb(var(--royal)); box-shadow: var(--shadow-card); }
+.chipbtn { height: 48px; min-width: 56px; padding: 0 12px; border-radius: 99px; background: rgb(var(--surface)); box-shadow: var(--shadow-card); color: rgb(var(--royal)); font-size: 12.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.spk { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px 0 4px; border-radius: 99px; background: rgb(var(--tint)); color: rgb(var(--royal)); font-size: 12px; font-weight: 600; }
+.spk b { width: 20px; height: 20px; border-radius: 50%; background: rgb(var(--royal)); color: rgb(var(--surface)); font-size: 11px; display: flex; align-items: center; justify-content: center; }
+.spk.b { background: rgb(var(--royal)); color: rgb(var(--surface)); }
+.spk.b b { background: rgb(var(--surface)); color: rgb(var(--royal)); }
+.mark { height: 36px; padding: 0 12px; border-radius: 99px; background: rgb(var(--tint)); color: rgb(var(--royal)); font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+.en { font-size: 25px; font-weight: 700; letter-spacing: -.02em; line-height: 1.35; }
+.order { margin-top: 16px; margin-bottom: -6px; font-size: 16px; font-weight: 600; color: rgb(var(--royal)); word-break: keep-all; }
+.order span { display: inline-block; margin: 0 2px 6px 0; padding: 4px 8px; border-radius: 10px; background: rgb(var(--tint)); }
+.ko { margin-top: 10px; font-size: 14px; line-height: 1.6; color: rgb(var(--muted)); word-break: keep-all; }
+.dock { height: 72px; width: 264px; border-radius: 99px; background: rgb(var(--ink)); box-shadow: var(--shadow-dock); display: flex; align-items: center; justify-content: space-between; padding: 0 8px; color: rgb(var(--surface) / .8); }
+.dock .side { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.dock .play { width: 56px; height: 56px; border-radius: 50%; background: rgb(var(--royal)); color: rgb(var(--surface)); box-shadow: var(--shadow-glow), 0 0 0 5px rgb(var(--surface) / .15); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+.dock .play svg { fill: currentColor; transform: translateX(1.5px); }
+.rail { display: flex; gap: 3px; }
+.rail i { flex: 1; height: 4px; border-radius: 99px; background: rgb(var(--line)); }
+.rail i.now { background: rgb(var(--royal)); }
+.rail i.done { background: rgb(var(--frost)); }
+.badge { position: absolute; right: 10px; top: 8px; width: 38px; height: 38px; border-radius: 50%; background: rgb(var(--surface)); padding: 3px; box-shadow: 0 4px 12px rgb(var(--ink) / .12); }

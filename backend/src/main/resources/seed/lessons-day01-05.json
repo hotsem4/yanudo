@@ -1,0 +1,2174 @@
+{
+  "lessons": [
+    {
+      "day": 1,
+      "title": "처음 만난 사람과 인사하기",
+      "theme": "Meeting someone new",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi, I don't think we've met before.",
+          "ko_word_order": "안녕하세요, 저는 생각하지 않아요 / 우리가 만난 적이 있다고 / 전에",
+          "ko_natural": "안녕하세요, 처음 뵙는 것 같네요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "I don't think we've met",
+              "form": "I don't think we've met",
+              "meaning": "처음 뵙는 것 같아요",
+              "nuance": "모르는 사람에게 먼저 말을 걸며 자기소개를 시작할 때 쓰는 공손하고 자연스러운 표현이다.",
+              "examples": [
+                {
+                  "en": "I don't think we've met. I'm Jenny from accounting.",
+                  "ko": "처음 뵙는 것 같네요. 회계팀 제니예요."
+                },
+                {
+                  "en": "Sorry, I don't think we've met yet.",
+                  "ko": "죄송해요, 아직 인사를 못 나눈 것 같네요."
+                },
+                {
+                  "en": "I don't think we've met. Are you a friend of Tom's?",
+                  "ko": "처음 뵙는 것 같은데, 톰 친구세요?"
+                }
+              ]
+            },
+            {
+              "text": "before",
+              "form": "before",
+              "meaning": "전에, 이전에",
+              "nuance": "문장 끝에 붙여 전에 한 적이 있는지 말할 때 쓴다. ago와 달리 기간 없이 혼자 쓸 수 있다.",
+              "examples": [
+                {
+                  "en": "Have you been here before?",
+                  "ko": "여기 와 본 적 있어요?"
+                },
+                {
+                  "en": "I've never tried Thai food before.",
+                  "ko": "태국 음식은 전에 먹어 본 적이 없어요."
+                },
+                {
+                  "en": "We talked about this before.",
+                  "ko": "이거 전에 얘기했잖아요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "No, I don't think so. I'm Ava.",
+          "ko_word_order": "아니요, 그렇게 생각하지 않아요. / 저는 에이바예요.",
+          "ko_natural": "네, 처음인 것 같아요. 저는 에이바예요.",
+          "terms": [
+            {
+              "text": "I don't think so",
+              "form": "I don't think so",
+              "meaning": "아닌 것 같아요",
+              "nuance": "No만 말하는 것보다 부드럽게 부정할 때 쓴다. 맞는 것 같으면 I think so라고 한다.",
+              "examples": [
+                {
+                  "en": "Is it going to rain today? I don't think so.",
+                  "ko": "오늘 비 올까요? 안 올 것 같아요."
+                },
+                {
+                  "en": "Do we need tickets? I don't think so.",
+                  "ko": "표가 필요할까요? 아닌 것 같아요."
+                },
+                {
+                  "en": "Is he coming tonight? I don't think so.",
+                  "ko": "걔 오늘 와? 안 올 것 같은데."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Nice to meet you, Ava. I'm Andrew.",
+          "ko_word_order": "만나서 반가워요, 에이바. / 저는 앤드루예요.",
+          "ko_natural": "반가워요, 에이바. 저는 앤드루라고 해요.",
+          "terms": [
+            {
+              "text": "nice to meet you",
+              "form": "nice to meet you",
+              "meaning": "만나서 반가워요",
+              "nuance": "처음 인사할 때 쓰는 기본 표현으로 격식·비격식 모두 무난하다. 헤어질 때는 Nice meeting you라고도 한다.",
+              "examples": [
+                {
+                  "en": "Nice to meet you. I've heard a lot about you.",
+                  "ko": "반가워요. 얘기 많이 들었어요."
+                },
+                {
+                  "en": "Hi, I'm Mina. Nice to meet you.",
+                  "ko": "안녕하세요, 미나예요. 반갑습니다."
+                },
+                {
+                  "en": "It's nice to meet you in person.",
+                  "ko": "직접 만나서 반가워요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Nice to meet you too. Where are you from?",
+          "ko_word_order": "저도 만나서 반가워요. / 어디에서 / 당신은 왔나요?",
+          "ko_natural": "저도 반가워요. 어디 출신이세요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "where are you from",
+              "form": "where are you from",
+              "meaning": "어디 출신이에요?",
+              "nuance": "출신 나라나 도시를 물을 때 가장 흔한 질문이다. 답은 I'm from ~으로 한다.",
+              "examples": [
+                {
+                  "en": "So where are you from originally?",
+                  "ko": "그럼 원래 어디 출신이세요?"
+                },
+                {
+                  "en": "Where are you from in Canada?",
+                  "ko": "캐나다 어디 출신이에요?"
+                },
+                {
+                  "en": "Your English is great. Where are you from?",
+                  "ko": "영어 잘하시네요. 어디서 오셨어요?"
+                }
+              ]
+            },
+            {
+              "text": "too",
+              "form": "too",
+              "meaning": "~도, 역시",
+              "nuance": "상대 말에 나도 그렇다고 덧붙일 때 문장 끝에 쓴다. 부정문에서는 either를 쓴다.",
+              "examples": [
+                {
+                  "en": "I'm hungry too.",
+                  "ko": "나도 배고파."
+                },
+                {
+                  "en": "She speaks Japanese too.",
+                  "ko": "그녀는 일본어도 해요."
+                },
+                {
+                  "en": "Have a good weekend. You too!",
+                  "ko": "주말 잘 보내요. 당신도요!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I'm from Seoul, but I live in Busan now.",
+          "ko_word_order": "저는 서울 출신이에요, / 하지만 저는 살아요 / 부산에 / 지금은",
+          "ko_natural": "서울 출신인데 지금은 부산에 살아요.",
+          "terms": [
+            {
+              "text": "be from",
+              "form": "I'm from",
+              "meaning": "~ 출신이다",
+              "nuance": "고향이나 출신 나라를 말할 때 쓴다. 지금 사는 곳은 live in으로 구분해 말한다.",
+              "examples": [
+                {
+                  "en": "I'm from a small town near Daegu.",
+                  "ko": "저는 대구 근처 작은 동네 출신이에요."
+                },
+                {
+                  "en": "My parents are from Jeju.",
+                  "ko": "부모님은 제주도 분이세요."
+                },
+                {
+                  "en": "Is your friend from Australia?",
+                  "ko": "친구분은 호주 출신이에요?"
+                }
+              ]
+            },
+            {
+              "text": "live in",
+              "form": "live in",
+              "meaning": "~에 살다",
+              "nuance": "지금 사는 도시나 동네를 말할 때 쓴다. 잠깐 머무는 곳이면 I'm staying in을 쓴다.",
+              "examples": [
+                {
+                  "en": "I live in a small apartment downtown.",
+                  "ko": "저는 시내 작은 아파트에 살아요."
+                },
+                {
+                  "en": "Do you still live in Incheon?",
+                  "ko": "아직 인천에 살아요?"
+                },
+                {
+                  "en": "My sister lives in London now.",
+                  "ko": "언니는 지금 런던에 살아요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Oh, really? What brings you here today?",
+          "ko_word_order": "오, 정말요? / 무엇이 데려왔나요 / 당신을 여기에 / 오늘?",
+          "ko_natural": "아, 그래요? 오늘은 여기 어쩐 일이세요?",
+          "terms": [
+            {
+              "text": "what brings you here",
+              "form": "what brings you here",
+              "meaning": "여긴 어쩐 일이에요?",
+              "nuance": "왜 왔는지를 부드럽고 친근하게 묻는 표현이다. Why are you here?는 따지는 느낌이라 피한다.",
+              "examples": [
+                {
+                  "en": "Hey, what brings you here so early?",
+                  "ko": "어, 이렇게 일찍 웬일이야?"
+                },
+                {
+                  "en": "So what brings you here tonight?",
+                  "ko": "그래서 오늘 밤엔 여기 어쩐 일이세요?"
+                },
+                {
+                  "en": "What brings you here on a Sunday?",
+                  "ko": "일요일에 여긴 어쩐 일이에요?"
+                }
+              ]
+            },
+            {
+              "text": "oh, really",
+              "form": "oh, really",
+              "meaning": "아, 그래요?",
+              "nuance": "상대 말에 관심이나 약간의 놀라움을 보이는 맞장구다. 억양을 올리면 놀람, 내리면 담담한 반응이 된다.",
+              "examples": [
+                {
+                  "en": "I'm moving to Japan. Oh, really? When?",
+                  "ko": "나 일본으로 이사 가. 아, 정말? 언제?"
+                },
+                {
+                  "en": "Oh, really? I didn't know that.",
+                  "ko": "아, 그래요? 몰랐어요."
+                },
+                {
+                  "en": "She's his sister? Oh, really?",
+                  "ko": "그 사람이 걔 누나라고? 아, 진짜?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I'm here for a job interview.",
+          "ko_word_order": "저는 여기 왔어요 / 취업 면접을 위해",
+          "ko_natural": "취업 면접 보러 왔어요.",
+          "terms": [
+            {
+              "text": "be here for",
+              "form": "I'm here for",
+              "meaning": "~하러 왔어요",
+              "nuance": "방문 목적을 말할 때 쓰는 자연스러운 표현이다. 입국 심사 같은 곳에서도 그대로 쓸 수 있다.",
+              "examples": [
+                {
+                  "en": "I'm here for a meeting with Ms. Lee.",
+                  "ko": "이 선생님과 미팅이 있어서 왔어요."
+                },
+                {
+                  "en": "Are you here for the concert?",
+                  "ko": "콘서트 보러 오셨어요?"
+                },
+                {
+                  "en": "We're here for my cousin's wedding.",
+                  "ko": "사촌 결혼식 때문에 왔어요."
+                }
+              ]
+            },
+            {
+              "text": "job interview",
+              "form": "job interview",
+              "meaning": "취업 면접",
+              "nuance": "회사에 지원해서 보는 면접을 말한다. 줄여서 interview라고만 해도 된다.",
+              "examples": [
+                {
+                  "en": "I have a job interview tomorrow morning.",
+                  "ko": "내일 아침에 면접이 있어요."
+                },
+                {
+                  "en": "How did your job interview go?",
+                  "ko": "면접 어떻게 됐어?"
+                },
+                {
+                  "en": "I'm so nervous about my job interview.",
+                  "ko": "면접 때문에 너무 떨려요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Good luck! I'm sure you'll do great.",
+          "ko_word_order": "행운을 빌어요! / 저는 확신해요 / 당신이 잘 해낼 거라고",
+          "ko_natural": "행운을 빌어요! 분명 잘하실 거예요.",
+          "terms": [
+            {
+              "text": "good luck",
+              "form": "good luck",
+              "meaning": "행운을 빌어요",
+              "nuance": "시험·면접처럼 결과가 걸린 일을 앞둔 사람에게 하는 응원이다. 뒤에 with나 on을 붙여 대상을 말한다.",
+              "examples": [
+                {
+                  "en": "Good luck with your exam!",
+                  "ko": "시험 잘 봐!"
+                },
+                {
+                  "en": "Good luck on your first day.",
+                  "ko": "첫날 잘하고 와요."
+                },
+                {
+                  "en": "Good luck, you've got this!",
+                  "ko": "힘내, 넌 할 수 있어!"
+                }
+              ]
+            },
+            {
+              "text": "I'm sure",
+              "form": "I'm sure",
+              "meaning": "분명 ~할 거예요",
+              "nuance": "상대를 안심시키거나 확신을 말할 때 쓴다. I think보다 확신이 강하다.",
+              "examples": [
+                {
+                  "en": "I'm sure she'll love the gift.",
+                  "ko": "그녀가 선물 분명 좋아할 거예요."
+                },
+                {
+                  "en": "Don't worry, I'm sure it's fine.",
+                  "ko": "걱정 마, 분명 괜찮을 거야."
+                },
+                {
+                  "en": "I'm sure we'll find a parking spot.",
+                  "ko": "분명 주차할 데 찾을 거예요."
+                }
+              ]
+            },
+            {
+              "text": "do great",
+              "form": "do great",
+              "meaning": "잘 해내다",
+              "nuance": "앞으로 할 일을 잘할 거라고 응원할 때 쓰는 구어체다. 이미 잘했으면 You did great!라고 한다.",
+              "examples": [
+                {
+                  "en": "You did great today!",
+                  "ko": "오늘 정말 잘했어!"
+                },
+                {
+                  "en": "Don't be nervous. You'll do great.",
+                  "ko": "긴장하지 마. 잘할 거야."
+                },
+                {
+                  "en": "The kids did great at the recital.",
+                  "ko": "애들이 발표회에서 정말 잘했어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Thanks. It was really nice talking to you.",
+          "ko_word_order": "고마워요. / 정말 좋았어요 / 당신과 이야기하는 것이",
+          "ko_natural": "고마워요. 이야기 나눠서 정말 즐거웠어요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "nice talking to you",
+              "form": "nice talking to you",
+              "meaning": "얘기 즐거웠어요",
+              "nuance": "대화를 마무리하며 헤어질 때 하는 인사다. It was를 붙이면 조금 더 정중하다.",
+              "examples": [
+                {
+                  "en": "Nice talking to you. See you around!",
+                  "ko": "얘기 즐거웠어요. 또 봬요!"
+                },
+                {
+                  "en": "It was nice talking to you, Mr. Kim.",
+                  "ko": "김 선생님, 이야기 나눠서 즐거웠습니다."
+                },
+                {
+                  "en": "Well, I have to go. Nice talking to you!",
+                  "ko": "이제 가 봐야겠어요. 얘기 즐거웠어요!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Same here. Let's keep in touch.",
+          "ko_word_order": "저도 마찬가지예요. / 계속 연락해요.",
+          "ko_natural": "저도요. 우리 계속 연락하고 지내요.",
+          "terms": [
+            {
+              "text": "same here",
+              "form": "same here",
+              "meaning": "저도요",
+              "nuance": "상대가 한 말이 나에게도 그대로일 때 짧게 받는 구어체다. Me too와 거의 같은 뜻이다.",
+              "examples": [
+                {
+                  "en": "I'm so tired today. Same here.",
+                  "ko": "오늘 너무 피곤해요. 저도요."
+                },
+                {
+                  "en": "Same here, I love spicy food.",
+                  "ko": "저도요, 매운 음식 정말 좋아해요."
+                },
+                {
+                  "en": "I had a great time. Same here!",
+                  "ko": "정말 즐거웠어요. 저도요!"
+                }
+              ]
+            },
+            {
+              "text": "keep in touch",
+              "form": "keep in touch",
+              "meaning": "연락하고 지내다",
+              "nuance": "헤어질 때 앞으로도 연락하자고 하는 표현이다. Stay in touch도 같은 뜻이다.",
+              "examples": [
+                {
+                  "en": "We should keep in touch after graduation.",
+                  "ko": "졸업하고도 연락하고 지내자."
+                },
+                {
+                  "en": "Do you still keep in touch with him?",
+                  "ko": "아직 그 사람이랑 연락해요?"
+                },
+                {
+                  "en": "Let's keep in touch on Instagram.",
+                  "ko": "인스타로 연락하고 지내요."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "title": "취미와 여가 시간",
+      "theme": "Free time and hobbies",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "What do you do in your free time?",
+          "ko_word_order": "무엇을 하나요 / 당신의 자유 시간에?",
+          "ko_natural": "여가 시간에는 무엇을 하시나요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "free time",
+              "form": "free time",
+              "meaning": "여가 시간",
+              "nuance": "일이나 공부를 하지 않는 시간을 말한다. spare time도 같은 뜻으로 쓴다.",
+              "examples": [
+                {
+                  "en": "I read a lot in my free time.",
+                  "ko": "저는 쉬는 시간에 책을 많이 읽어요."
+                },
+                {
+                  "en": "I don't have much free time these days.",
+                  "ko": "요즘은 여유 시간이 별로 없어요."
+                },
+                {
+                  "en": "We spent our free time at the beach.",
+                  "ko": "남는 시간은 해변에서 보냈어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I usually go hiking on weekends.",
+          "ko_word_order": "저는 보통 가요 / 등산하러 / 주말마다",
+          "ko_natural": "저는 주말마다 보통 등산을 가요.",
+          "terms": [
+            {
+              "text": "go hiking",
+              "form": "go hiking",
+              "meaning": "등산하러 가다",
+              "nuance": "go + -ing 형태로 운동이나 활동을 하러 간다고 말한다. go swimming, go shopping도 같은 틀이다.",
+              "examples": [
+                {
+                  "en": "Let's go hiking this Sunday.",
+                  "ko": "이번 일요일에 등산 가자."
+                },
+                {
+                  "en": "We went hiking in Jeju last summer.",
+                  "ko": "작년 여름에 제주도로 등산 갔어요."
+                },
+                {
+                  "en": "Do you want to go hiking with us?",
+                  "ko": "우리랑 등산 갈래요?"
+                }
+              ]
+            },
+            {
+              "text": "on weekends",
+              "form": "on weekends",
+              "meaning": "주말마다",
+              "nuance": "주말이면 늘 하는 일을 말할 때 쓴다. 이번 주말 한 번이면 this weekend를 쓴다.",
+              "examples": [
+                {
+                  "en": "I sleep in on weekends.",
+                  "ko": "주말에는 늦잠을 자요."
+                },
+                {
+                  "en": "Do you work on weekends?",
+                  "ko": "주말에도 일하세요?"
+                },
+                {
+                  "en": "The park gets busy on weekends.",
+                  "ko": "그 공원은 주말마다 붐벼요."
+                }
+              ]
+            },
+            {
+              "text": "usually",
+              "form": "usually",
+              "meaning": "보통, 대개",
+              "nuance": "습관처럼 자주 하는 일을 말할 때 동사 앞에 쓴다. always보다 덜 강하다.",
+              "examples": [
+                {
+                  "en": "I usually take the bus to work.",
+                  "ko": "저는 보통 버스 타고 출근해요."
+                },
+                {
+                  "en": "She usually calls me on Sundays.",
+                  "ko": "그녀는 보통 일요일에 전화해요."
+                },
+                {
+                  "en": "What time do you usually get up?",
+                  "ko": "보통 몇 시에 일어나요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "That sounds fun. How often do you go?",
+          "ko_word_order": "그거 재밌게 들리네요. / 얼마나 자주 / 당신은 가나요?",
+          "ko_natural": "재밌겠네요. 얼마나 자주 가세요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "sound fun",
+              "form": "sounds fun",
+              "meaning": "재밌겠다",
+              "nuance": "상대 계획에 관심을 보이며 맞장구칠 때 쓴다. 주어 That을 빼고 Sounds fun!이라고도 한다.",
+              "examples": [
+                {
+                  "en": "A road trip? That sounds fun!",
+                  "ko": "자동차 여행? 재밌겠다!"
+                },
+                {
+                  "en": "Karaoke tonight sounds fun.",
+                  "ko": "오늘 밤 노래방 재밌겠네요."
+                },
+                {
+                  "en": "It sounds fun, but I'm too tired.",
+                  "ko": "재밌겠는데 너무 피곤해요."
+                }
+              ]
+            },
+            {
+              "text": "how often",
+              "form": "how often",
+              "meaning": "얼마나 자주",
+              "nuance": "횟수나 빈도를 물을 때 쓴다. 답은 once a week, every day처럼 한다.",
+              "examples": [
+                {
+                  "en": "How often do you work out?",
+                  "ko": "운동 얼마나 자주 해요?"
+                },
+                {
+                  "en": "How often do you call your parents?",
+                  "ko": "부모님께 얼마나 자주 전화해요?"
+                },
+                {
+                  "en": "How often should I water this plant?",
+                  "ko": "이 화분 물은 얼마나 자주 줘야 해요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "About twice a month, if the weather is nice.",
+          "ko_word_order": "대략 한 달에 두 번이요, / 만약 날씨가 좋으면",
+          "ko_natural": "날씨가 좋으면 한 달에 두 번 정도요.",
+          "terms": [
+            {
+              "text": "twice a month",
+              "form": "twice a month",
+              "meaning": "한 달에 두 번",
+              "nuance": "횟수 + a + 기간 틀로 빈도를 말한다. once a week, three times a year처럼 바꿔 쓴다.",
+              "examples": [
+                {
+                  "en": "I get my hair cut twice a month.",
+                  "ko": "한 달에 두 번 머리를 잘라요."
+                },
+                {
+                  "en": "We meet for dinner twice a month.",
+                  "ko": "우리는 한 달에 두 번 저녁을 같이 먹어요."
+                },
+                {
+                  "en": "The club meets twice a month on Fridays.",
+                  "ko": "그 동호회는 한 달에 두 번 금요일에 모여요."
+                }
+              ]
+            },
+            {
+              "text": "about",
+              "form": "about",
+              "meaning": "대략, ~쯤",
+              "nuance": "숫자나 시간 앞에서 정확하지 않은 양을 말할 때 쓴다. around와 거의 같다.",
+              "examples": [
+                {
+                  "en": "It's about ten minutes from here.",
+                  "ko": "여기서 10분쯤이에요."
+                },
+                {
+                  "en": "I've been here about three hours.",
+                  "ko": "여기 온 지 세 시간쯤 됐어요."
+                },
+                {
+                  "en": "There were about fifty people at the party.",
+                  "ko": "파티에 50명쯤 있었어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I've been wanting to try it myself.",
+          "ko_word_order": "저는 계속 원해 왔어요 / 그것을 해 보기를 / 직접",
+          "ko_natural": "저도 한번 해 보고 싶었어요.",
+          "terms": [
+            {
+              "text": "have been wanting to",
+              "form": "I've been wanting to",
+              "meaning": "계속 ~하고 싶었다",
+              "nuance": "오래전부터 해 보고 싶던 일을 말할 때 쓰는 구어체다. I wanted to보다 마음이 계속 이어졌다는 느낌이 있다.",
+              "examples": [
+                {
+                  "en": "I've been wanting to see that movie.",
+                  "ko": "그 영화 계속 보고 싶었어요."
+                },
+                {
+                  "en": "We've been wanting to visit Busan for ages.",
+                  "ko": "우리 오래전부터 부산 가 보고 싶었어."
+                },
+                {
+                  "en": "I've been wanting to ask you something.",
+                  "ko": "너한테 뭐 좀 물어보고 싶었어."
+                }
+              ]
+            },
+            {
+              "text": "myself",
+              "form": "myself",
+              "meaning": "직접, 나 스스로",
+              "nuance": "남이 아니라 내가 직접 한다는 걸 강조할 때 문장 끝에 붙인다.",
+              "examples": [
+                {
+                  "en": "I made this cake myself.",
+                  "ko": "이 케이크 제가 직접 만들었어요."
+                },
+                {
+                  "en": "I'd like to see it myself.",
+                  "ko": "제 눈으로 직접 보고 싶어요."
+                },
+                {
+                  "en": "I fixed the bike myself.",
+                  "ko": "자전거는 제가 직접 고쳤어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "You should come with me next time.",
+          "ko_word_order": "당신은 와야 해요 / 저와 함께 / 다음번에",
+          "ko_natural": "다음에 저랑 같이 가요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "you should",
+              "form": "you should",
+              "meaning": "~하는 게 좋겠어요",
+              "nuance": "친구에게 가볍게 권하거나 제안할 때 쓴다. must처럼 강한 명령이 아니다.",
+              "examples": [
+                {
+                  "en": "You should try this place.",
+                  "ko": "여기 꼭 가 봐."
+                },
+                {
+                  "en": "You should get some rest.",
+                  "ko": "좀 쉬는 게 좋겠어요."
+                },
+                {
+                  "en": "You should call her tonight.",
+                  "ko": "오늘 밤에 그녀한테 전화해 봐."
+                }
+              ]
+            },
+            {
+              "text": "next time",
+              "form": "next time",
+              "meaning": "다음번에",
+              "nuance": "이번에는 안 되지만 다음 기회를 말할 때 쓴다. 앞에 전치사를 붙이지 않는다.",
+              "examples": [
+                {
+                  "en": "Let's try the other café next time.",
+                  "ko": "다음엔 다른 카페 가 보자."
+                },
+                {
+                  "en": "Next time, I'll bring my camera.",
+                  "ko": "다음번엔 카메라를 가져올게요."
+                },
+                {
+                  "en": "Maybe next time, okay?",
+                  "ko": "다음에 하자, 알았지?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "I'd love to. What do I need to bring?",
+          "ko_word_order": "정말 좋아요. / 무엇을 / 저는 챙겨야 하나요?",
+          "ko_natural": "좋죠. 뭘 챙겨 가면 돼요?",
+          "terms": [
+            {
+              "text": "I'd love to",
+              "form": "I'd love to",
+              "meaning": "좋죠, 그러고 싶어요",
+              "nuance": "초대나 제안을 반갑게 받아들일 때 쓴다. 거절할 때는 I'd love to, but ~으로 부드럽게 말한다.",
+              "examples": [
+                {
+                  "en": "Want to join us for lunch? I'd love to.",
+                  "ko": "점심 같이 할래요? 좋죠."
+                },
+                {
+                  "en": "I'd love to, but I have plans tonight.",
+                  "ko": "그러고 싶은데 오늘 밤엔 약속이 있어요."
+                },
+                {
+                  "en": "I'd love to see your new place.",
+                  "ko": "새 집 꼭 보고 싶어요."
+                }
+              ]
+            },
+            {
+              "text": "bring",
+              "form": "bring",
+              "meaning": "챙겨 가다, 가져오다",
+              "nuance": "어디에 가면서 물건을 가지고 갈 때 쓴다. 듣는 사람이 있는 곳으로 가져가는 느낌이다.",
+              "examples": [
+                {
+                  "en": "Don't forget to bring your umbrella.",
+                  "ko": "우산 챙기는 거 잊지 마."
+                },
+                {
+                  "en": "Can I bring a friend to the party?",
+                  "ko": "파티에 친구 데려가도 돼?"
+                },
+                {
+                  "en": "I'll bring some snacks.",
+                  "ko": "간식은 제가 가져갈게요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Just comfortable shoes and some water.",
+          "ko_word_order": "그냥 편한 신발과 / 물 약간이요",
+          "ko_natural": "편한 신발이랑 물만 있으면 돼요.",
+          "terms": [
+            {
+              "text": "comfortable",
+              "form": "comfortable",
+              "meaning": "편한",
+              "nuance": "옷·신발·의자처럼 몸이 편할 때 쓴다. 구어에서는 줄여서 comfy라고도 한다.",
+              "examples": [
+                {
+                  "en": "These shoes are really comfortable.",
+                  "ko": "이 신발 정말 편해요."
+                },
+                {
+                  "en": "Make yourself comfortable.",
+                  "ko": "편하게 계세요."
+                },
+                {
+                  "en": "The bed wasn't very comfortable.",
+                  "ko": "침대가 별로 편하지 않았어요."
+                }
+              ]
+            },
+            {
+              "text": "just",
+              "form": "just",
+              "meaning": "그냥 ~만",
+              "nuance": "필요한 게 그것뿐이라고 말할 때 쓴다. only보다 가볍고 구어적이다.",
+              "examples": [
+                {
+                  "en": "Just a small coffee, please.",
+                  "ko": "그냥 작은 커피 한 잔이요."
+                },
+                {
+                  "en": "I just need five minutes.",
+                  "ko": "5분만 있으면 돼요."
+                },
+                {
+                  "en": "It's just me tonight.",
+                  "ko": "오늘 밤엔 나 혼자야."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Great. Let me know when you're going.",
+          "ko_word_order": "좋아요. / 저에게 알려 주세요 / 언제 당신이 가는지",
+          "ko_natural": "좋아요. 가실 때 알려 주세요.",
+          "terms": [
+            {
+              "text": "let me know",
+              "form": "let me know",
+              "meaning": "알려 줘요",
+              "nuance": "나중에 정보를 알려 달라고 할 때 쓰는 아주 흔한 구어다. Please를 붙이면 더 정중하다.",
+              "examples": [
+                {
+                  "en": "Let me know if you need anything.",
+                  "ko": "필요한 거 있으면 말해요."
+                },
+                {
+                  "en": "Let me know when you get home.",
+                  "ko": "집에 도착하면 알려 줘."
+                },
+                {
+                  "en": "Can you let me know by Friday?",
+                  "ko": "금요일까지 알려 줄 수 있어요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure, I'll text you this week.",
+          "ko_word_order": "물론이죠, / 제가 문자할게요 / 이번 주에",
+          "ko_natural": "그럼요, 이번 주에 문자 드릴게요.",
+          "terms": [
+            {
+              "text": "text",
+              "form": "text",
+              "meaning": "문자하다",
+              "nuance": "휴대폰 문자나 메신저를 보낼 때 동사로 쓴다. message도 같은 뜻으로 쓴다.",
+              "examples": [
+                {
+                  "en": "I'll text you the address.",
+                  "ko": "주소 문자로 보내 줄게."
+                },
+                {
+                  "en": "Text me when you're outside.",
+                  "ko": "밖에 도착하면 문자해."
+                },
+                {
+                  "en": "She didn't text me back.",
+                  "ko": "그녀가 답장을 안 했어요."
+                }
+              ]
+            },
+            {
+              "text": "sure",
+              "form": "sure",
+              "meaning": "그럼요, 물론이죠",
+              "nuance": "부탁이나 제안에 가볍게 좋다고 답할 때 쓴다. Of course보다 캐주얼하다.",
+              "examples": [
+                {
+                  "en": "Can you help me? Sure.",
+                  "ko": "좀 도와줄래요? 그럼요."
+                },
+                {
+                  "en": "Sure, I can pick you up.",
+                  "ko": "그래, 내가 데리러 갈게."
+                },
+                {
+                  "en": "Sure, why not?",
+                  "ko": "그래, 안 될 거 없지."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "title": "카페에서 주문하기",
+      "theme": "Ordering at a cafe",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi, what can I get for you today?",
+          "ko_word_order": "안녕하세요, / 무엇을 제가 드릴 수 있을까요 / 오늘?",
+          "ko_natural": "안녕하세요, 오늘은 뭘로 드릴까요?",
+          "terms": [
+            {
+              "text": "what can I get for you",
+              "form": "what can I get for you",
+              "meaning": "뭘로 드릴까요?",
+              "nuance": "카페·식당·바에서 직원이 주문을 받을 때 쓰는 표현이다. What would you like?보다 친근하다.",
+              "examples": [
+                {
+                  "en": "Good morning! What can I get for you?",
+                  "ko": "좋은 아침이에요! 뭘로 드릴까요?"
+                },
+                {
+                  "en": "Hi there, what can I get for you tonight?",
+                  "ko": "안녕하세요, 오늘 밤엔 뭘로 드릴까요?"
+                },
+                {
+                  "en": "Next, please. What can I get for you?",
+                  "ko": "다음 분이요. 뭘로 드릴까요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Can I get an iced Americano, please?",
+          "ko_word_order": "제가 받을 수 있을까요 / 아이스 아메리카노를, / 부탁해요?",
+          "ko_natural": "아이스 아메리카노 한 잔 주세요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "can I get",
+              "form": "can I get",
+              "meaning": "~ 주세요",
+              "nuance": "주문할 때 가장 흔하게 쓰는 구어 표현이다. 조금 더 공손하게는 Could I have를 쓴다.",
+              "examples": [
+                {
+                  "en": "Can I get a glass of water?",
+                  "ko": "물 한 잔 주시겠어요?"
+                },
+                {
+                  "en": "Can I get this to go?",
+                  "ko": "이거 포장해 주실 수 있어요?"
+                },
+                {
+                  "en": "Can I get a refill, please?",
+                  "ko": "리필 좀 해 주시겠어요?"
+                }
+              ]
+            },
+            {
+              "text": "iced",
+              "form": "iced",
+              "meaning": "아이스, 얼음을 넣은",
+              "nuance": "차가운 음료 이름 앞에 붙인다. 한국어 '아이스'처럼 ice가 아니라 iced라고 한다.",
+              "examples": [
+                {
+                  "en": "An iced latte, please.",
+                  "ko": "아이스 라테 하나 주세요."
+                },
+                {
+                  "en": "I drink iced coffee even in winter.",
+                  "ko": "저는 겨울에도 아이스커피 마셔요."
+                },
+                {
+                  "en": "Do you have iced tea?",
+                  "ko": "아이스티 있어요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Sure. What size would you like?",
+          "ko_word_order": "물론이죠. / 어떤 사이즈를 / 원하세요?",
+          "ko_natural": "네. 사이즈는 어떤 걸로 드릴까요?",
+          "terms": [
+            {
+              "text": "would you like",
+              "form": "would you like",
+              "meaning": "~ 원하세요?",
+              "nuance": "상대가 원하는 것을 공손하게 물을 때 쓴다. Do you want보다 정중해서 직원이 손님에게 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Would you like some more coffee?",
+                  "ko": "커피 좀 더 드릴까요?"
+                },
+                {
+                  "en": "Which one would you like?",
+                  "ko": "어떤 걸로 하시겠어요?"
+                },
+                {
+                  "en": "Would you like a bag for that?",
+                  "ko": "봉투 드릴까요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "A large one, please. And can I get an extra shot?",
+          "ko_word_order": "큰 걸로요, 부탁해요. / 그리고 받을 수 있을까요 / 샷 추가를?",
+          "ko_natural": "큰 사이즈로 주세요. 그리고 샷 추가 되나요?",
+          "terms": [
+            {
+              "text": "extra shot",
+              "form": "extra shot",
+              "meaning": "샷 추가",
+              "nuance": "커피에 에스프레소를 하나 더 넣어 달라고 할 때 쓴다. 두 개면 two extra shots라고 한다.",
+              "examples": [
+                {
+                  "en": "Can you add an extra shot to my latte?",
+                  "ko": "라테에 샷 하나 추가해 주실래요?"
+                },
+                {
+                  "en": "I need an extra shot today.",
+                  "ko": "오늘은 샷 추가가 필요해."
+                },
+                {
+                  "en": "An extra shot is fifty cents more.",
+                  "ko": "샷 추가는 50센트 더 받아요."
+                }
+              ]
+            },
+            {
+              "text": "a large one",
+              "form": "a large one",
+              "meaning": "큰 걸로",
+              "nuance": "앞에 나온 물건을 다시 말하지 않고 one으로 받는다. a small one, a medium one처럼 쓴다.",
+              "examples": [
+                {
+                  "en": "Do you want a small one or a large one?",
+                  "ko": "작은 거 드려요, 큰 거 드려요?"
+                },
+                {
+                  "en": "I'll take a large one.",
+                  "ko": "큰 걸로 할게요."
+                },
+                {
+                  "en": "A large one is only a dollar more.",
+                  "ko": "큰 건 1달러만 더 내면 돼요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Of course. Is that for here or to go?",
+          "ko_word_order": "물론이죠. / 그것은 여기서인가요 / 아니면 가져가실 건가요?",
+          "ko_natural": "물론이죠. 드시고 가세요, 아니면 포장이세요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "for here or to go",
+              "form": "for here or to go",
+              "meaning": "드시고 가세요, 포장하세요?",
+              "nuance": "패스트푸드점·카페 직원이 매장 식사인지 포장인지 묻는 말이다. 영국에서는 eat in or take away라고 한다.",
+              "examples": [
+                {
+                  "en": "For here or to go? To go, please.",
+                  "ko": "드시고 가세요, 가져가세요? 가져갈게요."
+                },
+                {
+                  "en": "Two burgers, for here or to go?",
+                  "ko": "버거 두 개요, 드시고 가세요, 포장이세요?"
+                },
+                {
+                  "en": "They asked me for here or to go.",
+                  "ko": "매장에서 먹을지 포장할지 물어보더라고요."
+                }
+              ]
+            },
+            {
+              "text": "of course",
+              "form": "of course",
+              "meaning": "물론이죠",
+              "nuance": "요청을 기꺼이 들어줄 때 쓴다. Sure보다 조금 더 정중하고 확실한 느낌이다.",
+              "examples": [
+                {
+                  "en": "Can I sit here? Of course.",
+                  "ko": "여기 앉아도 돼요? 물론이죠."
+                },
+                {
+                  "en": "Of course I remember you!",
+                  "ko": "당연히 기억하죠!"
+                },
+                {
+                  "en": "Of course, take your time.",
+                  "ko": "그럼요, 천천히 하세요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "To go, please. How much is it?",
+          "ko_word_order": "가져갈게요. / 얼마인가요 / 그것은?",
+          "ko_natural": "포장이요. 얼마예요?",
+          "terms": [
+            {
+              "text": "how much is it",
+              "form": "how much is it",
+              "meaning": "얼마예요?",
+              "nuance": "가격을 물을 때 쓰는 기본 질문이다. 여러 개면 How much are they?라고 한다.",
+              "examples": [
+                {
+                  "en": "This bag is nice. How much is it?",
+                  "ko": "이 가방 예쁘네요. 얼마예요?"
+                },
+                {
+                  "en": "How much is it to get in?",
+                  "ko": "입장료가 얼마예요?"
+                },
+                {
+                  "en": "How much is it for two nights?",
+                  "ko": "2박에 얼마예요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "That'll be five dollars and fifty cents.",
+          "ko_word_order": "그것은 될 거예요 / 5달러 50센트가",
+          "ko_natural": "5달러 50센트입니다.",
+          "terms": [
+            {
+              "text": "that'll be",
+              "form": "that'll be",
+              "meaning": "(금액이) ~입니다",
+              "nuance": "점원이 계산할 금액을 말할 때 쓰는 표현이다. 손님은 How much is it?으로 묻는다.",
+              "examples": [
+                {
+                  "en": "That'll be twelve dollars, please.",
+                  "ko": "12달러입니다."
+                },
+                {
+                  "en": "Okay, that'll be thirty in total.",
+                  "ko": "네, 전부 30달러입니다."
+                },
+                {
+                  "en": "That'll be eight fifty with tax.",
+                  "ko": "세금 포함 8달러 50센트입니다."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Can I pay by card?",
+          "ko_word_order": "제가 지불할 수 있나요 / 카드로?",
+          "ko_natural": "카드로 계산해도 되나요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "pay by card",
+              "form": "pay by card",
+              "meaning": "카드로 계산하다",
+              "nuance": "결제 수단을 말할 때 by card, in cash처럼 쓴다. with my card라고도 한다.",
+              "examples": [
+                {
+                  "en": "Most people pay by card these days.",
+                  "ko": "요즘은 대부분 카드로 계산해요."
+                },
+                {
+                  "en": "Do you want to pay by card or in cash?",
+                  "ko": "카드로 하실래요, 현금으로 하실래요?"
+                },
+                {
+                  "en": "Sorry, you can't pay by card here.",
+                  "ko": "죄송하지만 여기는 카드 결제가 안 돼요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Yes, just tap your card here.",
+          "ko_word_order": "네, 그냥 대세요 / 당신의 카드를 / 여기에",
+          "ko_natural": "네, 여기에 카드를 대 주세요.",
+          "terms": [
+            {
+              "text": "tap",
+              "form": "tap",
+              "meaning": "(카드를) 갖다 대다",
+              "nuance": "비접촉 결제처럼 카드나 휴대폰을 단말기에 살짝 댈 때 쓴다. 꽂을 때는 insert를 쓴다.",
+              "examples": [
+                {
+                  "en": "You can just tap your phone to pay.",
+                  "ko": "휴대폰을 대기만 하면 결제돼요."
+                },
+                {
+                  "en": "Tap your card on the reader.",
+                  "ko": "카드를 단말기에 대 주세요."
+                },
+                {
+                  "en": "Tapping is faster than inserting your card.",
+                  "ko": "카드를 대는 게 꽂는 것보다 빨라요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Thank you. Have a nice day!",
+          "ko_word_order": "고마워요. / 가지세요 / 좋은 하루를!",
+          "ko_natural": "감사합니다. 좋은 하루 보내세요!",
+          "terms": [
+            {
+              "text": "have a nice day",
+              "form": "have a nice day",
+              "meaning": "좋은 하루 보내세요",
+              "nuance": "가게에서 헤어질 때 직원과 손님이 주고받는 인사다. Have a good one은 더 캐주얼하다.",
+              "examples": [
+                {
+                  "en": "You have a nice day too.",
+                  "ko": "손님도 좋은 하루 보내세요."
+                },
+                {
+                  "en": "Have a nice day at work, honey.",
+                  "ko": "여보, 회사에서 좋은 하루 보내."
+                },
+                {
+                  "en": "Bye, have a nice day at school!",
+                  "ko": "잘 가, 학교에서 좋은 하루 보내!"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "title": "길 묻기와 출퇴근",
+      "theme": "Directions and commuting",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Excuse me, how do I get to the subway station?",
+          "ko_word_order": "실례합니다, / 어떻게 제가 가나요 / 지하철역에?",
+          "ko_natural": "실례지만, 지하철역에 어떻게 가나요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "excuse me",
+              "form": "excuse me",
+              "meaning": "실례합니다",
+              "nuance": "모르는 사람에게 말을 걸거나 길을 비켜 달라고 할 때 쓴다. 사과할 때는 Sorry를 쓴다.",
+              "examples": [
+                {
+                  "en": "Excuse me, is this seat taken?",
+                  "ko": "실례지만 여기 자리 있어요?"
+                },
+                {
+                  "en": "Excuse me, can I get past?",
+                  "ko": "실례합니다, 좀 지나갈게요."
+                },
+                {
+                  "en": "Excuse me, do you know what time it is?",
+                  "ko": "실례지만 지금 몇 시인지 아세요?"
+                }
+              ]
+            },
+            {
+              "text": "get to",
+              "form": "get to",
+              "meaning": "~에 가다, 도착하다",
+              "nuance": "목적지까지 가는 방법을 물을 때 쓴다. go to보다 도착에 초점이 있다.",
+              "examples": [
+                {
+                  "en": "What's the best way to get to Gangnam?",
+                  "ko": "강남 가려면 어떻게 가는 게 제일 좋아요?"
+                },
+                {
+                  "en": "I got to the office at nine.",
+                  "ko": "9시에 사무실에 도착했어요."
+                },
+                {
+                  "en": "It's easy to get to by bus.",
+                  "ko": "버스로 가기 쉬워요."
+                }
+              ]
+            },
+            {
+              "text": "subway station",
+              "form": "subway station",
+              "meaning": "지하철역",
+              "nuance": "미국에서는 subway, 영국에서는 underground나 tube station이라고 한다.",
+              "examples": [
+                {
+                  "en": "Is there a subway station near here?",
+                  "ko": "이 근처에 지하철역 있어요?"
+                },
+                {
+                  "en": "Let's meet at the subway station.",
+                  "ko": "지하철역에서 만나요."
+                },
+                {
+                  "en": "The hotel is right next to the subway station.",
+                  "ko": "호텔이 지하철역 바로 옆이에요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Go straight for two blocks and turn left.",
+          "ko_word_order": "곧장 가세요 / 두 블록 동안 / 그리고 왼쪽으로 도세요",
+          "ko_natural": "두 블록 직진한 다음 왼쪽으로 도세요.",
+          "terms": [
+            {
+              "text": "go straight",
+              "form": "go straight",
+              "meaning": "직진하다",
+              "nuance": "길 안내에서 쭉 가라고 할 때 쓴다. keep going straight라고도 한다.",
+              "examples": [
+                {
+                  "en": "Go straight until you see a bank.",
+                  "ko": "은행 보일 때까지 직진하세요."
+                },
+                {
+                  "en": "Just go straight down this road.",
+                  "ko": "이 길로 쭉 가세요."
+                },
+                {
+                  "en": "Go straight and it's on your right.",
+                  "ko": "직진하면 오른쪽에 있어요."
+                }
+              ]
+            },
+            {
+              "text": "turn left",
+              "form": "turn left",
+              "meaning": "왼쪽으로 돌다",
+              "nuance": "길 안내의 기본 표현이다. 오른쪽은 turn right, 모퉁이에서는 at the corner를 붙인다.",
+              "examples": [
+                {
+                  "en": "Turn left at the next light.",
+                  "ko": "다음 신호등에서 좌회전하세요."
+                },
+                {
+                  "en": "Did you say turn left or right?",
+                  "ko": "왼쪽으로 돌라고 하셨어요, 오른쪽이라고 하셨어요?"
+                },
+                {
+                  "en": "Turn left after the coffee shop.",
+                  "ko": "커피숍 지나서 왼쪽으로 도세요."
+                }
+              ]
+            },
+            {
+              "text": "block",
+              "form": "blocks",
+              "meaning": "블록(구역)",
+              "nuance": "길과 길 사이 한 구역을 말한다. 미국식 길 안내에서 거리 단위처럼 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "It's just one block away.",
+                  "ko": "한 블록만 가면 돼요."
+                },
+                {
+                  "en": "Walk three blocks north.",
+                  "ko": "북쪽으로 세 블록 걸어가세요."
+                },
+                {
+                  "en": "My office is a few blocks from here.",
+                  "ko": "제 사무실은 여기서 몇 블록 거리예요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Is it within walking distance?",
+          "ko_word_order": "그것은 있나요 / 걸어갈 수 있는 거리 안에?",
+          "ko_natural": "걸어갈 만한 거리인가요?",
+          "terms": [
+            {
+              "text": "within walking distance",
+              "form": "within walking distance",
+              "meaning": "걸어갈 수 있는 거리에",
+              "nuance": "걸어서 갈 만큼 가깝다는 뜻이다. 집이나 호텔 위치를 말할 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "The beach is within walking distance.",
+                  "ko": "해변은 걸어갈 수 있는 거리예요."
+                },
+                {
+                  "en": "Is there a pharmacy within walking distance?",
+                  "ko": "걸어갈 만한 곳에 약국 있어요?"
+                },
+                {
+                  "en": "Everything is within walking distance from the hotel.",
+                  "ko": "호텔에서 다 걸어갈 수 있어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Yes, it takes about five minutes on foot.",
+          "ko_word_order": "네, 그것은 걸려요 / 약 5분이 / 걸어서",
+          "ko_natural": "네, 걸어서 5분 정도 걸려요.",
+          "terms": [
+            {
+              "text": "take",
+              "form": "takes",
+              "meaning": "(시간이) 걸리다",
+              "nuance": "It takes + 시간 형태로 걸리는 시간을 말한다. 사람을 넣으면 It takes me 10 minutes처럼 쓴다.",
+              "examples": [
+                {
+                  "en": "It takes an hour by train.",
+                  "ko": "기차로 한 시간 걸려요."
+                },
+                {
+                  "en": "It took me a week to finish.",
+                  "ko": "끝내는 데 일주일 걸렸어요."
+                },
+                {
+                  "en": "It only takes a minute.",
+                  "ko": "1분이면 돼요."
+                }
+              ]
+            },
+            {
+              "text": "on foot",
+              "form": "on foot",
+              "meaning": "걸어서",
+              "nuance": "교통수단 없이 걸어서 간다는 뜻이다. by foot이 아니라 on foot이라고 한다.",
+              "examples": [
+                {
+                  "en": "It's ten minutes on foot.",
+                  "ko": "걸어서 10분이에요."
+                },
+                {
+                  "en": "We explored the city on foot.",
+                  "ko": "우리는 걸어서 도시를 구경했어요."
+                },
+                {
+                  "en": "Is it faster on foot or by bus?",
+                  "ko": "걸어가는 게 빨라요, 버스가 빨라요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Which line should I take to get downtown?",
+          "ko_word_order": "어느 노선을 / 제가 타야 하나요 / 시내에 가려면?",
+          "ko_natural": "시내에 가려면 몇 호선을 타야 하나요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "line",
+              "form": "line",
+              "meaning": "(지하철) 노선, 호선",
+              "nuance": "지하철 노선을 말할 때 쓴다. 2호선은 Line 2라고 한다.",
+              "examples": [
+                {
+                  "en": "Which line goes to the airport?",
+                  "ko": "공항 가는 건 몇 호선이에요?"
+                },
+                {
+                  "en": "Transfer to the green line here.",
+                  "ko": "여기서 초록색 노선으로 갈아타세요."
+                },
+                {
+                  "en": "This line is always crowded.",
+                  "ko": "이 노선은 항상 붐벼요."
+                }
+              ]
+            },
+            {
+              "text": "downtown",
+              "form": "downtown",
+              "meaning": "시내로, 시내에",
+              "nuance": "도시 중심가를 말한다. to 없이 go downtown처럼 쓴다.",
+              "examples": [
+                {
+                  "en": "Let's go downtown for dinner.",
+                  "ko": "저녁 먹으러 시내 가자."
+                },
+                {
+                  "en": "I work downtown.",
+                  "ko": "저는 시내에서 일해요."
+                },
+                {
+                  "en": "Parking downtown is expensive.",
+                  "ko": "시내는 주차비가 비싸요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Take Line 2 and get off at City Hall.",
+          "ko_word_order": "타세요 / 2호선을 / 그리고 내리세요 / 시청에서",
+          "ko_natural": "2호선을 타고 시청역에서 내리세요.",
+          "terms": [
+            {
+              "text": "get off",
+              "form": "get off",
+              "meaning": "(차에서) 내리다",
+              "nuance": "버스·지하철·기차에서 내릴 때 쓴다. 택시나 승용차에서는 get out of를 쓴다.",
+              "examples": [
+                {
+                  "en": "Get off at the next stop.",
+                  "ko": "다음 정거장에서 내리세요."
+                },
+                {
+                  "en": "Where should I get off?",
+                  "ko": "어디서 내려야 해요?"
+                },
+                {
+                  "en": "I got off one stop too early.",
+                  "ko": "한 정거장 일찍 내렸어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "How long does it take from here?",
+          "ko_word_order": "얼마나 오래 / 그것은 걸리나요 / 여기서부터?",
+          "ko_natural": "여기서 얼마나 걸려요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "how long does it take",
+              "form": "how long does it take",
+              "meaning": "얼마나 걸려요?",
+              "nuance": "이동이나 일에 드는 시간을 물을 때 쓴다. 대답은 It takes ~로 한다.",
+              "examples": [
+                {
+                  "en": "How long does it take to get there by car?",
+                  "ko": "차로 거기까지 얼마나 걸려요?"
+                },
+                {
+                  "en": "How long does it take to cook rice?",
+                  "ko": "밥 짓는 데 얼마나 걸려요?"
+                },
+                {
+                  "en": "How long does it take to walk to school?",
+                  "ko": "학교까지 걸어서 얼마나 걸려요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "About twenty minutes during rush hour.",
+          "ko_word_order": "약 20분이요 / 출퇴근 시간 동안에는",
+          "ko_natural": "출퇴근 시간에는 20분 정도 걸려요.",
+          "terms": [
+            {
+              "text": "rush hour",
+              "form": "rush hour",
+              "meaning": "출퇴근 시간, 혼잡 시간",
+              "nuance": "출퇴근으로 길과 대중교통이 가장 붐비는 시간이다. 앞에 during이나 at을 쓴다.",
+              "examples": [
+                {
+                  "en": "Avoid the subway during rush hour.",
+                  "ko": "출퇴근 시간에는 지하철을 피하세요."
+                },
+                {
+                  "en": "Traffic is terrible at rush hour.",
+                  "ko": "러시아워에는 교통이 엉망이에요."
+                },
+                {
+                  "en": "I left early to beat the rush hour.",
+                  "ko": "출퇴근 시간 피하려고 일찍 나왔어요."
+                }
+              ]
+            },
+            {
+              "text": "during",
+              "form": "during",
+              "meaning": "~ 동안에",
+              "nuance": "어떤 시간대나 일이 벌어지는 동안을 말할 때 쓴다. 뒤에 숫자 기간이 오면 for를 쓴다.",
+              "examples": [
+                {
+                  "en": "I fell asleep during the movie.",
+                  "ko": "영화 보다가 잠들었어요."
+                },
+                {
+                  "en": "Please turn off your phone during class.",
+                  "ko": "수업 중에는 휴대폰을 꺼 주세요."
+                },
+                {
+                  "en": "It rained during our trip.",
+                  "ko": "여행 동안 비가 왔어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Thanks a lot. You've been very helpful.",
+          "ko_word_order": "정말 고마워요. / 당신은 되어 주었어요 / 매우 도움이",
+          "ko_natural": "정말 감사합니다. 큰 도움이 됐어요.",
+          "terms": [
+            {
+              "text": "thanks a lot",
+              "form": "thanks a lot",
+              "meaning": "정말 고마워요",
+              "nuance": "Thanks보다 고마움을 강조한다. 억양에 따라 비꼬는 뜻이 되기도 하니 밝게 말한다.",
+              "examples": [
+                {
+                  "en": "Thanks a lot for the ride.",
+                  "ko": "태워 줘서 정말 고마워."
+                },
+                {
+                  "en": "Thanks a lot, that really helps.",
+                  "ko": "정말 고마워요, 큰 도움 돼요."
+                },
+                {
+                  "en": "Thanks a lot for waiting.",
+                  "ko": "기다려 줘서 정말 고마워요."
+                }
+              ]
+            },
+            {
+              "text": "helpful",
+              "form": "helpful",
+              "meaning": "도움이 되는",
+              "nuance": "사람이나 정보가 도움이 됐을 때 쓴다. You've been very helpful은 낯선 사람에게 하는 정중한 감사다.",
+              "examples": [
+                {
+                  "en": "Thanks, that's really helpful.",
+                  "ko": "고마워요, 정말 도움 돼요."
+                },
+                {
+                  "en": "The staff here are very helpful.",
+                  "ko": "여기 직원들이 정말 잘 도와줘요."
+                },
+                {
+                  "en": "Was the map helpful?",
+                  "ko": "지도가 도움이 됐어요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "No problem. Have a safe trip!",
+          "ko_word_order": "문제없어요. / 가지세요 / 안전한 이동을!",
+          "ko_natural": "별말씀을요. 조심히 가세요!",
+          "terms": [
+            {
+              "text": "no problem",
+              "form": "no problem",
+              "meaning": "별말씀을요, 괜찮아요",
+              "nuance": "고맙다는 말에 가볍게 답하거나 부탁을 흔쾌히 들어줄 때 쓴다. You're welcome보다 캐주얼하다.",
+              "examples": [
+                {
+                  "en": "Thanks for your help. No problem!",
+                  "ko": "도와줘서 고마워요. 별말씀을요!"
+                },
+                {
+                  "en": "No problem, I can wait.",
+                  "ko": "괜찮아요, 기다릴 수 있어요."
+                },
+                {
+                  "en": "Can you hold this? No problem.",
+                  "ko": "이것 좀 들어 줄래요? 그럼요."
+                }
+              ]
+            },
+            {
+              "text": "have a safe trip",
+              "form": "have a safe trip",
+              "meaning": "조심히 가세요",
+              "nuance": "여행이나 먼 길을 떠나는 사람에게 하는 인사다. 집에 가는 사람에게는 Get home safe라고도 한다.",
+              "examples": [
+                {
+                  "en": "Have a safe trip back to Seoul.",
+                  "ko": "서울까지 조심히 가세요."
+                },
+                {
+                  "en": "Bye, Mom! Have a safe trip!",
+                  "ko": "엄마, 잘 다녀오세요!"
+                },
+                {
+                  "en": "Have a safe trip and call me later.",
+                  "ko": "조심히 가고 나중에 전화해."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "title": "약속 잡기",
+      "theme": "Making plans",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Are you free this Saturday?",
+          "ko_word_order": "당신은 한가한가요 / 이번 토요일에?",
+          "ko_natural": "이번 토요일에 시간 있어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "free",
+              "form": "free",
+              "meaning": "(시간이) 비는, 한가한",
+              "nuance": "약속을 잡으려고 시간이 되는지 물을 때 쓴다. available은 조금 더 격식 있는 말이다.",
+              "examples": [
+                {
+                  "en": "Are you free for lunch tomorrow?",
+                  "ko": "내일 점심 시간 돼요?"
+                },
+                {
+                  "en": "I'm free after six.",
+                  "ko": "6시 이후엔 시간 돼요."
+                },
+                {
+                  "en": "Let me know when you're free.",
+                  "ko": "시간 날 때 알려 줘요."
+                }
+              ]
+            },
+            {
+              "text": "this Saturday",
+              "form": "this Saturday",
+              "meaning": "이번 토요일",
+              "nuance": "this + 요일은 이번 주 그 요일을 말한다. 다음 주면 next Saturday라고 한다.",
+              "examples": [
+                {
+                  "en": "I'm busy this Saturday.",
+                  "ko": "이번 토요일엔 바빠요."
+                },
+                {
+                  "en": "Is the market open this Saturday?",
+                  "ko": "이번 토요일에 시장 열어요?"
+                },
+                {
+                  "en": "Let's clean the house this Saturday.",
+                  "ko": "이번 토요일에 집 청소하자."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I think so. What do you have in mind?",
+          "ko_word_order": "그런 것 같아요. / 무엇을 / 당신은 가지고 있나요 / 마음속에?",
+          "ko_natural": "아마도요. 뭐 생각해 둔 거 있어요?",
+          "terms": [
+            {
+              "text": "I think so",
+              "form": "I think so",
+              "meaning": "그런 것 같아요",
+              "nuance": "확실하진 않지만 그렇다고 답할 때 쓴다. Yes보다 조심스러운 대답이다.",
+              "examples": [
+                {
+                  "en": "Is the store still open? I think so.",
+                  "ko": "가게 아직 열었을까요? 그런 것 같아요."
+                },
+                {
+                  "en": "I think so, but let me check.",
+                  "ko": "그런 것 같은데 확인해 볼게요."
+                },
+                {
+                  "en": "Is this the right bus? I think so.",
+                  "ko": "이 버스 맞아요? 맞는 것 같아요."
+                }
+              ]
+            },
+            {
+              "text": "have in mind",
+              "form": "have in mind",
+              "meaning": "생각해 둔 게 있다",
+              "nuance": "계획이나 아이디어를 이미 떠올려 두었는지 묻거나 말할 때 쓴다.",
+              "examples": [
+                {
+                  "en": "Do you have anything in mind for her birthday?",
+                  "ko": "그녀 생일 선물로 생각해 둔 거 있어?"
+                },
+                {
+                  "en": "I have a place in mind for dinner.",
+                  "ko": "저녁 먹을 곳 생각해 둔 데 있어요."
+                },
+                {
+                  "en": "Is this what you had in mind?",
+                  "ko": "이게 네가 생각한 거야?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "How about grabbing dinner together?",
+          "ko_word_order": "어때요 / 저녁을 먹는 것이 / 함께?",
+          "ko_natural": "같이 저녁 먹는 거 어때요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "how about",
+              "form": "how about",
+              "meaning": "~하는 거 어때요?",
+              "nuance": "가볍게 제안할 때 쓰며 뒤에 명사나 -ing가 온다. Why don't we보다 부담이 적다.",
+              "examples": [
+                {
+                  "en": "How about a coffee break?",
+                  "ko": "커피 한잔하면서 쉬는 거 어때요?"
+                },
+                {
+                  "en": "How about meeting at noon?",
+                  "ko": "정오에 만나는 거 어때?"
+                },
+                {
+                  "en": "How about going to the beach?",
+                  "ko": "바다 가는 거 어때?"
+                }
+              ]
+            },
+            {
+              "text": "grab dinner",
+              "form": "grabbing dinner",
+              "meaning": "(간단히) 저녁 먹다",
+              "nuance": "grab은 간단히 먹거나 산다는 구어체다. 친구 사이에 가볍게 쓰고, 격식 있는 자리에서는 have dinner를 쓴다.",
+              "examples": [
+                {
+                  "en": "Let's grab dinner after work.",
+                  "ko": "퇴근하고 저녁 먹자."
+                },
+                {
+                  "en": "We grabbed dinner near the station.",
+                  "ko": "역 근처에서 저녁 먹었어."
+                },
+                {
+                  "en": "Want to grab dinner tonight?",
+                  "ko": "오늘 저녁 같이 먹을래?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sounds good. What time works for you?",
+          "ko_word_order": "좋아요. / 몇 시가 / 괜찮나요 / 당신에게?",
+          "ko_natural": "좋아요. 몇 시가 편하세요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "sounds good",
+              "form": "sounds good",
+              "meaning": "좋아요",
+              "nuance": "제안에 동의할 때 쓰는 아주 흔한 구어다. That sounds good의 줄임말이다.",
+              "examples": [
+                {
+                  "en": "Pizza tonight? Sounds good.",
+                  "ko": "오늘 밤 피자? 좋아."
+                },
+                {
+                  "en": "Sounds good, see you then.",
+                  "ko": "좋아요, 그때 봐요."
+                },
+                {
+                  "en": "Sounds good to me.",
+                  "ko": "난 좋아."
+                }
+              ]
+            },
+            {
+              "text": "work for",
+              "form": "works for",
+              "meaning": "~에게 괜찮다, 편하다",
+              "nuance": "시간이나 계획이 상대에게 맞는지 물을 때 쓴다. 약속을 잡을 때 매우 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Does Monday work for you?",
+                  "ko": "월요일 괜찮아요?"
+                },
+                {
+                  "en": "Does next week work for your team?",
+                  "ko": "다음 주면 팀에 괜찮을까요?"
+                },
+                {
+                  "en": "Does this plan work for everyone?",
+                  "ko": "이 계획 다들 괜찮아요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Is seven o'clock okay with you?",
+          "ko_word_order": "7시가 괜찮나요 / 당신에게?",
+          "ko_natural": "7시 괜찮아요?",
+          "terms": [
+            {
+              "text": "okay with",
+              "form": "okay with",
+              "meaning": "~에게 괜찮은",
+              "nuance": "상대의 동의나 편의를 확인할 때 be okay with 형태로 쓴다.",
+              "examples": [
+                {
+                  "en": "Is it okay with you if I open the window?",
+                  "ko": "창문 좀 열어도 괜찮아요?"
+                },
+                {
+                  "en": "I'm okay with either option.",
+                  "ko": "저는 둘 다 괜찮아요."
+                },
+                {
+                  "en": "Are you okay with spicy food?",
+                  "ko": "매운 음식 괜찮아요?"
+                }
+              ]
+            },
+            {
+              "text": "o'clock",
+              "form": "o'clock",
+              "meaning": "~시 정각",
+              "nuance": "정각 시간을 말할 때만 쓴다. 7시 반처럼 분이 있으면 o'clock을 붙이지 않는다.",
+              "examples": [
+                {
+                  "en": "The store opens at ten o'clock.",
+                  "ko": "가게는 10시에 열어요."
+                },
+                {
+                  "en": "I have a meeting at three o'clock.",
+                  "ko": "3시에 회의가 있어요."
+                },
+                {
+                  "en": "It's already eleven o'clock!",
+                  "ko": "벌써 11시야!"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Could we make it seven thirty instead?",
+          "ko_word_order": "우리가 할 수 있을까요 / 그것을 7시 30분으로 / 대신에?",
+          "ko_natural": "대신 7시 반으로 해도 될까요?",
+          "terms": [
+            {
+              "text": "make it",
+              "form": "make it",
+              "meaning": "(시간을) ~로 하다",
+              "nuance": "약속 시간이나 장소를 정하거나 바꿀 때 쓴다. 제시간에 온다는 뜻도 있어 문맥을 본다.",
+              "examples": [
+                {
+                  "en": "Let's make it eight instead of seven.",
+                  "ko": "7시 말고 8시로 하자."
+                },
+                {
+                  "en": "Can we make it next Friday?",
+                  "ko": "다음 주 금요일로 할 수 있을까요?"
+                },
+                {
+                  "en": "Let's make it a quick lunch.",
+                  "ko": "점심은 간단히 하자."
+                }
+              ]
+            },
+            {
+              "text": "instead",
+              "form": "instead",
+              "meaning": "대신에",
+              "nuance": "원래 것 말고 다른 것으로 바꿀 때 문장 끝에 쓴다. 뒤에 명사가 오면 instead of를 쓴다.",
+              "examples": [
+                {
+                  "en": "I'll have tea instead.",
+                  "ko": "저는 대신 차 마실게요."
+                },
+                {
+                  "en": "Let's stay home instead.",
+                  "ko": "대신 집에 있자."
+                },
+                {
+                  "en": "Can I get a salad instead?",
+                  "ko": "대신 샐러드로 주실 수 있어요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "No problem. Where should we meet?",
+          "ko_word_order": "문제없어요. / 어디서 / 우리는 만나야 할까요?",
+          "ko_natural": "괜찮아요. 어디서 만날까요?",
+          "terms": [
+            {
+              "text": "where should we meet",
+              "form": "where should we meet",
+              "meaning": "어디서 만날까요?",
+              "nuance": "약속 장소를 정할 때 쓰는 질문이다. should는 여기서 '~할까요'라는 제안의 느낌이다.",
+              "examples": [
+                {
+                  "en": "So where should we meet tomorrow?",
+                  "ko": "그럼 내일 어디서 만날까?"
+                },
+                {
+                  "en": "Where should we meet after the movie?",
+                  "ko": "영화 끝나고 어디서 만날까요?"
+                },
+                {
+                  "en": "Where should we meet, at the station?",
+                  "ko": "어디서 볼까, 역에서?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Let's meet in front of the main gate.",
+          "ko_word_order": "만나요 / 정문 앞에서",
+          "ko_natural": "정문 앞에서 만나요.",
+          "terms": [
+            {
+              "text": "in front of",
+              "form": "in front of",
+              "meaning": "~ 앞에서",
+              "nuance": "건물이나 물건의 바로 앞을 말할 때 쓴다. 뒤쪽은 behind를 쓴다.",
+              "examples": [
+                {
+                  "en": "I'll wait in front of the bank.",
+                  "ko": "은행 앞에서 기다릴게요."
+                },
+                {
+                  "en": "Don't park in front of the gate.",
+                  "ko": "문 앞에 주차하지 마세요."
+                },
+                {
+                  "en": "She was standing in front of me.",
+                  "ko": "그녀가 내 앞에 서 있었어요."
+                }
+              ]
+            },
+            {
+              "text": "main gate",
+              "form": "main gate",
+              "meaning": "정문",
+              "nuance": "학교·공원·회사 같은 곳의 가장 큰 출입문이다. 건물 출입구는 main entrance라고 한다.",
+              "examples": [
+                {
+                  "en": "The taxi will stop at the main gate.",
+                  "ko": "택시는 정문에서 설 거예요."
+                },
+                {
+                  "en": "The main gate closes at ten.",
+                  "ko": "정문은 10시에 닫혀요."
+                },
+                {
+                  "en": "Use the main gate, not the back door.",
+                  "ko": "뒷문 말고 정문으로 다니세요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Perfect. I'll make a reservation.",
+          "ko_word_order": "완벽해요. / 제가 할게요 / 예약을",
+          "ko_natural": "좋아요. 제가 예약할게요.",
+          "terms": [
+            {
+              "text": "perfect",
+              "form": "perfect",
+              "meaning": "딱 좋아요",
+              "nuance": "계획이나 제안이 마음에 꼭 들 때 맞장구로 쓴다. Great보다 '바로 그거'라는 느낌이 강하다.",
+              "examples": [
+                {
+                  "en": "Seven works? Perfect.",
+                  "ko": "7시 괜찮아? 딱 좋아."
+                },
+                {
+                  "en": "Perfect, that's exactly what I needed.",
+                  "ko": "완벽해요, 딱 필요하던 거예요."
+                },
+                {
+                  "en": "The weather is perfect for a picnic.",
+                  "ko": "소풍 가기 딱 좋은 날씨예요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Great. I'm looking forward to it!",
+          "ko_word_order": "좋아요. / 저는 기대하고 있어요 / 그것을!",
+          "ko_natural": "좋아요. 정말 기대돼요!",
+          "terms": [
+            {
+              "text": "look forward to",
+              "form": "looking forward to",
+              "meaning": "~을 기대하다",
+              "nuance": "앞으로 있을 일을 기다린다고 말할 때 쓴다. to 뒤에는 명사나 -ing가 오고 업무 대화에서도 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "I'm looking forward to the weekend.",
+                  "ko": "주말이 기다려져요."
+                },
+                {
+                  "en": "We look forward to seeing you.",
+                  "ko": "뵙기를 고대합니다."
+                },
+                {
+                  "en": "Are you looking forward to the trip?",
+                  "ko": "여행 기대돼?"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

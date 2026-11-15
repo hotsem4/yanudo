@@ -1,0 +1,437 @@
+{
+  "lessons": [
+    {
+      "day": 13,
+      "title": "약국에서",
+      "theme": "At the pharmacy",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi, do you have anything for a sore throat?",
+          "ko_word_order": "안녕하세요, 당신은 가지고 있나요 / 무언가를 / 아픈 목을 위한?",
+          "ko_natural": "안녕하세요, 목 아픈 데 먹는 약 있어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "sore throat",
+              "meaning": "목이 아픔",
+              "nuance": "감기 초기에 목이 따갑고 아플 때 쓰는 기본 표현. have a sore throat 꼴로 많이 쓴다.",
+              "examples": [
+                {
+                  "en": "I woke up with a sore throat today.",
+                  "ko": "오늘 아침에 일어났더니 목이 아파."
+                },
+                {
+                  "en": "Drink some tea. It helps a sore throat.",
+                  "ko": "차 좀 마셔. 목 아플 때 좋아."
+                },
+                {
+                  "en": "She can't sing tonight because of a sore throat.",
+                  "ko": "그녀는 목이 아파서 오늘 밤 노래를 못 해."
+                }
+              ]
+            },
+            {
+              "text": "anything for",
+              "meaning": "~에 듣는 것(약)",
+              "nuance": "약국에서 증상을 말하며 약을 찾을 때 쓰는 말. Do you have anything for ~? 를 통째로 외우면 편하다.",
+              "examples": [
+                {
+                  "en": "Do you have anything for a headache?",
+                  "ko": "두통약 있어요?"
+                },
+                {
+                  "en": "Is there anything for motion sickness here?",
+                  "ko": "여기 멀미약 있어요?"
+                },
+                {
+                  "en": "Do you sell anything for bug bites?",
+                  "ko": "벌레 물린 데 바르는 거 팔아요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. Do you have a fever or a cough?",
+          "ko_word_order": "네. / 당신은 있나요 / 열이나 기침이?",
+          "ko_natural": "네. 열이 나거나 기침도 하세요?",
+          "terms": [
+            {
+              "text": "have a fever",
+              "meaning": "열이 나다",
+              "nuance": "몸에 열이 있을 때 쓰는 일상 표현. 열이 심하면 a high fever라고 한다.",
+              "examples": [
+                {
+                  "en": "My son has a fever, so he's staying home.",
+                  "ko": "아들이 열이 나서 집에 있어."
+                },
+                {
+                  "en": "I had a fever all night.",
+                  "ko": "밤새 열이 났어."
+                },
+                {
+                  "en": "Call a doctor if you have a high fever.",
+                  "ko": "열이 많이 나면 의사한테 전화해."
+                }
+              ]
+            },
+            {
+              "text": "cough",
+              "meaning": "기침(하다)",
+              "nuance": "명사로도 동사로도 쓴다. 기침이 오래가면 a bad cough라고 한다.",
+              "examples": [
+                {
+                  "en": "That cough sounds bad. You should rest.",
+                  "ko": "기침 소리가 심하네. 좀 쉬어."
+                },
+                {
+                  "en": "Cover your mouth when you cough.",
+                  "ko": "기침할 때는 입을 가려."
+                },
+                {
+                  "en": "My cough gets worse at night.",
+                  "ko": "밤만 되면 기침이 심해져."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "No fever, just a dry cough since yesterday.",
+          "ko_word_order": "열은 없고, / 그냥 마른기침이요 / 어제부터",
+          "ko_natural": "열은 없고, 어제부터 마른기침만 해요.",
+          "terms": [
+            {
+              "text": "dry cough",
+              "meaning": "마른기침",
+              "nuance": "가래 없이 나오는 기침. 가래가 있으면 a wet cough라고 한다.",
+              "examples": [
+                {
+                  "en": "This dry cough keeps me up at night.",
+                  "ko": "마른기침 때문에 밤에 잠을 못 자."
+                },
+                {
+                  "en": "Honey is good for a dry cough.",
+                  "ko": "꿀이 마른기침에 좋아."
+                },
+                {
+                  "en": "He's had a dry cough for a week.",
+                  "ko": "그는 일주일째 마른기침을 해."
+                }
+              ]
+            },
+            {
+              "text": "since",
+              "meaning": "~부터(지금까지)",
+              "nuance": "그때부터 지금까지 이어진다는 느낌. 시작점만 말하는 from과 다르다.",
+              "examples": [
+                {
+                  "en": "I haven't eaten since lunch.",
+                  "ko": "점심 이후로 아무것도 안 먹었어."
+                },
+                {
+                  "en": "It's been raining since Monday.",
+                  "ko": "월요일부터 계속 비가 와."
+                },
+                {
+                  "en": "We've known each other since high school.",
+                  "ko": "우리는 고등학교 때부터 알던 사이야."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Try these lozenges. Take one every three hours.",
+          "ko_word_order": "써 보세요 / 이 목캔디들을. / 하나 드세요 / 세 시간마다",
+          "ko_natural": "이 목캔디 드셔 보세요. 세 시간마다 하나씩 드시면 돼요.",
+          "terms": [
+            {
+              "text": "lozenge",
+              "form": "lozenges",
+              "meaning": "목캔디, 트로키",
+              "nuance": "약국에서 파는 빨아 먹는 목 약. 일상에서는 throat drop이라고도 한다.",
+              "examples": [
+                {
+                  "en": "I always keep lozenges in my bag.",
+                  "ko": "난 가방에 늘 목캔디를 넣고 다녀."
+                },
+                {
+                  "en": "These lozenges taste like honey.",
+                  "ko": "이 목캔디 꿀 맛이 나."
+                },
+                {
+                  "en": "Don't chew the lozenge. Let it melt.",
+                  "ko": "목캔디는 씹지 말고 녹여 먹어."
+                }
+              ]
+            },
+            {
+              "text": "take",
+              "meaning": "(약을) 먹다",
+              "nuance": "약은 eat이 아니라 take로 먹는다. 알약도 물약도 모두 take.",
+              "examples": [
+                {
+                  "en": "Did you take your medicine this morning?",
+                  "ko": "오늘 아침에 약 먹었어?"
+                },
+                {
+                  "en": "Take two pills after each meal.",
+                  "ko": "식후에 두 알씩 드세요."
+                },
+                {
+                  "en": "I forgot to take my vitamins again.",
+                  "ko": "또 비타민 먹는 걸 깜빡했어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Do they make you drowsy?",
+          "ko_word_order": "그것들이 만드나요 / 당신을 / 졸리게?",
+          "ko_natural": "먹으면 졸려요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "drowsy",
+              "meaning": "졸린, 나른한",
+              "nuance": "약 기운이나 피로로 몽롱하게 졸린 상태. sleepy보다 약 설명에서 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "I feel drowsy after lunch every day.",
+                  "ko": "매일 점심 먹고 나면 나른해."
+                },
+                {
+                  "en": "Don't drive if you feel drowsy.",
+                  "ko": "졸리면 운전하지 마."
+                },
+                {
+                  "en": "The cold medicine made me really drowsy.",
+                  "ko": "감기약 먹고 엄청 졸렸어."
+                }
+              ]
+            },
+            {
+              "text": "make",
+              "meaning": "~하게 만들다",
+              "nuance": "make + 사람 + 형용사 꼴로 '그 사람을 어떤 상태로 만든다'. 약·음식의 효과를 말할 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "Coffee makes me nervous.",
+                  "ko": "커피 마시면 나는 불안해져."
+                },
+                {
+                  "en": "Long flights make me tired.",
+                  "ko": "장거리 비행은 날 지치게 해."
+                },
+                {
+                  "en": "Does this song make you sad?",
+                  "ko": "이 노래 들으면 슬퍼져?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "A little, so avoid driving after taking them.",
+          "ko_word_order": "조금요, / 그러니 피하세요 / 운전하는 것을 / 그것들을 먹은 후에",
+          "ko_natural": "조금요. 그러니까 드시고 나서는 운전하지 마세요.",
+          "terms": [
+            {
+              "text": "avoid",
+              "meaning": "피하다",
+              "nuance": "avoid 뒤에는 -ing가 온다(avoid to drive X). don't보다 조언하는 느낌이 있다.",
+              "examples": [
+                {
+                  "en": "Try to avoid coffee before bed.",
+                  "ko": "자기 전에는 커피를 피해."
+                },
+                {
+                  "en": "I avoid driving at rush hour.",
+                  "ko": "나는 출퇴근 시간엔 운전을 피해."
+                },
+                {
+                  "en": "Avoid eating late at night.",
+                  "ko": "밤늦게 먹는 건 피해."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Got it. Do I need a prescription for these?",
+          "ko_word_order": "알겠어요. / 저는 필요한가요 / 처방전이 / 이것들을 위해?",
+          "ko_natural": "알겠어요. 이거 처방전 있어야 해요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "prescription",
+              "meaning": "처방전",
+              "nuance": "의사가 써 주는 약 처방. 처방약을 받다는 pick up a prescription.",
+              "examples": [
+                {
+                  "en": "The doctor gave me a prescription for antibiotics.",
+                  "ko": "의사가 항생제 처방전을 줬어."
+                },
+                {
+                  "en": "You can't buy this without a prescription.",
+                  "ko": "이건 처방전 없이 못 사요."
+                },
+                {
+                  "en": "I need to pick up my prescription today.",
+                  "ko": "오늘 처방약 받으러 가야 해."
+                }
+              ]
+            },
+            {
+              "text": "got it",
+              "meaning": "알겠어요",
+              "nuance": "설명을 이해했다는 짧은 구어 대답. 격식 있는 자리에서는 I understand나 Understood.",
+              "examples": [
+                {
+                  "en": "Turn left at the bank? Got it.",
+                  "ko": "은행에서 왼쪽이요? 알겠어요."
+                },
+                {
+                  "en": "Got it, I'll call you after lunch.",
+                  "ko": "알겠어, 점심 먹고 전화할게."
+                },
+                {
+                  "en": "Just press this button. Got it?",
+                  "ko": "이 버튼만 누르면 돼. 알겠지?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "No, you can buy them over the counter.",
+          "ko_word_order": "아니요, / 당신은 살 수 있어요 / 그것들을 / 처방 없이",
+          "ko_natural": "아니요, 처방전 없이 그냥 사실 수 있어요.",
+          "terms": [
+            {
+              "text": "over the counter",
+              "meaning": "처방전 없이",
+              "nuance": "약국에서 처방전 없이 바로 살 수 있다는 뜻. 줄여서 OTC라고도 한다.",
+              "examples": [
+                {
+                  "en": "You can get allergy pills over the counter.",
+                  "ko": "알레르기 약은 처방전 없이 살 수 있어."
+                },
+                {
+                  "en": "Is this sold over the counter?",
+                  "ko": "이거 처방전 없이 팔아요?"
+                },
+                {
+                  "en": "Most painkillers are available over the counter.",
+                  "ko": "진통제는 대부분 처방전 없이 살 수 있어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Great. I'll take a box, then.",
+          "ko_word_order": "좋아요. / 제가 살게요 / 한 상자를, / 그럼",
+          "ko_natural": "좋네요. 그럼 한 통 주세요.",
+          "terms": [
+            {
+              "text": "I'll take",
+              "meaning": "(이걸로) 살게요",
+              "nuance": "가게에서 살 물건을 정했을 때 쓰는 말. I'll buy보다 훨씬 자연스럽다.",
+              "examples": [
+                {
+                  "en": "I'll take the blue one.",
+                  "ko": "파란 걸로 할게요."
+                },
+                {
+                  "en": "This shirt is perfect. I'll take it.",
+                  "ko": "이 셔츠 딱이네요. 이걸로 살게요."
+                },
+                {
+                  "en": "I'll take two of these, please.",
+                  "ko": "이거 두 개 주세요."
+                }
+              ]
+            },
+            {
+              "text": "then",
+              "meaning": "그럼, 그렇다면",
+              "nuance": "문장 끝의 then은 앞 말을 받아 '그럼 그렇게 하자'는 결론 느낌. 시간 순서의 then과 다르다.",
+              "examples": [
+                {
+                  "en": "You're busy? Let's talk tomorrow, then.",
+                  "ko": "바빠? 그럼 내일 얘기하자."
+                },
+                {
+                  "en": "No coffee left? Tea, then.",
+                  "ko": "커피 다 떨어졌어? 그럼 차로."
+                },
+                {
+                  "en": "Okay then, see you at six.",
+                  "ko": "그럼 6시에 봐."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Here you go. Hope you feel better soon!",
+          "ko_word_order": "여기 있어요. / 바라요 / 당신이 나아지길 / 곧",
+          "ko_natural": "여기 있어요. 얼른 나으세요!",
+          "terms": [
+            {
+              "text": "here you go",
+              "meaning": "여기 있어요",
+              "nuance": "물건을 건넬 때 쓰는 가장 흔한 말. Here you are보다 조금 더 가볍다.",
+              "examples": [
+                {
+                  "en": "Here you go, one iced latte.",
+                  "ko": "여기 있어요, 아이스 라테 하나요."
+                },
+                {
+                  "en": "You need a pen? Here you go.",
+                  "ko": "펜 필요해? 여기."
+                },
+                {
+                  "en": "Here you go. Your change is in the bag.",
+                  "ko": "여기 있어요. 거스름돈은 봉투에 넣었어요."
+                }
+              ]
+            },
+            {
+              "text": "feel better",
+              "meaning": "몸이 나아지다",
+              "nuance": "아픈 사람에게 '얼른 나아'라고 할 때 쓴다. 비슷한 인사로 Get well soon도 있다.",
+              "examples": [
+                {
+                  "en": "I hope you feel better tomorrow.",
+                  "ko": "내일은 좀 나아지면 좋겠다."
+                },
+                {
+                  "en": "Do you feel better after the nap?",
+                  "ko": "낮잠 자고 나니 좀 나아?"
+                },
+                {
+                  "en": "I feel much better now, thanks.",
+                  "ko": "이제 훨씬 나아졌어, 고마워."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

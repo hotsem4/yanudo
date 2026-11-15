@@ -1,0 +1,401 @@
+{
+  "lessons": [
+    {
+      "day": 9,
+      "title": "옷 가게에서 쇼핑하기",
+      "theme": "Shopping for clothes",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi there! Are you looking for anything in particular?",
+          "ko_word_order": "안녕하세요! / 찾고 계신가요 / 무언가를 / 특별히?",
+          "ko_natural": "안녕하세요! 특별히 찾으시는 거 있으세요?",
+          "core": false,
+          "terms": [
+            {
+              "text": "in particular",
+              "form": "in particular",
+              "meaning": "특별히",
+              "nuance": "정해 둔 것이 있는지 물을 때 쓴다. Nothing in particular라고 답하면 '딱히 없어요'라는 뜻이다.",
+              "examples": [
+                {
+                  "en": "Is there anything in particular you want to eat?",
+                  "ko": "특별히 먹고 싶은 거 있어?"
+                },
+                {
+                  "en": "Nothing in particular, just browsing.",
+                  "ko": "딱히 없어요, 그냥 둘러보는 중이에요."
+                },
+                {
+                  "en": "I liked the ending in particular.",
+                  "ko": "특히 결말이 좋았어요."
+                }
+              ]
+            },
+            {
+              "text": "look for",
+              "form": "looking for",
+              "meaning": "~을 찾다",
+              "nuance": "물건이나 사람을 찾는 중일 때 쓴다. find는 찾아냈다는 결과에 초점이 있다.",
+              "examples": [
+                {
+                  "en": "I'm looking for my phone.",
+                  "ko": "휴대폰 찾고 있어요."
+                },
+                {
+                  "en": "Are you looking for a job?",
+                  "ko": "일자리 찾고 있어요?"
+                },
+                {
+                  "en": "We're looking for a good place to eat.",
+                  "ko": "밥 먹을 좋은 데 찾고 있어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I need a light jacket for the fall.",
+          "ko_word_order": "저는 필요해요 / 가벼운 재킷이 / 가을을 위한",
+          "ko_natural": "가을에 입을 가벼운 재킷이 필요해요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "light",
+              "form": "light",
+              "meaning": "가벼운, 얇은",
+              "nuance": "옷이 두껍지 않고 가벼울 때 쓴다. 반대로 두꺼운 옷은 heavy나 warm이라고 한다.",
+              "examples": [
+                {
+                  "en": "I'll bring a light sweater.",
+                  "ko": "얇은 스웨터 하나 챙길게요."
+                },
+                {
+                  "en": "It's a light coat, perfect for spring.",
+                  "ko": "가벼운 코트라 봄에 딱이에요."
+                },
+                {
+                  "en": "She wore a light dress.",
+                  "ko": "그녀는 얇은 원피스를 입었어요."
+                }
+              ]
+            },
+            {
+              "text": "fall",
+              "form": "fall",
+              "meaning": "가을",
+              "nuance": "미국에서는 가을을 fall이라고 자주 하고 영국에서는 autumn을 쓴다.",
+              "examples": [
+                {
+                  "en": "The leaves are beautiful in the fall.",
+                  "ko": "가을엔 단풍이 예뻐요."
+                },
+                {
+                  "en": "We're moving this fall.",
+                  "ko": "우리 이번 가을에 이사해요."
+                },
+                {
+                  "en": "Fall is my favorite season.",
+                  "ko": "가을이 제일 좋아하는 계절이에요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "How about this one? It just came in.",
+          "ko_word_order": "이건 어때요? / 그것은 막 들어왔어요",
+          "ko_natural": "이건 어떠세요? 막 들어온 신상이에요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "this one",
+              "form": "this one",
+              "meaning": "이것",
+              "nuance": "앞에 나온 물건 종류를 다시 말하지 않고 one으로 받는다. 여러 개 중 고를 때 자주 쓴다.",
+              "examples": [
+                {
+                  "en": "I like this one better.",
+                  "ko": "이게 더 좋아요."
+                },
+                {
+                  "en": "Can I see this one in black?",
+                  "ko": "이거 검은색으로 볼 수 있어요?"
+                },
+                {
+                  "en": "This one's mine, and that one's yours.",
+                  "ko": "이건 내 거고, 저건 네 거야."
+                }
+              ]
+            },
+            {
+              "text": "come in",
+              "form": "came in",
+              "meaning": "(상품이) 들어오다",
+              "nuance": "가게에 새 상품이 입고되었을 때 쓴다. just came in이면 막 들어온 신상이라는 뜻이다.",
+              "examples": [
+                {
+                  "en": "These shoes just came in yesterday.",
+                  "ko": "이 신발 어제 막 들어왔어요."
+                },
+                {
+                  "en": "When will the new stock come in?",
+                  "ko": "새 물건은 언제 들어와요?"
+                },
+                {
+                  "en": "Your order came in this morning.",
+                  "ko": "주문하신 물건이 오늘 아침에 들어왔어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I like it. Do you have this in a medium?",
+          "ko_word_order": "저는 그것이 좋아요. / 있나요 / 이것이 / 미디엄으로?",
+          "ko_natural": "마음에 드네요. 이거 M 사이즈 있어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "in a medium",
+              "form": "in a medium",
+              "meaning": "M 사이즈로",
+              "nuance": "가게에서 사이즈나 색이 있는지 물을 때 in + 사이즈/색 형태로 쓴다.",
+              "examples": [
+                {
+                  "en": "This shirt only comes in a medium.",
+                  "ko": "이 셔츠는 M 사이즈만 나와요."
+                },
+                {
+                  "en": "I'd like it in a medium, please.",
+                  "ko": "M 사이즈로 주세요."
+                },
+                {
+                  "en": "They're sold out in a medium.",
+                  "ko": "M 사이즈는 다 팔렸어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Let me check. Yes, here's a medium.",
+          "ko_word_order": "확인해 볼게요. / 네, 여기 / 미디엄이 있어요",
+          "ko_natural": "확인해 볼게요. 네, 여기 M 사이즈요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "let me check",
+              "form": "let me check",
+              "meaning": "확인해 볼게요",
+              "nuance": "직원이 재고나 정보를 알아보겠다고 할 때 쓴다. 잠깐 기다려 달라는 뜻도 담긴다.",
+              "examples": [
+                {
+                  "en": "Let me check if we have it in stock.",
+                  "ko": "재고 있는지 확인해 볼게요."
+                },
+                {
+                  "en": "Let me check my schedule.",
+                  "ko": "제 일정 확인해 볼게요."
+                },
+                {
+                  "en": "I'm not sure. Let me check.",
+                  "ko": "잘 모르겠어요. 확인해 볼게요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Thanks. Can I try it on?",
+          "ko_word_order": "고마워요. / 제가 입어 볼 수 있나요 / 그것을?",
+          "ko_natural": "감사해요. 입어 봐도 돼요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "try on",
+              "form": "try it on",
+              "meaning": "입어 보다",
+              "nuance": "옷·신발·모자를 사기 전에 걸쳐 볼 때 쓴다. 대명사는 try it on처럼 가운데에 넣는다.",
+              "examples": [
+                {
+                  "en": "Can I try these shoes on?",
+                  "ko": "이 신발 신어 봐도 돼요?"
+                },
+                {
+                  "en": "You should try on the blue one.",
+                  "ko": "파란 거 입어 봐."
+                },
+                {
+                  "en": "I tried on five dresses today.",
+                  "ko": "오늘 원피스를 다섯 벌이나 입어 봤어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Sure, the fitting room is right over there.",
+          "ko_word_order": "물론이죠, / 탈의실은 있어요 / 바로 저쪽에",
+          "ko_natural": "그럼요, 탈의실은 바로 저쪽이에요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "fitting room",
+              "form": "fitting room",
+              "meaning": "탈의실",
+              "nuance": "옷 가게에서 옷을 입어 보는 곳이다. 영국에서는 changing room이라고 한다.",
+              "examples": [
+                {
+                  "en": "Where's the fitting room?",
+                  "ko": "탈의실 어디예요?"
+                },
+                {
+                  "en": "The fitting rooms are all full.",
+                  "ko": "탈의실이 다 찼어요."
+                },
+                {
+                  "en": "You can take three items into the fitting room.",
+                  "ko": "탈의실에는 세 벌까지 가지고 들어갈 수 있어요."
+                }
+              ]
+            },
+            {
+              "text": "over there",
+              "form": "over there",
+              "meaning": "저쪽에",
+              "nuance": "손으로 가리키며 조금 떨어진 곳을 말할 때 쓴다. 가까우면 over here라고 한다.",
+              "examples": [
+                {
+                  "en": "The restrooms are over there.",
+                  "ko": "화장실은 저쪽이에요."
+                },
+                {
+                  "en": "Can you see that sign over there?",
+                  "ko": "저기 저 표지판 보여요?"
+                },
+                {
+                  "en": "Let's sit over there by the window.",
+                  "ko": "저쪽 창가에 앉자."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "It fits perfectly. Is it on sale?",
+          "ko_word_order": "그것은 딱 맞아요. / 그것은 세일 중인가요?",
+          "ko_natural": "딱 맞네요. 이거 세일해요?",
+          "core": false,
+          "terms": [
+            {
+              "text": "fit",
+              "form": "fits",
+              "meaning": "(치수가) 맞다",
+              "nuance": "옷이나 신발 사이즈가 몸에 맞을 때 쓴다. 잘 어울린다는 뜻은 suit나 look good을 쓴다.",
+              "examples": [
+                {
+                  "en": "These pants don't fit me anymore.",
+                  "ko": "이 바지 이제 안 맞아요."
+                },
+                {
+                  "en": "Does the jacket fit okay?",
+                  "ko": "재킷 잘 맞아요?"
+                },
+                {
+                  "en": "The ring fits perfectly.",
+                  "ko": "반지가 딱 맞아요."
+                }
+              ]
+            },
+            {
+              "text": "on sale",
+              "form": "on sale",
+              "meaning": "세일 중인",
+              "nuance": "가격을 깎아 팔고 있다는 뜻이다. for sale은 판매 중이라는 다른 뜻이니 구분한다.",
+              "examples": [
+                {
+                  "en": "Everything in this section is on sale.",
+                  "ko": "이 코너는 전부 세일이에요."
+                },
+                {
+                  "en": "I bought this coat on sale.",
+                  "ko": "이 코트 세일할 때 샀어요."
+                },
+                {
+                  "en": "Are these shoes on sale?",
+                  "ko": "이 신발 세일해요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Yes, it's twenty percent off this week.",
+          "ko_word_order": "네, 그것은 20퍼센트 할인이에요 / 이번 주에",
+          "ko_natural": "네, 이번 주에 20% 할인해요.",
+          "core": false,
+          "terms": [
+            {
+              "text": "percent off",
+              "form": "percent off",
+              "meaning": "~% 할인",
+              "nuance": "할인율을 말할 때 숫자 뒤에 붙인다. 가게 표지판에는 30% off처럼 쓰인다.",
+              "examples": [
+                {
+                  "en": "All shoes are thirty percent off today.",
+                  "ko": "오늘 신발 전부 30% 할인이에요."
+                },
+                {
+                  "en": "I got ten percent off with my student card.",
+                  "ko": "학생증으로 10% 할인받았어요."
+                },
+                {
+                  "en": "Is it fifty percent off?",
+                  "ko": "50% 할인이에요?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Great, I'll take it.",
+          "ko_word_order": "좋아요, / 제가 그것을 살게요",
+          "ko_natural": "좋네요, 이걸로 할게요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "I'll take it",
+              "form": "I'll take it",
+              "meaning": "이걸로 살게요",
+              "nuance": "가게에서 살 물건을 정했을 때 쓰는 말이다. 여러 개면 I'll take them이라고 한다.",
+              "examples": [
+                {
+                  "en": "It's perfect. I'll take it.",
+                  "ko": "딱 좋네요. 이걸로 할게요."
+                },
+                {
+                  "en": "Okay, I'll take it in blue.",
+                  "ko": "좋아요, 파란색으로 살게요."
+                },
+                {
+                  "en": "If it's under fifty dollars, I'll take it.",
+                  "ko": "50달러 안 넘으면 살게요."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

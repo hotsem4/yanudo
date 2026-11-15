@@ -1,0 +1,301 @@
+{
+  "lessons": [
+    {
+      "day": 36,
+      "title": "직장에서 자기소개",
+      "theme": "Introducing yourself at work",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi, I'm Andrew. I work on the marketing team, up on the third floor.",
+          "ko_word_order": "안녕하세요, 저는 앤드루예요. / 저는 마케팅팀에서 일해요, / 위쪽 3층에 있는",
+          "ko_natural": "안녕하세요, 앤드루예요. 3층 마케팅팀에서 일해요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "work on a team",
+              "form": "work on the marketing team",
+              "meaning": "~팀에서 일하다",
+              "nuance": "팀 소속을 말할 때 미국 영어는 on the team, 영국 영어는 in the team을 많이 쓴다. 'I'm on the sales team'처럼 줄여도 된다.",
+              "examples": [
+                { "en": "I work on the design team.", "ko": "저는 디자인팀에서 일해요." },
+                { "en": "Which team do you work on?", "ko": "어느 팀에서 일하세요?" },
+                { "en": "She used to work on our team.", "ko": "그분 예전에 우리 팀이었어요." }
+              ]
+            },
+            {
+              "text": "up on",
+              "form": "up on the third floor",
+              "meaning": "위층 ~에",
+              "nuance": "up을 붙이면 '저 위층에'라는 방향감이 생겨 말이 자연스러워진다. 아래층이면 down on the first floor라고 한다.",
+              "examples": [
+                { "en": "The meeting room is up on the fifth floor.", "ko": "회의실은 위쪽 5층에 있어요." },
+                { "en": "My desk is up on the seventh floor.", "ko": "제 자리는 위쪽 7층이에요." },
+                { "en": "Our office is up on the top floor.", "ko": "저희 사무실은 맨 꼭대기 층이에요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Nice to meet you. I'm Ava. I just joined the finance team.",
+          "ko_word_order": "만나서 반가워요. / 저는 에이바예요. / 저는 막 합류했어요 / 재무팀에",
+          "ko_natural": "반가워요. 에이바예요. 재무팀에 얼마 전에 들어왔어요.",
+          "terms": [
+            {
+              "text": "join",
+              "form": "joined",
+              "meaning": "(회사·팀에) 들어오다",
+              "nuance": "입사하거나 새 팀에 합류할 때 가장 흔히 쓰는 동사. enter the company는 어색하다.",
+              "examples": [
+                { "en": "I joined the company two years ago.", "ko": "2년 전에 입사했어요." },
+                { "en": "When did you join the team?", "ko": "팀에 언제 오셨어요?" },
+                { "en": "Two new people are joining us next week.", "ko": "다음 주에 두 명이 새로 와요." }
+              ]
+            },
+            {
+              "text": "finance team",
+              "meaning": "재무팀",
+              "nuance": "회사의 돈 관리·예산을 맡는 부서. 회계팀은 accounting team이라고 구별해 부르기도 한다.",
+              "examples": [
+                { "en": "Send your receipts to the finance team.", "ko": "영수증은 재무팀에 보내세요." },
+                { "en": "The finance team approved the budget.", "ko": "재무팀이 예산을 승인했어요." },
+                { "en": "I'm meeting with the finance team at two.", "ko": "2시에 재무팀이랑 미팅 있어요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Oh, welcome aboard! How are you settling in so far?",
+          "ko_word_order": "아, 환영해요! / 어떻게 적응하고 있어요 / 지금까지?",
+          "ko_natural": "아, 환영해요! 지금까지 적응은 좀 되세요?",
+          "terms": [
+            {
+              "text": "welcome aboard",
+              "meaning": "(새 식구로) 환영해요",
+              "nuance": "새로 입사하거나 팀에 합류한 사람에게 쓰는 밝은 인사. 원래 배·비행기에 탄 사람을 맞는 말에서 왔다.",
+              "examples": [
+                { "en": "Welcome aboard, Jenny! We're glad you're here.", "ko": "제니, 환영해요! 와 줘서 기뻐요." },
+                { "en": "I just wanted to say welcome aboard.", "ko": "합류하신 거 환영한다고 말씀드리고 싶었어요." },
+                { "en": "Welcome aboard. Let me show you your desk.", "ko": "환영해요. 자리 안내해 드릴게요." }
+              ]
+            },
+            {
+              "text": "settle in",
+              "form": "settling in",
+              "meaning": "적응하다, 자리 잡다",
+              "nuance": "새 직장·집·학교에 익숙해지는 과정을 말한다. 'adapt'보다 훨씬 구어적이고 따뜻한 느낌이다.",
+              "examples": [
+                { "en": "It took me a month to settle in.", "ko": "적응하는 데 한 달 걸렸어요." },
+                { "en": "Are the kids settling in at their new school?", "ko": "애들 새 학교에 잘 적응하고 있어?" },
+                { "en": "Take your time and settle in.", "ko": "천천히 적응하세요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Pretty well, thanks. Everyone's been really helpful.",
+          "ko_word_order": "꽤 잘이요, 고마워요. / 모두가 정말 / 도움이 많이 돼 줬어요",
+          "ko_natural": "꽤 잘하고 있어요. 다들 정말 많이 도와주세요.",
+          "terms": [
+            {
+              "text": "pretty well",
+              "meaning": "꽤 잘",
+              "nuance": "pretty는 '꽤, 제법'이라는 뜻의 구어 부사. very보다 겸손하고 자연스럽게 들린다.",
+              "examples": [
+                { "en": "The meeting went pretty well.", "ko": "회의 꽤 잘 끝났어요." },
+                { "en": "I know him pretty well.", "ko": "그 사람 꽤 잘 알아요." },
+                { "en": "She speaks Korean pretty well.", "ko": "그분 한국어 꽤 잘해요." }
+              ]
+            },
+            {
+              "text": "helpful",
+              "meaning": "도움이 되는, 잘 도와주는",
+              "nuance": "사람에게 쓰면 '친절하게 잘 도와준다', 정보에 쓰면 '유익하다'는 뜻이다. 감사 인사에 자주 들어간다.",
+              "examples": [
+                { "en": "Thanks, that was really helpful.", "ko": "고마워요, 정말 도움 됐어요." },
+                { "en": "The staff here are so helpful.", "ko": "여기 직원들 정말 친절해요." },
+                { "en": "Is there anything else that would be helpful?", "ko": "또 도움 될 만한 게 있을까요?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Glad to hear that. So what exactly do you do in finance?",
+          "ko_word_order": "다행이에요. / 그럼 정확히 무슨 일을 하세요 / 재무팀에서?",
+          "ko_natural": "다행이네요. 재무팀에서는 정확히 어떤 일 하세요?",
+          "terms": [
+            {
+              "text": "Glad to hear that",
+              "meaning": "그렇다니 다행이에요",
+              "nuance": "상대의 좋은 소식에 반응하는 짧은 말. 앞의 I'm을 생략해서 가볍고 자연스럽다.",
+              "examples": [
+                { "en": "You're feeling better? Glad to hear that.", "ko": "좀 나아졌어요? 다행이네요." },
+                { "en": "Glad to hear that the trip went well.", "ko": "여행 잘 다녀왔다니 다행이다." },
+                { "en": "Oh, I'm glad to hear that.", "ko": "아, 그렇다니 기뻐요." }
+              ]
+            },
+            {
+              "text": "what exactly",
+              "meaning": "정확히 무엇을",
+              "nuance": "막연한 대답보다 구체적인 내용을 듣고 싶을 때 의문사 바로 뒤에 exactly를 넣는다.",
+              "examples": [
+                { "en": "What exactly is the problem?", "ko": "정확히 뭐가 문제예요?" },
+                { "en": "What exactly did he say?", "ko": "그 사람이 정확히 뭐라고 했어?" },
+                { "en": "I'm not sure what exactly you need.", "ko": "정확히 뭐가 필요하신지 잘 모르겠어요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "I handle the budgets for a few of the product teams.",
+          "ko_word_order": "저는 담당해요 / 예산을 / 몇몇 제품팀의",
+          "ko_natural": "제품팀 몇 곳 예산을 맡고 있어요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "handle",
+              "meaning": "담당하다, 처리하다",
+              "nuance": "업무를 맡아서 처리한다는 뜻으로 회사에서 아주 많이 쓴다. 'I'll handle it'은 '제가 처리할게요'다.",
+              "examples": [
+                { "en": "Who handles customer complaints?", "ko": "고객 불만은 누가 담당해요?" },
+                { "en": "Don't worry, I'll handle it.", "ko": "걱정 마세요, 제가 처리할게요." },
+                { "en": "She handles all our social media.", "ko": "그분이 저희 SNS 전부 맡고 있어요." }
+              ]
+            },
+            {
+              "text": "budget",
+              "form": "budgets",
+              "meaning": "예산",
+              "nuance": "회사·가정에서 쓸 수 있는 돈의 계획. 'on a budget'은 '알뜰하게'라는 뜻이다.",
+              "examples": [
+                { "en": "We're over budget this quarter.", "ko": "이번 분기 예산 초과예요." },
+                { "en": "What's your budget for the trip?", "ko": "여행 예산이 얼마야?" },
+                { "en": "I'm traveling on a budget.", "ko": "알뜰하게 여행 중이야." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Then we'll probably be working together on the launch next month.",
+          "ko_word_order": "그럼 우리 아마 / 함께 일하게 되겠네요 / 출시 건으로 / 다음 달에",
+          "ko_natural": "그럼 다음 달 출시 건으로 같이 일하게 되겠네요.",
+          "terms": [
+            {
+              "text": "work together on",
+              "form": "working together on",
+              "meaning": "~을 함께 작업하다",
+              "nuance": "on 뒤에 프로젝트나 업무를 넣어 협업 대상을 말한다. 미래진행형 'will be working'은 자연스럽게 그렇게 될 거라는 느낌이다.",
+              "examples": [
+                { "en": "We worked together on the new website.", "ko": "새 웹사이트 같이 작업했어요." },
+                { "en": "Let's work together on the report.", "ko": "보고서 같이 해요." },
+                { "en": "Our teams often work together on events.", "ko": "저희 팀들은 행사를 자주 같이 해요." }
+              ]
+            },
+            {
+              "text": "launch",
+              "meaning": "출시",
+              "nuance": "신제품·서비스를 세상에 내놓는 것. 동사로도 쓰고, launch date는 출시일이다.",
+              "examples": [
+                { "en": "The launch got pushed to May.", "ko": "출시가 5월로 밀렸어요." },
+                { "en": "We're launching the app next week.", "ko": "다음 주에 앱을 출시해요." },
+                { "en": "Everyone's busy before a big launch.", "ko": "큰 출시 앞두고는 다들 바빠요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Oh, great. I'm still learning who does what around here.",
+          "ko_word_order": "아, 좋네요. / 저는 아직 배우는 중이에요 / 누가 뭘 하는지 / 여기서",
+          "ko_natural": "아, 잘됐네요. 아직 여기서 누가 무슨 일 하는지 익히는 중이에요.",
+          "terms": [
+            {
+              "text": "who does what",
+              "meaning": "누가 무슨 일을 하는지",
+              "nuance": "조직에서 각자 역할을 말할 때 쓰는 짧은 덩어리 표현. 업무 분담을 정할 때도 쓴다.",
+              "examples": [
+                { "en": "Let's decide who does what first.", "ko": "누가 뭘 할지부터 정하자." },
+                { "en": "This chart shows who does what.", "ko": "이 표에 누가 어떤 일을 하는지 나와 있어요." },
+                { "en": "I'm confused about who does what.", "ko": "누가 무슨 일 하는지 헷갈려요." }
+              ]
+            },
+            {
+              "text": "around here",
+              "meaning": "여기서, 이 동네에서",
+              "nuance": "지금 있는 회사·동네·조직을 가리키는 구어. 'here'만 쓰는 것보다 '이곳 분위기에서'라는 느낌이 있다.",
+              "examples": [
+                { "en": "Is there a good café around here?", "ko": "이 근처에 괜찮은 카페 있어요?" },
+                { "en": "Things move fast around here.", "ko": "여기는 일이 빨리 돌아가요." },
+                { "en": "You're new around here, right?", "ko": "여기 처음이시죠?" }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Feel free to reach out if you need anything from marketing.",
+          "ko_word_order": "편하게 연락 주세요 / 만약 필요하면 / 뭐든 / 마케팅팀에서",
+          "ko_natural": "마케팅 쪽으로 필요한 거 있으면 편하게 연락 주세요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "feel free to",
+              "meaning": "편하게 ~하세요",
+              "nuance": "상대에게 부담 없이 하라고 허락·권유하는 공손한 표현. 직장에서 아주 자주 쓴다.",
+              "examples": [
+                { "en": "Feel free to ask me anything.", "ko": "뭐든 편하게 물어보세요." },
+                { "en": "Feel free to grab a snack.", "ko": "간식 편하게 드세요." },
+                { "en": "Feel free to leave early today.", "ko": "오늘은 편하게 일찍 들어가세요." }
+              ]
+            },
+            {
+              "text": "reach out",
+              "meaning": "연락하다",
+              "nuance": "회사에서 contact 대신 많이 쓰는 부드러운 표현. 도움을 청하거나 먼저 연락할 때 쓴다.",
+              "examples": [
+                { "en": "I'll reach out to the client tomorrow.", "ko": "내일 고객사에 연락할게요." },
+                { "en": "Thanks for reaching out.", "ko": "연락 주셔서 감사해요." },
+                { "en": "Reach out if you have any questions.", "ko": "궁금한 거 있으면 연락 주세요." }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Thanks, I appreciate that. I'll definitely take you up on it.",
+          "ko_word_order": "고마워요, / 그 말 감사해요. / 꼭 / 그 제안 받아들일게요",
+          "ko_natural": "고마워요. 꼭 연락드릴게요.",
+          "terms": [
+            {
+              "text": "take someone up on",
+              "form": "take you up on",
+              "meaning": "(제안을) 받아들이다",
+              "nuance": "상대가 해 준 제안이나 호의를 실제로 이용하겠다는 뜻의 구어. 'on it' 또는 'on that offer'로 끝낸다.",
+              "examples": [
+                { "en": "I might take you up on that offer.", "ko": "그 제안 진짜 받아들일지도 몰라요." },
+                { "en": "Can I take you up on that ride?", "ko": "태워 준다는 거 진짜 부탁해도 돼?" },
+                { "en": "She took me up on my offer to help.", "ko": "그 친구가 도와준다는 내 말을 받아들였어." }
+              ]
+            },
+            {
+              "text": "I appreciate that",
+              "meaning": "그 말 고마워요",
+              "nuance": "Thank you보다 진심이 담긴 느낌으로 상대의 말이나 배려에 감사할 때 쓴다. 직장에서 특히 자주 쓴다.",
+              "examples": [
+                { "en": "You stayed late to help? I appreciate that.", "ko": "도와주려고 늦게까지 있었어요? 고마워요." },
+                { "en": "I really appreciate that, thank you.", "ko": "정말 감사해요." },
+                { "en": "I appreciate that you called first.", "ko": "먼저 전화 줘서 고마워." }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

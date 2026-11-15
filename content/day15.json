@@ -1,0 +1,360 @@
+{
+  "lessons": [
+    {
+      "day": 15,
+      "title": "은행과 환전",
+      "theme": "Banking and currency exchange",
+      "sentences": [
+        {
+          "speaker": "A",
+          "en_text": "Hi, I'd like to exchange some money, please.",
+          "ko_word_order": "안녕하세요, 저는 바꾸고 싶어요 / 돈을 좀, / 부탁해요",
+          "ko_natural": "안녕하세요, 환전 좀 하려고요.",
+          "core": true,
+          "terms": [
+            {
+              "text": "exchange",
+              "meaning": "환전하다",
+              "nuance": "돈을 다른 통화로 바꿀 때 쓴다. 일상에서는 change money라고도 한다.",
+              "examples": [
+                {
+                  "en": "Where can I exchange yen near here?",
+                  "ko": "근처에 엔화 환전할 데 있어요?"
+                },
+                {
+                  "en": "I exchanged some euros at the airport.",
+                  "ko": "공항에서 유로를 좀 환전했어."
+                },
+                {
+                  "en": "It's cheaper to exchange money in the city.",
+                  "ko": "시내에서 환전하는 게 더 싸."
+                }
+              ]
+            },
+            {
+              "text": "I'd like to",
+              "meaning": "~하고 싶어요",
+              "nuance": "I want to의 공손한 꼴. 가게·은행·호텔에서 요청할 때 기본으로 쓴다.",
+              "examples": [
+                {
+                  "en": "I'd like to open a bank account.",
+                  "ko": "은행 계좌를 하나 만들고 싶어요."
+                },
+                {
+                  "en": "I'd like to try this on.",
+                  "ko": "이거 입어 보고 싶어요."
+                },
+                {
+                  "en": "I'd like to sit by the window.",
+                  "ko": "창가 쪽에 앉고 싶어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Sure. Which currency do you need?",
+          "ko_word_order": "네. / 어떤 통화가 / 필요하세요?",
+          "ko_natural": "네. 어느 나라 돈으로 바꿔 드릴까요?",
+          "terms": [
+            {
+              "text": "currency",
+              "meaning": "통화(화폐)",
+              "nuance": "나라별 돈의 종류. 외화는 foreign currency.",
+              "examples": [
+                {
+                  "en": "The local currency here is the baht.",
+                  "ko": "여기 현지 화폐는 바트야."
+                },
+                {
+                  "en": "Do you accept foreign currency?",
+                  "ko": "외화도 받아요?"
+                },
+                {
+                  "en": "I always carry some local currency.",
+                  "ko": "나는 늘 현지 돈을 좀 갖고 다녀."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "US dollars. What's the exchange rate today?",
+          "ko_word_order": "미국 달러요. / 무엇인가요 / 환율이 / 오늘?",
+          "ko_natural": "미국 달러요. 오늘 환율이 어떻게 돼요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "exchange rate",
+              "meaning": "환율",
+              "nuance": "한 통화를 다른 통화로 바꾸는 비율. 환율이 좋다는 a good rate처럼 rate만 써도 통한다.",
+              "examples": [
+                {
+                  "en": "The exchange rate is better downtown.",
+                  "ko": "시내가 환율이 더 좋아."
+                },
+                {
+                  "en": "Let me check the exchange rate online.",
+                  "ko": "인터넷으로 환율 좀 확인해 볼게."
+                },
+                {
+                  "en": "The exchange rate changes every day.",
+                  "ko": "환율은 매일 바뀌어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "It's 1,350 won to the dollar today.",
+          "ko_word_order": "그건 1,350원이에요 / 1달러에 / 오늘",
+          "ko_natural": "오늘은 1달러에 1,350원이에요.",
+          "terms": [
+            {
+              "text": "to the dollar",
+              "meaning": "1달러당",
+              "nuance": "환율을 말할 때 '얼마 to the 통화' 꼴로 쓴다. per dollar와 같은 뜻.",
+              "examples": [
+                {
+                  "en": "It's about 150 yen to the dollar.",
+                  "ko": "1달러에 150엔 정도야."
+                },
+                {
+                  "en": "What's the rate to the dollar now?",
+                  "ko": "지금 달러당 얼마야?"
+                },
+                {
+                  "en": "We got 36 baht to the dollar.",
+                  "ko": "1달러에 36바트 받았어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Okay. Is there a fee for this?",
+          "ko_word_order": "알겠어요. / 있나요 / 수수료가 / 이것에 대해?",
+          "ko_natural": "네. 수수료가 있어요?",
+          "core": true,
+          "terms": [
+            {
+              "text": "fee",
+              "meaning": "수수료, 요금",
+              "nuance": "서비스를 이용할 때 내는 돈. 은행·ATM·입장료에 두루 쓴다.",
+              "examples": [
+                {
+                  "en": "The ATM charges a two-dollar fee.",
+                  "ko": "그 ATM은 수수료가 2달러야."
+                },
+                {
+                  "en": "Is there an entrance fee?",
+                  "ko": "입장료 있어요?"
+                },
+                {
+                  "en": "There's no fee for students.",
+                  "ko": "학생은 수수료가 없어요."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "There's a small service charge of five dollars.",
+          "ko_word_order": "있어요 / 적은 서비스 요금이 / 5달러의",
+          "ko_natural": "수수료가 5달러 정도 붙어요.",
+          "terms": [
+            {
+              "text": "service charge",
+              "meaning": "서비스 수수료",
+              "nuance": "서비스 대가로 붙는 요금. 식당에서는 봉사료를 뜻하기도 한다.",
+              "examples": [
+                {
+                  "en": "The bill includes a 10% service charge.",
+                  "ko": "계산서에 봉사료 10%가 포함돼 있어요."
+                },
+                {
+                  "en": "Is there a service charge for delivery?",
+                  "ko": "배달 수수료 있어요?"
+                },
+                {
+                  "en": "They added a service charge to my bill.",
+                  "ko": "계산서에 수수료를 붙였더라."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "That's fine. Can I get it in small bills?",
+          "ko_word_order": "괜찮아요. / 제가 받을 수 있을까요 / 그것을 / 작은 지폐로?",
+          "ko_natural": "괜찮아요. 소액권으로 받을 수 있을까요?",
+          "terms": [
+            {
+              "text": "small bills",
+              "meaning": "소액권 지폐",
+              "nuance": "미국에서는 지폐를 bill(영국은 note)이라고 한다. 큰 지폐는 large bills.",
+              "examples": [
+                {
+                  "en": "Taxi drivers prefer small bills.",
+                  "ko": "택시 기사들은 소액권을 좋아해."
+                },
+                {
+                  "en": "I only have small bills. Is that okay?",
+                  "ko": "작은 지폐밖에 없는데 괜찮아요?"
+                },
+                {
+                  "en": "Bring some small bills for tips.",
+                  "ko": "팁 줄 소액권 좀 챙겨."
+                }
+              ]
+            },
+            {
+              "text": "that's fine",
+              "meaning": "괜찮아요",
+              "nuance": "조건을 받아들일 때 쓰는 말. '그 정도는 괜찮다'는 느낌이 있다.",
+              "examples": [
+                {
+                  "en": "Monday? That's fine with me.",
+                  "ko": "월요일? 난 괜찮아."
+                },
+                {
+                  "en": "No ice? That's fine.",
+                  "ko": "얼음 없어요? 괜찮아요."
+                },
+                {
+                  "en": "If you're a bit late, that's fine.",
+                  "ko": "좀 늦어도 괜찮아."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Of course. I'll need to see your ID.",
+          "ko_word_order": "물론이죠. / 제가 볼 필요가 있어요 / 당신의 신분증을",
+          "ko_natural": "그럼요. 신분증 좀 보여 주시겠어요?",
+          "terms": [
+            {
+              "text": "I'll need to",
+              "meaning": "~해야 해요",
+              "nuance": "직원이 손님에게 필요한 절차를 부드럽게 요구할 때 쓴다. You must보다 훨씬 공손하다.",
+              "examples": [
+                {
+                  "en": "I'll need to see your ticket, sir.",
+                  "ko": "표 좀 보여 주셔야 해요."
+                },
+                {
+                  "en": "I'll need to call you back later.",
+                  "ko": "나중에 다시 전화드려야 할 것 같아요."
+                },
+                {
+                  "en": "I'll need to check with my manager.",
+                  "ko": "매니저한테 확인해 봐야 해요."
+                }
+              ]
+            },
+            {
+              "text": "ID",
+              "meaning": "신분증",
+              "nuance": "identification의 줄임말. 여권·운전면허증 모두 ID가 될 수 있다.",
+              "examples": [
+                {
+                  "en": "Don't forget to bring your ID.",
+                  "ko": "신분증 챙기는 거 잊지 마."
+                },
+                {
+                  "en": "They checked my ID at the door.",
+                  "ko": "입구에서 신분증 검사를 했어."
+                },
+                {
+                  "en": "I left my ID at home.",
+                  "ko": "신분증을 집에 두고 왔어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "A",
+          "en_text": "Here's my passport. Do I need to sign anything?",
+          "ko_word_order": "여기 제 여권이요. / 제가 서명해야 하나요 / 뭐라도?",
+          "ko_natural": "여기 여권이요. 어디 사인해야 하나요?",
+          "terms": [
+            {
+              "text": "sign",
+              "meaning": "서명하다",
+              "nuance": "서류에 이름을 쓰는 것. 명사 '서명'은 signature이고, 명사 sign은 '표지판'이다.",
+              "examples": [
+                {
+                  "en": "Please sign at the bottom.",
+                  "ko": "맨 아래에 서명해 주세요."
+                },
+                {
+                  "en": "Did you sign the lease yet?",
+                  "ko": "임대 계약서에 서명했어?"
+                },
+                {
+                  "en": "I forgot to sign the receipt.",
+                  "ko": "영수증에 사인하는 걸 깜빡했어."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speaker": "B",
+          "en_text": "Just sign here, and please count your cash.",
+          "ko_word_order": "그냥 서명하세요 / 여기에, / 그리고 세어 주세요 / 당신의 현금을",
+          "ko_natural": "여기 사인하시고, 돈 한번 세어 보세요.",
+          "terms": [
+            {
+              "text": "count",
+              "meaning": "(수를) 세다",
+              "nuance": "돈이나 물건 개수를 하나씩 셀 때 쓴다. count on(믿다)과 헷갈리지 말 것.",
+              "examples": [
+                {
+                  "en": "Let me count the chairs first.",
+                  "ko": "먼저 의자 수 좀 세 볼게."
+                },
+                {
+                  "en": "She counted the change twice.",
+                  "ko": "그녀는 거스름돈을 두 번 셌어."
+                },
+                {
+                  "en": "Can you count how many people are coming?",
+                  "ko": "몇 명 오는지 세어 줄래?"
+                }
+              ]
+            },
+            {
+              "text": "cash",
+              "meaning": "현금",
+              "nuance": "카드가 아닌 현금. 현금으로 내다는 pay in cash.",
+              "examples": [
+                {
+                  "en": "Do you take cash?",
+                  "ko": "현금 받아요?"
+                },
+                {
+                  "en": "I don't carry much cash these days.",
+                  "ko": "요즘은 현금을 별로 안 들고 다녀."
+                },
+                {
+                  "en": "Can I pay in cash?",
+                  "ko": "현금으로 내도 돼요?"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

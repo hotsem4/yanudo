@@ -1,0 +1,21 @@
+# 런타임 데이터 (DB, 오디오 캐시, VAPID 키)
+data/
+
+# 빌드 산출물
+frontend/node_modules/
+frontend/dist/
+backend/build/
+backend/.gradle/
+backend/src/main/resources/static/
+
+# 도구
+.hallmark/
+*.log
+.idea/
+.vscode/
+
+# 미리보기 서버 데이터
+.preview-data/
+
+# 로컬 설정 덮어쓰기(토큰 포함)
+config/

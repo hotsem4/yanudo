@@ -1,0 +1,379 @@
+/* Hallmark · v2.0.0 · shape: app screen · theme: clean-blue-ui (by request) · posture: restrained · signature: 어순 직역 학습 카드 · genre: modern-minimal */
+/* Hallmark · critique: 강조색은 royal 하나, 대담함은 학습 카드의 어순 조각(연블루 블록)에만. 펼친 화면은 왼쪽 열을 문장 지도로 채우고 독을 카드 열 아래로 옮겨 힌지를 피했다. 나머지는 흰 카드와 여백으로 조용히 둔다. */
+/* Hallmark · dismissed: glass — 바텀시트 뒤 배경만 2px 흐린다(clean-blue-ui 지정). 시트 패널은 불투명한 흰 면이라 글래스 표면이 아니다. */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* clean-blue-ui 토큰. 색은 Tailwind 투명도 수식어를 쓰려고 RGB 채널로 둔다. */
+:root {
+  --canvas: 245 247 251;      /* #F5F7FB */
+  --surface: 255 255 255;     /* #FFFFFF */
+  --royal: 43 89 255;         /* #2B59FF */
+  --royal-soft: 107 139 255;  /* #6B8BFF */
+  --tint: 238 242 255;        /* #EEF2FF */
+  --ink: 17 24 39;            /* #111827 */
+  --muted: 100 116 139;       /* #64748B — 흰 바탕 전용(4.76:1) */
+  --muted-strong: 71 85 105;  /* #475569 — tint·canvas 바탕 위 보조 글자(4.5:1 이상) */
+  --faint: 148 163 184;       /* #94A3B8 — 아이콘·장식 전용 */
+  --line: 232 237 247;        /* #E8EDF7 */
+  --frost: 191 208 255;       /* #BFD0FF — 히트맵 프리즈 칸 */
+
+  --font-sans: "Inter", "Pretendard Variable", Pretendard, -apple-system, "Segoe UI", "Malgun Gothic", sans-serif;
+
+  --shadow-card: 0 8px 30px rgb(var(--royal) / 0.06);
+  --shadow-lift: 0 14px 40px rgb(var(--royal) / 0.14);
+  --shadow-glow: 0 10px 30px rgb(var(--royal) / 0.35);
+  --shadow-dock: 0 18px 40px rgb(var(--ink) / 0.28);
+  --gradient-hero: linear-gradient(135deg, rgb(var(--royal)) 0%, rgb(var(--royal-soft)) 100%);
+
+  --dur-press: 160ms;
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-sheet: 420ms;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  color-scheme: light;
+}
+
+@layer base {
+  html,
+  body {
+    overflow-x: clip;
+    background-color: rgb(var(--canvas));
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    font-family: var(--font-sans);
+    color: rgb(var(--ink));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  /* 고무줄 스크롤 억제는 정밀 포인터에서만. 터치 기기는 기본 동작(당겨서 새로고침)을 남긴다. */
+  @media (pointer: fine) {
+    html {
+      overscroll-behavior: none;
+    }
+  }
+
+  button,
+  [role="button"],
+  a {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--royal));
+    outline-offset: 2px;
+    transition: none;
+  }
+
+  ::selection {
+    background-color: rgb(var(--tint));
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .pb-dock {
+    padding-bottom: calc(72px + 32px + env(safe-area-inset-bottom));
+  }
+
+  .bottom-dock {
+    bottom: max(16px, env(safe-area-inset-bottom));
+  }
+
+  .pt-safe {
+    padding-top: max(24px, env(safe-area-inset-top));
+  }
+
+  .top-safe {
+    top: max(16px, env(safe-area-inset-top));
+  }
+
+  /* 누름 피드백 (make-interfaces-feel-better: 0.96 고정) */
+  .press {
+    transition: transform var(--dur-press) var(--ease-out), background-color var(--dur-short) ease, color var(--dur-short) ease,
+      opacity var(--dur-short) ease;
+  }
+  .press:active:not(:disabled) {
+    transform: scale(0.96);
+  }
+
+  /* 보이는 크기는 작게, 터치 영역은 48dp 로 */
+  .hit {
+    position: relative;
+  }
+  .hit::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+  }
+
+  .hide-blur {
+    transition: filter 250ms ease, opacity 250ms ease;
+  }
+  .hide-blur[data-hidden="true"] {
+    filter: blur(9px);
+    opacity: 0.85;
+    user-select: none;
+  }
+
+  .wave-bar {
+    transform-origin: center;
+    animation: wave 900ms var(--ease-in-out) infinite;
+  }
+  .wave-bar[data-calm="true"] {
+    animation-duration: 1800ms;
+  }
+
+  .skeleton {
+    animation: breathe 1400ms ease-in-out infinite;
+  }
+
+  /* 포롱(Mascot) 움직임. transform·opacity 만 쓰고, 감소 모션이면 아래 전역 규칙이 멈춘다. */
+  .mascot-bob {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: mascot-bob 3200ms ease-in-out infinite;
+  }
+  .mascot-slow {
+    animation-duration: 5400ms;
+  }
+  .mascot-hop {
+    animation: mascot-hop 1600ms var(--ease-out) infinite;
+  }
+  .mascot-twinkle {
+    animation: mascot-twinkle 1800ms ease-in-out infinite;
+  }
+
+  /* 얇고 둥근 스크롤바(시트 본문, 문장 지도). 둥근 모서리 안쪽에서만 보이게 스크롤 영역을 패널 안에 둔다. */
+  /* 표준 속성은 Firefox 에만 준다. Chromium 은 이 속성이 있으면 ::-webkit-scrollbar 를 무시하고 화살표 버튼을 그린다. */
+  @supports not selector(::-webkit-scrollbar) {
+    .thin-scroll {
+      scrollbar-width: thin;
+      scrollbar-color: rgb(var(--line)) transparent;
+    }
+  }
+  /* 마우스 환경에서만 모양을 바꾼다. 터치 기기는 스크롤할 때만 뜨는 기본 오버레이 바를 그대로 쓴다(폭을 차지하지 않음). */
+  @media (hover: hover) and (pointer: fine) {
+    .thin-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .thin-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .thin-scroll::-webkit-scrollbar-thumb {
+      border-radius: 9999px;
+      background: rgb(var(--line));
+    }
+    .thin-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgb(var(--faint));
+    }
+    .thin-scroll::-webkit-scrollbar-button {
+      display: none;
+    }
+  }
+}
+
+/* 갤럭시 폴드: 접은 화면 한 열, 펼친 화면(600px 이상) 두 열 — clean-blue-ui §3 */
+@layer components {
+  .app-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    grid-template-areas: "head" "tabs" "card" "ctrl";
+    gap: 16px;
+  }
+  .area-head {
+    grid-area: head;
+  }
+  .area-tabs {
+    grid-area: tabs;
+  }
+  .area-card {
+    grid-area: card;
+    display: flex;
+    min-width: 0;
+  }
+  .area-ctrl {
+    grid-area: ctrl;
+  }
+  /* 문장 지도는 펼친 화면 왼쪽 열 전용. 접은 화면은 학습 카드 안의 얇은 레일이 같은 정보를 준다. */
+  .area-map {
+    display: none;
+  }
+
+  /* 하단 독 자리. 접은 화면은 화면 가운데, 펼친 화면은 학습 카드 열 가운데(힌지를 피해 오른손 엄지 쪽). */
+  .dock-rail {
+    position: fixed;
+    inset-inline: 0;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  @media (min-width: 600px) {
+    .app-grid {
+      grid-template-columns: minmax(280px, 5fr) minmax(0, 7fr);
+      grid-template-rows: auto auto minmax(0, 1fr) auto;
+      grid-template-areas: "head card" "tabs card" "map card" "ctrl card";
+      column-gap: 24px;
+      row-gap: 16px;
+    }
+    .area-ctrl {
+      align-self: end;
+    }
+    /* 독은 카드 열 아래에만 있으므로 카드만 독 높이(72) + 위아래 16 만큼 비킨다. 왼쪽 열은 바닥까지 쓴다. */
+    .area-card {
+      margin-bottom: 80px;
+    }
+    .dock-rail {
+      display: grid;
+      grid-template-columns: minmax(280px, 5fr) minmax(0, 7fr);
+      column-gap: 24px;
+      max-width: 960px;
+      margin-inline: auto;
+      padding-inline: 32px;
+    }
+    .dock-rail > * {
+      grid-column: 2;
+      justify-self: center;
+    }
+  }
+
+  /* 단어장 화면: 가리기·재생 모드 컨트롤이 없으므로 그 줄을 없애고 카드와 목록이 자리를 넓게 쓴다. */
+  .app-grid--vocab {
+    grid-template-rows: auto auto minmax(0, 1fr);
+    grid-template-areas: "head" "tabs" "card";
+  }
+  /* 뒷면(뜻·예문)이 길어도 화면이 늘어나지 않고 카드 안에서만 스크롤하도록 높이를 화면에 맞춘다. */
+  @media (min-height: 600px) {
+    .app-grid--vocab {
+      height: 100dvh;
+    }
+    .app-grid--vocab .area-card {
+      min-height: 0;
+    }
+  }
+  @media (min-width: 600px) {
+    .app-grid--vocab {
+      grid-template-rows: auto auto minmax(0, 1fr);
+      grid-template-areas: "head card" "tabs card" "map card";
+    }
+  }
+
+  /* 독이 없는 화면(단어장)에서는 카드가 독 자리까지 내려온다. */
+  .app-grid--nodock .area-card {
+    margin-bottom: 0;
+  }
+
+  /* 세로가 넉넉한 펼친 화면: 화면 높이에 맞춰 고정하고, 남는 왼쪽 가운데를 문장 지도가 채운다. */
+  @media (min-width: 600px) and (min-height: 640px) {
+    .app-grid {
+      height: 100dvh;
+    }
+    .area-map {
+      grid-area: map;
+      display: flex;
+      min-height: 0;
+    }
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes mascot-bob {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.015, 0.975);
+  }
+}
+
+@keyframes mascot-hop {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes mascot-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hover-lift:hover {
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

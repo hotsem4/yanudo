@@ -18,5 +18,5 @@ backend/src/main/resources/static/
 .preview-data/
 
 # 로컬 설정 덮어쓰기(토큰 포함)
-config/
+/config/
 .codex-review/

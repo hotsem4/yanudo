@@ -1,4 +1,4 @@
-# 진행 상황 (2026-11-16 07:0x)
+# 진행 상황 (2026-11-16 08:3x)
 
 > 이어서 할 일과 진행 중이던 전체 코드 리뷰는 [HANDOVER.md](HANDOVER.md)에 있다.
 
@@ -30,8 +30,10 @@
 - 장기 토큰 + 로그인 끊김 폰 알림: **구현함**(`9fe9ced`). 토큰 넣기는 선택(HANDOVER.md 3장).
 - 클라우드 배포(Oracle Always Free): **보류**, 로컬 PC 운영 유지. 검토 결과는 `docs/deploy/oracle-always-free-review.md`.
 
-## 진행 중
-- 전체 코드 리뷰(Fable 5.2 + Codex gpt-6.1-sol high) — 결과 위치와 다음 순서는 HANDOVER.md 2장.
+## 전체 코드 리뷰 (2026-11-16, 끝)
+- Fable 5.2 + Codex gpt-6.1-sol high 로 전체 리뷰 → 조율표 → 교차 검토 → 최종 확인을 네 차례 반복해 반영(`9b61dff`, `afc053e`, `e0a0287`, `8403d24`, `bff6c8c`). 기록: [review/code-review-2026-11-16.md](review/code-review-2026-11-16.md).
+- 주요 변경: 서버 `127.0.0.1` 바인딩, 이벤트 id 원장(`applied_event`), 기기 음성 영어 음성 확인·실패 시 건너뛰기, 서비스 워커 오프라인·갱신 안정화, 아웃박스 창 사이 합치기·거절 기록 보관, 생성 대기열 재시도 보존.
+- 백엔드 테스트 114개, typecheck, sloplint FAIL 0, 운영 jar 재빌드 완료.
 
 ## 미리보기 실행법
 `.claude/launch.json`: `backend-preview`(8090, `.preview-data/`), `backend-preview-morning`(8090, 빈 `.preview-data/morning`, 모닝 락 시간 창 00:00~23:59, 생성기 끔), `frontend-preview`(5174). 미리보기 jar는 `.preview-data/habit66-preview.jar`(새 빌드 뒤 복사). 실제 `data/`와 8080은 건드리지 않는다.

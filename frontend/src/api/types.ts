@@ -74,7 +74,8 @@ export interface VocabGenerator {
 /** 말하기 연습(SPEC F-09): 배운 Day 목록(최근 먼저). */
 export interface SpeakOverview {
   lesson_day: number;
-  days: { day: number; title: string; sentence_ids: number[]; done_ids: number[] }[];
+  /** open: 학습에서 이 Day 10문장을 모두 봐서 연습할 수 있음. seen: 학습에서 본 문장 수. */
+  days: { day: number; title: string; sentence_ids: number[]; done_ids: number[]; open: boolean; seen: number }[];
 }
 
 /** 말하기 연습 한 Day 의 문장과 연습을 끝낸 문장 id. */

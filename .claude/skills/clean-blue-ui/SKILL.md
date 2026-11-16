@@ -244,7 +244,7 @@ bg-hero       = bg-gradient-to-br from-royal to-royal-soft
 
 | 조각 | 규칙 |
 |---|---|
-| Day 목록 | 행 `min-h-14 rounded-2xl bg-canvas`(고른 행 `bg-tint`): `Day N` 13px bold royal + 제목 + 오른쪽 `done/total` 또는 체크 + "연습 완료". 펼친 화면은 왼쪽 열(세로가 낮아도 보인다), 접은 화면은 카드 안(`SpeakHome`) |
+| Day 목록 | 행 `min-h-14 rounded-2xl bg-canvas`(고른 행 `bg-tint`): `Day N` 13px bold royal + 제목 + 오른쪽 `done/total` 또는 체크 + "연습 완료". 잠긴 Day는 버튼이 아닌 행(`Day N` faint, 제목 muted, `Lock` + "학습 6/10"), 잠긴 Day가 있으면 목록 위에 13px 안내 한 줄. 펼친 화면은 왼쪽 열(세로가 낮아도 보인다), 접은 화면은 카드 안(`SpeakHome`) |
 | 연습 카드 | 학습 카드 자리(`rounded-stage p-6`). 머리 줄: (접은 화면만) 목록으로 + `Day N · 제목` + `i / 10` + 듣기 `h-9 w-9` 원 → 문장 진행 막대(끝낸 문장 royal, 지금 문장 royal/40) → 가운데 스크롤 영역(영어 25px, 해석 14px) → 점 5개 + `n/5` → 하단 `이전 48px / 마이크 64px bg-royal shadow-glow / 다음 48px`(`max-w-[280px] justify-between`) → 상태 문구 13px |
 | 판정 | 말한 뒤 맞힌 단어는 ink, 놓친 단어는 faint. 1회 성공하면 점 하나가 채워지고 0.7초 뒤 다시 듣기 시작, 5회면 1초 뒤 다음 문장 |
 | 끝 | Day를 다 끝내면 포롱(party) + "처음부터 다시" + (접은 화면) "다른 Day 고르기" |

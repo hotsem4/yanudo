@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -79,6 +80,9 @@ class ApiIntegrationTest {
 
     @Autowired
     private ObjectMapper mapper;
+
+    @Autowired
+    private JdbcTemplate jdbc;
 
     // ── 1. 첫 실행 ────────────────────────────────────────────
 
@@ -723,12 +727,31 @@ class ApiIntegrationTest {
     @Test
     @Order(17)
     void speakingPracticeIsRecordedApartFromTheHabit() throws Exception {
-        // 오늘 레슨이 Day 5(콘텐츠 마지막)라 Day 1~5 가 열린다(최근 먼저).
+        // 앞선 테스트의 열람 기록을 지우고 시작한다(이 테스트가 마지막이다).
+        jdbc.update("DELETE FROM sentence_view");
+        // 오늘 레슨이 Day 5(콘텐츠 마지막)라 Day 1~5 가 나오지만(최근 먼저), 아무것도 보지 않아 모두 잠겨 있다.
         JsonNode overview = getJson("/api/v1/speak");
         assertThat(overview.path("days")).hasSize(5);
         assertThat(overview.path("days").get(0).path("day").asInt()).isEqualTo(5);
         assertThat(overview.path("days").get(0).path("done_ids")).isEmpty();
         assertThat(overview.path("days").get(0).path("sentence_ids")).hasSize(10);
+        for (JsonNode d : overview.path("days")) {
+            assertThat(d.path("open").asBoolean()).isFalse();
+        }
+        assertThat(mvc.perform(get("/api/v1/speak/days/1")).andReturn().getResponse().getStatus()).isEqualTo(404);
+
+        // Day 1 을 9문장만 보면 아직 잠기고, 10문장을 다 보면 열린다.
+        List<Long> day1Ids = longs(overview.path("days").get(4).path("sentence_ids"));
+        ArrayNode views = mapper.createArrayNode();
+        for (int i = 0; i < 9; i++) {
+            views.add(view("speak-view-" + i, day1Ids.get(i), "REVIEW", "CARD", CLOCK.millis()));
+        }
+        postEvents(views);
+        JsonNode partly = getJson("/api/v1/speak").path("days").get(4);
+        assertThat(partly.path("open").asBoolean()).isFalse();
+        assertThat(partly.path("seen").asInt()).isEqualTo(9);
+        postEvents(array(view("speak-view-9", day1Ids.get(9), "REVIEW", "AUDIO", CLOCK.millis())));
+        assertThat(getJson("/api/v1/speak").path("days").get(4).path("open").asBoolean()).isTrue();
 
         JsonNode day1 = getJson("/api/v1/speak/days/1");
         assertThat(day1.path("sentences")).hasSize(10);

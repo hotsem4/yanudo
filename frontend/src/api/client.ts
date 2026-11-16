@@ -110,8 +110,9 @@ export const api = {
     return res;
   },
   vapidPublicKey: () => request<{ public_key: string }>("/api/v1/push/vapid-public-key"),
+  /** expired: 서버가 이 구독을 푸시 서비스에서 만료로 들었다(새로 구독해야 한다). */
   subscribePush: (subscription: PushSubscriptionJSON) =>
-    request<unknown>("/api/v1/push/subscribe", { method: "POST", body: JSON.stringify(subscription) }),
+    request<{ subscribed: boolean; expired?: boolean }>("/api/v1/push/subscribe", { method: "POST", body: JSON.stringify(subscription) }),
   unsubscribePush: (endpoint: string) =>
     request<unknown>("/api/v1/push/unsubscribe", { method: "POST", body: JSON.stringify({ endpoint }) }),
   testPush: () => request<{ push_sent: number; webhooks_sent: number }>("/api/v1/push/test", { method: "POST" }),

@@ -24,6 +24,21 @@ async function registration(): Promise<ServiceWorkerRegistration | null> {
   return (await navigator.serviceWorker.getRegistration()) ?? null;
 }
 
+/**
+ * 브라우저 구독을 서버에 등록한다. 서버가 "만료"라고 답하면(푸시 서비스가 이 구독을 404/410 으로 거절한 적이 있다)
+ * 브라우저에 남은 옛 구독을 지우고 새로 구독해 다시 등록한다. 옛 구독을 계속 다시 보내면 서버는 받아 두지만
+ * 알림은 영영 오지 않는다(화면만 "켜짐"). 새로 만들었으면 true.
+ */
+async function registerOrRenew(reg: ServiceWorkerRegistration, sub: PushSubscription, serverKey: Uint8Array): Promise<boolean> {
+  const r = await api.subscribePush(sub.toJSON());
+  if (!r.expired) return false;
+  await sub.unsubscribe().catch(() => undefined);
+  const fresh = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: serverKey });
+  const again = await api.subscribePush(fresh.toJSON());
+  if (again.expired) throw new Error("알림 구독을 새로 만들지 못했어요. 알림을 껐다가 다시 켜 주세요.");
+  return true;
+}
+
 /** 22시 마감 알림(Web Push VAPID) 구독. HTTPS(Tailscale) + 설치된 PWA 에서 동작한다. */
 export function usePush() {
   const supported = typeof window !== "undefined" && "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
@@ -40,13 +55,15 @@ export function usePush() {
       // 브라우저 구독만 있고 서버 등록이 빠졌을 수 있다(지난번 부분 실패). 서버 등록은 업서트라 다시 보내도 안전하다.
       try {
         const { public_key } = await api.vapidPublicKey();
-        if (!sameKey(sub, base64UrlToBytes(public_key))) {
+        const serverKey = base64UrlToBytes(public_key);
+        if (!sameKey(sub, serverKey)) {
           // 서버 키가 바뀌었다: 옛 구독은 지우고 꺼짐으로 보여 다시 켜게 한다.
           await sub.unsubscribe().catch(() => undefined);
           setMessage("알림 설정이 바뀌어 다시 켜야 해요.");
           return setStatus("off");
         }
-        await api.subscribePush(sub.toJSON());
+        // 권한이 이미 있으므로 만료된 구독은 여기서 조용히 새로 만든다(reg 는 위에서 받았다).
+        if (reg && (await registerOrRenew(reg, sub, serverKey))) setMessage("만료된 알림 구독을 새로 만들었어요.");
         setStatus("on");
       } catch {
         setStatus("on");
@@ -75,7 +92,7 @@ export function usePush() {
       }
       const sub = existing ?? (await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: serverKey }));
       try {
-        await api.subscribePush(sub.toJSON());
+        await registerOrRenew(reg, sub, serverKey);
       } catch (err) {
         // 서버 등록에 실패하면 방금 만든 브라우저 구독을 되돌려 "켜짐"으로 오인하지 않게 한다.
         if (!existing) await sub.unsubscribe().catch(() => undefined);
@@ -108,7 +125,20 @@ export function usePush() {
 
   const test = useCallback(async () => {
     try {
-      const r = await api.testPush();
+      let r = await api.testPush();
+      if (r.push_sent === 0) {
+        // 보내는 사이 푸시 서비스가 이 기기 구독을 만료로 거절했을 수 있다. 새로 구독해 한 번 더 보낸다.
+        const reg = await registration();
+        const sub = reg ? await reg.pushManager.getSubscription() : null;
+        if (reg && sub && Notification.permission === "granted") {
+          const { public_key } = await api.vapidPublicKey();
+          if (await registerOrRenew(reg, sub, base64UrlToBytes(public_key))) {
+            r = await api.testPush();
+            setMessage(`만료된 알림 구독을 새로 만들어 다시 보냈어요. 푸시 ${r.push_sent}건, 웹훅 ${r.webhooks_sent}건.`);
+            return;
+          }
+        }
+      }
       setMessage(`시험 알림을 보냈어요. 푸시 ${r.push_sent}건, 웹훅 ${r.webhooks_sent}건.`);
     } catch (err) {
       setMessage(err instanceof Error ? err.message : "시험 알림을 보내지 못했어요.");

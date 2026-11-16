@@ -187,7 +187,10 @@ self.addEventListener("push", (event) => {
     self.registration.showNotification(title, {
       body: data.body || "오늘의 10문장이 기다리고 있어요.",
       icon: "/icons/icon-192.png",
-      badge: "/icons/icon-192.png",
+      // 상태 표시줄 아이콘: 안드로이드는 알파만 쓰므로 투명 바탕의 흰 실루엣이어야 한다(꽉 찬 그림은 흰 네모가 된다).
+      badge: "/icons/badge-96.png",
+      // 진동 모드에서 알아차리게. 무음 모드에서는 기기가 무시한다.
+      vibrate: [200, 100, 200],
       tag: data.tag || "habit66",
       renotify: true,
       data: { url: data.url || "/" },

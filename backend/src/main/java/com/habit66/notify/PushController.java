@@ -56,9 +56,13 @@ public class PushController {
             throw ApiException.badRequest("INVALID_SUBSCRIPTION",
                     "구독 정보(endpoint, keys.p256dh, keys.auth)가 올바르지 않습니다.");
         }
+        // 이미 만료라고 들은 주소면 받지 않는다. 앱은 이 답을 받으면 브라우저 구독을 새로 만들어 다시 등록한다.
+        if (store.isExpired(body.endpoint())) {
+            return Map.of("subscribed", false, "expired", true);
+        }
         store.upsert(new Subscription(body.endpoint(), body.keys().p256dh(), body.keys().auth()), userAgent,
                 clock.now());
-        return Map.of("subscribed", true);
+        return Map.of("subscribed", true, "expired", false);
     }
 
     @PostMapping("/unsubscribe")

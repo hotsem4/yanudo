@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.habit66.common.WriteLock;
 
-/** push_subscription 테이블의 유일한 쓰기 소유자. */
+/** push_subscription·push_expired 테이블의 유일한 쓰기 소유자. */
 @Repository
 public class PushSubscriptionStore {
 
@@ -33,6 +33,19 @@ public class PushSubscriptionStore {
 
     public boolean delete(String endpoint) {
         return writes.call(() -> jdbc.update("DELETE FROM push_subscription WHERE endpoint = ?", endpoint) > 0);
+    }
+
+    /** 푸시 서비스가 만료라고 답한 구독: 지우고, 같은 주소가 다시 등록되지 않게 기억한다. */
+    public void expire(String endpoint, long now) {
+        writes.run(() -> {
+            jdbc.update("DELETE FROM push_subscription WHERE endpoint = ?", endpoint);
+            jdbc.update("INSERT OR REPLACE INTO push_expired (endpoint, expired_at) VALUES (?, ?)", endpoint, now);
+        });
+    }
+
+    public boolean isExpired(String endpoint) {
+        Integer n = jdbc.queryForObject("SELECT COUNT(*) FROM push_expired WHERE endpoint = ?", Integer.class, endpoint);
+        return n != null && n > 0;
     }
 
     public List<Subscription> all() {

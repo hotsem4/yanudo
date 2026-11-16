@@ -99,7 +99,7 @@ class ReminderServiceTest {
         ReminderMessage message = CHANNEL.sent.get(0);
         assertThat(message.title()).contains("Day 1");
         assertThat(message.body()).contains("10문장");
-        assertThat(message.url()).isEqualTo("/?autoplay=true&mode=shadowing");
+        assertThat(message.url()).isEqualTo("/?view=today");
         assertThat(message.tag()).isEqualTo("habit66-reminder");
 
         Map<String, Object> row = log();

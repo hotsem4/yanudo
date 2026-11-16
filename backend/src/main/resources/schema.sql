@@ -94,6 +94,13 @@ CREATE TABLE IF NOT EXISTS push_subscription (
     created_at  INTEGER NOT NULL
 );
 
+-- 푸시 서비스가 만료(404/410)라고 답한 구독 주소. 브라우저에는 그 구독이 남아 있어 앱이 다시 등록하려 할 수 있다.
+-- 다시 오면 받지 않고 "만료"라고 알려, 앱이 새 구독을 만들게 한다.
+CREATE TABLE IF NOT EXISTS push_expired (
+    endpoint    TEXT    PRIMARY KEY,
+    expired_at  INTEGER NOT NULL
+);
+
 -- 쓰기 소유자: common.SettingsStore (start_date)
 CREATE TABLE IF NOT EXISTS app_setting (
     key    TEXT PRIMARY KEY,

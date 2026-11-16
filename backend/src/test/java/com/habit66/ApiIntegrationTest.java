@@ -648,11 +648,21 @@ class ApiIntegrationTest {
                 + "\"keys\":{\"p256dh\":\"" + publicKey + "\",\"auth\":\"c2VjcmV0c2VjcmV0c2Vjcg\"}}";
         postRaw("/api/v1/push/subscribe", subscription, 200);
         postRaw("/api/v1/push/subscribe", subscription, 200);
+        assertThat(mapper.readTree(postRaw("/api/v1/push/subscribe", subscription, 200)).path("expired").asBoolean()).isFalse();
         String unsubscribe = "{\"endpoint\":\"https://push.example.invalid/abc\"}";
         assertThat(mapper.readTree(postRaw("/api/v1/push/unsubscribe", unsubscribe, 200)).path("removed").asBoolean())
                 .isTrue();
         assertThat(mapper.readTree(postRaw("/api/v1/push/unsubscribe", unsubscribe, 200)).path("removed").asBoolean())
                 .isFalse();
+
+        // 푸시 서비스가 만료(404/410)라고 답한 주소는 다시 등록하지 않고 "만료"라고 알린다(앱이 새로 구독하게).
+        jdbc.update("INSERT INTO push_expired (endpoint, expired_at) VALUES (?, ?)", "https://push.example.invalid/abc", 1L);
+        JsonNode expired = mapper.readTree(postRaw("/api/v1/push/subscribe", subscription, 200));
+        assertThat(expired.path("expired").asBoolean()).isTrue();
+        assertThat(expired.path("subscribed").asBoolean()).isFalse();
+        assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM push_subscription WHERE endpoint = ?", Integer.class,
+                "https://push.example.invalid/abc")).isZero();
+        jdbc.update("DELETE FROM push_expired");
     }
 
     // ── 8. 시작일 변경 ────────────────────────────────────────

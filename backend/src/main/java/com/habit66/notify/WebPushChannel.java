@@ -87,7 +87,7 @@ public class WebPushChannel implements ReminderChannel {
                 if (status >= 200 && status < 300) {
                     sent++;
                 } else if (status == 404 || status == 410) {
-                    store.delete(sub.endpoint());
+                    store.expire(sub.endpoint(), System.currentTimeMillis());
                     log.info("Removed expired push subscription (HTTP {})", status);
                 } else {
                     log.warn("Push service answered HTTP {}", status);

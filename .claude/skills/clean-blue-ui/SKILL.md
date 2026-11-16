@@ -112,11 +112,12 @@ bg-hero       = bg-gradient-to-br from-royal to-royal-soft
 - 벤토 두 카드는 같은 문법으로 쌓는다: 첫 줄(높이 24px) 왼쪽 라벨 + 오른쪽 작은 아이콘(히어로 `CalendarDays`, 타이머 모래시계) → 큰 숫자 → 6px 게이지 → 하단 한 줄. 두 카드의 라벨·숫자·게이지·하단 줄이 같은 높이에 온다.
 - 타이머 게이지는 지나간 비율을 `scaleX`로 채운다(시작 전에는 비어 있다). 꽉 찬 royal 막대를 히어로 옆에 세우지 않는다.
 
-### 오늘 할 일 (헤더와 세션 탭 사이)
-- 한 줄 `h-11`, 세션 탭과 같은 영역(`area-tabs`, `flex-col gap-3`)에 둔다(없는 날 빈 줄이 생기지 않게).
-- 지금 할 단계 = 버튼: `h-11 rounded-full bg-royal text-surface text-[13px] font-semibold shadow-lift` + 재생/멈춤 아이콘 + `n/m`(`tabular-nums text-surface/80`). 화면에서 로열 블루로 채운 버튼은 이것과 활성 필 두 가지뿐이다.
-- 끝난 단계: `text-royal font-semibold` + 체크. 다음 단계: `text-muted-strong font-medium`(캔버스 위라 muted 대신). 사이에 `ChevronRight 14 text-faint`.
-- 커버 416px 에서 가장 긴 상태(끝난 단계 + 버튼 + 달성)가 330px 안팎. 펼친 화면 왼쪽 열(최소 280px)에서는 끝난 단계 글자를 숨기고(`unfolded:sr-only`) 간격을 `gap-1`로.
+### 오늘 할 일 (헤더와 세션 탭 사이 + 체크리스트 시트)
+- 한 줄 `h-11 justify-between`, 세션 탭과 같은 영역(`area-tabs`, `flex-col gap-3`)에 둔다(없는 날 빈 줄이 생기지 않게).
+- 왼쪽 진행 칩: `h-11 rounded-full bg-surface shadow-card` + 진행 원 30px(`stroke-line` 바탕, `stroke-royal` 진행) + `할 일 n/m`(n 은 royal, /m 은 muted).
+- 오른쪽 다음 할 일 버튼: `h-11 rounded-full bg-royal text-surface text-[13px] font-semibold shadow-lift` + 아이콘(재생·멈춤·타이머·책갈피) + `n/m`. 화면에서 로열 블루로 채운 버튼은 이것과 활성 필 두 가지뿐이다. 다 끝나면 버튼 대신 `Flame + 오늘 할 일 끝! N일째`(royal 글자).
+- 시트 행: `min-h-14 rounded-2xl`, 할 수 있는 항목은 `bg-canvas` 버튼 + `ChevronRight`, 끝난 항목은 `bg-tint`, 지난 항목은 글자 `text-faint`. 체크 원 28px: 끝남 `bg-royal` + 흰 체크(스프링으로 커지며 채워짐), 아직 `bg-surface ring-2 ring-inset ring-line`, 지남 `bg-line`. 필수 태그 `bg-tint text-royal`, 보너스 `bg-canvas text-muted-strong`.
+- 확인 크기: 커버 416px 에서 칩 20~129, 버튼 235~396. 펼친 세로 616px(왼쪽 열 280px)에서 칩과 버튼 사이 10px.
 
 ### 필 세그먼트 (가리기 필터 / 오디오 모드 / 세션 탭)
 - 바탕: `bg-white rounded-full p-1 shadow-card`

@@ -18,6 +18,8 @@ import { VocabPickSheet } from "./components/VocabPickSheet";
 import { VocabStage } from "./components/VocabStage";
 import { Toaster } from "./components/Toaster";
 import { TodayPlan } from "./components/TodayPlan";
+import { TodoSheet } from "./components/TodoSheet";
+import { summarize, todayTodos, type Todo } from "./lib/todo";
 import { useFocusTimer } from "./hooks/useFocusTimer";
 import { useWakeLock } from "./hooks/useWakeLock";
 import { rememberVocabView, vocabViewFromUrl } from "./lib/launch";
@@ -29,7 +31,7 @@ import { playback, usePlaybackTab } from "./playback/controller";
 import { shouldShowMorningLock, type DayView } from "./state/overlay";
 import { useStudy } from "./state/useStudy";
 
-type Sheet = "heatmap" | "settings" | "words" | null;
+type Sheet = "heatmap" | "settings" | "words" | "todo" | null;
 type MainTab = Session | "VOCAB";
 
 export function App() {
@@ -46,6 +48,8 @@ export function App() {
   useWakeLock(eng.playing || timer.running);
   useMorningLock(view, setMorningOpen);
   useCelebrations(view);
+  const todos = view ? todayTodos(view, serverNow()) : null;
+  useTodoCelebrations(todos);
   useMascotGrowth(view);
   const mascot = view ? mascotOf(view) : null;
 
@@ -114,6 +118,21 @@ export function App() {
     void audioEngine.play();
   };
 
+  // 오늘 할 일의 보너스 항목 시작.
+  const startFocus = () => {
+    if (!timer.running) timer.start();
+  };
+  const addWord = () => {
+    // 지금 보고 있는(재생 중인) 문장의 단어 담기 시트를 연다. 오늘 탭이 잠겨 있으면 복습 문장에서.
+    const session = tab === "TODAY" && !locked ? view?.today : view?.review;
+    const sentence = session?.sentences[eng.session === session?.session ? eng.cursor : 0] ?? session?.sentences[0];
+    if (!sentence) return;
+    showVocab(false);
+    setWordsFor(sentence);
+    setSheet("words");
+  };
+  const todoActions = { onStart: startStep, onStartFocus: startFocus, onAddWord: addWord, onOpenMorning: () => setMorningOpen(true) };
+
   const locked = !!view && !view.gate.open;
   const tabs: { value: MainTab; label: string; icon?: JSX.Element }[] = [
     { value: "TODAY", label: "오늘의 10문장", icon: locked ? <Lock size={13} strokeWidth={2} aria-hidden /> : undefined },
@@ -135,7 +154,9 @@ export function App() {
           <BentoHeader view={view} timer={timer} onOpenHeatmap={() => setSheet("heatmap")} />
         </div>
         <div className="area-tabs flex flex-col gap-3">
-          <TodayPlan view={view} onStart={startStep} />
+          {view && todos && (
+            <TodayPlan view={view} todos={todos} focusRunning={timer.running} onOpenList={() => setSheet("todo")} {...todoActions} />
+          )}
           <Segmented variant="tab" label="학습 세션" options={tabs} value={vocabOpen ? "VOCAB" : tab} onChange={selectMainTab} />
         </div>
         <div className="area-map">
@@ -210,6 +231,14 @@ export function App() {
         }}
       />
       <SettingsSheet open={sheet === "settings"} onClose={() => setSheet(null)} study={study} />
+      <TodoSheet
+        open={sheet === "todo" && !!todos}
+        onClose={() => setSheet(null)}
+        todos={todos ?? []}
+        streak={view?.streak.current ?? 0}
+        mascot={mascot}
+        {...todoActions}
+      />
       <MorningLockOverlay open={morningOpen} sentences={view?.morningLock.sentences ?? []} onDone={closeMorning} mascot={mascot} />
       <Toaster mascot={mascot} />
     </MotionConfig>
@@ -240,6 +269,32 @@ function useMorningLock(view: DayView | null, open: (v: boolean) => void): void 
     document.addEventListener("visibilitychange", onVisible);
     return () => document.removeEventListener("visibilitychange", onVisible);
   }, []);
+}
+
+/**
+ * 오늘 할 일의 보너스 항목이 끝나는 순간과 모두 끝낸 순간을 알린다(첫 상태·날짜가 바뀐 직후는 알리지 않는다).
+ * 복습·오늘 10문장·모닝 스타터는 이미 각자 알림이 있다(게이트 열림, 습관 달성, 모닝 스타터 완료).
+ */
+function useTodoCelebrations(todos: Todo[] | null): void {
+  const prev = useRef<Map<string, string> | null>(null);
+  useEffect(() => {
+    if (!todos) return;
+    const now = new Map(todos.map((t) => [t.id, t.state]));
+    const before = prev.current;
+    prev.current = now;
+    if (!before) return;
+    // 날짜가 바뀌어 목록이 새로 시작되면(끝났던 것이 다시 열림) 알리지 않는다.
+    if (todos.some((t) => before.get(t.id) === "done" && t.state !== "done")) return;
+    const newlyDone = todos.filter((t) => t.state === "done" && before.get(t.id) !== "done");
+    for (const t of newlyDone) {
+      if (t.id === "focus") showToast("✓ 25분 집중 끝! 보너스 하나 완료", "success", 3000);
+      if (t.id === "word") showToast("✓ 새 단어 담기 끝! 보너스 하나 완료", "success", 3000);
+    }
+    const wasAllDone = [...before.entries()].every(([, s]) => s !== "open");
+    if (newlyDone.length > 0 && !wasAllDone && summarize(todos).allDone) {
+      showToast("오늘 할 일 모두 끝! 정말 잘했어요", "success", 3600);
+    }
+  }, [todos]);
 }
 
 /** 포롱이 새 단계로 자란 날 한 번만 알린다. 이미 본 단계는 기기에 기억해 되풀이하지 않는다. */

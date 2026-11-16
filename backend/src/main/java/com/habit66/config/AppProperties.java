@@ -51,7 +51,7 @@ public record AppProperties(
             @DefaultValue("-10%") String rate,
             @DefaultValue("en-US-AndrewMultilingualNeural") String voiceA,
             @DefaultValue("en-US-AvaMultilingualNeural") String voiceB,
-            @DefaultValue("60") int timeoutSeconds) {
+            @DefaultValue("120") int timeoutSeconds) {
 
         public String voiceFor(String speaker) {
             return "B".equals(speaker) ? voiceB : voiceA;

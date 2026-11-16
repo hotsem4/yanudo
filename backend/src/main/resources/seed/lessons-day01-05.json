@@ -8,7 +8,7 @@
         {
           "speaker": "A",
           "en_text": "Hi, I don't think we've met before.",
-          "ko_word_order": "안녕하세요, 저는 생각하지 않아요 / 우리가 만난 적이 있다고 / 전에",
+          "ko_word_order": "안녕하세요. / 저는 ~라고 생각하지 않아요 / 우리가 만난 적이 있다고 / 전에",
           "ko_natural": "안녕하세요, 처음 뵙는 것 같네요.",
           "core": true,
           "terms": [
@@ -57,7 +57,7 @@
         {
           "speaker": "B",
           "en_text": "No, I don't think so. I'm Ava.",
-          "ko_word_order": "아니요, / 아닌 것 같아요(=만난 적 없어요). / 저는 에이바예요.",
+          "ko_word_order": "아니요, / 아닌 것 같아요(=전에 만난 적은 없는 것 같아요). / 저는 에이바예요.",
           "ko_natural": "네, 저도 처음인 것 같아요. 저는 에이바예요.",
           "terms": [
             {
@@ -113,7 +113,7 @@
         {
           "speaker": "B",
           "en_text": "Nice to meet you too. Where are you from?",
-          "ko_word_order": "저도 만나서 반가워요. / 어디에서 / 당신은 왔나요?",
+          "ko_word_order": "만나서 반가워요, / 저도요. / 어디 / 당신은 ~ 출신인가요?",
           "ko_natural": "저도 반가워요. 어디 출신이세요?",
           "core": true,
           "terms": [
@@ -210,7 +210,7 @@
         {
           "speaker": "B",
           "en_text": "Oh, really? What brings you here today?",
-          "ko_word_order": "오, 정말요? / 무엇이 데려왔나요 / 당신을 여기에 / 오늘?",
+          "ko_word_order": "오, 정말요? / 어쩐 일로 오셨어요 / 여기에 / 오늘?",
           "ko_natural": "아, 그래요? 오늘은 여기 어쩐 일이세요?",
           "terms": [
             {
@@ -307,12 +307,12 @@
           "speaker": "B",
           "en_text": "Good luck! I'm sure you'll do great.",
           "ko_word_order": "행운을 빌어요! / 저는 확신해요 / 당신이 잘 해낼 거라고",
-          "ko_natural": "행운을 빌어요! 분명 잘하실 거예요.",
+          "ko_natural": "면접 잘 보세요! 분명 잘하실 거예요.",
           "terms": [
             {
               "text": "good luck",
               "form": "good luck",
-              "meaning": "행운을 빌어요",
+              "meaning": "행운을 빌어요, 잘하세요",
               "nuance": "시험·면접처럼 결과가 걸린 일을 앞둔 사람에게 하는 응원이다. 뒤에 with나 on을 붙여 대상을 말한다.",
               "examples": [
                 {
@@ -459,7 +459,7 @@
           "speaker": "A",
           "en_text": "What do you do in your free time?",
           "ko_word_order": "무엇을 하나요 / 당신의 자유 시간에?",
-          "ko_natural": "여가 시간에는 무엇을 하시나요?",
+          "ko_natural": "시간 날 때 뭐 하세요?",
           "core": true,
           "terms": [
             {
@@ -555,7 +555,7 @@
         {
           "speaker": "A",
           "en_text": "That sounds fun. How often do you go?",
-          "ko_word_order": "그거 재밌게 들리네요. / 얼마나 자주 / 당신은 가나요?",
+          "ko_word_order": "그거 재밌겠네요. / 얼마나 자주 / 당신은 가나요?",
           "ko_natural": "재밌겠네요. 얼마나 자주 가세요?",
           "core": true,
           "terms": [
@@ -700,7 +700,7 @@
         {
           "speaker": "B",
           "en_text": "You should come with me next time.",
-          "ko_word_order": "당신은 와야 해요 / 저와 함께 / 다음번에",
+          "ko_word_order": "당신은 와 보세요(=함께하자는 권유) / 저와 함께 / 다음번에",
           "ko_natural": "다음에 저랑 같이 가요.",
           "core": true,
           "terms": [
@@ -749,7 +749,7 @@
         {
           "speaker": "A",
           "en_text": "I'd love to. What do I need to bring?",
-          "ko_word_order": "정말 좋아요. / 무엇을 / 저는 챙겨야 하나요?",
+          "ko_word_order": "꼭 그러고 싶어요. / 무엇을 / 제가 챙겨 가야 하나요?",
           "ko_natural": "좋죠. 뭘 챙겨 가면 돼요?",
           "terms": [
             {
@@ -845,8 +845,8 @@
         {
           "speaker": "A",
           "en_text": "Great. Let me know when you're going.",
-          "ko_word_order": "좋아요. / 저에게 알려 주세요 / 언제 당신이 가는지",
-          "ko_natural": "좋아요. 가실 때 알려 주세요.",
+          "ko_word_order": "좋아요. / 저에게 알려 주세요 / 언제 당신이 갈 건지",
+          "ko_natural": "좋아요. 언제 가실지 알려 주세요.",
           "terms": [
             {
               "text": "let me know",
@@ -873,7 +873,7 @@
         {
           "speaker": "B",
           "en_text": "Sure, I'll text you this week.",
-          "ko_word_order": "물론이죠, / 제가 문자할게요 / 이번 주에",
+          "ko_word_order": "물론이죠, / 제가 당신에게 문자할게요 / 이번 주에",
           "ko_natural": "그럼요, 이번 주에 문자 드릴게요.",
           "terms": [
             {
@@ -1081,7 +1081,7 @@
         {
           "speaker": "A",
           "en_text": "Of course. Is that for here or to go?",
-          "ko_word_order": "물론이죠. / 그것은 여기서인가요 / 아니면 가져가실 건가요?",
+          "ko_word_order": "물론이죠. / 그건 여기서 드시나요 / 아니면 가져가시나요?",
           "ko_natural": "물론이죠. 드시고 가세요, 아니면 포장이세요?",
           "core": true,
           "terms": [
@@ -1158,7 +1158,7 @@
         {
           "speaker": "A",
           "en_text": "That'll be five dollars and fifty cents.",
-          "ko_word_order": "그것은 될 거예요 / 5달러 50센트가",
+          "ko_word_order": "그건 ~ 되겠습니다(=금액은 ~입니다) / 5달러 50센트",
           "ko_natural": "5달러 50센트입니다.",
           "terms": [
             {
@@ -1243,7 +1243,7 @@
         {
           "speaker": "B",
           "en_text": "Thank you. Have a nice day!",
-          "ko_word_order": "고마워요. / 가지세요 / 좋은 하루를!",
+          "ko_word_order": "고마워요. / 좋은 하루 보내세요!",
           "ko_natural": "감사합니다. 좋은 하루 보내세요!",
           "terms": [
             {
@@ -1347,7 +1347,7 @@
         {
           "speaker": "B",
           "en_text": "Go straight for two blocks and turn left.",
-          "ko_word_order": "곧장 가세요 / 두 블록 동안 / 그리고 왼쪽으로 도세요",
+          "ko_word_order": "곧장 가세요 / 두 블록을 / 그리고 도세요 / 왼쪽으로",
           "ko_natural": "두 블록 직진한 다음 왼쪽으로 도세요.",
           "terms": [
             {
@@ -1443,7 +1443,7 @@
         {
           "speaker": "B",
           "en_text": "Yes, it takes about five minutes on foot.",
-          "ko_word_order": "네, 그것은 걸려요 / 약 5분이 / 걸어서",
+          "ko_word_order": "네, / 걸려요 / 약 5분이 / 걸어서",
           "ko_natural": "네, 걸어서 5분 정도 걸려요.",
           "terms": [
             {
@@ -1568,7 +1568,7 @@
         {
           "speaker": "A",
           "en_text": "How long does it take from here?",
-          "ko_word_order": "얼마나 오래 / 그것은 걸리나요 / 여기서부터?",
+          "ko_word_order": "얼마나 오래 / 걸리나요 / 여기서부터?",
           "ko_natural": "여기서 얼마나 걸려요?",
           "core": true,
           "terms": [
@@ -1693,7 +1693,7 @@
         {
           "speaker": "B",
           "en_text": "No problem. Have a safe trip!",
-          "ko_word_order": "문제없어요. / 가지세요 / 안전한 이동을!",
+          "ko_word_order": "별말씀을요. / 조심히 가세요(=안전한 이동 하세요)!",
           "ko_natural": "별말씀을요. 조심히 가세요!",
           "terms": [
             {
@@ -1797,8 +1797,8 @@
         {
           "speaker": "B",
           "en_text": "I think so. What do you have in mind?",
-          "ko_word_order": "그런 것 같아요. / 무엇을 / 당신은 가지고 있나요 / 마음속에?",
-          "ko_natural": "아마도요. 뭐 생각해 둔 거 있어요?",
+          "ko_word_order": "그런 것 같아요(=시간 될 것 같아요). / 무엇을 / 당신은 생각해 두었나요(=마음에 두고 있나요)?",
+          "ko_natural": "아마 괜찮을 거예요. 뭐 생각해 둔 거 있어요?",
           "terms": [
             {
               "text": "I think so",
@@ -1992,7 +1992,7 @@
           "speaker": "B",
           "en_text": "Could we make it seven thirty instead?",
           "ko_word_order": "우리가 할 수 있을까요 / 그것을 7시 30분으로 / 대신에?",
-          "ko_natural": "대신 7시 반으로 해도 될까요?",
+          "ko_natural": "7시 반으로 바꿔도 될까요?",
           "terms": [
             {
               "text": "make it",
@@ -2039,7 +2039,7 @@
         {
           "speaker": "A",
           "en_text": "No problem. Where should we meet?",
-          "ko_word_order": "문제없어요. / 어디서 / 우리는 만나야 할까요?",
+          "ko_word_order": "문제없어요. / 어디서 / 우리 만날까요?",
           "ko_natural": "괜찮아요. 어디서 만날까요?",
           "terms": [
             {

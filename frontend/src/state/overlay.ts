@@ -7,6 +7,7 @@ import {
   type StudyEvent,
   type VocabEntry,
   type VocabGenerator,
+  type LockState,
 } from "../api/types";
 import type { Snapshot } from "./outbox";
 
@@ -24,7 +25,7 @@ export interface DayView {
   todayProgress: { total: number; audioSeen: number; cardSeen: number; achieved: boolean };
   reviewProgress: { days: number[]; total: number; seen: number };
   streak: { current: number; longest: number; freezesLeft: number; perPeriod: number; achievedToday: boolean };
-  morningLock: { windowStart: number; windowEnd: number; decided: boolean; studiedToday: boolean; sentences: Sentence[] };
+  morningLock: { windowStart: number; windowEnd: number; decided: boolean; result: LockState; studiedToday: boolean; sentences: Sentence[] };
   focusSecondsToday: number;
   /** 단어장(최근 담은 것 먼저). 서버 목록 + 아직 보내지 않은 VOCAB_* 이벤트. null 이면 아직 받지 못함. */
   vocab: VocabEntry[] | null;
@@ -43,6 +44,7 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
   const marks = new Map<number, { status: MarkStatus; at: number }>();
   const focusByStart = new Map<number, number>();
   let lockDecidedLocally = false;
+  let localLock: LockState = "NONE";
   let viewedLocally = false;
 
   for (const e of pending) {
@@ -70,6 +72,8 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
         break;
       case "MORNING_LOCK":
         lockDecidedLocally = true;
+        // 서버와 같이 그날 첫 결정을 따른다.
+        if (localLock === "NONE") localLock = e.result;
         break;
     }
   }
@@ -129,6 +133,7 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
       windowStart: d.morning_lock.window_start,
       windowEnd: d.morning_lock.window_end,
       decided: d.morning_lock.state !== "NONE" || lockDecidedLocally,
+      result: d.morning_lock.state !== "NONE" ? d.morning_lock.state : localLock,
       studiedToday: serverStudied || viewedLocally,
       sentences: d.morning_lock.sentences,
     },

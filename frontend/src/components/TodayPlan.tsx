@@ -1,96 +1,123 @@
-import { Check, ChevronRight, Flame, Pause, Play } from "lucide-react";
+import { BookmarkPlus, Flame, Pause, Play, Timer } from "lucide-react";
 import type { Session } from "../api/types";
 import { useEngine } from "../audio/useEngine";
+import { nextTodo, summarize, type Todo } from "../lib/todo";
 import type { DayView } from "../state/overlay";
 
-/** 오늘 할 일의 한 단계. done 이면 체크, current 면 누르는 버튼, 아니면 흐린 글자. */
-interface Step {
-  session: Session;
-  label: string;
-  seen: number;
-  total: number;
-  done: boolean;
+export interface TodoActions {
+  /** 복습·오늘 10문장: 그 탭으로 가서 학습 방식을 맞추고 재생(재생 중이면 멈춤). */
+  onStart: (session: Session) => void;
+  onStartFocus: () => void;
+  onAddWord: () => void;
+  onOpenMorning: () => void;
+}
+
+interface Props extends TodoActions {
+  view: DayView;
+  todos: readonly Todo[];
+  focusRunning: boolean;
+  onOpenList: () => void;
 }
 
 /**
- * 오늘 해야 할 단계(SPEC 5장 "오늘 할 일"). 어제 복습이 있는 날은 복습 → 오늘 10문장 → 달성, 없는 날(Day 1)은 오늘 10문장 → 달성.
- * 화면만 보고도 순서를 알 수 있게 하려는 안내다. 판단은 모두 서버가 준 값(게이트, 진행, 달성)으로 한다.
- * 레슨이 없거나 66일이 끝났으면 null.
+ * 헤더 아래 한 줄(SPEC 5장 "오늘 할 일"). 왼쪽은 진행(n/m)이고 누르면 체크리스트가 열린다.
+ * 오른쪽은 다음에 할 일을 바로 시작하는 버튼. 다 끝내면 연속 일수를 보인다.
  */
-export function planSteps(view: DayView | null): Step[] | null {
-  if (!view || view.dashboard.lesson_day === 0 || view.dashboard.program_complete) return null;
-  const steps: Step[] = [];
-  if (view.gate.required) {
-    steps.push({ session: "REVIEW", label: "어제 복습", seen: view.gate.seen, total: view.gate.total, done: view.gate.open });
-  }
-  const t = view.todayProgress;
-  steps.push({ session: "TODAY", label: "오늘 10문장", seen: Math.max(t.audioSeen, t.cardSeen), total: t.total, done: view.streak.achievedToday });
-  return steps;
-}
-
-interface Props {
-  view: DayView | null;
-  /** 이 단계를 시작(또는 이미 재생 중이면 멈춤)한다. 탭 이동·학습 방식 설정·재생은 App 이 한다. */
-  onStart: (session: Session) => void;
-}
-
-/** 헤더 아래 한 줄짜리 단계 표시. 지금 할 단계가 곧 시작 버튼이다. */
-export function TodayPlan({ view, onStart }: Props) {
+export function TodayPlan({ view, todos, focusRunning, onOpenList, onStart, onStartFocus, onAddWord }: Props) {
   const eng = useEngine();
-  const steps = planSteps(view);
-  if (!view || !steps) return null;
-  const currentIndex = steps.findIndex((s) => !s.done);
-  const achieved = currentIndex === -1;
+  const sum = summarize(todos);
+  const next = nextTodo(todos);
 
   return (
-    <nav aria-label="오늘 할 일" className="flex h-11 min-w-0 items-center gap-1.5 unfolded:gap-1">
-      {steps.map((step, i) => {
-        const current = i === currentIndex;
-        const playingHere = current && eng.playing && eng.session === step.session;
-        return (
-          <span key={step.session} className="flex min-w-0 items-center gap-1.5 unfolded:gap-1">
-            {i > 0 && <ChevronRight size={14} strokeWidth={2} className="shrink-0 text-faint" aria-hidden />}
-            {current ? (
-              <button
-                type="button"
-                onClick={() => onStart(step.session)}
-                aria-label={`${playingHere ? "멈추기" : "시작하기"}: ${step.label} ${step.seen}/${step.total}`}
-                className="press flex h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-royal pl-3.5 pr-4 text-[13px] font-semibold text-surface shadow-lift"
-              >
-                {playingHere ? (
-                  <Pause size={15} strokeWidth={2.25} fill="currentColor" aria-hidden />
-                ) : (
-                  <Play size={15} strokeWidth={2.25} fill="currentColor" aria-hidden />
-                )}
-                {step.label}
-                <span className="tabular-nums text-surface/80">
-                  {step.seen}/{step.total}
-                </span>
-              </button>
-            ) : step.done ? (
-              <span className="flex items-center gap-1 whitespace-nowrap text-[12.5px] font-semibold text-royal">
-                <Check size={14} strokeWidth={2.5} aria-hidden />
-                {/* 펼친 화면은 왼쪽 열이 280px 까지 좁아져 끝난 단계는 체크만 보인다(읽기 프로그램에는 이름을 남긴다). */}
-                <span className="unfolded:sr-only">{step.label}</span>
-              </span>
-            ) : (
-              <span className="whitespace-nowrap text-[12.5px] font-medium text-muted-strong">{step.label}</span>
-            )}
-          </span>
-        );
-      })}
-      <ChevronRight size={14} strokeWidth={2} className="shrink-0 text-faint" aria-hidden />
-      {achieved ? (
-        <span className="flex items-center gap-1 whitespace-nowrap text-[12.5px] font-semibold text-royal">
-          <Flame size={14} strokeWidth={2} fill="currentColor" aria-hidden />
-          <span className="tabular-nums">{view.streak.current}일째</span> 달성
+    <div className="flex h-11 min-w-0 items-center justify-between gap-2">
+      <button
+        type="button"
+        onClick={onOpenList}
+        aria-label={`오늘 할 일 목록 열기, ${sum.total}개 중 ${sum.done}개 끝`}
+        className="press flex h-11 shrink-0 items-center gap-2 rounded-full bg-surface pl-1.5 pr-3.5 shadow-card"
+      >
+        <ProgressRing done={sum.done} total={sum.total} size={30} />
+        <span className="whitespace-nowrap text-[13px] font-semibold text-ink">
+          할 일 <span className="tabular-nums text-royal">{sum.done}</span>
+          <span className="tabular-nums text-muted">/{sum.total}</span>
         </span>
+      </button>
+
+      {next ? (
+        <NextButton
+          todo={next}
+          playing={eng.playing && (next.id === "review" ? eng.session === "REVIEW" : next.id === "today" ? eng.session === "TODAY" : false)}
+          focusRunning={focusRunning}
+          onClick={() => {
+            if (next.id === "review") onStart("REVIEW");
+            else if (next.id === "today") onStart("TODAY");
+            else if (next.id === "focus") onStartFocus();
+            else if (next.id === "word") onAddWord();
+          }}
+        />
       ) : (
-        <span className="flex items-center gap-1 whitespace-nowrap text-[12.5px] font-medium text-muted-strong">
-          <Flame size={14} strokeWidth={2} aria-hidden />
-          달성
+        <span className="flex min-w-0 items-center gap-1 whitespace-nowrap text-[13px] font-semibold text-royal">
+          <Flame size={15} strokeWidth={2} fill="currentColor" aria-hidden />
+          <span className="truncate">
+            {sum.allDone ? "오늘 할 일 끝!" : "필수 끝!"} <span className="tabular-nums">{view.streak.current}일째</span>
+          </span>
         </span>
       )}
-    </nav>
+    </div>
+  );
+}
+
+function NextButton({ todo, playing, focusRunning, onClick }: { todo: Todo; playing: boolean; focusRunning: boolean; onClick: () => void }) {
+  const icon =
+    todo.id === "focus" ? (
+      <Timer size={15} strokeWidth={2.25} aria-hidden />
+    ) : todo.id === "word" ? (
+      <BookmarkPlus size={15} strokeWidth={2.25} aria-hidden />
+    ) : playing ? (
+      <Pause size={15} strokeWidth={2.25} fill="currentColor" aria-hidden />
+    ) : (
+      <Play size={15} strokeWidth={2.25} fill="currentColor" aria-hidden />
+    );
+  const label = todo.id === "focus" && focusRunning ? "집중하는 중" : todo.label;
+  const busy = todo.id === "focus" && focusRunning;
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={busy}
+      aria-label={`${playing ? "멈추기" : busy ? "" : "시작하기: "}${label}${todo.progress ? ` ${todo.progress.value}/${todo.progress.total}` : ""}`}
+      className="press flex h-11 min-w-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-royal pl-3.5 pr-4 text-[13px] font-semibold text-surface shadow-lift disabled:opacity-70"
+    >
+      {icon}
+      <span className="truncate">{label}</span>
+      {todo.progress && todo.id !== "focus" && (
+        <span className="tabular-nums text-surface/80">
+          {todo.progress.value}/{todo.progress.total}
+        </span>
+      )}
+    </button>
+  );
+}
+
+/** 진행 원. done/total 만큼 로열 블루로 채운다(다 끝나면 가득). */
+export function ProgressRing({ done, total, size }: { done: number; total: number; size: number }) {
+  const stroke = size >= 48 ? 5 : 3.5;
+  const r = (size - stroke) / 2;
+  const c = 2 * Math.PI * r;
+  const ratio = total > 0 ? done / total : 0;
+  return (
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden className="-rotate-90">
+      <circle cx={size / 2} cy={size / 2} r={r} fill="none" className="stroke-line" strokeWidth={stroke} />
+      <circle
+        cx={size / 2}
+        cy={size / 2}
+        r={r}
+        fill="none"
+        className="stroke-royal transition-[stroke-dashoffset] duration-500 ease-[var(--ease-out)]"
+        strokeWidth={stroke}
+        strokeLinecap="round"
+        style={{ strokeDasharray: c, strokeDashoffset: c * (1 - ratio) }}
+      />
+    </svg>
   );
 }

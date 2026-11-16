@@ -726,62 +726,133 @@ class ApiIntegrationTest {
 
     @Test
     @Order(17)
-    void speakingPracticeIsRecordedApartFromTheHabit() throws Exception {
-        // 앞선 테스트의 열람 기록을 지우고 시작한다(이 테스트가 마지막이다).
-        jdbc.update("DELETE FROM sentence_view");
-        // 오늘 레슨이 Day 5(콘텐츠 마지막)라 Day 1~5 가 나오지만(최근 먼저), 아무것도 보지 않아 모두 잠겨 있다.
+    void speakingPracticeMakesUpMissedDaysAndRepairsTheStreak() throws Exception {
+        // 시작일을 11-12 로 옮겨 오늘(11-16)이 Day 5 가 되게 하고, 앞선 테스트의 기록을 지운다(이 테스트가 마지막이다).
+        mvc.perform(put("/api/v1/admin/settings/start-date").contentType(MediaType.APPLICATION_JSON)
+                .content("{\"start_date\":\"2026-11-12\"}")).andReturn();
+        for (String table : List.of("sentence_view", "day_achievement", "speak_practice", "rest_day")) {
+            jdbc.update("DELETE FROM " + table);
+        }
+        // 11-14(Day 3)만 달성, 11-13(Day 2)은 미리 쉬는 날로 알렸다.
+        jdbc.update("INSERT INTO day_achievement (log_date, lesson_day, via, achieved_at) VALUES ('2026-11-14', 3, 'CARD', 0)");
+        jdbc.update("INSERT INTO rest_day (log_date, declared_at) VALUES ('2026-11-13', 0)");
+
         JsonNode overview = getJson("/api/v1/speak");
         assertThat(overview.path("days")).hasSize(5);
-        assertThat(overview.path("days").get(0).path("day").asInt()).isEqualTo(5);
-        assertThat(overview.path("days").get(0).path("done_ids")).isEmpty();
-        assertThat(overview.path("days").get(0).path("sentence_ids")).hasSize(10);
-        for (JsonNode d : overview.path("days")) {
-            assertThat(d.path("open").asBoolean()).isFalse();
-        }
-        assertThat(mvc.perform(get("/api/v1/speak/days/1")).andReturn().getResponse().getStatus()).isEqualTo(404);
+        JsonNode day5 = speakRow(overview, 5);
+        assertThat(day5.path("state").asText()).isEqualTo("TODAY_LOCKED");
+        assertThat(day5.path("seen").asInt()).isZero();
+        assertThat(speakRow(overview, 3).path("state").asText()).isEqualTo("OPEN");
+        JsonNode day4 = speakRow(overview, 4);
+        assertThat(day4.path("state").asText()).isEqualTo("MAKEUP");
+        assertThat(day4.path("reps").asInt()).isEqualTo(5);
+        assertThat(day4.path("deadline").asText()).isEqualTo("2026-11-18");
+        assertThat(day4.path("repairable").asBoolean()).isTrue();
+        JsonNode day2 = speakRow(overview, 2);
+        assertThat(day2.path("rest").asBoolean()).isTrue();
+        assertThat(day2.path("reps").asInt()).isEqualTo(1);
+        // Day 1(11-12)은 기한(11-15)이 지나 보충해도 스트릭은 돌아오지 않는다.
+        assertThat(speakRow(overview, 1).path("repairable").asBoolean()).isFalse();
+        assertThat(mvc.perform(get("/api/v1/speak/days/5")).andReturn().getResponse().getStatus()).isEqualTo(404);
+        assertThat(mvc.perform(get("/api/v1/speak/days/6")).andReturn().getResponse().getStatus()).isEqualTo(404);
 
-        // Day 1 을 9문장만 보면 아직 잠기고, 10문장을 다 보면 열린다.
-        List<Long> day1Ids = longs(overview.path("days").get(4).path("sentence_ids"));
+        // 11-15 를 빼먹어 프리즈를 썼다. 보충할 날은 대시보드에도 나온다.
+        JsonNode before = getJson("/api/v1/dashboard");
+        assertThat(before.path("streak").path("current").asInt()).isEqualTo(1);
+        assertThat(before.path("streak").path("freezes_left").asInt()).isEqualTo(1);
+        // Day 2(11-13)는 그 전날까지 스트릭이 0 이라 보충해도 지킬 것이 없다. 보충할 날로는 Day 4 만 나온다.
+        assertThat(before.path("makeups_due")).hasSize(1);
+        assertThat(before.path("makeups_due").get(0).path("day").asInt()).isEqualTo(4);
+        assertThat(day2.path("repairable").asBoolean()).isFalse();
+
+        // Day 4 보충: 문장마다 5번. 4번은 세지 않고, 9문장까지는 아직 보충 중이다.
+        List<Long> day4Ids = longs(day4.path("sentence_ids"));
+        postEvents(array(event("speak-short", "SPEAK", CLOCK.millis()).put("sentence_id", day4Ids.get(0)).put("reps", 4)));
+        assertThat(speakRow(getJson("/api/v1/speak"), 4).path("done_ids")).isEmpty();
+        ArrayNode speaks = mapper.createArrayNode();
+        for (int i = 0; i < 9; i++) {
+            speaks.add(event("speak-4-" + i, "SPEAK", CLOCK.millis()).put("sentence_id", day4Ids.get(i)).put("reps", 5));
+        }
+        postEvents(speaks);
+        postEvents(speaks); // 같은 이벤트를 다시 보내도 한 번만
+        JsonNode partly = getJson("/api/v1/speak/days/4");
+        assertThat(partly.path("state").asText()).isEqualTo("MAKEUP");
+        assertThat(partly.path("done_ids")).hasSize(9);
+        JsonNode res = postEvents(array(event("speak-4-9", "SPEAK", CLOCK.millis())
+                .put("sentence_id", day4Ids.get(9)).put("reps", 5)));
+        // 보충을 끝내면 그날이 REPAIRED 가 되어 프리즈가 돌아온다(쓰기 응답의 대시보드로 바로 보인다).
+        assertThat(res.path("dashboard").path("streak").path("freezes_left").asInt()).isEqualTo(2);
+        assertThat(speakRow(getJson("/api/v1/speak"), 4).path("state").asText()).isEqualTo("OPEN");
+
+        // Day 2(미리 알린 날) 보충은 1번씩이면 된다.
+        List<Long> day2Ids = longs(day2.path("sentence_ids"));
+        ArrayNode light = mapper.createArrayNode();
+        for (int i = 0; i < day2Ids.size(); i++) {
+            light.add(event("speak-2-" + i, "SPEAK", CLOCK.millis()).put("sentence_id", day2Ids.get(i)).put("reps", 1));
+        }
+        postEvents(light);
+        assertThat(speakRow(getJson("/api/v1/speak"), 2).path("state").asText()).isEqualTo("OPEN");
+        JsonNode heat = getJson("/api/v1/habit/heatmap");
+        assertThat(heat.path("cells").get(1).path("status").asText()).isEqualTo("REPAIRED");
+        assertThat(heat.path("cells").get(3).path("status").asText()).isEqualTo("REPAIRED");
+        assertThat(getJson("/api/v1/dashboard").path("makeups_due")).isEmpty();
+
+        // 오늘 Day 5 는 복습으로는 열리지 않고, 오늘의 10문장을 다 보면(오늘 달성) 열린다.
+        List<Long> todayIds = longs(day5.path("sentence_ids"));
         ArrayNode views = mapper.createArrayNode();
         for (int i = 0; i < 9; i++) {
-            views.add(view("speak-view-" + i, day1Ids.get(i), "REVIEW", "CARD", CLOCK.millis()));
+            views.add(view("speak-view-" + i, todayIds.get(i), "TODAY", "CARD", CLOCK.millis()));
         }
         postEvents(views);
-        JsonNode partly = getJson("/api/v1/speak").path("days").get(4);
-        assertThat(partly.path("open").asBoolean()).isFalse();
-        assertThat(partly.path("seen").asInt()).isEqualTo(9);
-        postEvents(array(view("speak-view-9", day1Ids.get(9), "REVIEW", "AUDIO", CLOCK.millis())));
-        assertThat(getJson("/api/v1/speak").path("days").get(4).path("open").asBoolean()).isTrue();
+        assertThat(speakRow(getJson("/api/v1/speak"), 5).path("seen").asInt()).isEqualTo(9);
+        postEvents(array(view("speak-view-9", todayIds.get(9), "TODAY", "CARD", CLOCK.millis())));
+        assertThat(speakRow(getJson("/api/v1/speak"), 5).path("state").asText()).isEqualTo("OPEN");
+        JsonNode lesson5 = getJson("/api/v1/speak/days/5");
+        assertThat(lesson5.path("sentences")).hasSize(10);
+        JsonNode after = getJson("/api/v1/dashboard");
+        assertThat(after.path("streak").path("current").asInt()).isEqualTo(2); // 11-14, (11-15 보충), 오늘
 
-        JsonNode day1 = getJson("/api/v1/speak/days/1");
-        assertThat(day1.path("sentences")).hasSize(10);
-        assertThat(day1.path("sentences").get(0).path("audio_url").isTextual()).isTrue();
-        long first = day1.path("sentences").get(0).path("id").asLong();
+        // 형식이 틀린 SPEAK 는 거절한다.
+        JsonNode bad = postEvents(array(event("speak-bad", "SPEAK", CLOCK.millis()).put("sentence_id", todayIds.get(0)).put("reps", 0)));
+        assertThat(bad.path("accepted")).isEmpty();
+    }
 
-        JsonNode before = getJson("/api/v1/dashboard");
-        ObjectNode speak = event("speak-1", "SPEAK", CLOCK.millis()).put("sentence_id", first).put("reps", 5);
-        JsonNode res = postEvents(array(speak));
-        assertThat(texts(res.path("accepted"))).containsExactly("speak-1");
-        postEvents(array(speak)); // 같은 이벤트를 다시 보내도 한 번만
+    @Test
+    @Order(18)
+    void restDayIsLimitedPerPeriodAndSilencesTheReminder() throws Exception {
+        // 이미 달성한 날에 알리면 받기만 하고 남기지 않는다(앞 테스트에서 오늘 Day 5 를 달성했다).
+        JsonNode achievedRest = postEvents(array(event("rest-0", "REST_DAY", CLOCK.millis())));
+        assertThat(texts(achievedRest.path("accepted"))).containsExactly("rest-0");
+        assertThat(getJson("/api/v1/dashboard").path("rest_day").path("declared_today").asBoolean()).isFalse();
+        jdbc.update("DELETE FROM day_achievement WHERE log_date = '2026-11-16'");
 
-        assertThat(longs(getJson("/api/v1/speak/days/1").path("done_ids"))).containsExactly(first);
-        JsonNode day1Row = null;
-        for (JsonNode d : getJson("/api/v1/speak").path("days")) {
-            if (d.path("day").asInt() == 1) {
-                day1Row = d;
+        JsonNode res = postEvents(array(event("rest-1", "REST_DAY", CLOCK.millis())));
+        assertThat(texts(res.path("accepted"))).containsExactly("rest-1");
+        JsonNode rest = getJson("/api/v1/dashboard").path("rest_day");
+        assertThat(rest.path("declared_today").asBoolean()).isTrue();
+        assertThat(rest.path("left").asInt()).isEqualTo(2); // 11-13 과 오늘
+        assertThat(texts(postEvents(array(event("rest-1", "REST_DAY", CLOCK.millis()))).path("accepted")))
+                .containsExactly("rest-1");
+
+        // 이번 구간에 4번을 다 쓰면 거절한다(오늘 것을 지우고 다시 알려 본다). 달성한 11-14 는 세지 않는다.
+        jdbc.update("DELETE FROM rest_day WHERE log_date = '2026-11-16'");
+        jdbc.update("INSERT INTO rest_day (log_date, declared_at) VALUES ('2026-11-12', 0), ('2026-11-14', 0), "
+                + "('2026-11-15', 0), ('2026-11-20', 0)");
+        JsonNode limited = postEvents(array(event("rest-2", "REST_DAY", CLOCK.millis())));
+        assertThat(limited.path("accepted")).isEmpty();
+        assertThat(limited.path("rejected").get(0).path("reason").asText()).isEqualTo("REST_LIMIT");
+        // 이미 처리한 id 를 다시 보내면 한도와 무관하게 받는다(응답을 잃은 재전송).
+        assertThat(texts(postEvents(array(event("rest-1", "REST_DAY", CLOCK.millis()))).path("accepted")))
+                .containsExactly("rest-1");
+    }
+
+    private static JsonNode speakRow(JsonNode overview, int day) {
+        for (JsonNode d : overview.path("days")) {
+            if (d.path("day").asInt() == day) {
+                return d;
             }
         }
-        assertThat(longs(day1Row.path("done_ids"))).containsExactly(first);
-        // 부가 기능이라 습관·게이트·스트릭은 그대로다.
-        JsonNode after = getJson("/api/v1/dashboard");
-        assertThat(after.path("today_progress")).isEqualTo(before.path("today_progress"));
-        assertThat(after.path("streak")).isEqualTo(before.path("streak"));
-
-        // 배우지 않은 Day 는 열리지 않고, 형식이 틀린 SPEAK 는 거절한다.
-        MockHttpServletResponse locked = mvc.perform(get("/api/v1/speak/days/6")).andReturn().getResponse();
-        assertThat(locked.getStatus()).isEqualTo(404);
-        JsonNode bad = postEvents(array(event("speak-bad", "SPEAK", CLOCK.millis()).put("sentence_id", first).put("reps", 0)));
-        assertThat(bad.path("accepted")).isEmpty();
+        throw new AssertionError("no speak row for day " + day);
     }
 
     // ── 도우미 ────────────────────────────────────────────────

@@ -28,8 +28,12 @@ public sealed interface ClientEvent {
     record MorningLock(String id, long occurredAt, LockResult result) implements ClientEvent {
     }
 
-    /** 말하기 연습(부가 기능): 한 문장을 reps 번 맞게 말해 끝냈다. 습관·게이트와 무관하다. */
+    /** 말하기 연습: 한 문장을 reps 번 맞게 말해 끝냈다. 빼먹은 날의 보충도 이것으로 센다. */
     record Speak(String id, long occurredAt, long sentenceId, int reps) implements ClientEvent {
+    }
+
+    /** "오늘은 어려워요": occurredAt 의 논리 날짜를 쉬는 날로 미리 알린다. */
+    record RestDay(String id, long occurredAt) implements ClientEvent {
     }
 
     /** @param sentenceId 담을 때 보고 있던 문장(없으면 null) @param meaning 직접 적은 뜻(있으면 생성하지 않는다) */

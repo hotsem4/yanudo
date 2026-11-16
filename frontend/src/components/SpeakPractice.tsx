@@ -1,4 +1,4 @@
-import { Check, ChevronLeft, ChevronRight, CloudOff, Mic, Square, Volume2 } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, CloudOff, Mic, RotateCcw, Square, Volume2 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { api } from "../api/client";
 import type { SpeakLesson } from "../api/types";
@@ -8,9 +8,10 @@ import type { MascotState } from "../lib/mascot";
 import { displayHits, matchWords, PASS_RATIO } from "../lib/wordMatch";
 import { studyStore } from "../state/store";
 import { Mascot } from "./Mascot";
+import { shortDate } from "./SpeakDayList";
 
-/** 한 문장을 이만큼 맞게 말하면 그 문장 연습이 끝난다. */
-export const SPEAK_REPS = 5;
+/** 한 문장을 이만큼 맞게 말하면 그 문장 연습이 끝난다(서버가 Day 마다 정한다. 미리 알린 날 보충은 1). */
+const DEFAULT_REPS = 5;
 const MIC_BLOCKED = new Set(["not-allowed", "service-not-allowed", "audio-capture", "network"]);
 
 interface Props {
@@ -19,7 +20,6 @@ interface Props {
   mascot: MascotState | null;
   /** 커버 화면에서 Day 목록으로 돌아가기(펼친 화면은 왼쪽 열에 목록이 있다). */
   onBack: () => void;
-  /** 문장 하나를 끝냈다(목록의 완료 수를 다시 받는다). */
   /** 한 문장을 끝냈을 때. 목록이 전송 전에도 완료로 보이게 App 이 모아 둔다. */
   onDone: (sentenceId: number) => void;
 }
@@ -69,6 +69,8 @@ export function SpeakPractice({ day, pendingIds, mascot, onBack, onDone }: Props
   }, [load, stop]);
 
   const sentence = lesson?.sentences[index] ?? null;
+  const target = lesson?.reps ?? DEFAULT_REPS;
+  const makeup = lesson?.state === "MAKEUP";
   const done = useMemo(() => new Set([...(lesson?.done_ids ?? []), ...pendingIds, ...doneLocal]), [lesson, pendingIds, doneLocal]);
 
   const match = useMemo(() => {
@@ -99,12 +101,17 @@ export function SpeakPractice({ day, pendingIds, mascot, onBack, onDone }: Props
     const next = reps + 1;
     setReps(next);
     clearTimer();
-    if (next >= SPEAK_REPS) {
-      studyStore.record({ type: "SPEAK", sentence_id: sentence.id, reps: SPEAK_REPS });
+    if (next >= target) {
+      studyStore.record({ type: "SPEAK", sentence_id: sentence.id, reps: target });
       setDoneLocal((s) => new Set(s).add(sentence.id));
       onDone(sentence.id);
+      // 건너뛴 문장이 남았으면 그쪽으로 간다(이 문장 다음부터 찾고, 없으면 처음부터). 모두 끝냈을 때만 끝 화면.
+      const finishedIds = new Set([...done, sentence.id]);
+      const list = lesson?.sentences ?? [];
+      const order = [...list.slice(index + 1), ...list.slice(0, index + 1)];
+      const nextUndone = order.find((s) => !finishedIds.has(s.id));
       timer.current = window.setTimeout(() => {
-        if (lesson && index + 1 < lesson.sentences.length) goTo(index + 1);
+        if (nextUndone) goTo(list.indexOf(nextUndone));
         else {
           reset();
           setFinished(true);
@@ -117,7 +124,7 @@ export function SpeakPractice({ day, pendingIds, mascot, onBack, onDone }: Props
         start();
       }, 700);
     }
-  }, [match.ratio, hasAttempt, sentence, reps, stop, reset, start, goTo, index, lesson, onDone]);
+  }, [match.ratio, hasAttempt, sentence, reps, target, done, stop, reset, start, goTo, index, lesson, onDone]);
 
   const toggleMic = () => {
     if (listening) {
@@ -164,10 +171,21 @@ export function SpeakPractice({ day, pendingIds, mascot, onBack, onDone }: Props
       <Frame>
         <div className="my-auto flex flex-col items-center gap-4 text-center">
           {mascot && <Mascot stage={mascot.stage} mood="party" size={96} />}
-          <h2 className="text-[19px] font-bold text-ink">Day {lesson.day} 말하기 연습 끝!</h2>
-          <p className="break-keep text-[14px] text-muted">{lesson.sentences.length}문장을 {SPEAK_REPS}번씩 소리 내어 말했어요.</p>
+          <h2 className="text-[19px] font-bold text-ink">Day {lesson.day} {makeup ? "보충" : "말하기 연습"} 끝!</h2>
+          <p className="break-keep text-[14px] text-muted">
+            {lesson.sentences.length}문장을 {target}번씩 소리 내어 말했어요.
+            {makeup && (lesson.repairable ? " 전송되면 그날 연속 기록에 반영돼요." : " 이제 이 Day 도 자유롭게 연습할 수 있어요.")}
+          </p>
           <div className="flex flex-wrap justify-center gap-2">
-            <button type="button" onClick={() => { setFinished(false); goTo(0); }} className="press h-11 rounded-full bg-tint px-5 text-[13.5px] font-semibold text-royal">
+            <button type="button" onClick={() => {
+                // 보충을 끝냈으면 이제 일반 연습(문장마다 5번)이다. 보충 횟수로 계속 기록하지 않는다.
+                if (makeup) {
+                  setLesson({ ...lesson, state: "OPEN", reps: DEFAULT_REPS, rest: false, deadline: null, repairable: false, done_ids: [] });
+                  setDoneLocal(new Set());
+                }
+                setFinished(false);
+                goTo(0);
+              }} className="press h-11 rounded-full bg-tint px-5 text-[13.5px] font-semibold text-royal">
               처음부터 다시
             </button>
             <button type="button" onClick={onBack} className="press h-11 rounded-full bg-royal px-5 text-[13.5px] font-semibold text-surface unfolded:hidden">
@@ -181,10 +199,10 @@ export function SpeakPractice({ day, pendingIds, mascot, onBack, onDone }: Props
 
   const status = micBlocked
     ? speech.error ?? "이 브라우저에서는 음성 인식을 쓸 수 없어요."
-    : counted.current && reps >= SPEAK_REPS
+    : counted.current && reps >= target
       ? "이 문장 끝! 다음 문장으로 넘어가요"
       : counted.current
-        ? `좋아요! 한 번 더 (${reps}/${SPEAK_REPS})`
+        ? `좋아요! 한 번 더 (${reps}/${target})`
         : listening
           ? "듣고 있어요"
           : hasAttempt
@@ -217,6 +235,15 @@ export function SpeakPractice({ day, pendingIds, mascot, onBack, onDone }: Props
           <Volume2 size={18} strokeWidth={2} aria-hidden />
         </button>
       </div>
+      {makeup && (
+        <p className="mt-2 flex items-center gap-1.5 text-[12.5px] font-semibold text-royal">
+          <RotateCcw size={13} strokeWidth={2.25} className="shrink-0" aria-hidden />
+          <span className="truncate">
+            보충 {lesson.reps}번씩 ·{" "}
+            {lesson.repairable && lesson.deadline ? `${shortDate(lesson.deadline)}까지 하면 연속 유지` : "끝내면 이 Day 가 열려요"}
+          </span>
+        </p>
+      )}
       <ol className="mt-3 flex gap-1" aria-label={`${lesson.sentences.length}문장 중 ${done.size}문장 연습 끝`}>
         {lesson.sentences.map((s, i) => (
           <li key={s.id} className={`h-1.5 flex-1 rounded-full ${done.has(s.id) ? "bg-royal" : i === index ? "bg-royal/40" : "bg-line"}`} />
@@ -235,25 +262,31 @@ export function SpeakPractice({ day, pendingIds, mascot, onBack, onDone }: Props
                 ))
               : sentence.en_text}
           </p>
+          {/* 빼먹은 날은 처음 보는 문장일 수 있어 어순 힌트도 함께 보여 준다. */}
+          {makeup && <p className="mt-2.5 break-keep text-pretty text-[16px] font-semibold leading-snug text-royal">{sentence.ko_word_order}</p>}
           <p className="mt-2.5 break-keep text-pretty text-[14px] leading-relaxed text-muted">{sentence.ko_natural}</p>
           {done.has(sentence.id) && (
             <p className="mt-2 flex items-center gap-1 text-[12.5px] font-semibold text-royal">
               <Check size={14} strokeWidth={2.5} aria-hidden />
-              전에 연습을 끝낸 문장이에요. 다시 해도 좋아요.
+              {makeup ? "보충을 끝낸 문장이에요." : "전에 연습을 끝낸 문장이에요. 다시 해도 좋아요."}
             </p>
           )}
         </div>
       </div>
 
       <div className="flex flex-col items-center gap-3">
-        <div className="flex items-center gap-2" role="img" aria-label={`${SPEAK_REPS}번 중 ${reps}번 말함`}>
-          {Array.from({ length: SPEAK_REPS }, (_, i) => (
-            <span key={i} className={`h-3.5 w-3.5 rounded-full transition-colors duration-200 ${i < reps ? "bg-royal" : "bg-line"}`} />
-          ))}
-          <span className="ml-1 text-[13px] font-semibold tabular-nums text-muted-strong">
-            {reps}/{SPEAK_REPS}
-          </span>
-        </div>
+        {target > 1 ? (
+          <div className="flex items-center gap-2" role="img" aria-label={`${target}번 중 ${reps}번 말함`}>
+            {Array.from({ length: target }, (_, i) => (
+              <span key={i} className={`h-3.5 w-3.5 rounded-full transition-colors duration-200 ${i < reps ? "bg-royal" : "bg-line"}`} />
+            ))}
+            <span className="ml-1 text-[13px] font-semibold tabular-nums text-muted-strong">
+              {reps}/{target}
+            </span>
+          </div>
+        ) : (
+          <p className="text-[13px] font-semibold text-muted-strong">한 번만 맞게 말하면 돼요</p>
+        )}
         <div className="flex w-full max-w-[280px] items-center justify-between gap-2">
           <button
             type="button"

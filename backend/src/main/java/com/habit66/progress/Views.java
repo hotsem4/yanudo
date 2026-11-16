@@ -19,7 +19,16 @@ public final class Views {
     public record Dashboard(String today, long serverTime, long validFrom, long validUntil, int currentDay,
             int totalDays, int lessonDay, int maxLessonDay, boolean contentMissing, boolean programComplete,
             Streak streak, TodayProgress todayProgress, ReviewGate reviewGate, ReviewProgress reviewProgress,
-            MorningLock morningLock, Focus focus) {
+            MorningLock morningLock, Focus focus, RestDay restDay, List<MakeupDue> makeupsDue) {
+    }
+
+    /** "오늘은 어려워요" 상태. */
+    public record RestDay(boolean declaredToday, int left, int perPeriod) {
+    }
+
+    /** 끝내면 스트릭을 지키는(기한 안이고 그 전날까지 스트릭이 있는), 아직 끝내지 않은 보충. */
+    public record MakeupDue(int day, String date, boolean rest, int reps, String deadline, List<Long> sentenceIds,
+            List<Long> doneIds) {
     }
 
     public record TodayProgress(int total, List<Long> sentenceIds, List<Long> audioSeenIds, List<Long> cardSeenIds) {

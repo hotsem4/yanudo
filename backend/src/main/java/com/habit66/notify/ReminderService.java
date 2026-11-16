@@ -102,7 +102,8 @@ public class ReminderService {
         }
         try {
             DaySnapshot snapshot = dayState.snapshot();
-            if (snapshot.streak().achievedToday() || snapshot.todayLesson() == null || snapshot.programComplete()) {
+            if (snapshot.streak().achievedToday() || snapshot.restDay().declaredToday() || snapshot.todayLesson() == null
+                    || snapshot.programComplete()) {
                 return;
             }
             LocalDate today = snapshot.today();
@@ -156,7 +157,7 @@ public class ReminderService {
                 : "";
         return new ReminderMessage(
                 "Day " + snapshot.currentDay() + " · 오늘의 10문장이 남았어요",
-                streak + "아직 " + left + "문장이 남았어요. 지금 탭해서 따라 말해 보세요.",
+                streak + "아직 " + left + "문장이 남았어요. 지금 탭해서 따라 말해 보세요. 오늘이 어려우면 '오늘 할 일'에서 쉬는 날로 알릴 수 있어요.",
                 ReminderMessage.AUTOPLAY_URL,
                 ReminderMessage.TAG);
     }

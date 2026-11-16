@@ -1,4 +1,4 @@
-import { Snowflake } from "lucide-react";
+import { RotateCcw, Snowflake } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { api } from "../api/client";
 import { koreanDate } from "../lib/format";
@@ -21,6 +21,7 @@ type Load = { kind: "loading" } | { kind: "error" } | { kind: "ready"; data: Hea
 const CELL: Record<CellStatus, string> = {
   ACHIEVED: "bg-royal",
   FROZEN: "bg-frost text-surface",
+  REPAIRED: "bg-tint text-royal ring-1 ring-inset ring-royal/30",
   MISSED: "bg-line",
   TODAY: "bg-tint ring-2 ring-royal ring-offset-2 ring-offset-surface",
   FUTURE: "bg-tint/70",
@@ -29,6 +30,7 @@ const CELL: Record<CellStatus, string> = {
 const LABEL: Record<CellStatus, string> = {
   ACHIEVED: "달성",
   FROZEN: "프리즈로 지킴",
+  REPAIRED: "보충으로 지킴",
   MISSED: "놓침",
   TODAY: "오늘",
   FUTURE: "예정",
@@ -93,13 +95,17 @@ function HeatmapBody({ data, achievedTodayLocally, mascot }: { data: Heatmap; ac
             aria-label={`Day ${c.day}, ${koreanDate(c.date)}, ${LABEL[c.status]}`}
             className={`flex aspect-square items-center justify-center rounded-[10px] text-[10.5px] font-bold tabular-nums ${CELL[c.status]} ${MILE_TEXT[c.status]}`}
           >
-            {c.status === "FROZEN" ? <Snowflake size={12} strokeWidth={2} aria-hidden /> : mascot && STAGE_DAYS.includes(c.day) ? <span aria-hidden>{c.day}</span> : null}
+            {c.status === "FROZEN" ? (
+              <Snowflake size={12} strokeWidth={2} aria-hidden />
+            ) : c.status === "REPAIRED" ? (
+              <RotateCcw size={11} strokeWidth={2.25} aria-hidden />
+            ) : mascot && STAGE_DAYS.includes(c.day) ? <span aria-hidden>{c.day}</span> : null}
           </li>
         ))}
       </ol>
 
       <ul className="flex flex-wrap gap-x-4 gap-y-2 text-[12.5px] font-medium text-muted">
-        {(["ACHIEVED", "FROZEN", "MISSED", "FUTURE"] as const).map((s) => (
+        {(["ACHIEVED", "FROZEN", "REPAIRED", "MISSED", "FUTURE"] as const).map((s) => (
           <li key={s} className="flex items-center gap-1.5">
             <span aria-hidden className={`h-3 w-3 rounded-[4px] ${CELL[s]}`} />
             {LABEL[s]}
@@ -108,7 +114,7 @@ function HeatmapBody({ data, achievedTodayLocally, mascot }: { data: Heatmap; ac
       </ul>
       <p className="text-pretty text-[12.5px] leading-relaxed text-muted">
         {mascot && `숫자가 적힌 칸은 ${MASCOT_NAME}이 자라는 날이에요. 하루를 놓쳐도 작아지지 않아요. `}
-        오늘의 10문장을 오디오로 한 바퀴 듣거나 카드로 한 번 넘기면 그날 달성이에요. 30일마다 프리즈 2개가 놓친 하루를 대신 지켜 줘요.
+        오늘의 10문장을 오디오로 한 바퀴 듣거나 카드로 한 번 넘기면 그날 달성이에요. 30일마다 프리즈 2개가 놓친 하루를 대신 지켜 줘요. 놓친 날은 3일 안에 말하기 탭에서 보충해도 이어져요.
       </p>
     </div>
   );
@@ -118,6 +124,7 @@ function HeatmapBody({ data, achievedTodayLocally, mascot }: { data: Heatmap; ac
 const MILE_TEXT: Record<CellStatus, string> = {
   ACHIEVED: "text-surface",
   FROZEN: "",
+  REPAIRED: "text-royal",
   MISSED: "text-muted-strong",
   TODAY: "text-royal",
   FUTURE: "text-royal",

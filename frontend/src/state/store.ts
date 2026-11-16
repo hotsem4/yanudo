@@ -1,5 +1,6 @@
 import { api, ApiError, sendEventsKeepalive, serverNow } from "../api/client";
 import type { Dashboard, EventsResponse, NewEvent, SessionData, StudyEvent, VocabEntry, VocabGenerator } from "../api/types";
+import { showToast } from "../lib/toast";
 import { examplesPreparing } from "../lib/vocab";
 import { applyPending, type DayView } from "./overlay";
 import { newEventId, outbox, snapshotCache, type Snapshot } from "./outbox";
@@ -226,6 +227,9 @@ export class StudyStore {
       throw err;
     }
     const done = new Set([...res.accepted, ...res.rejected.map((r) => r.id)]);
+    if (res.rejected.some((r) => r.reason === "REST_LIMIT")) {
+      showToast("이번 30일에는 '오늘은 어려워요'를 다 썼어요");
+    }
     // 암기 상태는 세션 응답에만 있으므로, MARK 를 보냈으면 세션을 다시 받아 오버레이가 빠진 뒤에도 값이 유지되게 한다.
     const sentMark = batch.some((e) => e.type === "MARK" && done.has(e.id));
     const sentVocab = batch.some((e) => e.type.startsWith("VOCAB_") && done.has(e.id));
@@ -369,8 +373,19 @@ export class StudyStore {
 
   private publish(): void {
     this.sync = { ...this.sync, pending: this.pending.length };
+    let view: DayView | null = null;
     if (this.snapshot) {
-      this.state = { kind: "ready", view: applyPending(this.snapshot, this.pending, serverNow()), sync: this.sync };
+      try {
+        view = applyPending(this.snapshot, this.pending, serverNow());
+      } catch (err) {
+        // 예전 버전이 저장한 스냅샷 모양이 지금 코드와 맞지 않으면 화면이 통째로 멈춘다. 그 스냅샷만 버리고
+        // 서버에서 새로 받는다(아직 보내지 않은 기록은 아웃박스에 그대로 남는다).
+        console.warn("cached snapshot dropped", err);
+        this.snapshot = null;
+      }
+    }
+    if (view) {
+      this.state = { kind: "ready", view, sync: this.sync };
     } else if (this.state.kind === "ready") {
       this.state = { kind: "booting" };
     }

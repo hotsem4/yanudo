@@ -24,6 +24,10 @@ class ProgressFacts {
     record FocusRow(long startedAt, long seconds) {
     }
 
+    /** 말하기 연습을 끝낸 기록 하나(보충 판정용). */
+    record SpeakRow(long sentenceId, LocalDate logDate, int reps) {
+    }
+
     private final JdbcTemplate jdbc;
 
     ProgressFacts(JdbcTemplate jdbc) {
@@ -33,6 +37,16 @@ class ProgressFacts {
     Set<LocalDate> achievedDates() {
         return new HashSet<>(jdbc.query("SELECT log_date FROM day_achievement",
                 (rs, i) -> LocalDate.parse(rs.getString(1))));
+    }
+
+    Set<LocalDate> restDays() {
+        return new HashSet<>(jdbc.query("SELECT log_date FROM rest_day",
+                (rs, i) -> LocalDate.parse(rs.getString(1))));
+    }
+
+    List<SpeakRow> speaks() {
+        return jdbc.query("SELECT sentence_id, log_date, reps FROM speak_practice",
+                (rs, i) -> new SpeakRow(rs.getLong(1), LocalDate.parse(rs.getString(2)), rs.getInt(3)));
     }
 
     List<ViewRow> views(LocalDate date) {

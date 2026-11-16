@@ -33,6 +33,19 @@ export interface DayView {
   vocabGenerator: VocabGenerator | null;
   /** 아직 보내지 않은 말하기 연습 완료(문장 id). 서버 목록과 합쳐 완료 표시를 바로 보인다. */
   speakPendingIds: number[];
+  /** "오늘은 어려워요" 상태(아직 보내지 않은 알림 포함). 예전 버전이 저장한 스냅샷이라 모르면 null(버튼을 숨긴다). */
+  restDay: { declaredToday: boolean; sending: boolean; left: number; perPeriod: number } | null;
+  /** 끝내면 연속 기록을 지키는 보충. 아직 보내지 않은 SPEAK 를 합쳐, 다 끝낸 것은 뺀다. */
+  makeupsDue: MakeupDue[];
+}
+
+export interface MakeupDue {
+  day: number;
+  rest: boolean;
+  reps: number;
+  deadline: string;
+  total: number;
+  done: number;
 }
 
 export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[], now: number): DayView {
@@ -48,6 +61,7 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
   let lockDecidedLocally = false;
   let localLock: LockState = "NONE";
   let viewedLocally = false;
+  let restLocally = false;
 
   const speakPendingIds: number[] = [];
   for (const e of pending) {
@@ -63,6 +77,9 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
     }
     if (!inToday(e)) continue;
     switch (e.type) {
+      case "REST_DAY":
+        restLocally = true;
+        break;
       case "VIEW": {
         viewedLocally = true;
         // 서버와 같은 재분류: 오늘 레슨이 아닌 TODAY 열람은 복습으로 센다.
@@ -148,7 +165,34 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
     vocab: applyVocab(snapshot, pending),
     vocabGenerator: snapshot.vocabGenerator ?? null,
     speakPendingIds,
+    restDay: restDayView(d, restLocally),
+    makeupsDue: makeupsDueView(d, speakPendingIds),
   };
+}
+
+/** "오늘은 어려워요". 예전 버전이 저장한 스냅샷에는 rest_day 가 없어 남은 횟수를 모른다(null). */
+function restDayView(d: Dashboard, restLocally: boolean): DayView["restDay"] {
+  const server = d.rest_day;
+  if (!server) return null;
+  return {
+    declaredToday: server.declared_today || restLocally,
+    sending: restLocally && !server.declared_today,
+    left: server.declared_today || !restLocally ? server.left : Math.max(0, server.left - 1),
+    perPeriod: server.per_period,
+  };
+}
+
+/** 보충 목록 + 아직 보내지 않은 SPEAK(보충 화면은 그 Day 에 필요한 횟수로 기록한다). 다 끝낸 것은 뺀다. */
+function makeupsDueView(d: Dashboard, speakPendingIds: readonly number[]): MakeupDue[] {
+  const pending = new Set(speakPendingIds);
+  return (d.makeups_due ?? [])
+    .map((m) => {
+      const ids = m.sentence_ids ?? [];
+      const done = new Set(m.done_ids ?? []);
+      ids.forEach((id) => pending.has(id) && done.add(id));
+      return { day: m.day, rest: m.rest, reps: m.reps, deadline: m.deadline, total: ids.length, done: done.size };
+    })
+    .filter((m) => m.done < m.total);
 }
 
 /**

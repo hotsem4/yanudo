@@ -76,6 +76,8 @@ public record EventsRequest(List<JsonNode> events) {
             }
             case "MORNING_LOCK":
                 return new ClientEvent.MorningLock(id, occurredAt, choice(LockResult.class, node, "result"));
+            case "REST_DAY":
+                return new ClientEvent.RestDay(id, occurredAt);
             case "SPEAK": {
                 long reps = positive(node, "reps");
                 if (reps > MAX_SPEAK_REPS) {

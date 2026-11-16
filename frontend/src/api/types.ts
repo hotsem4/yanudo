@@ -7,7 +7,8 @@ export type Via = "AUDIO" | "CARD";
 export type MarkStatus = "NEW" | "MEMORIZED" | "PRACTICE";
 export type LockResult = "CLEARED" | "SKIPPED";
 export type LockState = "NONE" | LockResult;
-export type CellStatus = "ACHIEVED" | "FROZEN" | "MISSED" | "TODAY" | "FUTURE";
+/** REPAIRED: 빼먹었지만 기한 안에 보충해서 연속 기록이 이어진 날. */
+export type CellStatus = "ACHIEVED" | "FROZEN" | "REPAIRED" | "MISSED" | "TODAY" | "FUTURE";
 
 export interface Sentence {
   id: number;
@@ -74,16 +75,41 @@ export interface VocabGenerator {
 /** 말하기 연습(SPEC F-09): 배운 Day 목록(최근 먼저). */
 export interface SpeakOverview {
   lesson_day: number;
-  /** open: 학습에서 이 Day 10문장을 모두 봐서 연습할 수 있음. seen: 학습에서 본 문장 수. */
-  days: { day: number; title: string; sentence_ids: number[]; done_ids: number[]; open: boolean; seen: number }[];
+  days: SpeakDayRow[];
 }
 
-/** 말하기 연습 한 Day 의 문장과 연습을 끝낸 문장 id. */
+/** OPEN: 자유 연습. MAKEUP: 빼먹은 날 보충. TODAY_LOCKED: 오늘의 10문장을 끝내기 전. */
+export type SpeakState = "OPEN" | "MAKEUP" | "TODAY_LOCKED";
+
+/**
+ * 말하기 목록의 한 Day. done_ids: OPEN 은 연습을 끝낸 문장, MAKEUP 은 보충으로 센 문장.
+ * reps: 문장마다 맞게 말할 횟수(미리 알린 날 보충은 1). seen: TODAY_LOCKED 일 때 오늘의 10문장 진행.
+ * deadline·repairable: MAKEUP 일 때 이날까지 끝내면 그날 연속 기록이 이어진다.
+ */
+export interface SpeakDayRow {
+  day: number;
+  title: string;
+  sentence_ids: number[];
+  done_ids: number[];
+  state: SpeakState;
+  reps: number;
+  seen: number;
+  rest: boolean;
+  deadline: string | null;
+  repairable: boolean;
+}
+
+/** 말하기 연습 한 Day 의 문장과 진행. */
 export interface SpeakLesson {
   day: number;
   title: string;
   sentences: Sentence[];
   done_ids: number[];
+  state: SpeakState;
+  reps: number;
+  rest: boolean;
+  deadline: string | null;
+  repairable: boolean;
 }
 
 export interface VocabList {
@@ -136,6 +162,11 @@ export interface Dashboard {
     sentences: Sentence[];
   };
   focus: { seconds_today: number; started_ats: number[] };
+  /** "오늘은 어려워요"(SPEC F-05): 오늘 알렸는지, 이번 30일 구간에 남은 횟수. */
+  /** 이 기능 전에 저장된 스냅샷에는 없다(optional). */
+  rest_day?: { declared_today: boolean; left: number; per_period: number };
+  /** 끝내면 연속 기록을 지키는(기한 안이고 그 전날까지 연속 기록이 있는), 아직 끝내지 않은 보충. 말하기 탭에서 한다. */
+  makeups_due?: { day: number; date: string; rest: boolean; reps: number; deadline: string; sentence_ids: number[]; done_ids: number[] }[];
 }
 
 export interface SessionData {
@@ -173,8 +204,10 @@ export type StudyEvent =
   | (EventBase & { type: "MARK"; sentence_id: number; status: MarkStatus })
   | (EventBase & { type: "FOCUS"; started_at: number; seconds: number })
   | (EventBase & { type: "MORNING_LOCK"; result: LockResult })
-  /** 말하기 연습(부가 기능): 한 문장을 reps 번 맞게 말해 끝냄. 습관·게이트와 무관. */
+  /** 말하기 연습: 한 문장을 reps 번 맞게 말해 끝냄. 빼먹은 날의 보충도 이것으로 센다. */
   | (EventBase & { type: "SPEAK"; sentence_id: number; reps: number })
+  /** "오늘은 어려워요": 오늘을 쉬는 날로 미리 알림(보충이 1번씩으로 가벼워진다). */
+  | (EventBase & { type: "REST_DAY" })
   | (EventBase & { type: "VOCAB_ADD"; text: string; sentence_id: number | null; meaning: string | null; note: string | null })
   | (EventBase & { type: "VOCAB_REMOVE"; term_key: string })
   | (EventBase & { type: "VOCAB_MASTER"; term_key: string; mastered: boolean })

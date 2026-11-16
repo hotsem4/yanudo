@@ -47,7 +47,13 @@ public class ViewAssembler {
                 new Views.ReviewProgress(s.review().days(), s.review().sentences().size(), s.review().seen()),
                 new Views.MorningLock(s.morningLock().windowStart(), s.morningLock().windowEnd(),
                         s.morningLock().state(), sentences(s.morningLock().sentences(), s)),
-                new Views.Focus(s.focus().secondsToday(), s.focus().startedAts()));
+                new Views.Focus(s.focus().secondsToday(), s.focus().startedAts()),
+                new Views.RestDay(s.restDay().declaredToday(), s.restDay().left(), s.restDay().perPeriod()),
+                s.makeups().stream()
+                        .filter(m -> !m.done() && m.keepsStreak())
+                        .map(m -> new Views.MakeupDue(m.day(), m.date().toString(), m.rest(), m.reps(),
+                                m.deadline().toString(), m.sentenceIds(), m.doneIds()))
+                        .toList());
     }
 
     public SessionView todaySession(DaySnapshot s) {

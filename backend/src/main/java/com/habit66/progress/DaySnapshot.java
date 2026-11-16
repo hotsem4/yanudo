@@ -34,9 +34,42 @@ public record DaySnapshot(
         Review review,
         MorningLock morningLock,
         Focus focus,
-        Map<Long, Mark> marks) {
+        Map<Long, Mark> marks,
+        List<Makeup> makeups,
+        RestDay restDay) {
 
-    public enum CellStatus { ACHIEVED, FROZEN, MISSED, TODAY, FUTURE }
+    /** REPAIRED: 빼먹었지만 기한 안에 보충해서 스트릭이 이어진 날(프리즈처럼 늘지도 끊기지도 않는다). */
+    public enum CellStatus { ACHIEVED, FROZEN, REPAIRED, MISSED, TODAY, FUTURE }
+
+    /**
+     * 지난 날 중 달성하지 못한 날의 보충. 그 날짜의 레슨(Day = 시작일부터 지난 날 + 1)을 날짜 다음부터
+     * 문장마다 reps 번 이상 말하면 끝난다. deadline 까지 끝내면 그날 스트릭이 이어진다.
+     *
+     * @param rest        그날 미리 쉬는 날로 알렸는가(그러면 reps 1, 아니면 5)
+     * @param doneOn      모든 문장을 끝낸 날(아직이면 null)
+     * @param keepsStreak 이 보충이 실제로 스트릭을 지키는가(지켰는가). 기한 안이어도 그 전날까지 스트릭이 0 이면
+     *                    (처음부터 안 했거나 앞에서 이미 끊겼으면) 지킬 것이 없어 false 다. 이때 보충은 Day 를 열기만 한다.
+     */
+    public record Makeup(int day, LocalDate date, boolean rest, int reps, LocalDate deadline, List<Long> sentenceIds,
+            List<Long> doneIds, LocalDate doneOn, boolean keepsStreak) {
+
+        public boolean done() {
+            return doneOn != null;
+        }
+
+        /** 기한 안에 끝냈는가(그날은 REPAIRED 가 된다). */
+        public boolean repairs() {
+            return doneOn != null && !doneOn.isAfter(deadline);
+        }
+
+        Makeup withKeepsStreak(boolean keeps) {
+            return new Makeup(day, date, rest, reps, deadline, sentenceIds, doneIds, doneOn, keeps);
+        }
+    }
+
+    /** "오늘은 어려워요": 오늘 이미 알렸는지와 이번 30일 구간에 남은 횟수. */
+    public record RestDay(boolean declaredToday, int left, int perPeriod) {
+    }
 
     public record Streak(int current, int ifAchievedToday, int longest, boolean achievedToday, int freezesLeft,
             int freezesPerPeriod) {

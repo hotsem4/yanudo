@@ -88,8 +88,14 @@
 - 오늘 달성 = 오늘 레슨 문장 전부 `TODAY`·`AUDIO` 열람 **또는** 전부 `TODAY`·`CARD` 열람. 완주하는 순간 서버가 `day_achievement`에 한 번 기록한다. 이 기록은 이후 콘텐츠가 바뀌어도 뒤집히지 않는다. 빈 레슨은 완주로 치지 않는다.
 - TODAY 열람인데 그 문장이 그 날짜의 오늘 레슨에 속하지 않으면(롤오버 뒤에도 열어 둔 어제 큐 등) 서버가 REVIEW로 바꿔 기록한다.
 - 스트릭 프리즈: 30일 단위 구간(`Day 1-30`, `31-60`, `61-66`)마다 2개. 쓰지 않은 프리즈는 다음 구간으로 넘어가지 않는다.
+- **보충(makeup)**: 지난 날 중 달성하지 못한 날은 그 날짜의 레슨(Day = 시작일부터 지난 날 + 1)을 말하기 탭에서 문장마다 **5번** 맞게 말해 보충한다(F-09). 그날 안에 "오늘은 어려워요"를 알렸으면 **1번**씩이면 된다. 보충은 그 날짜 **다음 날부터** 한 `speak_practice`만 센다(필요 횟수 이상인 기록). 모든 문장이 채워진 날이 보충한 날이다.
+- **스트릭 회복**: 보충을 그 날짜 + 3일까지(그날 포함) 끝내면 그날은 `REPAIRED`가 된다. 프리즈처럼 스트릭을 유지하되(늘지 않음) 프리즈는 쓰지 않는다. 기한을 넘겨 보충하면 말하기 탭에서 열리기만 하고 스트릭은 돌아오지 않는다. 보충은 매 요청 다시 계산하며 저장하지 않는다.
+  - 보충이 **스트릭을 지키는가**(`repairable`, `makeups_due`): 기한 안이고, 기한 안의 보충을 모두 끝냈다고 가정해 걸었을 때 그 날짜 직전 스트릭이 0보다 클 때다. 처음부터 안 했거나 앞에서 이미 끊겼으면 보충은 Day를 열기만 한다(화면도 "연속 유지"라고 하지 않는다).
+  - "오늘은 어려워요" 횟수는 알린 뒤 그날 달성한 날과 프로그램 밖 날짜를 세지 않는다. 이미 달성한 날에 알리면 받기만 하고 남기지 않는다.
+- **"오늘은 어려워요"**: 그날 안에 `REST_DAY` 이벤트로 알린다(`rest_day`). 30일 구간마다 4번. 알린 날은 22시 리마인드를 보내지 않는다. 알려도 달성으로 치지는 않는다(보충이 가벼워질 뿐).
 - 스트릭 계산(시작일부터 `min(어제, 시작일+65)`까지 순서대로, 결정적, 저장하지 않음):
   - 달성한 날: `streak += 1`
+  - 미달성 + 기한 안에 보충함: 스트릭 유지(증가 없음), 프리즈 차감 없음, 그날은 `repaired`
   - 미달성 + 스트릭 > 0 + 그 구간 프리즈 남음: 프리즈 1개 차감, 스트릭 유지(증가 없음), 그날은 `frozen`
   - 미달성 + (스트릭 0 또는 프리즈 없음): `streak = 0`
   - 오늘: 달성했으면 `+1`, 아직이면 그대로(오늘은 끊지 않는다).
@@ -123,11 +129,16 @@
 - **예문 음성**: 단어장에 담는 순간 그 표현의 예문 3개 음성을 만든다(1·3번 Ava, 2번 Andrew, `-10%`). 준비 전에는 기기 음성으로 대신 읽는다.
 - **단어장 탭**: 세션 탭 세 번째. 카드처럼 넘겨 본다(앞면: 표현 / 탭하면: 뜻·느낌·예문 3개·처음 본 학습 문장). 예문마다 듣기 버튼. "외웠어요" 표시, 외우는 중 / 외운 단어 / 전체 필터, 지우기.
 
-### F-09. 말하기 연습 (부가 기능)
+### F-09. 말하기 연습과 보충
 
-- **목적**: 배운 문장을 입에 붙이는 반복 연습. 학습 화면은 그대로 두고 따로 연다. **습관·게이트·스트릭·오늘 할 일과 무관**하다(달성 판정에 쓰지 않는다).
-- **말하기 탭**: 세션 탭 네 번째(`?view=speak`). 오늘 레슨 일차까지의 Day 목록을 최근 먼저 보여 주고, 행마다 연습을 끝낸 문장 수(`3/10`, 다 하면 "연습 완료").
-- **열리는 Day**: 학습(오늘의 10문장 또는 누적 복습, 오디오·카드 무관)에서 그 Day 10문장을 **모두 본** Day만 연습할 수 있다. 날짜가 지났다고 열리지 않는다. 잠긴 Day는 자물쇠와 본 문장 수(`학습 6/10`)로 보인다. 그래서 보통 어제 Day는 누적 복습을 마치면, 오늘 Day는 오늘의 10문장을 다 보면 열린다.
+- **목적**: 공부한 문장을 입에 붙이는 반복 연습이자, 빼먹은 날의 보충 수단(F-05). 학습 화면은 그대로 두고 따로 연다. 달성 판정에는 쓰지 않는다.
+- **말하기 탭**: 세션 탭 네 번째(`?view=speak`). 오늘 레슨 일차까지의 Day 목록을 최근 먼저 보여 준다.
+- **Day 상태**(그 Day의 날짜 = 시작일 + Day - 1):
+  - `OPEN`: 그날 달성했거나 보충을 끝낸 지난 Day, 오늘 달성한 오늘 Day. 자유 연습(문장마다 5번), 행에 연습을 끝낸 문장 수.
+  - `MAKEUP`: 달성하지 못한 지난 Day. 보충(문장마다 5번, 미리 알린 날은 1번)을 끝내면 `OPEN`이 된다. 행에 "보충 5번씩 · 11/18까지"(기한 안일 때)와 보충한 문장 수.
+  - `TODAY_LOCKED`: 오늘의 10문장을 끝내기 전의 오늘 Day. 자물쇠와 "오늘 n/10". 누르지 못한다.
+- 보충 화면은 처음 보는 문장일 수 있어 어순 힌트(`ko_word_order`)도 보여 준다.
+- "오늘 할 일" 시트 아래에 기한 안의 보충 목록(누르면 말하기 탭의 그 Day)과 "오늘은 어려워요" 버튼(한 번 더 확인)을 둔다.
 - **연습**: Day를 고르면 문장을 하나씩 보여 준다(영어 + 자연 해석, 듣기 버튼). 마이크를 눌러 말하면 모닝 보이스 락과 같은 단어 맞춤(`wordMatch`, 순서대로 맞힌 단어 60% 이상)으로 판정해 1회로 센다. **5회**를 채우면 그 문장을 끝낸 것으로 기록하고 다음 문장으로 넘어간다. 이미 끝낸 문장도 다시 연습할 수 있다. 처음 열 때는 아직 끝내지 않은 첫 문장부터.
 - **기록**: 문장을 끝낼 때 `SPEAK` 이벤트 하나(오프라인이면 아웃박스에 쌓였다가 전송). 서버는 횟수만 남기고 아무 파생값도 만들지 않는다.
 - 마이크를 쓸 수 없는 브라우저나 권한 거부면 그 이유를 보여 주고 듣기만 가능하다.
@@ -175,7 +186,8 @@ sentence_term(sentence_id FK, term_id FK, form, PRIMARY KEY(sentence_id, term_id
 vocab_entry(term_id PK FK, sentence_id FK NULL, note, mastered, mastered_at, added_at)    -- vocab (담긴 표현)
 applied_event(id PK, applied_at)                                                         -- progress (처리한 VIEW·MORNING_LOCK 이벤트 id)
 vocab_event(id PK, applied_at)                                                           -- vocab (처리한 VOCAB_* 이벤트 id)
-speak_practice(id PK, sentence_id FK, log_date, reps, event_id UNIQUE, created_at)        -- speak (말하기 연습을 끝낸 기록, F-09)
+speak_practice(id PK, sentence_id FK, log_date, reps, event_id UNIQUE, created_at)        -- progress (말하기 연습·보충을 끝낸 기록, F-09)
+rest_day(log_date PK, declared_at)                                                       -- progress ("오늘은 어려워요", F-05)
 ```
 
 ---
@@ -221,9 +233,14 @@ speak_practice(id PK, sentence_id FK, log_date, reps, event_id UNIQUE, created_a
   "review_progress": { "days": [2, 1], "total": 20, "seen": 3 },
   "morning_lock": { "window_start": 1763154000000, "window_end": 1763166600000,
                     "state": "NONE", "sentences": [ /* 문장 × 3 */ ] },
-  "focus": { "seconds_today": 1500, "started_ats": [1763170000000] }
+  "focus": { "seconds_today": 1500, "started_ats": [1763170000000] },
+  "rest_day": { "declared_today": false, "left": 4, "per_period": 4 },
+  "makeups_due": [ { "day": 3, "date": "2026-11-15", "rest": false, "reps": 5, "deadline": "2026-11-18",
+                     "sentence_ids": [21, 22], "done_ids": [21] } ]
 }
 ```
+
+- `makeups_due`: 아직 끝내지 않았고 끝내면 실제로 스트릭을 지키는 보충(F-05). 프론트는 아직 보내지 않은 `SPEAK`를 `done_ids`에 합친다. `rest_day.left`: 이번 30일 구간에 남은 "오늘은 어려워요" 횟수.
 
 - `lesson_day = 0`이면(레슨 없음) 문장 목록은 비고 `content_missing = true`.
 - `review_gate.required = false`면 `unlock_ids`는 빈 배열.
@@ -264,7 +281,7 @@ speak_practice(id PK, sentence_id FK, log_date, reps, event_id UNIQUE, created_a
 ```
 
 - `id`: 1~64자 `[A-Za-z0-9:._-]`. 같은 id를 다시 보내도 결과가 같다. 한 요청 최대 500개. 시각 필드에 소수가 오면 서버가 소수부를 버린다(클라이언트는 정수로 보낸다).
-- `rejected[].reason`: `INVALID_ID` | `INVALID_TYPE` | `INVALID_FIELD` | `UNKNOWN_SENTENCE`.
+- `rejected[].reason`: `INVALID_ID` | `INVALID_TYPE` | `INVALID_FIELD` | `UNKNOWN_SENTENCE` | `REST_LIMIT`.
 - `occurred_at`은 서버 시계 추정값(클라이언트가 `server_time`으로 보정). 서버는 미래 값을 수신 시각으로 자른 뒤 논리 날짜로 바꾼다. 그래서 응답을 잃고 롤오버를 지나 다시 보낸 이벤트는 다른 날짜로 계산될 수 있으므로, 처리한 `VIEW`·`MORNING_LOCK` id를 `applied_event`에 남겨(자연 키로 무시된 것 포함) 한 번만 반영한다.
 - VIEW(TODAY)의 문장이 그 날짜의 오늘 레슨이 아니면 REVIEW로 바꿔 기록한다. 그 결과 오늘 레슨을 한 경로로 완주하면 `day_achievement`를 기록한다.
 - MARK는 `changed_at`(= `occurred_at`)이 같거나 더 새로울 때 바꾼다(같은 시각이면 나중에 온 것). FOCUS는 `started_at` 기준으로 큰 `seconds`만 남기고(1~21600초), 그 기록의 날짜는 `occurred_at`(끝낸 시각) 기준이다. MORNING_LOCK은 그날 첫 결정만 남는다.
@@ -275,7 +292,8 @@ speak_practice(id PK, sentence_id FK, log_date, reps, event_id UNIQUE, created_a
   - `{"type":"VOCAB_MASTER", "term_key":"grab", "mastered":true}`: 외웠어요 표시. 같은 시각이면 나중 것.
   - `{"type":"VOCAB_EDIT", "term_key":"grab", "meaning":"…", "note":"…"}`: 직접 고친 뜻·메모.
   - 단어장 이벤트는 순서에 따라 결과가 달라서(담기 → 빼기) 서버가 처리한 id를 기록하고, 같은 id가 다시 오면 적용하지 않고 `accepted`로 돌려준다.
-- 말하기 연습 이벤트(F-09): `{"type":"SPEAK", "sentence_id":31, "reps":5}`. `reps`는 1~50. `event_id` UNIQUE로 한 번만 남긴다. 없는 문장은 `UNKNOWN_SENTENCE`. 대시보드·게이트에 영향 없음.
+- 말하기 연습 이벤트(F-09): `{"type":"SPEAK", "sentence_id":31, "reps":5}`. `reps`는 1~50(보충은 그 Day에 필요한 횟수). `event_id` UNIQUE로 한 번만 남긴다. 없는 문장은 `UNKNOWN_SENTENCE`. 보충을 끝내면 스트릭이 바뀔 수 있다(F-05).
+- "오늘은 어려워요"(F-05): `{"type":"REST_DAY"}`. `occurred_at`의 논리 날짜를 `rest_day`에 남긴다. 그 30일 구간에 이미 4번이면 `REST_LIMIT`로 거절한다(이미 알린 날짜는 그대로 받는다). 롤오버를 지난 재전송이 다른 날짜로 들어가지 않게 id를 `applied_event`에 남긴다.
 
 ### 4.5 히트맵
 
@@ -289,7 +307,7 @@ speak_practice(id PK, sentence_id FK, log_date, reps, event_id UNIQUE, created_a
 }
 ```
 
-`status`: `ACHIEVED` | `FROZEN` | `MISSED` | `TODAY` | `FUTURE`. 오늘 달성했으면 `ACHIEVED`. 정확히 66칸.
+`status`: `ACHIEVED` | `FROZEN` | `REPAIRED` | `MISSED` | `TODAY` | `FUTURE`. 오늘 달성했으면 `ACHIEVED`. 정확히 66칸.
 
 ### 4.6 Web Push
 
@@ -391,15 +409,17 @@ app:
 
 ```json
 { "lesson_day": 4,
-  "days": [ { "day": 4, "title": "길 묻기와 출퇴근", "sentence_ids": [31, 32, 33], "done_ids": [31],
-              "open": true, "seen": 10 } ] }
+  "days": [
+    { "day": 4, "title": "길 묻기와 출퇴근", "sentence_ids": [31, 32], "done_ids": [], "state": "TODAY_LOCKED",
+      "reps": 5, "seen": 3, "rest": false, "deadline": null, "repairable": false },
+    { "day": 3, "title": "카페에서 주문하기", "sentence_ids": [21, 22], "done_ids": [21], "state": "MAKEUP",
+      "reps": 5, "seen": 0, "rest": false, "deadline": "2026-11-18", "repairable": true } ] }
 ```
 
-- `open`: `sentence_view`에 그 Day 문장이 모두 있으면 true(매 요청 계산, 저장 안 함). `seen`: 본 문장 수.
+- `state`: `OPEN` | `MAKEUP` | `TODAY_LOCKED`(F-09). `reps`: 문장마다 맞게 말할 횟수. `seen`: `TODAY_LOCKED`일 때 오늘의 10문장 진행(오디오·카드 중 많이 본 쪽). `deadline`·`repairable`: `MAKEUP`일 때 이날까지 끝내면 스트릭이 이어지는지.
+- `done_ids`: `OPEN`은 한 번이라도 연습을 끝낸 문장, `MAKEUP`은 보충으로 센 문장. 프론트는 아직 보내지 않은 `SPEAK` 이벤트의 문장과 합쳐 바로 보인다.
 
-`GET /api/v1/speak/days/{day}`: 그 Day의 문장(4.1 모양, 음성 포함)과 `done_ids`. 오늘 레슨 일차를 넘거나 `open`이 아닌 Day는 `404 SPEAK_DAY_LOCKED`.
-
-- `done_ids`는 한 번이라도 연습을 끝낸 문장 id. 프론트는 아직 보내지 않은 `SPEAK` 이벤트의 문장과 합쳐 바로 완료로 보인다(id 집합이라 겹쳐도 한 번만 센다).
+`GET /api/v1/speak/days/{day}`: 그 Day의 문장(4.1 모양, 음성 포함)과 위와 같은 `done_ids`·`state`·`reps`·`rest`·`deadline`·`repairable`. 오늘 레슨 일차를 넘거나 `TODAY_LOCKED`인 Day는 `404 SPEAK_DAY_LOCKED`.
 
 ---
 

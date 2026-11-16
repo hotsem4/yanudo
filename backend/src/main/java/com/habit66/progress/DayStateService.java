@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.springframework.stereotype.Service;
@@ -22,6 +24,8 @@ import com.habit66.content.Catalog.SentenceView;
 import com.habit66.content.CatalogService;
 import com.habit66.progress.DaySnapshot.Focus;
 import com.habit66.progress.DaySnapshot.Gate;
+import com.habit66.progress.DaySnapshot.Makeup;
+import com.habit66.progress.DaySnapshot.RestDay;
 import com.habit66.progress.DaySnapshot.MorningLock;
 import com.habit66.progress.DaySnapshot.Review;
 import com.habit66.progress.HabitRules.ReviewPlan;
@@ -69,7 +73,20 @@ public class DayStateService {
         int currentDay = HabitRules.currentDay(start, today, totalDays);
         int lessonDay = HabitRules.lessonDay(cat.days(), currentDay);
         LessonView lesson = cat.lesson(lessonDay).orElse(null);
-        Walk walk = HabitRules.walk(start, today, facts.achievedDates(), totalDays);
+        Set<LocalDate> achieved = facts.achievedDates();
+        Set<LocalDate> restDays = facts.restDays();
+        Map<Integer, List<Long>> lessons = new TreeMap<>();
+        for (int day : cat.days()) {
+            cat.lesson(day).ifPresent(l -> lessons.put(day, l.sentenceIds()));
+        }
+        List<Makeup> makeups = HabitRules.withStreakEffect(
+                HabitRules.makeups(start, today, totalDays, lessons, achieved, restDays, facts.speaks()),
+                start, today, achieved, totalDays);
+        Walk walk = HabitRules.walk(start, today, achieved, HabitRules.repairedDates(makeups), totalDays);
+        RestDay restDay = new RestDay(restDays.contains(today),
+                Math.max(0, HabitRules.REST_DAYS_PER_PERIOD
+                        - HabitRules.restDaysUsed(start, today, restDays, achieved, totalDays)),
+                HabitRules.REST_DAYS_PER_PERIOD);
 
         Set<Long> todayIds = lesson == null ? Set.of() : new HashSet<>(lesson.sentenceIds());
         Set<Long> audioSeen = new TreeSet<>();
@@ -114,7 +131,7 @@ public class DayStateService {
         return new DaySnapshot(today, now, bounds.from(), bounds.until(), start, currentDay, totalDays, lessonDay,
                 cat.maxDay(), lessonDay != currentDay, HabitRules.programComplete(start, today, totalDays),
                 walk.streak(), walk.achievedDays(), walk.cells(), lesson, List.copyOf(audioSeen),
-                List.copyOf(cardSeen), gate, review, morningLock, focus, facts.marks());
+                List.copyOf(cardSeen), gate, review, morningLock, focus, facts.marks(), makeups, restDay);
     }
 
     /** core 문장 3개. 모자라면 나머지를 seq 순으로 채운다. */

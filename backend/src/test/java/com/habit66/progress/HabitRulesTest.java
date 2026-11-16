@@ -10,6 +10,7 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.NavigableSet;
 import java.util.Set;
 import java.util.TreeSet;
@@ -19,8 +20,10 @@ import org.junit.jupiter.api.Test;
 import com.habit66.common.LogicalClock;
 import com.habit66.progress.DaySnapshot.Cell;
 import com.habit66.progress.DaySnapshot.CellStatus;
+import com.habit66.progress.DaySnapshot.Makeup;
 import com.habit66.progress.HabitRules.ReviewPlan;
 import com.habit66.progress.HabitRules.Walk;
+import com.habit66.progress.ProgressFacts.SpeakRow;
 
 class HabitRulesTest {
 
@@ -328,6 +331,101 @@ class HabitRulesTest {
 
         assertThat(HabitRules.currentDay(START, before, TOTAL)).isEqualTo(1);
         assertThat(HabitRules.currentDay(START, after, TOTAL)).isEqualTo(2);
+    }
+
+
+    // ── 보충과 스트릭 회복 ────────────────────────────────────
+
+    /** Day 1~3 레슨, 문장 id 는 Day*10 + 0..1 (두 문장씩). */
+    private static final Map<Integer, List<Long>> LESSONS = Map.of(1, List.of(10L, 11L), 2, List.of(20L, 21L),
+            3, List.of(30L, 31L));
+
+    private static List<SpeakRow> spoke(int onDay, int reps, long... ids) {
+        return java.util.Arrays.stream(ids).mapToObj(id -> new SpeakRow(id, day(onDay), reps)).toList();
+    }
+
+    @Test
+    void makeupWithinDeadlineRepairsTheMissedDayWithoutAFreeze() {
+        List<SpeakRow> speaks = spoke(4, 5, 20L, 21L); // Day 2 를 Day 4 에 보충
+        List<Makeup> makeups = HabitRules.makeups(START, day(4), TOTAL, LESSONS, achievedOn(1, 3), Set.of(), speaks);
+
+        assertThat(makeups).hasSize(1);
+        Makeup m = makeups.get(0);
+        assertThat(m.day()).isEqualTo(2);
+        assertThat(m.reps()).isEqualTo(5);
+        assertThat(m.doneOn()).isEqualTo(day(4));
+        assertThat(m.repairs()).isTrue();
+        Walk walk = HabitRules.walk(START, day(4), achievedOn(1, 3), HabitRules.repairedDates(makeups), TOTAL);
+        assertThat(status(walk, 2)).isEqualTo(CellStatus.REPAIRED);
+        assertThat(walk.streak().current()).isEqualTo(2);
+        assertThat(walk.streak().freezesLeft()).isEqualTo(2);
+    }
+
+    @Test
+    void makeupCountsOnlyEnoughRepsAfterTheDayAndBeforeTheDeadline() {
+        // 그날 한 연습, 4번만 한 연습은 세지 않는다. 기한(Day 2 + 3일 = Day 5)을 넘겨 끝내면 열리기만 하고 회복은 없다.
+        List<SpeakRow> speaks = new java.util.ArrayList<>(spoke(2, 5, 20L, 21L));
+        speaks.addAll(spoke(3, 4, 20L));
+        speaks.addAll(spoke(6, 5, 20L, 21L));
+        Makeup m = HabitRules.makeups(START, day(7), TOTAL, LESSONS, achievedOn(1, 3), Set.of(), speaks).stream()
+                .filter(x -> x.day() == 2).findFirst().orElseThrow();
+
+        assertThat(m.done()).isTrue();
+        assertThat(m.doneOn()).isEqualTo(day(6));
+        assertThat(m.repairs()).isFalse();
+    }
+
+    @Test
+    void restDayNeedsOneRepAndIsLimitedPerPeriod() {
+        Makeup m = HabitRules.makeups(START, day(3), TOTAL, LESSONS, achievedOn(1), Set.of(day(2)),
+                spoke(3, 1, 20L, 21L)).get(0);
+        assertThat(m.rest()).isTrue();
+        assertThat(m.reps()).isEqualTo(1);
+        assertThat(m.repairs()).isTrue();
+
+        Set<LocalDate> rest = Set.of(day(2), day(5), day(30), day(31), day(70));
+        assertThat(HabitRules.restDaysUsed(START, day(10), rest, Set.of(), TOTAL)).isEqualTo(3);
+        assertThat(HabitRules.restDaysUsed(START, day(31), rest, Set.of(), TOTAL)).isEqualTo(1);
+        // 알린 뒤 그날 달성했으면 쓰지 않은 것으로 친다. 프로그램 밖(Day 70) 기록은 마지막 구간을 잠식하지 않는다.
+        assertThat(HabitRules.restDaysUsed(START, day(10), rest, achievedOn(5), TOTAL)).isEqualTo(2);
+        assertThat(HabitRules.restDaysUsed(START, day(66), rest, Set.of(), TOTAL)).isZero();
+    }
+
+    @Test
+    void makeupKeepsTheStreakOnlyWhenThereIsAStreakToKeep() {
+        // Day 1 달성, Day 2·3 빼먹음, 오늘 Day 4. 둘 다 보충하면 이어지므로 둘 다 지킨다.
+        List<Makeup> both = HabitRules.withStreakEffect(
+                HabitRules.makeups(START, day(4), TOTAL, LESSONS, achievedOn(1), Set.of(), List.of()),
+                START, day(4), achievedOn(1), TOTAL);
+        assertThat(both).extracting(Makeup::keepsStreak).containsExactly(true, true);
+
+        // 처음부터 안 했으면(스트릭 0) 보충해도 지킬 것이 없다. Day 를 열기만 한다.
+        List<Makeup> none = HabitRules.withStreakEffect(
+                HabitRules.makeups(START, day(4), TOTAL, LESSONS, Set.of(), Set.of(), List.of()),
+                START, day(4), Set.of(), TOTAL);
+        assertThat(none).extracting(Makeup::keepsStreak).containsOnly(false);
+
+        // 기한이 지난 앞날(Day 2, 기한 Day 5)이 이미 끊었으면(프리즈 없음 가정 대신 스트릭 0) 뒤의 보충도 지킬 것이 없다.
+        List<Makeup> broken = HabitRules.withStreakEffect(
+                HabitRules.makeups(START, day(8), TOTAL, Map.of(2, List.of(20L), 3, List.of(30L)), Set.of(), Set.of(),
+                        List.of()),
+                START, day(8), Set.of(), TOTAL);
+        assertThat(broken).extracting(Makeup::keepsStreak).containsOnly(false);
+    }
+
+    @Test
+    void makeupDeadlineIsInclusive() {
+        Makeup onDeadline = HabitRules.makeups(START, day(6), TOTAL, LESSONS, achievedOn(1, 3), Set.of(),
+                spoke(5, 5, 20L, 21L)).get(0); // Day 2 의 기한은 Day 5
+        assertThat(onDeadline.repairs()).isTrue();
+        Makeup late = HabitRules.makeups(START, day(7), TOTAL, LESSONS, achievedOn(1, 3), Set.of(),
+                spoke(6, 5, 20L, 21L)).get(0);
+        assertThat(late.repairs()).isFalse();
+    }
+
+    @Test
+    void todayAndAchievedDaysNeedNoMakeup() {
+        assertThat(HabitRules.makeups(START, day(2), TOTAL, LESSONS, achievedOn(1), Set.of(), List.of())).isEmpty();
     }
 
     private static long seoul(int year, int month, int dayOfMonth, int hour, int minute) {

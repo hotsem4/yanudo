@@ -240,14 +240,16 @@ bg-hero       = bg-gradient-to-br from-royal to-royal-soft
 
 ## 4-3. 말하기 연습 (SPEC F-09)
 
-세션 탭의 네 번째 `말하기`. 단어장과 같은 별도 화면 틀(`.app-grid--vocab`, 독·컨트롤 줄 없음, URL `?view=speak`)을 쓴다. 부가 기능이라 오늘 할 일 줄도 숨긴다.
+세션 탭의 네 번째 `말하기`. 단어장과 같은 별도 화면 틀(`.app-grid--vocab`, 독·컨트롤 줄 없음, URL `?view=speak`)을 쓴다. 오늘 할 일 줄은 숨긴다. 빼먹은 날의 보충(SPEC F-05)도 여기서 한다.
 
 | 조각 | 규칙 |
 |---|---|
-| Day 목록 | 행 `min-h-14 rounded-2xl bg-canvas`(고른 행 `bg-tint`): `Day N` 13px bold royal + 제목 + 오른쪽 `done/total` 또는 체크 + "연습 완료". 잠긴 Day는 버튼이 아닌 행(`Day N` faint, 제목 muted, `Lock` + "학습 6/10"), 잠긴 Day가 있으면 목록 위에 13px 안내 한 줄. 펼친 화면은 왼쪽 열(세로가 낮아도 보인다), 접은 화면은 카드 안(`SpeakHome`) |
-| 연습 카드 | 학습 카드 자리(`rounded-stage p-6`). 머리 줄: (접은 화면만) 목록으로 + `Day N · 제목` + `i / 10` + 듣기 `h-9 w-9` 원 → 문장 진행 막대(끝낸 문장 royal, 지금 문장 royal/40) → 가운데 스크롤 영역(영어 25px, 해석 14px) → 점 5개 + `n/5` → 하단 `이전 48px / 마이크 64px bg-royal shadow-glow / 다음 48px`(`max-w-[280px] justify-between`) → 상태 문구 13px |
+| Day 목록 | 행 `min-h-14 rounded-2xl bg-canvas`(고른 행 `bg-tint`): `Day N` 13px bold royal + 제목 + 오른쪽 `done/total` 또는 체크 + "연습 완료"/"보충 완료". 보충할 Day는 제목 아래 12px royal 한 줄(`RotateCcw` + "보충 5번씩 · 11/18까지 하면 연속 유지", 지킬 연속 기록이 없으면 "보충 5번씩 하면 열려요"). 오늘 Day가 잠겼으면 버튼이 아닌 행(`Day N` faint, 제목 muted, `Lock` + "오늘 3/10"). 보충할 Day가 있으면 목록 위에 13px 안내 한 줄. 펼친 화면은 왼쪽 열(세로가 낮아도 보인다), 접은 화면은 카드 안(`SpeakHome`) |
+| 연습 카드 | 학습 카드 자리(`rounded-stage p-6`). 머리 줄: (접은 화면만) 목록으로 + `Day N · 제목` + `i / 10` + 듣기 `h-9 w-9` 원 → (보충이면) 12.5px royal 한 줄 "보충 5번씩 · 11/18까지 하면 연속 유지" 또는 "… · 끝내면 이 Day 가 열려요"(truncate, 툴팁에만 숨기지 않는다). 1번 보충은 점 대신 "한 번만 맞게 말하면 돼요" → 문장 진행 막대(끝낸 문장 royal, 지금 문장 royal/40) → 가운데 스크롤 영역(영어 25px, 보충이면 어순 힌트 16px semibold royal, 해석 14px) → 점 5개 + `n/5` → 하단 `이전 48px / 마이크 64px bg-royal shadow-glow / 다음 48px`(`max-w-[280px] justify-between`) → 상태 문구 13px |
 | 판정 | 말한 뒤 맞힌 단어는 ink, 놓친 단어는 faint. 1회 성공하면 점 하나가 채워지고 0.7초 뒤 다시 듣기 시작, 5회면 1초 뒤 다음 문장 |
-| 끝 | Day를 다 끝내면 포롱(party) + "처음부터 다시" + (접은 화면) "다른 Day 고르기" |
+| 끝 | Day를 다 끝내면 포롱(party) + "처음부터 다시" + (접은 화면) "다른 Day 고르기". 보충이면 "연속 기록이 이어졌어요" |
+| 오늘 할 일 시트 | 목록 아래 "보충하면 연속 기록이 이어져요"(행 `min-h-14 rounded-2xl bg-tint`, 누르면 말하기 탭의 그 Day) → "오늘은 어려워요"(`h-11` 필 `bg-canvas`, `Moon`). 누르면 같은 자리에 확인 상자(`bg-canvas p-3.5`, "쉬는 날로 알리기" royal 필 + "취소"). 알린 뒤에는 안내 문단으로 바뀐다. 오늘 달성했으면 그리지 않는다 |
+| 히트맵 | `REPAIRED`(보충으로 지킴)는 `bg-tint` + `ring-royal/30` + `RotateCcw` 11px royal(프리즈 칸과 구분) |
 
 - 펼친 화면 616px 폭에서 카드 안쪽이 200px이라 하단 줄은 버튼 3개까지만 둔다(듣기는 머리 줄).
 

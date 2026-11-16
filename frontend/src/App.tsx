@@ -33,6 +33,7 @@ import { showToast } from "./lib/toast";
 import { filterVocab, type VocabFilter } from "./lib/vocab";
 import { playback, usePlaybackTab } from "./playback/controller";
 import { shouldShowMorningLock, type DayView } from "./state/overlay";
+import { studyStore } from "./state/store";
 import { useStudy } from "./state/useStudy";
 
 type Sheet = "heatmap" | "settings" | "words" | "todo" | null;
@@ -83,15 +84,26 @@ export function App() {
   const [speakDay, setSpeakDay] = useState<number | null>(null);
   const [speakOverview, setSpeakOverview] = useState<SpeakOverview | null>(null);
   const [speakFailed, setSpeakFailed] = useState(false);
-  const loadSpeak = useCallback(() => {
-    setSpeakFailed(false);
-    api.speak().then(setSpeakOverview, () => setSpeakFailed(true));
-  }, []);
-  useEffect(() => {
-    if (speakOpen) loadSpeak();
-  }, [speakOpen, loadSpeak]);
   // 이 화면에서 끝낸 문장. 기록을 보내기 전에 받은 목록에도 완료로 보이게 서버 값·대기 이벤트와 합친다.
   const [speakDone, setSpeakDone] = useState<number[]>([]);
+  const loadSpeak = useCallback(() => {
+    setSpeakFailed(false);
+    api.speak().then(
+      (o) => {
+        setSpeakOverview(o);
+        // 받은 목록에 이미 반영됐다. 아직 보내지 않은 것은 speakPendingIds 가 따로 보인다.
+        setSpeakDone([]);
+      },
+      () => setSpeakFailed(true),
+    );
+  }, []);
+  // 말하기 탭을 열 때, 그리고 열려 있는 동안 날짜가 바뀌거나(롤오버) 보충·오늘 달성으로 상태가 바뀌면 다시 받는다.
+  const speakKey = view
+    ? `${view.dashboard.valid_from}|${view.streak.achievedToday}|${(view.dashboard.makeups_due ?? []).map((m) => `${m.day}:${m.done_ids.length}`).join(",")}`
+    : "";
+  useEffect(() => {
+    if (speakOpen) loadSpeak();
+  }, [speakOpen, loadSpeak, speakKey]);
   const speakMarks = useMemo(() => [...(view?.speakPendingIds ?? []), ...speakDone], [view?.speakPendingIds, speakDone]);
   // 알림을 눌렀을 때 서비스 워커가 열린 창을 새로 고치지 않고 보내는 목적지(sw.js notificationclick).
   useEffect(() => {
@@ -293,6 +305,16 @@ export function App() {
         todos={todos ?? []}
         streak={view?.streak.current ?? 0}
         mascot={mascot}
+        achievedToday={view?.streak.achievedToday ?? false}
+        restAllowed={!!view && !view.stale && !view.dashboard.program_complete && view.dashboard.today_progress.total > 0}
+        restPeriod={restPeriodOf(view)}
+        restDay={view?.restDay ?? null}
+        makeupsDue={view?.makeupsDue ?? []}
+        onDeclareRest={() => studyStore.record({ type: "REST_DAY" })}
+        onOpenMakeup={(day) => {
+          showSide("speak");
+          setSpeakDay(day);
+        }}
         {...todoActions}
       />
       <MorningLockOverlay open={morningOpen} sentences={view?.morningLock.sentences ?? []} onDone={closeMorning} mascot={mascot} />
@@ -374,4 +396,11 @@ function useCelebrations(view: DayView | null): void {
     if (!before.gate && now.gate && view.gate.required) showToast("오늘의 10문장이 열렸어요", "success");
     if (!before.achieved && now.achieved) showToast(`오늘 습관 달성! 연속 ${view.streak.current}일`, "success", 3200);
   }, [view]);
+}
+
+/** 오늘이 속한 30일 구간의 Day 범위("오늘은 어려워요" 횟수 안내용). */
+function restPeriodOf(view: DayView | null): readonly [number, number] {
+  if (!view) return [1, 30];
+  const from = Math.floor((view.dashboard.current_day - 1) / 30) * 30 + 1;
+  return [from, Math.min(from + 29, view.dashboard.total_days)];
 }

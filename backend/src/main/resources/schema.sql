@@ -149,6 +149,13 @@ CREATE TABLE IF NOT EXISTS speak_practice (
 
 CREATE INDEX IF NOT EXISTS idx_speak_sentence ON speak_practice (sentence_id);
 
+-- 쓰기 소유자: progress.EventService. 그날 안에 "오늘은 어려워요"라고 미리 알린 날(SPEC F-05).
+-- 그날을 빼먹어도 보충이 가벼워진다(10문장 1번씩). 30일 구간마다 4번까지.
+CREATE TABLE IF NOT EXISTS rest_day (
+    log_date     TEXT    PRIMARY KEY,
+    declared_at  INTEGER NOT NULL
+);
+
 -- 쓰기 소유자: progress.EventService. 처리한 VIEW·MORNING_LOCK 이벤트 id(재전송이 다른 날짜로 다시 기록되지 않게)
 CREATE TABLE IF NOT EXISTS applied_event (
     id          TEXT    PRIMARY KEY,

@@ -88,7 +88,11 @@ public class EventService {
                 // 미래 시각만 자른다(실제로 일어난 시각은 받은 시각보다 늦을 수 없다). 늦게 도착한 어제 기록은 어제 날짜에 들어간다.
                 long at = Math.min(event.occurredAt(), receivedAt);
                 boolean ok;
-                if (event instanceof ClientEvent.View view) {
+                String reason = "UNKNOWN_SENTENCE";
+                if (event instanceof ClientEvent.RestDay rest) {
+                    reason = applyRestDay(rest, at, receivedAt, start);
+                    ok = reason == null;
+                } else if (event instanceof ClientEvent.View view) {
                     ok = applyView(view, at, receivedAt, cat, start, completions);
                 } else if (event instanceof ClientEvent.Mark mark) {
                     ok = applyMark(mark, at, cat);
@@ -104,7 +108,7 @@ public class EventService {
                 if (ok) {
                     accepted.add(event.id());
                 } else {
-                    rejected.add(new Rejected(event.id(), "UNKNOWN_SENTENCE"));
+                    rejected.add(new Rejected(event.id(), reason));
                 }
             }
             completions.forEach((completion, at) -> recordIfComplete(completion, at, cat));
@@ -180,7 +184,34 @@ public class EventService {
         return true;
     }
 
-    /** 단어장 이벤트. 없는 문장·담기지 않은 표현을 가리켜도 거절하지 않는다(그 부분만 무시한다). */
+    /**
+     * "오늘은 어려워요". 이 날짜의 30일 구간에서 이미 4번 썼으면 REST_LIMIT 로 거절한다(거절해야 화면이 되돌린다).
+     * 이미 처리한 id 는 한도와 무관하게 받는다(응답을 잃고 롤오버를 지나 다시 보내도 다른 날짜로 다시 들어가거나 거절되지 않게).
+     * 이미 달성한 날짜와 프로그램 밖 날짜는 받기만 하고 남기지 않는다.
+     *
+     * @return 거절 사유, 받았으면 null
+     */
+    private String applyRestDay(ClientEvent.RestDay rest, long at, long receivedAt, LocalDate start) {
+        if (!jdbc.queryForList("SELECT 1 FROM applied_event WHERE id = ?", Integer.class, rest.id()).isEmpty()) {
+            return null;
+        }
+        LocalDate date = clock.dateOf(at);
+        Set<LocalDate> achieved = facts.achievedDates();
+        if (date.isBefore(start) || HabitRules.programComplete(start, date, totalDays) || achieved.contains(date)) {
+            claim(rest.id(), receivedAt);
+            return null;
+        }
+        boolean already = !jdbc.queryForList("SELECT 1 FROM rest_day WHERE log_date = ?", Integer.class,
+                date.toString()).isEmpty();
+        if (!already && HabitRules.restDaysUsed(start, date, facts.restDays(), achieved, totalDays)
+                >= HabitRules.REST_DAYS_PER_PERIOD) {
+            return "REST_LIMIT";
+        }
+        claim(rest.id(), receivedAt);
+        jdbc.update("INSERT OR IGNORE INTO rest_day (log_date, declared_at) VALUES (?, ?)", date.toString(), at);
+        return null;
+    }
+
     /** 말하기 연습 기록. 이벤트 id 로 멱등(같은 문장을 다시 연습하면 새 행이 쌓인다). */
     private boolean applySpeak(ClientEvent.Speak speak, long at, long receivedAt, Catalog cat) {
         if (cat.sentence(speak.sentenceId()).isEmpty()) {

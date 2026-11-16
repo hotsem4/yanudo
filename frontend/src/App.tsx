@@ -17,6 +17,7 @@ import { VocabList } from "./components/VocabList";
 import { VocabPickSheet } from "./components/VocabPickSheet";
 import { VocabStage } from "./components/VocabStage";
 import { Toaster } from "./components/Toaster";
+import { TodayPlan } from "./components/TodayPlan";
 import { useFocusTimer } from "./hooks/useFocusTimer";
 import { useWakeLock } from "./hooks/useWakeLock";
 import { rememberVocabView, vocabViewFromUrl } from "./lib/launch";
@@ -96,6 +97,23 @@ export function App() {
     prefs.set("filter", f);
   };
 
+  // 오늘 할 일의 단계 버튼: 그 탭으로 가서 학습 방식을 맞추고 바로 재생한다. 이미 그 탭을 재생 중이면 멈춘다.
+  // 복습은 "한글만 + 끊어읽기"(해석을 보며 듣고 따라 말하기), 오늘 10문장은 처음 배우므로 "전체 + 연속 듣기".
+  const startStep = (session: Session) => {
+    const now = audioEngine.getSnapshot();
+    if (!vocabOpen && now.playing && now.session === session) {
+      audioEngine.pause();
+      return;
+    }
+    showVocab(false);
+    playback.selectTab(session);
+    changeFilter(session === "REVIEW" ? "korean" : "all");
+    const mode = session === "REVIEW" ? "shadowing" : "full";
+    audioEngine.setMode(mode);
+    prefs.set("mode", mode);
+    void audioEngine.play();
+  };
+
   const locked = !!view && !view.gate.open;
   const tabs: { value: MainTab; label: string; icon?: JSX.Element }[] = [
     { value: "TODAY", label: "오늘의 10문장", icon: locked ? <Lock size={13} strokeWidth={2} aria-hidden /> : undefined },
@@ -116,7 +134,8 @@ export function App() {
         <div className="area-head">
           <BentoHeader view={view} timer={timer} onOpenHeatmap={() => setSheet("heatmap")} />
         </div>
-        <div className="area-tabs">
+        <div className="area-tabs flex flex-col gap-3">
+          <TodayPlan view={view} onStart={startStep} />
           <Segmented variant="tab" label="학습 세션" options={tabs} value={vocabOpen ? "VOCAB" : tab} onChange={selectMainTab} />
         </div>
         <div className="area-map">

@@ -372,7 +372,9 @@ function StatusLine({ eng, sentence, filter, anyHidden, online }: StatusProps) {
   } else if (current && eng.phase === "loading") {
     left = <span>불러오는 중…</span>;
   } else {
-    left = <span className="truncate tabular-nums">{anyHidden && filter !== "all" ? "카드를 탭하면 가린 문장이 잠깐 보여요" : `Day ${sentence.day} 문장`}</span>;
+    // 가린 카드에서는 할 일을 알려 준다: 보이는 쪽을 보고 영어로 말해 본 뒤 탭해서 확인.
+    const hint = filter === "korean" ? "해석을 보고 영어로 말한 뒤, 탭해서 확인" : "어순을 보고 영어로 말한 뒤, 탭해서 확인";
+    left = <span className="truncate tabular-nums">{anyHidden && filter !== "all" ? hint : `Day ${sentence.day} 문장`}</span>;
   }
 
   const { ready, total } = eng.preload;

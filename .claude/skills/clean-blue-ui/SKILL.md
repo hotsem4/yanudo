@@ -112,6 +112,12 @@ bg-hero       = bg-gradient-to-br from-royal to-royal-soft
 - 벤토 두 카드는 같은 문법으로 쌓는다: 첫 줄(높이 24px) 왼쪽 라벨 + 오른쪽 작은 아이콘(히어로 `CalendarDays`, 타이머 모래시계) → 큰 숫자 → 6px 게이지 → 하단 한 줄. 두 카드의 라벨·숫자·게이지·하단 줄이 같은 높이에 온다.
 - 타이머 게이지는 지나간 비율을 `scaleX`로 채운다(시작 전에는 비어 있다). 꽉 찬 royal 막대를 히어로 옆에 세우지 않는다.
 
+### 오늘 할 일 (헤더와 세션 탭 사이)
+- 한 줄 `h-11`, 세션 탭과 같은 영역(`area-tabs`, `flex-col gap-3`)에 둔다(없는 날 빈 줄이 생기지 않게).
+- 지금 할 단계 = 버튼: `h-11 rounded-full bg-royal text-surface text-[13px] font-semibold shadow-lift` + 재생/멈춤 아이콘 + `n/m`(`tabular-nums text-surface/80`). 화면에서 로열 블루로 채운 버튼은 이것과 활성 필 두 가지뿐이다.
+- 끝난 단계: `text-royal font-semibold` + 체크. 다음 단계: `text-muted-strong font-medium`(캔버스 위라 muted 대신). 사이에 `ChevronRight 14 text-faint`.
+- 커버 416px 에서 가장 긴 상태(끝난 단계 + 버튼 + 달성)가 330px 안팎. 펼친 화면 왼쪽 열(최소 280px)에서는 끝난 단계 글자를 숨기고(`unfolded:sr-only`) 간격을 `gap-1`로.
+
 ### 필 세그먼트 (가리기 필터 / 오디오 모드 / 세션 탭)
 - 바탕: `bg-white rounded-full p-1 shadow-card`
 - 항목: `flex-1 h-9 rounded-full text-[12.5px] font-semibold`

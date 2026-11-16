@@ -135,7 +135,7 @@
             {
               "text": "dizzy",
               "meaning": "어지러운",
-              "nuance": "머리가 빙빙 도는 느낌. 속이 울렁거리면 nauseous를 쓴다.",
+              "nuance": "어질어질하거나 아찔한 느낌이다. 빙빙 도는 느낌에도 쓴다. 속이 울렁거리면 nauseous를 쓴다.",
               "examples": [
                 {
                   "en": "I got dizzy on the roller coaster.",
@@ -174,45 +174,46 @@
         },
         {
           "speaker": "A",
-          "en_text": "Okay, let me check your blood pressure.",
-          "ko_word_order": "좋아요, / 제가 확인할게요 / 당신의 혈압을",
-          "ko_natural": "네, 혈압 한번 재 볼게요.",
+          "en_text": "Okay. You're not sleeping well these days?",
+          "ko_word_order": "그렇군요. / 당신은 잘 못 자고 있나요 / 요즘?",
+          "ko_natural": "그렇군요. 요즘 잠을 잘 못 주무세요?",
           "terms": [
             {
-              "text": "blood pressure",
-              "meaning": "혈압",
-              "nuance": "check/take one's blood pressure로 '혈압을 재다'. 고혈압은 high blood pressure.",
+              "text": "sleep well",
+              "form": "sleeping well",
+              "meaning": "잘 자다",
+              "nuance": "잠을 푹 잤는지 물을 때 쓴다. 아침 인사로 Did you sleep well?을 자주 쓴다.",
               "examples": [
                 {
-                  "en": "My dad has high blood pressure.",
-                  "ko": "우리 아빠는 고혈압이 있어."
+                  "en": "Did you sleep well last night?",
+                  "ko": "어젯밤에 잘 잤어요?"
                 },
                 {
-                  "en": "The nurse took my blood pressure.",
-                  "ko": "간호사가 혈압을 쟀어."
+                  "en": "I haven't been sleeping well lately.",
+                  "ko": "요즘 잠을 잘 못 자요."
                 },
                 {
-                  "en": "Salty food is bad for your blood pressure.",
-                  "ko": "짠 음식은 혈압에 안 좋아."
+                  "en": "Sleep well, and see you tomorrow.",
+                  "ko": "잘 자요, 내일 봐요."
                 }
               ]
             },
             {
-              "text": "let me",
-              "meaning": "제가 ~할게요",
-              "nuance": "허락을 구하듯 부드럽게 '내가 ~할게'라고 할 때 쓴다. 가게·병원 직원이 자주 쓴다.",
+              "text": "these days",
+              "meaning": "요즘",
+              "nuance": "예전과 달라진 요즘 상태를 말할 때 쓴다. 진행형과 자주 함께 쓴다.",
               "examples": [
                 {
-                  "en": "Let me get the door for you.",
-                  "ko": "제가 문 열어 드릴게요."
+                  "en": "What are you up to these days?",
+                  "ko": "요즘 뭐 하고 지내요?"
                 },
                 {
-                  "en": "Let me think about it.",
-                  "ko": "생각 좀 해 볼게."
+                  "en": "Everything is so expensive these days.",
+                  "ko": "요즘 다 너무 비싸요."
                 },
                 {
-                  "en": "Let me take a look at your throat.",
-                  "ko": "목 한번 볼게요."
+                  "en": "I'm working from home these days.",
+                  "ko": "요즘 재택근무해요."
                 }
               ]
             }
@@ -220,26 +221,45 @@
         },
         {
           "speaker": "B",
-          "en_text": "Is it anything serious, doctor?",
-          "ko_word_order": "그게 / 뭔가 심각한 건가요, / 선생님?",
-          "ko_natural": "선생님, 심각한 건 아니죠?",
+          "en_text": "No, not really. Work has been really stressful.",
+          "ko_word_order": "아니요(=네, 잘 못 자요), 별로요. / 일이 / 정말 스트레스였어요",
+          "ko_natural": "네, 잘 못 자요. 요즘 일 때문에 스트레스가 너무 심해서요.",
           "terms": [
             {
-              "text": "serious",
-              "meaning": "심각한",
-              "nuance": "병·문제가 심각한지 물을 때 쓴다. It's nothing serious(별거 아니에요)도 함께 알아 두면 좋다.",
+              "text": "not really",
+              "meaning": "별로, 그다지",
+              "nuance": "No보다 부드럽게 아니라고 할 때 쓴다. 혼자서 대답으로도 쓴다.",
               "examples": [
                 {
-                  "en": "Don't worry, it's nothing serious.",
-                  "ko": "걱정 마, 별거 아니야."
+                  "en": "Are you hungry? Not really.",
+                  "ko": "배고파? 별로."
                 },
                 {
-                  "en": "Was the accident serious?",
-                  "ko": "사고가 심각했어?"
+                  "en": "I'm not really a morning person.",
+                  "ko": "저는 아침형 인간은 아니에요."
                 },
                 {
-                  "en": "He had a serious injury last year.",
-                  "ko": "그는 작년에 크게 다쳤어."
+                  "en": "It's not really my style.",
+                  "ko": "그건 제 스타일이 아니에요."
+                }
+              ]
+            },
+            {
+              "text": "stressful",
+              "meaning": "스트레스가 많은",
+              "nuance": "일이나 상황이 스트레스를 줄 때 쓴다. 사람이 스트레스를 받으면 stressed라고 한다.",
+              "examples": [
+                {
+                  "en": "My job is really stressful right now.",
+                  "ko": "요즘 일이 정말 스트레스예요."
+                },
+                {
+                  "en": "Moving can be stressful.",
+                  "ko": "이사는 스트레스받을 수 있어요."
+                },
+                {
+                  "en": "It was a stressful week.",
+                  "ko": "스트레스가 많은 한 주였어요."
                 }
               ]
             }
@@ -247,9 +267,9 @@
         },
         {
           "speaker": "A",
-          "en_text": "No, you're probably just run down from stress.",
-          "ko_word_order": "아니요, / 당신은 아마 그냥 지친 거예요 / 스트레스 때문에",
-          "ko_natural": "아니요, 아마 스트레스 때문에 몸이 좀 지치신 것 같아요.",
+          "en_text": "I see. You're probably just run down from stress.",
+          "ko_word_order": "그렇군요. / 당신은 아마 그냥 지친 거예요 / 스트레스 때문에",
+          "ko_natural": "그렇군요. 아마 스트레스 때문에 몸이 좀 지치신 것 같아요.",
           "terms": [
             {
               "text": "run down",

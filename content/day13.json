@@ -146,27 +146,26 @@
         },
         {
           "speaker": "B",
-          "en_text": "Try these lozenges. Take one every three hours.",
-          "ko_word_order": "써 보세요 / 이 목캔디들을. / 하나 드세요 / 세 시간마다",
-          "ko_natural": "이 목캔디 드셔 보세요. 세 시간마다 하나씩 드시면 돼요.",
+          "en_text": "Try this cough syrup. Take a spoonful every four hours.",
+          "ko_word_order": "드셔 보세요 / 이 기침 시럽을. / 한 숟가락 드세요 / 네 시간마다",
+          "ko_natural": "이 기침 시럽 드셔 보세요. 네 시간마다 한 숟가락씩 드시면 돼요.",
           "terms": [
             {
-              "text": "lozenge",
-              "form": "lozenges",
-              "meaning": "목캔디, 트로키",
-              "nuance": "약국에서 파는 빨아 먹는 목 약. 일상에서는 throat drop이라고도 한다.",
+              "text": "cough syrup",
+              "meaning": "기침 시럽(물약)",
+              "nuance": "기침을 가라앉히는 물약이다. 한 숟가락은 a spoonful이라고 한다. 졸음이 오는 성분이 든 것도 있다.",
               "examples": [
                 {
-                  "en": "I always keep lozenges in my bag.",
-                  "ko": "난 가방에 늘 목캔디를 넣고 다녀."
+                  "en": "This cough syrup tastes like cherry.",
+                  "ko": "이 기침 시럽 체리 맛이 나요."
                 },
                 {
-                  "en": "These lozenges taste like honey.",
-                  "ko": "이 목캔디 꿀 맛이 나."
+                  "en": "Take two spoonfuls of cough syrup before bed.",
+                  "ko": "자기 전에 기침 시럽 두 숟가락 드세요."
                 },
                 {
-                  "en": "Don't chew the lozenge. Let it melt.",
-                  "ko": "목캔디는 씹지 말고 녹여 먹어."
+                  "en": "Keep the cough syrup away from the kids.",
+                  "ko": "기침 시럽은 아이들 손에 안 닿게 두세요."
                 }
               ]
             },
@@ -193,9 +192,9 @@
         },
         {
           "speaker": "A",
-          "en_text": "Do they make you drowsy?",
-          "ko_word_order": "그것들이 만드나요 / 당신을 / 졸리게?",
-          "ko_natural": "먹으면 졸려요?",
+          "en_text": "Doesn't this make you feel drowsy?",
+          "ko_word_order": "이것이 만들지 않나요 / 당신을 / 졸리게?",
+          "ko_natural": "이거 먹으면 안 졸려요?",
           "core": true,
           "terms": [
             {
@@ -220,7 +219,7 @@
             {
               "text": "make",
               "meaning": "~하게 만들다",
-              "nuance": "make + 사람 + 형용사 꼴로 '그 사람을 어떤 상태로 만든다'. 약·음식의 효과를 말할 때 자주 쓴다.",
+              "nuance": "make + 사람 + 형용사 꼴로 '그 사람을 어떤 상태로 만든다'. make + 사람 + feel + 형용사는 '그런 기분·상태를 느끼게 하다'. 약·음식의 효과를 말할 때 자주 쓴다.",
               "examples": [
                 {
                   "en": "Coffee makes me nervous.",
@@ -240,14 +239,14 @@
         },
         {
           "speaker": "B",
-          "en_text": "A little, so avoid driving after taking them.",
-          "ko_word_order": "조금요, / 그러니 피하세요 / 운전하는 것을 / 그것들을 먹은 후에",
-          "ko_natural": "조금요. 그러니까 드시고 나서는 운전하지 마세요.",
+          "en_text": "Yes, a little, so avoid driving after taking it.",
+          "ko_word_order": "네(=아니요, 졸려요), 조금요, / 그러니까 피하세요 / 운전하는 것을 / 드신 후에는",
+          "ko_natural": "아니요, 조금 졸려요. 그러니까 드시고 나서는 운전하지 마세요.",
           "terms": [
             {
               "text": "avoid",
               "meaning": "피하다",
-              "nuance": "avoid 뒤에는 -ing가 온다(avoid to drive X). don't보다 조언하는 느낌이 있다.",
+              "nuance": "명사나 동사-ing를 목적어로 써서 특정 대상·행동을 피하라는 뜻이다(avoid to drive X).",
               "examples": [
                 {
                   "en": "Try to avoid coffee before bed.",
@@ -341,9 +340,9 @@
         },
         {
           "speaker": "A",
-          "en_text": "Great. I'll take a box, then.",
-          "ko_word_order": "좋아요. / 제가 살게요 / 한 상자를, / 그럼",
-          "ko_natural": "좋네요. 그럼 한 통 주세요.",
+          "en_text": "Great. I'll take a bottle, then.",
+          "ko_word_order": "좋아요. / 제가 살게요 / 한 병을, / 그럼",
+          "ko_natural": "좋네요. 그럼 한 병 주세요.",
           "terms": [
             {
               "text": "I'll take",

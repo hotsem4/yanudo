@@ -79,22 +79,26 @@ public class EventService {
         List<Rejected> rejected = new ArrayList<>(parsed.rejected());
         Catalog cat = catalog.current();
         LocalDate start = settings.startDate().orElseGet(() -> clock.dateOf(receivedAt));
-        // 날짜마다 공부할 레슨(복습 순환 포함). 그날 레슨은 전날까지의 달성으로 정해져 이 배치가 바꾸지 않는다.
-        HabitRules.Schedule schedule = HabitRules.schedule(start, clock.dateOf(receivedAt), cat.days(),
-                facts.achievements());
+        LocalDate until = clock.dateOf(receivedAt);
 
         tx.executeWithoutResult(status -> {
+            // 날짜마다 공부할 레슨(복습 순환 포함). 그날 레슨은 전날까지의 달성으로 정해진다.
+            HabitRules.Schedule[] schedule = {HabitRules.schedule(start, until, cat.days(), facts.achievements())};
             Map<Completion, Long> completions = new LinkedHashMap<>();
             for (ClientEvent event : parsed.events()) {
                 // 미래 시각만 자른다(실제로 일어난 시각은 받은 시각보다 늦을 수 없다). 늦게 도착한 어제 기록은 어제 날짜에 들어간다.
                 long at = Math.min(event.occurredAt(), receivedAt);
+                // 오프라인에서 어제 기록과 오늘 기록이 한 번에 오면, 어제 달성을 먼저 남겨야 오늘 레슨(복습 순환)이 맞게 정해진다.
+                if (event instanceof ClientEvent.View && recordBefore(clock.dateOf(at), completions, cat)) {
+                    schedule[0] = HabitRules.schedule(start, until, cat.days(), facts.achievements());
+                }
                 boolean ok;
                 String reason = "UNKNOWN_SENTENCE";
                 if (event instanceof ClientEvent.RestDay rest) {
                     reason = applyRestDay(rest, at, receivedAt, start);
                     ok = reason == null;
                 } else if (event instanceof ClientEvent.View view) {
-                    ok = applyView(view, at, receivedAt, cat, schedule, completions);
+                    ok = applyView(view, at, receivedAt, cat, schedule[0], completions);
                 } else if (event instanceof ClientEvent.Mark mark) {
                     ok = applyMark(mark, at, cat);
                 } else if (event instanceof ClientEvent.Focus focus) {
@@ -115,6 +119,21 @@ public class EventService {
             completions.forEach((completion, at) -> recordIfComplete(completion, at, cat));
         });
         return new ApplyResult(List.copyOf(accepted), rejected);
+    }
+
+    /** date 보다 앞 날짜의 완주 후보를 지금 기록한다. 하나라도 처리했으면 true(일정을 다시 계산해야 한다). */
+    private boolean recordBefore(LocalDate date, Map<Completion, Long> completions, Catalog cat) {
+        boolean any = false;
+        var it = completions.entrySet().iterator();
+        while (it.hasNext()) {
+            var e = it.next();
+            if (e.getKey().date().isBefore(date)) {
+                recordIfComplete(e.getKey(), e.getValue(), cat);
+                it.remove();
+                any = true;
+            }
+        }
+        return any;
     }
 
     /**

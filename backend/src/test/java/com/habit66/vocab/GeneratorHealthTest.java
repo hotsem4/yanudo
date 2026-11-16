@@ -176,7 +176,8 @@ class GeneratorHealthTest {
                 new AppProperties.Reminder(false, "0 0 22 * * *", "0 30 22 * * *", 3,
                         new AppProperties.Telegram(false, "", ""),
                         new AppProperties.Discord(false, "")),
-                new AppProperties.Vocab("claude-cli", "claude", "haiku", 120, "", "0 0 12 * * *", 3));
+                new AppProperties.Vocab("claude-cli", "claude", "haiku", 120, "", "0 0 12 * * *", 3),
+                new AppProperties.Backup(false, "0 30 4 * * *", 14, ""));
     }
 
     private static final class MutableClock extends Clock {

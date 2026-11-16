@@ -11,6 +11,7 @@
 | A2 | Tailscale **무인 실행 모드**(Windows 에서 로그아웃해도 연결 유지) | 2026-11-16 | `& "C:\Program Files\Tailscale\tailscale.exe" debug prefs` 의 `ForceDaemon: true` | `& "C:\Program Files\Tailscale\tailscale.exe" set --unattended=false` |
 | A3 | **Tailscale Serve**: `https://<pc>.<tailnet>.ts.net/` → `http://127.0.0.1:8080` (재부팅해도 유지. `run.bat` 도 켤 때마다 같은 설정을 다시 건다) | 2026-11-16 | `& "C:\Program Files\Tailscale\tailscale.exe" serve status` | `& "C:\Program Files\Tailscale\tailscale.exe" serve reset` |
 | A4 | `data\server.log`(자동 시작 서버의 로그 파일) | 2026-11-16 | 파일 존재 | A1 을 지운 뒤 파일 삭제 |
+| A5 | **DB 자동 백업**(서버 안의 기능): 매일 04:30 과 서버가 켜질 때(그날 것이 없으면) `data\backup\habit66-YYYY-MM-DD.db`, 최근 14개 보관. `app.backup.extra-dir`(또는 환경 변수 `APP_BACKUP_EXTRA_DIR`)를 정하면 같은 사본과 `vapid.json`을 그 폴더에도 둔다 | 2026-11-16 | `dir data\backup`, 로그의 `DB backup written` | `config\application.yml` 에 `app.backup.enabled: false` |
 
 **서버 멈추기**: `Stop-ScheduledTask`는 바깥 `cmd`만 끄고 그 안의 `java`(서버)는 남는다(2026-11-16 확인). 그래서 두 줄을 같이 쓴다.
 ```powershell
@@ -35,6 +36,16 @@ Get-NetTCPConnection -LocalPort 8080 -State Listen -ErrorAction SilentlyContinue
 |---|---|---|
 | C1 | 전원: 덮개를 닫을 때 "아무것도 안 함", 절전 "안 함" | 제어판 → 전원 옵션 → 덮개를 닫으면 수행할 작업 / 절전 시간을 원래대로 |
 | C2 | Tailscale 이 PC 키 만료 끄기(Disable key expiry) | 관리 콘솔 Machines → 이 PC `⋯` → Enable key expiry |
+
+## 백업에서 되살리기
+
+1. 서버를 멈춘다(위 "서버 멈추기" 두 줄).
+2. 지금 DB 를 옆으로 치운다: `data\habit66.db`, `habit66.db-wal`, `habit66.db-shm` 세 파일을 다른 폴더로 옮긴다(지우지 말 것).
+3. 되살릴 백업을 `data\habit66.db` 로 복사한다. 예: `copy data\backup\habit66-2026-11-16.db data\habit66.db`
+   (백업은 `VACUUM INTO` 로 만든 한 파일짜리라 `-wal`·`-shm` 이 필요 없다.)
+4. 서버를 켠다(`Start-ScheduledTask -TaskName "habit66 서버"`). 폰은 앱을 새로 고치면 서버 기록을 다시 받는다. 폰에 남아 있던 미전송 기록은 그대로 보내진다.
+5. 이 PC 가 통째로 망가진 경우: 새 PC 에 코드를 받고(GitHub), 다른 곳에 둔 백업(extra-dir)을 `data\habit66.db` 로, 같이 둔 `vapid.json` 을 `data\vapid.json` 으로 놓은 뒤 `build-all.bat`. 음성 파일은 서버가 다시 만든다.
+- 지금 바로 백업: `curl -X POST http://127.0.0.1:8080/api/v1/admin/backup`(관리자 토큰을 정했으면 `-H "X-Admin-Token: …"`).
 
 ## D. Oracle 로 옮길 때 챙길 것 (순서)
 

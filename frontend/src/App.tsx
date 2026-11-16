@@ -182,7 +182,7 @@ export function App() {
   return (
     <MotionConfig reducedMotion="user">
       <main
-        className={`app-grid mx-auto min-h-dvh max-w-md bg-canvas px-5 pt-safe unfolded:max-w-[960px] unfolded:px-8 unfolded:pb-6 ${side ? "app-grid--vocab" : ""} ${
+        className={`app-grid mx-auto min-h-dvh max-w-md bg-canvas px-5 pt-safe unfolded:max-w-[960px] unfolded:px-8 unfolded:pb-6 ${side ? "app-grid--vocab" : ""} ${speakOpen && speakDay !== null ? "app-grid--focus" : ""} ${
           dockHidden ? "app-grid--nodock pb-6" : "pb-dock"
         }`}
       >

@@ -331,6 +331,8 @@ async def import_lessons(
                 f"수정 {result.get('updated', '?')}개",
                 flush=True,
             )
+            for warning in result.get("warnings") or []:
+                print(f"  경고: {warning}", flush=True)
         except NetworkError:
             raise
         except Exception as exc:

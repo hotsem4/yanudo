@@ -859,6 +859,48 @@ class ApiIntegrationTest {
                 .containsExactly("rest-1");
     }
 
+    @Test
+    @Order(19)
+    void anOfflineBatchRecordsYesterdayBeforeDecidingTodaysRepeatLesson() throws Exception {
+        // 시작일 11-08: 오늘(11-16)은 Day 9 인데 콘텐츠는 Day 5 까지라 복습 순환 날이다. 달성 기록을 비운다.
+        mvc.perform(put("/api/v1/admin/settings/start-date").contentType(MediaType.APPLICATION_JSON)
+                .content("{\"start_date\":\"2026-11-08\"}")).andReturn();
+        for (String table : List.of("sentence_view", "day_achievement", "speak_practice", "rest_day")) {
+            jdbc.update("DELETE FROM " + table);
+        }
+        // 한 번도 달성한 레슨이 없어 어제(11-15)도 오늘도 Day 1 이 순환 레슨이다.
+        assertThat(getJson("/api/v1/dashboard").path("lesson_day").asInt()).isEqualTo(1);
+        JsonNode overview = getJson("/api/v1/speak");
+        List<Long> day1 = longs(speakRow(overview, 1).path("sentence_ids"));
+        List<Long> day2 = longs(speakRow(overview, 2).path("sentence_ids"));
+
+        // 오프라인에서 어제 Day 1 을 끝내고, 오늘 Day 2 를 끝낸 기록이 한 묶음으로 도착한다.
+        // 어제 달성이 먼저 남아야 오늘 레슨이 Day 2 로 정해져 오늘 기록이 오늘 공부로 인정된다.
+        ArrayNode batch = mapper.createArrayNode();
+        for (int i = 0; i < day1.size(); i++) {
+            batch.add(view("off-y-" + i, day1.get(i), "TODAY", "CARD", seoul(15, 21, 0)));
+        }
+        for (int i = 0; i < day2.size(); i++) {
+            batch.add(view("off-t-" + i, day2.get(i), "TODAY", "CARD", CLOCK.millis()));
+        }
+        JsonNode d = postEvents(batch).path("dashboard");
+        assertThat(d.path("lesson_day").asInt()).isEqualTo(2);
+        assertThat(d.path("streak").path("achieved_today").asBoolean()).isTrue();
+        assertThat(d.path("streak").path("current").asInt()).isEqualTo(2);
+    }
+
+    @Test
+    @Order(20)
+    void importingALessonForAPastDayWarns() throws Exception {
+        // 시작일 11-08 이라 오늘은 Day 9. Day 7 은 이미 지났고 레슨이 없던 Day 다.
+        String body = "{\"lessons\":[{\"day\":7,\"title\":\"테스트\",\"sentences\":[{\"speaker\":\"A\","
+                + "\"en_text\":\"Hello.\",\"ko_word_order\":\"안녕.\",\"ko_natural\":\"안녕하세요.\"}]}]}";
+        JsonNode res = mapper.readTree(postRaw("/api/v1/admin/lessons/import", body, 200));
+        assertThat(res.path("created").asInt()).isEqualTo(1);
+        assertThat(res.path("warnings")).hasSize(1);
+        assertThat(res.path("warnings").get(0).asText()).contains("Day 7", "2026-11-14");
+    }
+
     private static JsonNode speakRow(JsonNode overview, int day) {
         for (JsonNode d : overview.path("days")) {
             if (d.path("day").asInt() == day) {

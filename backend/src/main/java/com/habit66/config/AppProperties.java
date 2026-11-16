@@ -18,7 +18,19 @@ public record AppProperties(
         @DefaultValue Tts tts,
         @DefaultValue Push push,
         @DefaultValue Reminder reminder,
-        @DefaultValue Vocab vocab) {
+        @DefaultValue Vocab vocab,
+        @DefaultValue Backup backup) {
+
+    /**
+     * DB 자동 백업. 매일 cron 에 data/backup/habit66-YYYY-MM-DD.db 를 만들고 최근 keep 개만 남긴다.
+     * extraDir 를 정하면(예: 클라우드 동기화 폴더) 같은 사본과 VAPID 키를 그곳에도 둔다.
+     */
+    public record Backup(
+            @DefaultValue("true") boolean enabled,
+            @DefaultValue("0 30 4 * * *") String cron,
+            @DefaultValue("14") int keep,
+            @DefaultValue("") String extraDir) {
+    }
 
     /** 단어장 생성기 설정(SPEC 4.9). */
     public record Vocab(

@@ -302,6 +302,17 @@
     }
   }
 
+  /* 접은 화면에서 말하기 연습 중이면 헤더 카드를 접어 문장 자리를 넓힌다(세션 탭은 남아 다른 화면으로 갈 수 있다). */
+  @media (max-width: 599px) {
+    .app-grid--focus {
+      grid-template-rows: auto minmax(0, 1fr);
+      grid-template-areas: "tabs" "card";
+    }
+    .app-grid--focus .area-head {
+      display: none;
+    }
+  }
+
   /* 독이 없는 화면(단어장)에서는 카드가 독 자리까지 내려온다. */
   .app-grid--nodock .area-card {
     margin-bottom: 0;

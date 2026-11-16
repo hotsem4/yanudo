@@ -43,6 +43,13 @@ app:
   # 이 시각 이전의 학습은 전날 기록으로 친다 (새벽 1시 복습 = 어제).
   day-rollover-hour: 3
   total-days: 66
+  # DB 자동 백업: 매일 04:30(롤오버 뒤)에 data/backup/habit66-YYYY-MM-DD.db, 최근 14개 보관.
+  # extra-dir 를 정하면(예: OneDrive 폴더) 같은 사본과 VAPID 키를 그곳에도 둔다. 비워 두면 이 PC 에만 남는다.
+  backup:
+    enabled: true
+    cron: "0 30 4 * * *"
+    keep: 14
+    extra-dir: ${APP_BACKUP_EXTRA_DIR:}
   # 값을 넣으면 /api/v1/admin/** 호출에 X-Admin-Token 헤더가 필요하다.
   admin-token: ${APP_ADMIN_TOKEN:}
   morning-lock:

@@ -253,6 +253,7 @@ bg-hero       = bg-gradient-to-br from-royal to-royal-soft
 | 히트맵 | `REPAIRED`(보충으로 지킴)는 `bg-tint` + `ring-royal/30` + `RotateCcw` 11px royal(프리즈 칸과 구분) |
 
 - 펼친 화면 616px 폭에서 카드 안쪽이 200px이라 하단 줄은 버튼 3개까지만 둔다(듣기는 머리 줄).
+- 접은 화면에서 연습 카드를 연 동안에는 헤더 카드(`area-head`)를 숨긴다(`.app-grid--focus`). 세로 613px에서 문장 자리가 66px → 221px 가 된다. 세션 탭은 남긴다.
 
 ## 5. 모션 (emil-design-eng 기준)
 

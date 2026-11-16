@@ -103,7 +103,8 @@
   - 오늘: 달성했으면 `+1`, 아직이면 그대로(오늘은 끊지 않는다).
 - 66일 뒤에도 스트릭·프리즈·보충·"오늘은 어려워요"·22시 알림이 그대로 계속된다. 스트릭 순회는 시작일부터 끝없이 이어진다.
 - 같은 레슨을 연속으로 빼먹으면(복습 순환 중) 날짜마다 보충이 생기지만 **한 번 보충으로 함께 이어진다**(보충 기록은 그 레슨 문장마다의 말하기 연습이라 날짜를 가리지 않는다). 할 일 시트와 말하기 탭에는 가장 이른 날짜 한 줄만 보인다.
-- 한계(의도한 단순화): 어제 달성이 오늘 늦게 도착하면 오늘의 복습 순환 레슨이 바뀔 수 있다. 미달성 날짜는 나중에 그 Day 레슨을 넣으면 일정이 바뀐다(달성한 날은 고정).
+- 오프라인에서 어제 기록과 오늘 기록이 한 묶음으로 오면, 서버는 날짜가 넘어갈 때 앞 날짜의 달성을 먼저 기록하고 일정을 다시 계산한 뒤 오늘 기록을 분류한다.
+- 한계(의도한 단순화): 어제 달성이 따로 늦게(오늘 기록 뒤에) 도착하면 오늘의 복습 순환 레슨이 바뀔 수 있다. 미달성 날짜는 나중에 그 Day 레슨을 넣으면 일정이 바뀐다(달성한 날은 고정).
 - 관리자가 시작일을 바꾸면 Day 귀속·히트맵·스트릭이 새 시작일 기준으로 다시 계산된다(기록은 날짜로 저장되어 사라지지 않는다).
 - 헤더 좌측 카드: 1라운드는 `66일 습관` + `Day N / 66`, 2라운드부터 `N라운드 k/66` + 누적 `Day N`(분모 없음). 진행률 바는 라운드 진행. `🔥 N`, 남은 프리즈. 탭하면 이번 라운드 66칸 히트맵 모달.
 - 새 라운드에 들어선 뒤 처음 앱을 열면 "N라운드를 시작해요"를 한 번 띄운다(기기마다). 포롱은 Day 66에 다 자란 모습이 되어 유지된다.
@@ -332,7 +333,8 @@ rest_day(log_date PK, declared_at)                                              
 
 | 메서드 | 경로 | 설명 |
 |---|---|---|
-| `POST` | `/admin/lessons/import` | 아래 형식. 응답 `{"lessons":5,"created":50,"updated":0}` |
+| `POST` | `/admin/lessons/import` | 아래 형식. 응답 `{"lessons":5,"created":50,"updated":0,"warnings":[]}`. 이미 지난 날짜의 Day 인데 레슨이 없던 Day 를 새로 넣으면 `warnings`에 알린다(그날을 달성하지 않았다면 그날 일정이 이 레슨으로 바뀌어 보충 대상이 될 수 있다). 임포트는 그대로 한다 |
+| `POST` | `/admin/backup` | 지금 DB 백업을 만든다. `{"file":"…/habit66-2026-11-16.db","bytes":123456,"extra_copy":null}` |
 | `GET` | `/admin/tts/jobs` | 아직 없는 클립 목록 `{"jobs":[{"file":"…mp3","voice":"…","rate":"-10%","text":"…","sentence_ids":[1]}]}` |
 | `PUT` | `/admin/audio/{file}` | 본문 `audio/mpeg` 바이트. `{"file":"…","duration_ms":2304,"created":true}`. 이미 있으면 `created:false`(200), 모르는 이름 404, 검증 실패 422 |
 | `POST` | `/admin/tts/generate` | 백엔드 edge-tts로 없는 클립 생성 시작 `{"started":true}` |
@@ -494,4 +496,5 @@ app:
 - 개발: `backend`는 `gradlew bootRun`(작업 디렉터리 = 프로젝트 루트), `frontend`는 `npm run dev`(5173, `/api` → `localhost:8080` 프록시).
 - 운영: `build-all.bat` → 프론트 빌드 → `dist/`를 `backend/src/main/resources/static/`로 복사 → `bootJar` → 루트에서 `java -jar`. 8080 한 포트로 SPA + API + 오디오를 모두 서빙한다.
 - SPA 라우팅: `/api`가 아닌 확장자 없는 경로는 `index.html`로 보낸다.
+- DB 자동 백업: 매일 `app.backup.cron`(기본 04:30, 롤오버 뒤)과 서버 시작 때(그날 것이 없으면) `VACUUM INTO`로 `data/backup/habit66-YYYY-MM-DD.db`(논리 날짜)를 만들고, 사본을 따로 열어 `PRAGMA integrity_check`가 `ok`인 것만 남긴다. 최근 `keep`(14)개 보관, 이름 규칙이 다른 수동 백업은 건드리지 않는다. `extra-dir`를 정하면 같은 사본과 `vapid.json`을 그곳에도 둔다. 실패해도 서버 동작에는 영향이 없다(로그만). 복원 방법은 `docs/pc-local-setup.md`.
 - 외부 접속: `tailscale serve --bg 8080` → `https://<pc-name>.<tailnet>.ts.net/`. 서버는 기본으로 `127.0.0.1`에만 묶는다(`server.address`, 같은 Wi-Fi의 다른 기기가 관리자 API를 직접 부르지 못하게). LAN에서 직접 열어야 하면 `APP_SERVER_ADDRESS=0.0.0.0`과 관리자 토큰을 함께 쓴다.

@@ -31,6 +31,8 @@ backend/                     Spring Boot 3.4 · Java 17+ · Gradle
     progress/                열람 기록, 대시보드, 스트릭·히트맵, 모닝 락, 집중 시간
     tts/                     edge-tts 호출, MP3 길이 계산, 생성 작업
     notify/                  Web Push(VAPID), 웹훅, 22시 스케줄러
+    backup/                  DB 자동 백업(매일 VACUUM INTO, 14개 보관)
+    speak/                   말하기 연습·보충 API
     common/                  시계(LogicalClock), 설정 저장소, 오류 응답
   src/main/resources/
     schema.sql               SQLite 스키마 원본

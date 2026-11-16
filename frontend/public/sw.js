@@ -198,6 +198,50 @@ self.addEventListener("push", (event) => {
   );
 });
 
+// 브라우저가 푸시 구독을 바꾸거나 만료시켰을 때(앱을 열지 않아도 온다). 새 구독을 서버에 등록하고 옛 구독은 지운다.
+// 앱 화면(usePush)도 열릴 때 같은 복구를 하지만, 앱을 안 연 날 22시 알림을 놓치지 않게 여기서도 한다.
+// 이 이벤트를 보내 주는지는 브라우저마다 다르다(Chrome 은 드물게 보낸다). 오지 않으면 앱을 열 때 복구된다.
+function base64UrlToBytes(value) {
+  const padded = value.replace(/-/g, "+").replace(/_/g, "/") + "=".repeat((4 - (value.length % 4)) % 4);
+  const raw = atob(padded);
+  const bytes = new Uint8Array(raw.length);
+  for (let i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
+  return bytes;
+}
+
+async function postJson(path, body) {
+  const response = await fetch(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  if (!response.ok) throw new Error(path + " " + response.status);
+  return response.json().catch(() => ({}));
+}
+
+async function freshSubscription() {
+  const response = await fetch("/api/v1/push/vapid-public-key", { cache: "no-store" });
+  if (!response.ok) throw new Error("vapid " + response.status);
+  const { public_key } = await response.json();
+  return self.registration.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: base64UrlToBytes(public_key) });
+}
+
+self.addEventListener("pushsubscriptionchange", (event) => {
+  event.waitUntil(
+    (async () => {
+      const old = event.oldSubscription || null;
+      let sub = event.newSubscription || (await self.registration.pushManager.getSubscription());
+      if (!sub || (old && sub.endpoint === old.endpoint)) sub = await freshSubscription();
+      let result = await postJson("/api/v1/push/subscribe", sub.toJSON());
+      if (result.expired) {
+        // 서버가 이미 만료로 들은 구독이면 한 번 더 새로 만든다.
+        await sub.unsubscribe().catch(() => undefined);
+        sub = await freshSubscription();
+        result = await postJson("/api/v1/push/subscribe", sub.toJSON());
+      }
+      if (old && old.endpoint !== sub.endpoint) {
+        await postJson("/api/v1/push/unsubscribe", { endpoint: old.endpoint }).catch(() => undefined);
+      }
+    })().catch(() => undefined),
+  );
+});
+
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
   const target = new URL(event.notification.data?.url || "/", self.location.origin).href;

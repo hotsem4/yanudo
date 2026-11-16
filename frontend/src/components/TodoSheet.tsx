@@ -125,7 +125,9 @@ export function TodoSheet({
         })}
       </ul>
 
-      {restDay && restAllowed && !achievedToday && <RestDayRow restDay={restDay} period={restPeriod} onDeclare={onDeclareRest} />}
+      {restDay && restAllowed && !achievedToday && (
+        <RestDayRow restDay={restDay} period={restDay.period ?? restPeriod} streak={streak} onDeclare={onDeclareRest} />
+      )}
 
       {makeupsDue.length > 0 && (
         <section aria-label="보충할 날" className="mt-5">
@@ -170,10 +172,12 @@ export function TodoSheet({
 function RestDayRow({
   restDay,
   period,
+  streak,
   onDeclare,
 }: {
   restDay: NonNullable<DayView["restDay"]>;
   period: readonly [number, number];
+  streak: number;
   onDeclare: () => void;
 }) {
   const [confirming, setConfirming] = useState(false);
@@ -206,8 +210,8 @@ function RestDayRow({
   return (
     <div className="mt-4 rounded-2xl bg-canvas p-3.5">
       <p className="break-keep text-[13.5px] leading-snug text-ink">
-        오늘을 쉬는 날로 알릴까요? 오늘 못 하면 내일부터 3일 안에 10문장을 <b className="font-semibold text-royal">1번씩</b>만 말해
-        보충하면 연속 기록이 이어져요(알리지 않고 빼먹으면 5번씩).
+        오늘을 쉬는 날로 알릴까요? 오늘 못 하면 그날 보충이 10문장 <b className="font-semibold text-royal">1번씩</b>으로 가벼워져요(알리지
+        않고 빼먹으면 5번씩).{streak > 0 ? " 내일부터 3일 안에 보충하면 연속 기록도 이어져요." : ""}
       </p>
       <p className="mt-1 text-[12.5px] text-muted">
         {range} 동안 {restDay.left}번 남았어요. 알린 뒤에는 취소할 수 없어요.

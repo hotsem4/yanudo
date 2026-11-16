@@ -806,7 +806,8 @@ class ApiIntegrationTest {
         postEvents(light);
         assertThat(speakRow(getJson("/api/v1/speak"), 2).path("state").asText()).isEqualTo("OPEN");
         JsonNode heat = getJson("/api/v1/habit/heatmap");
-        assertThat(heat.path("cells").get(1).path("status").asText()).isEqualTo("REPAIRED");
+        // Day 2(11-13)는 지킬 스트릭이 없던 날이라 보충해도 REPAIRED 로 칠하지 않는다(열리기만 한다).
+        assertThat(heat.path("cells").get(1).path("status").asText()).isEqualTo("MISSED");
         assertThat(heat.path("cells").get(3).path("status").asText()).isEqualTo("REPAIRED");
         assertThat(getJson("/api/v1/dashboard").path("makeups_due")).isEmpty();
 

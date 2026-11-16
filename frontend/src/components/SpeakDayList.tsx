@@ -21,7 +21,7 @@ export function shortDate(iso: string): string {
 
 /** 보충 행의 짧은 안내: 기한 안이면 마감일, 지났으면 열기만 된다는 것. */
 function makeupNote(d: SpeakRow): string {
-  const how = d.rest ? "1번씩" : "5번씩";
+  const how = `${d.reps}번씩`;
   return d.repairable && d.deadline ? `보충 ${how} · ${shortDate(d.deadline)}까지 하면 연속 유지` : `보충 ${how} 하면 열려요`;
 }
 

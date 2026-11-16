@@ -85,11 +85,15 @@ public class EventService {
             // 날짜마다 공부할 레슨(복습 순환 포함). 그날 레슨은 전날까지의 달성으로 정해진다.
             HabitRules.Schedule[] schedule = {HabitRules.schedule(start, until, cat.days(), facts.achievements())};
             Map<Completion, Long> completions = new LinkedHashMap<>();
-            for (ClientEvent event : parsed.events()) {
+            // 일어난 시각 순으로 처리한다(안정 정렬). 보관했다 다시 보낸 옛 날짜 기록이 묶음 뒤에 붙어 와도 그날 달성이 먼저 남는다.
+            List<ClientEvent> ordered = new ArrayList<>(parsed.events());
+            ordered.sort(java.util.Comparator.comparingLong(ClientEvent::occurredAt));
+            for (ClientEvent event : ordered) {
                 // 미래 시각만 자른다(실제로 일어난 시각은 받은 시각보다 늦을 수 없다). 늦게 도착한 어제 기록은 어제 날짜에 들어간다.
                 long at = Math.min(event.occurredAt(), receivedAt);
                 // 오프라인에서 어제 기록과 오늘 기록이 한 번에 오면, 어제 달성을 먼저 남겨야 오늘 레슨(복습 순환)이 맞게 정해진다.
-                if (event instanceof ClientEvent.View && recordBefore(clock.dateOf(at), completions, cat)) {
+                if ((event instanceof ClientEvent.View || event instanceof ClientEvent.RestDay)
+                        && recordBefore(clock.dateOf(at), completions, cat)) {
                     schedule[0] = HabitRules.schedule(start, until, cat.days(), facts.achievements());
                 }
                 boolean ok;

@@ -262,11 +262,11 @@ final class HabitRules {
         return List.copyOf(out);
     }
 
-    /** 기한 안에 보충을 끝내 스트릭이 이어지는 날짜. */
+    /** 기한 안에 보충을 끝내 스트릭이 이어지는 날짜(지킬 스트릭이 있던 날만, withStreakEffect 뒤에 쓴다). */
     static Set<LocalDate> repairedDates(List<Makeup> makeups) {
         Set<LocalDate> out = new HashSet<>();
         for (Makeup m : makeups) {
-            if (m.repairs()) {
+            if (m.repairs() && m.keepsStreak()) {
                 out.add(m.date());
             }
         }

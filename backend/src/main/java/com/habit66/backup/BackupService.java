@@ -104,22 +104,33 @@ public class BackupService {
 
     /** 추가 위치에 사본과 VAPID 키를 둔다. 실패해도 로컬 백업은 유효하므로 null 만 돌려준다. */
     private String copyToExtra(Path backup) {
-        String extra = props.backup().extraDir();
-        if (extra == null || extra.isBlank()) {
+        String extra = props.backup().extraDir() == null ? "" : props.backup().extraDir().strip();
+        // cmd 에서 set X="C:\..." 처럼 넣으면 따옴표가 값에 남는다.
+        if (extra.length() >= 2 && extra.startsWith("\"") && extra.endsWith("\"")) {
+            extra = extra.substring(1, extra.length() - 1).strip();
+        }
+        if (extra.isBlank()) {
             return null;
         }
         try {
             Path dir = Paths.get(extra).toAbsolutePath().normalize();
             Files.createDirectories(dir);
             Path copy = dir.resolve(backup.getFileName());
-            Files.copy(backup, copy, StandardCopyOption.REPLACE_EXISTING);
+            Path tmp = dir.resolve(backup.getFileName() + ".tmp");
+            try {
+                Files.copy(backup, tmp, StandardCopyOption.REPLACE_EXISTING);
+                verify(tmp);
+                move(tmp, copy);
+            } finally {
+                Files.deleteIfExists(tmp);
+            }
             Path vapid = props.dataPath().resolve("vapid.json");
             if (Files.exists(vapid)) {
                 Files.copy(vapid, dir.resolve("vapid.json"), StandardCopyOption.REPLACE_EXISTING);
             }
             prune(dir, props.backup().keep());
             return copy.toString();
-        } catch (IOException e) {
+        } catch (IOException | SQLException | RuntimeException e) {
             log.warn("DB backup copy to extra dir failed: {}", e.toString());
             return null;
         }

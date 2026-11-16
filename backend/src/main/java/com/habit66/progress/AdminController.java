@@ -64,7 +64,12 @@ public class AdminController {
         java.util.Set<Integer> existing = catalog.current().days();
         List<String> out = new java.util.ArrayList<>();
         for (LessonImport.LessonIn lesson : body.lessons()) {
-            if (lesson == null || lesson.day() == null || existing.contains(lesson.day()) || lesson.day() >= currentDay) {
+            if (lesson == null || lesson.day() == null || existing.contains(lesson.day()) || lesson.day() > currentDay) {
+                continue;
+            }
+            if (lesson.day() == currentDay) {
+                out.add("Day " + lesson.day() + " 은 오늘이에요. 오늘 아직 달성하지 않았다면 오늘 공부할 레슨이 이 레슨으로 바뀌고, "
+                        + "지금까지 본 복습 순환 문장은 복습으로 넘어가요.");
                 continue;
             }
             out.add("Day " + lesson.day() + " 은 이미 지난 날짜(" + start.plusDays(lesson.day() - 1L)

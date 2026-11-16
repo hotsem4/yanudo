@@ -412,7 +412,9 @@ class HabitRulesTest {
     @Test
     void makeupWithinDeadlineRepairsTheMissedDayWithoutAFreeze() {
         List<SpeakRow> speaks = spoke(4, 5, 20L, 21L); // Day 2 를 Day 4 에 보충
-        List<Makeup> makeups = HabitRules.makeups(START, day(4), plan(LESSONS, 4), LESSONS, achievedOn(1, 3), Set.of(), speaks);
+        List<Makeup> makeups = HabitRules.withStreakEffect(
+                HabitRules.makeups(START, day(4), plan(LESSONS, 4), LESSONS, achievedOn(1, 3), Set.of(), speaks),
+                START, day(4), achievedOn(1, 3), TOTAL);
 
         assertThat(makeups).hasSize(1);
         Makeup m = makeups.get(0);

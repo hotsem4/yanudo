@@ -23,7 +23,7 @@ public final class Views {
     }
 
     /** "오늘은 어려워요" 상태. */
-    public record RestDay(boolean declaredToday, int left, int perPeriod) {
+    public record RestDay(boolean declaredToday, int left, int perPeriod, int periodFrom, int periodTo) {
     }
 
     /** 끝내면 스트릭을 지키는(기한 안이고 그 전날까지 스트릭이 있는), 아직 끝내지 않은 보충. */

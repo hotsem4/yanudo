@@ -44,7 +44,7 @@ Get-NetTCPConnection -LocalPort 8080 -State Listen -ErrorAction SilentlyContinue
 3. 되살릴 백업을 `data\habit66.db` 로 복사한다. 예: `copy data\backup\habit66-2026-11-16.db data\habit66.db`
    (백업은 `VACUUM INTO` 로 만든 한 파일짜리라 `-wal`·`-shm` 이 필요 없다.)
 4. 서버를 켠다(`Start-ScheduledTask -TaskName "habit66 서버"`). 폰은 앱을 새로 고치면 서버 기록을 다시 받는다. 폰에 남아 있던 미전송 기록은 그대로 보내진다.
-5. 이 PC 가 통째로 망가진 경우: 새 PC 에 코드를 받고(GitHub), 다른 곳에 둔 백업(extra-dir)을 `data\habit66.db` 로, 같이 둔 `vapid.json` 을 `data\vapid.json` 으로 놓은 뒤 `build-all.bat`. 음성 파일은 서버가 다시 만든다.
+5. 이 PC 가 통째로 망가진 경우: 새 PC 에 코드를 받고(`git clone https://github.com/hotsem4/yanudo.git`), 프로젝트 루트에 `data\` 폴더를 만든 뒤 다른 곳에 둔 백업(extra-dir)을 `data\habit66.db` 로, 같이 둔 `vapid.json` 을 `data\vapid.json` 으로 놓는다. `config\application.yml`(장기 토큰·관리자 토큰·extra-dir, GitHub 에 없음)을 다시 만들고 `build-all.bat`. 음성 파일은 서버가 다시 만든다. 이 PC 에만 백업을 두기로 했으므로(2026-11-16) PC 를 잃으면 기록도 잃는다는 점을 기억한다.
 - 지금 바로 백업: `curl -X POST http://127.0.0.1:8080/api/v1/admin/backup`(관리자 토큰을 정했으면 `-H "X-Admin-Token: …"`).
 
 ## D. Oracle 로 옮길 때 챙길 것 (순서)

@@ -83,7 +83,7 @@ public record DaySnapshot(
     }
 
     /** "오늘은 어려워요": 오늘 이미 알렸는지와 이번 30일 구간에 남은 횟수. */
-    public record RestDay(boolean declaredToday, int left, int perPeriod) {
+    public record RestDay(boolean declaredToday, int left, int perPeriod, int periodFrom, int periodTo) {
     }
 
     public record Streak(int current, int ifAchievedToday, int longest, boolean achievedToday, int freezesLeft,

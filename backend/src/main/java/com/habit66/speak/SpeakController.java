@@ -67,9 +67,10 @@ public class SpeakController {
     public SpeakOverview overview() {
         DaySnapshot s = dayState.snapshot();
         Set<Long> practiced = Set.copyOf(practicedIds());
-        List<SpeakDay> days = upToToday(s).stream()
+        Set<Integer> achievedLessons = Set.copyOf(achievedLessons());
+        List<SpeakDay> days = upToToday(s, achievedLessons).stream()
                 .sorted((a, b) -> Integer.compare(b.day(), a.day()))
-                .map(lesson -> row(lesson, s, practiced))
+                .map(lesson -> row(lesson, s, practiced, achievedLessons))
                 .toList();
         return new SpeakOverview(s.lessonDay(), days);
     }
@@ -78,9 +79,10 @@ public class SpeakController {
     @GetMapping("/days/{day}")
     public SpeakLesson day(@PathVariable int day) {
         DaySnapshot s = dayState.snapshot();
-        LessonView lesson = upToToday(s).stream().filter(l -> l.day() == day).findFirst()
+        Set<Integer> achievedLessons = Set.copyOf(achievedLessons());
+        LessonView lesson = upToToday(s, achievedLessons).stream().filter(l -> l.day() == day).findFirst()
                 .orElseThrow(SpeakController::locked);
-        SpeakDay row = row(lesson, s, Set.copyOf(practicedIds()));
+        SpeakDay row = row(lesson, s, Set.copyOf(practicedIds()), achievedLessons);
         if (row.state() == State.TODAY_LOCKED) {
             throw locked();
         }
@@ -88,9 +90,9 @@ public class SpeakController {
                 row.state(), row.reps(), row.rest(), row.deadline(), row.repairable());
     }
 
-    private SpeakDay row(LessonView lesson, DaySnapshot s, Set<Long> practiced) {
+    private SpeakDay row(LessonView lesson, DaySnapshot s, Set<Long> practiced, Set<Integer> achievedLessons) {
         List<Long> ids = lesson.sentenceIds();
-        Makeup makeup = s.makeups().stream().filter(m -> m.day() == lesson.day() && !m.done()).findFirst().orElse(null);
+        Makeup makeup = pickMakeup(s.makeups(), lesson.day(), achievedLessons.contains(lesson.day()));
         if (makeup != null) {
             return new SpeakDay(lesson.day(), lesson.title(), ids, makeup.doneIds(), State.MAKEUP, makeup.reps(), 0,
                     makeup.rest(), makeup.deadline().toString(), makeup.keepsStreak());
@@ -107,13 +109,35 @@ public class SpeakController {
                 false);
     }
 
+    /**
+     * 그 레슨의 아직 끝내지 않은 보충 하나. 스트릭을 지키는 것(대시보드 makeups_due 와 같은 것)을 먼저, 없으면 가장 이른 것.
+     * 지킬 스트릭이 없는 보충만 남았는데 그 레슨을 다른 날 달성한 적이 있으면 이미 공부한 레슨이라 열어 둔다(null).
+     */
+    static Makeup pickMakeup(List<Makeup> makeups, int day, boolean achievedSomeday) {
+        List<Makeup> open = makeups.stream().filter(m -> m.day() == day && !m.done()).toList();
+        return open.stream().filter(Makeup::keepsStreak).findFirst()
+                .orElse(achievedSomeday ? null : open.stream().findFirst().orElse(null));
+    }
+
+    private List<Integer> achievedLessons() {
+        return jdbc.queryForList("SELECT DISTINCT lesson_day FROM day_achievement", Integer.class);
+    }
+
     private static ApiException locked() {
         return ApiException.notFound("SPEAK_DAY_LOCKED", "오늘의 10문장을 끝내면 열려요.");
     }
 
-    /** 오늘 Day 까지 등록된 레슨(아직 오지 않은 Day 의 레슨은 빼고). */
-    private List<LessonView> upToToday(DaySnapshot s) {
-        return catalog.current().lessons().stream().filter(l -> l.day() <= s.currentDay()).toList();
+    /**
+     * 말하기 목록에 둘 레슨: 오늘 Day 까지의 레슨, 그리고 시작일을 옮겨 Day 가 더 커졌어도 오늘 공부할 레슨·달성한 적 있는
+     * 레슨·보충할 레슨(아직 오지 않은 새 레슨만 뺀다).
+     */
+    private List<LessonView> upToToday(DaySnapshot s, Set<Integer> achievedLessons) {
+        Set<Integer> makeupDays = new java.util.HashSet<>();
+        s.makeups().forEach(m -> makeupDays.add(m.day()));
+        return catalog.current().lessons().stream()
+                .filter(l -> l.day() <= s.currentDay() || l.day() == s.lessonDay()
+                        || achievedLessons.contains(l.day()) || makeupDays.contains(l.day()))
+                .toList();
     }
 
     /** 자유 연습을 끝낸 문장(쉬는 날 보충처럼 1번만 한 기록은 연습 완료로 치지 않는다). */

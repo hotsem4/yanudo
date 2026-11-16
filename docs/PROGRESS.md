@@ -1,15 +1,23 @@
-# 진행 상황 (2026-11-16 08:3x)
+# 진행 상황 (2026-11-16 오후)
 
 > 이어서 할 일과 진행 중이던 전체 코드 리뷰는 [HANDOVER.md](HANDOVER.md)에 있다.
 
 ## 끝난 것
-- 기준 문서: `CLAUDE.md`, `SPEC.md`(F-01~F-08), `.claude/skills/clean-blue-ui/SKILL.md`, `docs/architecture.md`, `docs/curriculum.md`.
-- 백엔드(`backend/`): F-01~F-08 완성, 테스트 102개 통과(실제 `claude` CLI 실측 테스트 1개는 `HABIT66_LIVE_CLAUDE=1`일 때만 돈다).
+- 기준 문서: `CLAUDE.md`, `SPEC.md`(F-01~F-09), `.claude/skills/clean-blue-ui/SKILL.md`, `docs/architecture.md`, `docs/curriculum.md`.
+- 백엔드(`backend/`): F-01~F-09 완성, 테스트 130개 통과(실제 `claude` CLI 실측 테스트 1개는 `HABIT66_LIVE_CLAUDE=1`일 때만 돈다).
 - 프론트(`frontend/`): 전체 화면, 오디오 엔진, 오프라인 아웃박스·오버레이, 단어장 화면, 모닝 락 개선. typecheck 통과, `sloplint --scope app` FAIL 0(WARN 1: 바텀시트 배경 블러, 원래 있던 것).
 - 콘텐츠: Day 1~66, 660문장·표현 연결 1,231개(고유 1,057개). Codex 교차 검수로 Day 6~66 필드 87개 수정(지적 152건 중 88건 반영, Day 1~5 시드는 변경 없음). `validate_content.py --all` ERROR 0, WARN 0. 검수 기록: 세션 노트 `content-review-2026-11-16.md`.
 - 운영 반영(2026-11-16 03:15): `build-all.bat norun` → 운영 DB에 시드 + Day 6~66 임포트, 음성 660문장 전부 준비(`clips_missing 0`). 기존 Day 1~5 문장 id(1~50)와 기록 유지. 임포트 전 DB 백업: `data/backup/habit66-before-vocab-20261116.db`(+`-wal`, `-shm`).
 
-## 이번에 한 일 (2026-11-16)
+## 오후에 한 일 (2026-11-16, 자세한 것은 HANDOVER.md 2장)
+1. 오늘의 TODO 체크리스트(헤더 아래 단계 + 시트, 모두 자동 체크).
+2. 말하기 탭(F-09): 문장마다 마이크로 5번. 열리는 기준은 그날 달성(지난 Day)·오늘의 10문장 완료(오늘 Day).
+3. 빼먹은 날 보충, "오늘은 어려워요", 보충으로 스트릭 회복(F-05).
+4. 66일 이후: 라운드, Day 상한 없음, 복습 순환 일정(달성 기준, Fable 5.2 설계 판단).
+5. DB 자동 백업(매일 04:30·시작 시, 14개), 오프라인 묶음 분류, 지난 날짜 임포트 경고, 접은 화면 말하기 넓히기.
+6. GitHub `hotsem4/yanudo` 에 푸시(공개 저장소, 비밀값·개인 정보 없음 확인).
+
+## 오전에 한 일 (2026-11-16)
 1. **단어장 백엔드**: `VocabService`(VOCAB_ADD·REMOVE·MASTER·EDIT, 처리한 이벤트 id를 `vocab_event`에 기록), `TermGenerationQueue`(단일 스레드, 하루 3회, 로그인 만료 시 대기열 중단, 생성 중 임포트가 이김), 생성기 3종(`claude-cli` 기본, `anthropic-api` = `claude-haiku-5-5`, `none`), 담긴 표현 예문 음성(1·3번 Ava, 2번 Andrew), `GET /api/v1/vocab`, `POST /api/v1/admin/vocab/retry`, 세션 문장 `terms`.
    - `ClaudeCliGenerator` 실측 조건: 빈 임시 폴더, `--setting-sources project`, 자식 환경의 `CLAUDE*`·`ANTHROPIC*` 제거, **Windows에서는 인자를 직접 인용**(ProcessBuilder가 큰따옴표를 이스케이프하지 않아 `--json-schema`가 깨졌다), 안전장치 거절은 그 표현만 FAILED.
    - Codex 리뷰 8건: 5건 수정, 2건은 SPEC 정정(메모만 준 담기는 생성함, 없는 문장을 가리킨 담기는 받고 연결만 버림), 1건 보류(아래 후속 과제).
@@ -24,7 +32,7 @@
 ## 남은 것 / 후속 과제
 - 생성기가 돌려준 사전형(`grabbing` → `grab`)으로 표현 키를 합치기: 키를 바꾸면 쌓여 있는 오프라인 이벤트가 옛 키를 가리켜 보류.
 - 실제 폴드8 기기 확인(지금은 브라우저 크기 흉내).
-- 운영 서버는 원래 꺼져 있었다. 확인용으로 띄웠다가 다시 껐다 → 쓰려면 `run.bat`(또는 `build-all.bat`)으로 켠다.
+- 운영 서버는 작업 스케줄러 `habit66 서버`로 자동 시작된다(pc-local-setup.md A1).
 
 ## 사용자 결정 (2026-11-16)
 - 장기 토큰 + 로그인 끊김 폰 알림: **구현함**(`9fe9ced`). 토큰 넣기는 선택(HANDOVER.md 3장).
@@ -40,5 +48,5 @@
 
 ## 참고
 - Codex: 읽기 전용 샌드박스가 셸을 못 띄우므로 파일 전문을 stdin에 첨부. 작업 폴더는 계정 이름이 없는 `.codex-review/`(gitignore)를 `-C`로 지정한다.
-- git 사용자 정보가 설정돼 있지 않아 커밋은 `git -c user.name=habit66 -c user.email=habit66@localhost commit`으로 한다.
+- git 사용자 정보가 설정돼 있지 않아 커밋은 `git -c user.name=habit66 -c user.email=habit66@localhost commit`으로 한다. 원격은 `origin`(GitHub `hotsem4/yanudo`), `git push` 로 `main` 에 올라간다.
 - 디자인 시안·스크린샷: `docs/design/mockups/`, `docs/design/applied/`.

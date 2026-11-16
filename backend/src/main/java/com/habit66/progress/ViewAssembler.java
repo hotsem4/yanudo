@@ -48,7 +48,8 @@ public class ViewAssembler {
                 new Views.MorningLock(s.morningLock().windowStart(), s.morningLock().windowEnd(),
                         s.morningLock().state(), sentences(s.morningLock().sentences(), s)),
                 new Views.Focus(s.focus().secondsToday(), s.focus().startedAts()),
-                new Views.RestDay(s.restDay().declaredToday(), s.restDay().left(), s.restDay().perPeriod()),
+                new Views.RestDay(s.restDay().declaredToday(), s.restDay().left(), s.restDay().perPeriod(),
+                        s.restDay().periodFrom(), s.restDay().periodTo()),
                 // 순환 중 같은 레슨을 이틀 빼먹으면 날짜마다 보충이 생기지만 한 번 보충으로 함께 이어진다.
                 // 그 레슨의 가장 이른(기한이 가장 급한) 한 줄만 내린다.
                 s.makeups().stream()

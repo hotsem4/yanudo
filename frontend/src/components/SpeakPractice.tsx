@@ -34,6 +34,8 @@ export function SpeakPractice({ day, pendingIds, mascot, onBack, onDone }: Props
   const [index, setIndex] = useState(0);
   const [reps, setReps] = useState(0);
   const [doneLocal, setDoneLocal] = useState<ReadonlySet<number>>(new Set());
+  // 들어올 때 이미 다 끝낸 Day 거나 "처음부터 다시"를 눌렀으면, 남은 문장·끝은 이번 연습에서 끝낸 문장으로만 판단한다.
+  const [sessionOnly, setSessionOnly] = useState(false);
   const [finished, setFinished] = useState(false);
   const speech = useSpeechMatch();
   const { stop, reset, start, listening, transcript, errorCode } = speech;
@@ -56,6 +58,8 @@ export function SpeakPractice({ day, pendingIds, mascot, onBack, onDone }: Props
         const done = new Set([...l.done_ids, ...pendingIds]);
         const first = l.sentences.findIndex((s) => !done.has(s.id));
         setIndex(first < 0 ? 0 : first);
+        setSessionOnly(first < 0);
+        setDoneLocal(new Set());
         setReps(0);
         setFinished(false);
       })
@@ -106,7 +110,7 @@ export function SpeakPractice({ day, pendingIds, mascot, onBack, onDone }: Props
       setDoneLocal((s) => new Set(s).add(sentence.id));
       onDone(sentence.id);
       // 건너뛴 문장이 남았으면 그쪽으로 간다(이 문장 다음부터 찾고, 없으면 처음부터). 모두 끝냈을 때만 끝 화면.
-      const finishedIds = new Set([...done, sentence.id]);
+      const finishedIds = new Set([...(sessionOnly ? doneLocal : done), sentence.id]);
       const list = lesson?.sentences ?? [];
       const order = [...list.slice(index + 1), ...list.slice(0, index + 1)];
       const nextUndone = order.find((s) => !finishedIds.has(s.id));
@@ -124,7 +128,7 @@ export function SpeakPractice({ day, pendingIds, mascot, onBack, onDone }: Props
         start();
       }, 700);
     }
-  }, [match.ratio, hasAttempt, sentence, reps, target, done, stop, reset, start, goTo, index, lesson, onDone]);
+  }, [match.ratio, hasAttempt, sentence, reps, target, done, doneLocal, sessionOnly, stop, reset, start, goTo, index, lesson, onDone]);
 
   const toggleMic = () => {
     if (listening) {
@@ -181,8 +185,9 @@ export function SpeakPractice({ day, pendingIds, mascot, onBack, onDone }: Props
                 // 보충을 끝냈으면 이제 일반 연습(문장마다 5번)이다. 보충 횟수로 계속 기록하지 않는다.
                 if (makeup) {
                   setLesson({ ...lesson, state: "OPEN", reps: DEFAULT_REPS, rest: false, deadline: null, repairable: false, done_ids: [] });
-                  setDoneLocal(new Set());
                 }
+                setDoneLocal(new Set());
+                setSessionOnly(true);
                 setFinished(false);
                 goTo(0);
               }} className="press h-11 rounded-full bg-tint px-5 text-[13.5px] font-semibold text-royal">

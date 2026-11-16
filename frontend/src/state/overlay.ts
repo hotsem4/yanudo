@@ -34,7 +34,7 @@ export interface DayView {
   /** 아직 보내지 않은 말하기 연습 완료(문장 id). 서버 목록과 합쳐 완료 표시를 바로 보인다. */
   speakPendingIds: number[];
   /** "오늘은 어려워요" 상태(아직 보내지 않은 알림 포함). 예전 버전이 저장한 스냅샷이라 모르면 null(버튼을 숨긴다). */
-  restDay: { declaredToday: boolean; sending: boolean; left: number; perPeriod: number } | null;
+  restDay: { declaredToday: boolean; sending: boolean; left: number; perPeriod: number; period: readonly [number, number] | null } | null;
   /** 끝내면 연속 기록을 지키는 보충. 아직 보내지 않은 SPEAK 를 합쳐, 다 끝낸 것은 뺀다. */
   makeupsDue: MakeupDue[];
 }
@@ -64,10 +64,12 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
   let restLocally = false;
 
   const speakPendingIds: number[] = [];
+  const speakPending: { id: number; reps: number; at: number }[] = [];
   for (const e of pending) {
     if (e.type.startsWith("VOCAB_")) continue; // 단어장은 applyVocab 이 따로 처리(날짜와 무관)
     if (e.type === "SPEAK") {
-      speakPendingIds.push(e.sentence_id); // 말하기 연습은 습관과 무관하다
+      speakPendingIds.push(e.sentence_id);
+      speakPending.push({ id: e.sentence_id, reps: e.reps, at: e.occurred_at });
       continue;
     }
     if (e.type === "MARK") {
@@ -166,7 +168,7 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
     vocabGenerator: snapshot.vocabGenerator ?? null,
     speakPendingIds,
     restDay: restDayView(d, restLocally),
-    makeupsDue: makeupsDueView(d, speakPendingIds),
+    makeupsDue: makeupsDueView(d, speakPending),
   };
 }
 
@@ -179,17 +181,21 @@ function restDayView(d: Dashboard, restLocally: boolean): DayView["restDay"] {
     sending: restLocally && !server.declared_today,
     left: server.declared_today || !restLocally ? server.left : Math.max(0, server.left - 1),
     perPeriod: server.per_period,
+    period: server.period_from && server.period_to ? [server.period_from, server.period_to] : null,
   };
 }
 
-/** 보충 목록 + 아직 보내지 않은 SPEAK(보충 화면은 그 Day 에 필요한 횟수로 기록한다). 다 끝낸 것은 뺀다. */
-function makeupsDueView(d: Dashboard, speakPendingIds: readonly number[]): MakeupDue[] {
-  const pending = new Set(speakPendingIds);
+/**
+ * 보충 목록 + 아직 보내지 않은 SPEAK. 서버와 같이 필요한 횟수 이상인 것만, 그리고 오늘(valid_from 이후) 한 것만 센다
+ * (보충할 날짜는 모두 오늘 전이라 오늘 기록은 항상 "그 날짜 다음 날부터"에 든다). 다 끝낸 것은 뺀다.
+ */
+function makeupsDueView(d: Dashboard, speakPending: readonly { id: number; reps: number; at: number }[]): MakeupDue[] {
   return (d.makeups_due ?? [])
     .map((m) => {
       const ids = m.sentence_ids ?? [];
       const done = new Set(m.done_ids ?? []);
-      ids.forEach((id) => pending.has(id) && done.add(id));
+      const counted = new Set(speakPending.filter((p) => p.reps >= m.reps && p.at >= d.valid_from).map((p) => p.id));
+      ids.forEach((id) => counted.has(id) && done.add(id));
       return { day: m.day, rest: m.rest, reps: m.reps, deadline: m.deadline, total: ids.length, done: done.size };
     })
     .filter((m) => m.done < m.total);

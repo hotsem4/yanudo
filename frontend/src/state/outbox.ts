@@ -71,6 +71,13 @@ export const snapshotCache = {
   save(snapshot: Snapshot): void {
     writeJson(SNAPSHOT_KEY, snapshot);
   },
+  clear(): void {
+    try {
+      localStorage.removeItem(SNAPSHOT_KEY);
+    } catch {
+      // 저장소를 못 쓰는 환경이면 지울 것도 없다.
+    }
+  },
 };
 
 export function newEventId(): string {

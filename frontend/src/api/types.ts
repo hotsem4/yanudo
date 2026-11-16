@@ -167,7 +167,7 @@ export interface Dashboard {
   focus: { seconds_today: number; started_ats: number[] };
   /** "오늘은 어려워요"(SPEC F-05): 오늘 알렸는지, 이번 30일 구간에 남은 횟수. */
   /** 이 기능 전에 저장된 스냅샷에는 없다(optional). */
-  rest_day?: { declared_today: boolean; left: number; per_period: number };
+  rest_day?: { declared_today: boolean; left: number; per_period: number; period_from?: number; period_to?: number };
   /** 끝내면 연속 기록을 지키는(기한 안이고 그 전날까지 연속 기록이 있는), 아직 끝내지 않은 보충. 말하기 탭에서 한다. */
   makeups_due?: { day: number; date: string; rest: boolean; reps: number; deadline: string; sentence_ids: number[]; done_ids: number[] }[];
 }

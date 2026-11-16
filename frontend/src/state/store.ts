@@ -64,6 +64,8 @@ export class StudyStore {
   private timer: number | null = null;
   private backoff = 2000;
   private started = false;
+  /** 지금 스냅샷이 이번 실행에서 서버에서 받은 것인가(캐시에서 읽은 것이면 false). */
+  private snapshotFresh = false;
 
   subscribe = (listener: () => void): (() => void) => {
     this.listeners.add(listener);
@@ -211,6 +213,7 @@ export class StudyStore {
     const { ok, entries: vocab, generator } = await this.fetchVocab();
     if (!ok || !this.snapshot || this.seq !== started || this.inFlight) return;
     this.snapshot = { ...this.snapshot, vocab, vocabGenerator: generator };
+    this.snapshotFresh = true;
     snapshotCache.save(this.snapshot);
     this.publish();
   }
@@ -287,6 +290,7 @@ export class StudyStore {
     }
     this.appliedSeq = mine;
     this.snapshot = { dashboard, today: sessions.today, review: sessions.review, vocab: vocab.entries, vocabGenerator: vocab.generator };
+    this.snapshotFresh = true;
     snapshotCache.save(this.snapshot);
     this.publish();
   }
@@ -382,6 +386,13 @@ export class StudyStore {
         // 서버에서 새로 받는다(아직 보내지 않은 기록은 아웃박스에 그대로 남는다).
         console.warn("cached snapshot dropped", err);
         this.snapshot = null;
+        snapshotCache.clear();
+        if (this.snapshotFresh) {
+          // 서버에서 방금 받은 것도 못 그리면 아웃박스 쪽 문제다. 계속 "불러오는 중"에 두지 않고 오류로 알린다.
+          this.state = { kind: "error", message: "화면을 그리지 못했어요. 앱을 새로 고쳐 주세요." };
+          this.listeners.forEach((l) => l());
+          return;
+        }
       }
     }
     if (view) {

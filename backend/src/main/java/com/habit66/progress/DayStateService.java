@@ -88,7 +88,9 @@ public class DayStateService {
         RestDay restDay = new RestDay(restDays.contains(today),
                 Math.max(0, HabitRules.REST_DAYS_PER_PERIOD
                         - HabitRules.restDaysUsed(start, today, restDays, achieved)),
-                HabitRules.REST_DAYS_PER_PERIOD);
+                HabitRules.REST_DAYS_PER_PERIOD,
+                HabitRules.period(start, today) * HabitRules.PERIOD_DAYS + 1,
+                (HabitRules.period(start, today) + 1) * HabitRules.PERIOD_DAYS);
 
         Set<Long> todayIds = lesson == null ? Set.of() : new HashSet<>(lesson.sentenceIds());
         Set<Long> audioSeen = new TreeSet<>();

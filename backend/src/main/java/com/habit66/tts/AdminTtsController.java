@@ -29,8 +29,8 @@ public class AdminTtsController {
     }
 
     @GetMapping("/tts/jobs")
-    public Map<String, List<TtsService.Job>> jobs() {
-        return Map.of("jobs", tts.jobs());
+    public Map<String, Object> jobs() {
+        return Map.of("jobs", tts.jobs(), "engine", tts.engine());
     }
 
     @PutMapping("/audio/{file}")

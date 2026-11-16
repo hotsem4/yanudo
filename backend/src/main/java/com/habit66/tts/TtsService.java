@@ -1,7 +1,12 @@
 package com.habit66.tts;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -96,7 +101,12 @@ public class TtsService {
     }
 
     public Utterance utteranceOf(SentenceView sentence) {
-        return new Utterance(config.voiceFor(sentence.speaker()), config.rate(), sentence.enText());
+        return new Utterance(config.voiceFor(sentence.speaker()), config.rate(), sentence.enText(), config.variant());
+    }
+
+    /** 지금 쓰는 합성 엔진("azure" | "edge"). 일괄 생성 스크립트는 azure 면 직접 만들지 않는다(낮은 품질로 덮어쓰지 않게). */
+    public String engine() {
+        return config.useAzure() ? "azure" : "edge";
     }
 
     public Clip clipOf(SentenceView sentence) {
@@ -185,6 +195,10 @@ public class TtsService {
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
+        } catch (RuntimeException e) {
+            // 카탈로그 조회 실패 등. 조용히 멈추면 10분 재시도도 돌지 않으므로 오류로 남긴다.
+            lastError = "audio generation stopped: " + describe(e);
+            log.error("Audio generation stopped unexpectedly", e);
         } finally {
             queued.set(0);
             running.set(false);
@@ -227,7 +241,7 @@ public class TtsService {
             lastError = null; // 다른 경로(스크립트 업로드 등)로 다 채워졌다. 10분 재시도를 멈춘다.
             return new Pass(0, false);
         }
-        log.info("Generating {} audio clips with edge-tts", jobs.size());
+        log.info("Generating {} audio clips with {}", jobs.size(), engine());
         int failures = 0;
         int consecutive = 0;
         for (Job job : jobs) {
@@ -278,6 +292,10 @@ public class TtsService {
     }
 
     private void synthesize(Job job) throws IOException, InterruptedException {
+        if (config.useAzure()) {
+            synthesizeAzure(job);
+            return;
+        }
         Path text = null;
         Path media = null;
         Path output = null;
@@ -324,6 +342,58 @@ public class TtsService {
             delete(media);
             delete(output);
         }
+    }
+
+    // ── Azure Speech(REST) ──
+    /** 무료 등급(F0)은 1분에 20번까지라 요청 사이를 띄운다. */
+    private static final long AZURE_SPACING_MS = 3_100;
+    private final HttpClient http = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(15)).build();
+    private long lastAzureAt = 0;
+
+    private void synthesizeAzure(Job job) throws IOException, InterruptedException {
+        AppProperties.Azure azure = config.azure();
+        long wait = lastAzureAt + AZURE_SPACING_MS - System.currentTimeMillis();
+        if (wait > 0) {
+            Thread.sleep(wait);
+        }
+        String ssml = "<speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" xml:lang=\"en-US\">"
+                + "<voice name=\"" + xml(job.voice()) + "\"><prosody rate=\"" + xml(job.rate()) + "\">" + xml(job.text())
+                + "</prosody></voice></speak>";
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://" + azure.region().trim() + ".tts.speech.microsoft.com/cognitiveservices/v1"))
+                .timeout(Duration.ofSeconds(config.timeoutSeconds()))
+                .header("Ocp-Apim-Subscription-Key", azure.key().trim())
+                .header("Content-Type", "application/ssml+xml")
+                .header("X-Microsoft-OutputFormat", azure.format())
+                .header("User-Agent", "habit66")
+                .POST(HttpRequest.BodyPublishers.ofString(ssml, StandardCharsets.UTF_8))
+                .build();
+        HttpResponse<byte[]> response;
+        try {
+            response = http.send(request, HttpResponse.BodyHandlers.ofByteArray());
+        } finally {
+            lastAzureAt = System.currentTimeMillis();
+        }
+        int status = response.statusCode();
+        if (status == 429) {
+            // 속도 제한: 알려 준 만큼(없으면 10초) 쉬고 같은 클립을 다시 시도한다(재시도 횟수에 넣지 않는다).
+            long retry = response.headers().firstValueAsLong("Retry-After").orElse(10);
+            log.info("Azure Speech rate limit; waiting {}s", retry);
+            Thread.sleep(Math.min(60, Math.max(1, retry)) * 1000);
+            synthesizeAzure(job);
+            return;
+        }
+        if (status == 401 || status == 403) {
+            throw new IOException("Azure Speech rejected the key or region (HTTP " + status + ")");
+        }
+        if (status != 200 || response.body().length == 0) {
+            throw new IOException("Azure Speech answered HTTP " + status);
+        }
+        library.accept(job.file(), response.body());
+    }
+
+    private static String xml(String s) {
+        return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;");
     }
 
     private static void delete(Path file) {

@@ -167,6 +167,9 @@ class Mp3FramesTest {
         assertThat(a.fileName()).isNotEqualTo(new Utterance(a.voice(), "+0%", a.text()).fileName());
         // sha1("v|r|t") = 알려진 값으로 규칙 자체를 고정한다.
         assertThat(new Utterance("v", "r", "t").fileName()).isEqualTo(sha1Prefix("v|r|t") + ".mp3");
+        // 품질이 다른 엔진(Azure 48kHz)은 variant 가 붙어 다른 파일이 된다. 비어 있으면 예전 이름 그대로다.
+        assertThat(new Utterance("v", "r", "t", "").fileName()).isEqualTo(new Utterance("v", "r", "t").fileName());
+        assertThat(new Utterance("v", "r", "t", "azure:x").fileName()).isEqualTo(sha1Prefix("v|r|t|azure:x") + ".mp3");
     }
 
     private static String sha1Prefix(String input) {

@@ -29,7 +29,7 @@ public class VocabClips implements ClipSource {
     /** @param index 예문 순서(0부터) */
     public Utterance utterance(int index, String en) {
         String voice = index % 2 == 0 ? tts.voiceB() : tts.voiceA();
-        return new Utterance(voice, tts.rate(), en);
+        return new Utterance(voice, tts.rate(), en, tts.variant());
     }
 
     @Override

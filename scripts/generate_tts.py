@@ -349,7 +349,12 @@ async def run(args: argparse.Namespace, edge_tts: ModuleType) -> int:
 
     try:
         await import_lessons(args.import_files, client, summary)
-        jobs = parse_jobs(await client.call("GET", "/api/v1/admin/tts/jobs"))
+        payload = await client.call("GET", "/api/v1/admin/tts/jobs")
+        if isinstance(payload, dict) and payload.get("engine") == "azure":
+            # Azure(48kHz) 파일 이름에 edge-tts(24kHz) 소리를 올리면 품질이 섞인다. 서버가 직접 만든다.
+            print("서버가 Azure Speech 로 음성을 직접 만듭니다. 이 스크립트는 할 일이 없습니다(진행은 /api/v1/admin/tts/status).")
+            return 0
+        jobs = parse_jobs(payload)
     except NetworkError:
         server_message(client.base_url)
         return 2

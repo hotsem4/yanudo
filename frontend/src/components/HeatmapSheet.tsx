@@ -14,6 +14,8 @@ interface Props {
   achievedTodayLocally: boolean;
   /** 화면 상태(낙관 반영)에서 계산한 포롱. 아직 못 받았으면 null. */
   mascot: MascotState | null;
+  /** 지금 라운드(제목을 불러오기 전부터 정한다). */
+  round: number;
 }
 
 type Load = { kind: "loading" } | { kind: "error" } | { kind: "ready"; data: Heatmap };
@@ -36,7 +38,7 @@ const LABEL: Record<CellStatus, string> = {
   FUTURE: "예정",
 };
 
-export function HeatmapSheet({ open, onClose, achievedTodayLocally, mascot }: Props) {
+export function HeatmapSheet({ open, onClose, achievedTodayLocally, mascot, round }: Props) {
   const [load, setLoad] = useState<Load>({ kind: "loading" });
 
   const fetchMap = useCallback(() => {
@@ -52,7 +54,7 @@ export function HeatmapSheet({ open, onClose, achievedTodayLocally, mascot }: Pr
   }, [open, fetchMap]);
 
   return (
-    <BottomSheet open={open} onClose={onClose} title="66일 기록">
+    <BottomSheet open={open} onClose={onClose} title={round > 1 ? `${round}라운드 기록` : "66일 기록"}>
       {load.kind === "loading" && <GridSkeleton />}
       {load.kind === "error" && (
         <div className="flex flex-col items-center gap-3 py-8 text-center">
@@ -72,12 +74,15 @@ function HeatmapBody({ data, achievedTodayLocally, mascot }: { data: Heatmap; ac
   const stats = [
     { label: "연속", value: `${data.current_streak}일` },
     { label: "최장", value: `${data.longest_streak}일` },
-    { label: "달성", value: `${data.achieved_days}일` },
+    {
+      label: data.round > 1 ? "누적 달성" : "달성",
+      value: `${data.achieved_days + (data.past_rounds ?? []).reduce((sum, r) => sum + r.achieved_days, 0)}일`,
+    },
     { label: "프리즈", value: `${data.freezes_left}개` },
   ];
   return (
     <div className="flex flex-col gap-5">
-      {mascot && <Growth mascot={mascot} currentDay={data.current_day} />}
+      {mascot && <Growth mascot={mascot} currentDay={data.current_day} round={data.round} />}
       <dl className="grid grid-cols-4 gap-2">
         {stats.map((s) => (
           <div key={s.label} className="rounded-2xl bg-tint px-3 py-3">
@@ -87,7 +92,10 @@ function HeatmapBody({ data, achievedTodayLocally, mascot }: { data: Heatmap; ac
         ))}
       </dl>
 
-      <ol className="grid grid-cols-11 gap-1.5" aria-label={`시작일 ${koreanDate(data.start_date)}부터 66일`}>
+      <ol
+        className="grid grid-cols-11 gap-1.5"
+        aria-label={`${data.round > 1 ? `${data.round}라운드, ` : ""}${koreanDate(data.round_start ?? data.start_date)}부터 ${cells.length}일`}
+      >
         {cells.map((c) => (
           <li
             key={c.day}
@@ -99,11 +107,28 @@ function HeatmapBody({ data, achievedTodayLocally, mascot }: { data: Heatmap; ac
               <Snowflake size={12} strokeWidth={2} aria-hidden />
             ) : c.status === "REPAIRED" ? (
               <RotateCcw size={11} strokeWidth={2.25} aria-hidden />
-            ) : mascot && STAGE_DAYS.includes(c.day) ? <span aria-hidden>{c.day}</span> : null}
+            ) : mascot && data.round <= 1 && STAGE_DAYS.includes(c.day) ? <span aria-hidden>{c.day}</span> : null}
           </li>
         ))}
       </ol>
 
+      {data.round > 1 && (
+        <p className="-mt-2 text-[12.5px] font-medium text-muted-strong">
+          {data.round}라운드 {data.round_day}일째 · 이번 라운드 <span className="font-semibold tabular-nums text-royal">{data.achieved_days}일</span> 달성
+        </p>
+      )}
+      {(data.past_rounds ?? []).length > 0 && (
+        <ul aria-label="지난 라운드(최근 3개)" className="flex flex-col gap-1.5">
+          {[...data.past_rounds].reverse().slice(0, 3).map((r) => (
+            <li key={r.round} className="flex items-center justify-between rounded-2xl bg-canvas px-3.5 py-2.5 text-[13px]">
+              <span className="font-semibold text-ink">{r.round}라운드</span>
+              <span className="tabular-nums text-muted-strong">
+                {r.days}일 중 <b className="font-semibold text-royal">{r.achieved_days}일</b> 달성
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
       <ul className="flex flex-wrap gap-x-4 gap-y-2 text-[12.5px] font-medium text-muted">
         {(["ACHIEVED", "FROZEN", "REPAIRED", "MISSED", "FUTURE"] as const).map((s) => (
           <li key={s} className="flex items-center gap-1.5">
@@ -113,8 +138,8 @@ function HeatmapBody({ data, achievedTodayLocally, mascot }: { data: Heatmap; ac
         ))}
       </ul>
       <p className="text-pretty text-[12.5px] leading-relaxed text-muted">
-        {mascot && `숫자가 적힌 칸은 ${MASCOT_NAME}이 자라는 날이에요. 하루를 놓쳐도 작아지지 않아요. `}
-        오늘의 10문장을 오디오로 한 바퀴 듣거나 카드로 한 번 넘기면 그날 달성이에요. 30일마다 프리즈 2개가 놓친 하루를 대신 지켜 줘요. 놓친 날은 3일 안에 말하기 탭에서 보충해도 이어져요.
+        {mascot && data.round <= 1 && `숫자가 적힌 칸은 ${MASCOT_NAME}이 자라는 날이에요. 하루를 놓쳐도 작아지지 않아요. `}
+        오늘의 10문장을 오디오로 한 바퀴 듣거나 카드로 한 번 넘기면 그날 달성이에요. 66일마다 한 라운드가 끝나고 기록은 계속 이어져요. 30일마다 프리즈 2개가 놓친 하루를 대신 지켜 줘요. 놓친 날은 3일 안에 말하기 탭에서 보충해도 이어져요.
       </p>
     </div>
   );
@@ -131,7 +156,7 @@ const MILE_TEXT: Record<CellStatus, string> = {
 };
 
 /** 포롱의 지금 모습과 다음에 자라는 날, 그리고 여섯 단계 성장 띠. */
-function Growth({ mascot, currentDay }: { mascot: MascotState; currentDay: number }) {
+function Growth({ mascot, currentDay, round }: { mascot: MascotState; currentDay: number; round: number }) {
   const next = nextMilestone(currentDay, mascot.stage);
   return (
     <section aria-label={`${MASCOT_NAME} 성장`} className="flex flex-col gap-3">
@@ -148,7 +173,7 @@ function Growth({ mascot, currentDay }: { mascot: MascotState; currentDay: numbe
                 <span className="font-semibold tabular-nums text-royal">{next.daysLeft}일</span> 남았어요.
               </>
             ) : (
-              "66일을 끝까지 함께했어요."
+              round > 1 ? `66일을 함께 왔어요. 지금은 ${round}라운드예요.` : "66일을 함께 왔어요."
             )}
           </p>
         </div>

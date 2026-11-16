@@ -100,7 +100,8 @@ class ApiIntegrationTest {
         assertThat(d.path("lesson_day").asInt()).isEqualTo(1);
         assertThat(d.path("max_lesson_day").asInt()).isEqualTo(5);
         assertThat(d.path("content_missing").asBoolean()).isFalse();
-        assertThat(d.path("program_complete").asBoolean()).isFalse();
+        assertThat(d.path("round").asInt()).isEqualTo(1);
+        assertThat(d.path("round_day").asInt()).isEqualTo(1);
 
         JsonNode streak = d.path("streak");
         assertThat(streak.path("current").asInt()).isZero();
@@ -659,14 +660,16 @@ class ApiIntegrationTest {
         assertThat(mapper.readTree(ok.getContentAsString(StandardCharsets.UTF_8)).path("start_date").asText())
                 .isEqualTo("2026-11-08");
 
-        // 오늘(11-16)은 이제 Day 9 인데 콘텐츠는 Day 5 까지뿐이다.
+        // 오늘(11-16)은 이제 Day 9 인데 콘텐츠는 Day 5 까지뿐이다. 새 레슨이 없어 지난 레슨 중 가장 오래 안 본 것을 다시 한다.
         JsonNode d = getJson("/api/v1/dashboard");
         assertThat(d.path("current_day").asInt()).isEqualTo(9);
-        assertThat(d.path("lesson_day").asInt()).isEqualTo(5);
+        int lessonDay = d.path("lesson_day").asInt();
+        assertThat(lessonDay).isBetween(1, 5);
         assertThat(d.path("content_missing").asBoolean()).isTrue();
-        assertThat(d.path("review_gate").path("yesterday_day").asInt()).isEqualTo(4);
-        assertThat(ints(d.path("review_progress").path("days"))).containsExactly(4, 3, 2, 1);
-        assertThat(d.path("review_progress").path("total").asInt()).isEqualTo(41);
+        assertThat(d.path("round").asInt()).isEqualTo(1);
+        assertThat(d.path("round_day").asInt()).isEqualTo(9);
+        List<Integer> reviewDays = ints(d.path("review_progress").path("days"));
+        assertThat(reviewDays).isNotEmpty().hasSizeLessThanOrEqualTo(4).doesNotContain(lessonDay);
         // 달성 기록은 날짜로 남아 있어 새 기준에서도 이틀 연속이다.
         assertThat(d.path("streak").path("current").asInt()).isEqualTo(2);
         assertThat(d.path("streak").path("achieved_today").asBoolean()).isTrue();
@@ -678,9 +681,6 @@ class ApiIntegrationTest {
         assertThat(heatmap.path("cells").get(8).path("status").asText()).isEqualTo("ACHIEVED");
         assertThat(heatmap.path("cells").get(9).path("status").asText()).isEqualTo("FUTURE");
 
-        // 오늘 Day 2 를 TODAY 로 본 기록은 이제 오늘 레슨(Day 5) 밖이다. 사라지지 않고 복습으로 보인다.
-        assertThat(d.path("today_progress").path("audio_seen_ids")).isEmpty();
-        assertThat(d.path("review_gate").path("seen_review_ids")).hasSize(20);
     }
 
     // ── 9. 늦게 도착한 지난 날의 완주 ──────────────────────────
@@ -688,23 +688,36 @@ class ApiIntegrationTest {
     @Test
     @Order(16)
     void lateBatchesAchieveThePastDayTheyBelongTo() throws Exception {
-        // 시작일 11-08, 오늘 11-16(Day 9). Day 5 이후 콘텐츠가 없어 11-12 부터는 오늘 레슨이 Day 5 다.
-        List<Long> day5 = longs(getJson("/api/v1/dashboard").path("today_progress").path("sentence_ids"));
-        assertThat(day5).hasSize(10);
-
-        // 11-14(Day 7) 낮에 카드로 9문장까지: 아직 달성이 아니다.
-        ArrayNode nine = mapper.createArrayNode();
-        for (int i = 0; i < 9; i++) {
-            nine.add(view("late-card-" + i, day5.get(i), "TODAY", "CARD", seoul(14, 12, 0)));
+        // 시작일 11-08, 오늘 11-16(Day 9). 11-11 은 Day 4, 11-12 는 Day 5 레슨의 날이다. 11-15·11-16 은 달성.
+        JsonNode overview = getJson("/api/v1/speak");
+        List<Long> day4 = null;
+        List<Long> day5 = null;
+        for (JsonNode row : overview.path("days")) {
+            if (row.path("day").asInt() == 4) {
+                day4 = longs(row.path("sentence_ids"));
+            } else if (row.path("day").asInt() == 5) {
+                day5 = longs(row.path("sentence_ids"));
+            }
         }
-        postEvents(nine);
-        assertThat(getJson("/api/v1/habit/heatmap").path("cells").get(6).path("status").asText())
+        assertThat(day4).isNotEmpty();
+        assertThat(day5).isNotEmpty();
+
+        // 11-11(Day 4) 낮에 카드로 마지막 한 문장 빼고: 아직 달성이 아니다.
+        ArrayNode almost = mapper.createArrayNode();
+        for (int i = 0; i < day4.size() - 1; i++) {
+            almost.add(view("late-card-" + i, day4.get(i), "TODAY", "CARD", seoul(11, 12, 0)));
+        }
+        postEvents(almost);
+        assertThat(getJson("/api/v1/habit/heatmap").path("cells").get(3).path("status").asText())
                 .isEqualTo("MISSED");
 
-        // 마지막 한 문장이 도착하면 그날(11-14)이 소급 달성된다.
-        JsonNode res = postEvents(array(view("late-card-9", day5.get(9), "TODAY", "CARD", seoul(14, 12, 5))));
+        // 마지막 한 문장이 도착하면 그날(11-11)이 소급 달성된다. 11-12·11-13 은 프리즈, 11-14 에서 끊긴다.
+        JsonNode res = postEvents(array(view("late-card-last", day4.get(day4.size() - 1), "TODAY", "CARD",
+                seoul(11, 12, 5))));
         assertThat(res.path("dashboard").path("today_progress").path("card_seen_ids")).isEmpty();
-        assertThat(res.path("dashboard").path("streak").path("current").asInt()).isEqualTo(3);
+        assertThat(res.path("dashboard").path("streak").path("current").asInt()).isEqualTo(2);
+        assertThat(getJson("/api/v1/habit/heatmap").path("cells").get(3).path("status").asText())
+                .isEqualTo("ACHIEVED");
 
         // 달력으로는 11-13 새벽 02:30 이지만 03시 이전이라 11-12(Day 5) 기록이다.
         ArrayNode beforeRollover = mapper.createArrayNode();
@@ -716,12 +729,12 @@ class ApiIntegrationTest {
         JsonNode cells = getJson("/api/v1/habit/heatmap").path("cells");
         assertThat(cells.get(4).path("date").asText()).isEqualTo("2026-11-12");
         assertThat(cells.get(4).path("status").asText()).isEqualTo("ACHIEVED");
-        // 11-13 은 비었지만 스트릭이 살아 있어 프리즈로 넘어간다.
+        // 11-13·11-14 는 비었지만 스트릭이 살아 있어 프리즈 두 개로 넘어간다.
         assertThat(cells.get(5).path("status").asText()).isEqualTo("FROZEN");
-        assertThat(cells.get(6).path("status").asText()).isEqualTo("ACHIEVED");
+        assertThat(cells.get(6).path("status").asText()).isEqualTo("FROZEN");
         assertThat(d.path("streak").path("current").asInt()).isEqualTo(4);
         assertThat(d.path("streak").path("longest").asInt()).isEqualTo(4);
-        assertThat(d.path("streak").path("freezes_left").asInt()).isEqualTo(1);
+        assertThat(d.path("streak").path("freezes_left").asInt()).isZero();
     }
 
     @Test

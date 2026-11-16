@@ -28,6 +28,7 @@ import { useFocusTimer } from "./hooks/useFocusTimer";
 import { useWakeLock } from "./hooks/useWakeLock";
 import { rememberSideView, sideViewFromUrl, type SideView } from "./lib/launch";
 import { MASCOT_NAME, mascotOf, noteStage, stageIs } from "./lib/mascot";
+import { roundOf } from "./lib/round";
 import { prefs, type RevealFilter } from "./lib/prefs";
 import { showToast } from "./lib/toast";
 import { filterVocab, type VocabFilter } from "./lib/vocab";
@@ -167,6 +168,7 @@ export function App() {
     setWordsFor(sentence);
     setSheet("words");
   };
+  useRoundCelebration(view);
   const todoActions = { onStart: startStep, onStartFocus: startFocus, onAddWord: addWord, onOpenMorning: () => setMorningOpen(true) };
 
   const locked = !!view && !view.gate.open;
@@ -283,7 +285,7 @@ export function App() {
 
       {!dockHidden && <PlayerDock />}
       <BlockedPrompt />
-      <HeatmapSheet open={sheet === "heatmap"} onClose={() => setSheet(null)} achievedTodayLocally={!!view?.streak.achievedToday} mascot={mascot} />
+      <HeatmapSheet open={sheet === "heatmap"} onClose={() => setSheet(null)} achievedTodayLocally={!!view?.streak.achievedToday} mascot={mascot} round={view ? roundOf(view.dashboard).round : 1} />
       <VocabPickSheet
         open={sheet === "words"}
         onClose={() => setSheet(null)}
@@ -306,7 +308,7 @@ export function App() {
         streak={view?.streak.current ?? 0}
         mascot={mascot}
         achievedToday={view?.streak.achievedToday ?? false}
-        restAllowed={!!view && !view.stale && !view.dashboard.program_complete && view.dashboard.today_progress.total > 0}
+        restAllowed={!!view && !view.stale && view.dashboard.today_progress.total > 0}
         restPeriod={restPeriodOf(view)}
         restDay={view?.restDay ?? null}
         makeupsDue={view?.makeupsDue ?? []}
@@ -402,5 +404,22 @@ function useCelebrations(view: DayView | null): void {
 function restPeriodOf(view: DayView | null): readonly [number, number] {
   if (!view) return [1, 30];
   const from = Math.floor((view.dashboard.current_day - 1) / 30) * 30 + 1;
-  return [from, Math.min(from + 29, view.dashboard.total_days)];
+  return [from, from + 29];
+}
+
+/** 새 라운드에 들어선 뒤 처음 앱을 열면 한 번 알린다(기기마다 라운드당 한 번, 며칠 쉬고 와도). */
+function useRoundCelebration(view: DayView | null): void {
+  const info = view ? roundOf(view.dashboard) : null;
+  const round = info && info.round > 1 ? info.round : 0;
+  useEffect(() => {
+    if (!round) return;
+    const key = "habit66.roundCelebrated";
+    try {
+      if (Number(localStorage.getItem(key) ?? 0) >= round) return;
+      localStorage.setItem(key, String(round));
+    } catch {
+      return;
+    }
+    showToast(`${round}라운드를 시작해요`, "success", 5000);
+  }, [round]);
 }

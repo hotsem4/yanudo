@@ -21,6 +21,9 @@ import com.habit66.common.LogicalClock;
 import com.habit66.progress.DaySnapshot.Cell;
 import com.habit66.progress.DaySnapshot.CellStatus;
 import com.habit66.progress.DaySnapshot.Makeup;
+import com.habit66.progress.DaySnapshot.RoundSummary;
+import com.habit66.progress.HabitRules.Schedule;
+import com.habit66.progress.ProgressFacts.AchievementRow;
 import com.habit66.progress.HabitRules.ReviewPlan;
 import com.habit66.progress.HabitRules.Walk;
 import com.habit66.progress.ProgressFacts.SpeakRow;
@@ -166,7 +169,7 @@ class HabitRulesTest {
     }
 
     @Test
-    void day60To61StartsTheLastPeriod() {
+    void day60To61StartsTheThirdPeriod() {
         Set<LocalDate> achieved = achievedRange(1, 58);
 
         Walk onDay61 = HabitRules.walk(START, day(61), achieved, TOTAL);
@@ -182,42 +185,48 @@ class HabitRulesTest {
         assertThat(onDay63.streak().freezesLeft()).isZero();
     }
 
-    // ── 프로그램 범위 ─────────────────────────────────────────
+    // ── 라운드: 66일은 끝이 아니라 한 바퀴 ─────────────────────
 
     @Test
-    void day66To67FixesCurrentDayAndCompletesTheProgram() {
-        assertThat(HabitRules.currentDay(START, day(66), TOTAL)).isEqualTo(66);
-        assertThat(HabitRules.programComplete(START, day(66), TOTAL)).isFalse();
-
-        assertThat(HabitRules.currentDay(START, day(67), TOTAL)).isEqualTo(66);
-        assertThat(HabitRules.programComplete(START, day(67), TOTAL)).isTrue();
-        assertThat(HabitRules.currentDay(START, day(200), TOTAL)).isEqualTo(66);
+    void dayKeepsCountingAfter66AndRoundsRollEvery66Days() {
+        assertThat(HabitRules.currentDay(START, day(66))).isEqualTo(66);
+        assertThat(HabitRules.currentDay(START, day(67))).isEqualTo(67);
+        assertThat(HabitRules.currentDay(START, day(200))).isEqualTo(200);
+        assertThat(HabitRules.round(66, TOTAL)).isEqualTo(1);
+        assertThat(HabitRules.round(67, TOTAL)).isEqualTo(2);
+        assertThat(HabitRules.roundDay(67, TOTAL)).isEqualTo(1);
+        assertThat(HabitRules.roundDay(132, TOTAL)).isEqualTo(66);
+        assertThat(HabitRules.round(133, TOTAL)).isEqualTo(3);
     }
 
     @Test
-    void afterDay66TheStreakIsFrozenAtItsFinalValue() {
-        Set<LocalDate> achieved = achievedRange(1, 66);
-        achieved.add(day(67));
+    void streakKeepsGrowingIntoTheNextRound() {
+        Set<LocalDate> achieved = achievedRange(1, 67);
 
         Walk walk = HabitRules.walk(START, day(67), achieved, TOTAL);
 
+        assertThat(walk.streak().current()).isEqualTo(67);
+        assertThat(walk.achievedDays()).isEqualTo(1);
         assertThat(walk.cells()).hasSize(66);
-        assertThat(walk.cells()).extracting(Cell::status).containsOnly(CellStatus.ACHIEVED);
-        assertThat(walk.streak().current()).isEqualTo(66);
-        assertThat(walk.streak().ifAchievedToday()).isEqualTo(66);
-        assertThat(walk.streak().achievedToday()).isTrue();
-        assertThat(walk.achievedDays()).isEqualTo(66);
+        assertThat(walk.cells().get(0)).isEqualTo(new Cell(1, day(67), CellStatus.ACHIEVED));
+        assertThat(walk.cells().get(1).status()).isEqualTo(CellStatus.FUTURE);
+        assertThat(walk.pastRounds()).containsExactly(new RoundSummary(1, 66, 66));
 
-        Walk muchLater = HabitRules.walk(START, day(120), achievedRange(1, 66), TOTAL);
-        assertThat(muchLater.streak().current()).isEqualTo(66);
-        assertThat(muchLater.streak().achievedToday()).isFalse();
+        // 그 뒤에도 빼먹으면 프리즈(30일마다 2개)가 지키고, 다 쓰면 끊긴다.
+        Walk later = HabitRules.walk(START, day(100), achievedRange(1, 97), TOTAL);
+        assertThat(later.streak().current()).isEqualTo(97);
+        assertThat(status(later, 98 - 66)).isEqualTo(CellStatus.FROZEN);
+        assertThat(status(later, 99 - 66)).isEqualTo(CellStatus.FROZEN);
+        Walk broken = HabitRules.walk(START, day(100), achievedRange(1, 90), TOTAL);
+        assertThat(broken.streak().current()).isZero();
+        assertThat(broken.streak().longest()).isEqualTo(90);
     }
 
     @Test
     void currentDayFollowsTheCalendarEvenWhenDaysAreSkipped() {
-        assertThat(HabitRules.currentDay(START, START, TOTAL)).isEqualTo(1);
-        assertThat(HabitRules.currentDay(START, day(10), TOTAL)).isEqualTo(10);
-        assertThat(HabitRules.currentDay(START, START.minusDays(3), TOTAL)).isEqualTo(1);
+        assertThat(HabitRules.currentDay(START, START)).isEqualTo(1);
+        assertThat(HabitRules.currentDay(START, day(10))).isEqualTo(10);
+        assertThat(HabitRules.currentDay(START, START.minusDays(3))).isEqualTo(1);
     }
 
     @Test
@@ -229,40 +238,92 @@ class HabitRulesTest {
         assertThat(walk.cells().get(65).day()).isEqualTo(66);
         assertThat(walk.cells().get(65).date()).isEqualTo(START.plusDays(65));
         assertThat(walk.cells().get(65).status()).isEqualTo(CellStatus.FUTURE);
+        assertThat(walk.pastRounds()).isEmpty();
     }
 
-    // ── 레슨 일차·게이트·복습 큐 ──────────────────────────────
+    // ── 레슨 일정(새 레슨·복습 순환)·게이트·복습 큐 ──────────────
+
+    /** achieved 는 (그날의 Day 번호, 그날 끝낸 레슨 Day) 쌍. */
+    private static Schedule schedule(int untilDay, List<int[]> achieved, Integer... registered) {
+        List<AchievementRow> rows = achieved.stream().map(a -> new AchievementRow(day(a[0]), a[1])).toList();
+        return HabitRules.schedule(START, day(untilDay), days(registered), rows);
+    }
 
     @Test
-    void lessonDayIsTheLatestRegisteredDayNotAfterCurrentDay() {
-        assertThat(HabitRules.lessonDay(days(1, 2, 3, 4, 5), 3)).isEqualTo(3);
-        assertThat(HabitRules.lessonDay(days(1, 2, 3, 4, 5), 9)).isEqualTo(5);
-        assertThat(HabitRules.lessonDay(days(1, 2, 4), 3)).isEqualTo(2);
-        assertThat(HabitRules.lessonDay(days(3, 4), 2)).isZero();
-        assertThat(HabitRules.lessonDay(days(), 5)).isZero();
+    void eachDayStudiesItsOwnLessonWhileThereIsOne() {
+        Schedule s = schedule(5, List.of(), 1, 2, 3, 4, 5);
+        assertThat(s.lessonOn(day(3))).isEqualTo(3);
+        assertThat(s.repeat(day(3))).isFalse();
+        assertThat(schedule(2, List.of(), 3, 4).lessonOn(day(2))).isZero();
+        assertThat(schedule(5, List.of()).lessonOn(day(5))).isZero();
+    }
+
+    @Test
+    void withoutANewLessonTheOldestSeenLessonComesBack() {
+        // Day 1~3 을 그날 달성했다. Day 4 는 새 레슨이 없어 마지막 달성이 가장 이른 Day 1 을 다시 한다.
+        List<int[]> views = new java.util.ArrayList<>(List.of(new int[] {1, 1}, new int[] {2, 2}, new int[] {3, 3}));
+        Schedule s = schedule(6, views, 1, 2, 3);
+        assertThat(s.lessonOn(day(4))).isEqualTo(1);
+        assertThat(s.repeat(day(4))).isTrue();
+        // Day 4 를 빼먹었으면 Day 5 도 Day 1 이다.
+        assertThat(s.lessonOn(day(5))).isEqualTo(1);
+
+        views.add(new int[] {4, 1});
+        Schedule studied = schedule(6, views, 1, 2, 3);
+        assertThat(studied.lessonOn(day(5))).isEqualTo(2);
+        // 달성한 날은 그때 끝낸 레슨으로 고정된다.
+        assertThat(studied.lessonOn(day(4))).isEqualTo(1);
+    }
+
+    @Test
+    void anAchievedDateKeepsItsLessonEvenIfContentIsAddedLater() {
+        // Day 4 에 새 레슨이 없어 Day 1 을 다시 해 달성했다. 나중에 Day 4 레슨을 넣어도 그날은 Day 1 이다.
+        List<int[]> achieved = List.of(new int[] {1, 1}, new int[] {2, 2}, new int[] {3, 3}, new int[] {4, 1});
+        Schedule s = schedule(5, achieved, 1, 2, 3, 4);
+        assertThat(s.lessonOn(day(4))).isEqualTo(1);
+        assertThat(s.repeat(day(4))).isTrue();
+        assertThat(s.lessonOn(day(5))).isEqualTo(4); // 오늘 Day 5 는 등록 안 됨 → 한 번도 달성 못 한 Day 4 먼저
+    }
+
+    @Test
+    void lessonsNeverAchievedComeBackFirst() {
+        // Day 2 를 빼먹었다(달성 없음). 콘텐츠가 Day 3 까지라 Day 4 에는 빼먹은 Day 2 를 다시 한다.
+        Schedule s = schedule(4, List.of(new int[] {1, 1}, new int[] {3, 3}), 1, 2, 3);
+        assertThat(s.lessonOn(day(4))).isEqualTo(2);
+    }
+
+    @Test
+    void aGapInContentReviewsAnEarlierLessonInsteadOfRepeatingTheLastOne() {
+        Schedule s = schedule(4, List.of(new int[] {1, 1}, new int[] {2, 2}), 1, 2, 4);
+        assertThat(s.lessonOn(day(3))).isEqualTo(1);
+        assertThat(s.lessonOn(day(4))).isEqualTo(4);
+        assertThat(s.repeat(day(4))).isFalse();
     }
 
     @Test
     void day1HasNoGateAndPreviewsItself() {
-        assertThat(HabitRules.gateDay(days(1, 2, 3), 1)).isNull();
-        assertThat(HabitRules.reviewPlan(days(1, 2, 3), 1)).isEqualTo(new ReviewPlan(List.of(1), true));
+        Schedule s = schedule(1, List.of(), 1, 2, 3);
+        assertThat(HabitRules.gateDay(s, START, day(1))).isNull();
+        assertThat(HabitRules.reviewPlan(s, START, day(1))).isEqualTo(new ReviewPlan(List.of(1), true));
     }
 
     @Test
-    void gateIsThePreviousRegisteredDayEvenAcrossSkippedDays() {
-        assertThat(HabitRules.gateDay(days(1, 2, 3), 3)).isEqualTo(2);
-        assertThat(HabitRules.gateDay(days(1, 2, 4), 4)).isEqualTo(2);
-        assertThat(HabitRules.gateDay(days(3, 5), 3)).isNull();
-        assertThat(HabitRules.gateDay(days(), 0)).isNull();
+    void gateIsYesterdaysLesson() {
+        assertThat(HabitRules.gateDay(schedule(3, List.of(), 1, 2, 3), START, day(3))).isEqualTo(2);
+        // Day 3 은 새 레슨이 없어 Day 1 을 다시 했다. 오늘(Day 4)의 게이트는 그 Day 1 이다.
+        assertThat(HabitRules.gateDay(schedule(4, List.of(), 1, 2, 4), START, day(4))).isEqualTo(1);
+        assertThat(HabitRules.gateDay(schedule(3, List.of(), 3, 5), START, day(3))).isNull();
+        assertThat(HabitRules.gateDay(schedule(5, List.of()), START, day(5))).isNull();
     }
 
     @Test
-    void reviewQueueTakesUpToFourPreviousDaysNewestFirst() {
-        assertThat(HabitRules.reviewPlan(days(1, 2, 3, 4, 5, 6, 7), 7))
+    void reviewQueueTakesUpToFourRecentLessonsNewestFirst() {
+        assertThat(HabitRules.reviewPlan(schedule(7, List.of(), 1, 2, 3, 4, 5, 6, 7), START, day(7)))
                 .isEqualTo(new ReviewPlan(List.of(6, 5, 4, 3), false));
-        assertThat(HabitRules.reviewPlan(days(1, 2, 3), 3)).isEqualTo(new ReviewPlan(List.of(2, 1), false));
-        assertThat(HabitRules.reviewPlan(days(1, 2, 4, 8), 8)).isEqualTo(new ReviewPlan(List.of(4, 2, 1), false));
-        assertThat(HabitRules.reviewPlan(days(), 0)).isEqualTo(new ReviewPlan(List.of(), false));
+        assertThat(HabitRules.reviewPlan(schedule(3, List.of(), 1, 2, 3), START, day(3)))
+                .isEqualTo(new ReviewPlan(List.of(2, 1), false));
+        assertThat(HabitRules.reviewPlan(schedule(5, List.of()), START, day(5)))
+                .isEqualTo(new ReviewPlan(List.of(), false));
     }
 
     // ── 완주 ──────────────────────────────────────────────────
@@ -329,8 +390,8 @@ class HabitRulesTest {
         LocalDate before = clock.dateOf(seoul(2026, 11, 14, 2, 30));
         LocalDate after = clock.dateOf(seoul(2026, 11, 14, 3, 30));
 
-        assertThat(HabitRules.currentDay(START, before, TOTAL)).isEqualTo(1);
-        assertThat(HabitRules.currentDay(START, after, TOTAL)).isEqualTo(2);
+        assertThat(HabitRules.currentDay(START, before)).isEqualTo(1);
+        assertThat(HabitRules.currentDay(START, after)).isEqualTo(2);
     }
 
 
@@ -340,6 +401,10 @@ class HabitRulesTest {
     private static final Map<Integer, List<Long>> LESSONS = Map.of(1, List.of(10L, 11L), 2, List.of(20L, 21L),
             3, List.of(30L, 31L));
 
+    private static Schedule plan(Map<Integer, List<Long>> lessons, int untilDay) {
+        return HabitRules.schedule(START, day(untilDay), new TreeSet<>(lessons.keySet()), List.of());
+    }
+
     private static List<SpeakRow> spoke(int onDay, int reps, long... ids) {
         return java.util.Arrays.stream(ids).mapToObj(id -> new SpeakRow(id, day(onDay), reps)).toList();
     }
@@ -347,7 +412,7 @@ class HabitRulesTest {
     @Test
     void makeupWithinDeadlineRepairsTheMissedDayWithoutAFreeze() {
         List<SpeakRow> speaks = spoke(4, 5, 20L, 21L); // Day 2 를 Day 4 에 보충
-        List<Makeup> makeups = HabitRules.makeups(START, day(4), TOTAL, LESSONS, achievedOn(1, 3), Set.of(), speaks);
+        List<Makeup> makeups = HabitRules.makeups(START, day(4), plan(LESSONS, 4), LESSONS, achievedOn(1, 3), Set.of(), speaks);
 
         assertThat(makeups).hasSize(1);
         Makeup m = makeups.get(0);
@@ -367,7 +432,7 @@ class HabitRulesTest {
         List<SpeakRow> speaks = new java.util.ArrayList<>(spoke(2, 5, 20L, 21L));
         speaks.addAll(spoke(3, 4, 20L));
         speaks.addAll(spoke(6, 5, 20L, 21L));
-        Makeup m = HabitRules.makeups(START, day(7), TOTAL, LESSONS, achievedOn(1, 3), Set.of(), speaks).stream()
+        Makeup m = HabitRules.makeups(START, day(7), plan(LESSONS, 7), LESSONS, achievedOn(1, 3), Set.of(), speaks).stream()
                 .filter(x -> x.day() == 2).findFirst().orElseThrow();
 
         assertThat(m.done()).isTrue();
@@ -377,37 +442,37 @@ class HabitRulesTest {
 
     @Test
     void restDayNeedsOneRepAndIsLimitedPerPeriod() {
-        Makeup m = HabitRules.makeups(START, day(3), TOTAL, LESSONS, achievedOn(1), Set.of(day(2)),
+        Makeup m = HabitRules.makeups(START, day(3), plan(LESSONS, 3), LESSONS, achievedOn(1), Set.of(day(2)),
                 spoke(3, 1, 20L, 21L)).get(0);
         assertThat(m.rest()).isTrue();
         assertThat(m.reps()).isEqualTo(1);
         assertThat(m.repairs()).isTrue();
 
-        Set<LocalDate> rest = Set.of(day(2), day(5), day(30), day(31), day(70));
-        assertThat(HabitRules.restDaysUsed(START, day(10), rest, Set.of(), TOTAL)).isEqualTo(3);
-        assertThat(HabitRules.restDaysUsed(START, day(31), rest, Set.of(), TOTAL)).isEqualTo(1);
-        // 알린 뒤 그날 달성했으면 쓰지 않은 것으로 친다. 프로그램 밖(Day 70) 기록은 마지막 구간을 잠식하지 않는다.
-        assertThat(HabitRules.restDaysUsed(START, day(10), rest, achievedOn(5), TOTAL)).isEqualTo(2);
-        assertThat(HabitRules.restDaysUsed(START, day(66), rest, Set.of(), TOTAL)).isZero();
+        Set<LocalDate> rest = Set.of(day(2), day(5), day(30), day(31), day(70), START.minusDays(3));
+        assertThat(HabitRules.restDaysUsed(START, day(10), rest, Set.of())).isEqualTo(3);
+        assertThat(HabitRules.restDaysUsed(START, day(31), rest, Set.of())).isEqualTo(1);
+        // 알린 뒤 그날 달성했으면 쓰지 않은 것으로 친다. 시작일 전 기록은 세지 않는다. 66일 뒤에도 구간은 계속된다.
+        assertThat(HabitRules.restDaysUsed(START, day(10), rest, achievedOn(5))).isEqualTo(2);
+        assertThat(HabitRules.restDaysUsed(START, day(66), rest, Set.of())).isEqualTo(1);
     }
 
     @Test
     void makeupKeepsTheStreakOnlyWhenThereIsAStreakToKeep() {
         // Day 1 달성, Day 2·3 빼먹음, 오늘 Day 4. 둘 다 보충하면 이어지므로 둘 다 지킨다.
         List<Makeup> both = HabitRules.withStreakEffect(
-                HabitRules.makeups(START, day(4), TOTAL, LESSONS, achievedOn(1), Set.of(), List.of()),
+                HabitRules.makeups(START, day(4), plan(LESSONS, 4), LESSONS, achievedOn(1), Set.of(), List.of()),
                 START, day(4), achievedOn(1), TOTAL);
         assertThat(both).extracting(Makeup::keepsStreak).containsExactly(true, true);
 
         // 처음부터 안 했으면(스트릭 0) 보충해도 지킬 것이 없다. Day 를 열기만 한다.
         List<Makeup> none = HabitRules.withStreakEffect(
-                HabitRules.makeups(START, day(4), TOTAL, LESSONS, Set.of(), Set.of(), List.of()),
+                HabitRules.makeups(START, day(4), plan(LESSONS, 4), LESSONS, Set.of(), Set.of(), List.of()),
                 START, day(4), Set.of(), TOTAL);
         assertThat(none).extracting(Makeup::keepsStreak).containsOnly(false);
 
         // 기한이 지난 앞날(Day 2, 기한 Day 5)이 이미 끊었으면(프리즈 없음 가정 대신 스트릭 0) 뒤의 보충도 지킬 것이 없다.
         List<Makeup> broken = HabitRules.withStreakEffect(
-                HabitRules.makeups(START, day(8), TOTAL, Map.of(2, List.of(20L), 3, List.of(30L)), Set.of(), Set.of(),
+                HabitRules.makeups(START, day(8), plan(Map.of(2, List.of(20L), 3, List.of(30L)), 8), Map.of(2, List.of(20L), 3, List.of(30L)), Set.of(), Set.of(),
                         List.of()),
                 START, day(8), Set.of(), TOTAL);
         assertThat(broken).extracting(Makeup::keepsStreak).containsOnly(false);
@@ -415,17 +480,17 @@ class HabitRulesTest {
 
     @Test
     void makeupDeadlineIsInclusive() {
-        Makeup onDeadline = HabitRules.makeups(START, day(6), TOTAL, LESSONS, achievedOn(1, 3), Set.of(),
+        Makeup onDeadline = HabitRules.makeups(START, day(6), plan(LESSONS, 6), LESSONS, achievedOn(1, 3), Set.of(),
                 spoke(5, 5, 20L, 21L)).get(0); // Day 2 의 기한은 Day 5
         assertThat(onDeadline.repairs()).isTrue();
-        Makeup late = HabitRules.makeups(START, day(7), TOTAL, LESSONS, achievedOn(1, 3), Set.of(),
+        Makeup late = HabitRules.makeups(START, day(7), plan(LESSONS, 7), LESSONS, achievedOn(1, 3), Set.of(),
                 spoke(6, 5, 20L, 21L)).get(0);
         assertThat(late.repairs()).isFalse();
     }
 
     @Test
     void todayAndAchievedDaysNeedNoMakeup() {
-        assertThat(HabitRules.makeups(START, day(2), TOTAL, LESSONS, achievedOn(1), Set.of(), List.of())).isEmpty();
+        assertThat(HabitRules.makeups(START, day(2), plan(LESSONS, 2), LESSONS, achievedOn(1), Set.of(), List.of())).isEmpty();
     }
 
     private static long seoul(int year, int month, int dayOfMonth, int hour, int minute) {

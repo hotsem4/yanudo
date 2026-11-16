@@ -19,10 +19,10 @@ export interface Todo {
 
 export const FOCUS_GOAL_SECONDS = 25 * 60;
 
-/** 오늘 할 일 목록. 레슨이 없거나 66일이 끝났으면 null. now 는 서버 시계 추정값. */
+/** 오늘 할 일 목록. 레슨이 없으면 null. 66일 뒤에도 계속된다. now 는 서버 시계 추정값. */
 export function todayTodos(view: DayView, now: number): Todo[] | null {
   const d = view.dashboard;
-  if (d.lesson_day === 0 || d.program_complete) return null;
+  if (d.lesson_day === 0) return null;
   const items: Todo[] = [];
 
   const m = view.morningLock;

@@ -102,8 +102,8 @@ public class ReminderService {
         }
         try {
             DaySnapshot snapshot = dayState.snapshot();
-            if (snapshot.streak().achievedToday() || snapshot.restDay().declaredToday() || snapshot.todayLesson() == null
-                    || snapshot.programComplete()) {
+            if (snapshot.streak().achievedToday() || snapshot.restDay().declaredToday()
+                    || snapshot.todayLesson() == null) {
                 return;
             }
             LocalDate today = snapshot.today();

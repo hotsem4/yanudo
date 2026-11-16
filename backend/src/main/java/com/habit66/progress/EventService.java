@@ -49,7 +49,6 @@ public class EventService {
     private final ProgressFacts facts;
     private final WriteLock writes;
     private final VocabService vocab;
-    private final int totalDays;
 
     public EventService(JdbcTemplate jdbc, PlatformTransactionManager txManager, CatalogService catalog,
             SettingsStore settings, LogicalClock clock, ProgressFacts facts, WriteLock writes,
@@ -62,7 +61,6 @@ public class EventService {
         this.settings = settings;
         this.clock = clock;
         this.facts = facts;
-        this.totalDays = props.totalDays();
     }
 
     /**
@@ -81,6 +79,9 @@ public class EventService {
         List<Rejected> rejected = new ArrayList<>(parsed.rejected());
         Catalog cat = catalog.current();
         LocalDate start = settings.startDate().orElseGet(() -> clock.dateOf(receivedAt));
+        // 날짜마다 공부할 레슨(복습 순환 포함). 그날 레슨은 전날까지의 달성으로 정해져 이 배치가 바꾸지 않는다.
+        HabitRules.Schedule schedule = HabitRules.schedule(start, clock.dateOf(receivedAt), cat.days(),
+                facts.achievements());
 
         tx.executeWithoutResult(status -> {
             Map<Completion, Long> completions = new LinkedHashMap<>();
@@ -93,7 +94,7 @@ public class EventService {
                     reason = applyRestDay(rest, at, receivedAt, start);
                     ok = reason == null;
                 } else if (event instanceof ClientEvent.View view) {
-                    ok = applyView(view, at, receivedAt, cat, start, completions);
+                    ok = applyView(view, at, receivedAt, cat, schedule, completions);
                 } else if (event instanceof ClientEvent.Mark mark) {
                     ok = applyMark(mark, at, cat);
                 } else if (event instanceof ClientEvent.Focus focus) {
@@ -125,8 +126,8 @@ public class EventService {
                 receivedAt) > 0;
     }
 
-    private boolean applyView(ClientEvent.View view, long at, long receivedAt, Catalog cat, LocalDate start,
-            Map<Completion, Long> completions) {
+    private boolean applyView(ClientEvent.View view, long at, long receivedAt, Catalog cat,
+            HabitRules.Schedule schedule, Map<Completion, Long> completions) {
         SentenceView sentence = cat.sentence(view.sentenceId()).orElse(null);
         if (sentence == null) {
             return false;
@@ -138,7 +139,7 @@ public class EventService {
         Session session = view.session();
         if (session == Session.TODAY) {
             // 그 날짜의 오늘 레슨이 아니면(롤오버 뒤에도 열어 둔 어제 큐 등) 복습으로 기록한다.
-            int lessonDay = HabitRules.lessonDay(cat.days(), HabitRules.currentDay(start, date, totalDays));
+            int lessonDay = schedule.lessonOn(date);
             if (sentence.day() != lessonDay) {
                 session = Session.REVIEW;
             } else {
@@ -187,7 +188,7 @@ public class EventService {
     /**
      * "오늘은 어려워요". 이 날짜의 30일 구간에서 이미 4번 썼으면 REST_LIMIT 로 거절한다(거절해야 화면이 되돌린다).
      * 이미 처리한 id 는 한도와 무관하게 받는다(응답을 잃고 롤오버를 지나 다시 보내도 다른 날짜로 다시 들어가거나 거절되지 않게).
-     * 이미 달성한 날짜와 프로그램 밖 날짜는 받기만 하고 남기지 않는다.
+     * 이미 달성한 날짜와 시작일 전 날짜는 받기만 하고 남기지 않는다.
      *
      * @return 거절 사유, 받았으면 null
      */
@@ -197,13 +198,13 @@ public class EventService {
         }
         LocalDate date = clock.dateOf(at);
         Set<LocalDate> achieved = facts.achievedDates();
-        if (date.isBefore(start) || HabitRules.programComplete(start, date, totalDays) || achieved.contains(date)) {
+        if (date.isBefore(start) || achieved.contains(date)) {
             claim(rest.id(), receivedAt);
             return null;
         }
         boolean already = !jdbc.queryForList("SELECT 1 FROM rest_day WHERE log_date = ?", Integer.class,
                 date.toString()).isEmpty();
-        if (!already && HabitRules.restDaysUsed(start, date, facts.restDays(), achieved, totalDays)
+        if (!already && HabitRules.restDaysUsed(start, date, facts.restDays(), achieved)
                 >= HabitRules.REST_DAYS_PER_PERIOD) {
             return "REST_LIMIT";
         }

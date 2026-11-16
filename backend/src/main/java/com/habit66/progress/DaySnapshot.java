@@ -10,7 +10,16 @@ import com.habit66.content.Catalog.SentenceView;
 /**
  * 한 시점의 하루 상태 전부. 대시보드·세션·히트맵·이벤트 응답·리마인더가 모두 이 값의 투영이다.
  *
- * @param todayLesson 오늘 레슨. 등록된 레슨이 없으면 null
+ * @param currentDay     시작일부터 지난 날 + 1(66 뒤에도 계속 는다)
+ * @param totalDays      한 라운드의 길이(66). 습관이 붙는 최소 기간이지 끝이 아니다
+ * @param lessonDay      오늘 공부할 레슨 Day(새 레슨 또는 복습 순환). 없으면 0
+ * @param contentMissing 오늘 Day 의 새 레슨이 없어 지난 레슨을 다시 하는 날(복습 순환)
+ * @param round          라운드(1부터, totalDays 일마다)
+ * @param roundDay       라운드 안의 Day(1~totalDays)
+ * @param achievedDays   이번 라운드에서 달성한 날 수
+ * @param cells          이번 라운드의 칸
+ * @param pastRounds     끝난 라운드 요약
+ * @param todayLesson    오늘 레슨. 등록된 레슨이 없으면 null
  */
 public record DaySnapshot(
         LocalDate today,
@@ -23,10 +32,12 @@ public record DaySnapshot(
         int lessonDay,
         int maxLessonDay,
         boolean contentMissing,
-        boolean programComplete,
+        int round,
+        int roundDay,
         Streak streak,
         int achievedDays,
         List<Cell> cells,
+        List<RoundSummary> pastRounds,
         LessonView todayLesson,
         List<Long> audioSeenIds,
         List<Long> cardSeenIds,
@@ -65,6 +76,10 @@ public record DaySnapshot(
         Makeup withKeepsStreak(boolean keeps) {
             return new Makeup(day, date, rest, reps, deadline, sentenceIds, doneIds, doneOn, keeps);
         }
+    }
+
+    /** 끝난 라운드 하나: 그 라운드 days 일 중 달성한 날 수. */
+    public record RoundSummary(int round, int achievedDays, int days) {
     }
 
     /** "오늘은 어려워요": 오늘 이미 알렸는지와 이번 30일 구간에 남은 횟수. */

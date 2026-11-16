@@ -30,7 +30,8 @@ public record LessonImport(List<LessonIn> lessons) {
     public record ExampleIn(String en, String ko) {
     }
 
-    public static final int MAX_DAY = 66;
+    /** 66일은 라운드 길이일 뿐이라 그 뒤 Day 의 레슨도 넣을 수 있다. */
+    public static final int MAX_DAY = 999;
     public static final int MAX_TERMS = 3;
     public static final int EXAMPLES = 3;
 

@@ -132,7 +132,10 @@ export interface Dashboard {
   lesson_day: number;
   max_lesson_day: number;
   content_missing: boolean;
-  program_complete: boolean;
+  /** 라운드(1부터, total_days 일마다). 66일은 끝이 아니라 한 바퀴다. 예전 스냅샷에는 없다. */
+  round?: number;
+  /** 라운드 안의 Day(1~total_days). */
+  round_day?: number;
   streak: {
     current: number;
     if_achieved_today: number;
@@ -183,15 +186,19 @@ export interface HeatCell {
   status: CellStatus;
 }
 
+/** 이번 라운드의 기록. cells 는 66칸, day 는 라운드 안의 Day. achieved_days 는 이번 라운드에서 달성한 날. */
 export interface Heatmap {
   start_date: string;
   current_day: number;
-  program_complete: boolean;
+  round: number;
+  round_day: number;
+  round_start: string;
   current_streak: number;
   longest_streak: number;
   achieved_days: number;
   freezes_left: number;
   cells: HeatCell[];
+  past_rounds: { round: number; achieved_days: number; days: number }[];
 }
 
 interface EventBase {

@@ -95,9 +95,10 @@ public class SpeakController {
             return new SpeakDay(lesson.day(), lesson.title(), ids, makeup.doneIds(), State.MAKEUP, makeup.reps(), 0,
                     makeup.rest(), makeup.deadline().toString(), makeup.keepsStreak());
         }
-        boolean today = lesson.day() == s.lessonDay() && s.lessonDay() == s.currentDay();
+        // 새 레슨인 오늘 Day 만 잠근다. 복습 순환으로 다시 하는 지난 레슨은 원래 상태(열림·보충)를 따른다.
+        boolean today = lesson.day() == s.lessonDay() && !s.contentMissing();
         List<Long> done = ids.stream().filter(practiced::contains).toList();
-        if (today && !s.streak().achievedToday() && !s.programComplete()) {
+        if (today && !s.streak().achievedToday()) {
             int seen = Math.max(s.audioSeenIds().size(), s.cardSeenIds().size());
             return new SpeakDay(lesson.day(), lesson.title(), ids, done, State.TODAY_LOCKED, PRACTICE_REPS, seen,
                     false, null, false);
@@ -110,9 +111,9 @@ public class SpeakController {
         return ApiException.notFound("SPEAK_DAY_LOCKED", "오늘의 10문장을 끝내면 열려요.");
     }
 
-    /** 오늘 레슨 일차까지 등록된 레슨. */
+    /** 오늘 Day 까지 등록된 레슨(아직 오지 않은 Day 의 레슨은 빼고). */
     private List<LessonView> upToToday(DaySnapshot s) {
-        return catalog.current().lessons().stream().filter(l -> l.day() <= s.lessonDay()).toList();
+        return catalog.current().lessons().stream().filter(l -> l.day() <= s.currentDay()).toList();
     }
 
     /** 자유 연습을 끝낸 문장(쉬는 날 보충처럼 1번만 한 기록은 연습 완료로 치지 않는다). */

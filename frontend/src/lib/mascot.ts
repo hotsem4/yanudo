@@ -1,4 +1,5 @@
 import type { DayView } from "../state/overlay";
+import { roundOf } from "./round";
 
 /**
  * 성장형 캐릭터 "포롱"의 단계와 기분. 순수 함수이고 서버가 준 값만 읽는다(날짜 계산 없음).
@@ -16,17 +17,16 @@ export interface MascotState {
 
 export const MASCOT_NAME = "포롱";
 export const STAGE_DAYS: readonly number[] = [1, 3, 7, 21, 42, 66];
-export const STAGE_NAMES: readonly string[] = ["알", "금 간 알", "아기 새", "솜털 새", "날개 편 새", "완주한 파랑새"];
+export const STAGE_NAMES: readonly string[] = ["알", "금 간 알", "아기 새", "솜털 새", "날개 편 새", "다 자란 파랑새"];
 
 const MOOD_NAMES: Record<MascotMood, string> = {
   wait: "오늘 문장을 기다리는 중",
   done: "오늘 달성",
   sleepy: "졸고 있어요",
-  party: "66일 완주",
+  party: "66일째 달성",
 };
 
-export function mascotStage(currentDay: number, programComplete: boolean): MascotStage {
-  if (programComplete) return 6;
+export function mascotStage(currentDay: number): MascotStage {
   let stage = 1;
   STAGE_DAYS.forEach((day, i) => {
     if (currentDay >= day) stage = i + 1;
@@ -34,8 +34,8 @@ export function mascotStage(currentDay: number, programComplete: boolean): Masco
   return stage as MascotStage;
 }
 
-export function mascotMood(input: { programComplete: boolean; achievedToday: boolean; streak: number; currentDay: number }): MascotMood {
-  if (input.programComplete) return "party";
+export function mascotMood(input: { roundComplete: boolean; achievedToday: boolean; streak: number; currentDay: number }): MascotMood {
+  if (input.roundComplete) return "party";
   if (input.achievedToday) return "done";
   // 스트릭이 끊긴 뒤 오늘 아직일 때. 혼내는 표정이 아니라 깨워 달라는 표정이다.
   if (input.streak === 0 && input.currentDay > 1) return "sleepy";
@@ -45,9 +45,10 @@ export function mascotMood(input: { programComplete: boolean; achievedToday: boo
 export function mascotOf(view: DayView): MascotState {
   const d = view.dashboard;
   return {
-    stage: mascotStage(d.current_day, d.program_complete),
+    stage: mascotStage(d.current_day),
     mood: mascotMood({
-      programComplete: d.program_complete,
+      // 라운드 마지막 날(66일째)을 달성한 날만 축하한다. 다음 날부터는 다시 평소 표정이다.
+      roundComplete: view.streak.achievedToday && roundOf(d).roundDay === roundOf(d).length,
       achievedToday: view.streak.achievedToday,
       streak: view.streak.current,
       currentDay: d.current_day,

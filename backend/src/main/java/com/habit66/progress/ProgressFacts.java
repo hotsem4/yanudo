@@ -24,6 +24,10 @@ class ProgressFacts {
     record FocusRow(long startedAt, long seconds) {
     }
 
+    /** 달성 하나: 그 날짜에 끝낸 레슨(날짜별 레슨 일정을 정할 때 쓴다). */
+    record AchievementRow(LocalDate date, int lessonDay) {
+    }
+
     /** 말하기 연습을 끝낸 기록 하나(보충 판정용). */
     record SpeakRow(long sentenceId, LocalDate logDate, int reps) {
     }
@@ -37,6 +41,12 @@ class ProgressFacts {
     Set<LocalDate> achievedDates() {
         return new HashSet<>(jdbc.query("SELECT log_date FROM day_achievement",
                 (rs, i) -> LocalDate.parse(rs.getString(1))));
+    }
+
+    /** 모든 달성(날짜마다 하나, 1년에 365행 이하). */
+    List<AchievementRow> achievements() {
+        return jdbc.query("SELECT log_date, lesson_day FROM day_achievement",
+                (rs, i) -> new AchievementRow(LocalDate.parse(rs.getString(1)), rs.getInt(2)));
     }
 
     Set<LocalDate> restDays() {

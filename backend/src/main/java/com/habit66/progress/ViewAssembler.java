@@ -39,7 +39,7 @@ public class ViewAssembler {
         return new Dashboard(
                 s.today().toString(), s.serverTime(), s.validFrom(), s.validUntil(),
                 s.currentDay(), s.totalDays(), s.lessonDay(), s.maxLessonDay(),
-                s.contentMissing(), s.programComplete(),
+                s.contentMissing(), s.round(), s.roundDay(),
                 s.streak(),
                 new Views.TodayProgress(todayIds.size(), todayIds, s.audioSeenIds(), s.cardSeenIds()),
                 new Views.ReviewGate(s.gate().required(), s.gate().cleared(), s.gate().yesterdayDay(),
@@ -49,11 +49,19 @@ public class ViewAssembler {
                         s.morningLock().state(), sentences(s.morningLock().sentences(), s)),
                 new Views.Focus(s.focus().secondsToday(), s.focus().startedAts()),
                 new Views.RestDay(s.restDay().declaredToday(), s.restDay().left(), s.restDay().perPeriod()),
+                // 순환 중 같은 레슨을 이틀 빼먹으면 날짜마다 보충이 생기지만 한 번 보충으로 함께 이어진다.
+                // 그 레슨의 가장 이른(기한이 가장 급한) 한 줄만 내린다.
                 s.makeups().stream()
                         .filter(m -> !m.done() && m.keepsStreak())
+                        .filter(distinctDay())
                         .map(m -> new Views.MakeupDue(m.day(), m.date().toString(), m.rest(), m.reps(),
                                 m.deadline().toString(), m.sentenceIds(), m.doneIds()))
                         .toList());
+    }
+
+    private static java.util.function.Predicate<DaySnapshot.Makeup> distinctDay() {
+        java.util.Set<Integer> seen = new java.util.HashSet<>();
+        return m -> seen.add(m.day());
     }
 
     public SessionView todaySession(DaySnapshot s) {
@@ -79,8 +87,10 @@ public class ViewAssembler {
         List<HeatCell> cells = s.cells().stream()
                 .map(c -> new HeatCell(c.day(), c.date().toString(), c.status().name()))
                 .toList();
-        return new Heatmap(s.startDate().toString(), s.currentDay(), s.programComplete(), s.streak().current(),
-                s.streak().longest(), s.achievedDays(), s.streak().freezesLeft(), cells);
+        String roundStart = s.cells().isEmpty() ? s.startDate().toString() : s.cells().get(0).date().toString();
+        return new Heatmap(s.startDate().toString(), s.currentDay(), s.round(), s.roundDay(), roundStart,
+                s.streak().current(), s.streak().longest(), s.achievedDays(), s.streak().freezesLeft(), cells,
+                s.pastRounds().stream().map(r -> new Views.PastRound(r.round(), r.achievedDays(), r.days())).toList());
     }
 
     private List<SentenceDto> sentences(List<SentenceView> views, DaySnapshot s) {

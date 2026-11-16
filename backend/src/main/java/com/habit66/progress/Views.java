@@ -17,7 +17,7 @@ public final class Views {
     }
 
     public record Dashboard(String today, long serverTime, long validFrom, long validUntil, int currentDay,
-            int totalDays, int lessonDay, int maxLessonDay, boolean contentMissing, boolean programComplete,
+            int totalDays, int lessonDay, int maxLessonDay, boolean contentMissing, int round, int roundDay,
             Streak streak, TodayProgress todayProgress, ReviewGate reviewGate, ReviewProgress reviewProgress,
             MorningLock morningLock, Focus focus, RestDay restDay, List<MakeupDue> makeupsDue) {
     }
@@ -51,8 +51,17 @@ public final class Views {
             List<SentenceDto> sentences) {
     }
 
-    public record Heatmap(String startDate, int currentDay, boolean programComplete, int currentStreak,
-            int longestStreak, int achievedDays, int freezesLeft, List<HeatCell> cells) {
+    /**
+     * 이번 라운드의 기록. cells 는 라운드 길이(66)만큼, day 는 라운드 안의 Day.
+     *
+     * @param pastRounds 끝난 라운드마다 달성한 날 수
+     */
+    public record Heatmap(String startDate, int currentDay, int round, int roundDay, String roundStart,
+            int currentStreak, int longestStreak, int achievedDays, int freezesLeft, List<HeatCell> cells,
+            List<PastRound> pastRounds) {
+    }
+
+    public record PastRound(int round, int achievedDays, int days) {
     }
 
     public record HeatCell(int day, String date, String status) {

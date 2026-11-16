@@ -29,6 +29,7 @@ import com.habit66.progress.DaySnapshot.RestDay;
 import com.habit66.progress.DaySnapshot.MorningLock;
 import com.habit66.progress.DaySnapshot.Review;
 import com.habit66.progress.HabitRules.ReviewPlan;
+import com.habit66.progress.HabitRules.Schedule;
 import com.habit66.progress.HabitRules.Walk;
 import com.habit66.progress.ProgressFacts.FocusRow;
 import com.habit66.progress.ProgressFacts.ViewRow;
@@ -70,8 +71,9 @@ public class DayStateService {
         LocalDate start = settings.startDate().orElse(today);
         int totalDays = props.totalDays();
 
-        int currentDay = HabitRules.currentDay(start, today, totalDays);
-        int lessonDay = HabitRules.lessonDay(cat.days(), currentDay);
+        int currentDay = HabitRules.currentDay(start, today);
+        Schedule schedule = HabitRules.schedule(start, today, cat.days(), facts.achievements());
+        int lessonDay = schedule.lessonOn(today);
         LessonView lesson = cat.lesson(lessonDay).orElse(null);
         Set<LocalDate> achieved = facts.achievedDates();
         Set<LocalDate> restDays = facts.restDays();
@@ -80,12 +82,12 @@ public class DayStateService {
             cat.lesson(day).ifPresent(l -> lessons.put(day, l.sentenceIds()));
         }
         List<Makeup> makeups = HabitRules.withStreakEffect(
-                HabitRules.makeups(start, today, totalDays, lessons, achieved, restDays, facts.speaks()),
+                HabitRules.makeups(start, today, schedule, lessons, achieved, restDays, facts.speaks()),
                 start, today, achieved, totalDays);
         Walk walk = HabitRules.walk(start, today, achieved, HabitRules.repairedDates(makeups), totalDays);
         RestDay restDay = new RestDay(restDays.contains(today),
                 Math.max(0, HabitRules.REST_DAYS_PER_PERIOD
-                        - HabitRules.restDaysUsed(start, today, restDays, achieved, totalDays)),
+                        - HabitRules.restDaysUsed(start, today, restDays, achieved)),
                 HabitRules.REST_DAYS_PER_PERIOD);
 
         Set<Long> todayIds = lesson == null ? Set.of() : new HashSet<>(lesson.sentenceIds());
@@ -103,14 +105,14 @@ public class DayStateService {
             }
         }
 
-        Integer gateDay = HabitRules.gateDay(cat.days(), lessonDay);
+        Integer gateDay = HabitRules.gateDay(schedule, start, today);
         List<Long> unlockIds = gateDay == null ? List.of()
                 : cat.lesson(gateDay).map(LessonView::sentenceIds).orElse(List.of());
         boolean gateRequired = gateDay != null;
         Gate gate = new Gate(gateRequired, !gateRequired || reviewSeen.containsAll(unlockIds), gateDay, unlockIds,
                 List.copyOf(reviewSeen));
 
-        ReviewPlan plan = HabitRules.reviewPlan(cat.days(), lessonDay);
+        ReviewPlan plan = HabitRules.reviewPlan(schedule, start, today);
         List<SentenceView> reviewSentences = new ArrayList<>();
         for (int day : plan.days()) {
             cat.lesson(day).ifPresent(l -> reviewSentences.addAll(l.sentences()));
@@ -129,8 +131,9 @@ public class DayStateService {
                 focusRows.stream().map(FocusRow::startedAt).toList());
 
         return new DaySnapshot(today, now, bounds.from(), bounds.until(), start, currentDay, totalDays, lessonDay,
-                cat.maxDay(), lessonDay != currentDay, HabitRules.programComplete(start, today, totalDays),
-                walk.streak(), walk.achievedDays(), walk.cells(), lesson, List.copyOf(audioSeen),
+                cat.maxDay(), lessonDay == 0 || schedule.repeat(today), HabitRules.round(currentDay, totalDays),
+                HabitRules.roundDay(currentDay, totalDays), walk.streak(), walk.achievedDays(), walk.cells(),
+                walk.pastRounds(), lesson, List.copyOf(audioSeen),
                 List.copyOf(cardSeen), gate, review, morningLock, focus, facts.marks(), makeups, restDay);
     }
 

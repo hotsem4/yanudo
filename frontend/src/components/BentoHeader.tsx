@@ -4,6 +4,7 @@ import type { FocusTimer } from "../hooks/useFocusTimer";
 import { FOCUS_SECONDS } from "../hooks/useFocusTimer";
 import { koreanDuration, mmss } from "../lib/format";
 import { mascotLabel, mascotOf } from "../lib/mascot";
+import { roundLabel, roundOf } from "../lib/round";
 import { showToast } from "../lib/toast";
 import type { DayView } from "../state/overlay";
 import { Hourglass } from "./Hourglass";
@@ -26,16 +27,20 @@ export function BentoHeader({ view, timer, onOpenHeatmap }: Props) {
 
 function HeroCard({ view, onOpen }: { view: DayView | null; onOpen: () => void }) {
   const d = view?.dashboard;
+  const info = d ? roundOf(d) : null;
+  // 1라운드는 "Day 5 / 66". 2라운드부터는 누적 Day 를 크게(분모 없이) 쓰고 라운드 진행은 라벨과 막대로 보인다.
+  const firstRound = !info || info.round <= 1;
   const day = d?.current_day ?? 0;
-  const total = d?.total_days ?? 66;
+  const roundDay = info?.roundDay ?? 0;
+  const total = info?.length ?? 66;
   const streak = view?.streak;
-  const label = d?.program_complete ? "66일 완주" : "66일 습관";
+  const label = info ? roundLabel(info) : "66일 습관";
   const mascot = view ? mascotOf(view) : null;
   return (
     <button
       type="button"
       onClick={onOpen}
-      aria-label={`66일 기록 열기. Day ${day} / ${total}, 연속 ${streak?.current ?? 0}일, 프리즈 ${streak?.freezesLeft ?? 0}개${mascot ? `. ${mascotLabel(mascot)}` : ""}`}
+      aria-label={`${label} 기록 열기. Day ${day}${firstRound ? ` / ${total}` : ""}, 연속 ${streak?.current ?? 0}일, 프리즈 ${streak?.freezesLeft ?? 0}개${mascot ? `. ${mascotLabel(mascot)}` : ""}`}
       className="press relative flex min-h-[132px] flex-col overflow-hidden rounded-3xl bg-hero p-4 text-left text-surface shadow-card"
     >
       <span className="flex h-6 items-center justify-between">
@@ -52,7 +57,7 @@ function HeroCard({ view, onOpen }: { view: DayView | null; onOpen: () => void }
         {view ? (
           <>
             Day {day}
-            <span className="text-[15px] font-semibold text-surface/70"> / {total}</span>
+            {firstRound && <span className="text-[15px] font-semibold text-surface/70"> / {total}</span>}
           </>
         ) : (
           <span className="skeleton inline-block h-7 w-24 rounded-lg bg-surface/25 align-middle" />
@@ -61,7 +66,7 @@ function HeroCard({ view, onOpen }: { view: DayView | null; onOpen: () => void }
       <span className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-surface/25">
         <span
           className="block h-full origin-left rounded-full bg-surface transition-transform duration-300 ease-[var(--ease-out)]"
-          style={{ transform: `scaleX(${total ? day / total : 0})` }}
+          style={{ transform: `scaleX(${total ? roundDay / total : 0})` }}
         />
       </span>
       <span className="mt-auto flex items-center justify-between pt-3 text-[12.5px] font-semibold">

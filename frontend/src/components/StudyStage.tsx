@@ -221,9 +221,9 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
 
 function bannerText(view: DayView, session: SessionData): string | null {
   const d = view.dashboard;
-  if (session.session === "REVIEW" && session.preview) return "Day 1이라 오늘 문장으로 미리 복습해요";
+  if (session.session === "REVIEW" && session.preview) return "앞선 복습 레슨이 없어 오늘 문장으로 미리 복습해요";
   if (session.session === "TODAY" && d.content_missing && d.lesson_day > 0) {
-    return `Day ${d.current_day} 콘텐츠가 아직 없어 Day ${d.lesson_day}을 이어서 해요`;
+    return `복습 순환이에요. Day ${d.lesson_day} 문장을 다시 익혀요`;
   }
   if (view.stale) return "날짜가 바뀌었어요. 연결되면 오늘 문장으로 바뀌어요";
   return null;

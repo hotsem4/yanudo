@@ -56,19 +56,32 @@ public class ReminderService {
 
     @Scheduled(cron = "${app.reminder.cron}", zone = "${app.timezone}")
     public void atDeadline() {
-        remind("deadline");
+        if (inWindow()) {
+            remind("deadline");
+        }
     }
 
     @Scheduled(cron = "${app.reminder.retry-cron}", zone = "${app.timezone}")
     public void retry() {
-        remind("retry");
+        if (inWindow()) {
+            remind("retry");
+        }
+    }
+
+    /**
+     * 22:00~롤오버(03시) 사이인가. 스케줄 작업은 PC 가 절전에서 깨어난 직후 밀린 실행을 할 수 있어서
+     * (예: 21:50 에 덮고 08:00 에 열면 22:00 작업이 아침에 돈다) 실행할 때 벽시계를 다시 확인한다.
+     * 아침에 보내면 그날을 SENT 로 선점해 정작 그날 밤 알림이 빠진다.
+     */
+    boolean inWindow() {
+        LocalTime wall = clock.wallTime(clock.now());
+        return !wall.isBefore(CATCH_UP_FROM) || wall.getHour() < clock.rolloverHour();
     }
 
     /** PC 가 22시에 꺼져 있었으면 켜진 뒤(22:00~롤오버 사이)에 한 번 보충한다. */
     @EventListener(ApplicationReadyEvent.class)
     public void catchUpOnStartup() {
-        LocalTime wall = clock.wallTime(clock.now());
-        if (!wall.isBefore(CATCH_UP_FROM) || wall.getHour() < clock.rolloverHour()) {
+        if (inWindow()) {
             Thread thread = new Thread(() -> remind("startup"), "reminder-catch-up");
             thread.setDaemon(true);
             thread.start();

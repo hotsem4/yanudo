@@ -74,12 +74,17 @@ public record AppProperties(
             @DefaultValue("") String publicKey,
             @DefaultValue("") String privateKey,
             @DefaultValue("mailto:habit66@example.com") String subject) {
+
+        @Override
+        public String toString() {
+            return "Push[publicKey=" + publicKey + ", privateKey=" + mask(privateKey) + ", subject=" + subject + "]";
+        }
     }
 
     public record Reminder(
             @DefaultValue("true") boolean enabled,
             @DefaultValue("0 0 22 * * *") String cron,
-            @DefaultValue("0 30 22 * * *") String retryCron,
+            @DefaultValue("0 */15 22-23,0-2 * * *") String retryCron,
             @DefaultValue("3") int maxAttempts,
             @DefaultValue Telegram telegram,
             @DefaultValue Discord discord) {
@@ -89,11 +94,33 @@ public record AppProperties(
             @DefaultValue("false") boolean enabled,
             @DefaultValue("") String botToken,
             @DefaultValue("") String chatId) {
+
+        @Override
+        public String toString() {
+            return "Telegram[enabled=" + enabled + ", botToken=" + mask(botToken) + ", chatId=" + mask(chatId) + "]";
+        }
     }
 
     public record Discord(
             @DefaultValue("false") boolean enabled,
             @DefaultValue("") String webhookUrl) {
+
+        @Override
+        public String toString() {
+            return "Discord[enabled=" + enabled + ", webhookUrl=" + mask(webhookUrl) + "]";
+        }
+    }
+
+    /** 비밀값은 있는지만 보인다. */
+    static String mask(String secret) {
+        return secret == null || secret.isBlank() ? "(none)" : "(set)";
+    }
+
+    @Override
+    public String toString() {
+        return "AppProperties[dataDir=" + dataDir + ", timezone=" + timezone + ", dayRolloverHour=" + dayRolloverHour
+                + ", totalDays=" + totalDays + ", adminToken=" + mask(adminToken) + ", push=" + push
+                + ", reminder=" + reminder + ", vocab=" + vocab + ", backup=" + backup + "]";
     }
 
     public ZoneId zone() {

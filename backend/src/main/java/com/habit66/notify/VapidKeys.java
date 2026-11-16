@@ -44,33 +44,74 @@ public class VapidKeys {
             return;
         }
         Path file = props.dataPath().resolve("vapid.json");
-        String[] pair = read(file, mapper);
-        if (pair == null) {
+        String[] pair;
+        if (!Files.exists(file)) {
             pair = generate();
             store(file, pair, mapper);
+        } else {
+            byte[] raw = readBytes(file);
+            if (raw == null) {
+                // 파일은 있는데 읽지 못했다(백신·동기화 프로그램의 잠금 등 일시적일 수 있다). 새 키로 덮어쓰면
+                // 모든 구독이 무효가 되므로 이번 실행만 푸시를 끈다. 다시 시작하면 다시 읽는다.
+                log.error("Web Push is disabled for this run: cannot read {}. Restart the server to retry.", file);
+                this.publicKey = null;
+                this.privateKey = null;
+                return;
+            }
+            pair = parse(raw, mapper);
+            if (pair == null) {
+                // 내용이 실제로 깨졌다: 옆으로 옮겨 남기고 새로 만든다(기존 구독은 앱이 열릴 때 다시 구독된다).
+                Path broken = file.resolveSibling("vapid.json.broken-" + System.currentTimeMillis());
+                try {
+                    Files.move(file, broken);
+                    log.warn("Moved unusable {} to {}; new VAPID keys will be generated", file, broken.getFileName());
+                } catch (IOException e) {
+                    log.warn("Cannot move unusable {}: {}", file, e.toString());
+                }
+                pair = generate();
+                store(file, pair, mapper);
+            }
         }
         this.publicKey = pair[0];
         this.privateKey = pair[1];
     }
 
-    /** 파일이 없거나 읽을 수 없으면 null. 푸시는 선택 기능이라 깨진 키 파일이 서버 시작을 막지 않는다. */
-    private static String[] read(Path file, ObjectMapper mapper) {
-        if (!Files.exists(file)) {
-            return null;
+    /** 몇 번 다시 읽어 본다. 끝내 못 읽으면 null. */
+    private static byte[] readBytes(Path file) {
+        for (int attempt = 1; attempt <= 3; attempt++) {
+            try {
+                return Files.readAllBytes(file);
+            } catch (IOException e) {
+                log.warn("Cannot read {} (attempt {}): {}", file, attempt, e.toString());
+                try {
+                    Thread.sleep(300L * attempt);
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                    return null;
+                }
+            }
         }
+        return null;
+    }
+
+    /** 내용이 올바른 키 쌍이면 [공개키, 개인키], 아니면 null. */
+    private static String[] parse(byte[] raw, ObjectMapper mapper) {
         try {
-            JsonNode node = mapper.readTree(file.toFile());
+            JsonNode node = mapper.readTree(raw);
             String pub = node.path("public_key").asText("");
             String priv = node.path("private_key").asText("");
             if (decodedLength(pub) == 65 && decodedLength(priv) == 32) {
                 return new String[] {pub, priv};
             }
         } catch (IOException | RuntimeException e) {
-            log.warn("Cannot read {}: {}", file, e.toString());
+            log.warn("Unusable VAPID key file: {}", e.getClass().getSimpleName());
         }
-        log.warn("Ignoring unusable {}; new VAPID keys will be generated and existing push subscriptions "
-                + "must be renewed", file);
         return null;
+    }
+
+    /** 키를 쓸 수 있는가(파일을 못 읽은 실행에서는 false, 푸시가 꺼진다). */
+    public boolean available() {
+        return publicKey != null && privateKey != null;
     }
 
     private static int decodedLength(String value) {

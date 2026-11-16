@@ -43,6 +43,8 @@ const NAV_TIMEOUT_MS = 3500;
 async function fetchPage(request) {
   const response = await fetch(request);
   if (response.type === "opaqueredirect") return { raw: response };
+  // HTML 이 아니면(아이콘 PNG 를 주소창으로 연 경우 등) 원래 응답을 그대로 넘긴다. text() 로 읽으면 바이너리가 깨진다.
+  if (!(response.headers.get("content-type") || "").includes("text/html")) return { raw: response };
   return { status: response.status, statusText: response.statusText, headers: response.headers, body: await response.text() };
 }
 
@@ -136,15 +138,17 @@ async function updateShell(page, turn = ++shellTurn) {
   return true;
 }
 
-async function cacheFirst(request, cacheName) {
+async function cacheFirst(request, cacheName, event) {
   const cache = await caches.open(cacheName);
   // 오디오 요소의 Range 요청도 전체 응답으로 답한다(Chrome 은 200 전체 응답을 받아들인다).
   // 아이콘처럼 설치 때 다른 캐시(shell)에 넣어 둔 것도 찾도록 전체 캐시에서 본다.
   const cached = await caches.match(request.url);
   if (cached) return cached;
   const response = await fetch(request.url, { credentials: "same-origin" });
-  if (response.ok || response.type === "opaque") {
-    cache.put(request.url, response.clone());
+  if (response.ok) {
+    // 응답을 돌려준 뒤 워커가 먼저 끝나 저장이 빠지지 않게 기다린다. 용량 초과 등 실패는 조용히 넘긴다.
+    const put = cache.put(request.url, response.clone()).catch(() => undefined);
+    if (event) event.waitUntil(put);
   }
   return response;
 }
@@ -156,7 +160,7 @@ self.addEventListener("fetch", (event) => {
 
   if (url.origin === self.location.origin) {
     if (url.pathname.startsWith("/api/v1/audio/")) {
-      event.respondWith(cacheFirst(request, AUDIO_CACHE));
+      event.respondWith(cacheFirst(request, AUDIO_CACHE, event));
       return;
     }
     if (url.pathname.startsWith("/api/")) return; // 네트워크만
@@ -165,13 +169,13 @@ self.addEventListener("fetch", (event) => {
       return;
     }
     if (url.pathname.startsWith("/assets/") || url.pathname.startsWith("/icons/")) {
-      event.respondWith(cacheFirst(request, STATIC_CACHE));
+      event.respondWith(cacheFirst(request, STATIC_CACHE, event));
     }
     return;
   }
 
   if (url.hostname === "fonts.googleapis.com" || url.hostname === "fonts.gstatic.com" || url.hostname === "cdn.jsdelivr.net") {
-    event.respondWith(cacheFirst(request, STATIC_CACHE));
+    event.respondWith(cacheFirst(request, STATIC_CACHE, event));
   }
 });
 

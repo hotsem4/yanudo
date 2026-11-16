@@ -12,7 +12,10 @@ import { Mascot } from "./Mascot";
 
 /** 한 문장을 이만큼 맞게 말하면 그 문장 연습이 끝난다(서버가 Day 마다 정한다. 미리 알린 날 보충은 1). */
 const DEFAULT_REPS = 5;
-const MIC_BLOCKED = new Set(["not-allowed", "service-not-allowed", "audio-capture", "network"]);
+/** 마이크를 아예 쓸 수 없는 오류. network 는 잠깐 나는 오류라 넣지 않는다(오늘의 10문장과 같다). */
+const MIC_BLOCKED = new Set(["not-allowed", "service-not-allowed", "audio-capture"]);
+/** 마이크를 쓸 수 없다는 사실은 문장을 넘겨도 기억한다(넘길 때 reset() 이 오류 코드를 지워 가린 영어가 다시 보이지 않게). */
+let practiceMicUnavailable = false;
 /** 마이크를 쓸 수 없을 때 받아 적기 1회의 기준(오늘의 10문장 받아 적기와 같다). 받아 적는 동안 영어는 가린다. */
 const TYPE_PASS_RATIO = 0.8;
 
@@ -84,7 +87,8 @@ export function SpeakPractice({ day, pendingIds, mascot, onBack, onDone }: Props
     const candidates = speech.alternatives.length > 0 ? speech.alternatives : [transcript];
     return candidates.map((t) => matchWords(sentence.en_text, t)).reduce((best, m) => (m.ratio > best.ratio ? m : best), matchWords(sentence.en_text, ""));
   }, [sentence, speech.alternatives, transcript]);
-  const micBlocked = !speech.supported || (errorCode !== null && MIC_BLOCKED.has(errorCode));
+  if (errorCode !== null && MIC_BLOCKED.has(errorCode)) practiceMicUnavailable = true;
+  const micBlocked = !speech.supported || practiceMicUnavailable;
   // 마이크를 쓸 수 없으면 받아 적기로 센다(보충을 할 수 없어 연속을 되살리지 못하는 일이 없게).
   const [typed, setTyped] = useState("");
   const [typedRatio, setTypedRatio] = useState<number | null>(null);
@@ -141,6 +145,8 @@ export function SpeakPractice({ day, pendingIds, mascot, onBack, onDone }: Props
           setTyped("");
           setTypedRatio(null);
         } else {
+          // 그사이 "문장 듣기"를 눌렀으면 그 소리가 마이크에 들어가지 않게 멈춘다.
+          audioEngine.hush();
           reset();
           start();
         }
@@ -161,11 +167,15 @@ export function SpeakPractice({ day, pendingIds, mascot, onBack, onDone }: Props
     }
     clearTimer();
     counted.current = false;
+    // 들려주던 문장 소리가 마이크에 들어가 회차로 세지 않게 먼저 멈춘다.
+    audioEngine.hush();
     reset();
     start();
   };
   const listen = () => {
     if (!sentence) return;
+    // 회차 사이 자동으로 마이크를 다시 켜는 타이머도 취소한다(정답 소리가 나오는 중에 마이크가 켜지지 않게).
+    clearTimer();
     stop();
     void audioEngine.audition(sentence);
   };

@@ -27,6 +27,7 @@ import { summarize, todayTodos, type Todo } from "./lib/todo";
 import { useFocusTimer } from "./hooks/useFocusTimer";
 import { useWakeLock } from "./hooks/useWakeLock";
 import { rememberSideView, sideViewFromUrl, type SideView } from "./lib/launch";
+import { renewPushSubscription } from "./hooks/usePush";
 import { MASCOT_NAME, mascotOf, noteStage, stageIs } from "./lib/mascot";
 import { roundOf } from "./lib/round";
 import { speakControl } from "./lib/speakControl";
@@ -107,6 +108,18 @@ export function App() {
     if (speakOpen) loadSpeak();
   }, [speakOpen, loadSpeak, speakKey]);
   const speakMarks = useMemo(() => [...(view?.speakPendingIds ?? []), ...speakDone], [view?.speakPendingIds, speakDone]);
+  // 알림 구독 점검: 앱이 열릴 때와 (30분 이상 지나) 화면으로 돌아올 때. 설정 화면을 열지 않아도 만료 구독이 복구된다.
+  useEffect(() => {
+    let last = 0;
+    const check = () => {
+      if (document.visibilityState !== "visible" || Date.now() - last < 30 * 60 * 1000) return;
+      last = Date.now();
+      void renewPushSubscription();
+    };
+    check();
+    document.addEventListener("visibilitychange", check);
+    return () => document.removeEventListener("visibilitychange", check);
+  }, []);
   // 알림을 눌렀을 때 서비스 워커가 열린 창을 새로 고치지 않고 보내는 목적지(sw.js notificationclick).
   useEffect(() => {
     if (!("serviceWorker" in navigator)) return;
@@ -118,7 +131,8 @@ export function App() {
         setSide("vocab");
         rememberSideView("vocab");
       } else if (target.searchParams.get("view") === "today") {
-        // 22시 알림: 오늘의 10문장(따라 말하기)으로.
+        // 22시 알림: 오늘의 10문장(따라 말하기)으로. 열려 있던 시트는 닫는다.
+        setSheet(null);
         setSide(null);
         rememberSideView(null);
         playback.selectTab("TODAY");
@@ -301,7 +315,7 @@ export function App() {
               study={study}
               tab={tab}
               filter={filter}
-              covered={sheet !== null || morningOpen}
+              covered={sheet !== null || (morningOpen && (view?.morningLock.sentences.length ?? 0) > 0)}
               onGoReview={() => playback.selectTab("REVIEW")}
               onPickWords={(s) => {
                 setWordsFor(s);

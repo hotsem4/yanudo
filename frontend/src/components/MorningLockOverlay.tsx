@@ -87,7 +87,8 @@ function LockBody({ sentences, onDone, mascot }: { sentences: Sentence[]; onDone
   const [confirmSkip, setConfirmSkip] = useState(false);
   // 마이크를 못 쓴다는 사실은 이 락 동안 유지한다. 다음 문장으로 넘어갈 때 reset() 이 오류 코드를 지워도 건너뛰기가 사라지지 않게.
   const [micDenied, setMicDenied] = useState(false);
-  const sentence = sentences[index];
+  // 락이 열린 채 대시보드가 바뀌어 문장 수가 줄어도 범위 밖을 읽지 않는다.
+  const sentence = sentences[Math.min(index, sentences.length - 1)];
 
   // 대안마다 따로 채점해 가장 높은 것을 쓴다.
   const match = useMemo(() => {
@@ -259,7 +260,12 @@ function LockBody({ sentences, onDone, mascot }: { sentences: Sentence[]; onDone
                 )}
                 <button
                   type="button"
-                  onClick={() => (speech.listening ? speech.stop() : speech.start())}
+                  onClick={() => {
+                    if (speech.listening) return speech.stop();
+                    // "문장 듣기" 소리가 마이크에 들어가 통과로 세지 않게 먼저 멈춘다.
+                    audioEngine.hush();
+                    speech.start();
+                  }}
                   aria-label={speech.listening ? "듣기 멈추기" : "눌러서 문장 읽기"}
                   className="press relative flex h-[88px] w-[88px] items-center justify-center rounded-full bg-surface text-royal shadow-lift"
                 >

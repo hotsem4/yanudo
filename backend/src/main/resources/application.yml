@@ -12,6 +12,11 @@ server:
 spring:
   application:
     name: habit66
+  task:
+    scheduling:
+      # 리마인더·백업·TTS 재시도·로그인 점검이 한 스레드에 줄 서지 않게(느린 푸시가 백업을 밀지 않게).
+      pool:
+        size: 3
   datasource:
     url: jdbc:sqlite:${app.data-dir}/habit66.db
     driver-class-name: org.sqlite.JDBC
@@ -73,7 +78,8 @@ app:
     enabled: true
     cron: "0 0 22 * * *"
     # 모든 채널이 실패했으면 다시 시도한다 (하루 최대 max-attempts 회).
-    retry-cron: "0 30 22 * * *"
+    # 22:00~03:00 창 안에서 15분마다. 이미 보냈거나 시도 횟수를 다 썼으면 아무것도 하지 않는다.
+    retry-cron: "0 */15 22-23,0-2 * * *"
     max-attempts: 3
     telegram:
       enabled: ${APP_TELEGRAM_ENABLED:false}

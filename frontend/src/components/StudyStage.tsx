@@ -116,7 +116,13 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
   const todayFlow = session.session === "TODAY" && !locked;
   const engineHides = eng.hideEn && eng.item?.id === sentence.id;
   // 새 문장의 첫 피드백이 오기 전 한 프레임도 가릴 문장은 가린다(답이 번쩍 보이지 않게).
-  const enDisplay = fb?.display ?? (todayFlow ? initialDisplay(sentence.id, view.todayProgress.spokenIds.has(sentence.id)) : "show");
+  const rawDisplay = fb?.display ?? (todayFlow ? initialDisplay(sentence.id, view.todayProgress.spokenIds.has(sentence.id)) : "show");
+  // 가리고 말하는 단계에서 카드를 길게 누르고 있는 동안만 영어를 보여 준다(손을 떼면 다시 가린다).
+  const [holding, setHolding] = useState(false);
+  useEffect(() => setHolding(false), [sentence.id]);
+  const holdPeek = todayFlow && (rawDisplay === "hide" || rawDisplay === "hits");
+  const peeking = holdPeek && holding;
+  const enDisplay = peeking ? "show" : rawDisplay;
   const revealed = !todayFlow && revealedId === sentence.id;
   const hideEn = todayFlow ? enDisplay === "hide" : !revealed && (filter !== "all" || engineHides);
   const hideOrder = !todayFlow && !revealed && filter === "korean";
@@ -263,17 +269,34 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
             dragMomentum={false}
             onDragEnd={onDragEnd}
             onTap={onTap}
-            role={peekable ? "button" : undefined}
+            onPointerDown={() => holdPeek && setHolding(true)}
+            onPointerUp={() => setHolding(false)}
+            onPointerCancel={() => setHolding(false)}
+            onPointerLeave={() => setHolding(false)}
+            // 길게 누를 때 뜨는 복사 메뉴·확대를 막는다.
+            onContextMenu={(e) => holdPeek && e.preventDefault()}
+            onKeyUp={(e) => {
+              if (e.key === " " || e.key === "Enter") setHolding(false);
+            }}
+            role={peekable || holdPeek ? "button" : "group"}
             tabIndex={locked ? -1 : 0}
-            aria-label={peekable && anyHidden ? "가린 문장 잠깐 보기" : undefined}
+            aria-label={
+              peekable && anyHidden
+                ? "가린 문장 잠깐 보기"
+                : holdPeek
+                  ? "문장 카드. 누르고 있는 동안 영어가 보여요. 좌우 화살표로 문장 이동"
+                  : "문장 카드. 좌우 화살표로 문장 이동"
+            }
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
-                onTap();
+                // 오늘 탭은 누르고 있는 동안만 보인다(키보드도 같게).
+                if (holdPeek) setHolding(true);
+                else onTap();
               } else if (e.key === "ArrowRight") moveTo(index + 1);
               else if (e.key === "ArrowLeft") moveTo(index - 1);
             }}
-            className={`touch-pan-y select-none rounded-2xl ${peekable ? "cursor-pointer" : ""} ${locked ? "blur-[10px]" : ""}`}
+            className={`touch-pan-y select-none rounded-2xl [-webkit-touch-callout:none] ${peekable || holdPeek ? "cursor-pointer" : ""} ${locked ? "blur-[10px]" : ""}`}
           >
             <p
               className="hide-blur break-words text-pretty text-[25px] font-bold leading-[1.35] tracking-tight text-ink"
@@ -316,7 +339,9 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
             </p>
             {peekable && anyHidden && <span className="sr-only">가려진 문장이 있어요. 카드를 탭하면 잠깐 보여요.</span>}
             {todayFlow && hideEn && (
-              <span className="sr-only">영어 문장을 가렸어요. 어순과 해석을 보고 영어로 {fb?.typing ? "적어" : "말해"} 보세요.</span>
+              <span className="sr-only">
+                영어 문장을 가렸어요. 어순과 해석을 보고 영어로 {fb?.typing ? "적어" : "말해"} 보세요. 카드를 길게 누르는 동안 보여요.
+              </span>
             )}
           </motion.div>
         </AnimatePresence>
@@ -403,6 +428,24 @@ function ProgressRail({
   disabled: boolean;
   onGo: (i: number) => void;
 }) {
+  // 누적 복습처럼 문장이 많으면 칸 폭이 몇 px 이라 누를 수 없다. 표시만 하고 이동은 스와이프·독에 맡긴다.
+  if (sentences.length > 12) {
+    return (
+      <div aria-hidden className="rail-no-map mt-4 mb-1 gap-[3px]">
+        {sentences.map((s, i) => {
+          const done = spoken ? spoken.has(s.id) : s.status === "MEMORIZED";
+          return (
+            <span
+              key={s.id}
+              className={`block min-w-0 flex-1 rounded-full ${i === index ? "h-1.5" : "h-1"} ${
+                done ? (i === index ? "bg-royal" : spoken ? "bg-royal" : "bg-frost") : i === index ? "bg-royal/45" : "bg-line"
+              }`}
+            />
+          );
+        })}
+      </div>
+    );
+  }
   return (
     <div role="group" aria-label="문장 진행" className="rail-no-map mt-0.5 -mb-1 gap-[3px]">
       {sentences.map((s, i) => {

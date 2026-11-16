@@ -33,6 +33,10 @@ public class AdminTokenFilter extends OncePerRequestFilter {
     public AdminTokenFilter(AppProperties props, ObjectMapper mapper) {
         this.props = props;
         this.mapper = mapper;
+        if (props.adminToken() == null || props.adminToken().isBlank()) {
+            org.slf4j.LoggerFactory.getLogger(AdminTokenFilter.class).warn(
+                    "app.admin-token is empty: /api/v1/admin/** is open to anyone who can reach this server");
+        }
     }
 
     @Override

@@ -55,6 +55,10 @@ export class StudyStore {
   private listeners = new Set<() => void>();
   private sync: SyncState = { pending: 0, online: true, syncing: false, lastError: null, held: 0, saveFailed: false };
   private serverRejections = 0;
+  /** 단건 모드에서 이어서 성공한 횟수. 몇 번 이어 성공해야 묶음으로 돌아간다(문제 기록 하나마다 묶음 거절을 되풀이하지 않게). */
+  private singleOk = 0;
+  /** 이번 실행에서 세션·단어장을 한 번이라도 전부 받았는가(미전송 기록이 있으면 첫 동기화가 flush 라 옛 캐시로 남는다). */
+  private fetchedOnce = false;
   /** 다른 창에 "이 기록은 보냈다"를 알린다. 모르면 그 창이 메모리에 든 기록을 다시 저장해 되살린다. */
   private channel: BroadcastChannel | null = null;
   private seq = 0;
@@ -196,6 +200,7 @@ export class StudyStore {
     const [dashboard, vocab] = await Promise.all([api.dashboard(), this.fetchVocab()]);
     const sessions = await this.sessionsFor(dashboard, true);
     this.apply(mine, dashboard, sessions, vocab);
+    this.fetchedOnce = true;
   }
 
   /** 단어장 받기. 실패하면(오프라인 등) 이전 값을 쓰고 ok=false 로 알린다. */
@@ -224,7 +229,14 @@ export class StudyStore {
     let res: EventsResponse;
     try {
       res = await api.events(batch);
-      this.serverRejections = 0;
+      if (this.serverRejections >= SINGLE_AFTER) {
+        // 단건 모드: 성공해도 바로 묶음으로 돌아가지 않는다. 문제 기록까지 하나씩 보내며 걸러 낸다.
+        this.singleOk += 1;
+        this.serverRejections = this.singleOk >= 5 || this.pending.length <= 1 ? 0 : SINGLE_AFTER;
+        if (this.serverRejections === 0) this.singleOk = 0;
+      } else {
+        this.serverRejections = 0;
+      }
     } catch (err) {
       if (err instanceof ApiError && isServerRejection(err.status)) this.onBatchRejected(batch);
       throw err;
@@ -233,9 +245,16 @@ export class StudyStore {
     if (res.rejected.some((r) => r.reason === "REST_LIMIT")) {
       showToast("이번 30일에는 '오늘은 어려워요'를 다 썼어요");
     }
+    const otherRejected = res.rejected.filter((r) => r.reason !== "REST_LIMIT").length;
+    if (otherRejected > 0) {
+      // 말없이 사라지지 않게 알린다(너무 긴 메모, 콘텐츠가 바뀌어 없어진 문장 등).
+      showToast(`서버가 받지 않은 기록이 ${otherRejected}건 있어요(내용이 바뀌었거나 형식이 맞지 않아요)`, "info", 4200);
+    }
     // 암기 상태는 세션 응답에만 있으므로, MARK 를 보냈으면 세션을 다시 받아 오버레이가 빠진 뒤에도 값이 유지되게 한다.
-    const sentMark = batch.some((e) => e.type === "MARK" && done.has(e.id));
-    const sentVocab = batch.some((e) => e.type.startsWith("VOCAB_") && done.has(e.id));
+    // 이번 실행의 첫 동기화면 세션·단어장도 새로 받는다(그사이 생긴 음성 파일·다른 기기에서 담은 단어·만들어진 뜻).
+    const full = !this.fetchedOnce;
+    const sentMark = full || batch.some((e) => e.type === "MARK" && done.has(e.id));
+    const sentVocab = full || batch.some((e) => e.type.startsWith("VOCAB_") && done.has(e.id));
     const prev = this.snapshot;
     const [sessions, vocab] = await Promise.all([
       this.sessionsFor(res.dashboard, sentMark).catch(() => null),
@@ -260,6 +279,7 @@ export class StudyStore {
     this.persist();
     if (cleared.length > 0) this.channel?.postMessage({ sent: cleared });
     this.apply(mine, res.dashboard, sessions, vocab);
+    if (full && vocab.ok) this.fetchedOnce = true;
     // 단어장을 못 받았으면 실패로 끝내 백오프 뒤에 다시 시도한다(바로 되풀이하지 않는다).
     if (!vocab.ok) throw new Error("단어장을 받지 못했어요.");
     if (this.pending.length > 0) this.again = true;

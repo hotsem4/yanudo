@@ -65,7 +65,7 @@ function PushSection() {
         </button>
       </div>
       {on && (
-        <button type="button" onClick={() => void push.test()} className="press mt-3 flex h-10 items-center gap-1.5 rounded-full bg-tint px-4 text-[13px] font-semibold text-royal">
+        <button type="button" onClick={() => void push.test()} className="press hit mt-3 flex h-10 items-center gap-1.5 rounded-full bg-tint px-4 text-[13px] font-semibold text-royal">
           <Send size={15} strokeWidth={2} aria-hidden />
           시험 알림 보내기
         </button>
@@ -101,7 +101,7 @@ function RoutineSection() {
               type="button"
               onClick={() => void copy(r.url)}
               aria-label={`${r.label} 주소 복사`}
-              className="press flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface text-royal shadow-card"
+              className="press hit flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface text-royal shadow-card"
             >
               {copied === r.url ? <Check size={17} strokeWidth={2} aria-hidden /> : <Copy size={17} strokeWidth={2} aria-hidden />}
             </button>
@@ -136,7 +136,7 @@ function RecordSection({ study }: { study: StudyState }) {
         ))}
       </dl>
       {study.sync.pending > 0 && study.sync.online && (
-        <button type="button" onClick={() => void studyStore.refresh()} className="press mt-3 h-10 rounded-full bg-tint px-4 text-[13px] font-semibold text-royal">
+        <button type="button" onClick={() => void studyStore.refresh()} className="press hit mt-3 h-10 rounded-full bg-tint px-4 text-[13px] font-semibold text-royal">
           지금 보내기
         </button>
       )}

@@ -167,6 +167,7 @@ bg-hero       = bg-gradient-to-br from-royal to-royal-soft
 </div>
 ```
 - 독 안에는 이 세 개만 둔다. 다른 버튼을 추가하지 않는다.
+- **먼저 듣기 → 마이크**: 아직 안 들은 문장은 가운데 56px 버튼이 Volume2(스피커)다. 들려주는 동안 66px 링(반지름 31, 두께 3, `stroke-surface/15` 위에 `stroke-surface`)이 소리 길이만큼 linear 로 차오르고 버튼은 `bg-royal/70`·비활성. 끝나면 아이콘이 교차(scale 0.25·blur 4px ↔ 1, spring 0.3s bounce 0)로 Mic 가 되고, 버튼은 0.86→1 spring(bounce 0.45)으로 살짝 튀며, 2px royal 링이 1→1.5배로 0.7초 퍼지며 사라진다(한 번만). 감속 모션 설정이면 MotionConfig 가 움직임을 줄인다.
 - **따라 말하기 독**(오늘의 10문장 카드가 따라 말하기를 받는 동안, `lib/speakControl.ts`): `[이 문장 듣기 Volume2 48px(들려주는 중 bg-surface/15)] [56px bg-royal 마이크(듣는 중 Square + royal/30 ping, 통과 Check)] [다음 문장 듣기 48px]`. 여전히 세 개다. 결과는 독이 아니라 카드에 보인다: 영어 문장 단어별 칠하기(보고 말하는 중 못 맞힌 단어 `text-muted`, 맞힘 ink, 놓침 faint + 점선 밑줄, 가리고 말하는 중 못 맞힌 단어는 `bg-line` 빈칸) + 진행 레일 아래 두 줄(윗줄: 단계 칩 11.5px `bg-canvas` "1/2 보고 말하기" + 오른쪽 "받아 적기" 전환 12.5px muted, 아랫줄: 12.5px 띠 `bg-tint text-royal`, 통과 `bg-royal text-surface`). 카드 아래쪽은 커버 화면에서 독에 가리므로 전환 버튼은 위에 둔다. 받아 적기 입력칸은 카드 아래(16px 글자, `h-12 rounded-2xl bg-canvas`, 포커스 시 화면 가운데로 스크롤). 잠긴 오늘 탭에서는 독을 숨긴다.
 - 오늘 탭 컨트롤 줄은 배속·설정 칩 두 개만 오른쪽 정렬로 둔다(가리기 필터·재생 모드는 복습 탭 전용, 잠겨 있어도 같다).
 - 받아 적기 전환 버튼도 누름 높이 44px(`h-11 px-2`). 카드 머리 줄이 좁은 폭(600~699px, 펼친 세로)에서는 화자 칩의 이름을 숨기고 A/B 원만 둔다(`n / 10`과 버튼이 겹치지 않게).

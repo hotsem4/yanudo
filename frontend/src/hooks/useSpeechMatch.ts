@@ -73,7 +73,14 @@ export function useSpeechMatch({ continuous = false }: { continuous?: boolean } 
           const result = event.results[i];
           parts.push((result[j] ?? result[0]).transcript);
         }
-        alts.push(parts.join(" ").trim());
+        // 연속 모드에서 안드로이드 Chrome 은 앞 구간을 포함한 누적 문장을 다음 구간으로 다시 보내기도 한다
+        // ("I" / "I need" / "I need to"). 뒤 구간이 앞 구간으로 시작하면 앞 구간을 버려 같은 말이 겹쳐 세지지 않게 한다.
+        const norm = (t: string) => t.trim().toLowerCase();
+        const kept = parts.filter((p, k) => {
+          const next = parts[k + 1];
+          return !(next !== undefined && norm(p).length > 0 && norm(next).startsWith(norm(p)));
+        });
+        alts.push(kept.join(" ").trim());
       }
       setTranscript(alts[0] ?? "");
       setAlternatives(alts);

@@ -126,8 +126,8 @@ python scripts/generate_tts.py --import content/day06.json
 
 ### 리마인더
 
-`ReminderService`: `@Scheduled` 22:00과 22:30, 그리고 서버 시작 시 22:00~03:00 사이면 보충 실행. **서버에 도착한 기록 기준**으로 `snapshot().streak().achievedToday()`이거나, 오늘 레슨이 없거나(`todayLesson() == null`), 프로그램이 끝났으면(`programComplete()`) 보내지 않는다. 마지막 조건이 없으면 66일 뒤에도 Day 66을 매일 다시 하라는 알림이 끝없이 간다. `reminder_log(log_date PK, status SENDING|SENT|FAILED, attempts)`:
-- 보내기 전 `SENDING`으로 선점(이미 `SENT`면 중단). 한 채널이라도 성공하면 `SENT`, 모두 실패하면 `FAILED`로 두어 다음 실행(22:30, 재시작 보충)이 다시 시도한다. 시도는 하루 3회까지.
+`ReminderService`: `@Scheduled` 22:00과 22:00~03:00 동안 15분마다 재시도, 그리고 서버 시작 시 22:00~03:00 사이면 보충 실행. 스케줄 실행도 그때의 벽시계가 22:00~롤오버 사이일 때만 진행한다(절전에서 깨어나 밀린 작업이 아침에 돌면 그날을 선점해 밤 알림이 빠진다). **서버에 도착한 기록 기준**으로 `snapshot().streak().achievedToday()`이거나, "오늘은 어려워요"를 알렸거나, 오늘 레슨이 없으면(`todayLesson() == null`) 보내지 않는다. 66일 뒤에도 라운드가 이어지므로 계속 보낸다. `reminder_log(log_date PK, status SENDING|SENT|FAILED, attempts)`:
+- 보내기 전 `SENDING`으로 선점(이미 `SENT`면 중단). 한 채널이라도 성공하면 `SENT`, 모두 실패하면 `FAILED`로 두어 다음 실행(15분 뒤 재시도, 재시작 보충)이 다시 시도한다. 시도는 하루 3회까지(`app.reminder.max-attempts`).
 - 채널은 `ReminderChannel` 구현 3개(WebPush: 404/410이면 구독 삭제, Telegram, Discord). 실패해도 예외를 던지지 않는다.
 - PC가 22시 전후에 꺼져 있으면 알림은 없다(1대 서버의 한계, README에 명시).
 

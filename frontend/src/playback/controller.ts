@@ -5,6 +5,7 @@ import type { Launch } from "../lib/launch";
 import { readSessionParam, writeSessionParam } from "../lib/launch";
 import { prefs } from "../lib/prefs";
 import { showToast } from "../lib/toast";
+import { speakControl } from "../lib/speakControl";
 import { studyStore } from "../state/store";
 
 /**
@@ -61,6 +62,7 @@ class PlaybackController {
     if (tab === this.tab) return;
     this.tab = tab;
     this.chain = false;
+    speakControl.stopHearing();
     writeSessionParam(tab);
     this.sync();
     this.listeners.forEach((l) => l());
@@ -140,7 +142,10 @@ class PlaybackController {
         if (s.kind === "ready") {
           readyAt ??= Date.now();
           const waited = Date.now() - readyAt;
-          if ((!s.sync.syncing && waited > 250) || waited > 2500) return resolve();
+          // 캐시가 어제 것(stale)이면 온라인인 동안 새 스냅샷을 더 기다린다(최대 10초). 어제 기준으로 탭을 고르고 재생하면
+          // 새 스냅샷이 와서 큐가 바뀌는 순간 재생이 조용히 멈춘다. 오프라인이면 캐시로 바로 시작한다.
+          const usable = !s.view.stale || !s.sync.online;
+          if ((usable && !s.sync.syncing && waited > 250) || (usable && waited > 2500) || waited > 10000) return resolve();
         }
         window.setTimeout(check, 120);
       };

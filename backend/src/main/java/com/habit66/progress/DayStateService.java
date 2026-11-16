@@ -78,11 +78,15 @@ public class DayStateService {
         Set<LocalDate> achieved = facts.achievedDates();
         Set<LocalDate> restDays = facts.restDays();
         Map<Integer, List<Long>> lessons = new TreeMap<>();
+        Map<Long, LocalDate> addedOn = new java.util.HashMap<>();
         for (int day : cat.days()) {
-            cat.lesson(day).ifPresent(l -> lessons.put(day, l.sentenceIds()));
+            cat.lesson(day).ifPresent(l -> {
+                lessons.put(day, l.sentenceIds());
+                l.sentences().forEach(s -> addedOn.put(s.id(), clock.dateOf(s.createdAt())));
+            });
         }
         List<Makeup> makeups = HabitRules.withStreakEffect(
-                HabitRules.makeups(start, today, schedule, lessons, achieved, restDays, facts.speaks()),
+                HabitRules.makeups(start, today, schedule, lessons, achieved, restDays, facts.speaks(), addedOn),
                 start, today, achieved, totalDays);
         Walk walk = HabitRules.walk(start, today, achieved, HabitRules.repairedDates(makeups), totalDays);
         RestDay restDay = new RestDay(restDays.contains(today),

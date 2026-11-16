@@ -1,0 +1,20 @@
+# 테스트 전용 기본값. classpath:/config/ 는 본 application.yml 위에 덮인다(테스트의 @SpringBootTest properties 가 더 우선).
+# 이 PC 의 환경 변수(APP_ADMIN_TOKEN, APP_TELEGRAM_*, APP_DISCORD_*, APP_BACKUP_EXTRA_DIR, APP_VAPID_*)가
+# 테스트에 새어 들어가 실제 알림을 보내거나 운영 백업 폴더에 쓰거나 실제 Claude 를 부르지 않게 고정한다.
+app:
+  admin-token: ""
+  push:
+    public-key: ""
+    private-key: ""
+  reminder:
+    telegram:
+      enabled: false
+      bot-token: ""
+      chat-id: ""
+    discord:
+      enabled: false
+      webhook-url: ""
+  backup:
+    extra-dir: ""
+  vocab:
+    generator: none

@@ -91,6 +91,17 @@ class ReminderServiceTest {
     }
 
     @Test
+    void scheduledRunsOutsideTheEveningWindowSendNothing() {
+        // 고정 시계는 10:00. 절전에서 깨어나 밀린 22:00·재시도 작업이 아침에 돌아도 보내지 않고, 그날을 선점하지도 않는다.
+        assertThat(reminders.inWindow()).isFalse();
+        reminders.atDeadline();
+        reminders.retry();
+
+        assertThat(CHANNEL.sent).isEmpty();
+        assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM reminder_log", Integer.class)).isZero();
+    }
+
+    @Test
     void sendsOncePerDayWhenTodayIsNotAchieved() {
         reminders.remind("test");
         reminders.remind("test");

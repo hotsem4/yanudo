@@ -30,8 +30,12 @@ export function BottomSheet({ open, onClose, title, children }: Props) {
     panelRef.current?.focus();
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && closeRef.current();
     window.addEventListener("keydown", onKey);
+    // 시트 뒤 화면은 키보드·읽기 프로그램이 닿지 않게 한다(모닝 락과 같은 방식). 시트는 body 바로 아래에 그려진다.
+    const main = document.querySelector("main");
+    main?.setAttribute("inert", "");
     return () => {
       window.removeEventListener("keydown", onKey);
+      main?.removeAttribute("inert");
       prev?.focus?.();
     };
   }, [open]);

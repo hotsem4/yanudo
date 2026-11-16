@@ -159,7 +159,7 @@ public class CatalogService {
             List<SentenceView> items = byLesson.getOrDefault(lesson.getId(), List.of()).stream()
                     .sorted(Comparator.comparingInt(Sentence::getSeq))
                     .map(s -> new SentenceView(s.getId(), lesson.getDayNumber(), s.getSeq(), s.getSpeaker(),
-                            s.getEnText(), s.getKoWordOrder(), s.getKoNatural(), s.isCore()))
+                            s.getEnText(), s.getKoWordOrder(), s.getKoNatural(), s.isCore(), s.getCreatedAt()))
                     .toList();
             views.add(new LessonView(lesson.getDayNumber(), lesson.getTitle(), lesson.getTheme(), items));
         }

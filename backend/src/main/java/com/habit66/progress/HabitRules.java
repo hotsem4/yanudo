@@ -206,6 +206,16 @@ final class HabitRules {
      */
     static List<Makeup> makeups(LocalDate start, LocalDate today, Schedule schedule, Map<Integer, List<Long>> lessons,
             Set<LocalDate> achieved, Set<LocalDate> restDays, List<SpeakRow> speaks) {
+        return makeups(start, today, schedule, lessons, achieved, restDays, speaks, Map.of());
+    }
+
+    /**
+     * @param addedOn 문장 id → 처음 넣은 날(논리 날짜). 레슨이 그날 이미 있었다면 그날 뒤에 추가한 문장은 그날의 보충에
+     *                세지 않는다. 그러지 않으면 끝낸 보충이 나중의 문장 추가로 "미완료"가 되어 지킨 날이 뒤집힌다.
+     *                레슨 전체가 그날 뒤에 들어왔으면(뒤늦은 임포트) 모든 문장을 센다.
+     */
+    static List<Makeup> makeups(LocalDate start, LocalDate today, Schedule schedule, Map<Integer, List<Long>> lessons,
+            Set<LocalDate> achieved, Set<LocalDate> restDays, List<SpeakRow> speaks, Map<Long, LocalDate> addedOn) {
         Map<Long, List<SpeakRow>> bySentence = new HashMap<>();
         for (SpeakRow row : speaks) {
             bySentence.computeIfAbsent(row.sentenceId(), k -> new ArrayList<>()).add(row);
@@ -213,11 +223,15 @@ final class HabitRules {
         List<Makeup> out = new ArrayList<>();
         for (LocalDate date = start; date.isBefore(today); date = date.plusDays(1)) {
             int day = schedule.lessonOn(date);
-            List<Long> ids = lessons.getOrDefault(day, List.of());
-            if (day <= 0 || ids.isEmpty() || achieved.contains(date)) {
+            List<Long> lessonIds = lessons.getOrDefault(day, List.of());
+            if (day <= 0 || lessonIds.isEmpty() || achieved.contains(date)) {
                 continue;
             }
             LocalDate missed = date;
+            List<Long> existed = lessonIds.stream()
+                    .filter(id -> addedOn.get(id) == null || !addedOn.get(id).isAfter(missed))
+                    .toList();
+            List<Long> ids = existed.isEmpty() ? lessonIds : existed;
             boolean rest = restDays.contains(date);
             int reps = rest ? MAKEUP_REPS_REST : MAKEUP_REPS;
             List<Long> doneIds = new ArrayList<>();
@@ -313,17 +327,24 @@ final class HabitRules {
             // 이미 끝냈지만 앞날 때문에 못 지킨 보충은 이것으로 이어질 수 있으니 함께 넣는다.
             Set<LocalDate> withThis = new HashSet<>(doneInTime);
             withThis.add(m.date());
+            // 같은 레슨을 연달아 빼먹었으면 이 보충 하나로 그 날들도 함께 채워진다(보충 기록은 문장마다라 날짜를 가리지 않는다).
+            for (Makeup x : makeups) {
+                if (!x.done() && x.day() == m.day() && x.reps() <= m.reps() && !today.isAfter(x.deadline())) {
+                    withThis.add(x.date());
+                }
+            }
             int streakIfDone = walk(start, today, achieved, withThis, roundDays).streak().current();
             // 달성도 보충도 아닌 날인데 다음 날 직전 스트릭이 그대로면 프리즈로 넘긴 날이다(끊겼으면 0).
             boolean frozen = actualBefore.getOrDefault(m.date().plusDays(1), 0) == beforeNow;
             int now = actual.streak().current();
             if (streakIfDone > now) {
                 out.add(m.withEffect(true, MakeupEffect.STREAK, streakIfDone));
+            } else if (hopedWalk.streak().current() > now) {
+                // 이것 하나로는 모자라고 뒤의 보충까지 끝내야 이어진다(빼먹은 날이 연달아 있을 때). 프리즈로 넘긴 날이라도
+                // 뒤에서 이미 끊겼으면 돌아온 프리즈가 곧바로 다시 쓰여 "프리즈를 돌려받아요"가 사실이 아니다.
+                out.add(m.withEffect(true, MakeupEffect.WITH_OTHERS, hopedWalk.streak().current()));
             } else if (frozen) {
                 out.add(m.withEffect(true, MakeupEffect.FREEZE, 0));
-            } else if (hopedWalk.streak().current() > now) {
-                // 이것 하나로는 모자라고 뒤의 보충까지 끝내야 이어진다(빼먹은 날이 연달아 있을 때).
-                out.add(m.withEffect(true, MakeupEffect.WITH_OTHERS, hopedWalk.streak().current()));
             } else {
                 out.add(m.withEffect(true, MakeupEffect.NONE, 0));
             }

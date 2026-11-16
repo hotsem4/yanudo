@@ -60,6 +60,8 @@ export class ClipStore {
     if (ready) return Promise.resolve(ready);
     const inflight = this.loading.get(url);
     if (inflight) return inflight;
+    const failed = this.failedAt.get(url);
+    if (failed !== undefined && Date.now() - failed < RETRY_AFTER_MS) return Promise.reject(new Error("clip recently failed"));
     const task = this.load(url)
       .then((blobUrl) => {
         this.blobs.set(url, blobUrl);

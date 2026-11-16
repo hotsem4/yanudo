@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import type { Sentence } from "../api/types";
 import { SPEECH_ERRORS, useSpeechMatch } from "../hooks/useSpeechMatch";
 import { speakControl, useSpeakControl } from "../lib/speakControl";
-import { matchWords, PASS_RATIO, type MatchResult } from "../lib/wordMatch";
+import { excuseWords, matchWords, PASS_RATIO, type MatchResult } from "../lib/wordMatch";
 import { studyStore } from "../state/store";
 
 /** 마이크를 아예 쓸 수 없는 오류. network 는 기기가 온라인이어도 잠깐 나므로 문장마다의 일시 오류로 본다. */
@@ -15,6 +15,11 @@ const COVER_MS = 1500;
 const SETTLE_MS = 1800;
 /** 받아 적기는 인식 오차가 없으므로 더 높게 본다. */
 const TYPE_PASS_RATIO = 0.8;
+/** 1단계(보고 말하기)는 문장을 보며 따라 하므로 높게 본다. 2단계(가리고 말하기)는 PASS_RATIO(60%). */
+const SEE_PASS_RATIO = 0.8;
+/** 문장의 나머지를 이만큼 이상 맞혔는데 같은 단어를 두 번 연달아 못 알아들으면, 인식이 어려운 단어로 보고 넘긴다. */
+const EXCUSE_AFTER_MISSES = 2;
+const EXCUSE_MIN_RATIO = 0.5;
 
 /** 마이크를 쓸 수 없는 상태는 문장이 바뀌어도 기억한다(문장마다 실패해야 받아 적기로 바뀌지 않게). */
 let micUnavailable: string | null = null;
@@ -26,6 +31,12 @@ let micUnavailable: string | null = null;
  */
 const seeStagePassed = new Set<number>();
 let preferTyping = false;
+/**
+ * 인식이 어려운 단어(문장 id → 정답 단어 위치). "Seoul" 처럼 또박또박 말해도 인식기가 받아 적지 못하는 단어가 있다.
+ * 문장의 나머지는 잘 말했는데 같은 단어만 두 번 연달아 놓치면 맞은 것으로 친다. 문장당 1~2개까지만(문장을 통째로 넘기지 않게).
+ */
+const excused = new Map<number, Set<number>>();
+const missCounts = new Map<number, Map<number, number>>();
 
 /**
  * 문장이 바뀐 직후, SpeakCheck 가 첫 피드백을 보내기 전에 카드가 쓸 영어 표시. 피드백을 기다리는 한 프레임 동안
@@ -85,6 +96,9 @@ export function SpeakCheck({ sentence, passed, remainingAfter, disabled, onPasse
   if (errorCode !== null && MIC_BLOCKED.has(errorCode)) micUnavailable = errorCode;
   const micBlocked = !speech.supported || micUnavailable !== null;
   const { hearing } = useSpeakControl();
+  // 먼저 듣기: 아직 끝까지 들은 적 없는 미통과 문장은 마이크 대신 스피커가 먼저다(듣기 전에 실수로 녹음하지 않게).
+  const needsHearing = !passed && !speakControl.isHeard(sentence.id);
+  const [newlyExcused, setNewlyExcused] = useState<string | null>(null);
 
   const [stage, setStage] = useState<"see" | "recall">(() => (seeStagePassed.has(sentence.id) ? "recall" : "see"));
   const [typing, setTypingState] = useState(preferTyping);
@@ -130,12 +144,38 @@ export function SpeakCheck({ sentence, passed, remainingAfter, disabled, onPasse
     [stop],
   );
 
-  const live = useMemo(() => {
+  const rawLive = useMemo(() => {
     const candidates = speech.alternatives.length > 0 ? speech.alternatives : [transcript];
     return candidates
       .map((t) => matchWords(sentence.en_text, t))
       .reduce((best, m) => (m.ratio > best.ratio ? m : best), matchWords(sentence.en_text, ""));
   }, [sentence.en_text, speech.alternatives, transcript]);
+  const live = useMemo(() => excuseWords(rawLive, excused.get(sentence.id)), [rawLive, sentence.id, newlyExcused]); // eslint-disable-line react-hooks/exhaustive-deps
+  const passRatio = stage === "see" ? SEE_PASS_RATIO : PASS_RATIO;
+
+  /** 실패한 판정 뒤: 문장의 나머지는 말했는데 같은 단어를 연달아 놓쳤으면 인식이 어려운 단어로 넘긴다. */
+  const noteMisses = (raw: MatchResult) => {
+    if (raw.ratio < EXCUSE_MIN_RATIO) return;
+    const counts = missCounts.get(sentence.id) ?? new Map<number, number>();
+    const set = excused.get(sentence.id) ?? new Set<number>();
+    const cap = Math.max(1, Math.floor(raw.hits.length * 0.15));
+    const added: string[] = [];
+    raw.hits.forEach((h, i) => {
+      if (h.hit) {
+        counts.delete(i); // 연달아 놓친 것만 센다
+        return;
+      }
+      const n = (counts.get(i) ?? 0) + 1;
+      counts.set(i, n);
+      if (n >= EXCUSE_AFTER_MISSES && !set.has(i) && set.size < cap) {
+        set.add(i);
+        added.push(h.word);
+      }
+    });
+    missCounts.set(sentence.id, counts);
+    excused.set(sentence.id, set);
+    if (added.length > 0) setNewlyExcused(added.join(", "));
+  };
 
   // 연속 인식이라 인식기가 스스로 끝나지 않는다. 문장을 다 맞혔거나 말이 잠깐 끊기면 멈추고 채점한다.
   useEffect(() => {
@@ -188,7 +228,8 @@ export function SpeakCheck({ sentence, passed, remainingAfter, disabled, onPasse
   useEffect(() => {
     if (wasListening.current && !listening && transcript.length > 0 && !justPassed && !disabledRef.current) {
       setJudged(live);
-      if (live.ratio >= PASS_RATIO) {
+      if (live.ratio < passRatio) noteMisses(rawLive);
+      if (live.ratio >= passRatio) {
         if (stage === "see") {
           // 맞힌·놓친 단어를 잠깐 보여 준 뒤 영어를 가린다(가리고 말하는 단계에 답이 보이지 않게).
           seeStagePassed.add(sentence.id);
@@ -221,13 +262,14 @@ export function SpeakCheck({ sentence, passed, remainingAfter, disabled, onPasse
       stop();
       return;
     }
-    if (micBlocked) return;
+    if (micBlocked || needsHearing) return;
     // 받아 적기 중에 독 마이크를 누르면 말하기로 돌아간다.
     leaveTyping();
     // 들려주던 소리(미리듣기·연속 재생·기기 음성)가 마이크에 들어가지 않게 모두 멈춘다.
     speakControl.hush();
     clearCover();
     setJudged(null);
+    setNewlyExcused(null);
     reset();
     start();
     listeningRef.current = true;
@@ -264,8 +306,8 @@ export function SpeakCheck({ sentence, passed, remainingAfter, disabled, onPasse
     return () => control.current?.release();
   }, []);
   useEffect(() => {
-    control.current?.update({ listening, justPassed, disabled: disabled || micBlocked });
-  }, [listening, justPassed, disabled, micBlocked]);
+    control.current?.update({ listening, justPassed, disabled, micBlocked, needsHearing });
+  }, [listening, justPassed, disabled, micBlocked, needsHearing]);
 
   const submitTyped = (e: FormEvent) => {
     e.preventDefault();
@@ -302,7 +344,13 @@ export function SpeakCheck({ sentence, passed, remainingAfter, disabled, onPasse
     status = recall ? "가린 문장을 영어로 말해 보세요. 다 말하고 잠깐 멈추면 채점해요" : "보면서 영어로 따라 말해 보세요. 다 말하고 잠깐 멈추면 채점해요";
   } else if (hearing) {
     tone = "listening";
-    status = useTyping ? "문장을 들려주는 중이에요. 다 들으면 영어로 적어 보세요" : "문장을 들려주는 중이에요. 다 들으면 가운데 마이크를 눌러요";
+    status = useTyping
+      ? "문장을 들려주는 중이에요. 다 들으면 영어로 적어 보세요"
+      : needsHearing
+        ? "문장을 들려주는 중이에요. 다 들으면 가운데 버튼이 마이크로 바뀌어요"
+        : "문장을 들려주는 중이에요. 다 들으면 가운데 마이크를 눌러요";
+  } else if (needsHearing && !justPassed) {
+    status = useTyping ? "먼저 가운데 스피커를 눌러 문장을 들어 보세요. 들은 뒤에 적을 수 있어요" : "먼저 가운데 스피커를 눌러 문장을 들어 보세요";
   } else if (useTyping && typedResult) {
     status = `${score}. 80% 이상이면 통과예요. 다시 듣고 고쳐 적어요`;
   } else if (useTyping && allDone) {
@@ -321,15 +369,17 @@ export function SpeakCheck({ sentence, passed, remainingAfter, disabled, onPasse
   } else if (stageUp && judged) {
     tone = "pass";
     status = `좋아요! ${score}. 이제 영어를 가리고 말해 봐요`;
+  } else if (judged && newlyExcused) {
+    status = `'${newlyExcused}'은(는) 인식이 잘 안 되는 단어라 다음부터 맞은 것으로 칠게요. 한 번 더 말해 보세요`;
   } else if (judged) {
-    status = `${score}. 60% 이상이면 통과예요. 흐린 단어를 다시 들어 보고 말해 보세요`;
+    status = `${score}. ${Math.round(passRatio * 100)}% 이상이면 통과예요. 흐린 단어를 다시 들어 보고 말해 보세요`;
   } else if (allDone) {
     tone = "pass";
     status = "오늘 10문장 모두 통과했어요. 더 연습해도 좋아요";
   } else if (restingPassed) {
     status = "통과한 문장이에요. 다시 해도 좋아요(가운데 마이크)";
   } else if (recall) {
-    status = "영어를 가렸어요. 어순·해석을 보고 영어로 말해 보세요(가운데 마이크)";
+    status = "영어를 가렸어요. 어순·해석을 보고 말해 보세요(카드를 길게 누르면 잠깐 보여요)";
   } else {
     status = passed ? "통과한 문장이에요. 다시 해도 좋아요(가운데 마이크)" : "듣고 나서 가운데 마이크를 누르고, 보면서 따라 말해 보세요";
   }
@@ -347,18 +397,18 @@ export function SpeakCheck({ sentence, passed, remainingAfter, disabled, onPasse
         value={typed}
         onChange={(e) => setTyped(e.target.value)}
         onFocus={(e) => e.currentTarget.scrollIntoView({ block: "center", behavior: "smooth" })}
-        disabled={disabled || justPassed}
+        disabled={disabled || justPassed || needsHearing}
         lang="en"
         autoCapitalize="off"
         autoCorrect="off"
         spellCheck={false}
-        placeholder="들은 문장을 영어로 적기"
+        placeholder={needsHearing ? "먼저 문장을 들어 보세요" : "들은 문장을 영어로 적기"}
         aria-label="들은 문장을 영어로 적기"
         className="h-12 min-w-0 flex-1 rounded-2xl bg-canvas px-4 text-[16px] text-ink outline-none placeholder:text-faint focus:ring-2 focus:ring-royal/40"
       />
       <button
         type="submit"
-        disabled={disabled || justPassed || typed.trim().length === 0}
+        disabled={disabled || justPassed || needsHearing || typed.trim().length === 0}
         className="press h-12 shrink-0 rounded-full bg-royal px-5 text-[14px] font-semibold text-surface disabled:opacity-40"
       >
         확인

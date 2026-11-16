@@ -208,6 +208,8 @@ export class AudioEngine {
     // 앞선 미리듣기는 playing 을 켜지 않으므로 위의 pause 로는 멈추지 않는다.
     this.pauseElement();
     this.resetTurn();
+    // 차례 상태(가림·대기·일시정지)를 지웠으니 바로 알린다(그러지 않으면 카드가 가린 채 "일시정지"로 남는다).
+    this.publish();
     let url: string | null = null;
     try {
       url = item.audio_url ? await withTimeout(this.clips.objectUrl(item.audio_url), CLIP_WAIT_MS) : null;
@@ -366,11 +368,18 @@ export class AudioEngine {
       };
       const cancel = () => finish("stale");
       this.cancels.add(cancel);
+      let started = false;
+      u.onstart = () => {
+        started = true;
+      };
       u.onend = () => finish("done");
       // 오류로 끝난 발화는 소리가 나지 않았다. 들음으로 기록하지 않고 멈춘다.
       u.onerror = () => finish(token === this.token ? "failed" : "stale");
-      // 일부 기기는 onend 를 빠뜨린다. 넉넉한 상한을 둔다.
-      const guard = window.setTimeout(() => finish("done"), Math.max(4000, item.duration_ms * 2.5));
+      // 일부 기기는 onend 를 빠뜨린다. 넉넉한 상한을 둔다. 시작조차 하지 않았으면(speak 가 씹힘) 들음으로 치지 않는다.
+      const guard = window.setTimeout(
+        () => finish(started ? "done" : token === this.token ? "failed" : "stale"),
+        Math.max(4000, item.duration_ms * 2.5),
+      );
       speechSynthesis.cancel();
       speechSynthesis.speak(u);
     });

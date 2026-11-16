@@ -539,6 +539,44 @@ class HabitRulesTest {
     }
 
     @Test
+    void frozenDayBeforeABreakSaysWithOthersNotFreeze() {
+        // Day 1·2 달성, 3·4 프리즈, 5 끊김, 6 빼먹음, 오늘 Day 7. Day 4 만 끝내면 돌아온 프리즈가 Day 5 에 다시 쓰여 효과가 없다.
+        List<Makeup> makeups = effects(7, achievedOn(1, 2), List.of());
+        assertThat(on(makeups, 4).effect()).isEqualTo(DaySnapshot.MakeupEffect.WITH_OTHERS);
+        assertThat(on(makeups, 4).streakIfDone()).isEqualTo(2);
+        assertThat(on(makeups, 6).effect()).isEqualTo(DaySnapshot.MakeupEffect.AFTER_EARLIER);
+    }
+
+    @Test
+    void oneMakeupFillsConsecutiveMissesOfTheSameLesson() {
+        // 레슨 1·2 만 있다. Day 1·2 달성, Day 3~6 은 복습 순환으로 모두 레슨 1, 오늘 Day 7.
+        Map<Integer, List<Long>> two = Map.of(1, List.of(10L), 2, List.of(20L));
+        Set<LocalDate> achieved = achievedOn(1, 2);
+        Schedule schedule = HabitRules.schedule(START, day(7), new TreeSet<>(two.keySet()),
+                List.of(new AchievementRow(day(1), 1), new AchievementRow(day(2), 2)));
+        List<Makeup> makeups = HabitRules.withStreakEffect(
+                HabitRules.makeups(START, day(7), schedule, two, achieved, Set.of(), List.of()),
+                START, day(7), achieved, TOTAL);
+        assertThat(makeups).allMatch(m -> m.day() == 1);
+        // 화면에 나오는 가장 이른 기한 안 줄(Day 4): 레슨 1 을 한 번 보충하면 4·5·6 이 모두 이어져 연속 2일.
+        Makeup shown = makeups.stream().filter(m -> m.keepsStreak()).findFirst().orElseThrow();
+        assertThat(shown.effect()).isEqualTo(DaySnapshot.MakeupEffect.STREAK);
+        assertThat(shown.streakIfDone()).isEqualTo(2);
+    }
+
+    @Test
+    void sentencesAddedAfterTheMissedDayDoNotUndoAFinishedMakeup() {
+        // Day 2(문장 20·21)를 Day 3 에 보충해 끝냈다. 뒤에 Day 2 에 문장 22 를 추가했다(Day 5 에 넣음).
+        Map<Integer, List<Long>> lessons = Map.of(1, List.of(10L, 11L), 2, List.of(20L, 21L, 22L), 3, List.of(30L, 31L));
+        Map<Long, LocalDate> addedOn = Map.of(10L, START, 11L, START, 20L, START, 21L, START, 22L, day(5),
+                30L, START, 31L, START);
+        Makeup m = HabitRules.makeups(START, day(6), plan(lessons, 6), lessons, achievedOn(1, 3), Set.of(),
+                spoke(3, 5, 20L, 21L), addedOn).stream().filter(x -> x.day() == 2).findFirst().orElseThrow();
+        assertThat(m.sentenceIds()).containsExactly(20L, 21L);
+        assertThat(m.repairs()).isTrue();
+    }
+
+    @Test
     void makeupDeadlineIsInclusive() {
         Makeup onDeadline = HabitRules.makeups(START, day(6), plan(LESSONS, 6), LESSONS, achievedOn(1, 3), Set.of(),
                 spoke(5, 5, 20L, 21L)).get(0); // Day 2 의 기한은 Day 5

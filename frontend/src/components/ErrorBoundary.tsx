@@ -1,5 +1,8 @@
 import { Component, type ErrorInfo, type ReactNode } from "react";
+import { audioEngine } from "../audio/useEngine";
 import { snapshotCache } from "../state/outbox";
+
+const FAIL_KEY = "habit66.renderFail";
 
 interface State {
   failed: boolean;
@@ -18,7 +21,16 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, State> {
 
   componentDidCatch(error: Error, info: ErrorInfo): void {
     console.error("render failed", error, info.componentStack);
-    snapshotCache.clear();
+    audioEngine.hush();
+    // 캐시와 무관한 화면 오류로 오프라인 학습 캐시까지 잃지 않게, 이 실행에서 두 번째 실패일 때만 비운다.
+    let count = 0;
+    try {
+      count = Number(sessionStorage.getItem(FAIL_KEY) ?? "0") + 1;
+      sessionStorage.setItem(FAIL_KEY, String(count));
+    } catch {
+      count = 2;
+    }
+    if (count >= 2) snapshotCache.clear();
   }
 
   render(): ReactNode {
@@ -26,7 +38,7 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, State> {
     return (
       <main className="mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center gap-3 bg-canvas px-5 text-center">
         <h1 className="text-[17px] font-bold text-ink">화면을 그리지 못했어요</h1>
-        <p className="text-pretty text-[14px] leading-relaxed text-muted">저장해 둔 화면을 비웠어요. 학습 기록은 그대로 있어요.</p>
+        <p className="text-pretty text-[14px] leading-relaxed text-muted">다시 열어 보세요. 학습 기록은 그대로 있어요.</p>
         <button
           type="button"
           onClick={() => window.location.reload()}

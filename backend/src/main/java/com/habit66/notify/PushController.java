@@ -44,6 +44,11 @@ public class PushController {
 
     @GetMapping("/vapid-public-key")
     public Map<String, String> vapidPublicKey() {
+        if (!keys.available()) {
+            // 빈 키를 주면 앱은 "서버 키가 바뀌었다"고 보고 구독을 지운다. 일시적 실패로 알려 그대로 두게 한다.
+            throw new ApiException(org.springframework.http.HttpStatus.SERVICE_UNAVAILABLE, "PUSH_UNAVAILABLE",
+                    "알림 키를 읽지 못했어요. 서버를 다시 시작해 주세요.");
+        }
         return Map.of("public_key", keys.publicKey());
     }
 

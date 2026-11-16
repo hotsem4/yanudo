@@ -12,8 +12,9 @@ import java.util.TreeMap;
 /** 콘텐츠의 불변 읽기 모델. 임포트가 끝날 때마다 통째로 새로 만든다. */
 public final class Catalog {
 
+    /** @param createdAt 문장을 처음 넣은 시각(epoch ms). 지난 날 보충을 판정할 때 그날 없던 문장을 빼는 데 쓴다. */
     public record SentenceView(long id, int day, int seq, String speaker, String enText, String koWordOrder,
-            String koNatural, boolean core) {
+            String koNatural, boolean core, long createdAt) {
     }
 
     public record LessonView(int day, String title, String theme, List<SentenceView> sentences) {

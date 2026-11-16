@@ -39,6 +39,31 @@ async function registerOrRenew(reg: ServiceWorkerRegistration, sub: PushSubscrip
   return true;
 }
 
+/**
+ * 앱이 열릴 때·화면으로 돌아올 때 조용히 구독을 점검한다(설정 화면을 열지 않아도). 권한이 이미 있고 브라우저 구독이
+ * 있을 때만 한다: 서버 키가 바뀌었거나 서버가 "만료"로 들은 구독이면 새로 구독해 등록한다. 실패해도 조용히 넘어간다.
+ */
+export async function renewPushSubscription(): Promise<void> {
+  try {
+    if (!("serviceWorker" in navigator) || !("PushManager" in window) || !("Notification" in window)) return;
+    if (Notification.permission !== "granted") return;
+    const reg = await registration();
+    const sub = reg ? await reg.pushManager.getSubscription() : null;
+    if (!reg || !sub) return;
+    const { public_key } = await api.vapidPublicKey();
+    const serverKey = base64UrlToBytes(public_key);
+    if (!sameKey(sub, serverKey)) {
+      await sub.unsubscribe().catch(() => undefined);
+      const fresh = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: serverKey });
+      await api.subscribePush(fresh.toJSON());
+      return;
+    }
+    await registerOrRenew(reg, sub, serverKey);
+  } catch {
+    // 연결이 없거나 서버가 잠깐 못 받는다. 다음에 열 때 다시 한다.
+  }
+}
+
 /** 22시 마감 알림(Web Push VAPID) 구독. HTTPS(Tailscale) + 설치된 PWA 에서 동작한다. */
 export function usePush() {
   const supported = typeof window !== "undefined" && "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
@@ -57,8 +82,14 @@ export function usePush() {
         const { public_key } = await api.vapidPublicKey();
         const serverKey = base64UrlToBytes(public_key);
         if (!sameKey(sub, serverKey)) {
-          // 서버 키가 바뀌었다: 옛 구독은 지우고 꺼짐으로 보여 다시 켜게 한다.
+          // 서버 키가 바뀌었다: 권한은 그대로이니 옛 구독을 지우고 새 키로 다시 구독한다.
           await sub.unsubscribe().catch(() => undefined);
+          if (reg && Notification.permission === "granted") {
+            const fresh = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: serverKey });
+            await api.subscribePush(fresh.toJSON());
+            setMessage("알림 설정이 바뀌어 새로 구독했어요.");
+            return setStatus("on");
+          }
           setMessage("알림 설정이 바뀌어 다시 켜야 해요.");
           return setStatus("off");
         }
@@ -66,6 +97,13 @@ export function usePush() {
         if (reg && (await registerOrRenew(reg, sub, serverKey))) setMessage("만료된 알림 구독을 새로 만들었어요.");
         setStatus("on");
       } catch {
+        // 새로 구독하다 실패했으면 브라우저 구독이 없을 수 있다. 그런데 "켜짐"으로 보이면 알림이 안 오는 줄 모른다.
+        const still = reg ? await reg.pushManager.getSubscription().catch(() => null) : null;
+        if (!still) {
+          setStatus("off");
+          setMessage("알림 구독이 끊겼어요. 다시 켜 주세요.");
+          return;
+        }
         setStatus("on");
         setMessage("서버에 알림 구독을 다시 등록하지 못했어요. 연결되면 설정을 다시 열어 주세요.");
       }

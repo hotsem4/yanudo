@@ -39,6 +39,10 @@ public class Sentence {
     @Column(name = "created_at", nullable = false)
     private long createdAt;
 
+    public long getCreatedAt() {
+        return createdAt;
+    }
+
     @Column(name = "updated_at", nullable = false)
     private long updatedAt;
 

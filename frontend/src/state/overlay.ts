@@ -119,7 +119,7 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
 
   const unlock = d.review_gate.unlock_ids;
   const gateSeen = unlock.filter((id) => reviewSeen.has(id)).length;
-  const gateOpen = !d.review_gate.required || (unlock.length > 0 && gateSeen === unlock.length);
+  const gateOpen = d.review_gate.cleared || !d.review_gate.required || gateSeen === unlock.length;
 
   const reviewIds = snapshot.review?.sentences.map((s) => s.id) ?? [];
   const reviewSeenCount = reviewIds.length > 0 ? reviewIds.filter((id) => reviewSeen.has(id)).length : d.review_progress.seen;

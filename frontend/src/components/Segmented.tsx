@@ -49,7 +49,7 @@ export function Segmented<T extends string>({ options, value, onChange, label, v
             aria-selected={asTab ? active : undefined}
             aria-checked={asTab ? undefined : active}
             onClick={() => onChange(o.value)}
-            className={`press relative z-10 flex h-10 min-w-0 flex-1 items-center justify-center gap-1 whitespace-nowrap rounded-full text-[12.5px] ${options.length > 2 ? "px-1 tracking-tight" : "px-2"} ${
+            className={`press relative z-10 flex h-11 min-w-0 flex-1 items-center justify-center gap-1 overflow-hidden whitespace-nowrap rounded-full text-[12.5px] ${options.length > 2 ? "px-1 tracking-tight [@media(min-width:600px)_and_(max-width:699px)]:text-[11px] [@media(min-width:600px)_and_(max-width:699px)]:tracking-tighter" : "px-2"} ${
               active
                 ? isTab
                   ? "font-semibold text-royal"

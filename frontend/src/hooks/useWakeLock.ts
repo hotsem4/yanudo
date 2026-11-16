@@ -6,13 +6,18 @@ export function useWakeLock(active: boolean): void {
     if (!active || !("wakeLock" in navigator)) return;
     let sentinel: WakeLockSentinel | null = null;
     let cancelled = false;
+    let pending = false;
     const request = async () => {
+      if (pending) return; // 앞 요청이 끝나기 전에 화면 복귀가 오면 겹쳐 받은 것을 놓치게 된다
+      pending = true;
       try {
         const s = await navigator.wakeLock.request("screen");
         if (cancelled) void s.release();
         else sentinel = s;
       } catch {
         /* 배터리 절약 모드 등으로 거절될 수 있다 */
+      } finally {
+        pending = false;
       }
     };
     const onVisible = () => {

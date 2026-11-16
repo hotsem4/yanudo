@@ -63,11 +63,11 @@ export function todayTodos(view: DayView, now: number): Todo[] | null {
   items.push({
     id: "today",
     label: "오늘의 10문장",
-    detail: "끝까지 듣거나 카드로 다 보기",
+    detail: "문장마다 듣고 영어로 따라 말해 통과하기",
     required: true,
     state: view.streak.achievedToday ? "done" : "open",
     startable: !view.streak.achievedToday,
-    progress: { value: Math.max(t.audioSeen, t.cardSeen), total: t.total },
+    progress: { value: t.spoken, total: t.total },
   });
 
   const minutes = Math.floor(view.focusSecondsToday / 60);

@@ -5,7 +5,8 @@ public sealed interface ClientEvent {
 
     enum Session { TODAY, REVIEW }
 
-    enum Via { AUDIO, CARD }
+    /** SPEAK: 오늘의 10문장을 따라 말하기(또는 받아 적기)로 통과했다. 오늘 달성은 이것만 센다. */
+    enum Via { AUDIO, CARD, SPEAK }
 
     enum MarkStatus { NEW, MEMORIZED, PRACTICE }
 

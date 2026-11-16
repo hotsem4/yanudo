@@ -31,7 +31,9 @@ public final class Views {
             List<Long> doneIds) {
     }
 
-    public record TodayProgress(int total, List<Long> sentenceIds, List<Long> audioSeenIds, List<Long> cardSeenIds) {
+    /** @param spokenSeenIds 따라 말하기로 통과한 문장(오늘 달성은 이것이 전부일 때) */
+    public record TodayProgress(int total, List<Long> sentenceIds, List<Long> audioSeenIds, List<Long> cardSeenIds,
+            List<Long> spokenSeenIds) {
     }
 
     public record ReviewGate(boolean required, boolean cleared, Integer yesterdayDay, List<Long> unlockIds,

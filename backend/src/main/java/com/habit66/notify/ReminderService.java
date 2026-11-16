@@ -150,8 +150,7 @@ public class ReminderService {
     }
 
     private static ReminderMessage messageFor(DaySnapshot snapshot) {
-        int left = snapshot.todayLesson().sentences().size()
-                - Math.max(snapshot.audioSeenIds().size(), snapshot.cardSeenIds().size());
+        int left = snapshot.todayLesson().sentences().size() - snapshot.spokenSeenIds().size();
         String streak = snapshot.streak().current() > 0
                 ? snapshot.streak().current() + "일 연속 기록이 걸려 있어요. "
                 : "";

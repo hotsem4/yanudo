@@ -356,7 +356,12 @@ export class StudyStore {
       return true;
     }
     if (e.session === "REVIEW") return false;
-    const seen = e.via === "AUDIO" ? d.today_progress.audio_seen_ids : d.today_progress.card_seen_ids;
+    const seen =
+      e.via === "AUDIO"
+        ? d.today_progress.audio_seen_ids
+        : e.via === "SPEAK"
+          ? (d.today_progress.spoken_seen_ids ?? [])
+          : d.today_progress.card_seen_ids;
     return seen.includes(e.sentence_id);
   }
 

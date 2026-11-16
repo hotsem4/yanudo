@@ -95,12 +95,14 @@ public class DayStateService {
         Set<Long> todayIds = lesson == null ? Set.of() : new HashSet<>(lesson.sentenceIds());
         Set<Long> audioSeen = new TreeSet<>();
         Set<Long> cardSeen = new TreeSet<>();
+        Set<Long> spokenSeen = new TreeSet<>();
         Set<Long> reviewSeen = new TreeSet<>();
         for (ViewRow row : facts.views(today)) {
             if ("REVIEW".equals(row.session())) {
                 reviewSeen.add(row.sentenceId());
             } else if (todayIds.contains(row.sentenceId())) {
-                ("AUDIO".equals(row.via()) ? audioSeen : cardSeen).add(row.sentenceId());
+                ("AUDIO".equals(row.via()) ? audioSeen : "SPEAK".equals(row.via()) ? spokenSeen : cardSeen)
+                        .add(row.sentenceId());
             } else {
                 // 저장할 때는 오늘 레슨이었지만 시작일 변경·임포트로 지금은 아닌 행. 쓰기 때의 재분류와 같게 복습으로 센다.
                 reviewSeen.add(row.sentenceId());
@@ -136,7 +138,7 @@ public class DayStateService {
                 cat.maxDay(), lessonDay == 0 || schedule.repeat(today), HabitRules.round(currentDay, totalDays),
                 HabitRules.roundDay(currentDay, totalDays), walk.streak(), walk.achievedDays(), walk.cells(),
                 walk.pastRounds(), lesson, List.copyOf(audioSeen),
-                List.copyOf(cardSeen), gate, review, morningLock, focus, facts.marks(), makeups, restDay);
+                List.copyOf(cardSeen), List.copyOf(spokenSeen), gate, review, morningLock, focus, facts.marks(), makeups, restDay);
     }
 
     /** core 문장 3개. 모자라면 나머지를 seq 순으로 채운다. */

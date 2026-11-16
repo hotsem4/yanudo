@@ -3,7 +3,8 @@
 
 export type Speaker = "A" | "B";
 export type Session = "TODAY" | "REVIEW";
-export type Via = "AUDIO" | "CARD";
+/** SPEAK: 오늘의 10문장을 따라 말하기(또는 받아 적기)로 통과. 오늘 달성은 이것만 센다. */
+export type Via = "AUDIO" | "CARD" | "SPEAK";
 export type MarkStatus = "NEW" | "MEMORIZED" | "PRACTICE";
 export type LockResult = "CLEARED" | "SKIPPED";
 export type LockState = "NONE" | LockResult;
@@ -149,6 +150,8 @@ export interface Dashboard {
     sentence_ids: number[];
     audio_seen_ids: number[];
     card_seen_ids: number[];
+    /** 따라 말하기로 통과한 문장. 예전 스냅샷에는 없다. */
+    spoken_seen_ids?: number[];
   };
   review_gate: {
     required: boolean;

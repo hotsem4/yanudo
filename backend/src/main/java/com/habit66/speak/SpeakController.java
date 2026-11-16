@@ -35,7 +35,7 @@ public class SpeakController {
     /**
      * @param doneIds  OPEN 은 한 번이라도 연습을 끝낸 문장, MAKEUP 은 보충으로 센 문장
      * @param reps     문장마다 맞게 말할 횟수(보충이 아닌 연습과 빼먹은 날은 5, 미리 알린 날은 1)
-     * @param seen     TODAY_LOCKED 일 때 오늘의 10문장 진행(오디오·카드 중 많이 본 쪽)
+     * @param seen     TODAY_LOCKED 일 때 오늘의 10문장 중 따라 말하기로 통과한 문장 수
      * @param deadline   MAKEUP 일 때 이날까지 끝내면 그날 스트릭이 이어진다
      * @param repairable MAKEUP 일 때 이 보충이 실제로 스트릭을 지키는가(기한 안이고 그 전날까지 스트릭이 있음)
      */
@@ -101,7 +101,7 @@ public class SpeakController {
         boolean today = lesson.day() == s.lessonDay() && !s.contentMissing();
         List<Long> done = ids.stream().filter(practiced::contains).toList();
         if (today && !s.streak().achievedToday()) {
-            int seen = Math.max(s.audioSeenIds().size(), s.cardSeenIds().size());
+            int seen = s.spokenSeenIds().size();
             return new SpeakDay(lesson.day(), lesson.title(), ids, done, State.TODAY_LOCKED, PRACTICE_REPS, seen,
                     false, null, false);
         }

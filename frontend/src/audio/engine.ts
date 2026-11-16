@@ -155,6 +155,15 @@ export class AudioEngine {
     this.stopTurn("idle");
   }
 
+  /** 재생·미리듣기·기기 음성을 모두 멈춘다(마이크를 켜기 전, 앱 소리가 인식되지 않게). 미리듣기는 playing 을 켜지 않아 pause 로는 안 멈춘다. */
+  hush(): void {
+    if (this.playing || this.phase === "blocked") this.pause();
+    this.bump();
+    this.pauseElement();
+    this.resetTurn();
+    this.publish();
+  }
+
   toggle(): void {
     if (this.playing) this.pause();
     else void this.play();

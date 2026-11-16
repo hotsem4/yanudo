@@ -149,9 +149,22 @@ export function App() {
     showVocab(false);
     playback.selectTab(session);
     changeFilter(session === "REVIEW" ? "korean" : "all");
-    const mode = session === "REVIEW" ? "shadowing" : "full";
-    audioEngine.setMode(mode);
-    prefs.set("mode", mode);
+    if (session === "TODAY") {
+      // 학습: 문장 하나를 들려주고 카드의 마이크로 따라 말하게 한다(통과하면 다음 문장).
+      const today = view?.today?.sentences ?? [];
+      const first = today.find((s) => !view?.todayProgress.spokenIds.has(s.id)) ?? today[0];
+      if (audioEngine.getSnapshot().playing) audioEngine.pause();
+      if (first && view?.gate.open) {
+        const at = today.indexOf(first);
+        window.setTimeout(() => {
+          audioEngine.go(at);
+          void audioEngine.audition(first);
+        }, 0);
+      }
+      return;
+    }
+    audioEngine.setMode("shadowing");
+    prefs.set("mode", "shadowing");
     void audioEngine.play();
   };
 

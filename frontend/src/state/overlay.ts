@@ -22,7 +22,8 @@ export interface DayView {
   today: SessionData | null;
   review: SessionData | null;
   gate: { required: boolean; open: boolean; seen: number; total: number; yesterdayDay: number | null };
-  todayProgress: { total: number; audioSeen: number; cardSeen: number; achieved: boolean };
+  /** spoken: 따라 말하기로 통과한 수(오늘 달성 기준), spokenIds: 그 문장들. */
+  todayProgress: { total: number; audioSeen: number; cardSeen: number; spoken: number; spokenIds: ReadonlySet<number>; achieved: boolean };
   reviewProgress: { days: number[]; total: number; seen: number };
   streak: { current: number; longest: number; freezesLeft: number; perPeriod: number; achievedToday: boolean };
   morningLock: { windowStart: number; windowEnd: number; decided: boolean; result: LockState; studiedToday: boolean; sentences: Sentence[] };
@@ -55,6 +56,7 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
 
   const audioSeen = new Set(d.today_progress.audio_seen_ids);
   const cardSeen = new Set(d.today_progress.card_seen_ids);
+  const spokenSeen = new Set(d.today_progress.spoken_seen_ids ?? []);
   const reviewSeen = new Set(d.review_gate.seen_review_ids);
   const marks = new Map<number, { status: MarkStatus; at: number }>();
   const focusByStart = new Map<number, number>();
@@ -88,6 +90,7 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
         const session = e.session === "TODAY" && !todayIds.has(e.sentence_id) ? "REVIEW" : e.session;
         if (session === "REVIEW") reviewSeen.add(e.sentence_id);
         else if (e.via === "AUDIO") audioSeen.add(e.sentence_id);
+        else if (e.via === "SPEAK") spokenSeen.add(e.sentence_id);
         else cardSeen.add(e.sentence_id);
         break;
       }
@@ -106,7 +109,8 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
 
   const total = d.today_progress.total;
   const coversAll = (seen: Set<number>) => total > 0 && d.today_progress.sentence_ids.every((id) => seen.has(id));
-  const achieved = d.streak.achieved_today || coversAll(audioSeen) || coversAll(cardSeen);
+  // 학습 앱: 오늘 달성은 10문장을 모두 따라 말하기로 통과했을 때(듣기·카드는 진행으로만 보인다).
+  const achieved = d.streak.achieved_today || coversAll(spokenSeen);
   const current = d.streak.achieved_today ? d.streak.current : achieved ? d.streak.if_achieved_today : d.streak.current;
 
   const unlock = d.review_gate.unlock_ids;
@@ -129,7 +133,10 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
   };
 
   const serverStudied =
-    d.today_progress.audio_seen_ids.length > 0 || d.today_progress.card_seen_ids.length > 0 || d.review_gate.seen_review_ids.length > 0;
+    d.today_progress.audio_seen_ids.length > 0 ||
+    d.today_progress.card_seen_ids.length > 0 ||
+    (d.today_progress.spoken_seen_ids ?? []).length > 0 ||
+    d.review_gate.seen_review_ids.length > 0;
 
   let focusPending = 0;
   focusByStart.forEach((sec) => (focusPending += sec));
@@ -146,7 +153,14 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
       total: unlock.length,
       yesterdayDay: d.review_gate.yesterday_day,
     },
-    todayProgress: { total, audioSeen: countIn(audioSeen, todayIds), cardSeen: countIn(cardSeen, todayIds), achieved },
+    todayProgress: {
+      total,
+      audioSeen: countIn(audioSeen, todayIds),
+      cardSeen: countIn(cardSeen, todayIds),
+      spoken: countIn(spokenSeen, todayIds),
+      spokenIds: spokenSeen,
+      achieved,
+    },
     reviewProgress: { days: d.review_progress.days, total: d.review_progress.total, seen: reviewSeenCount },
     streak: {
       current,

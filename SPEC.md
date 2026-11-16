@@ -45,6 +45,13 @@
 
 - 블러된 카드를 탭하면 부드러운 전환으로 2.5초 동안 블러가 풀린다(다시 탭하면 즉시 닫힘).
 - 카드 좌우 스와이프 = 이전/다음 문장. 카드와 오디오 플레이어는 **같은 커서(index)** 를 쓴다.
+- **따라 말하기(오늘의 10문장, 2026-11-16 결정: 학습 앱이라 듣기만으로는 달성이 아니다)**: 오늘 탭 카드에서는 하단 독이 `[이 문장 듣기] [마이크] [다음 문장]`이 된다(연속 재생 중에는 멈출 수 있게 재생 독). 한 문장을 **두 단계**로 말한다(Fable 5.2 설계 판단).
+  1. **보고 말하기**: 영어를 보며 따라 말한다.
+  2. **가리고 말하기**: 영어를 가리고 해석·어순만 보고 말한다. 이 단계를 통과해야 `VIEW`(`session: TODAY`, `via: SPEAK`)를 남긴다. 가리기 필터가 이미 영어를 가리고 있으면(어순힌트·한글만) 2단계만 한다.
+  - 판정은 말을 끝낸 뒤(인식이 끝났을 때) 최종 결과로 한다: 모닝 보이스 락과 같은 `wordMatch`, 순서대로 맞힌 단어 60% 이상. 중간 결과로는 통과시키지 않는다(문장 끝까지 말하게). 말하는 동안 가린 단계에서는 맞힌 단어만 드러나고 나머지는 빈칸, 말을 끝내면 맞힌 단어(진하게)·놓친 단어(흐리게, 점선 밑줄)를 다 보여 준다. 점수·안내는 진행 막대 아래 띠("2/2 가리고 말하기 · 단어 9개 중 8개 (88%)").
+  - 통과하면 1.2초 뒤 아직 통과하지 못한 다음 문장으로 넘어가 그 문장을 들려준다(없으면 "오늘 10문장 모두 통과"). 마이크를 켜기 전에 재생·미리듣기·기기 음성을 모두 멈춘다(앱 소리가 인식되지 않게).
+  - 소리 내기 어렵거나 마이크를 쓸 수 없으면 **받아 적기**: 영어를 가린 채 카드 아래 입력칸에 들은 문장을 적는다. 80% 이상이면 통과(철자는 인식 오차가 없어 기준이 높다). 맞힌 단어만 드러난다. 마이크를 쓸 수 없는 상태는 문장이 바뀌어도 기억한다.
+  - 접은 화면 진행 레일은 통과한 문장을 진하게 채운다.
 - 문장별 상태 토글: `NEW` → `MEMORIZED`(암기 완료) ↔ `PRACTICE`(다시 연습). 서버에 저장한다.
 
 ### F-03. 3모드 핸즈프리 오디오 플레이어
@@ -87,7 +94,7 @@
 
 ### F-05. 66일 습관 트래커 & 스트릭 방어
 
-- 오늘 달성 = 오늘 레슨 문장 전부 `TODAY`·`AUDIO` 열람 **또는** 전부 `TODAY`·`CARD` 열람. 완주하는 순간 서버가 `day_achievement`에 한 번 기록한다. 이 기록은 이후 콘텐츠가 바뀌어도 뒤집히지 않는다. 빈 레슨은 완주로 치지 않는다.
+- 오늘 달성 = 오늘 레슨 문장 전부를 **따라 말하기로 통과**(`TODAY`·`SPEAK` 열람, 받아 적기 포함). 듣기(`AUDIO`)·카드 넘기기(`CARD`)는 진행으로만 남고 달성에 세지 않는다. 완주하는 순간 서버가 `day_achievement`에 한 번 기록한다. 이 기록은 이후 콘텐츠가 바뀌어도 뒤집히지 않는다. 빈 레슨은 완주로 치지 않는다.
 - TODAY 열람인데 그 문장이 그 날짜의 오늘 레슨에 속하지 않으면(롤오버 뒤에도 열어 둔 어제 큐 등) 서버가 REVIEW로 바꿔 기록한다.
 - 스트릭 프리즈: 30일 단위 구간(`Day 1-30`, `31-60`, `61-90`, …, 끝없이)마다 2개. 쓰지 않은 프리즈는 다음 구간으로 넘어가지 않는다.
 - **보충(makeup)**: 지난 날 중 달성하지 못한 날은 그 날짜의 레슨(Day = 시작일부터 지난 날 + 1)을 말하기 탭에서 문장마다 **5번** 맞게 말해 보충한다(F-09). 그날 안에 "오늘은 어려워요"를 알렸으면 **1번**씩이면 된다. 보충은 그 날짜 **다음 날부터** 한 `speak_practice`만 센다(필요 횟수 이상인 기록). 모든 문장이 채워진 날이 보충한 날이다.
@@ -170,18 +177,18 @@
 
 ## 3. 데이터베이스 (SQLite, `data/habit66.db`)
 
-스키마 원본: `backend/src/main/resources/schema.sql`. 날짜는 `TEXT 'YYYY-MM-DD'`, 시각은 epoch millis `INTEGER`. **사실만 저장하고 파생값(Day 번호, 게이트, 스트릭, 프리즈 사용)은 저장하지 않는다.** 테이블마다 쓰기 소유자는 하나다.
+스키마 원본: `backend/src/main/resources/schema.sql`. 이미 있는 표의 CHECK 제약을 넓혀야 하면 `common.SchemaMigrations`가 시작할 때 한 번 표를 새로 만들어 옮긴다(SQLite 는 CHECK 를 ALTER 할 수 없다. 2026-11-16 `via`에 `SPEAK` 추가). 날짜는 `TEXT 'YYYY-MM-DD'`, 시각은 epoch millis `INTEGER`. **사실만 저장하고 파생값(Day 번호, 게이트, 스트릭, 프리즈 사용)은 저장하지 않는다.** 테이블마다 쓰기 소유자는 하나다.
 
 ```
 lesson(id PK, day_number UNIQUE, title, theme, created_at, updated_at)                 -- content
 sentence(id PK, lesson_id FK, seq, speaker 'A'|'B', en_text, ko_word_order, ko_natural,
          is_core, created_at, updated_at, UNIQUE(lesson_id, seq))                       -- content
-sentence_view(id PK, log_date, sentence_id FK, session 'TODAY'|'REVIEW', via 'AUDIO'|'CARD',
+sentence_view(id PK, log_date, sentence_id FK, session 'TODAY'|'REVIEW', via 'AUDIO'|'CARD'|'SPEAK',
               event_id, created_at, UNIQUE(log_date, sentence_id, session, via))         -- progress
 sentence_mark(sentence_id PK FK, status 'NEW'|'MEMORIZED'|'PRACTICE', changed_at)        -- progress, 최신값 우선
 focus_session(started_at PK, log_date, seconds, updated_at)                              -- progress, 재전송 시 큰 값
 morning_lock(log_date PK, state 'CLEARED'|'SKIPPED', decided_at)                         -- progress, 첫 결정 유지
-day_achievement(log_date PK, lesson_day, via 'AUDIO'|'CARD', achieved_at)                -- progress, 완주 순간 1회
+day_achievement(log_date PK, lesson_day, via 'AUDIO'|'CARD'|'SPEAK', achieved_at)        -- progress, 완주 순간 1회(지금은 SPEAK 만)
 reminder_log(log_date PK, status 'SENDING'|'SENT'|'FAILED', attempts, push_sent,
              webhooks_sent, updated_at)                                                  -- notify
 push_subscription(id PK, endpoint UNIQUE, p256dh, auth, user_agent, created_at)          -- notify
@@ -233,7 +240,7 @@ rest_day(log_date PK, declared_at)                                              
   "streak": { "current": 2, "if_achieved_today": 3, "longest": 2, "achieved_today": false,
               "freezes_left": 2, "freezes_per_period": 2 },
   "today_progress": { "total": 10, "sentence_ids": [21, 22],
-                      "audio_seen_ids": [21], "card_seen_ids": [21, 22] },
+                      "audio_seen_ids": [21], "card_seen_ids": [21, 22], "spoken_seen_ids": [21] },
   "review_gate": { "required": true, "cleared": false, "yesterday_day": 2,
                    "unlock_ids": [11, 12], "seen_review_ids": [11] },
   "review_progress": { "days": [2, 1], "total": 20, "seen": 3 },
@@ -270,7 +277,7 @@ rest_day(log_date PK, declared_at)                                              
 ```json
 { "events": [
   { "id": "6f1c…", "type": "VIEW", "occurred_at": 1763170000000,
-    "sentence_id": 21, "session": "TODAY", "via": "AUDIO" },
+    "sentence_id": 21, "session": "TODAY", "via": "SPEAK" },
   { "id": "a2b9…", "type": "MARK", "occurred_at": 1763170001000,
     "sentence_id": 21, "status": "MEMORIZED" },
   { "id": "focus:1763168000000", "type": "FOCUS", "occurred_at": 1763170002000,

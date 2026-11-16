@@ -41,6 +41,7 @@ public record DaySnapshot(
         LessonView todayLesson,
         List<Long> audioSeenIds,
         List<Long> cardSeenIds,
+        List<Long> spokenSeenIds,
         Gate gate,
         Review review,
         MorningLock morningLock,

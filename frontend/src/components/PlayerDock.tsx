@@ -1,7 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Lock, Pause, Play, SkipBack, SkipForward } from "lucide-react";
+import { Check, Lock, Mic, Pause, Play, SkipBack, SkipForward, Square, Volume2 } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { audioEngine, useEngine } from "../audio/useEngine";
+import { speakControl, useSpeakControl } from "../lib/speakControl";
 
 const R = 31;
 const C = 2 * Math.PI * R;
@@ -9,8 +10,61 @@ const C = 2 * Math.PI * R;
 /**
  * 하단 플로팅 필 독: 이전 · 56px 재생 버튼(무음 대기 링) · 다음. 이 셋 외에는 넣지 않는다(clean-blue-ui).
  * 링은 무음 트랙의 currentTime(미디어 시계)을 rAF 로 읽어 DOM 속성만 바꾼다.
+ * 오늘의 10문장에서 따라 말하기를 받는 동안에는 이 문장 듣기 · 마이크 · 다음 문장이 된다(학습이 먼저).
  */
 export function PlayerDock() {
+  const speak = useSpeakControl();
+  const playing = useEngine().playing;
+  // 연속 재생(복습에서 이어짐·알림 자동 재생 등) 중에는 재생 독을 보여 멈출 수 있게 한다.
+  if (speak.active && !playing) return <SpeakDock listening={speak.listening} justPassed={speak.justPassed} disabled={speak.disabled} />;
+  return <PlayDock />;
+}
+
+function SpeakDock({ listening, justPassed, disabled }: { listening: boolean; justPassed: boolean; disabled: boolean }) {
+  const eng = useEngine();
+  const item = eng.items[eng.cursor];
+  const atEnd = eng.cursor >= eng.items.length - 1;
+  const side = "press flex h-12 w-12 items-center justify-center rounded-full text-surface/80 disabled:opacity-35 [@media(hover:hover)]:hover:bg-surface/10";
+  return (
+    <div className="dock-rail bottom-dock z-30">
+      <nav aria-label="따라 말하기 컨트롤" className="pointer-events-auto flex h-[72px] w-[264px] items-center justify-between rounded-full bg-ink px-2 shadow-dock">
+        <button
+          type="button"
+          aria-label="이 문장 듣기"
+          disabled={!item || listening}
+          onClick={() => item && void audioEngine.audition(item)}
+          className={side}
+        >
+          <Volume2 size={22} strokeWidth={2} aria-hidden />
+        </button>
+        <div className="relative flex h-[66px] w-[66px] items-center justify-center">
+          {listening && <span aria-hidden className="absolute inset-0 rounded-full bg-royal/30 motion-safe:animate-ping" />}
+          <button
+            type="button"
+            aria-label={listening ? "말하기 멈추기" : "따라 말하기"}
+            aria-pressed={listening}
+            disabled={disabled || justPassed}
+            onClick={() => speakControl.toggle()}
+            className="press relative flex h-14 w-14 items-center justify-center rounded-full bg-royal text-surface shadow-glow disabled:bg-royal/45 disabled:shadow-none"
+          >
+            {justPassed ? (
+              <Check size={26} strokeWidth={2.5} aria-hidden />
+            ) : listening ? (
+              <Square size={20} strokeWidth={2} fill="currentColor" aria-hidden />
+            ) : (
+              <Mic size={26} strokeWidth={2} aria-hidden />
+            )}
+          </button>
+        </div>
+        <button type="button" aria-label="다음 문장" disabled={!item || atEnd || listening} onClick={() => audioEngine.go("next")} className={side}>
+          <SkipForward size={22} strokeWidth={2} aria-hidden />
+        </button>
+      </nav>
+    </div>
+  );
+}
+
+function PlayDock() {
   const eng = useEngine();
   const ringRef = useRef<SVGCircleElement>(null);
   const holding = eng.phase === "holding" || (eng.paused && eng.hold !== null);

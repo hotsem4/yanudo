@@ -202,11 +202,20 @@ class ApiIntegrationTest {
 
     @Test
     @Order(3)
-    void tenCardViewsAchieveTodayAndResendingChangesNothing() throws Exception {
+    void speakingTenSentencesAchievesTodayAndResendingChangesNothing() throws Exception {
         List<Long> ids = longs(getJson("/api/v1/dashboard").path("today_progress").path("sentence_ids"));
+        // 학습 앱: 카드로 다 넘기기만 해서는 달성이 아니다(진행으로만 남는다).
+        ArrayNode cards = mapper.createArrayNode();
+        for (int i = 0; i < ids.size(); i++) {
+            cards.add(view("seen-" + i, ids.get(i), "TODAY", "CARD", CLOCK.millis()));
+        }
+        JsonNode onlySeen = postEvents(cards).path("dashboard");
+        assertThat(onlySeen.path("streak").path("achieved_today").asBoolean()).isFalse();
+        assertThat(longs(onlySeen.path("today_progress").path("card_seen_ids"))).containsExactlyElementsOf(ids);
+
         ArrayNode events = mapper.createArrayNode();
         for (int i = 0; i < ids.size(); i++) {
-            events.add(view("card-" + i, ids.get(i), "TODAY", "CARD", CLOCK.millis()));
+            events.add(view("card-" + i, ids.get(i), "TODAY", "SPEAK", CLOCK.millis()));
         }
 
         // 9개까지는 달성이 아니다.
@@ -227,7 +236,7 @@ class ApiIntegrationTest {
         assertThat(dashboard.path("streak").path("current").asInt()).isEqualTo(1);
         assertThat(dashboard.path("streak").path("if_achieved_today").asInt()).isEqualTo(1);
         assertThat(dashboard.path("streak").path("longest").asInt()).isEqualTo(1);
-        assertThat(longs(dashboard.path("today_progress").path("card_seen_ids"))).containsExactlyElementsOf(ids);
+        assertThat(longs(dashboard.path("today_progress").path("spoken_seen_ids"))).containsExactlyElementsOf(ids);
         assertThat(dashboard.path("today_progress").path("audio_seen_ids")).isEmpty();
 
         // 같은 배치를 다시 보내도 응답이 글자 하나까지 같다.
@@ -467,11 +476,18 @@ class ApiIntegrationTest {
 
     @Test
     @Order(11)
-    void audioRunOfDayTwoExtendsTheStreak() throws Exception {
+    void speakingDayTwoExtendsTheStreak() throws Exception {
         List<Long> day2 = longs(getJson("/api/v1/dashboard").path("today_progress").path("sentence_ids"));
+        // 오디오로 끝까지 들어도 달성이 아니다.
+        ArrayNode heard = mapper.createArrayNode();
+        for (int i = 0; i < day2.size(); i++) {
+            heard.add(view("d2-heard-" + i, day2.get(i), "TODAY", "AUDIO", CLOCK.millis()));
+        }
+        assertThat(postEvents(heard).path("dashboard").path("streak").path("achieved_today").asBoolean()).isFalse();
+
         ArrayNode events = mapper.createArrayNode();
         for (int i = 0; i < day2.size(); i++) {
-            events.add(view("d2-audio-" + i, day2.get(i), "TODAY", "AUDIO", CLOCK.millis()));
+            events.add(view("d2-audio-" + i, day2.get(i), "TODAY", "SPEAK", CLOCK.millis()));
         }
 
         JsonNode d = postEvents(events).path("dashboard");
@@ -479,7 +495,7 @@ class ApiIntegrationTest {
         assertThat(d.path("streak").path("achieved_today").asBoolean()).isTrue();
         assertThat(d.path("streak").path("current").asInt()).isEqualTo(2);
         assertThat(d.path("streak").path("longest").asInt()).isEqualTo(2);
-        assertThat(longs(d.path("today_progress").path("audio_seen_ids"))).containsExactlyElementsOf(day2);
+        assertThat(longs(d.path("today_progress").path("spoken_seen_ids"))).containsExactlyElementsOf(day2);
     }
 
     // ── 5. 콘텐츠 임포트 ──────────────────────────────────────
@@ -705,16 +721,16 @@ class ApiIntegrationTest {
         // 11-11(Day 4) 낮에 카드로 마지막 한 문장 빼고: 아직 달성이 아니다.
         ArrayNode almost = mapper.createArrayNode();
         for (int i = 0; i < day4.size() - 1; i++) {
-            almost.add(view("late-card-" + i, day4.get(i), "TODAY", "CARD", seoul(11, 12, 0)));
+            almost.add(view("late-card-" + i, day4.get(i), "TODAY", "SPEAK", seoul(11, 12, 0)));
         }
         postEvents(almost);
         assertThat(getJson("/api/v1/habit/heatmap").path("cells").get(3).path("status").asText())
                 .isEqualTo("MISSED");
 
         // 마지막 한 문장이 도착하면 그날(11-11)이 소급 달성된다. 11-12·11-13 은 프리즈, 11-14 에서 끊긴다.
-        JsonNode res = postEvents(array(view("late-card-last", day4.get(day4.size() - 1), "TODAY", "CARD",
+        JsonNode res = postEvents(array(view("late-card-last", day4.get(day4.size() - 1), "TODAY", "SPEAK",
                 seoul(11, 12, 5))));
-        assertThat(res.path("dashboard").path("today_progress").path("card_seen_ids")).isEmpty();
+        assertThat(longs(res.path("dashboard").path("today_progress").path("spoken_seen_ids"))).doesNotContainAnyElementsOf(day4);
         assertThat(res.path("dashboard").path("streak").path("current").asInt()).isEqualTo(2);
         assertThat(getJson("/api/v1/habit/heatmap").path("cells").get(3).path("status").asText())
                 .isEqualTo("ACHIEVED");
@@ -722,7 +738,7 @@ class ApiIntegrationTest {
         // 달력으로는 11-13 새벽 02:30 이지만 03시 이전이라 11-12(Day 5) 기록이다.
         ArrayNode beforeRollover = mapper.createArrayNode();
         for (int i = 0; i < day5.size(); i++) {
-            beforeRollover.add(view("night-" + i, day5.get(i), "TODAY", "AUDIO", seoul(13, 2, 30)));
+            beforeRollover.add(view("night-" + i, day5.get(i), "TODAY", "SPEAK", seoul(13, 2, 30)));
         }
         JsonNode d = postEvents(beforeRollover).path("dashboard");
 
@@ -815,11 +831,11 @@ class ApiIntegrationTest {
         List<Long> todayIds = longs(day5.path("sentence_ids"));
         ArrayNode views = mapper.createArrayNode();
         for (int i = 0; i < 9; i++) {
-            views.add(view("speak-view-" + i, todayIds.get(i), "TODAY", "CARD", CLOCK.millis()));
+            views.add(view("speak-view-" + i, todayIds.get(i), "TODAY", "SPEAK", CLOCK.millis()));
         }
         postEvents(views);
         assertThat(speakRow(getJson("/api/v1/speak"), 5).path("seen").asInt()).isEqualTo(9);
-        postEvents(array(view("speak-view-9", todayIds.get(9), "TODAY", "CARD", CLOCK.millis())));
+        postEvents(array(view("speak-view-9", todayIds.get(9), "TODAY", "SPEAK", CLOCK.millis())));
         assertThat(speakRow(getJson("/api/v1/speak"), 5).path("state").asText()).isEqualTo("OPEN");
         JsonNode lesson5 = getJson("/api/v1/speak/days/5");
         assertThat(lesson5.path("sentences")).hasSize(10);
@@ -879,10 +895,10 @@ class ApiIntegrationTest {
         // 어제 달성이 먼저 남아야 오늘 레슨이 Day 2 로 정해져 오늘 기록이 오늘 공부로 인정된다.
         ArrayNode batch = mapper.createArrayNode();
         for (int i = 0; i < day1.size(); i++) {
-            batch.add(view("off-y-" + i, day1.get(i), "TODAY", "CARD", seoul(15, 21, 0)));
+            batch.add(view("off-y-" + i, day1.get(i), "TODAY", "SPEAK", seoul(15, 21, 0)));
         }
         for (int i = 0; i < day2.size(); i++) {
-            batch.add(view("off-t-" + i, day2.get(i), "TODAY", "CARD", CLOCK.millis()));
+            batch.add(view("off-t-" + i, day2.get(i), "TODAY", "SPEAK", CLOCK.millis()));
         }
         JsonNode d = postEvents(batch).path("dashboard");
         assertThat(d.path("lesson_day").asInt()).isEqualTo(2);

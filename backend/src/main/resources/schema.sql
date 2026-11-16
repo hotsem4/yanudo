@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS sentence_view (
     log_date     TEXT    NOT NULL,
     sentence_id  INTEGER NOT NULL REFERENCES sentence(id) ON DELETE CASCADE,
     session      TEXT    NOT NULL CHECK (session IN ('TODAY', 'REVIEW')),
-    via          TEXT    NOT NULL CHECK (via IN ('AUDIO', 'CARD')),
+    via          TEXT    NOT NULL CHECK (via IN ('AUDIO', 'CARD', 'SPEAK')),
     event_id     TEXT,
     created_at   INTEGER NOT NULL,
     UNIQUE (log_date, sentence_id, session, via)
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS morning_lock (
 CREATE TABLE IF NOT EXISTS day_achievement (
     log_date     TEXT    PRIMARY KEY,
     lesson_day   INTEGER NOT NULL,
-    via          TEXT    NOT NULL CHECK (via IN ('AUDIO', 'CARD')),
+    via          TEXT    NOT NULL CHECK (via IN ('AUDIO', 'CARD', 'SPEAK')),
     achieved_at  INTEGER NOT NULL
 );
 

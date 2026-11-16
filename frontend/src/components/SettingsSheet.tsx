@@ -118,7 +118,10 @@ function RecordSection({ study }: { study: StudyState }) {
   const rows = [
     { label: "오늘", value: `${koreanDate(v.dashboard.today)}, Day ${v.dashboard.current_day}` },
     { label: "오늘 집중", value: koreanDuration(v.focusSecondsToday) },
-    { label: "오늘 진행", value: `듣기 ${v.todayProgress.audioSeen}/${v.todayProgress.total}, 카드 ${v.todayProgress.cardSeen}/${v.todayProgress.total}` },
+    {
+      label: "오늘 진행",
+      value: `따라 말하기 ${v.todayProgress.spoken}/${v.todayProgress.total} (듣기 ${v.todayProgress.audioSeen}, 카드 ${v.todayProgress.cardSeen})`,
+    },
     { label: "보내지 않은 기록", value: `${study.sync.pending}건${study.sync.online ? "" : " (오프라인)"}` },
   ];
   return (

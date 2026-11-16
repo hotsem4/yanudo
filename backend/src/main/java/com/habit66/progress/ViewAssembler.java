@@ -41,7 +41,7 @@ public class ViewAssembler {
                 s.currentDay(), s.totalDays(), s.lessonDay(), s.maxLessonDay(),
                 s.contentMissing(), s.round(), s.roundDay(),
                 s.streak(),
-                new Views.TodayProgress(todayIds.size(), todayIds, s.audioSeenIds(), s.cardSeenIds()),
+                new Views.TodayProgress(todayIds.size(), todayIds, s.audioSeenIds(), s.cardSeenIds(), s.spokenSeenIds()),
                 new Views.ReviewGate(s.gate().required(), s.gate().cleared(), s.gate().yesterdayDay(),
                         s.gate().unlockIds(), s.gate().seenReviewIds()),
                 new Views.ReviewProgress(s.review().days(), s.review().sentences().size(), s.review().seen()),

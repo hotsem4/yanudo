@@ -12,6 +12,8 @@ import type { DayView } from "../state/overlay";
 import type { StudyState } from "../state/store";
 import { studyStore } from "../state/store";
 import { Mascot } from "./Mascot";
+import { SpeakCheck, type SpeakFeedback } from "./SpeakCheck";
+import { displayHits } from "../lib/wordMatch";
 import { Waveform } from "./Waveform";
 
 interface Props {
@@ -102,9 +104,16 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
     flingX.current = 0;
   }, [index]);
 
+  // 따라 말하기 결과(오늘 탭). 문장이 바뀌면 SpeakCheck 가 새로 붙어 다시 알려 준다.
+  const [feedback, setFeedback] = useState<(SpeakFeedback & { id: number }) | null>(null);
+  const fb = feedback?.id === sentence.id ? feedback : null;
+
   const engineHides = eng.hideEn && eng.item?.id === sentence.id;
-  const revealed = revealedId === sentence.id;
-  const hideEn = !revealed && (filter !== "all" || engineHides);
+  // 따라 말하기가 영어 모양을 정한다: 가리고 말하는 단계는 가림(hide), 말하는 중엔 맞힌 단어만(hits),
+  // 말해 본 뒤엔 전부 보이고 맞힘·놓침을 칠한다(full). 그 밖엔 가리기 필터대로.
+  const enDisplay = fb?.display ?? "none";
+  const revealed = revealedId === sentence.id || enDisplay === "full";
+  const hideEn = enDisplay === "hide" || (!revealed && enDisplay === "none" && (filter !== "all" || engineHides));
   const hideOrder = !revealed && filter === "korean";
   const hideNatural = !revealed && filter === "hint";
   const anyHidden = hideEn || hideOrder || hideNatural;
@@ -153,9 +162,24 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
         </span>
       </div>
 
-      <ProgressRail sentences={session.sentences} index={index} />
+      <ProgressRail sentences={session.sentences} index={index} spoken={session.session === "TODAY" ? view.todayProgress.spokenIds : null} />
 
       {banner && <p aria-hidden={locked || undefined} className="mt-3 self-start rounded-full bg-tint px-3 py-1.5 text-[12px] font-medium text-royal">{banner}</p>}
+      {/* 따라 말하기 안내 띠. 읽기 프로그램이 첫 문구도 읽도록 자리는 늘 두고 내용만 바꾼다. */}
+      <p aria-live="polite" className={fb && !locked ? "mt-3 flex flex-wrap items-center gap-1.5" : "sr-only"}>
+        {fb && !locked && (
+          <>
+            {fb.step && <span className="shrink-0 rounded-full bg-canvas px-2 py-1 text-[11.5px] font-bold text-muted-strong">{fb.step}</span>}
+            <span
+              className={`break-keep rounded-2xl px-3 py-1.5 text-[12.5px] font-semibold leading-snug ${
+                fb.tone === "pass" ? "bg-royal text-surface" : fb.tone === "error" ? "bg-canvas text-ink" : "bg-tint text-royal"
+              }`}
+            >
+              {fb.status}
+            </span>
+          </>
+        )}
+      </p>
 
       <div className={`relative flex flex-1 flex-col justify-center py-8 ${locked ? "opacity-30" : ""}`} aria-hidden={locked}>
         <AnimatePresence initial={false} mode="popLayout" custom={motionDir}>
@@ -197,8 +221,28 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
               lang="en"
               translate="no"
             >
-              {sentence.en_text}
+              {fb?.result && (enDisplay === "full" || enDisplay === "hits")
+                ? displayHits(sentence.en_text, fb.result).map((h, i) => (
+                    <span key={i}>
+                      {i > 0 ? " " : ""}
+                      {h.hit ? (
+                        <span className="text-ink">{h.text}</span>
+                      ) : enDisplay === "hits" ? (
+                        // 가리고 말하는 중: 아직 맞히지 못한 단어는 자리만 보인다(답을 미리 보지 않게).
+                        <span aria-hidden className="inline-block h-[0.9em] translate-y-[0.12em] rounded-md bg-line" style={{ width: `${Math.max(2, h.text.length) * 0.5}em` }} />
+                      ) : (
+                        <span className="text-faint underline decoration-faint decoration-dotted underline-offset-4">{h.text}</span>
+                      )}
+                    </span>
+                  ))
+                : sentence.en_text}
             </p>
+            {fb?.result && enDisplay === "full" && (
+              <span className="sr-only">
+                맞힌 단어 {fb.result.hits.filter((h) => h.hit).length}개, 놓친 단어:{" "}
+                {fb.result.hits.filter((h) => !h.hit).map((h) => h.word).join(", ") || "없음"}
+              </span>
+            )}
             <p className="hide-blur -mb-1.5 mt-4 break-keep text-[16px] font-semibold leading-normal text-royal" data-hidden={hideOrder}>
               <ChunkedOrder text={sentence.ko_word_order} />
             </p>
@@ -209,6 +253,29 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
           </motion.div>
         </AnimatePresence>
       </div>
+
+      {session.session === "TODAY" && !locked && (
+        <SpeakCheck
+          key={sentence.id}
+          sentence={sentence}
+          passed={view.todayProgress.spokenIds.has(sentence.id)}
+          filterHides={filter !== "all"}
+          remainingAfter={session.sentences.filter((s) => s.id !== sentence.id && !view.todayProgress.spokenIds.has(s.id)).length}
+          disabled={covered}
+          onFeedback={(f) => setFeedback({ ...f, id: sentence.id })}
+          onPassed={(typed) => {
+            // 아직 통과하지 못한 다음 문장으로 넘기고(뒤에 없으면 앞에서 찾는다) 그 문장을 한 번 들려준다.
+            // 받아 적기로 통과했으면 소리를 내지 않는다(소리 내기 어려운 곳일 수 있다).
+            const list = session.sentences;
+            const order = [...list.slice(index + 1), ...list.slice(0, index)];
+            const next = order.find((s) => s.id !== sentence.id && !view.todayProgress.spokenIds.has(s.id));
+            if (!next) return false;
+            audioEngine.go(list.indexOf(next));
+            if (!typed) void audioEngine.audition(next);
+            return true;
+          }}
+        />
+      )}
 
       <div aria-hidden={locked || undefined}>
         <StatusLine eng={eng} sentence={sentence} filter={filter} anyHidden={anyHidden} online={online} />
@@ -251,14 +318,21 @@ function ChunkedOrder({ text }: { text: string }) {
  * 접은 화면용 진행 레일. 문장마다 한 칸: 지금 위치는 royal, 암기한 문장은 frost, 나머지는 line.
  * 펼친 화면에서는 왼쪽 열의 문장 지도가 같은 일을 하므로 숨긴다. 수치는 옆의 "n / total" 이 읽어 준다.
  */
-function ProgressRail({ sentences, index }: { sentences: readonly Sentence[]; index: number }) {
+/** 접은 화면의 문장 진행 레일. 오늘 탭이면 따라 말하기로 통과한 문장을 진하게 채운다. */
+function ProgressRail({ sentences, index, spoken }: { sentences: readonly Sentence[]; index: number; spoken: ReadonlySet<number> | null }) {
   return (
     <div aria-hidden className="mt-4 flex gap-[3px] unfolded:hidden">
       {sentences.map((s, i) => (
         <span
           key={s.id}
           className={`h-1 min-w-0 flex-1 rounded-full transition-colors duration-200 ${
-            i === index ? "bg-royal" : s.status === "MEMORIZED" ? "bg-frost" : "bg-line"
+            spoken?.has(s.id)
+              ? "bg-royal"
+              : i === index
+                ? "bg-royal/45"
+                : s.status === "MEMORIZED"
+                  ? "bg-frost"
+                  : "bg-line"
           }`}
         />
       ))}

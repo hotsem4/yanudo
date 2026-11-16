@@ -167,6 +167,7 @@ bg-hero       = bg-gradient-to-br from-royal to-royal-soft
 </div>
 ```
 - 독 안에는 이 세 개만 둔다. 다른 버튼을 추가하지 않는다.
+- **따라 말하기 독**(오늘의 10문장 카드가 따라 말하기를 받는 동안, `lib/speakControl.ts`): `[이 문장 듣기 Volume2 48px] [56px bg-royal 마이크(듣는 중 Square + royal/30 ping, 통과 Check)] [다음 문장 48px]`. 여전히 세 개다. 결과는 독이 아니라 카드에 보인다: 영어 문장 단어별 칠하기(맞힘 ink, 놓침 faint + 점선 밑줄, 가리고 말하는 중 못 맞힌 단어는 `bg-line` 빈칸) + 진행 막대 아래 줄(단계 칩 11.5px `bg-canvas` "1/2 보고 말하기" + 12.5px 띠 `bg-tint text-royal`, 통과 `bg-royal text-surface`). 받아 적기 입력칸은 카드 아래(16px 글자, `h-12 rounded-2xl bg-canvas`, 포커스 시 화면 가운데로 스크롤). 듣는 중 ping 은 `motion-safe` 일 때만
 - 자리는 `.dock-rail`이 정한다: 접은 화면은 화면 가운데, 펼친 화면은 학습 카드 열 가운데(§3). "탭해서 재생 시작" 알약도 같은 레일을 쓴다.
 - 링: 반지름 31, 두께 3, 바탕 `white/15`, 진행 `#FFFFFF`. 무음 대기 때만 줄어든다.
 

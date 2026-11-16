@@ -139,7 +139,7 @@ function HeatmapBody({ data, achievedTodayLocally, mascot }: { data: Heatmap; ac
       </ul>
       <p className="text-pretty text-[12.5px] leading-relaxed text-muted">
         {mascot && data.round <= 1 && `숫자가 적힌 칸은 ${MASCOT_NAME}이 자라는 날이에요. 하루를 놓쳐도 작아지지 않아요. `}
-        오늘의 10문장을 오디오로 한 바퀴 듣거나 카드로 한 번 넘기면 그날 달성이에요. 66일마다 한 라운드가 끝나고 기록은 계속 이어져요. 30일마다 프리즈 2개가 놓친 하루를 대신 지켜 줘요. 놓친 날은 3일 안에 말하기 탭에서 보충해도 이어져요.
+        오늘의 10문장을 문장마다 영어로 따라 말해 모두 통과하면 그날 달성이에요. 66일마다 한 라운드가 끝나고 기록은 계속 이어져요. 30일마다 프리즈 2개가 놓친 하루를 대신 지켜 줘요. 놓친 날은 3일 안에 말하기 탭에서 보충해도 이어져요.
       </p>
     </div>
   );

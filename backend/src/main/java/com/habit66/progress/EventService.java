@@ -166,7 +166,10 @@ public class EventService {
             if (sentence.day() != lessonDay) {
                 session = Session.REVIEW;
             } else {
-                completions.merge(new Completion(date, lessonDay, view.via()), at, Math::max);
+                if (view.via() == ClientEvent.Via.SPEAK) {
+                    // 학습 앱이라 듣기·카드 넘기기는 진행 기록일 뿐, 그날 달성은 따라 말하기 통과로만 정한다.
+                    completions.merge(new Completion(date, lessonDay, view.via()), at, Math::max);
+                }
             }
         }
         jdbc.update("""

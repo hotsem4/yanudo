@@ -1,20 +1,106 @@
+<div align="center">
+
 # 66 Habit English
 
-영어 어순으로 하루 10문장을 소리 내어 외우는 66일 습관 앱입니다. Windows PC 한 대가 서버이고, 갤럭시 폴드에서 Tailscale HTTPS로 접속해 홈 화면 앱(PWA)으로 씁니다.
+**영어 어순으로 하루 10문장, 소리 내어 말해야 끝나는 습관 앱**
+
+듣기만 해서는 달성이 아닙니다. 문장마다 보고 말하고, 가리고 다시 말해야 오늘이 채워집니다.<br>
+66일은 끝이 아니라 습관이 붙기까지의 한 라운드입니다.
+
+![React](https://img.shields.io/badge/React_18-20232A?logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript_strict-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_3-06B6D4?logo=tailwindcss&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot_3.4-6DB33F?logo=springboot&logoColor=white)
+![Java](https://img.shields.io/badge/Java_17+-ED8B00?logo=openjdk&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white)
+![PWA](https://img.shields.io/badge/PWA-5A0FC8?logo=pwa&logoColor=white)
+
+<img src="docs/images/speak-see.jpg" width="260" alt="보고 말하기: 말하는 동안 맞힌 단어가 진해진다">&nbsp;&nbsp;
+<img src="docs/images/speak-recall.jpg" width="260" alt="가리고 말하기: 맞힌 단어만 드러나고 나머지는 빈칸">
+
+<sub>왼쪽: 1/2 보고 말하기(말하는 동안 맞힌 단어가 진해짐) · 오른쪽: 2/2 가리고 말하기(맞힌 단어만 드러남)</sub>
+
+</div>
+
+## 어떤 앱인가요
+
+혼자 쓰는 영어 회화 암송 앱입니다. 한 문장을 **영어 원문 · 영어 어순 그대로 끊은 직역 · 자연스러운 해석** 세 줄로 보여 주고, 그 문장을 직접 소리 내어 말하게 합니다. 브라우저 음성 인식으로 순서대로 맞힌 단어를 세어 채점합니다.
+
+Windows PC 한 대가 서버이고, 갤럭시 Z 폴드에서 Tailscale HTTPS 주소로 접속해 홈 화면 앱(PWA)으로 씁니다. 접은 커버 화면과 펼친 화면에 따로 맞춘 레이아웃이 있습니다.
+
+<div align="center">
+<img src="docs/images/unfolded.jpg" width="640" alt="펼친 화면: 왼쪽 문장 지도, 오른쪽 학습 카드">
+<br><sub>펼친 화면: 왼쪽은 오늘 통과한 문장 지도, 오른쪽은 말해 본 뒤 맞힌 단어(진하게)와 놓친 단어(흐리게)</sub>
+</div>
+
+## 하루 흐름
+
+```mermaid
+flowchart LR
+    M["아침 06:00~09:30<br/>모닝 보이스 락<br/>(핵심 3문장 말하기)"] -.보너스.-> R
+    R["어제 복습<br/>어제 문장 다시 보기·듣기"] -->|게이트 열림| T
+    T["오늘의 10문장<br/>① 보고 말하기<br/>② 가리고 말하기"] -->|10문장 통과| A["오늘 달성<br/>연속 일수 +1"]
+    A -.보너스.-> B["25분 집중 · 단어 담기 ·<br/>말하기 탭(Day별 5번)"]
+    N["22:00 알림<br/>(아직이면)"] -.-> T
+    X["빼먹은 날"] -->|"문장마다 5번 말하기<br/>(3일 안이면 연속 회복)"| A
+```
+
+## 핵심 기능
+
+| 기능 | 내용 |
+|---|---|
+| **오늘의 10문장 따라 말하기** | 문장마다 ① 영어를 보며 따라 말하고 ② 영어를 가린 채 어순·해석만 보고 다시 말합니다. 순서대로 맞힌 단어가 60% 이상이면 통과하고, 열 문장을 모두 통과해야 오늘이 달성됩니다. 말이 1.8초 끊기면 스스로 채점하고, 소리 내기 어려운 곳에서는 받아 적기(80%)로 바꿀 수 있습니다. |
+| **어제 복습 게이트** | 어제 배운 문장을 다시 보거나 들어야 오늘 문장이 열립니다. |
+| **핸즈프리 오디오** | 연속 · 끊어 읽기(따라 말할 시간을 줌) · 역할극(B 대사를 비워 둠). 화면이 꺼져도 무음 트랙으로 대기 시간을 지키고, 잠금 화면·버즈 버튼으로 조작합니다. |
+| **모닝 보이스 락** | 아침에 처음 열면 핵심 문장 3개를 소리 내어 읽어야 앱이 열립니다. |
+| **습관 트래커** | 66일 히트맵, 연속 일수, 30일마다 프리즈 2개. 66일이 지나면 2라운드로 이어지고, 새 레슨이 없는 날은 가장 오래 안 본 레슨을 다시 돌립니다. |
+| **빼먹은 날 보충** | 놓친 날의 레슨을 문장마다 5번 말하면 그날이 채워지고, 3일 안이면 연속 일수도 지켜집니다. 미리 "오늘은 어려워요"를 알린 날은 1번으로 충분합니다(30일에 4번). |
+| **말하기 탭 · 단어장** | Day별로 문장을 5번씩 말하는 연습, 문장에서 담은 표현의 뜻·느낌·예문을 자동으로 채우는 단어장. |
+| **알림 · 자동 실행** | 22시까지 달성하지 못했으면 Web Push(선택적으로 텔레그램·디스코드). 갤럭시 루틴이나 앱 바로가기로 원하는 재생 모드를 바로 시작합니다. |
+| **오프라인** | 받아 둔 문장과 음성은 비행기 모드에서도 재생되고, 그동안의 기록은 연결되면 서버로 보냅니다. |
+| **자동 백업** | 매일 04:30과 서버가 켜질 때 DB를 사본으로 남기고 최근 14개를 보관합니다. |
+
+## 구조
 
 ```
-갤럭시 폴드 (PWA)  ──https://<PC이름>.<tailnet>.ts.net──▶  tailscale serve ──▶  Spring Boot :8080
-                                                                              ├─ /             React 화면
-                                                                              ├─ /api/v1/**    API
-                                                                              ├─ /api/v1/audio edge-tts MP3 캐시
-                                                                              └─ data/         SQLite · 오디오 · VAPID 키
+갤럭시 Z 폴드 (PWA, Chrome WebAPK)
+        │ https://<PC이름>.<tailnet>.ts.net/   (tailscale serve --bg 8080)
+        ▼
+Windows PC ─ Spring Boot :8080 (단일 포트)
+             ├─ /                → React 화면 (빌드 결과를 정적 파일로)
+             ├─ /api/v1/**       → REST API
+             ├─ /api/v1/audio/** → edge-tts 로 만든 원어민 MP3 캐시
+             └─ ./data/          → SQLite · 음성 · VAPID 키 · 백업
 ```
 
-- 기능·API 계약: [SPEC.md](SPEC.md)
-- 설계 근거: [docs/architecture.md](docs/architecture.md)
-- 코딩 규칙·UI 규칙: [CLAUDE.md](CLAUDE.md), [.claude/skills/clean-blue-ui/SKILL.md](.claude/skills/clean-blue-ui/SKILL.md)
+| 영역 | 사용 기술 |
+|---|---|
+| 프런트엔드 | React 18, TypeScript(strict), Vite, Tailwind CSS 3, framer-motion, lucide-react, Web Speech API, Service Worker |
+| 백엔드 | Spring Boot 3.4, Java 17+, Gradle, SQLite(WAL), Web Push(VAPID) |
+| 음성 | edge-tts(원어민 MP3), 음성 파일이 없으면 기기 음성으로 대신 읽기 |
+| 단어 뜻 생성 | Claude(로그인된 Claude Code 또는 API 키, 끌 수 있음) |
+
+### 설계 원칙
+
+- **사실만 저장한다.** 학습 쓰기는 `POST /api/v1/events` 하나뿐이고, 연속 일수·프리즈·게이트 같은 파생값은 저장하지 않고 요청마다 순수 함수로 다시 계산합니다.
+- **시간 판단은 서버가 한다.** 논리 날짜(새벽 3시에 하루가 바뀜), Day 번호, 게이트는 서버 계산값을 씁니다. 프런트엔드는 날짜를 직접 계산하지 않습니다.
+- **오프라인을 먼저 생각한다.** 기록은 기기 안 대기열에 먼저 남기고 화면에 바로 반영한 뒤 서버로 보냅니다. 같은 기록을 두 번 보내도 한 번만 반영됩니다.
+- **단일 포트.** 화면과 API를 한 서버가 같은 주소로 내보내므로, 프런트엔드 코드에는 절대 주소가 없습니다.
+
+## 문서
+
+| 문서 | 내용 |
+|---|---|
+| [SPEC.md](SPEC.md) | 기능·API 계약(기준 문서) |
+| [docs/architecture.md](docs/architecture.md) | 설계 근거 |
+| [docs/HANDOVER.md](docs/HANDOVER.md) | 진행 상황과 인수인계 |
+| [docs/pc-local-setup.md](docs/pc-local-setup.md) | 서버로 쓰는 PC의 설정과 되돌리는 방법, 백업에서 되살리기 |
+| [CLAUDE.md](CLAUDE.md), [clean-blue-ui](.claude/skills/clean-blue-ui/SKILL.md) | 코딩 규칙, 화면 디자인 규칙 |
 
 ---
+
+# 설치와 운영
 
 ## 1. PC 준비 (한 번만)
 
@@ -100,7 +186,7 @@ build-all.bat
 
 브라우저가 소리 재생을 막으면 화면에 **탭해서 재생 시작** 버튼이 뜹니다.
 
-## 6. 콘텐츠 추가 (Day 6 ~ 66)
+## 6. 콘텐츠 추가 (Day 6 이후)
 
 레슨 JSON 형식은 [SPEC.md 4.7](SPEC.md)과 예시 [content/day06.json](content/day06.json)을 참고하세요. 한 파일에 여러 일차를 넣어도 됩니다.
 
@@ -137,8 +223,8 @@ app:
 
 관리자 토큰을 넣었다면 스크립트에도 `--admin-token` 또는 환경 변수 `APP_ADMIN_TOKEN`을 주세요. 시작일을 바꾸려면:
 
-```bash
-curl -X PUT http://127.0.0.1:8080/api/v1/admin/settings/start-date -H "Content-Type: application/json" -d "{\"start_date\":\"2026-11-15\"}"
+```powershell
+curl.exe -X PUT http://127.0.0.1:8080/api/v1/admin/settings/start-date -H "X-Admin-Token: $env:APP_ADMIN_TOKEN" -H "Content-Type: application/json" -d '{"start_date":"2026-11-15"}'
 ```
 
 22시 리마인더는 서버에 도착한 기록 기준으로 판단합니다. PC가 22시 전후에 꺼져 있으면 알림이 가지 않습니다(서버가 22시~03시 사이에 켜지면 한 번 보충합니다).
@@ -168,6 +254,7 @@ PC 브라우저로는 확인할 수 없어 갤럭시에서 직접 봐야 하는 
 - [ ] 비행기 모드에서도 이미 받아 둔 문장은 재생된다(학습 카드 아래 "준비 n/m"이 꽉 찬 뒤).
 - [ ] 비행기 모드에서 들은 기록이 연결 후 서버에 올라간다(설정 → 오늘 기록 → 보내지 않은 기록 0건).
 - [ ] 06:00~09:30에 처음 열면 모닝 스타터가 뜨고, 소리 내어 읽으면 통과한다.
+- [ ] 오늘의 10문장에서 보고 말하기 → 가리고 말하기가 실제 마이크로 통과되고, 말을 잠깐 멈추면 채점된다.
 - [ ] 22시 시험 알림이 잠금 화면에 온다.
 - [ ] 접은 화면·펼친 화면에서 가로 스크롤 없이 보인다.
 

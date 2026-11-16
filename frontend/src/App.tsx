@@ -29,6 +29,7 @@ import { useWakeLock } from "./hooks/useWakeLock";
 import { rememberSideView, sideViewFromUrl, type SideView } from "./lib/launch";
 import { MASCOT_NAME, mascotOf, noteStage, stageIs } from "./lib/mascot";
 import { roundOf } from "./lib/round";
+import { speakControl } from "./lib/speakControl";
 import { prefs, type RevealFilter } from "./lib/prefs";
 import { showToast } from "./lib/toast";
 import { filterVocab, type VocabFilter } from "./lib/vocab";
@@ -124,8 +125,13 @@ export function App() {
     navigator.serviceWorker.addEventListener("message", onMessage);
     return () => navigator.serviceWorker.removeEventListener("message", onMessage);
   }, []);
+  const locked = !!view && !view.gate.open;
   // 단어장에서는 독을 숨긴다(독은 학습 큐를 움직이므로 단어 카드와 헷갈린다). 학습 오디오가 나오는 중이면 멈출 수 있게 남긴다.
-  const dockHidden = side !== null && !eng.playing && eng.phase !== "blocked";
+  // 잠긴 오늘 탭도 숨긴다: 재생도 따라 말하기도 할 수 없고, 잠금 패널의 "누적 복습으로 가기"를 가린다.
+  const dockHidden = (side !== null || (tab === "TODAY" && locked)) && !eng.playing && eng.phase !== "blocked";
+  // 오늘 탭은 따라 말하기 화면이라 가리기 필터·재생 모드가 쓰이지 않는다(배속과 설정만 남긴다. 잠겨 있어도 같다).
+  const speaking = !side && tab === "TODAY" && !locked;
+  const todayControls = !side && tab === "TODAY";
   const selectMainTab = (t: MainTab) => {
     if (t === "VOCAB") return showSide("vocab");
     if (t === "SPEAK") return showSide("speak");
@@ -138,8 +144,8 @@ export function App() {
     prefs.set("filter", f);
   };
 
-  // 오늘 할 일의 단계 버튼: 그 탭으로 가서 학습 방식을 맞추고 바로 재생한다. 이미 그 탭을 재생 중이면 멈춘다.
-  // 복습은 "한글만 + 끊어읽기"(해석을 보며 듣고 따라 말하기), 오늘 10문장은 처음 배우므로 "전체 + 연속 듣기".
+  // 오늘 할 일의 단계 버튼: 그 탭으로 가서 바로 시작한다. 이미 그 탭을 재생 중이면 멈춘다.
+  // 복습은 "한글만 + 끊어읽기"(해석을 보며 듣고 따라 말하기)로 재생하고, 오늘 10문장은 첫 미통과 문장을 들려주고 따라 말하게 한다.
   const startStep = (session: Session) => {
     const now = audioEngine.getSnapshot();
     if (!vocabOpen && now.playing && now.session === session) {
@@ -148,7 +154,6 @@ export function App() {
     }
     showVocab(false);
     playback.selectTab(session);
-    changeFilter(session === "REVIEW" ? "korean" : "all");
     if (session === "TODAY") {
       // 학습: 문장 하나를 들려주고 카드의 마이크로 따라 말하게 한다(통과하면 다음 문장).
       const today = view?.today?.sentences ?? [];
@@ -158,15 +163,40 @@ export function App() {
         const at = today.indexOf(first);
         window.setTimeout(() => {
           audioEngine.go(at);
-          void audioEngine.audition(first);
+          speakControl.hear(first);
         }, 0);
       }
       return;
     }
+    changeFilter("korean");
     audioEngine.setMode("shadowing");
     prefs.set("mode", "shadowing");
     void audioEngine.play();
   };
+
+  // 오늘 탭에 들어오면(앱을 열 때 포함) 첫 미통과 문장에서 시작한다. 들어온 뒤 고른 문장은 건드리지 않는다.
+  const alignedFor = useRef<number | null>(null);
+  useEffect(() => {
+    if (!view) return;
+    const spoken = view.todayProgress.spokenIds;
+    const today = view.today?.sentences ?? [];
+    const entry = speaking && today.length > 0 ? view.dashboard.valid_from : null;
+    if (entry === null) {
+      alignedFor.current = null;
+      return;
+    }
+    if (alignedFor.current === entry) return;
+    alignedFor.current = entry;
+    const at = today.findIndex((s) => !spoken.has(s.id));
+    if (at < 0) return;
+    // 큐는 컨트롤러가 같은 틱에 싣는다. 실린 뒤에 커서를 본다.
+    window.setTimeout(() => {
+      const snap = audioEngine.getSnapshot();
+      if (snap.playing || snap.session !== "TODAY" || snap.items.length !== today.length) return;
+      const current = today[Math.min(snap.cursor, today.length - 1)];
+      if (current && spoken.has(current.id)) audioEngine.go(at);
+    }, 0);
+  }, [view, speaking]);
 
   // 오늘 할 일의 보너스 항목 시작.
   const startFocus = () => {
@@ -184,7 +214,6 @@ export function App() {
   useRoundCelebration(view);
   const todoActions = { onStart: startStep, onStartFocus: startFocus, onAddWord: addWord, onOpenMorning: () => setMorningOpen(true) };
 
-  const locked = !!view && !view.gate.open;
   const tabs: { value: MainTab; label: string; icon?: JSX.Element }[] = [
     { value: "TODAY", label: "오늘의 10문장", icon: locked ? <Lock size={13} strokeWidth={2} aria-hidden /> : undefined },
     { value: "REVIEW", label: "누적 복습" },
@@ -279,6 +308,7 @@ export function App() {
         {/* 단어장에는 가리기·재생 모드가 쓰이지 않아 컨트롤을 그리지 않는다. 설정은 학습 화면에서 연다. */}
         {!side && <div className="area-ctrl">
           <Controls
+            speaking={todayControls}
             filter={filter}
             onFilter={changeFilter}
             mode={eng.mode}

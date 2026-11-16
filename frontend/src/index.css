@@ -318,6 +318,11 @@
     margin-bottom: 0;
   }
 
+  /* 학습 카드 안의 진행 레일. 문장 지도가 보이는 화면에서만 숨긴다(두 조건이 다르면 진행 표시가 다 사라지는 크기가 생긴다). */
+  .rail-no-map {
+    display: flex;
+  }
+
   /* 세로가 넉넉한 펼친 화면: 화면 높이에 맞춰 고정하고, 남는 왼쪽 가운데를 문장 지도가 채운다. */
   @media (min-width: 600px) and (min-height: 640px) {
     .app-grid {
@@ -327,6 +332,9 @@
       grid-area: map;
       display: flex;
       min-height: 0;
+    }
+    .rail-no-map {
+      display: none;
     }
   }
 }

@@ -1,4 +1,4 @@
-import { BookmarkPlus, Flame, Pause, Play, Timer } from "lucide-react";
+import { BookmarkPlus, Flame, Mic, Pause, Play, Timer } from "lucide-react";
 import type { Session } from "../api/types";
 import { useEngine } from "../audio/useEngine";
 import { nextTodo, summarize, type Todo } from "../lib/todo";
@@ -75,6 +75,9 @@ function NextButton({ todo, playing, focusRunning, onClick }: { todo: Todo; play
       <BookmarkPlus size={15} strokeWidth={2.25} aria-hidden />
     ) : playing ? (
       <Pause size={15} strokeWidth={2.25} fill="currentColor" aria-hidden />
+    ) : todo.id === "today" ? (
+      // 오늘 10문장은 연속 재생이 아니라 듣고 따라 말하기다.
+      <Mic size={15} strokeWidth={2.25} aria-hidden />
     ) : (
       <Play size={15} strokeWidth={2.25} fill="currentColor" aria-hidden />
     );
@@ -85,7 +88,7 @@ function NextButton({ todo, playing, focusRunning, onClick }: { todo: Todo; play
       type="button"
       onClick={onClick}
       disabled={busy}
-      aria-label={`${playing ? "멈추기" : busy ? "" : "시작하기: "}${label}${todo.progress ? ` ${todo.progress.value}/${todo.progress.total}` : ""}`}
+      aria-label={`${playing ? "멈추기: " : busy ? "" : "시작하기: "}${label}${todo.progress ? ` ${todo.progress.value}/${todo.progress.total}` : ""}`}
       className="press flex h-11 min-w-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-royal pl-3.5 pr-4 text-[13px] font-semibold text-surface shadow-lift disabled:opacity-70"
     >
       {icon}

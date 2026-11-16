@@ -201,7 +201,7 @@ export class AudioEngine {
     this.publish();
   }
 
-  /** 큐·커서·보고와 무관하게 한 문장 들려주기(모닝 락 "문장 듣기"). */
+  /** 큐·커서·보고와 무관하게 한 문장 들려주기(모닝 락 "문장 듣기", 따라 말하기). 배속은 설정값을 따른다. */
   async audition(item: PlayItem): Promise<void> {
     if (this.playing) this.pause();
     const token = this.bump();
@@ -218,14 +218,14 @@ export class AudioEngine {
     if (url) {
       this.el.loop = false;
       this.setSrc(url);
-      this.el.playbackRate = 1;
+      this.el.playbackRate = this.rate;
       try {
         await this.el.play();
       } catch {
         /* 무시 */
       }
     } else {
-      const u = "speechSynthesis" in window ? await englishUtterance(item, 1) : null;
+      const u = "speechSynthesis" in window ? await englishUtterance(item, this.rate) : null;
       if (token !== this.token) return;
       if (!u) {
         this.emit({ type: "speechFailed" });

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useReducedMotion, type PanInfo } from "framer-motion";
-import { BookmarkCheck, BookmarkPlus, Check, CheckCheck, DownloadCloud, Lock, RotateCcw, WifiOff } from "lucide-react";
+import { BookmarkCheck, BookmarkPlus, Check, CheckCheck, DownloadCloud, Keyboard, Lock, Mic, RotateCcw, WifiOff } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { MarkStatus, Sentence, Session, SessionData } from "../api/types";
 import type { EngineSnapshot } from "../audio/engine";
@@ -12,7 +12,8 @@ import type { DayView } from "../state/overlay";
 import type { StudyState } from "../state/store";
 import { studyStore } from "../state/store";
 import { Mascot } from "./Mascot";
-import { SpeakCheck, type SpeakFeedback } from "./SpeakCheck";
+import { initialDisplay, SpeakCheck, type SpeakFeedback } from "./SpeakCheck";
+import { speakControl, useSpeakControl } from "../lib/speakControl";
 import { displayHits } from "../lib/wordMatch";
 import { Waveform } from "./Waveform";
 
@@ -71,6 +72,8 @@ interface CardProps {
 }
 
 const REVEAL_MS = 2500;
+/** 화면 아래에서 독(72px)과 그 아래·위 여백이 차지하는 높이. */
+const DOCK_CLEARANCE = 72 + 16 + 20;
 const SWIPE_DISTANCE = 80;
 const SWIPE_VELOCITY = 110; // px/s (= 0.11px/ms, emil-design-eng)
 /** 손으로 넘긴 카드가 빠져나가는 거리. 카드 폭의 절반쯤이면 fade 와 함께 화면 밖으로 나간 것처럼 보인다. */
@@ -108,18 +111,46 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
   const [feedback, setFeedback] = useState<(SpeakFeedback & { id: number }) | null>(null);
   const fb = feedback?.id === sentence.id ? feedback : null;
 
+  // 오늘 탭(따라 말하기)에서는 SpeakCheck 의 두 단계 흐름만 영어를 보일지 정한다. 가리기 필터·역할극 가림이
+  // 끼어들면 "보고 말하기인데 가려짐", "가리고 말하기인데 보임"이 생긴다. 해석·어순은 늘 보인다(가리고 말할 때의 단서).
+  const todayFlow = session.session === "TODAY" && !locked;
   const engineHides = eng.hideEn && eng.item?.id === sentence.id;
-  // 따라 말하기가 영어 모양을 정한다: 가리고 말하는 단계는 가림(hide), 말하는 중엔 맞힌 단어만(hits),
-  // 말해 본 뒤엔 전부 보이고 맞힘·놓침을 칠한다(full). 그 밖엔 가리기 필터대로.
-  const enDisplay = fb?.display ?? "none";
-  const revealed = revealedId === sentence.id || enDisplay === "full";
-  const hideEn = enDisplay === "hide" || (!revealed && enDisplay === "none" && (filter !== "all" || engineHides));
-  const hideOrder = !revealed && filter === "korean";
-  const hideNatural = !revealed && filter === "hint";
+  // 새 문장의 첫 피드백이 오기 전 한 프레임도 가릴 문장은 가린다(답이 번쩍 보이지 않게).
+  const enDisplay = fb?.display ?? (todayFlow ? initialDisplay(sentence.id, view.todayProgress.spokenIds.has(sentence.id)) : "show");
+  const revealed = !todayFlow && revealedId === sentence.id;
+  const hideEn = todayFlow ? enDisplay === "hide" : !revealed && (filter !== "all" || engineHides);
+  const hideOrder = !todayFlow && !revealed && filter === "korean";
+  const hideNatural = !todayFlow && !revealed && filter === "hint";
   const anyHidden = hideEn || hideOrder || hideNatural;
+  // 탭으로 엿보기는 복습 탭만. 오늘 탭의 가림은 외워서 말하는 단계라 엿볼 수 없다.
+  const peekable = !todayFlow && (anyHidden || revealed);
+
+  // 커버 화면은 헤더·할 일·탭이 위를 차지해 문장과 해석·어순이 하단 독 뒤로 내려간다.
+  // 듣기·말하기를 시작하면 문장 블록이 독 위에 오도록 스크롤한다(자동으로 처음 열 때는 움직이지 않는다).
+  const speak = useSpeakControl();
+  const sentenceRef = useRef<HTMLDivElement>(null);
+  const engaged = todayFlow && (speak.listening || speak.hearing);
+  useEffect(() => {
+    if (!engaged) return;
+    const el = sentenceRef.current;
+    if (!el) return;
+    const dockTop = window.innerHeight - DOCK_CLEARANCE;
+    const r = el.getBoundingClientRect();
+    if (r.bottom <= dockTop) return;
+    // 위로 넘치지 않을 만큼만(카드 머리는 남긴다).
+    const by = Math.min(r.bottom - dockTop, Math.max(0, r.top - 16));
+    if (by > 0) window.scrollBy({ top: by, behavior: reduce ? "auto" : "smooth" });
+  }, [engaged, sentence.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  /** 문장 이동. 오늘 탭이면 옮긴 문장을 한 번 들려준다(듣고 따라 말하는 흐름). */
+  const moveTo = (i: number) => {
+    if (locked || i < 0 || i >= total) return;
+    audioEngine.go(i);
+    if (todayFlow) speakControl.hear(session.sentences[i]);
+  };
 
   const onTap = () => {
-    if (locked) return;
+    if (!peekable) return;
     if (revealed) {
       setRevealedId(null);
       return;
@@ -132,12 +163,12 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
 
   const onDragEnd = (_: unknown, info: PanInfo) => {
     const { offset, velocity } = info;
-    if (offset.x < -SWIPE_DISTANCE || (velocity.x < -SWIPE_VELOCITY && offset.x < -24)) {
+    if ((offset.x < -SWIPE_DISTANCE || (velocity.x < -SWIPE_VELOCITY && offset.x < -24)) && index < total - 1) {
       flingX.current = -FLING_PX;
-      audioEngine.go("next");
-    } else if (offset.x > SWIPE_DISTANCE || (velocity.x > SWIPE_VELOCITY && offset.x > 24)) {
+      moveTo(index + 1);
+    } else if ((offset.x > SWIPE_DISTANCE || (velocity.x > SWIPE_VELOCITY && offset.x > 24)) && index > 0) {
       flingX.current = FLING_PX;
-      audioEngine.go("prev");
+      moveTo(index - 1);
     }
   };
 
@@ -152,7 +183,7 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
       <div className="flex items-center justify-between gap-2" aria-hidden={locked || undefined}>
         <span className="flex min-w-0 items-center gap-2.5">
           <SpeakerChip speaker={sentence.speaker} />
-          <span className="whitespace-nowrap text-[12.5px] font-semibold tabular-nums text-muted">
+          <span className="shrink-0 whitespace-nowrap text-[12.5px] font-semibold tabular-nums text-muted">
             {index + 1} / {total}
           </span>
         </span>
@@ -162,26 +193,48 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
         </span>
       </div>
 
-      <ProgressRail sentences={session.sentences} index={index} spoken={session.session === "TODAY" ? view.todayProgress.spokenIds : null} />
+      <ProgressRail
+        sentences={session.sentences}
+        index={index}
+        spoken={session.session === "TODAY" ? view.todayProgress.spokenIds : null}
+        disabled={locked}
+        onGo={moveTo}
+      />
 
-      {banner && <p aria-hidden={locked || undefined} className="mt-3 self-start rounded-full bg-tint px-3 py-1.5 text-[12px] font-medium text-royal">{banner}</p>}
-      {/* 따라 말하기 안내 띠. 읽기 프로그램이 첫 문구도 읽도록 자리는 늘 두고 내용만 바꾼다. */}
-      <p aria-live="polite" className={fb && !locked ? "mt-3 flex flex-wrap items-center gap-1.5" : "sr-only"}>
-        {fb && !locked && (
-          <>
-            {fb.step && <span className="shrink-0 rounded-full bg-canvas px-2 py-1 text-[11.5px] font-bold text-muted-strong">{fb.step}</span>}
-            <span
-              className={`break-keep rounded-2xl px-3 py-1.5 text-[12.5px] font-semibold leading-snug ${
-                fb.tone === "pass" ? "bg-royal text-surface" : fb.tone === "error" ? "bg-canvas text-ink" : "bg-tint text-royal"
-              }`}
+      {banner && <p aria-hidden={locked || undefined} className="mt-1 self-start rounded-full bg-tint px-3 py-1.5 text-[12px] font-medium text-royal">{banner}</p>}
+      {/* 따라 말하기 단계와 받아 적기 전환. 카드 아래쪽은 커버 화면에서 독에 가리므로 위에 둔다. */}
+      {fb && todayFlow && (fb.step || fb.canSwitch) && (
+        <div className="mt-1 flex min-h-11 items-center justify-between gap-2">
+          {fb.step ? <span className="shrink-0 rounded-full bg-canvas px-2.5 py-1 text-[11.5px] font-bold text-muted-strong">{fb.step}</span> : <span />}
+          {fb.canSwitch && (
+            <button
+              type="button"
+              onClick={fb.toggleTyping}
+              disabled={covered}
+              className="press -mr-2 flex h-11 shrink-0 items-center gap-1.5 rounded-full px-2 text-[12.5px] font-semibold text-muted"
             >
-              {fb.status}
-            </span>
-          </>
-        )}
+              {fb.typing ? <Mic size={14} strokeWidth={2} aria-hidden /> : <Keyboard size={14} strokeWidth={2} aria-hidden />}
+              {fb.typing ? "말하기로 돌아가기" : "받아 적기"}
+            </button>
+          )}
+        </div>
+      )}
+      {/* 따라 말하기 안내 띠. 읽기 프로그램이 첫 문구도 읽도록 자리는 늘 두고 내용만 바꾼다. */}
+      <p
+        aria-live="polite"
+        className={
+          fb && todayFlow
+            ? `mt-1 self-start break-keep rounded-2xl px-3 py-1.5 text-[12.5px] font-semibold leading-snug ${
+                fb.tone === "pass" ? "bg-royal text-surface" : fb.tone === "error" ? "bg-canvas text-ink" : "bg-tint text-royal"
+              }`
+            : "sr-only"
+        }
+      >
+        {/* 연속 재생(알림 자동 재생 등) 중에는 독이 재생 독이라 마이크가 없다. */}
+        {fb && todayFlow ? (eng.playing ? "연속 재생 중이에요. 멈추면 가운데 버튼이 마이크로 바뀌어요" : fb.status) : ""}
       </p>
 
-      <div className={`relative flex flex-1 flex-col justify-center py-8 ${locked ? "opacity-30" : ""}`} aria-hidden={locked}>
+      <div ref={sentenceRef} className={`relative flex flex-1 flex-col justify-center py-8 ${locked ? "opacity-30" : ""}`} aria-hidden={locked}>
         <AnimatePresence initial={false} mode="popLayout" custom={motionDir}>
           <motion.div
             key={sentence.id}
@@ -203,30 +256,35 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
             dragMomentum={false}
             onDragEnd={onDragEnd}
             onTap={onTap}
-            role={anyHidden || revealed ? "button" : undefined}
+            role={peekable ? "button" : undefined}
             tabIndex={locked ? -1 : 0}
-            aria-label={anyHidden ? "가린 문장 잠깐 보기" : undefined}
+            aria-label={peekable && anyHidden ? "가린 문장 잠깐 보기" : undefined}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
                 onTap();
-              } else if (e.key === "ArrowRight") audioEngine.go("next");
-              else if (e.key === "ArrowLeft") audioEngine.go("prev");
+              } else if (e.key === "ArrowRight") moveTo(index + 1);
+              else if (e.key === "ArrowLeft") moveTo(index - 1);
             }}
-            className={`cursor-pointer touch-pan-y select-none rounded-2xl ${locked ? "blur-[10px]" : ""}`}
+            className={`touch-pan-y select-none rounded-2xl ${peekable ? "cursor-pointer" : ""} ${locked ? "blur-[10px]" : ""}`}
           >
             <p
               className="hide-blur break-words text-pretty text-[25px] font-bold leading-[1.35] tracking-tight text-ink"
               data-hidden={hideEn}
+              // 오늘 탭에서 가린 영어는 읽기 프로그램도 읽지 않는다(외워서 말하는 단계).
+              aria-hidden={(todayFlow && hideEn) || undefined}
               lang="en"
               translate="no"
             >
-              {fb?.result && (enDisplay === "full" || enDisplay === "hits")
+              {todayFlow && fb?.result && (enDisplay === "full" || enDisplay === "hits" || enDisplay === "live")
                 ? displayHits(sentence.en_text, fb.result).map((h, i) => (
                     <span key={i}>
                       {i > 0 ? " " : ""}
                       {h.hit ? (
                         <span className="text-ink">{h.text}</span>
+                      ) : enDisplay === "live" ? (
+                        // 보고 말하는 중: 아직 못 맞힌 단어는 옅게, 말한 단어가 진해진다(듣고 있다는 반응).
+                        <span className="text-muted">{h.text}</span>
                       ) : enDisplay === "hits" ? (
                         // 가리고 말하는 중: 아직 맞히지 못한 단어는 자리만 보인다(답을 미리 보지 않게).
                         <span aria-hidden className="inline-block h-[0.9em] translate-y-[0.12em] rounded-md bg-line" style={{ width: `${Math.max(2, h.text.length) * 0.5}em` }} />
@@ -237,7 +295,7 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
                   ))
                 : sentence.en_text}
             </p>
-            {fb?.result && enDisplay === "full" && (
+            {todayFlow && fb?.result && enDisplay === "full" && (
               <span className="sr-only">
                 맞힌 단어 {fb.result.hits.filter((h) => h.hit).length}개, 놓친 단어:{" "}
                 {fb.result.hits.filter((h) => !h.hit).map((h) => h.word).join(", ") || "없음"}
@@ -249,17 +307,17 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
             <p className="hide-blur mt-2.5 break-keep text-pretty text-[14px] leading-relaxed text-muted" data-hidden={hideNatural}>
               {sentence.ko_natural}
             </p>
-            {anyHidden && <span className="sr-only">가려진 문장이 있어요. 카드를 탭하면 잠깐 보여요.</span>}
+            {peekable && anyHidden && <span className="sr-only">가려진 문장이 있어요. 카드를 탭하면 잠깐 보여요.</span>}
+            {todayFlow && hideEn && <span className="sr-only">영어 문장을 가렸어요. 어순과 해석을 보고 영어로 말해 보세요.</span>}
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {session.session === "TODAY" && !locked && (
+      {todayFlow && (
         <SpeakCheck
           key={sentence.id}
           sentence={sentence}
           passed={view.todayProgress.spokenIds.has(sentence.id)}
-          filterHides={filter !== "all"}
           remainingAfter={session.sentences.filter((s) => s.id !== sentence.id && !view.todayProgress.spokenIds.has(s.id)).length}
           disabled={covered}
           onFeedback={(f) => setFeedback({ ...f, id: sentence.id })}
@@ -271,14 +329,15 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
             const next = order.find((s) => s.id !== sentence.id && !view.todayProgress.spokenIds.has(s.id));
             if (!next) return false;
             audioEngine.go(list.indexOf(next));
-            if (!typed) void audioEngine.audition(next);
+            if (!typed) speakControl.hear(next);
             return true;
           }}
         />
       )}
 
       <div aria-hidden={locked || undefined}>
-        <StatusLine eng={eng} sentence={sentence} filter={filter} anyHidden={anyHidden} online={online} />
+        {/* 오늘 탭에서는 필터 힌트("탭해서 확인")를 띄우지 않는다. 할 일은 안내 띠 하나가 말한다. */}
+        <StatusLine eng={eng} sentence={sentence} filter={filter} anyHidden={!todayFlow && anyHidden} online={online} />
       </div>
 
       {locked && <LockPanel view={view} onGoReview={onGoReview} />}
@@ -315,27 +374,46 @@ function ChunkedOrder({ text }: { text: string }) {
 }
 
 /**
- * 접은 화면용 진행 레일. 문장마다 한 칸: 지금 위치는 royal, 암기한 문장은 frost, 나머지는 line.
- * 펼친 화면에서는 왼쪽 열의 문장 지도가 같은 일을 하므로 숨긴다. 수치는 옆의 "n / total" 이 읽어 준다.
+ * 문장 진행 레일. 문장마다 한 칸이고, 누르면 그 문장으로 간다(칸마다 높이 44px의 누름 영역).
+ * 오늘 탭이면 따라 말하기로 통과한 문장을 royal 로 채우고, 복습 탭이면 암기한 문장을 frost 로 칠한다. 지금 위치는 두껍다.
+ * 문장 지도가 보이는 화면(펼친 화면, 세로 640px 이상)에서는 지도가 같은 일을 하므로 숨긴다(.rail-no-map).
  */
-/** 접은 화면의 문장 진행 레일. 오늘 탭이면 따라 말하기로 통과한 문장을 진하게 채운다. */
-function ProgressRail({ sentences, index, spoken }: { sentences: readonly Sentence[]; index: number; spoken: ReadonlySet<number> | null }) {
+function ProgressRail({
+  sentences,
+  index,
+  spoken,
+  disabled,
+  onGo,
+}: {
+  sentences: readonly Sentence[];
+  index: number;
+  spoken: ReadonlySet<number> | null;
+  disabled: boolean;
+  onGo: (i: number) => void;
+}) {
   return (
-    <div aria-hidden className="mt-4 flex gap-[3px] unfolded:hidden">
-      {sentences.map((s, i) => (
-        <span
-          key={s.id}
-          className={`h-1 min-w-0 flex-1 rounded-full transition-colors duration-200 ${
-            spoken?.has(s.id)
-              ? "bg-royal"
-              : i === index
-                ? "bg-royal/45"
-                : s.status === "MEMORIZED"
-                  ? "bg-frost"
-                  : "bg-line"
-          }`}
-        />
-      ))}
+    <div role="group" aria-label="문장 진행" className="rail-no-map mt-0.5 -mb-1 gap-[3px]">
+      {sentences.map((s, i) => {
+        const current = i === index;
+        const done = spoken ? spoken.has(s.id) : s.status === "MEMORIZED";
+        return (
+          <button
+            key={s.id}
+            type="button"
+            disabled={disabled}
+            onClick={() => onGo(i)}
+            aria-current={current ? "true" : undefined}
+            aria-label={`${i + 1}번 문장${done ? (spoken ? ", 통과" : ", 암기 완료") : ""}`}
+            className="flex h-11 min-w-0 flex-1 items-center"
+          >
+            <span
+              className={`block w-full rounded-full transition-[background-color,height] duration-200 ${current ? "h-1.5" : "h-1"} ${
+                done ? (spoken ? "bg-royal" : current ? "bg-royal" : "bg-frost") : current ? "bg-royal/45" : "bg-line"
+              }`}
+            />
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -355,7 +433,7 @@ function SpeakerChip({ speaker }: { speaker: "A" | "B" }) {
       >
         {speaker}
       </span>
-      {isA ? "Andrew" : "Ava"}
+      <span className="[@media(min-width:600px)_and_(max-width:699px)]:sr-only">{isA ? "Andrew" : "Ava"}</span>
     </span>
   );
 }

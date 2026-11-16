@@ -51,7 +51,8 @@ export function todayTodos(view: DayView, now: number): Todo[] | null {
     items.push({
       id: "review",
       label: "어제 복습",
-      detail: g.yesterdayDay ? `Day ${g.yesterdayDay} 문장을 해석 보며 따라 말하기` : "어제 문장을 해석 보며 따라 말하기",
+      // 게이트는 복습 카드를 보거나 들은 수로 열린다(SPEC F-04). 말하기 통과까지 요구하지 않으므로 문구도 그만큼만 말한다.
+      detail: g.yesterdayDay ? `Day ${g.yesterdayDay} 문장을 해석과 함께 다시 보고 듣기` : "어제 문장을 해석과 함께 다시 보고 듣기",
       required: true,
       state: g.open ? "done" : "open",
       startable: !g.open,

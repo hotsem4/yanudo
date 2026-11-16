@@ -16,14 +16,15 @@ export function PlayerDock() {
   const speak = useSpeakControl();
   const playing = useEngine().playing;
   // 연속 재생(복습에서 이어짐·알림 자동 재생 등) 중에는 재생 독을 보여 멈출 수 있게 한다.
-  if (speak.active && !playing) return <SpeakDock listening={speak.listening} justPassed={speak.justPassed} disabled={speak.disabled} />;
+  if (speak.active && !playing) return <SpeakDock listening={speak.listening} justPassed={speak.justPassed} disabled={speak.disabled} hearing={speak.hearing} />;
   return <PlayDock />;
 }
 
-function SpeakDock({ listening, justPassed, disabled }: { listening: boolean; justPassed: boolean; disabled: boolean }) {
+function SpeakDock({ listening, justPassed, disabled, hearing }: { listening: boolean; justPassed: boolean; disabled: boolean; hearing: boolean }) {
   const eng = useEngine();
   const item = eng.items[eng.cursor];
   const atEnd = eng.cursor >= eng.items.length - 1;
+  const nextItem = eng.items[eng.cursor + 1];
   const side = "press flex h-12 w-12 items-center justify-center rounded-full text-surface/80 disabled:opacity-35 [@media(hover:hover)]:hover:bg-surface/10";
   return (
     <div className="dock-rail bottom-dock z-30">
@@ -31,9 +32,10 @@ function SpeakDock({ listening, justPassed, disabled }: { listening: boolean; ju
         <button
           type="button"
           aria-label="이 문장 듣기"
+          aria-pressed={hearing}
           disabled={!item || listening}
-          onClick={() => item && void audioEngine.audition(item)}
-          className={side}
+          onClick={() => item && speakControl.hear(item)}
+          className={`${side} ${hearing ? "bg-surface/15 text-surface" : ""}`}
         >
           <Volume2 size={22} strokeWidth={2} aria-hidden />
         </button>
@@ -56,7 +58,17 @@ function SpeakDock({ listening, justPassed, disabled }: { listening: boolean; ju
             )}
           </button>
         </div>
-        <button type="button" aria-label="다음 문장" disabled={!item || atEnd || listening} onClick={() => audioEngine.go("next")} className={side}>
+        <button
+          type="button"
+          aria-label="다음 문장 듣기"
+          disabled={!item || atEnd || listening}
+          onClick={() => {
+            // 따라 말하기는 듣고 말하는 흐름이라 다음 문장으로 가면 그 문장을 들려준다.
+            audioEngine.go("next");
+            if (nextItem) speakControl.hear(nextItem);
+          }}
+          className={side}
+        >
           <SkipForward size={22} strokeWidth={2} aria-hidden />
         </button>
       </nav>
@@ -97,7 +109,7 @@ function PlayDock() {
   return (
     <div className="dock-rail bottom-dock z-30">
       <nav aria-label="재생 컨트롤" className="pointer-events-auto flex h-[72px] w-[264px] items-center justify-between rounded-full bg-ink px-2 shadow-dock">
-        <button type="button" aria-label="이전 문장" disabled={empty || atStart} onClick={() => audioEngine.go("prev")} className={side}>
+        <button type="button" aria-label="이전 문장" disabled={empty || locked || atStart} onClick={() => audioEngine.go("prev")} className={side}>
           <SkipBack size={22} strokeWidth={2} aria-hidden />
         </button>
 
@@ -144,7 +156,7 @@ function PlayDock() {
           </button>
         </div>
 
-        <button type="button" aria-label="다음 문장" disabled={empty || atEnd} onClick={() => audioEngine.go("next")} className={side}>
+        <button type="button" aria-label="다음 문장" disabled={empty || locked || atEnd} onClick={() => audioEngine.go("next")} className={side}>
           <SkipForward size={22} strokeWidth={2} aria-hidden />
         </button>
       </nav>

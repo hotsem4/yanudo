@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import "./index.css";
 import { readLaunch } from "./lib/launch";
 import { playback } from "./playback/controller";
@@ -21,6 +22,8 @@ const root = document.getElementById("root");
 if (!root) throw new Error("#root 가 없습니다");
 createRoot(root).render(
   <StrictMode>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </StrictMode>,
 );

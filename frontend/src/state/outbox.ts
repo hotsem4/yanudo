@@ -33,11 +33,20 @@ function writeJson(key: string, value: unknown): boolean {
   }
 }
 
+/** 저장소가 깨졌거나 손으로 바뀌었어도 앱이 멈추지 않게, 모양이 맞는 기록만 받는다. */
+function validEvents(list: unknown): StudyEvent[] {
+  if (!Array.isArray(list)) return [];
+  return list.filter((e): e is StudyEvent => {
+    if (e === null || typeof e !== "object") return false;
+    const r = e as { id?: unknown; type?: unknown };
+    return typeof r.id === "string" && r.id.length > 0 && typeof r.type === "string";
+  });
+}
+
 export const outbox = {
   key: OUTBOX_KEY,
   load(): StudyEvent[] {
-    const list = readJson<StudyEvent[]>(OUTBOX_KEY);
-    return Array.isArray(list) ? list : [];
+    return validEvents(readJson<unknown>(OUTBOX_KEY));
   },
   /** 동기 저장. 화면 반영보다 먼저 부른다(docs/architecture.md "프론트 상태"). */
   save(events: StudyEvent[]): boolean {
@@ -49,13 +58,11 @@ export const outbox = {
     return Array.isArray(list) ? list.length : 0;
   },
   hold(event: StudyEvent): boolean {
-    const list = readJson<StudyEvent[]>(HELD_KEY);
-    return writeJson(HELD_KEY, [...(Array.isArray(list) ? list : []), event]);
+    return writeJson(HELD_KEY, [...validEvents(readJson<unknown>(HELD_KEY)), event]);
   },
   /** 보관한 기록(앱을 시작할 때마다 한 번 더 보내 본다). */
   loadHeld(): StudyEvent[] {
-    const list = readJson<StudyEvent[]>(HELD_KEY);
-    return Array.isArray(list) ? list : [];
+    return validEvents(readJson<unknown>(HELD_KEY));
   },
   /** 보관한 기록을 아웃박스로 옮겨 저장한 뒤에만 부른다(먼저 비우면 저장 실패 때 기록을 잃는다). */
   clearHeld(): void {
@@ -66,7 +73,12 @@ export const outbox = {
 export const snapshotCache = {
   load(): Snapshot | null {
     const snap = readJson<Snapshot>(SNAPSHOT_KEY);
-    return snap && snap.dashboard ? snap : null;
+    // 모양이 깨진 캐시는 버린다. 재생 컨트롤러가 React 밖에서 먼저 읽으므로 화면 오류 처리로는 잡지 못한다.
+    const sessionOk = (s: unknown) =>
+      s === null || s === undefined || (typeof s === "object" && Array.isArray((s as { sentences?: unknown }).sentences));
+    if (!snap || typeof snap !== "object" || !snap.dashboard || typeof snap.dashboard !== "object") return null;
+    if (!sessionOk(snap.today) || !sessionOk(snap.review)) return null;
+    return snap;
   },
   save(snapshot: Snapshot): void {
     writeJson(SNAPSHOT_KEY, snapshot);

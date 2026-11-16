@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import type { Session } from "../api/types";
 import { audioEngine, useEngine } from "../audio/useEngine";
+import { speakControl } from "../lib/speakControl";
 import type { DayView } from "../state/overlay";
 
 interface Props {
@@ -22,7 +23,11 @@ export function SentenceMap({ view, tab }: Props) {
   const synced = eng.session === tab && eng.items.length === items.length;
   const index = synced ? Math.min(eng.cursor, items.length - 1) : 0;
   const locked = !!view && tab === "TODAY" && !view.gate.open;
-  const memorized = items.filter((s) => s.status === "MEMORIZED").length;
+  // 오늘 탭은 따라 말하기 통과가 달성 기준이라 통과한 문장을 센다. 복습 탭은 암기 표시를 센다.
+  const spoken = view && tab === "TODAY" ? view.todayProgress.spokenIds : null;
+  const isDone = (s: (typeof items)[number]) => (spoken ? spoken.has(s.id) : s.status === "MEMORIZED");
+  const doneCount = items.filter(isDone).length;
+  const doneLabel = spoken ? "통과" : "암기";
 
   useEffect(() => {
     currentRef.current?.scrollIntoView({ block: "nearest" });
@@ -32,11 +37,11 @@ export function SentenceMap({ view, tab }: Props) {
     <section aria-label="문장 지도" className="flex max-h-full min-h-0 w-full flex-col self-start rounded-3xl bg-surface p-4 shadow-card">
       <div className="flex items-end justify-between px-1">
         <div>
-          <p className="text-[12px] font-medium text-muted">암기한 문장</p>
+          <p className="text-[12px] font-medium text-muted">{spoken ? "따라 말하기 통과" : "암기한 문장"}</p>
           <p className="mt-0.5 text-[26px] font-bold leading-tight tracking-tight tabular-nums text-ink">
             {view ? (
               <>
-                {memorized}
+                {doneCount}
                 <span className="text-[15px] font-semibold text-muted"> / {items.length}</span>
               </>
             ) : (
@@ -51,7 +56,7 @@ export function SentenceMap({ view, tab }: Props) {
           </li>
           <li className="flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-[4px] bg-frost" />
-            암기
+            {doneLabel}
           </li>
         </ul>
       </div>
@@ -69,7 +74,7 @@ export function SentenceMap({ view, tab }: Props) {
           {/* 폭 700px 미만의 펼친 화면은 왼쪽 열이 280px이라 5칸이면 칸이 44px보다 좁아진다. 간격(8px)은 지키고 4칸으로 줄인다. */}
           {items.map((s, i) => {
             const current = i === index;
-            const done = s.status === "MEMORIZED";
+            const done = isDone(s);
             return (
               <li key={s.id}>
                 <button
@@ -77,8 +82,12 @@ export function SentenceMap({ view, tab }: Props) {
                   type="button"
                   disabled={locked || !synced}
                   aria-current={current ? "true" : undefined}
-                  aria-label={`${i + 1}번 문장으로 가기${done ? ", 암기 완료" : ""}`}
-                  onClick={() => audioEngine.go(i)}
+                  aria-label={`${i + 1}번 문장으로 가기${done ? (spoken ? ", 통과" : ", 암기 완료") : ""}`}
+                  onClick={() => {
+                    audioEngine.go(i);
+                    // 오늘 탭은 듣고 따라 말하는 흐름이라 고른 문장을 들려준다.
+                    if (spoken) speakControl.hear(s);
+                  }}
                   className={`press flex h-12 w-full items-center justify-center rounded-2xl text-[13.5px] tabular-nums disabled:opacity-40 ${
                     current
                       ? "bg-royal font-bold text-surface"

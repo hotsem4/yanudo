@@ -16,15 +16,18 @@ export interface SpeechMatch {
 }
 
 const ERRORS: Record<string, string> = {
-  "not-allowed": "마이크 권한이 꺼져 있어요. 브라우저 설정에서 마이크를 허용해 주세요.",
+  "not-allowed": "마이크 권한이 꺼져 있어요. 브라우저 설정에서 마이크를 허용한 뒤 앱을 다시 열어 주세요.",
   "service-not-allowed": "이 기기에서는 음성 인식을 쓸 수 없어요.",
   "no-speech": "목소리가 들리지 않았어요. 다시 눌러 읽어 보세요.",
   "audio-capture": "마이크를 찾지 못했어요.",
   network: "음성 인식 서버에 연결하지 못했어요. 네트워크를 확인해 주세요.",
 };
 
-/** 브라우저 SpeechRecognition(en-US, 중간 결과 사용). */
-export function useSpeechMatch(): SpeechMatch {
+/**
+ * 브라우저 SpeechRecognition(en-US, 중간 결과 사용).
+ * continuous: 말이 잠깐 끊겨도 인식을 이어 간다(끝내는 때는 부르는 쪽이 stop 으로 정한다). 기본은 끊기면 스스로 끝난다.
+ */
+export function useSpeechMatch({ continuous = false }: { continuous?: boolean } = {}): SpeechMatch {
   const Ctor = typeof window !== "undefined" ? (window.SpeechRecognition ?? window.webkitSpeechRecognition) : undefined;
   const recRef = useRef<SpeechRecognition | null>(null);
   const [listening, setListening] = useState(false);
@@ -54,7 +57,7 @@ export function useSpeechMatch(): SpeechMatch {
     const rec = new Ctor();
     rec.lang = "en-US";
     rec.interimResults = true;
-    rec.continuous = false;
+    rec.continuous = continuous;
     rec.maxAlternatives = 3;
     // 멈춘 직후 다시 시작하면 이전 인식기의 onend·onresult 가 늦게 올 수 있다. 지금 인식기의 것만 받는다.
     const current = () => recRef.current === rec;
@@ -94,7 +97,7 @@ export function useSpeechMatch(): SpeechMatch {
     } catch {
       setListening(false);
     }
-  }, [Ctor]);
+  }, [Ctor, continuous]);
 
   useEffect(() => () => recRef.current?.abort(), []);
 

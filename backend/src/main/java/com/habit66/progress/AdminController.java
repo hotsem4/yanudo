@@ -23,6 +23,9 @@ import com.habit66.content.LessonImport;
 @RequestMapping("/api/v1/admin")
 public class AdminController {
 
+    /** 시작일을 얼마나 먼 과거까지 받을지. 66일 라운드를 수십 번 돌아도 넉넉하다. */
+    static final int MAX_START_YEARS_AGO = 10;
+
     public record SettingsView(String startDate, String timezone, int dayRolloverHour) {
     }
 
@@ -92,6 +95,10 @@ public class AdminController {
             date = LocalDate.parse(body == null || body.startDate() == null ? "" : body.startDate().trim());
         } catch (DateTimeParseException e) {
             throw ApiException.badRequest("INVALID_START_DATE", "start_date 는 YYYY-MM-DD 형식이어야 합니다.");
+        }
+        // 하한: 아주 먼 과거를 넣으면 Day 수십만·라운드 수만이 되어 매 요청 계산이 느려진다.
+        if (date.isBefore(clock.today().minusYears(MAX_START_YEARS_AGO))) {
+            throw ApiException.badRequest("INVALID_START_DATE", "시작일은 " + MAX_START_YEARS_AGO + "년 전보다 앞설 수 없습니다.");
         }
         if (date.isAfter(clock.today())) {
             throw ApiException.badRequest("INVALID_START_DATE", "시작일은 오늘보다 뒤일 수 없습니다.");

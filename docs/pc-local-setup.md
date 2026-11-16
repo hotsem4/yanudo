@@ -10,7 +10,7 @@
 | A1 | 작업 스케줄러 작업 **`habit66 서버`**: 부팅 1분 뒤 로그인 없이(S4U, 비밀번호 저장 안 함) `run.bat` 실행, 로그 `data\server.log`, 배터리에서도 계속, 시간 제한 없음, 죽으면 1분 간격 3회 재시작 | 2026-11-16 | `Get-ScheduledTask -TaskName "habit66 서버"` | 서버 멈추기(아래) 후 `Unregister-ScheduledTask -TaskName "habit66 서버" -Confirm:$false` |
 | A2 | Tailscale **무인 실행 모드**(Windows 에서 로그아웃해도 연결 유지) | 2026-11-16 | `& "C:\Program Files\Tailscale\tailscale.exe" debug prefs` 의 `ForceDaemon: true` | `& "C:\Program Files\Tailscale\tailscale.exe" set --unattended=false` |
 | A3 | **Tailscale Serve**: `https://<pc>.<tailnet>.ts.net/` → `http://127.0.0.1:8080` (재부팅해도 유지. `run.bat` 도 켤 때마다 같은 설정을 다시 건다) | 2026-11-16 | `& "C:\Program Files\Tailscale\tailscale.exe" serve status` | `& "C:\Program Files\Tailscale\tailscale.exe" serve reset` |
-| A4 | `data\server.log`(자동 시작 서버의 로그 파일) | 2026-11-16 | 파일 존재 | A1 을 지운 뒤 파일 삭제 |
+| A4 | `data\server.log`(자동 시작 서버의 콘솔 출력, **켤 때마다 덮인다**)와 `data\logs\habit66.log`(서버가 직접 남기는 로그, 5MB·하루마다 회전해 14일·최대 50MB 보관, 2026-11-16 추가). 서버가 죽고 자동 재시작된 뒤 원인은 `data\logs` 쪽에서 찾는다 | 2026-11-16 | 파일 존재 | A1 을 지운 뒤 파일·폴더 삭제 |
 | A5 | **DB 자동 백업**(서버 안의 기능): 매일 04:30 과 서버가 켜질 때(그날 것이 없으면) `data\backup\habit66-YYYY-MM-DD.db`, 최근 14개 보관. `app.backup.extra-dir`(또는 환경 변수 `APP_BACKUP_EXTRA_DIR`)를 정하면 같은 사본과 `vapid.json`을 그 폴더에도 둔다 | 2026-11-16 | `dir data\backup`, 로그의 `DB backup written` | `config\application.yml` 에 `app.backup.enabled: false` |
 
 **서버 멈추기**: `Stop-ScheduledTask`는 바깥 `cmd`만 끄고 그 안의 `java`(서버)는 남는다(2026-11-16 확인). 그래서 두 줄을 같이 쓴다.

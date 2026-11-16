@@ -110,3 +110,11 @@ app:
 logging:
   level:
     org.hibernate.SQL: warn
+  # 서버가 직접 남기는 회전 로그. 예약 작업의 data/server.log 는 시작할 때마다 덮여서 죽은 뒤 재시작하면 원인이 사라진다.
+  file:
+    name: ${app.data-dir}/logs/habit66.log
+  logback:
+    rollingpolicy:
+      max-file-size: 5MB
+      max-history: 14
+      total-size-cap: 50MB

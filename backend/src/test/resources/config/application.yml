@@ -18,3 +18,8 @@ app:
     extra-dir: ""
   vocab:
     generator: none
+
+# 테스트는 data/logs 에 로그 파일을 남기지 않는다.
+logging:
+  file:
+    name: ""

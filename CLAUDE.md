@@ -16,7 +16,7 @@ Windows PC ─ Spring Boot :8080 (단일 포트)
 ```
 
 - **단일 포트 원칙**: 프론트엔드는 `/api/v1/...` 상대 경로만 호출한다. 절대 URL·호스트·포트를 코드에 넣지 않는다. 개발 때는 Vite가 `/api`를 `localhost:8080`으로 프록시한다.
-- **데이터 디렉터리**: `app.data-dir`(기본 `./data`, 작업 디렉터리 = 프로젝트 루트). DB, 오디오, VAPID 키가 모두 여기 있다. `bootRun`도 루트에서 돈다.
+- **데이터 디렉터리**: `app.data-dir`(기본 `./data`, 작업 디렉터리 = 프로젝트 루트). DB, 오디오, VAPID 키, 회전 로그(`logs/habit66.log`)가 모두 여기 있다. `bootRun`도 루트에서 돈다.
 - **TTS**: 파일 이름 규칙(`sha1(voice|rate|text[|variant])[:20].mp3`, variant는 Azure일 때만)과 MP3 길이 계산은 Java `tts` 패키지에만 있다. 백엔드는 `app.tts.engine`에 따라 `python -m edge_tts` CLI(기본) 또는 Azure Speech REST(48kHz, 키는 `config/application.yml`)로 직접 만들 수 있고, `scripts/generate_tts.py`는 서버에서 작업 목록(`GET /admin/tts/jobs`)을 받아 병렬로 합성한 뒤 업로드(`PUT /admin/audio/{file}`)만 한다. Python에 이름 규칙을 복제하지 않는다.
 - **시간 판단은 서버가 한다**: 논리 날짜, Day N, 모닝 락 시간대, 게이트, 스트릭은 모두 서버 계산값을 쓴다. 프론트엔드는 날짜를 직접 계산하지 않는다(타이머 제외). 오프라인 낙관 표시는 `state/overlay.ts`의 집합 연산뿐이다.
 - **사실만 저장**: 파생값(달성 여부 외의 스트릭·프리즈·게이트)은 저장하지 않고 매 요청 순수 함수(`progress.HabitRules`)로 계산한다. 학습 쓰기는 `POST /api/v1/events` 하나다. 설계 근거는 [docs/architecture.md](docs/architecture.md).
@@ -62,6 +62,7 @@ build-all.bat / run.bat      Windows 빌드·실행
 | 프론트 개발 | `cd frontend && npm run dev` → http://localhost:5173 |
 | 프론트 타입 검사 | `cd frontend && npm run typecheck` |
 | 백엔드 테스트 | `cd backend && gradlew.bat test` |
+| 커밋·푸시 전 전체 검사 | `python scripts/check.py` (푸시 훅·CI와 같은 명령) |
 | 오디오 일괄 생성 | `python scripts/generate_tts.py` |
 | 레슨 추가 | `python scripts/generate_tts.py --import content/day06.json` |
 
@@ -102,3 +103,16 @@ build-all.bat / run.bat      Windows 빌드·실행
 - 파생값(스트릭, 프리즈 사용, 게이트 상태)을 DB에 저장하기.
 - `static/` 폴더를 손으로 고치기(빌드 산출물이다. `build-all.bat`가 지우고 다시 채운다).
 - `data/` 폴더를 커밋하기.
+
+## 규칙과 강제 수단
+
+운영자가 같은 실수를 두 번 고쳐 주면 여기에 규칙을 더하고, 가능한 한 높은 수준(구조 → 타입 → 검사 → 문서)으로 막는다. 강제 수단이 "없음"인 규칙은 판단에 맡기는 것이라 더 자주 확인한다.
+
+| 규칙 | 강제 수단 | 근거 |
+|---|---|---|
+| 커밋·푸시 전에 백엔드 테스트·프론트 타입 검사·콘텐츠 검사를 모두 통과한다. 훅을 건너뛰지 않는다(`--no-verify` 금지). | `python scripts/check.py` — `.githooks/pre-push`(`build-all.bat`이 `core.hooksPath`로 켬), `.github/workflows/check.yml`(같은 명령) | 04aa36e: 알림 주소를 바꾸고 `ReminderServiceTest`를 안 돌려 깨진 채 커밋(ce07eb9에서 고침). Azure 설정 레코드에 생성자를 더해 테스트 53개 실패(커밋 전 발견) |
+| 빌드 산출물·캐시는 저장소에 올리지 않고, 무시 규칙이 소스를 숨기지 않게 루트 기준(`/이름/`)으로 쓴다. | `scripts/check.py` repo 단계: 추적 파일이 무시 대상이거나 소스 폴더의 새 파일이 무시되면 실패 | f6a29de `__pycache__` 커밋, ea7256b `config/`가 백엔드 `config` 패키지를 숨겨 커밋에서 빠짐, `frontend/tsconfig.tsbuildinfo` 추적 |
+| 소리·성능·용량처럼 잴 수 있는 것은 재고 나서 말한다. 재지 않았으면 추정이라고 밝힌다. | 없음(판단) | 2026-11-16 "Azure 48kHz는 높은 소리를 두 배까지 담는다"고 했으나, 재 보니 edge와 Azure 모두 11.5kHz에서 끊김(목소리를 24kHz로 만든 뒤 늘린 것) |
+| 브라우저로 화면을 검사할 때 소리를 내지 않는다(`HTMLMediaElement.play`·`speechSynthesis.speak`를 막고 호출만 확인). 서브에이전트 프롬프트에도 적는다. | 없음(판단) | 2026-11-16 새벽 검사 중 기기 음성이 노트북 스피커로 나옴 |
+| 토큰·키·실제 tailnet 주소·사용자 경로·이메일은 공개 저장소에 올리지 않는다. 비밀값은 사용자가 `config/application.yml`에 직접 넣는다. | 일부: `/config/`·`data/`는 `.gitignore`와 repo 단계. 파일 내용 검사는 없음(푸시 전 판단) | 운영자 지시(2026-11-16) |
+| "하지 말 것"의 각 항목 | 없음(리뷰) | — |

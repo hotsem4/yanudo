@@ -7,6 +7,8 @@ const CONCURRENCY = 3;
 const LOAD_TIMEOUT_MS = 20_000;
 /** 받지 못한 클립을 프리로드가 다시 요청하기까지. 큐가 다시 실릴 때마다(기록 1건마다 여러 번) 재요청하지 않게. */
 const RETRY_AFTER_MS = 60_000;
+/** 메모리에 들고 있는 blob 상한. 지금 큐에 없는 것부터 오래 안 쓴 순으로 놓는다(Azure 48kHz 클립은 한 개 60KB 안팎). */
+const MAX_BLOBS = 60;
 
 export interface PreloadStatus {
   ready: number;
@@ -57,7 +59,12 @@ export class ClipStore {
   /** 재생용 blob: URL. 없으면 캐시 → 네트워크 순으로 시도하고, 실패하면 throw. */
   objectUrl(url: string): Promise<string> {
     const ready = this.blobs.get(url);
-    if (ready) return Promise.resolve(ready);
+    if (ready) {
+      // Map 순서를 최근 사용 순으로 유지한다(맨 뒤가 가장 최근).
+      this.blobs.delete(url);
+      this.blobs.set(url, ready);
+      return Promise.resolve(ready);
+    }
     const inflight = this.loading.get(url);
     if (inflight) return inflight;
     const failed = this.failedAt.get(url);
@@ -66,6 +73,7 @@ export class ClipStore {
       .then((blobUrl) => {
         this.blobs.set(url, blobUrl);
         this.failedAt.delete(url);
+        this.evict(url);
         this.updateStatus();
         return blobUrl;
       })
@@ -95,6 +103,18 @@ export class ClipStore {
       return URL.createObjectURL(blob);
     } finally {
       window.clearTimeout(timer);
+    }
+  }
+
+  /** 상한을 넘으면 지금 큐에 없고 오래 안 쓴 blob 부터 해제한다. 큐에 있는 것과 방금 받은 것은 남긴다. */
+  private evict(keep: string): void {
+    if (this.blobs.size <= MAX_BLOBS) return;
+    const wanted = new Set(this.wanted);
+    for (const [url, blobUrl] of this.blobs) {
+      if (this.blobs.size <= MAX_BLOBS) break;
+      if (url === keep || wanted.has(url)) continue;
+      this.blobs.delete(url);
+      URL.revokeObjectURL(blobUrl);
     }
   }
 

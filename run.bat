@@ -12,6 +12,11 @@ if errorlevel 1 (
   for /d %%J in ("%ProgramFiles%\Eclipse Adoptium\jdk-*") do set "JAVA_HOME=%%J"
 )
 if defined JAVA_HOME set "PATH=%JAVA_HOME%\bin;%PATH%"
+where java >nul 2>nul
+if errorlevel 1 (
+  echo [오류] java 를 찾지 못했습니다. JDK 17 이상^(예: Eclipse Adoptium^)을 설치하거나 JAVA_HOME 을 지정하세요.
+  exit /b 1
+)
 where tailscale >nul 2>nul
 if not errorlevel 1 tailscale serve --bg 8080 >nul 2>nul
 echo http://localhost:8080  (종료: Ctrl+C)

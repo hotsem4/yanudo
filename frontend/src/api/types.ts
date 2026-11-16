@@ -71,6 +71,20 @@ export interface VocabGenerator {
   expires_at: number | null;
 }
 
+/** 말하기 연습(SPEC F-09): 배운 Day 목록(최근 먼저). */
+export interface SpeakOverview {
+  lesson_day: number;
+  days: { day: number; title: string; sentence_ids: number[]; done_ids: number[] }[];
+}
+
+/** 말하기 연습 한 Day 의 문장과 연습을 끝낸 문장 id. */
+export interface SpeakLesson {
+  day: number;
+  title: string;
+  sentences: Sentence[];
+  done_ids: number[];
+}
+
 export interface VocabList {
   entries: VocabEntry[];
   generator?: VocabGenerator;
@@ -158,6 +172,8 @@ export type StudyEvent =
   | (EventBase & { type: "MARK"; sentence_id: number; status: MarkStatus })
   | (EventBase & { type: "FOCUS"; started_at: number; seconds: number })
   | (EventBase & { type: "MORNING_LOCK"; result: LockResult })
+  /** 말하기 연습(부가 기능): 한 문장을 reps 번 맞게 말해 끝냄. 습관·게이트와 무관. */
+  | (EventBase & { type: "SPEAK"; sentence_id: number; reps: number })
   | (EventBase & { type: "VOCAB_ADD"; text: string; sentence_id: number | null; meaning: string | null; note: string | null })
   | (EventBase & { type: "VOCAB_REMOVE"; term_key: string })
   | (EventBase & { type: "VOCAB_MASTER"; term_key: string; mastered: boolean })

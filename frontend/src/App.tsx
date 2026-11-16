@@ -16,13 +16,17 @@ import { StudyStage } from "./components/StudyStage";
 import { VocabList } from "./components/VocabList";
 import { VocabPickSheet } from "./components/VocabPickSheet";
 import { VocabStage } from "./components/VocabStage";
+import { SpeakDayList, SpeakHome } from "./components/SpeakDayList";
+import { SpeakPractice } from "./components/SpeakPractice";
+import { api } from "./api/client";
+import type { SpeakOverview } from "./api/types";
 import { Toaster } from "./components/Toaster";
 import { TodayPlan } from "./components/TodayPlan";
 import { TodoSheet } from "./components/TodoSheet";
 import { summarize, todayTodos, type Todo } from "./lib/todo";
 import { useFocusTimer } from "./hooks/useFocusTimer";
 import { useWakeLock } from "./hooks/useWakeLock";
-import { rememberVocabView, vocabViewFromUrl } from "./lib/launch";
+import { rememberSideView, sideViewFromUrl, type SideView } from "./lib/launch";
 import { MASCOT_NAME, mascotOf, noteStage, stageIs } from "./lib/mascot";
 import { prefs, type RevealFilter } from "./lib/prefs";
 import { showToast } from "./lib/toast";
@@ -32,7 +36,7 @@ import { shouldShowMorningLock, type DayView } from "./state/overlay";
 import { useStudy } from "./state/useStudy";
 
 type Sheet = "heatmap" | "settings" | "words" | "todo" | null;
-type MainTab = Session | "VOCAB";
+type MainTab = Session | "VOCAB" | "SPEAK";
 
 export function App() {
   const study = useStudy();
@@ -54,7 +58,10 @@ export function App() {
   const mascot = view ? mascotOf(view) : null;
 
   // 단어장은 재생 큐와 무관한 별도 화면이라 선택 상태를 여기서 따로 든다(playback 의 탭은 TODAY/REVIEW 그대로).
-  const [vocabOpen, setVocabOpen] = useState(vocabViewFromUrl);
+  // 학습 큐와 무관한 별도 화면(단어장, 말하기 연습). null 이면 학습 화면.
+  const [side, setSide] = useState<SideView | null>(sideViewFromUrl);
+  const vocabOpen = side === "vocab";
+  const speakOpen = side === "speak";
   const [vocabFilter, setVocabFilter] = useState<VocabFilter>("learning");
   const [vocabKey, setVocabKey] = useState<string | null>(null);
   const [wordsFor, setWordsFor] = useState<Sentence | null>(null);
@@ -66,10 +73,26 @@ export function App() {
   const vocabIndex = found >= 0 ? found : Math.min(lastIndex.current, Math.max(0, deck.length - 1));
   lastIndex.current = vocabIndex;
 
-  const showVocab = (open: boolean) => {
-    setVocabOpen(open);
-    rememberVocabView(open);
+  const showSide = (next: SideView | null) => {
+    setSide(next);
+    rememberSideView(next);
   };
+  const showVocab = (open: boolean) => showSide(open ? "vocab" : null);
+
+  // 말하기 연습(부가 기능): Day 목록과 고른 Day.
+  const [speakDay, setSpeakDay] = useState<number | null>(null);
+  const [speakOverview, setSpeakOverview] = useState<SpeakOverview | null>(null);
+  const [speakFailed, setSpeakFailed] = useState(false);
+  const loadSpeak = useCallback(() => {
+    setSpeakFailed(false);
+    api.speak().then(setSpeakOverview, () => setSpeakFailed(true));
+  }, []);
+  useEffect(() => {
+    if (speakOpen) loadSpeak();
+  }, [speakOpen, loadSpeak]);
+  // 이 화면에서 끝낸 문장. 기록을 보내기 전에 받은 목록에도 완료로 보이게 서버 값·대기 이벤트와 합친다.
+  const [speakDone, setSpeakDone] = useState<number[]>([]);
+  const speakMarks = useMemo(() => [...(view?.speakPendingIds ?? []), ...speakDone], [view?.speakPendingIds, speakDone]);
   // 알림을 눌렀을 때 서비스 워커가 열린 창을 새로 고치지 않고 보내는 목적지(sw.js notificationclick).
   useEffect(() => {
     if (!("serviceWorker" in navigator)) return;
@@ -78,8 +101,8 @@ export function App() {
       if (data?.type !== "open-url" || typeof data.url !== "string") return;
       const target = new URL(data.url, window.location.origin);
       if (target.searchParams.get("view") === "vocab") {
-        setVocabOpen(true);
-        rememberVocabView(true);
+        setSide("vocab");
+        rememberSideView("vocab");
       } else if (target.searchParams.has("autoplay")) {
         // 자동 재생 요청은 앱을 여는 흐름(readLaunch)을 타야 한다.
         window.location.assign(target.href);
@@ -89,10 +112,11 @@ export function App() {
     return () => navigator.serviceWorker.removeEventListener("message", onMessage);
   }, []);
   // 단어장에서는 독을 숨긴다(독은 학습 큐를 움직이므로 단어 카드와 헷갈린다). 학습 오디오가 나오는 중이면 멈출 수 있게 남긴다.
-  const dockHidden = vocabOpen && !eng.playing && eng.phase !== "blocked";
+  const dockHidden = side !== null && !eng.playing && eng.phase !== "blocked";
   const selectMainTab = (t: MainTab) => {
-    if (t === "VOCAB") return showVocab(true);
-    showVocab(false);
+    if (t === "VOCAB") return showSide("vocab");
+    if (t === "SPEAK") return showSide("speak");
+    showSide(null);
     playback.selectTab(t);
   };
 
@@ -138,12 +162,13 @@ export function App() {
     { value: "TODAY", label: "오늘의 10문장", icon: locked ? <Lock size={13} strokeWidth={2} aria-hidden /> : undefined },
     { value: "REVIEW", label: "누적 복습" },
     { value: "VOCAB", label: "단어장" },
+    { value: "SPEAK", label: "말하기" },
   ];
 
   return (
     <MotionConfig reducedMotion="user">
       <main
-        className={`app-grid mx-auto min-h-dvh max-w-md bg-canvas px-5 pt-safe unfolded:max-w-[960px] unfolded:px-8 unfolded:pb-6 ${vocabOpen ? "app-grid--vocab" : ""} ${
+        className={`app-grid mx-auto min-h-dvh max-w-md bg-canvas px-5 pt-safe unfolded:max-w-[960px] unfolded:px-8 unfolded:pb-6 ${side ? "app-grid--vocab" : ""} ${
           dockHidden ? "app-grid--nodock pb-6" : "pb-dock"
         }`}
       >
@@ -154,20 +179,51 @@ export function App() {
           <BentoHeader view={view} timer={timer} onOpenHeatmap={() => setSheet("heatmap")} />
         </div>
         <div className="area-tabs flex flex-col gap-3">
-          {view && todos && (
+          {/* 단어장·말하기 연습은 학습과 별개인 도구라 오늘 할 일 줄을 숨기고 그 자리를 카드에 준다. */}
+          {view && todos && !side && (
             <TodayPlan view={view} todos={todos} focusRunning={timer.running} onOpenList={() => setSheet("todo")} {...todoActions} />
           )}
-          <Segmented variant="tab" label="학습 세션" options={tabs} value={vocabOpen ? "VOCAB" : tab} onChange={selectMainTab} />
+          <Segmented variant="tab" label="학습 세션" options={tabs} value={vocabOpen ? "VOCAB" : speakOpen ? "SPEAK" : tab} onChange={selectMainTab} />
         </div>
         <div className="area-map">
           {vocabOpen ? (
             <VocabList all={vocabAll} deck={deck} index={vocabIndex} filter={vocabFilter} onSelect={setVocabKey} />
+          ) : speakOpen ? (
+            <div className="thin-scroll h-full overflow-y-auto">
+              <SpeakDayList
+                overview={speakOverview}
+                pendingIds={speakMarks}
+                selected={speakDay}
+                failed={speakFailed}
+                onSelect={setSpeakDay}
+                onRetry={loadSpeak}
+              />
+            </div>
           ) : (
             <SentenceMap view={view} tab={tab} />
           )}
         </div>
         <div className="area-card">
-          {vocabOpen ? (
+          {speakOpen ? (
+            speakDay !== null ? (
+              <SpeakPractice
+                key={speakDay}
+                day={speakDay}
+                pendingIds={speakMarks}
+                mascot={mascot}
+                onBack={() => setSpeakDay(null)}
+                onDone={(id) => setSpeakDone((ids) => [...ids, id])}
+              />
+            ) : (
+              <SpeakHome
+                overview={speakOverview}
+                pendingIds={speakMarks}
+                failed={speakFailed}
+                onSelect={setSpeakDay}
+                onRetry={loadSpeak}
+              />
+            )
+          ) : vocabOpen ? (
             <VocabStage
               study={study}
               all={vocabAll}
@@ -194,7 +250,7 @@ export function App() {
           )}
         </div>
         {/* 단어장에는 가리기·재생 모드가 쓰이지 않아 컨트롤을 그리지 않는다. 설정은 학습 화면에서 연다. */}
-        {!vocabOpen && <div className="area-ctrl">
+        {!side && <div className="area-ctrl">
           <Controls
             filter={filter}
             onFilter={changeFilter}

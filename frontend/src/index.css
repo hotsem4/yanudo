@@ -285,10 +285,20 @@
       min-height: 0;
     }
   }
+  /* 컨트롤 줄이 없어 왼쪽 열이 남으므로 세로가 낮은 펼친 화면에서도 목록을 둔다. 말하기 연습은 이 목록에서만 Day 를 고른다. */
   @media (min-width: 600px) {
     .app-grid--vocab {
+      height: 100dvh;
       grid-template-rows: auto auto minmax(0, 1fr);
       grid-template-areas: "head card" "tabs card" "map card";
+    }
+    .app-grid--vocab .area-card {
+      min-height: 0;
+    }
+    .app-grid--vocab .area-map {
+      grid-area: map;
+      display: flex;
+      min-height: 0;
     }
   }
 

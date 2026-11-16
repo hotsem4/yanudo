@@ -123,6 +123,14 @@
 - **예문 음성**: 단어장에 담는 순간 그 표현의 예문 3개 음성을 만든다(1·3번 Ava, 2번 Andrew, `-10%`). 준비 전에는 기기 음성으로 대신 읽는다.
 - **단어장 탭**: 세션 탭 세 번째. 카드처럼 넘겨 본다(앞면: 표현 / 탭하면: 뜻·느낌·예문 3개·처음 본 학습 문장). 예문마다 듣기 버튼. "외웠어요" 표시, 외우는 중 / 외운 단어 / 전체 필터, 지우기.
 
+### F-09. 말하기 연습 (부가 기능)
+
+- **목적**: 배운 문장을 입에 붙이는 반복 연습. 학습 화면은 그대로 두고 따로 연다. **습관·게이트·스트릭·오늘 할 일과 무관**하다(달성 판정에 쓰지 않는다).
+- **말하기 탭**: 세션 탭 네 번째(`?view=speak`). 배운 Day(오늘 레슨 일차까지) 목록을 최근 먼저 보여 주고, 행마다 연습을 끝낸 문장 수(`3/10`, 다 하면 "연습 완료").
+- **연습**: Day를 고르면 문장을 하나씩 보여 준다(영어 + 자연 해석, 듣기 버튼). 마이크를 눌러 말하면 모닝 보이스 락과 같은 단어 맞춤(`wordMatch`, 순서대로 맞힌 단어 60% 이상)으로 판정해 1회로 센다. **5회**를 채우면 그 문장을 끝낸 것으로 기록하고 다음 문장으로 넘어간다. 이미 끝낸 문장도 다시 연습할 수 있다. 처음 열 때는 아직 끝내지 않은 첫 문장부터.
+- **기록**: 문장을 끝낼 때 `SPEAK` 이벤트 하나(오프라인이면 아웃박스에 쌓였다가 전송). 서버는 횟수만 남기고 아무 파생값도 만들지 않는다.
+- 마이크를 쓸 수 없는 브라우저나 권한 거부면 그 이유를 보여 주고 듣기만 가능하다.
+
 ---
 
 ## 2. TTS & 오디오 캐시
@@ -166,6 +174,7 @@ sentence_term(sentence_id FK, term_id FK, form, PRIMARY KEY(sentence_id, term_id
 vocab_entry(term_id PK FK, sentence_id FK NULL, note, mastered, mastered_at, added_at)    -- vocab (담긴 표현)
 applied_event(id PK, applied_at)                                                         -- progress (처리한 VIEW·MORNING_LOCK 이벤트 id)
 vocab_event(id PK, applied_at)                                                           -- vocab (처리한 VOCAB_* 이벤트 id)
+speak_practice(id PK, sentence_id FK, log_date, reps, event_id UNIQUE, created_at)        -- speak (말하기 연습을 끝낸 기록, F-09)
 ```
 
 ---
@@ -265,6 +274,7 @@ vocab_event(id PK, applied_at)                                                  
   - `{"type":"VOCAB_MASTER", "term_key":"grab", "mastered":true}`: 외웠어요 표시. 같은 시각이면 나중 것.
   - `{"type":"VOCAB_EDIT", "term_key":"grab", "meaning":"…", "note":"…"}`: 직접 고친 뜻·메모.
   - 단어장 이벤트는 순서에 따라 결과가 달라서(담기 → 빼기) 서버가 처리한 id를 기록하고, 같은 id가 다시 오면 적용하지 않고 `accepted`로 돌려준다.
+- 말하기 연습 이벤트(F-09): `{"type":"SPEAK", "sentence_id":31, "reps":5}`. `reps`는 1~50. `event_id` UNIQUE로 한 번만 남긴다. 없는 문장은 `UNKNOWN_SENTENCE`. 대시보드·게이트에 영향 없음.
 
 ### 4.5 히트맵
 
@@ -373,6 +383,19 @@ app:
     login-check-cron: "0 0 12 * * *"
     login-warn-days: 3
 ```
+
+### 4.10 말하기 연습 (F-09)
+
+`GET /api/v1/speak`: 배운 Day 목록(최근 먼저).
+
+```json
+{ "lesson_day": 4,
+  "days": [ { "day": 4, "title": "길 묻기와 출퇴근", "sentence_ids": [31, 32, 33], "done_ids": [31] } ] }
+```
+
+`GET /api/v1/speak/days/{day}`: 그 Day의 문장(4.1 모양, 음성 포함)과 `done_ids`. 아직 배우지 않은 Day는 `404 SPEAK_DAY_LOCKED`.
+
+- `done_ids`는 한 번이라도 연습을 끝낸 문장 id. 프론트는 아직 보내지 않은 `SPEAK` 이벤트의 문장과 합쳐 바로 완료로 보인다(id 집합이라 겹쳐도 한 번만 센다).
 
 ---
 

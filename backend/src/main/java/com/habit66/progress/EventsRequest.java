@@ -25,6 +25,7 @@ public record EventsRequest(List<JsonNode> events) {
 
     public static final int MAX_EVENTS = 500;
     public static final int MAX_FOCUS_SECONDS = 21_600;
+    public static final int MAX_SPEAK_REPS = 50;
     public static final int MAX_TERM = 80;
     public static final int MAX_MEANING = 200;
     public static final int MAX_NOTE = 1_000;
@@ -75,6 +76,13 @@ public record EventsRequest(List<JsonNode> events) {
             }
             case "MORNING_LOCK":
                 return new ClientEvent.MorningLock(id, occurredAt, choice(LockResult.class, node, "result"));
+            case "SPEAK": {
+                long reps = positive(node, "reps");
+                if (reps > MAX_SPEAK_REPS) {
+                    throw new Invalid("INVALID_FIELD");
+                }
+                return new ClientEvent.Speak(id, occurredAt, positive(node, "sentence_id"), (int) reps);
+            }
             case "VOCAB_ADD":
                 return new ClientEvent.VocabAdd(id, occurredAt, termText(node, "text"),
                         optionalPositive(node, "sentence_id"), optionalText(node, "meaning", MAX_MEANING),

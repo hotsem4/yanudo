@@ -720,6 +720,47 @@ class ApiIntegrationTest {
         assertThat(d.path("streak").path("freezes_left").asInt()).isEqualTo(1);
     }
 
+    @Test
+    @Order(17)
+    void speakingPracticeIsRecordedApartFromTheHabit() throws Exception {
+        // 오늘 레슨이 Day 5(콘텐츠 마지막)라 Day 1~5 가 열린다(최근 먼저).
+        JsonNode overview = getJson("/api/v1/speak");
+        assertThat(overview.path("days")).hasSize(5);
+        assertThat(overview.path("days").get(0).path("day").asInt()).isEqualTo(5);
+        assertThat(overview.path("days").get(0).path("done_ids")).isEmpty();
+        assertThat(overview.path("days").get(0).path("sentence_ids")).hasSize(10);
+
+        JsonNode day1 = getJson("/api/v1/speak/days/1");
+        assertThat(day1.path("sentences")).hasSize(10);
+        assertThat(day1.path("sentences").get(0).path("audio_url").isTextual()).isTrue();
+        long first = day1.path("sentences").get(0).path("id").asLong();
+
+        JsonNode before = getJson("/api/v1/dashboard");
+        ObjectNode speak = event("speak-1", "SPEAK", CLOCK.millis()).put("sentence_id", first).put("reps", 5);
+        JsonNode res = postEvents(array(speak));
+        assertThat(texts(res.path("accepted"))).containsExactly("speak-1");
+        postEvents(array(speak)); // 같은 이벤트를 다시 보내도 한 번만
+
+        assertThat(longs(getJson("/api/v1/speak/days/1").path("done_ids"))).containsExactly(first);
+        JsonNode day1Row = null;
+        for (JsonNode d : getJson("/api/v1/speak").path("days")) {
+            if (d.path("day").asInt() == 1) {
+                day1Row = d;
+            }
+        }
+        assertThat(longs(day1Row.path("done_ids"))).containsExactly(first);
+        // 부가 기능이라 습관·게이트·스트릭은 그대로다.
+        JsonNode after = getJson("/api/v1/dashboard");
+        assertThat(after.path("today_progress")).isEqualTo(before.path("today_progress"));
+        assertThat(after.path("streak")).isEqualTo(before.path("streak"));
+
+        // 배우지 않은 Day 는 열리지 않고, 형식이 틀린 SPEAK 는 거절한다.
+        MockHttpServletResponse locked = mvc.perform(get("/api/v1/speak/days/6")).andReturn().getResponse();
+        assertThat(locked.getStatus()).isEqualTo(404);
+        JsonNode bad = postEvents(array(event("speak-bad", "SPEAK", CLOCK.millis()).put("sentence_id", first).put("reps", 0)));
+        assertThat(bad.path("accepted")).isEmpty();
+    }
+
     // ── 도우미 ────────────────────────────────────────────────
 
     private JsonNode getJson(String path) throws Exception {

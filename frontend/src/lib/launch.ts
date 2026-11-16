@@ -31,9 +31,24 @@ export function writeSessionParam(session: Session): void {
   window.history.replaceState(null, "", url.pathname + url.search + url.hash);
 }
 
-/** 단어장 화면 선택도 URL 에 둔다(?view=vocab). 재생 큐의 세션 탭(?session)과는 별개다. */
+/** 학습 큐와 무관한 별도 화면(단어장, 말하기 연습). URL 에 둔다(?view=vocab|speak). 재생 큐의 세션 탭(?session)과는 별개다. */
+export type SideView = "vocab" | "speak";
+
+export function sideViewFromUrl(): SideView | null {
+  const v = new URLSearchParams(window.location.search).get("view");
+  return v === "vocab" || v === "speak" ? v : null;
+}
+
+export function rememberSideView(view: SideView | null): void {
+  const url = new URL(window.location.href);
+  if (view) url.searchParams.set("view", view);
+  else url.searchParams.delete("view");
+  window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+}
+
+/** @deprecated sideViewFromUrl 을 쓴다. */
 export function vocabViewFromUrl(): boolean {
-  return new URLSearchParams(window.location.search).get("view") === "vocab";
+  return sideViewFromUrl() === "vocab";
 }
 
 export function rememberVocabView(open: boolean): void {

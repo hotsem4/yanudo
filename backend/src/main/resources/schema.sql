@@ -137,6 +137,18 @@ CREATE TABLE IF NOT EXISTS vocab_entry (
 
 -- 쓰기 소유자: vocab.VocabService (처리한 VOCAB_* 이벤트 id. 같은 id 를 다시 받으면 무시한다)
 -- 다른 이벤트는 자연 키로 멱등하지만 담기와 빼기는 순서에 따라 결과가 달라 id 로 막는다
+-- 쓰기 소유자: progress.EventService. 말하기 연습(부가 기능): 한 문장을 5번 맞게 말한 사실. 습관·게이트와 무관하다.
+CREATE TABLE IF NOT EXISTS speak_practice (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    sentence_id  INTEGER NOT NULL REFERENCES sentence(id) ON DELETE CASCADE,
+    log_date     TEXT    NOT NULL,
+    reps         INTEGER NOT NULL,
+    event_id     TEXT    NOT NULL UNIQUE,
+    created_at   INTEGER NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_speak_sentence ON speak_practice (sentence_id);
+
 -- 쓰기 소유자: progress.EventService. 처리한 VIEW·MORNING_LOCK 이벤트 id(재전송이 다른 날짜로 다시 기록되지 않게)
 CREATE TABLE IF NOT EXISTS applied_event (
     id          TEXT    PRIMARY KEY,

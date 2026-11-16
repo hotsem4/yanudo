@@ -64,6 +64,11 @@ public class ViewAssembler {
                 s.review().preview(), sentences(s.review().sentences(), s));
     }
 
+    /** 한 레슨의 문장(음성·암기 상태·표현 포함). 말하기 연습이 쓴다. */
+    public List<SentenceDto> lessonSentences(LessonView lesson, DaySnapshot s) {
+        return sentences(lesson.sentences(), s);
+    }
+
     public Heatmap heatmap(DaySnapshot s) {
         List<HeatCell> cells = s.cells().stream()
                 .map(c -> new HeatCell(c.day(), c.date().toString(), c.status().name()))

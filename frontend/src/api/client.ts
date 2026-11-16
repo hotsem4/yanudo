@@ -1,4 +1,4 @@
-import type { ApiErrorBody, Dashboard, EventsResponse, Heatmap, SessionData, StudyEvent, VocabList } from "./types";
+import type { ApiErrorBody, Dashboard, EventsResponse, Heatmap, SessionData, SpeakLesson, SpeakOverview, StudyEvent, VocabList } from "./types";
 
 /** 서버가 오류 본문을 돌려준 경우. */
 export class ApiError extends Error {
@@ -101,6 +101,8 @@ export const api = {
   session: (which: "today" | "review") => request<SessionData>(`/api/v1/sessions/${which}`),
   heatmap: () => request<Heatmap>("/api/v1/habit/heatmap"),
   vocab: () => request<VocabList>("/api/v1/vocab"),
+  speak: () => request<SpeakOverview>("/api/v1/speak"),
+  speakDay: (day: number) => request<SpeakLesson>(`/api/v1/speak/days/${day}`),
   async events(events: StudyEvent[]): Promise<EventsResponse> {
     const sentAt = Date.now();
     const res = await request<EventsResponse>("/api/v1/events", { method: "POST", body: JSON.stringify({ events }) });

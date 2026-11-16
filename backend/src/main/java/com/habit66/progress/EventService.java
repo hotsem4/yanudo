@@ -96,6 +96,8 @@ public class EventService {
                     ok = applyFocus(focus, at, receivedAt);
                 } else if (event instanceof ClientEvent.MorningLock lock) {
                     ok = applyMorningLock(lock, at, receivedAt);
+                } else if (event instanceof ClientEvent.Speak speak) {
+                    ok = applySpeak(speak, at, receivedAt, cat);
                 } else {
                     ok = applyVocab(event, at, receivedAt);
                 }
@@ -179,6 +181,18 @@ public class EventService {
     }
 
     /** 단어장 이벤트. 없는 문장·담기지 않은 표현을 가리켜도 거절하지 않는다(그 부분만 무시한다). */
+    /** 말하기 연습 기록. 이벤트 id 로 멱등(같은 문장을 다시 연습하면 새 행이 쌓인다). */
+    private boolean applySpeak(ClientEvent.Speak speak, long at, long receivedAt, Catalog cat) {
+        if (cat.sentence(speak.sentenceId()).isEmpty()) {
+            return false;
+        }
+        jdbc.update("""
+                INSERT OR IGNORE INTO speak_practice (sentence_id, log_date, reps, event_id, created_at)
+                VALUES (?, ?, ?, ?, ?)
+                """, speak.sentenceId(), clock.dateOf(at).toString(), speak.reps(), speak.id(), receivedAt);
+        return true;
+    }
+
     private boolean applyVocab(ClientEvent event, long at, long receivedAt) {
         if (!vocab.claim(event.id(), receivedAt)) {
             return true;

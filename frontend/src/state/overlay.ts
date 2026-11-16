@@ -31,6 +31,8 @@ export interface DayView {
   vocab: VocabEntry[] | null;
   /** 뜻·예문 생성기 상태. 아직 받지 못했으면 null. */
   vocabGenerator: VocabGenerator | null;
+  /** 아직 보내지 않은 말하기 연습 완료(문장 id). 서버 목록과 합쳐 완료 표시를 바로 보인다. */
+  speakPendingIds: number[];
 }
 
 export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[], now: number): DayView {
@@ -47,8 +49,13 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
   let localLock: LockState = "NONE";
   let viewedLocally = false;
 
+  const speakPendingIds: number[] = [];
   for (const e of pending) {
     if (e.type.startsWith("VOCAB_")) continue; // 단어장은 applyVocab 이 따로 처리(날짜와 무관)
+    if (e.type === "SPEAK") {
+      speakPendingIds.push(e.sentence_id); // 말하기 연습은 습관과 무관하다
+      continue;
+    }
     if (e.type === "MARK") {
       const prev = marks.get(e.sentence_id);
       if (!prev || prev.at <= e.occurred_at) marks.set(e.sentence_id, { status: e.status, at: e.occurred_at });
@@ -140,6 +147,7 @@ export function applyPending(snapshot: Snapshot, pending: readonly StudyEvent[],
     focusSecondsToday: d.focus.seconds_today + focusPending,
     vocab: applyVocab(snapshot, pending),
     vocabGenerator: snapshot.vocabGenerator ?? null,
+    speakPendingIds,
   };
 }
 

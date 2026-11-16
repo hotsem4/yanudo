@@ -42,6 +42,10 @@ export interface DayView {
 
 export interface MakeupDue {
   day: number;
+  /** 빼먹은 날짜(YYYY-MM-DD). 2라운드부터는 Day(레슨 번호)와 달력 Day 가 달라 날짜로 부른다. */
+  date: string;
+  effect?: import("../api/types").MakeupEffect;
+  streakIfDone?: number;
   rest: boolean;
   reps: number;
   deadline: string;
@@ -210,7 +214,17 @@ function makeupsDueView(d: Dashboard, speakPending: readonly { id: number; reps:
       const done = new Set(m.done_ids ?? []);
       const counted = new Set(speakPending.filter((p) => p.reps >= m.reps && p.at >= d.valid_from).map((p) => p.id));
       ids.forEach((id) => counted.has(id) && done.add(id));
-      return { day: m.day, rest: m.rest, reps: m.reps, deadline: m.deadline, total: ids.length, done: done.size };
+      return {
+        day: m.day,
+        date: m.date,
+        effect: m.effect,
+        streakIfDone: m.streak_if_done,
+        rest: m.rest,
+        reps: m.reps,
+        deadline: m.deadline,
+        total: ids.length,
+        done: done.size,
+      };
     })
     .filter((m) => m.done < m.total);
 }

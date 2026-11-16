@@ -56,7 +56,8 @@ public class ViewAssembler {
                         .filter(m -> !m.done() && m.keepsStreak())
                         .filter(distinctDay())
                         .map(m -> new Views.MakeupDue(m.day(), m.date().toString(), m.rest(), m.reps(),
-                                m.deadline().toString(), m.sentenceIds(), m.doneIds()))
+                                m.deadline().toString(), m.sentenceIds(), m.doneIds(), m.effect().name(),
+                                m.streakIfDone()))
                         .toList());
     }
 

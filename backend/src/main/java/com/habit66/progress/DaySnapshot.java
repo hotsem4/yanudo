@@ -61,9 +61,17 @@ public record DaySnapshot(
      * @param doneOn      모든 문장을 끝낸 날(아직이면 null)
      * @param keepsStreak 이 보충이 실제로 스트릭을 지키는가(지켰는가). 기한 안이어도 그 전날까지 스트릭이 0 이면
      *                    (처음부터 안 했거나 앞에서 이미 끊겼으면) 지킬 것이 없어 false 다. 이때 보충은 Day 를 열기만 한다.
+     *                    아직 안 끝낸 보충은 기한 안의 앞 보충도 끝낸다고 보고 정한다(목록에 남길지). 끝낸 보충은 실제 기록만 본다.
+     * @param effect      아직 안 끝낸 보충을 지금 이것만 끝내면 생기는 일(안내 문구용). 끝낸 보충은 NONE.
+     * @param streakIfDone effect 가 STREAK·WITH_OTHERS 일 때 이어지는 연속 일수
      */
     public record Makeup(int day, LocalDate date, boolean rest, int reps, LocalDate deadline, List<Long> sentenceIds,
-            List<Long> doneIds, LocalDate doneOn, boolean keepsStreak) {
+            List<Long> doneIds, LocalDate doneOn, boolean keepsStreak, MakeupEffect effect, int streakIfDone) {
+
+        public Makeup(int day, LocalDate date, boolean rest, int reps, LocalDate deadline, List<Long> sentenceIds,
+                List<Long> doneIds, LocalDate doneOn, boolean keepsStreak) {
+            this(day, date, rest, reps, deadline, sentenceIds, doneIds, doneOn, keepsStreak, MakeupEffect.NONE, 0);
+        }
 
         public boolean done() {
             return doneOn != null;
@@ -74,10 +82,18 @@ public record DaySnapshot(
             return doneOn != null && !doneOn.isAfter(deadline);
         }
 
-        Makeup withKeepsStreak(boolean keeps) {
-            return new Makeup(day, date, rest, reps, deadline, sentenceIds, doneIds, doneOn, keeps);
+        Makeup withEffect(boolean keeps, MakeupEffect effect, int streakIfDone) {
+            return new Makeup(day, date, rest, reps, deadline, sentenceIds, doneIds, doneOn, keeps, effect, streakIfDone);
         }
     }
+
+    /**
+     * 보충 하나를 지금 끝냈을 때 생기는 일.
+     * STREAK: 끊긴 연속이 이어진다(streakIfDone 일). FREEZE: 그날 쓴 프리즈가 돌아온다(연속은 이미 지켜져 있다).
+     * AFTER_EARLIER: 앞날 보충을 먼저 끝내야 연속에 반영된다. WITH_OTHERS: 뒤의 보충까지 모두 끝내야 이어진다
+     * (streakIfDone 은 그때의 연속 일수). NONE: 그 Day 를 열기만 한다.
+     */
+    public enum MakeupEffect { STREAK, FREEZE, AFTER_EARLIER, WITH_OTHERS, NONE }
 
     /** 끝난 라운드 하나: 그 라운드 days 일 중 달성한 날 수. */
     public record RoundSummary(int round, int achievedDays, int days) {

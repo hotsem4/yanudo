@@ -74,7 +74,7 @@ public class PushController {
         return reminders.deliver(new ReminderMessage(
                 "66 Habit English",
                 "시험 알림이에요. 밤 10시에 오늘 암송이 남아 있으면 이렇게 알려 드려요.",
-                ReminderMessage.AUTOPLAY_URL,
+                ReminderMessage.TODAY_URL,
                 ReminderMessage.TAG));
     }
 

@@ -7,6 +7,7 @@ import type { MascotState } from "../lib/mascot";
 import { BottomSheet } from "./BottomSheet";
 import { Mascot } from "./Mascot";
 import { ProgressRing, type TodoActions } from "./TodayPlan";
+import { makeupEffectText } from "../lib/makeup";
 import { shortDate } from "./SpeakDayList";
 
 interface Props extends TodoActions {
@@ -48,6 +49,7 @@ export function TodoSheet({
   onOpenMorning,
 }: Props) {
   const sum = summarize(todos);
+  const required = todos.filter((t) => t.required).length;
   const run = (todo: Todo) => {
     onClose();
     if (todo.id === "review") onStart("REVIEW");
@@ -60,7 +62,7 @@ export function TodoSheet({
     ? "오늘 할 일 끝! 정말 잘했어요"
     : sum.requiredDone
       ? `필수는 끝! 연속 ${streak}일째예요. 보너스도 해 볼까요?`
-      : "필수 두 가지를 끝내면 연속 기록이 이어져요";
+      : `${required <= 1 ? "필수 하나" : `필수 ${required}가지`}를 끝내면 오늘이 달성돼요${streak > 0 ? `(연속 ${streak}일째로 이어져요)` : ""}`;
 
   return (
     <BottomSheet open={open} onClose={onClose} title="오늘 할 일">
@@ -131,7 +133,14 @@ export function TodoSheet({
 
       {makeupsDue.length > 0 && (
         <section aria-label="보충할 날" className="mt-5">
-          <h3 className="text-[13px] font-bold text-muted-strong">보충하면 연속 기록을 지켜요</h3>
+          <h3 className="text-[13px] font-bold text-muted-strong">
+            빼먹은 날 보충
+            {makeupsDue.some((m) => m.effect === "AFTER_EARLIER" || m.effect === "WITH_OTHERS")
+              ? " · 이른 날부터"
+              : makeupsDue.length > 1 && makeupsDue.every((m) => m.effect === "STREAK")
+                ? " · 하나만 끝내도 이어져요"
+                : ""}
+          </h3>
           <ul className="mt-2 flex flex-col gap-2">
             {makeupsDue.map((m) => (
               <li key={m.day}>
@@ -145,9 +154,12 @@ export function TodoSheet({
                 >
                   <RotateCcw size={18} strokeWidth={2.25} className="shrink-0 text-royal" aria-hidden />
                   <span className="min-w-0 flex-1">
-                    <span className="block text-[15px] font-semibold text-ink">Day {m.day} 보충</span>
+                    <span className="block text-[15px] font-semibold text-ink">
+                      {m.date ? `${shortDate(m.date)} 보충` : `Day ${m.day} 보충`}
+                      <span className="ml-1.5 text-[12.5px] font-medium text-muted">Day {m.day} 문장 {m.reps}번씩</span>
+                    </span>
                     <span className="mt-0.5 block break-keep text-[12.5px] text-muted">
-                      문장마다 {m.reps}번, {shortDate(m.deadline)}까지
+                      {makeupEffectText(m.effect, m.streakIfDone, m.deadline)}
                     </span>
                   </span>
                   <span className="shrink-0 text-[13px] font-semibold tabular-nums text-muted-strong">

@@ -71,6 +71,8 @@ export function HeatmapSheet({ open, onClose, achievedTodayLocally, mascot, roun
 
 function HeatmapBody({ data, achievedTodayLocally, mascot }: { data: Heatmap; achievedTodayLocally: boolean; mascot: MascotState | null }) {
   const cells = data.cells.map((c) => (c.status === "TODAY" && achievedTodayLocally ? { ...c, status: "ACHIEVED" as const } : c));
+  // 칸의 day 는 라운드 안의 날이다. 헤더(누적 Day)와 같은 번호로 부른다.
+  const absDay = (day: number) => ((data.round ?? 1) - 1) * cells.length + day;
   const stats = [
     { label: "연속", value: `${data.current_streak}일` },
     { label: "최장", value: `${data.longest_streak}일` },
@@ -99,8 +101,8 @@ function HeatmapBody({ data, achievedTodayLocally, mascot }: { data: Heatmap; ac
         {cells.map((c) => (
           <li
             key={c.day}
-            title={`Day ${c.day} ${koreanDate(c.date)} ${LABEL[c.status]}`}
-            aria-label={`Day ${c.day}, ${koreanDate(c.date)}, ${LABEL[c.status]}`}
+            title={`Day ${absDay(c.day)} ${koreanDate(c.date)} ${LABEL[c.status]}`}
+            aria-label={`Day ${absDay(c.day)}, ${koreanDate(c.date)}, ${LABEL[c.status]}`}
             className={`flex aspect-square items-center justify-center rounded-[10px] text-[10.5px] font-bold tabular-nums ${CELL[c.status]} ${MILE_TEXT[c.status]}`}
           >
             {c.status === "FROZEN" ? (

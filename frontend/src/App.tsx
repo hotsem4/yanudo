@@ -117,6 +117,11 @@ export function App() {
       if (target.searchParams.get("view") === "vocab") {
         setSide("vocab");
         rememberSideView("vocab");
+      } else if (target.searchParams.get("view") === "today") {
+        // 22시 알림: 오늘의 10문장(따라 말하기)으로.
+        setSide(null);
+        rememberSideView(null);
+        playback.selectTab("TODAY");
       } else if (target.searchParams.has("autoplay")) {
         // 자동 재생 요청은 앱을 여는 흐름(readLaunch)을 타야 한다.
         window.location.assign(target.href);
@@ -168,9 +173,9 @@ export function App() {
       }
       return;
     }
-    changeFilter("korean");
+    // 이번 복습만 "한글만 + 끊어읽기"로 한다. 저장한 설정(자동 실행이 쓰는 값)은 바꾸지 않는다.
+    setFilter("korean");
     audioEngine.setMode("shadowing");
-    prefs.set("mode", "shadowing");
     void audioEngine.play();
   };
 

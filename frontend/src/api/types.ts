@@ -83,6 +83,13 @@ export interface SpeakOverview {
 export type SpeakState = "OPEN" | "MAKEUP" | "TODAY_LOCKED";
 
 /**
+ * 보충 하나를 지금 끝냈을 때 생기는 일(SPEC F-05). STREAK: 끊긴 연속이 이어짐(streak_if_done 일),
+ * FREEZE: 그날 쓴 프리즈가 돌아옴, AFTER_EARLIER: 앞날 보충부터 해야 반영됨, WITH_OTHERS: 남은 보충까지 끝내야 이어짐,
+ * NONE: 그 Day 를 열기만 함. 이전 서버·캐시에는 없을 수 있다.
+ */
+export type MakeupEffect = "STREAK" | "FREEZE" | "AFTER_EARLIER" | "WITH_OTHERS" | "NONE";
+
+/**
  * 말하기 목록의 한 Day. done_ids: OPEN 은 연습을 끝낸 문장, MAKEUP 은 보충으로 센 문장.
  * reps: 문장마다 맞게 말할 횟수(미리 알린 날 보충은 1). seen: TODAY_LOCKED 일 때 오늘의 10문장 진행.
  * deadline·repairable: MAKEUP 일 때 이날까지 끝내면 그날 연속 기록이 이어진다.
@@ -98,6 +105,8 @@ export interface SpeakDayRow {
   rest: boolean;
   deadline: string | null;
   repairable: boolean;
+  effect?: MakeupEffect;
+  streak_if_done?: number;
 }
 
 /** 말하기 연습 한 Day 의 문장과 진행. */
@@ -111,6 +120,8 @@ export interface SpeakLesson {
   rest: boolean;
   deadline: string | null;
   repairable: boolean;
+  effect?: MakeupEffect;
+  streak_if_done?: number;
 }
 
 export interface VocabList {
@@ -172,7 +183,17 @@ export interface Dashboard {
   /** 이 기능 전에 저장된 스냅샷에는 없다(optional). */
   rest_day?: { declared_today: boolean; left: number; per_period: number; period_from?: number; period_to?: number };
   /** 끝내면 연속 기록을 지키는(기한 안이고 그 전날까지 연속 기록이 있는), 아직 끝내지 않은 보충. 말하기 탭에서 한다. */
-  makeups_due?: { day: number; date: string; rest: boolean; reps: number; deadline: string; sentence_ids: number[]; done_ids: number[] }[];
+  makeups_due?: {
+    day: number;
+    date: string;
+    rest: boolean;
+    reps: number;
+    deadline: string;
+    sentence_ids: number[];
+    done_ids: number[];
+    effect?: MakeupEffect;
+    streak_if_done?: number;
+  }[];
 }
 
 export interface SessionData {

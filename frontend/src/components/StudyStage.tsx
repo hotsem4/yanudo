@@ -231,7 +231,14 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
         }
       >
         {/* 연속 재생(알림 자동 재생 등) 중에는 독이 재생 독이라 마이크가 없다. */}
-        {fb && todayFlow ? (eng.playing ? "연속 재생 중이에요. 멈추면 가운데 버튼이 마이크로 바뀌어요" : fb.status) : ""}
+        {fb && todayFlow
+          ? eng.playing
+            ? "연속 재생 중이에요. 멈추면 가운데 버튼이 마이크로 바뀌어요"
+            : view.stale && fb.tone !== "listening"
+              ? // 날이 바뀌었는데 서버에 못 닿아 아직 어제 문장이다. 통과해도 오늘 달성에 세지 않는다.
+                "날짜가 바뀌어 아직 어제 문장이에요. 연결되면 오늘 문장으로 바뀌어요(지금 통과는 오늘 달성에 세지 않아요)"
+              : fb.status
+          : ""}
       </p>
 
       <div ref={sentenceRef} className={`relative flex flex-1 flex-col justify-center py-8 ${locked ? "opacity-30" : ""}`} aria-hidden={locked}>
@@ -308,7 +315,9 @@ function StudyCard({ view, session, sentence, index, eng, filter, covered, onlin
               {sentence.ko_natural}
             </p>
             {peekable && anyHidden && <span className="sr-only">가려진 문장이 있어요. 카드를 탭하면 잠깐 보여요.</span>}
-            {todayFlow && hideEn && <span className="sr-only">영어 문장을 가렸어요. 어순과 해석을 보고 영어로 말해 보세요.</span>}
+            {todayFlow && hideEn && (
+              <span className="sr-only">영어 문장을 가렸어요. 어순과 해석을 보고 영어로 {fb?.typing ? "적어" : "말해"} 보세요.</span>
+            )}
           </motion.div>
         </AnimatePresence>
       </div>
@@ -352,6 +361,9 @@ function bannerText(view: DayView, session: SessionData): string | null {
     return `복습 순환이에요. Day ${d.lesson_day} 문장을 다시 익혀요`;
   }
   if (view.stale) return "날짜가 바뀌었어요. 연결되면 오늘 문장으로 바뀌어요";
+  if (session.session === "TODAY" && view.restDay?.declaredToday && !view.streak.achievedToday) {
+    return "오늘은 어려운 날로 알렸어요. 내일 문장마다 1번씩 보충하면 이어져요";
+  }
   return null;
 }
 
@@ -589,7 +601,8 @@ function LockPanel({ view, onGoReview }: { view: DayView; onGoReview: () => void
         </svg>
         <Lock size={24} strokeWidth={2} aria-hidden />
       </span>
-      <h2 className="mt-1 text-balance text-[17px] font-bold text-ink">어제 문장부터 복습해요</h2>
+      {/* 오래 쉬고 돌아오면 "어제" 레슨이 처음 보는 레슨일 수 있어 Day 로 부른다. */}
+      <h2 className="mt-1 text-balance text-[17px] font-bold text-ink">Day {g.yesterdayDay} 문장부터 복습해요</h2>
       <p className="text-pretty text-[14px] leading-relaxed text-muted">
         Day {g.yesterdayDay} 복습 <span className="font-semibold tabular-nums text-royal">{g.seen}/{g.total}</span>을 마치면
         <br />

@@ -38,17 +38,21 @@ public class SpeakController {
      * @param seen     TODAY_LOCKED 일 때 오늘의 10문장 중 따라 말하기로 통과한 문장 수
      * @param deadline   MAKEUP 일 때 이날까지 끝내면 그날 스트릭이 이어진다
      * @param repairable MAKEUP 일 때 이 보충이 실제로 스트릭을 지키는가(기한 안이고 그 전날까지 스트릭이 있음)
+     * @param effect     MAKEUP 일 때 지금 이것만 끝내면 생기는 일(STREAK, FREEZE, AFTER_EARLIER, NONE). 그 밖엔 NONE
+     * @param streakIfDone effect 가 STREAK 일 때 이어지는 연속 일수
      */
     public record SpeakDay(int day, String title, List<Long> sentenceIds, List<Long> doneIds, State state, int reps,
-            int seen, boolean rest, String deadline, boolean repairable) {
+            int seen, boolean rest, String deadline, boolean repairable, String effect, int streakIfDone) {
     }
 
     public record SpeakOverview(int lessonDay, List<SpeakDay> days) {
     }
 
     public record SpeakLesson(int day, String title, List<SentenceDto> sentences, List<Long> doneIds, State state,
-            int reps, boolean rest, String deadline, boolean repairable) {
+            int reps, boolean rest, String deadline, boolean repairable, String effect, int streakIfDone) {
     }
+
+    private static final String NONE = DaySnapshot.MakeupEffect.NONE.name();
 
     private final DayStateService dayState;
     private final CatalogService catalog;
@@ -62,14 +66,15 @@ public class SpeakController {
         this.jdbc = jdbc;
     }
 
-    /** 오늘 레슨까지의 Day 목록(최근 먼저). */
+    /** 오늘 레슨까지의 Day 목록(오늘 레슨 먼저, 나머지는 최근 Day 먼저). 2라운드부터는 오늘 레슨 번호가 작다. */
     @GetMapping
     public SpeakOverview overview() {
         DaySnapshot s = dayState.snapshot();
         Set<Long> practiced = Set.copyOf(practicedIds());
         Set<Integer> achievedLessons = Set.copyOf(achievedLessons());
         List<SpeakDay> days = upToToday(s, achievedLessons).stream()
-                .sorted((a, b) -> Integer.compare(b.day(), a.day()))
+                .sorted((a, b) -> a.day() == s.lessonDay() ? -1 : b.day() == s.lessonDay() ? 1
+                        : Integer.compare(b.day(), a.day()))
                 .map(lesson -> row(lesson, s, practiced, achievedLessons))
                 .toList();
         return new SpeakOverview(s.lessonDay(), days);
@@ -87,7 +92,7 @@ public class SpeakController {
             throw locked();
         }
         return new SpeakLesson(lesson.day(), lesson.title(), views.lessonSentences(lesson, s), row.doneIds(),
-                row.state(), row.reps(), row.rest(), row.deadline(), row.repairable());
+                row.state(), row.reps(), row.rest(), row.deadline(), row.repairable(), row.effect(), row.streakIfDone());
     }
 
     private SpeakDay row(LessonView lesson, DaySnapshot s, Set<Long> practiced, Set<Integer> achievedLessons) {
@@ -95,7 +100,8 @@ public class SpeakController {
         Makeup makeup = pickMakeup(s.makeups(), lesson.day(), achievedLessons.contains(lesson.day()));
         if (makeup != null) {
             return new SpeakDay(lesson.day(), lesson.title(), ids, makeup.doneIds(), State.MAKEUP, makeup.reps(), 0,
-                    makeup.rest(), makeup.deadline().toString(), makeup.keepsStreak());
+                    makeup.rest(), makeup.deadline().toString(), makeup.keepsStreak(), makeup.effect().name(),
+                    makeup.streakIfDone());
         }
         // 새 레슨인 오늘 Day 만 잠근다. 복습 순환으로 다시 하는 지난 레슨은 원래 상태(열림·보충)를 따른다.
         boolean today = lesson.day() == s.lessonDay() && !s.contentMissing();
@@ -103,10 +109,10 @@ public class SpeakController {
         if (today && !s.streak().achievedToday()) {
             int seen = s.spokenSeenIds().size();
             return new SpeakDay(lesson.day(), lesson.title(), ids, done, State.TODAY_LOCKED, PRACTICE_REPS, seen,
-                    false, null, false);
+                    false, null, false, NONE, 0);
         }
         return new SpeakDay(lesson.day(), lesson.title(), ids, done, State.OPEN, PRACTICE_REPS, 0, false, null,
-                false);
+                false, NONE, 0);
     }
 
     /**

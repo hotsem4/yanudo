@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import type { Sentence } from "../api/types";
-import { useSpeechMatch } from "../hooks/useSpeechMatch";
+import { SPEECH_ERRORS, useSpeechMatch } from "../hooks/useSpeechMatch";
 import { speakControl, useSpeakControl } from "../lib/speakControl";
 import { matchWords, PASS_RATIO, type MatchResult } from "../lib/wordMatch";
 import { studyStore } from "../state/store";
@@ -303,12 +303,17 @@ export function SpeakCheck({ sentence, passed, remainingAfter, disabled, onPasse
   } else if (hearing) {
     tone = "listening";
     status = useTyping ? "문장을 들려주는 중이에요. 다 들으면 영어로 적어 보세요" : "문장을 들려주는 중이에요. 다 들으면 가운데 마이크를 눌러요";
+  } else if (useTyping && typedResult) {
+    status = `${score}. 80% 이상이면 통과예요. 다시 듣고 고쳐 적어요`;
+  } else if (useTyping && allDone) {
+    tone = "pass";
+    status = "오늘 10문장 모두 통과했어요. 더 연습해도 좋아요";
+  } else if (useTyping && restingPassed) {
+    status = "통과한 문장이에요. 다시 적어 봐도 좋아요";
   } else if (useTyping) {
-    status = typedResult
-      ? `${score}. 80% 이상이면 통과예요. 다시 듣고 고쳐 적어요`
-      : micBlocked && !typing
-        ? `${speech.error ?? "이 브라우저에서는 음성 인식을 쓸 수 없어요."} 문장을 듣고 영어로 적어 보세요`
-        : "영어를 가렸어요. 문장을 듣고 영어로 적어 보세요(왼쪽 아래 스피커로 다시 듣기)";
+    // 마이크를 못 쓰는 이유는 문장이 바뀌어도 기억한 오류 코드로 다시 말한다(권한 거부를 "미지원"으로 바꿔 말하지 않게).
+    const why = speech.error ?? (micUnavailable ? SPEECH_ERRORS[micUnavailable] : null) ?? "이 브라우저에서는 음성 인식을 쓸 수 없어요.";
+    status = micBlocked && !typing ? `${why} 문장을 듣고 영어로 적어 보세요` : "영어를 가렸어요. 문장을 듣고 영어로 적어 보세요(왼쪽 아래 스피커로 다시 듣기)";
   } else if (speech.error && !judged) {
     // 말한 것이 있으면 판정이 먼저다(no-speech 가 뒤따라 와도 말한 단어를 버리지 않는다).
     tone = "error";

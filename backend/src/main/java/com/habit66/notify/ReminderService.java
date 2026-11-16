@@ -158,7 +158,7 @@ public class ReminderService {
                 "Day " + snapshot.currentDay() + " · 오늘의 10문장이 남았어요",
                 streak + left + "문장 남았어요. 탭해서 따라 말해 보세요."
                         + (snapshot.restDay().left() > 0 ? " 어려우면 '오늘 할 일'에서 쉬는 날로 알려요." : ""),
-                ReminderMessage.AUTOPLAY_URL,
+                ReminderMessage.TODAY_URL,
                 ReminderMessage.TAG);
     }
 }

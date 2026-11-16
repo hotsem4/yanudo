@@ -1,4 +1,5 @@
 import { Check, ChevronRight, CloudOff, Lock, RotateCcw } from "lucide-react";
+import { makeupEffectText } from "../lib/makeup";
 import type { SpeakOverview } from "../api/types";
 
 type SpeakRow = SpeakOverview["days"][number];
@@ -22,7 +23,7 @@ export function shortDate(iso: string): string {
 /** 보충 행의 짧은 안내: 기한 안이면 마감일, 지났으면 열기만 된다는 것. */
 function makeupNote(d: SpeakRow): string {
   const how = `${d.reps}번씩`;
-  return d.repairable && d.deadline ? `보충 ${how} · ${shortDate(d.deadline)}까지 하면 연속 유지` : `보충 ${how} 하면 열려요`;
+  return d.repairable ? `보충 ${how} · ${makeupEffectText(d.effect, d.streak_if_done, d.deadline)}` : `보충 ${how} 하면 열려요`;
 }
 
 /**

@@ -480,6 +480,64 @@ class HabitRulesTest {
         assertThat(broken).extracting(Makeup::keepsStreak).containsOnly(false);
     }
 
+    /** Day 1~12 레슨, 문장 하나씩(id = Day*10). */
+    private static final Map<Integer, List<Long>> TWELVE = java.util.stream.IntStream.rangeClosed(1, 12).boxed()
+            .collect(java.util.stream.Collectors.toMap(d -> d, d -> List.of(d * 10L)));
+
+    private static List<Makeup> effects(int today, Set<LocalDate> achieved, List<SpeakRow> speaks) {
+        return HabitRules.withStreakEffect(
+                HabitRules.makeups(START, day(today), plan(TWELVE, today), TWELVE, achieved, Set.of(), speaks),
+                START, day(today), achieved, TOTAL);
+    }
+
+    private static Makeup on(List<Makeup> makeups, int day) {
+        return makeups.stream().filter(m -> m.date().equals(day(day))).findFirst().orElseThrow();
+    }
+
+    @Test
+    void laterMakeupDoesNotPaintRepairedWhileEarlierMissedDaysAreOpen() {
+        // Day 1·2·5·7 달성(3·4 프리즈, 6 끊김), 8·9·10 빼먹음, 오늘 Day 11 에 Day 10 만 보충했다.
+        Set<LocalDate> achieved = achievedOn(1, 2, 5, 7);
+        List<Makeup> makeups = effects(11, achieved, spoke(11, 5, 100L));
+
+        Makeup tenth = on(makeups, 10);
+        assertThat(tenth.repairs()).isTrue();
+        assertThat(tenth.keepsStreak()).isFalse(); // 앞날(8·9)이 끊겨 있어 아직 지킬 스트릭이 없다
+        Walk walk = HabitRules.walk(START, day(11), achieved, HabitRules.repairedDates(makeups), TOTAL);
+        assertThat(status(walk, 10)).isEqualTo(CellStatus.MISSED);
+        assertThat(walk.streak().current()).isZero();
+
+        // Day 8 하나로는 9 가 끊어 모자라고, 8·9 를 다 하면(10 은 이미 함) 연속 1일로 이어진다.
+        assertThat(on(makeups, 8).effect()).isEqualTo(DaySnapshot.MakeupEffect.WITH_OTHERS);
+        assertThat(on(makeups, 8).streakIfDone()).isEqualTo(1);
+        // Day 9 는 Day 8 을 먼저 해야 의미가 있다.
+        assertThat(on(makeups, 9).effect()).isEqualTo(DaySnapshot.MakeupEffect.AFTER_EARLIER);
+
+        // 8·9 까지 끝내면 10 도 지킨 것으로 칠해진다.
+        List<SpeakRow> all = new java.util.ArrayList<>(spoke(11, 5, 100L));
+        all.addAll(spoke(11, 5, 80L, 90L));
+        List<Makeup> done = effects(11, achieved, all);
+        Walk after = HabitRules.walk(START, day(11), achieved, HabitRules.repairedDates(done), TOTAL);
+        assertThat(status(after, 8)).isEqualTo(CellStatus.REPAIRED);
+        assertThat(status(after, 10)).isEqualTo(CellStatus.REPAIRED);
+        assertThat(after.streak().current()).isEqualTo(1);
+    }
+
+    @Test
+    void makeupEffectTellsWhatThisOneMakeupDoes() {
+        // Day 1 달성, 2·3 은 프리즈, 4 에서 끊김, 오늘 Day 5.
+        List<Makeup> makeups = effects(5, achievedOn(1), List.of());
+        // 끊긴 Day 4 를 보충하면 연속 1일이 이어진다.
+        assertThat(on(makeups, 4).effect()).isEqualTo(DaySnapshot.MakeupEffect.STREAK);
+        assertThat(on(makeups, 4).streakIfDone()).isEqualTo(1);
+        // 프리즈로 넘긴 Day 2 를 보충하면 프리즈가 돌아오고, 그 프리즈가 Day 4 를 지켜 연속도 이어진다.
+        assertThat(on(makeups, 2).effect()).isEqualTo(DaySnapshot.MakeupEffect.STREAK);
+
+        // Day 1·3 달성, 2 는 프리즈, 오늘 Day 4: Day 2 보충은 연속은 그대로(이미 지켜짐)이고 프리즈만 돌아온다.
+        List<Makeup> frozen = effects(4, achievedOn(1, 3), List.of());
+        assertThat(on(frozen, 2).effect()).isEqualTo(DaySnapshot.MakeupEffect.FREEZE);
+    }
+
     @Test
     void makeupDeadlineIsInclusive() {
         Makeup onDeadline = HabitRules.makeups(START, day(6), plan(LESSONS, 6), LESSONS, achievedOn(1, 3), Set.of(),

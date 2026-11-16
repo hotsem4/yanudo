@@ -15,7 +15,7 @@ export interface SpeechMatch {
   reset: () => void;
 }
 
-const ERRORS: Record<string, string> = {
+export const SPEECH_ERRORS: Record<string, string> = {
   "not-allowed": "마이크 권한이 꺼져 있어요. 브라우저 설정에서 마이크를 허용한 뒤 앱을 다시 열어 주세요.",
   "service-not-allowed": "이 기기에서는 음성 인식을 쓸 수 없어요.",
   "no-speech": "목소리가 들리지 않았어요. 다시 눌러 읽어 보세요.",
@@ -80,7 +80,7 @@ export function useSpeechMatch({ continuous = false }: { continuous?: boolean } 
     };
     rec.onerror = (event) => {
       if (!current() || event.error === "aborted") return;
-      setError(ERRORS[event.error] ?? "음성을 인식하지 못했어요. 다시 시도해 주세요.");
+      setError(SPEECH_ERRORS[event.error] ?? "음성을 인식하지 못했어요. 다시 시도해 주세요.");
       setErrorCode(event.error);
     };
     rec.onend = () => {

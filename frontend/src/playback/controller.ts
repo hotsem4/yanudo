@@ -16,6 +16,8 @@ import { studyStore } from "../state/store";
 class PlaybackController {
   private tab: Session = readSessionParam();
   private cursors: Record<Session, number> = { TODAY: 0, REVIEW: 0 };
+  /** 탭별로 마지막에 실은 큐(문장 id 목록). 날이 바뀌어 큐가 달라지면 커서를 처음으로 되돌린다. */
+  private queueKeys: Record<Session, string | null> = { TODAY: null, REVIEW: null };
   private chain = false;
   private launchedByAutoplayFlag = false;
   private started = false;
@@ -75,9 +77,18 @@ class PlaybackController {
       return;
     }
     const items = session.sentences;
+    const key = `${this.tab}:${items.map((i) => i.id).join(",")}`;
+    const prevKey = this.queueKeys[this.tab];
+    if (prevKey !== null && prevKey !== key) {
+      // 다른 큐(날짜가 바뀜·레슨이 바뀜): 어제 위치에서 이어 가면 복습 게이트가 처음 문장들을 못 채운다.
+      // 오늘 탭은 첫 미통과 문장, 복습은 처음부터.
+      const first = this.tab === "TODAY" ? items.findIndex((s) => !view.todayProgress.spokenIds.has(s.id)) : 0;
+      this.cursors[this.tab] = Math.max(0, first);
+    }
+    this.queueKeys[this.tab] = key;
     audioEngine.load(
       {
-        key: `${this.tab}:${items.map((i) => i.id).join(",")}`,
+        key,
         session: this.tab,
         items,
         playable: this.tab === "REVIEW" || view.gate.open,
@@ -87,6 +98,7 @@ class PlaybackController {
   }
 
   private onQueueEnd(session: Session): void {
+    if (session === "TODAY") this.afterTodayPlayed();
     if (!this.chain || session !== "REVIEW") {
       this.chain = false;
       return;
@@ -98,6 +110,20 @@ class PlaybackController {
       this.selectTab("TODAY");
       void audioEngine.play();
     }
+  }
+
+  /**
+   * 오늘 문장을 연속으로 다 들었을 때: 듣기는 진행으로만 남는다는 것을 알리고 첫 미통과 문장으로 옮긴다
+   * (끝까지 들었는데 "0/10"인 이유가 화면에 없으면 헷갈린다).
+   */
+  private afterTodayPlayed(): void {
+    const state = studyStore.getState();
+    if (state.kind !== "ready" || state.view.streak.achievedToday) return;
+    const items = state.view.today?.sentences ?? [];
+    const at = items.findIndex((s) => !state.view.todayProgress.spokenIds.has(s.id));
+    if (at < 0) return;
+    showToast("들은 것은 진행으로만 남아요. 문장마다 따라 말해야 오늘이 달성돼요", "info", 4200);
+    window.setTimeout(() => audioEngine.go(at), 0);
   }
 
   /**

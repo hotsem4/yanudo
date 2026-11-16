@@ -16,6 +16,7 @@ import java.util.Set;
 import com.habit66.progress.DaySnapshot.Cell;
 import com.habit66.progress.DaySnapshot.CellStatus;
 import com.habit66.progress.DaySnapshot.Makeup;
+import com.habit66.progress.DaySnapshot.MakeupEffect;
 import com.habit66.progress.DaySnapshot.RoundSummary;
 import com.habit66.progress.DaySnapshot.Streak;
 import com.habit66.progress.ProgressFacts.AchievementRow;
@@ -242,22 +243,90 @@ final class HabitRules {
     }
 
     /**
-     * 보충마다 실제로 스트릭을 지키는지(keepsStreak)를 채운다. 아직 기한 안인 보충을 모두 끝냈다고 가정하고 걸어 본 뒤,
-     * 그 날짜 직전 스트릭이 0 보다 크면 지킨다. 끝낸 보충은 기한 안에 끝냈고 직전 스트릭이 0 보다 컸을 때 지켰다.
+     * 보충마다 스트릭에 미치는 효과를 채운다.
+     * <ul>
+     * <li>끝낸 보충: 실제 기록만으로 판정한다. 기한 안에 끝냈고 그 날짜 직전 스트릭이 0 보다 컸으면 지켰다(keepsStreak).
+     * 앞날 보충을 끝내야 비로소 직전 스트릭이 생기는 경우가 있으므로, 지킨 날짜 집합이 더 줄지 않을 때까지 다시 걷는다
+     * (날짜를 빼면 뒤 스트릭은 줄기만 하므로 끝난다). 앞날을 아직 안 했는데 뒷날만 "지킴"으로 칠했다가 앞날 기한이
+     * 지나 "놓침"으로 되돌아가는 일을 막는다.
+     * <li>아직 안 끝낸 기한 안 보충: 기한 안의 다른 보충도 끝낸다고 보고 직전 스트릭이 있으면 keepsStreak(목록에 남긴다).
+     * 그리고 지금 이것만 끝냈을 때의 효과(effect)를 실제로 걸어 정한다: 끊긴 연속이 이어지면 STREAK, 그날 쓴 프리즈만
+     * 돌아오면 FREEZE, 앞 보충을 먼저 해야 하면 AFTER_EARLIER.
+     * </ul>
      */
     static List<Makeup> withStreakEffect(List<Makeup> makeups, LocalDate start, LocalDate today,
             Set<LocalDate> achieved, int roundDays) {
+        // 1) 끝낸 보충 중 실제로 지킨 날짜(고정점)
+        Set<LocalDate> doneInTime = new HashSet<>();
+        for (Makeup m : makeups) {
+            if (m.repairs()) {
+                doneInTime.add(m.date());
+            }
+        }
+        Set<LocalDate> kept = new HashSet<>(doneInTime);
+        Walk actual = walk(start, today, achieved, kept, roundDays);
+        while (true) {
+            Map<LocalDate, Integer> before = actual.streakBefore();
+            Set<LocalDate> next = new HashSet<>();
+            for (LocalDate d : kept) {
+                if (before.getOrDefault(d, 0) > 0) {
+                    next.add(d);
+                }
+            }
+            if (next.equals(kept)) {
+                break;
+            }
+            kept = next;
+            actual = walk(start, today, achieved, kept, roundDays);
+        }
+
+        // 2) 아직 안 끝낸 기한 안 보충을 모두 끝낸다고 볼 때(목록에 남길지)
+        // 기한 안에 끝냈지만 앞날 때문에 아직 지키지 못한 보충도, 앞날을 끝내면 지키게 되므로 넣는다.
         Set<LocalDate> hoped = new HashSet<>();
         for (Makeup m : makeups) {
             if (m.repairs() || (!m.done() && !today.isAfter(m.deadline()))) {
                 hoped.add(m.date());
             }
         }
-        Map<LocalDate, Integer> before = walk(start, today, achieved, hoped, roundDays).streakBefore();
+        Walk hopedWalk = walk(start, today, achieved, hoped, roundDays);
+        Map<LocalDate, Integer> hopedBefore = hopedWalk.streakBefore();
+        Map<LocalDate, Integer> actualBefore = actual.streakBefore();
+
         List<Makeup> out = new ArrayList<>(makeups.size());
         for (Makeup m : makeups) {
-            boolean inTime = m.done() ? m.repairs() : !today.isAfter(m.deadline());
-            out.add(m.withKeepsStreak(inTime && before.getOrDefault(m.date(), 0) > 0));
+            if (m.done()) {
+                out.add(m.withEffect(kept.contains(m.date()), MakeupEffect.NONE, 0));
+                continue;
+            }
+            boolean inTime = !today.isAfter(m.deadline());
+            boolean keeps = inTime && hopedBefore.getOrDefault(m.date(), 0) > 0;
+            if (!keeps) {
+                out.add(m.withEffect(false, MakeupEffect.NONE, 0));
+                continue;
+            }
+            // 3) 지금 이것만 끝내면
+            int beforeNow = actualBefore.getOrDefault(m.date(), 0);
+            if (beforeNow <= 0) {
+                out.add(m.withEffect(true, MakeupEffect.AFTER_EARLIER, 0));
+                continue;
+            }
+            // 이미 끝냈지만 앞날 때문에 못 지킨 보충은 이것으로 이어질 수 있으니 함께 넣는다.
+            Set<LocalDate> withThis = new HashSet<>(doneInTime);
+            withThis.add(m.date());
+            int streakIfDone = walk(start, today, achieved, withThis, roundDays).streak().current();
+            // 달성도 보충도 아닌 날인데 다음 날 직전 스트릭이 그대로면 프리즈로 넘긴 날이다(끊겼으면 0).
+            boolean frozen = actualBefore.getOrDefault(m.date().plusDays(1), 0) == beforeNow;
+            int now = actual.streak().current();
+            if (streakIfDone > now) {
+                out.add(m.withEffect(true, MakeupEffect.STREAK, streakIfDone));
+            } else if (frozen) {
+                out.add(m.withEffect(true, MakeupEffect.FREEZE, 0));
+            } else if (hopedWalk.streak().current() > now) {
+                // 이것 하나로는 모자라고 뒤의 보충까지 끝내야 이어진다(빼먹은 날이 연달아 있을 때).
+                out.add(m.withEffect(true, MakeupEffect.WITH_OTHERS, hopedWalk.streak().current()));
+            } else {
+                out.add(m.withEffect(true, MakeupEffect.NONE, 0));
+            }
         }
         return List.copyOf(out);
     }

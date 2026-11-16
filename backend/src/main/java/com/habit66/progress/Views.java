@@ -27,8 +27,9 @@ public final class Views {
     }
 
     /** 끝내면 스트릭을 지키는(기한 안이고 그 전날까지 스트릭이 있는), 아직 끝내지 않은 보충. */
+    /** @param effect 지금 이것만 끝내면 생기는 일(STREAK, FREEZE, AFTER_EARLIER, NONE), streakIfDone 은 STREAK 일 때 연속 일수 */
     public record MakeupDue(int day, String date, boolean rest, int reps, String deadline, List<Long> sentenceIds,
-            List<Long> doneIds) {
+            List<Long> doneIds, String effect, int streakIfDone) {
     }
 
     /** @param spokenSeenIds 따라 말하기로 통과한 문장(오늘 달성은 이것이 전부일 때) */

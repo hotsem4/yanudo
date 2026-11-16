@@ -29,6 +29,7 @@ Get-NetTCPConnection -LocalPort 8080 -State Listen -ErrorAction SilentlyContinue
 | B3 | 폰(z-fold8)에 Tailscale 설치·로그인 | Oracle 서버를 Tailscale 없이 공개 HTTPS 로 열면 폰 앱 제거. Oracle 도 tailnet 에 넣을 거면 그대로 |
 | B4 | `config\application.yml`에 Claude 장기 토큰(`claude setup-token`, 1년) — gitignore 대상 | Oracle 서버에서도 단어 뜻을 만들려면 그 서버에 같은 파일을 만든다(토큰을 새로 발급하는 편이 안전). 이 PC 에서는 파일 삭제 |
 | B5 | 폰에 이 PC 주소로 PWA 설치(홈 화면 앱), 22시 알림 구독 | 주소가 바뀌면 새 주소로 다시 설치·알림 다시 켜기(아래 C 참고) |
+| B6 | **관리자 토큰**(2026-11-16): `config\application.yml` 의 `app.admin-token` 과 사용자 환경 변수 `APP_ADMIN_TOKEN` 에 같은 무작위 값. 이제 `/api/v1/admin/**`(시작일 변경·레슨 임포트·오디오 업로드·수동 백업)는 `X-Admin-Token` 헤더가 있어야 한다(없거나 틀리면 401). 폰 앱·매일 자동 백업·22시 알림은 관리 API 를 쓰지 않아 그대로. `scripts/generate_tts.py` 는 새 창에서 환경 변수를 자동으로 읽는다. 값은 채팅·커밋에 넣지 않는다. 확인: 새 PowerShell 창에서 `curl.exe -s -o NUL -w "%{http_code}" -H "X-Admin-Token: $env:APP_ADMIN_TOKEN" http://127.0.0.1:8080/api/v1/admin/settings` 가 200 | `config\application.yml` 에서 `admin-token` 줄 삭제, `[Environment]::SetEnvironmentVariable("APP_ADMIN_TOKEN", $null, "User")`, 서버 다시 켜기 |
 
 ## C. 권장했지만 사용자가 할 설정 (했다면 여기 적고 되돌리기)
 
@@ -45,7 +46,7 @@ Get-NetTCPConnection -LocalPort 8080 -State Listen -ErrorAction SilentlyContinue
    (백업은 `VACUUM INTO` 로 만든 한 파일짜리라 `-wal`·`-shm` 이 필요 없다.)
 4. 서버를 켠다(`Start-ScheduledTask -TaskName "habit66 서버"`). 폰은 앱을 새로 고치면 서버 기록을 다시 받는다. 폰에 남아 있던 미전송 기록은 그대로 보내진다.
 5. 이 PC 가 통째로 망가진 경우: 새 PC 에 코드를 받고(`git clone https://github.com/hotsem4/yanudo.git`), 프로젝트 루트에 `data\` 폴더를 만든 뒤 다른 곳에 둔 백업(extra-dir)을 `data\habit66.db` 로, 같이 둔 `vapid.json` 을 `data\vapid.json` 으로 놓는다. `config\application.yml`(장기 토큰·관리자 토큰·extra-dir, GitHub 에 없음)을 다시 만들고 `build-all.bat`. 음성 파일은 서버가 다시 만든다. 이 PC 에만 백업을 두기로 했으므로(2026-11-16) PC 를 잃으면 기록도 잃는다는 점을 기억한다.
-- 지금 바로 백업: `curl -X POST http://127.0.0.1:8080/api/v1/admin/backup`(관리자 토큰을 정했으면 `-H "X-Admin-Token: …"`).
+- 지금 바로 백업(새 PowerShell 창): `curl.exe -X POST -H "X-Admin-Token: $env:APP_ADMIN_TOKEN" http://127.0.0.1:8080/api/v1/admin/backup`(관리자 토큰은 B6).
 
 ## D. Oracle 로 옮길 때 챙길 것 (순서)
 

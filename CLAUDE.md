@@ -17,7 +17,7 @@ Windows PC ─ Spring Boot :8080 (단일 포트)
 
 - **단일 포트 원칙**: 프론트엔드는 `/api/v1/...` 상대 경로만 호출한다. 절대 URL·호스트·포트를 코드에 넣지 않는다. 개발 때는 Vite가 `/api`를 `localhost:8080`으로 프록시한다.
 - **데이터 디렉터리**: `app.data-dir`(기본 `./data`, 작업 디렉터리 = 프로젝트 루트). DB, 오디오, VAPID 키가 모두 여기 있다. `bootRun`도 루트에서 돈다.
-- **TTS**: 파일 이름 규칙(`sha1(voice|rate|text)[:20].mp3`)과 MP3 길이 계산은 Java `tts` 패키지에만 있다. 백엔드는 `python -m edge_tts` CLI로 직접 만들 수 있고, `scripts/generate_tts.py`는 서버에서 작업 목록(`GET /admin/tts/jobs`)을 받아 병렬로 합성한 뒤 업로드(`PUT /admin/audio/{file}`)만 한다. Python에 이름 규칙을 복제하지 않는다.
+- **TTS**: 파일 이름 규칙(`sha1(voice|rate|text[|variant])[:20].mp3`, variant는 Azure일 때만)과 MP3 길이 계산은 Java `tts` 패키지에만 있다. 백엔드는 `app.tts.engine`에 따라 `python -m edge_tts` CLI(기본) 또는 Azure Speech REST(48kHz, 키는 `config/application.yml`)로 직접 만들 수 있고, `scripts/generate_tts.py`는 서버에서 작업 목록(`GET /admin/tts/jobs`)을 받아 병렬로 합성한 뒤 업로드(`PUT /admin/audio/{file}`)만 한다. Python에 이름 규칙을 복제하지 않는다.
 - **시간 판단은 서버가 한다**: 논리 날짜, Day N, 모닝 락 시간대, 게이트, 스트릭은 모두 서버 계산값을 쓴다. 프론트엔드는 날짜를 직접 계산하지 않는다(타이머 제외). 오프라인 낙관 표시는 `state/overlay.ts`의 집합 연산뿐이다.
 - **사실만 저장**: 파생값(달성 여부 외의 스트릭·프리즈·게이트)은 저장하지 않고 매 요청 순수 함수(`progress.HabitRules`)로 계산한다. 학습 쓰기는 `POST /api/v1/events` 하나다. 설계 근거는 [docs/architecture.md](docs/architecture.md).
 

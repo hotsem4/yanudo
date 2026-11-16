@@ -145,7 +145,7 @@
 
 - 첫 실행 때 레슨 테이블이 비어 있으면 `classpath:seed/lessons-day01-05.json`(Day 1~5, 50문장)을 넣는다.
 - `POST /api/v1/admin/lessons/import`로 JSON 일괄 업서트. 같은 `(day, seq)`면 텍스트만 바꾸고 문장 id와 암기 상태(`sentence_mark`)는 그대로 둔다. JSON에 없는 기존 `seq`는 지우지 않는다. 텍스트·화자가 바뀌면 파일 이름이 바뀌어 새 오디오가 필요해진다(자동).
-- `scripts/generate_tts.py`가 서버에서 작업 목록을 받아 MP3를 병렬로 만들고 서버에 올린다. 파일 이름·길이 규칙은 서버(Java)에만 있다.
+- `scripts/generate_tts.py`가 서버에서 작업 목록을 받아 MP3를 병렬로 만들고 서버에 올린다. 파일 이름·길이 규칙은 서버(Java)에만 있다. 서버 엔진이 Azure면(작업 목록의 `engine: "azure"`) 스크립트는 아무것도 만들지 않고 끝난다(edge-tts 소리가 Azure 이름으로 올라가 품질이 섞이지 않게). 그때는 서버가 직접 만든다.
 
 ### F-08. 단어장
 
@@ -186,11 +186,16 @@
 | A | `en-US-AndrewMultilingualNeural` | `-10%` |
 | B | `en-US-AvaMultilingualNeural` | `-10%` |
 
-- 파일 이름: `sha1("{voice}|{rate}|{en_text}")` 16진 앞 20자 + `.mp3`. **규칙은 Java(`tts.Utterance`)에만 있다.** Python 스크립트는 서버가 계산한 이름을 받아 쓴다.
+- 합성 엔진(`app.tts.engine`):
+  - `edge`(기본): `edge-tts`, 24kHz·48kbps MPEG-2 Layer III. 키가 필요 없다.
+  - `azure`: Azure Speech REST(`https://{region}.tts.speech.microsoft.com/cognitiveservices/v1`), 출력 `audio-48khz-192kbitrate-mono-mp3`(48kHz·192kbps MPEG-1 Layer III, 파일 크기는 edge의 약 3배). 같은 보이스·속도를 SSML `<prosody rate>`로 넘긴다. `app.tts.azure.key`·`region`이 모두 있어야 켜지고, 하나라도 비면 설정이 `azure`여도 edge로 만든다. 키는 `config/application.yml`에만 둔다.
+  - Azure 무료 등급(F0)은 1분에 20건까지라 요청 사이를 3.1초 띄운다(660문장 약 35분). `429`면 `Retry-After`(없으면 10초, 최대 60초)만큼 쉬고 같은 클립을 다시 요청한다(재시도 횟수에 넣지 않는다). `401`·`403`은 키·지역 오류로 실패 처리한다.
+- 파일 이름: `sha1("{voice}|{rate}|{en_text}")` 16진 앞 20자 + `.mp3`. Azure면 키 끝에 `|azure:{format}`을 더한다(같은 문장이라도 품질이 다른 파일이므로 따로 둔다. edge 이름은 예전 그대로). **규칙은 Java(`tts.Utterance`)에만 있다.** Python 스크립트는 서버가 계산한 이름을 받아 쓴다.
+- 엔진을 바꾸면 모든 문장의 파일 이름이 바뀌므로 `auto-generate`가 새 엔진으로 전부 다시 만든다. 새 파일이 아직 없는 문장은 그동안 기기 음성으로 대신 읽는다(4.1 규칙). 예전 엔진 파일은 지우지 않으므로 엔진을 되돌리면 바로 예전 소리가 난다.
 - 저장 위치: `{app.data-dir}/audio/` (기본 `./data/audio/`). **디스크가 진실**이다. DB에 오디오 컬럼이 없고, 서버가 시작할 때 폴더를 읽어 길이를 메모리에 색인한다.
-- `duration_ms`: MP3 프레임 헤더를 끝까지 세어 계산(외부 라이브러리 없음, Java `tts.Mp3Frames`). edge-tts 출력은 24kHz MPEG-2 Layer III.
+- `duration_ms`: MP3 프레임 헤더를 끝까지 세어 계산(외부 라이브러리 없음, Java `tts.Mp3Frames`). edge-tts 출력은 24kHz MPEG-2, Azure 출력은 48kHz MPEG-1 Layer III이고 둘 다 센다.
 - 받아들이는 조건: 프레임이 파일 바이트의 90% 이상을 덮고 길이 200ms 이상. 같은 이름의 유효한 파일이 이미 있으면 덮어쓰지 않고 성공으로 끝난다.
-- 백엔드 생성: `app.tts.command`(기본 `python -m edge_tts`) + `--voice` `--rate=-10%` `--file <임시 txt>` `--write-media <임시 mp3>` → 검증 → 원자적 이동. 문장 텍스트는 파일로 넘겨 Windows 인자 따옴표 문제를 피한다. 단일 스레드이고, 작업 중 새로 생긴 작업은 끝난 뒤 한 번 더 스캔한다.
+- 백엔드 생성(edge): `app.tts.command`(기본 `python -m edge_tts`) + `--voice` `--rate=-10%` `--file <임시 txt>` `--write-media <임시 mp3>` → 검증 → 원자적 이동. 문장 텍스트는 파일로 넘겨 Windows 인자 따옴표 문제를 피한다. 단일 스레드이고, 작업 중 새로 생긴 작업은 끝난 뒤 한 번 더 스캔한다.
 - 서버 시작 시 `app.tts.auto-generate: true`이면 없는 클립을 백그라운드에서 만든다.
 - 서빙: `GET /api/v1/audio/{file}.mp3` (정적 리소스 핸들러, Range 지원, `Cache-Control: public, max-age=31536000, immutable`).
 
@@ -363,9 +368,9 @@ rest_day(log_date PK, declared_at)                                              
 |---|---|---|
 | `POST` | `/admin/lessons/import` | 아래 형식. 응답 `{"lessons":5,"created":50,"updated":0,"warnings":[]}`. 이미 지난 날짜의 Day 인데 레슨이 없던 Day 를 새로 넣으면 `warnings`에 알린다(그날을 달성하지 않았다면 그날 일정이 이 레슨으로 바뀌어 보충 대상이 될 수 있다). 임포트는 그대로 한다 |
 | `POST` | `/admin/backup` | 지금 DB 백업을 만든다. `{"file":"…/habit66-2026-11-16.db","bytes":123456,"extra_copy":null}` |
-| `GET` | `/admin/tts/jobs` | 아직 없는 클립 목록 `{"jobs":[{"file":"…mp3","voice":"…","rate":"-10%","text":"…","sentence_ids":[1]}]}` |
+| `GET` | `/admin/tts/jobs` | 아직 없는 클립 목록 `{"engine":"edge","jobs":[{"file":"…mp3","voice":"…","rate":"-10%","text":"…","sentence_ids":[1]}]}`. `engine`은 지금 쓰는 합성 엔진(`edge` \| `azure`) |
 | `PUT` | `/admin/audio/{file}` | 본문 `audio/mpeg` 바이트. `{"file":"…","duration_ms":2304,"created":true}`. 이미 있으면 `created:false`(200), 모르는 이름 404, 검증 실패 422 |
-| `POST` | `/admin/tts/generate` | 백엔드 edge-tts로 없는 클립 생성 시작 `{"started":true}` |
+| `POST` | `/admin/tts/generate` | 백엔드에서 없는 클립 생성 시작(지금 엔진으로) `{"started":true}` |
 | `GET` | `/admin/tts/status` | `{"running":false,"queued":0,"done":50,"failed":0,"last_error":null,"clips_total":50,"clips_missing":0}` |
 | `POST` | `/admin/tts/sync` | 디스크를 다시 읽어 색인 `{"indexed":50}` |
 | `GET` | `/admin/settings` | `{"start_date":"…","timezone":"Asia/Seoul","day_rollover_hour":3}` |

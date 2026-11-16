@@ -40,7 +40,8 @@ Get-NetTCPConnection -LocalPort 8080 -State Listen -ErrorAction SilentlyContinue
 
 1. **폰의 미전송 기록부터 보낸다**: 미전송 기록은 폰 브라우저에 **주소(출처)별로** 저장된다. 주소가 바뀌면 옛 주소의 미전송 기록은 새 앱에서 보이지 않는다. 옮기기 직전에 옛 주소 앱을 열어 설정 시트의 "보내지 않은 기록 0건"을 확인한다.
 2. 이 PC 의 서버를 멈춘다(A1 의 `Stop-ScheduledTask`) → `data\` 폴더 전체(`habit66.db`, `-wal`, `-shm`, `audio\`, `vapid.json`)를 서버로 복사한다. `vapid.json`을 옮겨야 푸시 키가 그대로라 알림 구독이 덜 깨진다(주소가 바뀌면 어차피 폰에서 다시 켠다).
-3. 서버에서 `server.address`: 이 PC 는 `127.0.0.1` 전용이다. Oracle 앞에 리버스 프록시(nginx·Caddy)를 두면 그대로 두고, 직접 열면 `APP_SERVER_ADDRESS=0.0.0.0` + **관리자 토큰(`app.admin-token`) 필수**.
+3. **접속 방식은 Tailscale 유지**(2026-11-16 사용자 결정): Oracle VM 에도 Tailscale(ARM 패키지)을 설치해 같은 tailnet 에 넣고 `tailscale serve --bg 8080` 을 건다. `server.address` 는 `127.0.0.1` 그대로, 인터넷에 포트를 열지 않는다(앱에 로그인이 없어 공개하면 누구나 기록·생성 기능을 쓸 수 있다). 폰은 지금처럼 Tailscale 을 켜 두면 된다.
+   - 검토했던 다른 방식: Cloudflare Tunnel + Access(도메인 필요, 구글 로그인), 무료 주소(DuckDNS) + Caddy + 앱 비밀번호(포트 공개, 로그인 화면 개발 필요). 공개 방식을 고르면 로그인 관문이 반드시 필요하다.
 4. 시간대 `app.timezone`(기본 Asia/Seoul)은 서버 위치와 무관하게 그대로 둔다(하루 경계가 한국 시간 기준).
 5. 폰에서 새 주소로 PWA 를 설치하고 22시 알림을 다시 켠다. 옛 홈 화면 앱은 지운다.
 6. 이 PC 정리: A1 → A3 → A2 → A4 순서로 되돌리고, B·C 는 필요에 따라.

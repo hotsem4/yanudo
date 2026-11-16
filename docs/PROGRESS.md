@@ -28,7 +28,7 @@
 
 ## 사용자 결정 (2026-11-16)
 - 장기 토큰 + 로그인 끊김 폰 알림: **구현함**(`9fe9ced`). 토큰 넣기는 선택(HANDOVER.md 3장).
-- 클라우드 배포(Oracle Always Free): **보류**, 로컬 PC 운영 유지. 검토 결과는 `docs/deploy/oracle-always-free-review.md`.
+- 클라우드 배포(Oracle Always Free): **보류**, 로컬 PC 운영 유지. 옮기더라도 접속은 Tailscale 유지(인터넷 공개 안 함). 검토 결과는 `docs/deploy/oracle-always-free-review.md`.
 
 ## 전체 코드 리뷰 (2026-11-16, 끝)
 - Fable 5.2 + Codex gpt-6.1-sol high 로 전체 리뷰 → 조율표 → 교차 검토 → 최종 확인을 네 차례 반복해 반영(`9b61dff`, `afc053e`, `e0a0287`, `8403d24`, `bff6c8c`). 기록: [review/code-review-2026-11-16.md](review/code-review-2026-11-16.md).
